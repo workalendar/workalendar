@@ -44,6 +44,11 @@ Usage sample
 Tests
 =====
 
+Travis status:
+
+.. image:: https://api.travis-ci.org/novapost/workalendar.png
+
+
 To run test, just install nose with ``pip install nose`` and run::
 
     nosetests
