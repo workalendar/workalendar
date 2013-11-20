@@ -40,6 +40,17 @@ Usage sample
     >>> cal.is_workday(date(2012, 12, 26))
     True
 
+
+Tests
+=====
+
+To run test, just install nose with ``pip install nose`` and run::
+
+    nosetests
+
+from the command line.
+
+
 License
 =======
 
