@@ -1,3 +1,6 @@
 language: python
 install: "pip install -r requirements.pip"
 script: nosetests
+branches:
+  only:
+    - master
