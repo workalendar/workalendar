@@ -1,9 +1,19 @@
 from workalendar.core import WesternCalendar
-from datetime import date, timedelta
+from datetime import timedelta
 
 
 class FranceCalendar(WesternCalendar):
     "France calendar class"
+
+    FIXED_DAYS = WesternCalendar.FIXED_DAYS + (
+        (5, 1),
+        (5, 8),
+        (7, 14),
+        (8, 15),
+        (11, 1),
+        (11, 11),
+        (12, 25),
+    )
 
     def get_ascension_thursday(self, year):
         easter = self.get_easter_sunday(year)
@@ -13,16 +23,9 @@ class FranceCalendar(WesternCalendar):
         easter = self.get_easter_sunday(year)
         return easter + timedelta(days=50)
 
-    def get_calendar_holidays(self, year):
-        days = super(FranceCalendar, self).get_calendar_holidays(year)
-        days.add(date(year, 5, 1))    # Labour day
-        days.add(date(year, 5, 8))    # 1939-45 victory
-        days.add(date(year, 7, 14))   # National day
-        days.add(date(year, 8, 15))   # Assomption
-        days.add(date(year, 11, 1))   # Toussaint
-        days.add(date(year, 11, 11))  # Armistice
-        days.add(date(year, 12, 25))  # Christmas
-        days.add(self.get_easter_monday(year))
-        days.add(self.get_ascension_thursday(year))
-        days.add(self.get_pentecote_monday(year))
-        return days
+    def get_variable_days(self, year):
+        return set([
+            self.get_easter_monday(year),
+            self.get_ascension_thursday(year),
+            self.get_pentecote_monday(year)]
+        )

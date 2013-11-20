@@ -10,15 +10,27 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 class Calendar(object):
 
     EASTER_METHOD = 3  # 3 is 'Western'
+    FIXED_DAYS = ()
 
     def __init__(self):
         self._holidays = {}
+
+    def get_fixed_days(self, year):
+        """Return the fixed days according to the FIXED_DAYS class property
+        """
+        days = set([])
+        for month, day in self.FIXED_DAYS:
+            days.add(date(year, month, day))
+        return days
+
+    def get_variable_days(self, year):
+        return set([])
 
     def get_calendar_holidays(self, year):
         """Get calendar holidays.
         This method **must** return a set or a list.
         You must override this method for each calendar."""
-        return set([])
+        return self.get_fixed_days(year).union(self.get_variable_days(year))
 
     def holidays(self, year=None):
         "Computes holidays (non-working days) for a given year"
@@ -120,12 +132,10 @@ class WesternCalendar(Calendar):
     EASTER_METHOD = 3  # 3 is 'Western'
     WEEK_END_DAYS = (SAT, SUN)
 
-    def get_calendar_holidays(self, year):
-        "European countries have at least these 2 days as holidays in common"
-        days = set([])
-        days.add(date(year, 1, 1))
-        days.add(date(year, 12, 25))
-        return days
+    FIXED_DAYS = (
+        (1, 1),
+        (12, 25),
+    )
 
     def get_weekend_days(self):
         "Week-end days are SATurday and SUNday."
