@@ -1,6 +1,6 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.america import UnitedStatesCalendar
+from workalendar.america import UnitedStatesCalendar, GoodFridayCalendar
 
 
 class UnitedStatesCalendarTest(GenericCalendarTest):
@@ -37,3 +37,12 @@ class UnitedStatesCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays(1985)
         self.assertNotIn(date(1985, 1, 20), holidays)
         self.assertIn(date(1985, 1, 21), holidays)
+
+
+class GoodFridayTest(UnitedStatesCalendarTest):
+    cal_class = GoodFridayCalendar
+
+    def test_good_friday(self):
+        holidays = self.cal.holidays(2013)
+        # it's the friday before western easter
+        self.assertIn(date(2013, 3, 29), holidays)

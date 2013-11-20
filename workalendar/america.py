@@ -1,6 +1,6 @@
 from workalendar.core import WesternCalendar
 from workalendar.core import SUN, MON, THU
-from datetime import date
+from datetime import date, timedelta
 
 
 class UnitedStatesCalendar(WesternCalendar):
@@ -31,3 +31,29 @@ class UnitedStatesCalendar(WesternCalendar):
                 inauguration_day = date(year, 1, 21)
             days.add(inauguration_day)
         return days
+
+
+class GoodFridayCalendar(UnitedStatesCalendar):
+    "Good friday is a holiday in several areas"
+    def get_variable_days(self, year):
+        return super(GoodFridayCalendar, self).get_variable_days(year).union(
+            set([self.get_easter_sunday(year) - timedelta(days=2)])
+        )
+
+# Good friday states
+ConnecticutCalendar = GoodFridayCalendar
+DelawareCalendar = GoodFridayCalendar
+FloridaCalendar = GoodFridayCalendar
+HawaiiCalendar = GoodFridayCalendar
+IndianaCalendar = GoodFridayCalendar
+KentuckyCalendar = GoodFridayCalendar
+LouisianaCalendar = GoodFridayCalendar
+NewJerseyCalendar = GoodFridayCalendar
+NorthCarolinaCalendar = GoodFridayCalendar
+NorthDakotaCalendar = GoodFridayCalendar
+TennesseeCalendar = GoodFridayCalendar
+TexasCalendar = GoodFridayCalendar
+# Good friday areas
+GuamCalendar = GoodFridayCalendar
+VirginIslandCalendar = GoodFridayCalendar
+PuertoRicoCalendar = GoodFridayCalendar
