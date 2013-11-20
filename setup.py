@@ -16,13 +16,13 @@ def read_relative_file(filename):
 
 if __name__ == '__main__':
     setup(
-        name='python-workalendar',
+        name='workalendar',
         version='0.0.1',
         description='Worldwide holidays and workdays computational toolkit.',
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
         author_email='bruno.bord@novapost.fr',
-        url='https://github.com/novapost/python-workalendar',
+        url='https://github.com/novapost/workalendar',
         license='MIT License',
         include_package_data=True,
         install_requires=['python-dateutil'],
