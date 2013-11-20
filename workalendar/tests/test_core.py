@@ -65,3 +65,24 @@ class CalendarTest(GenericCalendarTest):
             Calendar.get_last_weekday_in_month(2013, 1, THU),
             date(2013, 1, 31)
         )
+
+
+class MockCalendar(Calendar):
+
+    def holidays(self, year=None):
+        return set([date(year, 12, 25), date(year, 1, 1)])
+
+    def get_weekend_days(self):
+        return []  # no week-end, yes, it's sad
+
+
+class MockCalendarTest(GenericCalendarTest):
+    cal_class = MockCalendar
+
+    def test_add_workdays_span(self):
+        day = date(self.year, 12, 20)
+        # since this calendar has no weekends, we'll just have a 2-day-shift
+        self.assertEquals(
+            self.cal.add_workdays(day, 20),
+            date(self.year + 1, 1, 11)
+        )
