@@ -86,3 +86,20 @@ class MockCalendarTest(GenericCalendarTest):
             self.cal.add_workdays(day, 20),
             date(self.year + 1, 1, 11)
         )
+
+    def test_add_exceptions(self):
+        december_20th = date(self.year, 12, 20)
+        christmas = date(self.year, 12, 25)
+        # target_workday *is* a workday
+        target_workday = self.cal.add_workdays(december_20th, 1)
+        # Add extra workdays
+        extra_workdays = [christmas]
+        # add extra holidays
+        extra_holidays = [target_workday]
+        self.assertFalse(self.cal.is_workday(christmas))
+        self.assertTrue(self.cal.is_workday(christmas,
+                                            extra_workdays=extra_workdays))
+
+        self.assertTrue(self.cal.is_workday(target_workday))
+        self.assertFalse(self.cal.is_workday(target_workday,
+                                             extra_holidays=extra_holidays))

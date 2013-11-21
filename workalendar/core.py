@@ -55,8 +55,28 @@ class Calendar(object):
         raise NotImplementedError("Your Calendar class must implement the"
                                   " `get_weekend_days` method")
 
-    def is_workday(self, day):
-        "Return True if it's a workday."
+    def is_workday(self, day, extra_workdays=None, extra_holidays=None):
+        """Return True if it's a workday.
+        In addition to the regular holidays, you can add exceptions.
+
+        By providing ``extra_workdays``, you'll state that these dates **are**
+        workdays.
+
+        By providing ``extra_holidays``, you'll state that these dates **are**
+        holidays, even if not in the regular calendar holidays (or weekends).
+
+        Please note that the ``extra_workdays`` list has priority over the
+        ``extra_holidays`` list.
+
+        """
+        # Extra lists exceptions
+        if extra_workdays and day in extra_workdays:
+            return True
+
+        if extra_holidays and day in extra_holidays:
+            return False
+
+        # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
         if day in self.holidays(day.year):
