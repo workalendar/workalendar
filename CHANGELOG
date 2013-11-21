@@ -1,0 +1,14 @@
+# Changelog
+
+## current
+
++ added LunarCalendar, including lunar month calculations
++ added SouthKoreanCalendar, for a LunarCalendar proof of concept
+
+## v0.0.1
+
+* First released version
++ Core calendar classes, Western (European and North American) easter
+  computations,
++ United States federal days
++ France legal holidays days
