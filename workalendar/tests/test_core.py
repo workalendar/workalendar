@@ -1,6 +1,6 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import Calendar, MON, TUE, THU
+from workalendar.core import Calendar, MON, TUE, THU, LunarCalendar
 
 
 class CalendarTest(GenericCalendarTest):
@@ -64,6 +64,16 @@ class CalendarTest(GenericCalendarTest):
         self.assertEquals(
             Calendar.get_last_weekday_in_month(2013, 1, THU),
             date(2013, 1, 31)
+        )
+
+
+class LunarCalendarTest(GenericCalendarTest):
+    cal_class = LunarCalendar
+
+    def test_new_year(self):
+        self.assertEquals(
+            self.cal.lunar(2014, 1, 1),
+            date(2014, 1, 31)
         )
 
 

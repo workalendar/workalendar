@@ -2,7 +2,9 @@
 """
 from calendar import monthrange
 from datetime import date, timedelta
+
 from dateutil import easter
+from lunardate import LunarDate
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -160,3 +162,15 @@ class WesternCalendar(Calendar):
     def get_weekend_days(self):
         "Week-end days are SATurday and SUNday."
         return self.WEEK_END_DAYS
+
+
+class LunarCalendar(Calendar):
+    """Calendar that include lunar days
+    """
+    FIXED_DAYS = (
+        (1, 1),
+    )
+
+    @staticmethod
+    def lunar(year, month, day):
+        return LunarDate(year, month, day).toSolarDate()
