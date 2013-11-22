@@ -8,7 +8,7 @@ class FranceCalendarTest(GenericCalendarTest):
     cal_class = FranceCalendar
 
     def test_year_2013(self):
-        holidays = self.cal.holidays(2013)
+        holidays = self.cal.holidays_dates(2013)
         self.assertIn(date(2013, 1, 1), holidays)   # new year
         self.assertIn(date(2013, 4, 1), holidays)   # easter
         self.assertIn(date(2013, 5, 1), holidays)   # labour day

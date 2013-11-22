@@ -20,33 +20,36 @@ class Calendar(object):
     def get_fixed_days(self, year):
         """Return the fixed days according to the FIXED_DAYS class property
         """
-        days = set([])
-        for month, day in self.FIXED_DAYS:
-            days.add(date(year, month, day))
+        days = []
+        for month, day, label in self.FIXED_DAYS:
+            days.append((date(year, month, day), label))
         return days
 
     def get_variable_days(self, year):
-        return set([])
+        return []
 
     def get_calendar_holidays(self, year):
         """Get calendar holidays.
-        This method **must** return a set or a list.
+        This method **must** return an iterable (a tuple).
         You must override this method for each calendar."""
-        return self.get_fixed_days(year).union(self.get_variable_days(year))
+        return self.get_fixed_days(year) + self.get_variable_days(year)
 
     def holidays(self, year=None):
-        "Computes holidays (non-working days) for a given year"
+        """Computes holidays (non-working days) for a given year.
+        Return a 2-item tuple, composed of the date and a label."""
         if not year:
             year = date.today().year
 
         if year in self._holidays:
             return self._holidays[year]
 
-        if year not in self._holidays:
-            self._holidays[year] = set([])
         # Here we process the holiday specific calendar
-        self._holidays[year] = self.get_calendar_holidays(year)
-        return set(self._holidays[year])
+        self._holidays[year] = tuple(self.get_calendar_holidays(year))
+        return self._holidays[year]
+
+    def holidays_dates(self, year=None):
+        "Return a quick date index (set)"
+        return set(dict(self.holidays(year)).keys())
 
     def get_weekend_days(self):
         """Return a list (or a tuple) of weekdays that are *not* workdays.
@@ -81,7 +84,7 @@ class Calendar(object):
         # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
-        if day in self.holidays(day.year):
+        if day in self.holidays_dates(day.year):
             return False
         return True
 
@@ -155,8 +158,8 @@ class WesternCalendar(Calendar):
     WEEK_END_DAYS = (SAT, SUN)
 
     FIXED_DAYS = (
-        (1, 1),
-        (12, 25),
+        (1, 1, 'New year'),
+        (12, 25, "Christmas"),
     )
 
     def get_weekend_days(self):
@@ -168,7 +171,7 @@ class LunarCalendar(Calendar):
     """Calendar that include lunar days
     """
     FIXED_DAYS = (
-        (1, 1),
+        (1, 1, 'Lunar new year'),
     )
 
     @staticmethod

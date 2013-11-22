@@ -6,13 +6,13 @@ class FranceCalendar(WesternCalendar):
     "France calendar class"
 
     FIXED_DAYS = WesternCalendar.FIXED_DAYS + (
-        (5, 1),
-        (5, 8),
-        (7, 14),
-        (8, 15),
-        (11, 1),
-        (11, 11),
-        (12, 25),
+        (5, 1, "Labour Day"),
+        (5, 8, "Victory in Europe Day"),
+        (7, 14, "Bastille Day"),
+        (8, 15, "Assumption of Mary to Heaven"),
+        (11, 1, "All Saints' Day"),
+        (11, 11, "Armistice Day"),
+        (12, 25, "Christmas"),
     )
 
     def get_ascension_thursday(self, year):
@@ -24,8 +24,8 @@ class FranceCalendar(WesternCalendar):
         return easter + timedelta(days=50)
 
     def get_variable_days(self, year):
-        return set([
-            self.get_easter_monday(year),
-            self.get_ascension_thursday(year),
-            self.get_pentecote_monday(year)]
-        )
+        return [
+            (self.get_easter_monday(year), "Easter Monday"),
+            (self.get_ascension_thursday(year), "Ascension Day"),
+            (self.get_pentecote_monday(year), "Whit Monday"),
+        ]

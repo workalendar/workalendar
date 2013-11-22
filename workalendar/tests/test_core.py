@@ -18,12 +18,12 @@ class CalendarTest(GenericCalendarTest):
 
     def test_year(self):
         holidays = self.cal.holidays()
-        self.assertTrue(isinstance(holidays, set))
+        self.assertTrue(isinstance(holidays, tuple))
         self.assertEquals(self.cal._holidays[self.year], holidays)
 
     def test_another_year(self):
         holidays = self.cal.holidays(2011)
-        self.assertTrue(isinstance(holidays, set))
+        self.assertTrue(isinstance(holidays, tuple))
         self.assertEquals(self.cal._holidays[2011], holidays)
 
     def test_is_workday(self):
@@ -80,7 +80,10 @@ class LunarCalendarTest(GenericCalendarTest):
 class MockCalendar(Calendar):
 
     def holidays(self, year=None):
-        return set([date(year, 12, 25), date(year, 1, 1)])
+        return tuple((
+            (date(year, 12, 25), 'Christmas'),
+            (date(year, 1, 1), 'New year'),
+        ))
 
     def get_weekend_days(self):
         return []  # no week-end, yes, it's sad
@@ -88,6 +91,13 @@ class MockCalendar(Calendar):
 
 class MockCalendarTest(GenericCalendarTest):
     cal_class = MockCalendar
+
+    def test_holidays_dates(self):
+        self.assertIn(
+            date(self.year, 12, 25), self.cal.holidays_dates(self.year))
+
+        self.assertIn(
+            date(self.year, 1, 1), self.cal.holidays_dates(self.year))
 
     def test_add_workdays_span(self):
         day = date(self.year, 12, 20)
