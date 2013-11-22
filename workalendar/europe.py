@@ -12,7 +12,6 @@ class FranceCalendar(WesternCalendar):
         (8, 15, "Assumption of Mary to Heaven"),
         (11, 1, "All Saints' Day"),
         (11, 11, "Armistice Day"),
-        (12, 25, "Christmas"),
     )
 
     def get_ascension_thursday(self, year):
