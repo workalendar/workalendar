@@ -44,12 +44,15 @@ class Calendar(object):
             return self._holidays[year]
 
         # Here we process the holiday specific calendar
-        self._holidays[year] = tuple(self.get_calendar_holidays(year))
+        temp_calendar = tuple(self.get_calendar_holidays(year))
+
+        # it is sorted
+        self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
 
     def holidays_dates(self, year=None):
         "Return a quick date index (set)"
-        return set(dict(self.holidays(year)).keys())
+        return set([day for day, label in self.holidays(year)])
 
     def get_weekend_days(self):
         """Return a list (or a tuple) of weekdays that are *not* workdays.

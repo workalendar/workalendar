@@ -18,12 +18,12 @@ class CalendarTest(GenericCalendarTest):
 
     def test_year(self):
         holidays = self.cal.holidays()
-        self.assertTrue(isinstance(holidays, tuple))
+        self.assertTrue(isinstance(holidays, (tuple, list)))
         self.assertEquals(self.cal._holidays[self.year], holidays)
 
     def test_another_year(self):
         holidays = self.cal.holidays(2011)
-        self.assertTrue(isinstance(holidays, tuple))
+        self.assertTrue(isinstance(holidays, (tuple, list)))
         self.assertEquals(self.cal._holidays[2011], holidays)
 
     def test_is_workday(self):
@@ -98,6 +98,13 @@ class MockCalendarTest(GenericCalendarTest):
 
         self.assertIn(
             date(self.year, 1, 1), self.cal.holidays_dates(self.year))
+
+    def test_sorted_dates(self):
+        holidays = list(self.cal.holidays(self.year))
+        day, label = holidays.pop()
+        for next_day, label in holidays:
+            self.assertTrue(day <= next_day)
+            day = next_day
 
     def test_add_workdays_span(self):
         day = date(self.year, 12, 20)
