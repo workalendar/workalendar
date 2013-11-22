@@ -22,17 +22,17 @@ Usage sample
     >>> from workalendar.europe import FranceCalendar
     >>> cal = FranceCalendar()
     >>> cal.get_calendar_holidays(2012)
-    set([datetime.date(2012, 5, 17),
-         datetime.date(2012, 11, 11),
-         datetime.date(2012, 11, 1),
-         datetime.date(2012, 5, 8),
-         datetime.date(2012, 5, 28),
-         datetime.date(2012, 7, 14),
-         datetime.date(2012, 5, 1),
-         datetime.date(2012, 4, 9),
-         datetime.date(2012, 1, 1),
-         datetime.date(2012, 8, 15),
-         datetime.date(2012, 12, 25)])
+    [(datetime.date(2012, 1, 1), 'New year'),
+     (datetime.date(2012, 4, 9), 'Easter Monday'),
+     (datetime.date(2012, 5, 1), 'Labour Day'),
+     (datetime.date(2012, 5, 8), 'Victory in Europe Day'),
+     (datetime.date(2012, 5, 17), 'Ascension Day'),
+     (datetime.date(2012, 5, 28), 'Whit Monday'),
+     (datetime.date(2012, 7, 14), 'Bastille Day'),
+     (datetime.date(2012, 8, 15), 'Assumption of Mary to Heaven'),
+     (datetime.date(2012, 11, 1), "All Saints' Day"),
+     (datetime.date(2012, 11, 11), 'Armistice Day'),
+     (datetime.date(2012, 12, 25), 'Christmas')]
     >>> cal.is_workday(date(2012, 12, 25))  # it's Christmas
     False
     >>> cal.is_workday(date(2012, 12, 30))  # it's Sunday
