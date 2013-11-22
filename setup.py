@@ -26,7 +26,10 @@ if __name__ == '__main__':
         url='https://github.com/novapost/workalendar',
         license='MIT License',
         include_package_data=True,
-        install_requires=['python-dateutil', 'lunardate'],
+        install_requires=[
+            'python-dateutil==2.2',
+            'lunardate==0.1.4'
+        ],
         zip_safe=False,
         classifiers=(
             'Development Status :: 3 - Alpha',
