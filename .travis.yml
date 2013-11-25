@@ -4,3 +4,4 @@ script: nosetests
 branches:
   only:
     - master
+after_script: "pip freeze"
