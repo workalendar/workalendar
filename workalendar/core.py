@@ -171,7 +171,7 @@ class WesternCalendar(Calendar):
 
 
 class LunarCalendar(Calendar):
-    """Calendar that include lunar days
+    """Calendar including lunar days
     """
     FIXED_DAYS = (
         (1, 1, 'Lunar new year'),
