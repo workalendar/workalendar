@@ -27,8 +27,8 @@ if __name__ == '__main__':
         license='MIT License',
         include_package_data=True,
         install_requires=[
-            'python-dateutil==2.2',
-            'lunardate==0.1.4'
+            'python-dateutil',
+            'lunardate'
         ],
         zip_safe=False,
         classifiers=(
