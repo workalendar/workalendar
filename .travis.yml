@@ -1,6 +1,7 @@
 language: python
-install: "pip install -r requirements.pip"
+install: "pip install ."
 script: nosetests
 branches:
   only:
     - master
+after_script: "pip freeze"
