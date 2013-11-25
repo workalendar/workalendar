@@ -8,7 +8,7 @@ class SouthKoreaCalendarTest(GenericCalendarTest):
     cal_class = SouthKoreaCalendar
 
     def test_year_2013(self):
-        holidays = self.cal.holidays_dates(2013)
+        holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)    # new year
         self.assertIn(date(2013, 3, 1), holidays)    # independance day
         self.assertIn(date(2013, 5, 5), holidays)    # children's day

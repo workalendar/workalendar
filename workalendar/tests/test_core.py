@@ -92,12 +92,12 @@ class MockCalendar(Calendar):
 class MockCalendarTest(GenericCalendarTest):
     cal_class = MockCalendar
 
-    def test_holidays_dates(self):
+    def test_holidays_set(self):
         self.assertIn(
-            date(self.year, 12, 25), self.cal.holidays_dates(self.year))
+            date(self.year, 12, 25), self.cal.holidays_set(self.year))
 
         self.assertIn(
-            date(self.year, 1, 1), self.cal.holidays_dates(self.year))
+            date(self.year, 1, 1), self.cal.holidays_set(self.year))
 
     def test_sorted_dates(self):
         holidays = list(self.cal.holidays(self.year))

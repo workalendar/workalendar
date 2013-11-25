@@ -50,7 +50,7 @@ class Calendar(object):
         self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
 
-    def holidays_dates(self, year=None):
+    def holidays_set(self, year=None):
         "Return a quick date index (set)"
         return set([day for day, label in self.holidays(year)])
 
@@ -87,7 +87,7 @@ class Calendar(object):
         # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
-        if day in self.holidays_dates(day.year):
+        if day in self.holidays_set(day.year):
             return False
         return True
 

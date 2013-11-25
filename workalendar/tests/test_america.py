@@ -8,7 +8,7 @@ class UnitedStatesCalendarTest(GenericCalendarTest):
     cal_class = UnitedStatesCalendar
 
     def test_year_2013(self):
-        holidays = self.cal.holidays_dates(2013)
+        holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)   # new year
         self.assertIn(date(2013, 7, 4), holidays)  # Nation day
         self.assertIn(date(2013, 11, 11), holidays)  # Armistice
@@ -29,11 +29,11 @@ class UnitedStatesCalendarTest(GenericCalendarTest):
         self.assertTrue(UnitedStatesCalendar.is_presidential_year(2016))
 
     def test_inauguration_day(self):
-        holidays = self.cal.holidays_dates(2008)
+        holidays = self.cal.holidays_set(2008)
         self.assertNotIn(date(2008, 1, 20), holidays)
-        holidays = self.cal.holidays_dates(2009)
+        holidays = self.cal.holidays_set(2009)
         self.assertIn(date(2009, 1, 20), holidays)
         # case when inauguration day is a sunday
-        holidays = self.cal.holidays_dates(1985)
+        holidays = self.cal.holidays_set(1985)
         self.assertNotIn(date(1985, 1, 20), holidays)
         self.assertIn(date(1985, 1, 21), holidays)
