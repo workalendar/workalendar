@@ -30,8 +30,8 @@ class Calendar(object):
 
     def get_calendar_holidays(self, year):
         """Get calendar holidays.
-        This method **must** return an iterable (a tuple).
-        You must override this method for each calendar."""
+        If you want to override this, please make sure that it **must** return
+        a list of tuples (date, holiday_name)."""
         return self.get_fixed_days(year) + self.get_variable_days(year)
 
     def holidays(self, year=None):
