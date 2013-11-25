@@ -12,16 +12,16 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 class Calendar(object):
 
     EASTER_METHOD = 3  # 3 is 'Western'
-    FIXED_DAYS = ()
+    FIXED_HOLIDAYS = ()
 
     def __init__(self):
         self._holidays = {}
 
-    def get_fixed_days(self, year):
-        """Return the fixed days according to the FIXED_DAYS class property
+    def get_fixed_holidays(self, year):
+        """Return the fixed days according to the FIXED_HOLIDAYS class property
         """
         days = set([])
-        for month, day in self.FIXED_DAYS:
+        for month, day in self.FIXED_HOLIDAYS:
             days.add(date(year, month, day))
         return days
 
@@ -32,7 +32,8 @@ class Calendar(object):
         """Get calendar holidays.
         This method **must** return a set or a list.
         You must override this method for each calendar."""
-        return self.get_fixed_days(year).union(self.get_variable_days(year))
+        return self.get_fixed_holidays(year) \
+            .union(self.get_variable_days(year))
 
     def holidays(self, year=None):
         "Computes holidays (non-working days) for a given year"
@@ -155,7 +156,7 @@ class WesternCalendar(Calendar):
     EASTER_METHOD = 3  # 3 is 'Western'
     WEEKEND_DAYS = (SAT, SUN)
 
-    FIXED_DAYS = (
+    FIXED_HOLIDAYS = (
         (1, 1),
         (12, 25),
     )
@@ -168,7 +169,7 @@ class WesternCalendar(Calendar):
 class LunarCalendar(Calendar):
     """Calendar that include lunar days
     """
-    FIXED_DAYS = (
+    FIXED_HOLIDAYS = (
         (1, 1),
     )
 

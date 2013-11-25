@@ -4,7 +4,7 @@ from workalendar.core import LunarCalendar
 
 class SouthKoreaCalendar(LunarCalendar):
     "South Korean calendar"
-    FIXED_DAYS = LunarCalendar.FIXED_DAYS + (
+    FIXED_HOLIDAYS = LunarCalendar.FIXED_HOLIDAYS + (
         (1, 2),    # Jan 2nd is holiday too
         (3, 1),    # independance day
         (5, 5),    # children's day
