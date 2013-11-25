@@ -153,7 +153,7 @@ class WesternCalendar(Calendar):
 
     """
     EASTER_METHOD = 3  # 3 is 'Western'
-    WEEK_END_DAYS = (SAT, SUN)
+    WEEKEND_DAYS = (SAT, SUN)
 
     FIXED_DAYS = (
         (1, 1),
@@ -162,7 +162,7 @@ class WesternCalendar(Calendar):
 
     def get_weekend_days(self):
         "Week-end days are SATurday and SUNday."
-        return self.WEEK_END_DAYS
+        return self.WEEKEND_DAYS
 
 
 class LunarCalendar(Calendar):
