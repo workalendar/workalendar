@@ -6,7 +6,8 @@ Overview
 ========
 
 Workalendar is a Python module that offers classes able to handle calendars,
-list legal / religious holidays and gives workday-related computation functions.
+list legal / religious holidays and gives working-day-related computation
+functions.
 
 Status
 ======
@@ -33,11 +34,11 @@ Usage sample
          datetime.date(2012, 1, 1),
          datetime.date(2012, 8, 15),
          datetime.date(2012, 12, 25)])
-    >>> cal.is_workday(date(2012, 12, 25))  # it's Christmas
+    >>> cal.is_working_day(date(2012, 12, 25))  # it's Christmas
     False
-    >>> cal.is_workday(date(2012, 12, 30))  # it's Sunday
+    >>> cal.is_working_day(date(2012, 12, 30))  # it's Sunday
     False
-    >>> cal.is_workday(date(2012, 12, 26))
+    >>> cal.is_working_day(date(2012, 12, 26))
     True
 
 

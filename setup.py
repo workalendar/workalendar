@@ -19,7 +19,7 @@ if __name__ == '__main__':
         name='workalendar',
         packages=['workalendar'],
         version='0.0.1',
-        description='Worldwide holidays and workdays computational toolkit.',
+        description='Worldwide holidays and working days helper and toolkit.',
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
         author_email='bruno.bord@novapost.fr',

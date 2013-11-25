@@ -21,15 +21,17 @@ class FranceCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 11), holidays)  # Armistice
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
 
-    def test_workdays(self):
-        self.assertFalse(self.cal.is_workday(date(2013, 1, 1)))  # holiday
-        self.assertFalse(self.cal.is_workday(date(2013, 1, 5)))  # saturday
-        self.assertFalse(self.cal.is_workday(date(2013, 1, 6)))  # sunday
-        self.assertTrue(self.cal.is_workday(date(2013, 1, 7)))   # monday
+    def test_working_days(self):
+        self.assertFalse(self.cal.is_working_day(date(2013, 1, 1)))  # holiday
+        self.assertFalse(self.cal.is_working_day(date(2013, 1, 5)))  # saturday
+        self.assertFalse(self.cal.is_working_day(date(2013, 1, 6)))  # sunday
+        self.assertTrue(self.cal.is_working_day(date(2013, 1, 7)))   # monday
 
     def test_business_days_computations(self):
         day = date(2013, 10, 30)
-        self.assertEquals(self.cal.add_workdays(day, 0), date(2013, 10, 30))
-        self.assertEquals(self.cal.add_workdays(day, 1), date(2013, 10, 31))
-        self.assertEquals(self.cal.add_workdays(day, 2), date(2013, 11, 4))
-        self.assertEquals(self.cal.add_workdays(day, 3), date(2013, 11, 5))
+        self.assertEquals(
+            self.cal.add_working_days(day, 0), date(2013, 10, 30))
+        self.assertEquals(
+            self.cal.add_working_days(day, 1), date(2013, 10, 31))
+        self.assertEquals(self.cal.add_working_days(day, 2), date(2013, 11, 4))
+        self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
