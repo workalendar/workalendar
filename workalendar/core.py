@@ -11,7 +11,6 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 class Calendar(object):
 
-    EASTER_METHOD = 3  # 3 is 'Western'
     FIXED_HOLIDAYS = ()
 
     def __init__(self):
@@ -102,15 +101,6 @@ class Calendar(object):
                 days += 1
         return temp_day
 
-    def get_easter_sunday(self, year):
-        "Return the date of the easter (sunday) -- following the easter method"
-        return easter.easter(year, self.EASTER_METHOD)
-
-    def get_easter_monday(self, year):
-        "Return the date of the monday after easter"
-        sunday = self.get_easter_sunday(year)
-        return sunday + timedelta(days=1)
-
     @staticmethod
     def get_nth_weekday_in_month(year, month, weekday, n=1):
         """Get the nth weekday in a given month. e.g:
@@ -151,6 +141,55 @@ class Calendar(object):
         return day
 
 
+class ChristianMixin(Calendar):
+    EASTER_METHOD = None  # to be assigned in the inherited mixin
+    include_easter_monday = False
+    include_christmas = True
+    include_christmas_eve = False
+    include_st_stephen = False
+    include_ascension = False
+    include_whit_monday = False
+
+    def get_easter_sunday(self, year):
+        "Return the date of the easter (sunday) -- following the easter method"
+        return easter.easter(year, self.EASTER_METHOD)
+
+    def get_easter_monday(self, year):
+        "Return the date of the monday after easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday + timedelta(days=1)
+
+    def get_ascension_thursday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=39)
+
+    def get_whit_monday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=50)
+
+    def get_variable_days(self, year):
+        "Return the christian holidays list according to the mixin"
+        days = []
+        if self.include_easter_monday:
+            days.append((self.get_easter_monday(year), "Easter Monday"))
+        if self.include_christmas:
+            days.append((date(year, 12, 25), "Christmas Day"))
+        if self.include_christmas_eve:
+            days.append((date(year, 12, 24), "Christmas Eve"))
+        if self.include_st_stephen:
+            days.append((date(year, 12, 26), "St Stephen's Day"))
+        if self.include_ascension:
+            days.append((
+                self.get_ascension_thursday(year), "Ascension Thursday"))
+        if self.include_whit_monday:
+            days.append((self.get_whit_monday(year), "Whit Monday"))
+        return days
+
+    def get_variable_holidays(self, year):
+        return super(ChristianMixin, self).get_variable_holidays(year) \
+            + self.get_christian_holidays(year)
+
+
 class WesternCalendar(Calendar):
     """
     General usage calendar for Western countries.
@@ -163,7 +202,6 @@ class WesternCalendar(Calendar):
 
     FIXED_HOLIDAYS = (
         (1, 1, 'New year'),
-        (12, 25, "Christmas"),
     )
 
     def get_weekend_days(self):

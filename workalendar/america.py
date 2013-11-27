@@ -1,9 +1,9 @@
-from workalendar.core import WesternCalendar
+from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import SUN, MON, THU
 from datetime import date
 
 
-class UnitedStatesCalendar(WesternCalendar):
+class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
     "USA calendar"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 4, 'Independence Day'),
@@ -16,7 +16,8 @@ class UnitedStatesCalendar(WesternCalendar):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = [
+        days = super(UnitedStatesCalendar, self).get_variable_days(year)
+        days += [
             (WesternCalendar.get_nth_weekday_in_month(year, 1, MON, 3),
                 'Martin Luther King, Jr. Day'),
 

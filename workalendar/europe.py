@@ -1,9 +1,9 @@
-from workalendar.core import WesternCalendar
-from datetime import timedelta
+from workalendar.core import WesternCalendar, ChristianMixin
 
 
-class CzechRepublicCalendar(WesternCalendar):
+class CzechRepublicCalendar(WesternCalendar, ChristianMixin):
     "Czech Republic calendar class"
+    include_easter_monday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 1, "Restoration Day of the Independent Czech State"),
@@ -18,14 +18,12 @@ class CzechRepublicCalendar(WesternCalendar):
         (12, 26, "St. Stephen's Day (The Second Christmas Day)"),
     )
 
-    def get_variable_days(self, year):
-        return [
-            (self.get_easter_monday(year), "Easter Monday"),
-        ]
 
-
-class FranceCalendar(WesternCalendar):
+class FranceCalendar(WesternCalendar, ChristianMixin):
     "France calendar class"
+    include_easter_monday = True
+    include_ascension = True
+    include_whit_monday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -35,18 +33,3 @@ class FranceCalendar(WesternCalendar):
         (11, 1, "All Saints' Day"),
         (11, 11, "Armistice Day"),
     )
-
-    def get_ascension_thursday(self, year):
-        easter = self.get_easter_sunday(year)
-        return easter + timedelta(days=39)
-
-    def get_pentecote_monday(self, year):
-        easter = self.get_easter_sunday(year)
-        return easter + timedelta(days=50)
-
-    def get_variable_days(self, year):
-        return [
-            (self.get_easter_monday(year), "Easter Monday"),
-            (self.get_ascension_thursday(year), "Ascension Day"),
-            (self.get_pentecote_monday(year), "Whit Monday"),
-        ]
