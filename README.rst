@@ -22,7 +22,7 @@ Usage sample
     >>> from datetime import date
     >>> from workalendar.europe import FranceCalendar
     >>> cal = FranceCalendar()
-    >>> cal.get_calendar_holidays(2012)
+    >>> cal.holidays(2012)
     [(datetime.date(2012, 1, 1), 'New year'),
      (datetime.date(2012, 4, 9), 'Easter Monday'),
      (datetime.date(2012, 5, 1), 'Labour Day'),
