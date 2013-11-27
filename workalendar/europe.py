@@ -5,7 +5,7 @@ from datetime import timedelta
 class FranceCalendar(WesternCalendar):
     "France calendar class"
 
-    FIXED_DAYS = WesternCalendar.FIXED_DAYS + (
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (5, 8, "Victory in Europe Day"),
         (7, 14, "Bastille Day"),

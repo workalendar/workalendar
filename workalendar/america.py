@@ -5,7 +5,7 @@ from datetime import date
 
 class UnitedStatesCalendar(WesternCalendar):
     "USA calendar"
-    FIXED_DAYS = WesternCalendar.FIXED_DAYS + (
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 4, 'Independence Day'),
         (11, 11, 'Veterans Day'),
     )

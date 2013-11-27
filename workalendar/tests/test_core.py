@@ -26,10 +26,10 @@ class CalendarTest(GenericCalendarTest):
         self.assertTrue(isinstance(holidays, (tuple, list)))
         self.assertEquals(self.cal._holidays[2011], holidays)
 
-    def test_is_workday(self):
+    def test_is_working_day(self):
         self.assertRaises(
             NotImplementedError,
-            self.cal.is_workday, date(2012, 1, 1))
+            self.cal.is_working_day, date(2012, 1, 1))
 
     def test_nth_weekday(self):
         # first monday in january 2013
@@ -106,27 +106,29 @@ class MockCalendarTest(GenericCalendarTest):
             self.assertTrue(day <= next_day)
             day = next_day
 
-    def test_add_workdays_span(self):
+    def test_add_workingdays_span(self):
         day = date(self.year, 12, 20)
         # since this calendar has no weekends, we'll just have a 2-day-shift
         self.assertEquals(
-            self.cal.add_workdays(day, 20),
+            self.cal.add_working_days(day, 20),
             date(self.year + 1, 1, 11)
         )
 
     def test_add_exceptions(self):
         december_20th = date(self.year, 12, 20)
         christmas = date(self.year, 12, 25)
-        # target_workday *is* a workday
-        target_workday = self.cal.add_workdays(december_20th, 1)
-        # Add extra workdays
-        extra_workdays = [christmas]
+        # target_working_day *is* a working day
+        target_working_day = self.cal.add_working_days(december_20th, 1)
+        # Add extra working days
+        extra_working_days = [christmas]
         # add extra holidays
-        extra_holidays = [target_workday]
-        self.assertFalse(self.cal.is_workday(christmas))
-        self.assertTrue(self.cal.is_workday(christmas,
-                                            extra_workdays=extra_workdays))
+        extra_holidays = [target_working_day]
+        self.assertFalse(self.cal.is_working_day(christmas))
+        self.assertTrue(
+            self.cal.is_working_day(christmas,
+                                    extra_working_days=extra_working_days))
 
-        self.assertTrue(self.cal.is_workday(target_workday))
-        self.assertFalse(self.cal.is_workday(target_workday,
-                                             extra_holidays=extra_holidays))
+        self.assertTrue(self.cal.is_working_day(target_working_day))
+        self.assertFalse(
+            self.cal.is_working_day(target_working_day,
+                                    extra_holidays=extra_holidays))
