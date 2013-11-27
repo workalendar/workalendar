@@ -18,7 +18,7 @@ if __name__ == '__main__':
     setup(
         name='workalendar',
         packages=['workalendar'],
-        version='0.0.1',
+        version='0.0.2-dev',
         description='Worldwide holidays and working days helper and toolkit.',
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
