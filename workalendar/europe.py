@@ -1,4 +1,5 @@
-from workalendar.core import WesternCalendar, ChristianMixin
+from datetime import date
+from workalendar.core import WesternCalendar, ChristianMixin, MON
 
 
 class CzechRepublicCalendar(WesternCalendar, ChristianMixin):
@@ -33,3 +34,15 @@ class FranceCalendar(WesternCalendar, ChristianMixin):
         (11, 1, "All Saints' Day"),
         (11, 11, "Armistice Day"),
     )
+
+
+class IcelandCalendar(WesternCalendar, ChristianMixin):
+    "Iceland calendar class"
+    include_holy_thursday = True
+    include_good_friday = True
+    include_easter_monday = True
+
+    def get_first_day_of_summer(self, year):
+        return WesternCalendar.get_nth_weekday_in_month(
+            year, 4, MON,
+            start=date(year, 4, 18))
