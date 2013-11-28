@@ -102,7 +102,7 @@ class Calendar(object):
         return temp_day
 
     @staticmethod
-    def get_nth_weekday_in_month(year, month, weekday, n=1):
+    def get_nth_weekday_in_month(year, month, weekday, n=1, start=None):
         """Get the nth weekday in a given month. e.g:
 
         >>> # the 1st monday in Jan 2013
@@ -113,6 +113,8 @@ class Calendar(object):
         datetime.date(2013, 1, 14)
         """
         day = date(year, month, 1)
+        if start:
+            day = start
         counter = 0
         while True:
             if day.month != month:
@@ -143,12 +145,24 @@ class Calendar(object):
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
+    include_holy_thursday = False
+    include_good_friday = False
     include_easter_monday = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
     include_ascension = False
     include_whit_monday = False
+
+    def get_holy_thursday(self, year):
+        "Return the date of the last thursday before easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=3)
+
+    def get_good_friday(self, year):
+        "Return the date of the last friday before easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=2)
 
     def get_easter_sunday(self, year):
         "Return the date of the easter (sunday) -- following the easter method"
@@ -170,6 +184,10 @@ class ChristianMixin(Calendar):
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
         days = []
+        if self.include_holy_thursday:
+            days.append((self.get_holy_thursday(year), "Holy Thursday"))
+        if self.include_good_friday:
+            days.append((self.get_good_friday(year), "Good Friday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
         if self.include_christmas:

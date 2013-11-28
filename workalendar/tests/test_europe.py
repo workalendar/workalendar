@@ -1,6 +1,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import FranceCalendar, CzechRepublicCalendar
+from workalendar.europe import IcelandCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -54,3 +55,24 @@ class FranceCalendarTest(GenericCalendarTest):
             self.cal.add_working_days(day, 1), date(2013, 10, 31))
         self.assertEquals(self.cal.add_working_days(day, 2), date(2013, 11, 4))
         self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
+
+
+class IcelandCalendarTest(GenericCalendarTest):
+    cal_class = IcelandCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 3, 28), holidays)
+        self.assertIn(date(2013, 3, 29), holidays)
+        self.assertIn(date(2013, 4, 1), holidays)
+        self.assertIn(date(2013, 4, 25), holidays)
+        self.assertIn(date(2013, 5, 1), holidays)
+        self.assertIn(date(2013, 5, 9), holidays)
+        self.assertIn(date(2013, 5, 20), holidays)
+        self.assertIn(date(2013, 6, 17), holidays)
+        self.assertIn(date(2013, 8, 5), holidays)
+        self.assertIn(date(2013, 12, 24), holidays)
+        self.assertIn(date(2013, 12, 25), holidays)
+        self.assertIn(date(2013, 12, 26), holidays)
+        self.assertIn(date(2013, 12, 31), holidays)

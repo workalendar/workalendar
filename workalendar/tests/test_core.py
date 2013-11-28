@@ -1,6 +1,6 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import Calendar, MON, TUE, THU, LunarCalendar
+from workalendar.core import Calendar, MON, TUE, THU, FRI, LunarCalendar
 
 
 class CalendarTest(GenericCalendarTest):
@@ -52,6 +52,20 @@ class CalendarTest(GenericCalendarTest):
         self.assertEquals(
             Calendar.get_nth_weekday_in_month(2013, 1, MON, 6),
             None
+        )
+
+    def test_nth_weekday_start(self):
+        # first thursday after 18th april
+        start = date(2013, 4, 18)
+        self.assertEquals(
+            Calendar.get_nth_weekday_in_month(2013, 4, THU, start=start),
+            date(2013, 4, 18)
+        )
+        # first friday after 18th april
+        start = date(2013, 4, 18)
+        self.assertEquals(
+            Calendar.get_nth_weekday_in_month(2013, 4, FRI, start=start),
+            date(2013, 4, 19)
         )
 
     def test_last_weekday(self):
