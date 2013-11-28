@@ -75,3 +75,4 @@ class IcelandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+        self.assertIn(date(2013, 12, 31), holidays)
