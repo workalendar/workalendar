@@ -56,6 +56,29 @@ To run test, just install nose with ``pip install nose`` and run::
 
 from the command line.
 
+Available Calendars
+===================
+
+Europe
+------
+
+* Czech Republic
+* France
+* Iceland
+
+America
+-------
+
+* United States of America
+
+Asia
+----
+
+* South Korea
+
+
+And more to come (I hope!)
+
 
 License
 =======
