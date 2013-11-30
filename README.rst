@@ -75,6 +75,7 @@ Asia
 ----
 
 * South Korea
+* Japan
 
 
 And more to come (I hope!)
