@@ -160,3 +160,8 @@ class SouthAustraliaCalendar(AustraliaCalendar):
             self.get_proclamation_day(year),
         ]
         return days
+
+
+class TasmaniaCalendar(AustraliaCalendar):
+    pass
+
