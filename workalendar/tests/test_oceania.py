@@ -9,6 +9,7 @@ from workalendar.oceania import AustraliaQueenslandCalendar
 from workalendar.oceania import SouthAustraliaCalendar
 from workalendar.oceania import TasmaniaCalendar, HobartCalendar
 from workalendar.oceania import VictoriaCalendar
+from workalendar.oceania import WesternAustraliaCalendar
 
 
 class AustraliaCalendarTest(GenericCalendarTest):
@@ -138,3 +139,7 @@ class VictoriaCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 11, 5), holidays)  # Melbourne's cup
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+
+class WesternAustraliaCalendarTest(AustraliaCalendarTest):
+    cal_class = WesternAustraliaCalendar

@@ -231,3 +231,7 @@ class VictoriaCalendar(AustraliaCalendar):
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_melbourne_cup(year))
         return days
+
+
+class WesternAustraliaCalendar(AustraliaCalendar):
+    pass
