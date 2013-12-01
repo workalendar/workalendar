@@ -8,6 +8,7 @@ from workalendar.oceania import AustraliaNorthernTerritoryCalendar
 from workalendar.oceania import AustraliaQueenslandCalendar
 from workalendar.oceania import SouthAustraliaCalendar
 from workalendar.oceania import TasmaniaCalendar, HobartCalendar
+from workalendar.oceania import VictoriaCalendar
 
 
 class AustraliaCalendarTest(GenericCalendarTest):
@@ -125,3 +126,7 @@ class HobartCalendarTest(TasmaniaCalendarTest):
         self.assertIn(date(2013, 2, 11), holidays)  # Royal Hobart Regatta
         # Recreation day not in Hobart
         self.assertNotIn(date(2013, 11, 4), holidays)  # Recreation Day
+
+
+class VictoriaCalendarTest(AustraliaCalendarTest):
+    cal_class = VictoriaCalendar

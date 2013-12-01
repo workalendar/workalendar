@@ -207,3 +207,7 @@ class HobartCalendar(TasmaniaCalendar):
         days = super(HobartCalendar, self).get_variable_days(year)
         days.append(self.get_hobart(year))
         return days
+
+
+class VictoriaCalendar(AustraliaCalendar):
+    pass
