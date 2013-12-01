@@ -89,7 +89,6 @@ class AustraliaNewSouthWalesCalendar(AustraliaCalendar):
 
 class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
-    include_easter_monday = True
     include_queens_birthday = True
     include_boxing_day = True
 
@@ -119,7 +118,6 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
 
 class AustraliaQueenslandCalendar(AustraliaCalendar):
     include_easter_saturday = True
-    include_easter_monday = True
     include_queens_birthday = True
     include_boxing_day = True
 
@@ -140,4 +138,25 @@ class AustraliaQueenslandCalendar(AustraliaCalendar):
 
 
 class SouthAustraliaCalendar(AustraliaCalendar):
-    pass
+    include_easter_saturday = True
+    include_queens_birthday = True
+    include_labour_day_october = True
+
+    def get_adelaides_cup(self, year):
+        return (
+            SouthAustraliaCalendar.get_nth_weekday_in_month(
+                year, 3, MON, 2),
+            "Adelaide's cup"
+        )
+
+    def get_proclamation_day(self, year):
+        return (date(year, 12, 26), "Proclamation Day")
+
+    def get_variable_days(self, year):
+        days = super(SouthAustraliaCalendar, self) \
+            .get_variable_days(year)
+        days += [
+            self.get_adelaides_cup(year),
+            self.get_proclamation_day(year),
+        ]
+        return days
