@@ -36,6 +36,12 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         # usual variable days
         days = super(AustraliaCalendar, self).get_variable_days(year)
+        january_first = date(year, 1, 1)
+        if january_first.weekday() in self.get_weekend_days():
+            days.append((
+                self.find_following_working_day(january_first),
+                "New year's eve shift")
+            )
         if self.include_queens_birthday:
             days.append(self.get_queens_birthday(year))
         if self.include_labour_day_october:

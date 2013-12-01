@@ -23,6 +23,10 @@ class AustraliaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 4, 25), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
 
+    def test_new_year_shift(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 2), holidays)  # 1st was a sunday
+
 
 class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
     cal_class = AustraliaCapitalTerritoryCalendar

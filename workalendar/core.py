@@ -96,10 +96,16 @@ class Calendar(object):
         days = 0
         temp_day = day
         while days < delta:
-            temp_day = temp_day + timedelta(1)
+            temp_day = temp_day + timedelta(days=1)
             if self.is_working_day(temp_day):
                 days += 1
         return temp_day
+
+    def find_following_working_day(self, day):
+        "Looks for the following working day"
+        while day.weekday() in self.get_weekend_days():
+            day = day + timedelta(days=1)
+        return day
 
     @staticmethod
     def get_nth_weekday_in_month(year, month, weekday, n=1, start=None):
