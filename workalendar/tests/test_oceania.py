@@ -143,3 +143,13 @@ class VictoriaCalendarTest(AustraliaCalendarTest):
 
 class WesternAustraliaCalendarTest(AustraliaCalendarTest):
     cal_class = WesternAustraliaCalendar
+
+    def test_regional_specific_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 3, 4), holidays)  # Labours day in march
+        self.assertIn(date(2013, 6, 3), holidays)  # Western Australia Day
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+        # It is not possible to surely compute Queen's Birthday holiday in
+        # The western Australia territory, since it's based on the Governor
+        # Decision (it is typically the last Monday of September or the first
+        # Monday of October)

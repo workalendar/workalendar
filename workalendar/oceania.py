@@ -125,7 +125,7 @@ class AustraliaQueenslandCalendar(AustraliaCalendar):
         return (
             AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
                 year, 5, MON),
-            "May Day"
+            "Labour Day"
         )
 
     def get_variable_days(self, year):
@@ -172,8 +172,7 @@ class TasmaniaCalendar(AustraliaCalendar):
 
     def get_eight_hours_day(self, year):
         return (
-            TasmaniaCalendar.get_nth_weekday_in_month(
-                year, 3, MON, 2),
+            TasmaniaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
             "Eight hours Day"
         )
 
@@ -217,7 +216,7 @@ class VictoriaCalendar(AustraliaCalendar):
     def get_labours_day_in_march(self, year):
         return (
             VictoriaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
-            "May Day"
+            "Labour Day"
         )
 
     def get_melbourne_cup(self, year):
@@ -234,4 +233,27 @@ class VictoriaCalendar(AustraliaCalendar):
 
 
 class WesternAustraliaCalendar(AustraliaCalendar):
-    pass
+    include_boxing_day = True
+
+    def get_labours_day_in_march(self, year):
+        return (
+            WesternAustraliaCalendar.get_nth_weekday_in_month(year, 3, MON),
+            "Labour Day"
+        )
+
+    def get_western_australia_day(self, year):
+        return (
+            WesternAustraliaCalendar.get_nth_weekday_in_month(year, 6, MON),
+            "Western Australia Day"
+        )
+
+    def get_variable_days(self, year):
+        # It is not possible to surely compute Queen's Birthday holiday in
+        # The western Australia territory, since it's based on the Governor
+        # Decision (it is typically the last Monday of September or the first
+        # Monday of October)
+
+        days = super(WesternAustraliaCalendar, self).get_variable_days(year)
+        days.append(self.get_labours_day_in_march(year))
+        days.append(self.get_western_australia_day(year))
+        return days
