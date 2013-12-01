@@ -96,10 +96,16 @@ class Calendar(object):
         days = 0
         temp_day = day
         while days < delta:
-            temp_day = temp_day + timedelta(1)
+            temp_day = temp_day + timedelta(days=1)
             if self.is_working_day(temp_day):
                 days += 1
         return temp_day
+
+    def find_following_working_day(self, day):
+        "Looks for the following working day"
+        while day.weekday() in self.get_weekend_days():
+            day = day + timedelta(days=1)
+        return day
 
     @staticmethod
     def get_nth_weekday_in_month(year, month, weekday, n=1, start=None):
@@ -148,11 +154,14 @@ class ChristianMixin(Calendar):
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
+    include_easter_saturday = False
+    include_easter_sunday = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
     include_ascension = False
     include_whit_monday = False
+    include_boxing_day = False
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -163,6 +172,11 @@ class ChristianMixin(Calendar):
         "Return the date of the last friday before easter"
         sunday = self.get_easter_sunday(year)
         return sunday - timedelta(days=2)
+
+    def get_easter_saturday(self, year):
+        "Return the Easter Saturday date"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=1)
 
     def get_easter_sunday(self, year):
         "Return the date of the easter (sunday) -- following the easter method"
@@ -188,6 +202,10 @@ class ChristianMixin(Calendar):
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
             days.append((self.get_good_friday(year), "Good Friday"))
+        if self.include_easter_saturday:
+            days.append((self.get_easter_saturday(year), "Easter Saturday"))
+        if self.include_easter_sunday:
+            days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
         if self.include_christmas:
@@ -196,6 +214,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 12, 24), "Christmas Eve"))
         if self.include_st_stephen:
             days.append((date(year, 12, 26), "St Stephen's Day"))
+        if self.include_boxing_day:
+            days.append((date(year, 12, 26), "Boxing Day"))
         if self.include_ascension:
             days.append((
                 self.get_ascension_thursday(year), "Ascension Thursday"))

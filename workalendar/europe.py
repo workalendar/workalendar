@@ -62,16 +62,12 @@ class IcelandCalendar(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(IcelandCalendar, self).get_variable_days(year)
-
         days += [
             (
                 self.get_first_day_of_summer(year),
                 "First day of summer"),
-
             (
                 WesternCalendar.get_nth_weekday_in_month(year, 8, MON),
                 "Commerce Day"),
-
         ]
-
         return days
