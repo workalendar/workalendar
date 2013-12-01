@@ -154,6 +154,7 @@ class ChristianMixin(Calendar):
     include_st_stephen = False
     include_ascension = False
     include_whit_monday = False
+    include_boxing_day = False
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -204,6 +205,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 12, 24), "Christmas Eve"))
         if self.include_st_stephen:
             days.append((date(year, 12, 26), "St Stephen's Day"))
+        if self.include_boxing_day:
+            days.append((date(year, 12, 26), "Boxing Day"))
         if self.include_ascension:
             days.append((
                 self.get_ascension_thursday(year), "Ascension Thursday"))

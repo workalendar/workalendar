@@ -47,6 +47,7 @@ class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
     include_queens_birthday = True
     include_labour_day_october = True
+    include_boxing_day = True
 
     def get_family_community_day(self, year):
         # Since this day is picked unsing the school year calendar, there's no
