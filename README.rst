@@ -76,6 +76,10 @@ Asia
 
 * South Korea
 
+Oceania
+-------
+
+* Australia
 
 And more to come (I hope!)
 
