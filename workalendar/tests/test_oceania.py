@@ -28,6 +28,10 @@ class AustraliaCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 2), holidays)  # 1st was a sunday
 
+    def test_anzac_shift(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 4, 26), holidays)
+
 
 class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
     cal_class = AustraliaCapitalTerritoryCalendar
@@ -53,6 +57,11 @@ class AustraliaNewSouthWalesCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_anzac_shift(self):
+        # We don't shift
+        holidays = self.cal.holidays_set(2010)
+        self.assertNotIn(date(2010, 4, 26), holidays)
 
 
 class AustraliaNorthernTerritoryCalendarTest(AustraliaCalendarTest):
@@ -98,6 +107,11 @@ class TasmaniaCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 3, 11), holidays)  # Eight hours day
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_anzac_shift(self):
+        # We don't shift
+        holidays = self.cal.holidays_set(2010)
+        self.assertNotIn(date(2010, 4, 26), holidays)
 
 
 class NonHobartTest(TasmaniaCalendarTest):

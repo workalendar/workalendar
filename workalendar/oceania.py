@@ -9,10 +9,11 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_queens_birthday = False
     include_labour_day_october = False
+    # Shall we shift Anzac Day?
+    shift_anzac_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 26, "Australia Day"),
-        (4, 25, "Anzac Day"),
     )
 
     def get_canberra_day(self, year):
@@ -33,6 +34,14 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
             'Labour Day'
         )
 
+    def get_anzac_day(self, year):
+        anzac_day = date(year, 4, 25)
+        if not self.shift_anzac_day:
+            return (anzac_day, "Anzac Day")
+        if anzac_day.weekday() in self.get_weekend_days():
+            anzac_day = self.find_following_working_day(anzac_day)
+        return (anzac_day, "Anzac Day")
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(AustraliaCalendar, self).get_variable_days(year)
@@ -49,6 +58,9 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
                 self.find_following_working_day(australia_day),
                 "Australia Day shift")
             )
+
+        # was fixed, but might be shifted
+        days.append(self.get_anzac_day(year))
 
         if self.include_queens_birthday:
             days.append(self.get_queens_birthday(year))
@@ -99,6 +111,7 @@ class AustraliaNewSouthWalesCalendar(AustraliaCalendar):
     include_easter_sunday = True
     include_labour_day_october = True
     include_boxing_day = True
+    shift_anzac_day = False
 
 
 class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
@@ -179,6 +192,7 @@ class SouthAustraliaCalendar(AustraliaCalendar):
 class TasmaniaCalendar(AustraliaCalendar):
     include_queens_birthday = True
     include_boxing_day = True
+    shift_anzac_day = False
 
     @property
     def has_recreation_day(self):
