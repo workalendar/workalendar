@@ -148,6 +148,7 @@ class ChristianMixin(Calendar):
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
+    include_easter_saturday = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
@@ -163,6 +164,11 @@ class ChristianMixin(Calendar):
         "Return the date of the last friday before easter"
         sunday = self.get_easter_sunday(year)
         return sunday - timedelta(days=2)
+
+    def get_easter_saturday(self, year):
+        "Return the Easter Saturday date"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=1)
 
     def get_easter_sunday(self, year):
         "Return the date of the easter (sunday) -- following the easter method"
@@ -188,6 +194,8 @@ class ChristianMixin(Calendar):
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
             days.append((self.get_good_friday(year), "Good Friday"))
+        if self.include_easter_saturday:
+            days.append((self.get_easter_saturday(year), "Easter Saturday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
         if self.include_christmas:
