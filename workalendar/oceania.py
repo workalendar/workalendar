@@ -7,6 +7,7 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
     "Australia base calendar"
     include_good_friday = True
     include_easter_monday = True
+    include_queens_birthday = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 26, "Australia Day"),
@@ -19,17 +20,23 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
             "Canberra Day"
         )
 
+    def get_queens_birthday(self, year):
+        return (
+            AustraliaCalendar.get_nth_weekday_in_month(year, 6, MON, 2),
+            "Queen's Birthday"
+        )
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(AustraliaCalendar, self).get_variable_days(year)
-        days += [
-
-        ]
+        if self.include_queens_birthday:
+            days.append(self.get_queens_birthday(year))
         return days
 
 
 class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
+    include_queens_birthday = True
 
     def get_variable_days(self, year):
         days = super(AustraliaCapitalTerritoryCalendar, self) \

@@ -23,3 +23,4 @@ class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 11), holidays)
         self.assertIn(date(2013, 3, 30), holidays)
+        self.assertIn(date(2013, 6, 10), holidays)
