@@ -163,5 +163,47 @@ class SouthAustraliaCalendar(AustraliaCalendar):
 
 
 class TasmaniaCalendar(AustraliaCalendar):
-    pass
+    include_queens_birthday = True
+    include_boxing_day = True
 
+    @property
+    def has_recreation_day(self):
+        return True
+
+    def get_eight_hours_day(self, year):
+        return (
+            TasmaniaCalendar.get_nth_weekday_in_month(
+                year, 3, MON, 2),
+            "Eight hours Day"
+        )
+
+    def get_recreation_day(self, year):
+        return (
+            TasmaniaCalendar.get_nth_weekday_in_month(year, 11, MON),
+            "Recreation Day"
+        )
+
+    def get_variable_days(self, year):
+        days = super(TasmaniaCalendar, self).get_variable_days(year)
+        days.append(self.get_eight_hours_day(year))
+        if self.has_recreation_day:
+            days.append(self.get_recreation_day(year))
+        return days
+
+
+class HobartCalendar(TasmaniaCalendar):
+
+    @property
+    def has_recreation_day(self):
+        return False
+
+    def get_hobart(self, year):
+        return (
+            HobartCalendar.get_nth_weekday_in_month(year, 2, MON, 2),
+            "Royal Hobart Regatta"
+        )
+
+    def get_variable_days(self, year):
+        days = super(HobartCalendar, self).get_variable_days(year)
+        days.append(self.get_hobart(year))
+        return days

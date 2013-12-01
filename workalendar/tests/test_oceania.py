@@ -7,7 +7,7 @@ from workalendar.oceania import AustraliaNewSouthWalesCalendar
 from workalendar.oceania import AustraliaNorthernTerritoryCalendar
 from workalendar.oceania import AustraliaQueenslandCalendar
 from workalendar.oceania import SouthAustraliaCalendar
-from workalendar.oceania import TasmaniaCalendar
+from workalendar.oceania import TasmaniaCalendar, HobartCalendar
 
 
 class AustraliaCalendarTest(GenericCalendarTest):
@@ -103,3 +103,25 @@ class SouthAustraliaCalendarTest(AustraliaCalendarTest):
 
 class TasmaniaCalendarTest(AustraliaCalendarTest):
     cal_class = TasmaniaCalendar
+
+    def test_regional_specific_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 3, 11), holidays)  # Eight hours day
+        self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+
+class NonHobartTest(TasmaniaCalendarTest):
+    def test_tasmania_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 11, 4), holidays)  # Recreation Day
+
+
+class HobartCalendarTest(TasmaniaCalendarTest):
+    cal_class = HobartCalendar
+
+    def test_hobart_specific_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 2, 11), holidays)  # Royal Hobart Regatta
+        # Recreation day not in Hobart
+        self.assertNotIn(date(2013, 11, 4), holidays)  # Recreation Day
