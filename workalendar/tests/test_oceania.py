@@ -5,6 +5,7 @@ from workalendar.oceania import AustraliaCalendar
 from workalendar.oceania import AustraliaCapitalTerritoryCalendar
 from workalendar.oceania import AustraliaNewSouthWalesCalendar
 from workalendar.oceania import AustraliaNorthernTerritoryCalendar
+from workalendar.oceania import AustraliaQueenslandCalendar
 
 
 class AustraliaCalendarTest(GenericCalendarTest):
@@ -66,3 +67,7 @@ class AustraliaNorthernTerritoryCalendarTest(AustraliaCalendarTest):
     def test_nb_holidays(self):
         holidays = self.cal.holidays(2013)
         self.assertEquals(len(holidays), 11)
+
+
+class AustraliaQueenslandCalendarTest(AustraliaCalendarTest):
+    cal_class = AustraliaQueenslandCalendar

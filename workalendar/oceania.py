@@ -115,3 +115,7 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
             self.get_picnic_day(year),
         ]
         return days
+
+class AustraliaQueenslandCalendar(AustraliaCalendar):
+    pass
+
