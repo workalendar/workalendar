@@ -45,6 +45,8 @@ class AustraliaNewSouthWalesCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_nb_holidays(self):
         holidays = self.cal.holidays(2013)
         self.assertEquals(len(holidays), 11)
 
@@ -57,4 +59,10 @@ class AustraliaNorthernTerritoryCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 3, 30), holidays)  # Easter Saturday
         self.assertIn(date(2013, 4, 1), holidays)  # Easter Monday
         self.assertIn(date(2013, 5, 6), holidays)  # May Day
+        self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
+        self.assertIn(date(2013, 8, 5), holidays)  # Picnic day
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
+    def test_nb_holidays(self):
+        holidays = self.cal.holidays(2013)
+        self.assertEquals(len(holidays), 11)

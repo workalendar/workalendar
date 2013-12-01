@@ -91,6 +91,7 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
     include_easter_monday = True
     include_queens_birthday = True
+    include_boxing_day = True
 
     def get_may_day(self, year):
         return (
@@ -99,10 +100,18 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
             "May Day"
         )
 
+    def get_picnic_day(self, year):
+        return (
+            AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
+                year, 8, MON),
+            "Picnic Day"
+        )
+
     def get_variable_days(self, year):
         days = super(AustraliaNorthernTerritoryCalendar, self) \
             .get_variable_days(year)
         days += [
             self.get_may_day(year),
+            self.get_picnic_day(year),
         ]
         return days
