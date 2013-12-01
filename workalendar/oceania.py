@@ -8,6 +8,7 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_easter_monday = True
     include_queens_birthday = False
+    include_labour_day_october = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 26, "Australia Day"),
@@ -26,17 +27,26 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
             "Queen's Birthday"
         )
 
+    def get_labour_day_october(self, year):
+        return (
+            AustraliaCalendar.get_nth_weekday_in_month(year, 10, MON),
+            'Labour Day'
+        )
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(AustraliaCalendar, self).get_variable_days(year)
         if self.include_queens_birthday:
             days.append(self.get_queens_birthday(year))
+        if self.include_labour_day_october:
+            days.append(self.get_labour_day_october(year))
         return days
 
 
 class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
     include_queens_birthday = True
+    include_labour_day_october = True
 
     def get_family_community_day(self, year):
         # Since this day is picked unsing the school year calendar, there's no

@@ -25,3 +25,4 @@ class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 3, 30), holidays)
         self.assertIn(date(2013, 6, 10), holidays)
         self.assertIn(date(2013, 9, 30), holidays)
+        self.assertIn(date(2013, 10, 7), holidays)
