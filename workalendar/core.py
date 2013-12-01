@@ -149,6 +149,7 @@ class ChristianMixin(Calendar):
     include_good_friday = False
     include_easter_monday = False
     include_easter_saturday = False
+    include_easter_sunday = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
@@ -197,6 +198,8 @@ class ChristianMixin(Calendar):
             days.append((self.get_good_friday(year), "Good Friday"))
         if self.include_easter_saturday:
             days.append((self.get_easter_saturday(year), "Easter Saturday"))
+        if self.include_easter_sunday:
+            days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
         if self.include_christmas:

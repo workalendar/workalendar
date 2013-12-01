@@ -78,3 +78,6 @@ class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
         ]
         return days
 
+
+class AustraliaNewSouthWalesCalendar(AustraliaCalendar):
+    include_queens_birthday = True
