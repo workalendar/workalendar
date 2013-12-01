@@ -137,3 +137,7 @@ class AustraliaQueenslandCalendar(AustraliaCalendar):
             self.get_labour_day_may(year),
         ]
         return days
+
+
+class SouthAustraliaCalendar(AustraliaCalendar):
+    pass
