@@ -1,5 +1,5 @@
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON
+from workalendar.core import MON, TUE
 from datetime import date
 
 
@@ -210,4 +210,24 @@ class HobartCalendar(TasmaniaCalendar):
 
 
 class VictoriaCalendar(AustraliaCalendar):
-    pass
+    include_easter_saturday = True
+    include_queens_birthday = True
+    include_boxing_day = True
+
+    def get_labours_day_in_march(self, year):
+        return (
+            VictoriaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
+            "May Day"
+        )
+
+    def get_melbourne_cup(self, year):
+        return (
+            VictoriaCalendar.get_nth_weekday_in_month(year, 11, TUE),
+            "Melbourne Cup"
+        )
+
+    def get_variable_days(self, year):
+        days = super(VictoriaCalendar, self).get_variable_days(year)
+        days.append(self.get_labours_day_in_march(year))
+        days.append(self.get_melbourne_cup(year))
+        return days
