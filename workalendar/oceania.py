@@ -116,6 +116,24 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
         ]
         return days
 
-class AustraliaQueenslandCalendar(AustraliaCalendar):
-    pass
 
+class AustraliaQueenslandCalendar(AustraliaCalendar):
+    include_easter_saturday = True
+    include_easter_monday = True
+    include_queens_birthday = True
+    include_boxing_day = True
+
+    def get_labour_day_may(self, year):
+        return (
+            AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
+                year, 5, MON),
+            "May Day"
+        )
+
+    def get_variable_days(self, year):
+        days = super(AustraliaQueenslandCalendar, self) \
+            .get_variable_days(year)
+        days += [
+            self.get_labour_day_may(year),
+        ]
+        return days
