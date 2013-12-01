@@ -38,10 +38,32 @@ class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
     include_easter_saturday = True
     include_queens_birthday = True
 
+    def get_family_community_day(self, year):
+        # Since this day is picked unsing the school year calendar, there's no
+        # mathematical way yet to provide it surely
+
+        # TODO: Family & Community Day was celebrated on the first Tuesday of
+        # November in 2007, 2008 and 2009
+        if year == 2010:
+            day = date(2010, 9, 27)
+        elif year == 2011:
+            day = date(2011, 10, 10)
+        elif year == 2012:
+            day = date(2012, 10, 8)
+        elif year == 2013:
+            day = date(2013, 9, 30)
+        elif year == 2014:
+            day = date(2014, 9, 29)
+        else:
+            raise Exception("Year %d is not implemented, Sorry" % year)
+        return (day, "Family & Community Day")
+
     def get_variable_days(self, year):
         days = super(AustraliaCapitalTerritoryCalendar, self) \
             .get_variable_days(year)
         days += [
             self.get_canberra_day(year),
+            self.get_family_community_day(year),
         ]
         return days
+
