@@ -1,7 +1,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import FranceCalendar, CzechRepublicCalendar
-from workalendar.europe import IcelandCalendar
+from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -76,3 +76,20 @@ class IcelandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
+
+
+class UnitedKingdomCalendarTest(GenericCalendarTest):
+    cal_class = UnitedKingdomCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year day
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2013, 8, 26), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2013, 12, 25), holidays)  # Christmas
+
+# Bank holidays should be shifted to the first working day

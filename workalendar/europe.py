@@ -71,3 +71,35 @@ class IcelandCalendar(WesternCalendar, ChristianMixin):
                 "Commerce Day"),
         ]
         return days
+
+
+class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
+    "United Kingdom calendar"
+    include_good_friday = True
+    include_easter_sunday = True
+    include_easter_monday = True
+
+    def get_early_may_bank_holiday(self, year):
+        return (
+            UnitedKingdomCalendar.get_nth_weekday_in_month(year, 5, MON),
+            "Early May Bank Holiday"
+        )
+
+    def get_spring_bank_holiday(self, year):
+        return (
+            UnitedKingdomCalendar.get_last_weekday_in_month(year, 5, MON),
+            "Spring Bank Holiday"
+        )
+
+    def get_late_summer_bank_holiday(self, year):
+        return (
+            UnitedKingdomCalendar.get_last_weekday_in_month(year, 8, MON),
+            "Late Summer Bank Holiday"
+        )
+
+    def get_variable_days(self, year):
+        days = super(UnitedKingdomCalendar, self).get_variable_days(year)
+        days.append(self.get_early_may_bank_holiday(year))
+        days.append(self.get_spring_bank_holiday(year))
+        days.append(self.get_late_summer_bank_holiday(year))
+        return days
