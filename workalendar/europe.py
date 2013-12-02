@@ -111,3 +111,11 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
             days.append((shift, "Christmas Shift"))
             days.append((shift + timedelta(days=1), "Boxing Day Shift"))
         return days
+
+
+class NorthernIrelandCalendar(UnitedKingdomCalendar):
+
+    def get_variable_days(self, year):
+        days = super(NorthernIrelandCalendar, self).get_variable_days(year)
+        days.append((date(year, 3, 17), "Saint Patrick's Day"))
+        return days

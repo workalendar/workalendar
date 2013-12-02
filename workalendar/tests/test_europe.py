@@ -2,6 +2,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import FranceCalendar, CzechRepublicCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
+from workalendar.europe import NorthernIrelandCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -103,3 +104,11 @@ class UnitedKingdomCalendarTest(GenericCalendarTest):
         self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
         self.assertIn(date(2011, 12, 26), holidays)  # XMas day shift
         self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
+
+
+class NorthernIrelandCalendarTest(UnitedKingdomCalendarTest):
+    cal_class = NorthernIrelandCalendar
+
+    def test_regional_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 3, 17), holidays)  # St Patrick's day

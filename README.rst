@@ -66,6 +66,7 @@ Europe
 * France
 * Iceland
 * United Kingdom
+* Northern Ireland
 
 America
 -------
