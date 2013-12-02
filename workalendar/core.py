@@ -197,7 +197,7 @@ class ChristianMixin(Calendar):
 
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
-        days = []
+        days = super(ChristianMixin, self).get_variable_days(year)
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
@@ -223,10 +223,6 @@ class ChristianMixin(Calendar):
             days.append((self.get_whit_monday(year), "Whit Monday"))
         return days
 
-    def get_variable_holidays(self, year):
-        return super(ChristianMixin, self).get_variable_holidays(year) \
-            + self.get_christian_holidays(year)
-
 
 class WesternCalendar(Calendar):
     """
@@ -237,6 +233,7 @@ class WesternCalendar(Calendar):
     """
     EASTER_METHOD = 3  # 3 is 'Western'
     WEEKEND_DAYS = (SAT, SUN)
+    shift_new_years_day = False
 
     FIXED_HOLIDAYS = (
         (1, 1, 'New year'),
@@ -245,6 +242,16 @@ class WesternCalendar(Calendar):
     def get_weekend_days(self):
         "Week-end days are SATurday and SUNday."
         return self.WEEKEND_DAYS
+
+    def get_variable_days(self, year):
+        days = super(WesternCalendar, self).get_variable_days(year)
+        new_year = date(year, 1, 1)
+        if self.shift_new_years_day:
+            if new_year.weekday() in self.get_weekend_days():
+                days.append((
+                    self.find_following_working_day(new_year),
+                    "New Year shift"))
+        return days
 
 
 class LunarCalendar(Calendar):

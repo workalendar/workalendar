@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin, THU, MON
 
 
@@ -78,6 +78,8 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
+    include_boxing_day = True
+    shift_new_years_day = True
 
     def get_early_may_bank_holiday(self, year):
         return (
@@ -102,4 +104,10 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
         days.append(self.get_early_may_bank_holiday(year))
         days.append(self.get_spring_bank_holiday(year))
         days.append(self.get_late_summer_bank_holiday(year))
+        # Boxing day & XMas shift
+        christmas = date(year, 12, 25)
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            days.append((shift, "Christmas Shift"))
+            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
         return days

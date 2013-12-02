@@ -91,5 +91,15 @@ class UnitedKingdomCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
         self.assertIn(date(2013, 8, 26), holidays)  # Late Summer Bank Holiday
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
-# Bank holidays should be shifted to the first working day
+    def test_shift_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)  # new year day
+        self.assertIn(date(2012, 1, 2), holidays)  # new year day shift
+
+    def test_shift_2011(self):
+        holidays = self.cal.holidays_set(2011)
+        self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
+        self.assertIn(date(2011, 12, 26), holidays)  # XMas day shift
+        self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
