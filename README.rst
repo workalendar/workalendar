@@ -65,6 +65,7 @@ Europe
 * Czech Republic
 * France
 * Iceland
+* United Kingdom
 
 America
 -------
