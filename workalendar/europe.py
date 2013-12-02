@@ -117,5 +117,10 @@ class NorthernIrelandCalendar(UnitedKingdomCalendar):
 
     def get_variable_days(self, year):
         days = super(NorthernIrelandCalendar, self).get_variable_days(year)
-        days.append((date(year, 3, 17), "Saint Patrick's Day"))
+        st_patrick = date(year, 3, 17)
+        days.append((st_patrick, "Saint Patrick's Day"))
+        if st_patrick.weekday() in self.get_weekend_days():
+            days.append((
+                self.find_following_working_day(st_patrick),
+                "Saint Patrick shift"))
         return days

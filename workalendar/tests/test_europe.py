@@ -112,3 +112,7 @@ class NorthernIrelandCalendarTest(UnitedKingdomCalendarTest):
     def test_regional_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 17), holidays)  # St Patrick's day
+
+    def test_regional_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 3, 19), holidays)  # St Patrick's day shift
