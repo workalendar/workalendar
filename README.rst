@@ -82,8 +82,12 @@ Oceania
 
 * Australia
 
-And more to come (I hope!)
+Africa
+------
 
+* South Africa
+
+And more to come (I hope!)
 
 License
 =======
