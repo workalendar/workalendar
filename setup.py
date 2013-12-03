@@ -30,6 +30,7 @@ if __name__ == '__main__':
             'python-dateutil',
             'lunardate',
             'pyephem',
+            'pytz',
         ],
         zip_safe=False,
         classifiers=(
