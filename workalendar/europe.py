@@ -36,6 +36,12 @@ class FranceCalendar(WesternCalendar, ChristianMixin):
     )
 
 
+class FranceAlsaceMoselleCalendar(FranceCalendar):
+    "France Alsace/Moselle calendar class"
+    include_good_friday = True
+    include_boxing_day = True
+
+
 class IcelandCalendar(WesternCalendar, ChristianMixin):
     "Iceland calendar class"
     include_holy_thursday = True
