@@ -5,6 +5,7 @@ from datetime import date, timedelta
 
 from dateutil import easter
 from lunardate import LunarDate
+from calverter import Calverter
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -264,3 +265,34 @@ class LunarCalendar(Calendar):
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
+
+
+class CalverterCalendar(Calendar):
+    conversion_method = None
+
+    def __init__(self, *args, **kwargs):
+        super(CalverterCalendar, self).__init__(*args, **kwargs)
+        self.calverter = Calverter()
+        if self.conversion_method is None:
+            raise NotImplementedError
+
+    def converted(self, year):
+        conversion_method = getattr(self.calverter, self.conversion_method)
+        current = date(year, 1, 1)
+        days = []
+        while current.year == year:
+            julian_day = self.calverter.gregorian_to_jd(
+                current.year,
+                current.month,
+                current.day)
+            days.append(conversion_method(julian_day))
+            current = current + timedelta(days=1)
+        return days
+
+
+class IslamicCalendar(CalverterCalendar):
+    conversion_method = 'jd_to_islamic'
+
+
+class JalaliCalendar(CalverterCalendar):
+    conversion_method = 'jd_to_jalali'

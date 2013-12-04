@@ -1,6 +1,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import Calendar, MON, TUE, THU, FRI, LunarCalendar
+from workalendar.core import MON, TUE, THU, FRI
+from workalendar.core import Calendar, LunarCalendar, IslamicCalendar, JalaliCalendar
 
 
 class CalendarTest(GenericCalendarTest):
@@ -146,3 +147,19 @@ class MockCalendarTest(GenericCalendarTest):
         self.assertFalse(
             self.cal.is_working_day(target_working_day,
                                     extra_holidays=extra_holidays))
+
+
+class IslamicCalendarTest(GenericCalendarTest):
+    cal_class = IslamicCalendar
+
+    def test_year_conversion(self):
+        days = self.cal.converted(2013)
+        self.assertEquals(len(days), 365)
+
+
+class JalaliCalendarTest(GenericCalendarTest):
+    cal_class = JalaliCalendar
+
+    def test_year_conversion(self):
+        days = self.cal.converted(2013)
+        self.assertEquals(len(days), 365)
