@@ -1,10 +1,9 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.africa import SouthAfricaCalendar
+from workalendar.africa import SouthAfricaCalendar, BeninCalendar
 
 
 class SouthAfricaCalendarTest(GenericCalendarTest):
-
     cal_class = SouthAfricaCalendar
 
     def test_year_2013(self):
@@ -28,3 +27,21 @@ class SouthAfricaCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 27), holidays)  # freedom day
         self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
+
+
+class BeninCalendarTest(GenericCalendarTest):
+    cal_class = BeninCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 9), holidays)   # Ascension
+        self.assertIn(date(2013, 5, 20), holidays)   # Whit Monday
+        self.assertIn(date(2013, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2013, 8, 1), holidays)  # Independance Day
+        self.assertIn(date(2013, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2013, 10, 26), holidays)  # Armed Forces Day
+        self.assertIn(date(2013, 11, 1), holidays)  # All Saints Day
+        self.assertIn(date(2013, 11, 30), holidays)  # National Day
+        self.assertIn(date(2013, 12, 25), holidays)  # christmas

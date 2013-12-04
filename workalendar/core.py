@@ -157,10 +157,12 @@ class ChristianMixin(Calendar):
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
+    include_all_saints = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
     include_ascension = False
+    include_assumption = False
     include_whit_monday = False
     include_boxing_day = False
 
@@ -209,6 +211,10 @@ class ChristianMixin(Calendar):
             days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
+        if self.include_assumption:
+            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
+        if self.include_all_saints:
+            days.append((date(year, 11, 1), "All Saints Day"))
         if self.include_christmas:
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
@@ -267,11 +273,11 @@ class LunarCalendar(Calendar):
         return LunarDate(year, month, day).toSolarDate()
 
 
-class CalverterCalendar(Calendar):
+class CalverterMixin(Calendar):
     conversion_method = None
 
     def __init__(self, *args, **kwargs):
-        super(CalverterCalendar, self).__init__(*args, **kwargs)
+        super(CalverterMixin, self).__init__(*args, **kwargs)
         self.calverter = Calverter()
         if self.conversion_method is None:
             raise NotImplementedError
@@ -290,9 +296,9 @@ class CalverterCalendar(Calendar):
         return days
 
 
-class IslamicCalendar(CalverterCalendar):
+class IslamicMixin(CalverterMixin):
     conversion_method = 'jd_to_islamic'
 
 
-class JalaliCalendar(CalverterCalendar):
+class JalaliMixin(CalverterMixin):
     conversion_method = 'jd_to_jalali'
