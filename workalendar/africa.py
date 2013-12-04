@@ -20,6 +20,12 @@ class BeninCalendar(WesternCalendar, IslamicMixin, ChristianMixin):
         (11, 30, "National Day"),
     )
 
+    ISLAMIC_HOLIDAYS = (
+        (3, 12, "Prophet's Birthday"),
+        (12, 10, "Tabaski"),
+        (10, 1, "Eid al-Fitr"),
+    )
+
 
 class SouthAfricaCalendar(WesternCalendar, ChristianMixin):
     "South Africa calendar"

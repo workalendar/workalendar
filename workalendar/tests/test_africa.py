@@ -45,3 +45,8 @@ class BeninCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 1), holidays)  # All Saints Day
         self.assertIn(date(2013, 11, 30), holidays)  # National Day
         self.assertIn(date(2013, 12, 25), holidays)  # christmas
+        # Variable Muslim days
+        self.assertIn(date(2013, 1, 24), holidays)  # Milad un Nabi
+        self.assertIn(date(2013, 10, 15), holidays)  # Tabaski
+        self.assertIn(date(2013, 8, 8), holidays)  # Eid al-Fitr
+

@@ -275,6 +275,7 @@ class LunarCalendar(Calendar):
 
 class CalverterMixin(Calendar):
     conversion_method = None
+    ISLAMIC_HOLIDAYS = ()
 
     def __init__(self, *args, **kwargs):
         super(CalverterMixin, self).__init__(*args, **kwargs)
@@ -283,7 +284,7 @@ class CalverterMixin(Calendar):
             raise NotImplementedError
 
     def converted(self, year):
-        conversion_method = getattr(self.calverter, self.conversion_method)
+        conversion_method = getattr(self.calverter, 'jd_to_%s' % self.conversion_method)
         current = date(year, 1, 1)
         days = []
         while current.year == year:
@@ -295,10 +296,27 @@ class CalverterMixin(Calendar):
             current = current + timedelta(days=1)
         return days
 
+    def calverted_years(self, year):
+        converted = self.converted(year)
+        generator = (y for y, m, d in converted)
+        return sorted(list(set(generator)))
+
+    def get_variable_days(self, year):
+        days = super(CalverterMixin, self).get_variable_days(year)
+        years = self.calverted_years(year)
+        conversion_method = getattr(self.calverter, '%s_to_jd' % self.conversion_method)
+        for month, day, label in self.ISLAMIC_HOLIDAYS:
+                for y in years:
+                    jd = conversion_method(y, month, day)
+                    g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                    if g_year == year:
+                        days.append((date(g_year, g_month, g_day), label))
+        return days
+
 
 class IslamicMixin(CalverterMixin):
-    conversion_method = 'jd_to_islamic'
+    conversion_method = 'islamic'
 
 
 class JalaliMixin(CalverterMixin):
-    conversion_method = 'jd_to_jalali'
+    conversion_method = 'jalali'
