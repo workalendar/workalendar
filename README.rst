@@ -77,6 +77,7 @@ Asia
 ----
 
 * South Korea
+* Japan
 
 Oceania
 -------
