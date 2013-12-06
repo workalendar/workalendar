@@ -1,7 +1,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.europe import FranceCalendar, CzechRepublicCalendar, \
-                               FranceAlsaceMoselleCalendar
+from workalendar.europe import FranceCalendar, FranceAlsaceMoselleCalendar
+from workalendar.europe import CzechRepublicCalendar, ItalyCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
 
 
@@ -65,14 +65,14 @@ class FranceAlsaceMoselleCalendarTest(FranceCalendarTest):
         super(FranceAlsaceMoselleCalendarTest, self).test_year_2013()
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 29), holidays)  # Good friday
-        self.assertIn(date(2013, 12, 26), holidays) # Boxing day
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_working_days(self):
         super(FranceAlsaceMoselleCalendarTest, self).test_working_days()
 
     def test_business_days_computations(self):
-        super(FranceAlsaceMoselleCalendarTest, self).\
-                test_business_days_computations()
+        super(FranceAlsaceMoselleCalendarTest, self) \
+            .test_business_days_computations()
 
 
 class IcelandCalendarTest(GenericCalendarTest):
@@ -94,6 +94,24 @@ class IcelandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
+
+
+class ItalyCalendarTest(GenericCalendarTest):
+    cal_class = ItalyCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new years day
+        self.assertIn(date(2013, 1, 6), holidays)  # Epiphany
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 4, 25), holidays)  # liberation day
+        self.assertIn(date(2013, 5, 1), holidays)  # workers day
+        self.assertIn(date(2013, 6, 2), holidays)  # Republic day
+        self.assertIn(date(2013, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2013, 11, 1), holidays)  # all saints
+        self.assertIn(date(2013, 12, 8), holidays)  # immaculate Conception
+        self.assertIn(date(2013, 12, 25), holidays)  # christmas
+        self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
 
 
 class UnitedKingdomCalendarTest(GenericCalendarTest):
