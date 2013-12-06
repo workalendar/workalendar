@@ -25,13 +25,13 @@ class FranceCalendar(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
+    include_all_saints = True
+    include_assumption = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (5, 8, "Victory in Europe Day"),
         (7, 14, "Bastille Day"),
-        (8, 15, "Assumption of Mary to Heaven"),
-        (11, 1, "All Saints' Day"),
         (11, 11, "Armistice Day"),
     )
 

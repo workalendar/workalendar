@@ -5,6 +5,7 @@ from datetime import date, timedelta
 
 from dateutil import easter
 from lunardate import LunarDate
+from calverter import Calverter
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -156,10 +157,12 @@ class ChristianMixin(Calendar):
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
+    include_all_saints = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
     include_ascension = False
+    include_assumption = False
     include_whit_monday = False
     include_boxing_day = False
 
@@ -208,6 +211,10 @@ class ChristianMixin(Calendar):
             days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
+        if self.include_assumption:
+            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
+        if self.include_all_saints:
+            days.append((date(year, 11, 1), "All Saints Day"))
         if self.include_christmas:
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
@@ -264,3 +271,52 @@ class LunarCalendar(Calendar):
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
+
+
+class CalverterMixin(Calendar):
+    conversion_method = None
+    ISLAMIC_HOLIDAYS = ()
+
+    def __init__(self, *args, **kwargs):
+        super(CalverterMixin, self).__init__(*args, **kwargs)
+        self.calverter = Calverter()
+        if self.conversion_method is None:
+            raise NotImplementedError
+
+    def converted(self, year):
+        conversion_method = getattr(self.calverter, 'jd_to_%s' % self.conversion_method)
+        current = date(year, 1, 1)
+        days = []
+        while current.year == year:
+            julian_day = self.calverter.gregorian_to_jd(
+                current.year,
+                current.month,
+                current.day)
+            days.append(conversion_method(julian_day))
+            current = current + timedelta(days=1)
+        return days
+
+    def calverted_years(self, year):
+        converted = self.converted(year)
+        generator = (y for y, m, d in converted)
+        return sorted(list(set(generator)))
+
+    def get_variable_days(self, year):
+        days = super(CalverterMixin, self).get_variable_days(year)
+        years = self.calverted_years(year)
+        conversion_method = getattr(self.calverter, '%s_to_jd' % self.conversion_method)
+        for month, day, label in self.ISLAMIC_HOLIDAYS:
+                for y in years:
+                    jd = conversion_method(y, month, day)
+                    g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                    if g_year == year:
+                        days.append((date(g_year, g_month, g_day), label))
+        return days
+
+
+class IslamicMixin(CalverterMixin):
+    conversion_method = 'islamic'
+
+
+class JalaliMixin(CalverterMixin):
+    conversion_method = 'jalali'

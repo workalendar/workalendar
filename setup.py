@@ -31,6 +31,7 @@ if __name__ == '__main__':
             'lunardate',
             'pyephem',
             'pytz',
+            'pyCalverter',
         ],
         zip_safe=False,
         classifiers=(

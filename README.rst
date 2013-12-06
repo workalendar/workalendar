@@ -88,6 +88,7 @@ Africa
 ------
 
 * South Africa
+* Benin
 
 And more to come (I hope!)
 
