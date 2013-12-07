@@ -66,6 +66,7 @@ Europe
 * France
 * France (Alsace / Moselle)
 * Iceland
+* Italy
 * United Kingdom
 
 America

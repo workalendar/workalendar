@@ -152,12 +152,14 @@ class Calendar(object):
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
+    include_epiphany = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
     include_all_saints = False
+    include_immaculate_conception = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
@@ -201,6 +203,8 @@ class ChristianMixin(Calendar):
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
+        if self.include_epiphany:
+            days.append((date(year, 1, 6), "Epiphany"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
@@ -215,6 +219,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
         if self.include_all_saints:
             days.append((date(year, 11, 1), "All Saints Day"))
+        if self.include_immaculate_conception:
+            days.append((date(year, 12, 8), "Immaculate Conception"))
         if self.include_christmas:
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
@@ -284,7 +290,8 @@ class CalverterMixin(Calendar):
             raise NotImplementedError
 
     def converted(self, year):
-        conversion_method = getattr(self.calverter, 'jd_to_%s' % self.conversion_method)
+        conversion_method = getattr(
+            self.calverter, 'jd_to_%s' % self.conversion_method)
         current = date(year, 1, 1)
         days = []
         while current.year == year:
@@ -304,7 +311,8 @@ class CalverterMixin(Calendar):
     def get_variable_days(self, year):
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
-        conversion_method = getattr(self.calverter, '%s_to_jd' % self.conversion_method)
+        conversion_method = getattr(
+            self.calverter, '%s_to_jd' % self.conversion_method)
         for month, day, label in self.ISLAMIC_HOLIDAYS:
                 for y in years:
                     jd = conversion_method(y, month, day)
