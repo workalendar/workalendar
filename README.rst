@@ -73,6 +73,7 @@ America
 -------
 
 * United States of America
+* Brazil (incl. São Paulo state and city)
 
 Asia
 ----
