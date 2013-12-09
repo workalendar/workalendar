@@ -93,13 +93,26 @@ class Calendar(object):
             return False
         return True
 
-    def add_working_days(self, day, delta):
-        "Add `delta` working days to the date."
+    def add_working_days(self, day, delta,
+                         extra_working_days=None, extra_holidays=None):
+        """Add `delta` working days to the date.
+
+        By providing ``extra_working_days``, you'll state that these dates
+        **are** working days.
+
+        By providing ``extra_holidays``, you'll state that these dates **are**
+        holidays, even if not in the regular calendar holidays (or weekends).
+
+        Please note that the ``extra_working_days`` list has priority over the
+        ``extra_holidays`` list.
+        """
         days = 0
         temp_day = day
         while days < delta:
             temp_day = temp_day + timedelta(days=1)
-            if self.is_working_day(temp_day):
+            if self.is_working_day(temp_day,
+                                   extra_working_days=extra_working_days,
+                                   extra_holidays=extra_holidays):
                 days += 1
         return temp_day
 
