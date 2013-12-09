@@ -113,14 +113,24 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class NorthernIrelandCalendar(UnitedKingdomCalendar):
+class UnitedKingdomNorthernIrelandCalendar(UnitedKingdomCalendar):
 
     def get_variable_days(self, year):
-        days = super(NorthernIrelandCalendar, self).get_variable_days(year)
+        days = super(UnitedKingdomNorthernIrelandCalendar, self) \
+            .get_variable_days(year)
+        # St Patrick's day
         st_patrick = date(year, 3, 17)
         days.append((st_patrick, "Saint Patrick's Day"))
         if st_patrick.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(st_patrick),
-                "Saint Patrick shift"))
+                "Saint Patrick substitute"))
+
+        # Battle of boyne
+        battle_of_boyne = date(year, 7, 12)
+        days.append((battle_of_boyne, "Battle of the Boyne"))
+        if battle_of_boyne.weekday() in self.get_weekend_days():
+            days.append((
+                self.find_following_working_day(battle_of_boyne),
+                "Battle of the Boyne substitute"))
         return days
