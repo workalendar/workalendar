@@ -25,15 +25,21 @@ class FranceCalendar(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
+    include_all_saints = True
+    include_assumption = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (5, 8, "Victory in Europe Day"),
         (7, 14, "Bastille Day"),
-        (8, 15, "Assumption of Mary to Heaven"),
-        (11, 1, "All Saints' Day"),
         (11, 11, "Armistice Day"),
     )
+
+
+class FranceAlsaceMoselleCalendar(FranceCalendar):
+    "France Alsace/Moselle calendar class"
+    include_good_friday = True
+    include_boxing_day = True
 
 
 class IcelandCalendar(WesternCalendar, ChristianMixin):
@@ -71,6 +77,22 @@ class IcelandCalendar(WesternCalendar, ChristianMixin):
                 "Commerce Day"),
         ]
         return days
+
+
+class ItalyCalendar(WesternCalendar, ChristianMixin):
+    "Italy"
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (4, 25, "Liberation Day"),
+        (5, 1, "International Workers' Day"),
+        (6, 2, "Republic Day"),
+    )
+    include_immaculate_conception = True
+    include_epiphany = True
+    include_easter_monday = True
+    include_assumption = True
+    include_all_saints = True
+    include_assumption = True
+    include_st_stephen = True
 
 
 class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):

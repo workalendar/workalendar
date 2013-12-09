@@ -64,7 +64,9 @@ Europe
 
 * Czech Republic
 * France
+* France (Alsace / Moselle)
 * Iceland
+* Italy
 * United Kingdom
 * Northern Ireland
 
@@ -72,19 +74,36 @@ America
 -------
 
 * United States of America
+* Brazil (incl. São Paulo state and city)
 
 Asia
 ----
 
 * South Korea
+* Japan
 
 Oceania
 -------
 
 * Australia
 
+Africa
+------
+
+* Algeria
+* Benin
+* South Africa
+
 And more to come (I hope!)
 
+Caveats
+=======
+
+Please take note that some calendars are not 100% accurate. The most common
+example is the Islamic calendar, where some computed holidays are not exactly on
+the same official day decided by religious authorities, and this may vary
+country by country. Whenever it's possible, try to adjust your results with
+the official data provided by the adequate authorities.
 
 License
 =======

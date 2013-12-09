@@ -1,10 +1,12 @@
 """Working day tools
 """
+import warnings
 from calendar import monthrange
 from datetime import date, timedelta
 
 from dateutil import easter
 from lunardate import LunarDate
+from calverter import Calverter
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -91,13 +93,26 @@ class Calendar(object):
             return False
         return True
 
-    def add_working_days(self, day, delta):
-        "Add `delta` working days to the date."
+    def add_working_days(self, day, delta,
+                         extra_working_days=None, extra_holidays=None):
+        """Add `delta` working days to the date.
+
+        By providing ``extra_working_days``, you'll state that these dates
+        **are** working days.
+
+        By providing ``extra_holidays``, you'll state that these dates **are**
+        holidays, even if not in the regular calendar holidays (or weekends).
+
+        Please note that the ``extra_working_days`` list has priority over the
+        ``extra_holidays`` list.
+        """
         days = 0
         temp_day = day
         while days < delta:
             temp_day = temp_day + timedelta(days=1)
-            if self.is_working_day(temp_day):
+            if self.is_working_day(temp_day,
+                                   extra_working_days=extra_working_days,
+                                   extra_holidays=extra_holidays):
                 days += 1
         return temp_day
 
@@ -151,15 +166,19 @@ class Calendar(object):
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
+    include_epiphany = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
+    include_all_saints = False
+    include_immaculate_conception = False
     include_christmas = True
     include_christmas_eve = False
     include_st_stephen = False
     include_ascension = False
+    include_assumption = False
     include_whit_monday = False
     include_boxing_day = False
 
@@ -198,6 +217,8 @@ class ChristianMixin(Calendar):
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
+        if self.include_epiphany:
+            days.append((date(year, 1, 6), "Epiphany"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
@@ -208,6 +229,12 @@ class ChristianMixin(Calendar):
             days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
+        if self.include_assumption:
+            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
+        if self.include_all_saints:
+            days.append((date(year, 11, 1), "All Saints Day"))
+        if self.include_immaculate_conception:
+            days.append((date(year, 12, 8), "Immaculate Conception"))
         if self.include_christmas:
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
@@ -264,3 +291,81 @@ class LunarCalendar(Calendar):
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
+
+
+class CalverterMixin(Calendar):
+    conversion_method = None
+    ISLAMIC_HOLIDAYS = ()
+
+    def __init__(self, *args, **kwargs):
+        super(CalverterMixin, self).__init__(*args, **kwargs)
+        self.calverter = Calverter()
+        if self.conversion_method is None:
+            raise NotImplementedError
+
+    def converted(self, year):
+        conversion_method = getattr(
+            self.calverter, 'jd_to_%s' % self.conversion_method)
+        current = date(year, 1, 1)
+        days = []
+        while current.year == year:
+            julian_day = self.calverter.gregorian_to_jd(
+                current.year,
+                current.month,
+                current.day)
+            days.append(conversion_method(julian_day))
+            current = current + timedelta(days=1)
+        return days
+
+    def calverted_years(self, year):
+        converted = self.converted(year)
+        generator = (y for y, m, d in converted)
+        return sorted(list(set(generator)))
+
+    def get_islamic_holidays(self):
+        return self.ISLAMIC_HOLIDAYS
+
+    def get_variable_days(self, year):
+        warnings.warn('Please take not that, due to arbitrary decisions, '
+                      'this Islamic calendar computation may be wrong.')
+        days = super(CalverterMixin, self).get_variable_days(year)
+        years = self.calverted_years(year)
+        conversion_method = getattr(
+            self.calverter, '%s_to_jd' % self.conversion_method)
+        for month, day, label in self.get_islamic_holidays():
+                for y in years:
+                    jd = conversion_method(y, month, day)
+                    g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                    if g_year == year:
+                        holiday = date(g_year, g_month, g_day)
+                        days.append((holiday, label))
+        return days
+
+
+class IslamicMixin(CalverterMixin):
+    conversion_method = 'islamic'
+    include_prophet_birthday = False
+    include_eid_al_fitr = False
+    include_day_of_sacrifice = False
+    include_day_of_sacrifice_label = "Eid al-Adha"
+    include_islamic_new_year = False
+
+    def get_islamic_holidays(self):
+        """Return a list of Islamic (month, day, label) for islamic holidays.
+        Please take note that these dates must be expressed using the Islamic
+        Calendar"""
+        days = list(super(IslamicMixin, self).get_islamic_holidays())
+
+        if self.include_islamic_new_year:
+            days.append((1, 1, "Islamic New Year"))
+        if self.include_prophet_birthday:
+            days.append((3, 12, "Prophet's Birthday"))
+        if self.include_eid_al_fitr:
+            days.append((10, 1, "Eid al-Fitr"))
+        if self.include_day_of_sacrifice:
+            days.append((12, 10, self.include_day_of_sacrifice_label))
+        return tuple(days)
+
+
+class JalaliMixin(CalverterMixin):
+    conversion_method = 'jalali'

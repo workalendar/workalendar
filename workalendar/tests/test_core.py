@@ -1,6 +1,8 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import Calendar, MON, TUE, THU, FRI, LunarCalendar
+from workalendar.core import MON, TUE, THU, FRI
+from workalendar.core import Calendar, LunarCalendar
+from workalendar.core import IslamicMixin, JalaliMixin
 
 
 class CalendarTest(GenericCalendarTest):
@@ -120,11 +122,54 @@ class MockCalendarTest(GenericCalendarTest):
             self.assertTrue(day <= next_day)
             day = next_day
 
+    def test_add_workingdays_simple(self):
+        # day is out of non-working-day
+        self.assertEquals(
+            self.cal.add_working_days(date(self.year, 12, 20), 0),
+            date(self.year, 12, 20)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(date(self.year, 12, 20), 1),
+            date(self.year, 12, 21)
+        )
+
+    def test_add_workingdays_on_holiday(self):
+        # day is in holidays
+        self.assertEquals(
+            self.cal.add_working_days(date(self.year, 12, 25), 0),
+            date(self.year, 12, 25)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(date(self.year, 12, 24), 1),
+            date(self.year, 12, 26)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(date(self.year, 12, 24), 2),
+            date(self.year, 12, 27)
+        )
+
     def test_add_workingdays_span(self):
         day = date(self.year, 12, 20)
         # since this calendar has no weekends, we'll just have a 2-day-shift
         self.assertEquals(
             self.cal.add_working_days(day, 20),
+            date(self.year + 1, 1, 11)
+        )
+
+    def test_add_working_days_exceptions(self):
+        day = date(self.year, 12, 20)
+        christmas = date(self.year, 12, 25)
+        boxing = date(self.year, 12, 26)
+        # exceptional workday
+        self.assertEquals(
+            self.cal.add_working_days(day, 20, extra_working_days=[christmas]),
+            date(self.year + 1, 1, 10)
+        )
+        # exceptional holiday + exceptional workday
+        self.assertEquals(
+            self.cal.add_working_days(day, 20,
+                                      extra_working_days=[christmas],
+                                      extra_holidays=[boxing]),
             date(self.year + 1, 1, 11)
         )
 
@@ -146,3 +191,19 @@ class MockCalendarTest(GenericCalendarTest):
         self.assertFalse(
             self.cal.is_working_day(target_working_day,
                                     extra_holidays=extra_holidays))
+
+
+class IslamicMixinTest(GenericCalendarTest):
+    cal_class = IslamicMixin
+
+    def test_year_conversion(self):
+        days = self.cal.converted(2013)
+        self.assertEquals(len(days), 365)
+
+
+class JalaliMixinTest(GenericCalendarTest):
+    cal_class = JalaliMixin
+
+    def test_year_conversion(self):
+        days = self.cal.converted(2013)
+        self.assertEquals(len(days), 365)

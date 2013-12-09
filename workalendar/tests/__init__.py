@@ -1,3 +1,4 @@
+import warnings
 from datetime import date
 from unittest import TestCase
 
@@ -9,5 +10,6 @@ class GenericCalendarTest(TestCase):
     cal_class = Calendar
 
     def setUp(self):
+        warnings.simplefilter("ignore")
         self.year = date.today().year
         self.cal = self.cal_class()
