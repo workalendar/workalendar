@@ -1,5 +1,6 @@
 """Working day tools
 """
+import warnings
 from calendar import monthrange
 from datetime import date, timedelta
 
@@ -312,6 +313,8 @@ class CalverterMixin(Calendar):
         return self.ISLAMIC_HOLIDAYS
 
     def get_variable_days(self, year):
+        warnings.warn('Please take not that, due to arbitrary decisions, '
+                      'this Islamic calendar computation may be wrong.')
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
