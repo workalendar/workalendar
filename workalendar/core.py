@@ -1,5 +1,6 @@
 """Working day tools
 """
+import warnings
 from calendar import monthrange
 from datetime import date, timedelta
 
@@ -308,22 +309,49 @@ class CalverterMixin(Calendar):
         generator = (y for y, m, d in converted)
         return sorted(list(set(generator)))
 
+    def get_islamic_holidays(self):
+        return self.ISLAMIC_HOLIDAYS
+
     def get_variable_days(self, year):
+        warnings.warn('Please take not that, due to arbitrary decisions, '
+                      'this Islamic calendar computation may be wrong.')
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
             self.calverter, '%s_to_jd' % self.conversion_method)
-        for month, day, label in self.ISLAMIC_HOLIDAYS:
+        for month, day, label in self.get_islamic_holidays():
                 for y in years:
                     jd = conversion_method(y, month, day)
                     g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
                     if g_year == year:
-                        days.append((date(g_year, g_month, g_day), label))
+                        holiday = date(g_year, g_month, g_day)
+                        days.append((holiday, label))
         return days
 
 
 class IslamicMixin(CalverterMixin):
     conversion_method = 'islamic'
+    include_prophet_birthday = False
+    include_eid_al_fitr = False
+    include_day_of_sacrifice = False
+    include_day_of_sacrifice_label = "Eid al-Adha"
+    include_islamic_new_year = False
+
+    def get_islamic_holidays(self):
+        """Return a list of Islamic (month, day, label) for islamic holidays.
+        Please take note that these dates must be expressed using the Islamic
+        Calendar"""
+        days = list(super(IslamicMixin, self).get_islamic_holidays())
+
+        if self.include_islamic_new_year:
+            days.append((1, 1, "Islamic New Year"))
+        if self.include_prophet_birthday:
+            days.append((3, 12, "Prophet's Birthday"))
+        if self.include_eid_al_fitr:
+            days.append((10, 1, "Eid al-Fitr"))
+        if self.include_day_of_sacrifice:
+            days.append((12, 10, self.include_day_of_sacrifice_label))
+        return tuple(days)
 
 
 class JalaliMixin(CalverterMixin):
