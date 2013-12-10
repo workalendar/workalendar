@@ -72,8 +72,9 @@ Europe
 America
 -------
 
-* United States of America (only the federal state holidays at the moment)
 * Brazil (incl. São Paulo state and city)
+* Mexico
+* United States of America (only the federal state holidays at the moment)
 
 Asia
 ----
