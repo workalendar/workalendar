@@ -3,6 +3,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.europe import FranceCalendar, FranceAlsaceMoselleCalendar
 from workalendar.europe import CzechRepublicCalendar, ItalyCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
+from workalendar.europe import UnitedKingdomNorthernIrelandCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -139,3 +140,18 @@ class UnitedKingdomCalendarTest(GenericCalendarTest):
         self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
         self.assertIn(date(2011, 12, 26), holidays)  # XMas day shift
         self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
+
+
+class UnitedKingdomNorthernIrelandTest(UnitedKingdomCalendarTest):
+    cal_class = UnitedKingdomNorthernIrelandCalendar
+
+    def test_regional_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 3, 17), holidays)  # St Patrick's day
+        self.assertIn(date(2013, 3, 18), holidays)  # St Patrick's sub
+        self.assertIn(date(2013, 7, 12), holidays)  # Battle of the Boyne
+
+    def test_regional_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 7, 12), holidays)  # Battle of the Boyne
+        self.assertIn(date(2014, 7, 14), holidays)  # Battle of the Boyne sub
