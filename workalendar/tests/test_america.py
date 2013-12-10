@@ -4,6 +4,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import UnitedStatesCalendar
 from workalendar.america import BrazilCalendar, BrazilSaoPaoloStateCalendar
 from workalendar.america import BrazilSaoPaoloCityCalendar
+from workalendar.america import MexicoCalendar
 
 
 class UnitedStatesCalendarTest(GenericCalendarTest):
@@ -78,3 +79,23 @@ class SaoPaoloCityCalendar(SaoPaoloStateCalendar):
         self.assertIn(date(2013, 3, 29), holidays)  # Sexta-feira da Paixão
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
+
+
+class MexicoCalendarTest(GenericCalendarTest):
+    cal_class = MexicoCalendar
+
+    def test_holidays_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 2, 4), holidays)  # Constitution day
+        self.assertIn(date(2013, 3, 18), holidays)  # Benito Juárez's birthday
+        self.assertIn(date(2013, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2013, 9, 16), holidays)  # Independance day
+        self.assertIn(date(2013, 11, 18), holidays)  # Revolution day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
+
+    def test_shift(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 2), holidays)  # shift
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2017, 12, 26), holidays)  # shift
