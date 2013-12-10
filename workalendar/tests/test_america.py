@@ -94,8 +94,22 @@ class MexicoCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 18), holidays)  # Revolution day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
 
-    def test_shift(self):
+    def test_shift_to_monday(self):
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 1, 2), holidays)  # shift
+        # New year on Sunday -> shift
+        self.assertIn(date(2017, 1, 2), holidays)
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2017, 12, 26), holidays)  # shift
+        # XMas on sunday -> shift to monday
+        self.assertIn(date(2016, 12, 26), holidays)
+        # Same for Labour day
+        self.assertIn(date(2016, 5, 2), holidays)
+
+    def test_shift_to_friday(self):
+        holidays = self.cal.holidays_set(2021)
+        # January 1st 2022 is a saturday, so we shift to friday
+        self.assertIn(date(2021, 12, 31), holidays)
+        # Same for Labour day
+        self.assertIn(date(2021, 4, 30), holidays)
+        holidays = self.cal.holidays_set(2021)
+        # December 25th, 2022 is a saturday, so we shift to friday
+        self.assertIn(date(2021, 12, 24), holidays)
