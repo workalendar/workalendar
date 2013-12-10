@@ -91,6 +91,7 @@ Africa
 
 * Algeria
 * Benin
+* Ivory Coast
 * South Africa
 
 And more to come (I hope!)
