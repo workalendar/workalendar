@@ -67,13 +67,12 @@ Europe
 * France (Alsace / Moselle)
 * Iceland
 * Italy
-* United Kingdom
-* Northern Ireland
+* United Kingdom (incl. Northern Ireland)
 
 America
 -------
 
-* United States of America
+* United States of America (only the federal state holidays at the moment)
 * Brazil (incl. São Paulo state and city)
 
 Asia
@@ -85,7 +84,7 @@ Asia
 Oceania
 -------
 
-* Australia
+* Australia (incl. its different states)
 
 Africa
 ------
