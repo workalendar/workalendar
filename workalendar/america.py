@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import SUN, MON, THU
+from workalendar.core import SUN, MON, THU, SAT
 
 
 class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
@@ -81,4 +81,42 @@ class BrazilSaoPaoloCityCalendar(BrazilSaoPaoloStateCalendar):
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
         days.append((self.get_corpus_christi(year), "Corpus Christi"))
+        return days
+
+
+class MexicoCalendar(WesternCalendar, ChristianMixin):
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (5, 1, "Labour Day"),
+        (9, 16, "Independance Day"),
+    )
+
+    def get_variable_days(self, year):
+        days = super(MexicoCalendar, self).get_variable_days(year)
+        days.append(
+            (MexicoCalendar.get_nth_weekday_in_month(year, 2, MON),
+             "Constitution Day"))
+
+        days.append(
+            (MexicoCalendar.get_nth_weekday_in_month(year, 3, MON, 3),
+             "Benito Juárez's birthday"))
+
+        days.append(
+            (MexicoCalendar.get_nth_weekday_in_month(year, 11, MON, 3),
+             "Revolution Day"))
+
+        return days
+
+    def get_calendar_holidays(self, year):
+        days = super(MexicoCalendar, self).get_calendar_holidays(year)
+        # If any statutory day is on Sunday, the monday is off
+        # If it's on a Saturday, the Friday is off
+        for day, label in days:
+            if day.weekday() == SAT:
+                days.append((day - timedelta(days=1), "%s substitute" % label))
+            elif day.weekday() == SUN:
+                days.append((day + timedelta(days=1), "%s substitute" % label))
+        # Extra: if new year's day is a saturday, the friday before is off
+        next_new_year = date(year + 1, 1, 1)
+        if next_new_year.weekday():
+            days.append((date(year, 12, 31), "New Year Day substitute"))
         return days
