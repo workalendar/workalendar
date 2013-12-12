@@ -110,7 +110,7 @@ class NorwayCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 1), holidays)   # labour day
         self.assertIn(date(2013, 5, 17), holidays)   # constitution day
         self.assertIn(date(2013, 5, 9), holidays)   # Ascension
-        self.assertIn(date(2013, 5, 19), holidays)
+        self.assertIn(date(2013, 5, 19), holidays)  # Pentecost
         self.assertIn(date(2013, 5, 20), holidays)  # Whit monday
         self.assertIn(date(2013, 12, 25), holidays)  # Xmas
         self.assertIn(date(2013, 12, 26), holidays)  # St Stephens
