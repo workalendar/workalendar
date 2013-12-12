@@ -47,7 +47,9 @@ class HungaryCalendar(WesternCalendar, ChristianMixin):
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True
+    whit_sunday_label = "Pentecost Sunday"
     include_whit_monday = True
+    whit_monday_label = "Pentecost Monday"
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
     include_all_saints = True
