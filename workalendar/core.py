@@ -176,11 +176,14 @@ class ChristianMixin(Calendar):
     include_immaculate_conception = False
     include_christmas = True
     include_christmas_eve = False
-    include_st_stephen = False
     include_ascension = False
     include_assumption = False
+    include_whit_sunday = False
+    whit_sunday_label = 'Whit Sunday'
     include_whit_monday = False
+    whit_monday_label = 'Whit Monday'
     include_boxing_day = False
+    boxing_day_label = "Boxing Day"
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -214,6 +217,10 @@ class ChristianMixin(Calendar):
         easter = self.get_easter_sunday(year)
         return easter + timedelta(days=50)
 
+    def get_whit_sunday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=49)
+
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
@@ -239,15 +246,15 @@ class ChristianMixin(Calendar):
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
             days.append((date(year, 12, 24), "Christmas Eve"))
-        if self.include_st_stephen:
-            days.append((date(year, 12, 26), "St Stephen's Day"))
         if self.include_boxing_day:
-            days.append((date(year, 12, 26), "Boxing Day"))
+            days.append((date(year, 12, 26), self.boxing_day_label))
         if self.include_ascension:
             days.append((
                 self.get_ascension_thursday(year), "Ascension Thursday"))
         if self.include_whit_monday:
-            days.append((self.get_whit_monday(year), "Whit Monday"))
+            days.append((self.get_whit_monday(year), self.whit_monday_label))
+        if self.include_whit_sunday:
+            days.append((self.get_whit_sunday(year), self.whit_sunday_label))
         return days
 
 
