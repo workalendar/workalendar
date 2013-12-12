@@ -345,10 +345,12 @@ class CalverterMixin(Calendar):
 class IslamicMixin(CalverterMixin):
     conversion_method = 'islamic'
     include_prophet_birthday = False
+    include_day_after_prophet_birthday = False
     include_eid_al_fitr = False
     include_day_of_sacrifice = False
     include_day_of_sacrifice_label = "Eid al-Adha"
     include_islamic_new_year = False
+    include_laylat_al_qadr = False
 
     def get_islamic_holidays(self):
         """Return a list of Islamic (month, day, label) for islamic holidays.
@@ -360,10 +362,16 @@ class IslamicMixin(CalverterMixin):
             days.append((1, 1, "Islamic New Year"))
         if self.include_prophet_birthday:
             days.append((3, 12, "Prophet's Birthday"))
+        if self.include_day_after_prophet_birthday:
+            days.append((3, 13, "Day after Prophet's Birthday"))
         if self.include_eid_al_fitr:
             days.append((10, 1, "Eid al-Fitr"))
         if self.include_day_of_sacrifice:
             days.append((12, 10, self.include_day_of_sacrifice_label))
+        if self.include_laylat_al_qadr:
+            warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
+                          " by the religious authorities. It is not possible"
+                          " to compute it. You'll have to add it manually.")
         return tuple(days)
 
 

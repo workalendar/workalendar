@@ -1,7 +1,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.africa import BeninCalendar, AlgeriaCalendar
-from workalendar.africa import SouthAfricaCalendar
+from workalendar.africa import SouthAfricaCalendar, IvoryCoastCalendar
 
 
 class AlgeriaCalendarTest(GenericCalendarTest):
@@ -66,3 +66,26 @@ class SouthAfricaCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 27), holidays)  # freedom day
         self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
+
+
+class IvoryCoastCalendarTest(GenericCalendarTest):
+    cal_class = IvoryCoastCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 1), holidays)  # labour day
+        self.assertIn(date(2013, 5, 9), holidays)  # ascension
+        self.assertIn(date(2013, 5, 20), holidays)  # whit monday
+        self.assertIn(date(2013, 8, 7), holidays)  # Independance day
+        self.assertIn(date(2013, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2013, 11, 1), holidays)  # All saints
+        self.assertIn(date(2013, 11, 15), holidays)  # National peace day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
+        # Muslim days
+        self.assertIn(date(2013, 1, 25), holidays)  # Mawlid al-Nabi
+        # Laylat al-Qadr is not computable
+        # self.assertIn(date(2013, 8, 3), holidays)
+        self.assertIn(date(2013, 8, 8), holidays)  # End of ramadan
+        self.assertIn(date(2013, 10, 15), holidays)  # Feast of sacrifice
