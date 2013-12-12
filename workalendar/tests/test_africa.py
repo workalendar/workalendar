@@ -1,7 +1,9 @@
+#-*- coding: utf-8 -*-
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.africa import BeninCalendar, AlgeriaCalendar
 from workalendar.africa import SouthAfricaCalendar, IvoryCoastCalendar
+from workalendar.africa import SaoTomeAndPrincipeCalendar
 
 
 class AlgeriaCalendarTest(GenericCalendarTest):
@@ -89,3 +91,19 @@ class IvoryCoastCalendarTest(GenericCalendarTest):
         # self.assertIn(date(2013, 8, 3), holidays)
         self.assertIn(date(2013, 8, 8), holidays)  # End of ramadan
         self.assertIn(date(2013, 10, 15), holidays)  # Feast of sacrifice
+
+
+class SaoTomeAndPrincipeCalendarTest(GenericCalendarTest):
+    cal_class = SaoTomeAndPrincipeCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 2, 3), holidays)  # Martyrs' day
+        self.assertIn(date(2013, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2013, 7, 12), holidays)  # Independance Day
+        self.assertIn(date(2013, 9, 6), holidays)  # Armed Forces Day
+        self.assertIn(date(2013, 9, 30), holidays)  # Agricultural Reform Day
+        self.assertIn(date(2013, 11, 1), holidays)  # All saints
+        self.assertIn(date(2013, 12, 21), holidays)  # São Tomé Day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas

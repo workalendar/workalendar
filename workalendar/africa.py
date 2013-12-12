@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from datetime import timedelta, date
 from workalendar.core import WesternCalendar
 from workalendar.core import SUN
@@ -62,6 +63,19 @@ class IvoryCoastCalendar(WesternCalendar, ChristianMixin, IslamicMixin):
         (8, 7, "Independance Day"),
         (11, 15, "National Peace Day"),
     )
+
+
+class SaoTomeAndPrincipeCalendar(WesternCalendar, ChristianMixin):
+    u"São Tomé and Príncipe"
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (2, 3, "Martyr's Day"),
+        (5, 1, "Labour Day"),
+        (7, 12, "Independance Day"),
+        (9, 6, "Armed Forces Day"),
+        (9, 30, "Agricultural Reform Day"),
+        (12, 21, u"São Tomé Day"),
+    )
+    include_all_saints = True
 
 
 class SouthAfricaCalendar(WesternCalendar, ChristianMixin):
