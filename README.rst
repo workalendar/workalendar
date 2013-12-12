@@ -65,6 +65,7 @@ Europe
 * Czech Republic
 * France
 * France (Alsace / Moselle)
+* Hungary
 * Iceland
 * Italy
 * United Kingdom (incl. Northern Ireland)
