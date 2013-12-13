@@ -42,6 +42,26 @@ class FranceAlsaceMoselleCalendar(FranceCalendar):
     include_boxing_day = True
 
 
+class HungaryCalendar(WesternCalendar, ChristianMixin):
+    "Hungary"
+    include_easter_sunday = True
+    include_easter_monday = True
+    include_whit_sunday = True
+    whit_sunday_label = "Pentecost Sunday"
+    include_whit_monday = True
+    whit_monday_label = "Pentecost Monday"
+    include_boxing_day = True
+    boxing_day_label = "Second Day of Christmas"
+    include_all_saints = True
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (3, 15, "National Day"),
+        (5, 1, "Labour Day"),
+        (8, 20, "St Stephen's Day"),
+        (10, 23, "National Day"),
+    )
+
+
 class IcelandCalendar(WesternCalendar, ChristianMixin):
     "Iceland calendar class"
     include_holy_thursday = True
@@ -50,7 +70,8 @@ class IcelandCalendar(WesternCalendar, ChristianMixin):
     include_ascension = True
     include_whit_monday = True
     include_christmas_eve = True
-    include_st_stephen = True
+    include_boxing_day = True
+    boxing_day_label = "St Stephen's Day"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -92,7 +113,8 @@ class ItalyCalendar(WesternCalendar, ChristianMixin):
     include_assumption = True
     include_all_saints = True
     include_assumption = True
-    include_st_stephen = True
+    include_boxing_day = True
+    boxing_day_label = "St Stephen's Day"
 
 
 class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
