@@ -94,6 +94,7 @@ Africa
 * Algeria
 * Benin
 * Ivory Coast
+* São Tomé
 * South Africa
 
 And more to come (I hope!)
