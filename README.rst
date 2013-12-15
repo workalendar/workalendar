@@ -68,6 +68,7 @@ Europe
 * Hungary
 * Iceland
 * Italy
+* Norway
 * United Kingdom (incl. Northern Ireland)
 
 America
