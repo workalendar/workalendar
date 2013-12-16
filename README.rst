@@ -83,6 +83,7 @@ Asia
 
 * South Korea
 * Japan
+* Qatar
 
 Oceania
 -------
