@@ -2,7 +2,7 @@
 
 from datetime import timedelta
 from workalendar.core import LunarCalendar, WesternCalendar, Calendar
-from workalendar.core import MON, IslamicMixin
+from workalendar.core import MON, FRI, SAT, IslamicMixin
 
 
 class SouthKoreaCalendar(LunarCalendar):
@@ -95,6 +95,8 @@ class JapanCalendar(WesternCalendar):
 
 
 class QatarCalendar(IslamicMixin, Calendar):
+    WEEKEND_DAYS = (FRI, SAT)
+
     FIXED_HOLIDAYS = (
         (12, 18, "National Day"),
     )
