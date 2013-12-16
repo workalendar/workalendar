@@ -1,7 +1,8 @@
 #-*- coding: utf-8 -*-
 
 from datetime import timedelta
-from workalendar.core import LunarCalendar, WesternCalendar, MON
+from workalendar.core import LunarCalendar, WesternCalendar, Calendar
+from workalendar.core import MON, IslamicMixin
 
 
 class SouthKoreaCalendar(LunarCalendar):
@@ -91,3 +92,14 @@ class JapanCalendar(WesternCalendar):
         equinox2 = d.datetime() + tz.utcoffset(d.datetime())
 
         return (equinox1.date(), equinox2.date())
+
+
+class QatarCalendar(IslamicMixin, Calendar):
+    FIXED_HOLIDAYS = (
+        (12, 18, "National Day"),
+    )
+    include_start_ramadan = True
+    include_eid_al_fitr = True
+    length_eid_al_fitr = 4
+    include_eid_al_adha = True
+    length_eid_al_adha = 4
