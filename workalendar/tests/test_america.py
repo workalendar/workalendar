@@ -104,6 +104,15 @@ class ChileCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
+    def test_reformation_day(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertNotIn(date(2012, 10, 31), holidays)
+        self.assertIn(date(2012, 11, 2), holidays)
+        #
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 10, 31), holidays)
+        self.assertIn(date(2017, 10, 27), holidays)
+
 
 class MexicoCalendarTest(GenericCalendarTest):
     cal_class = MexicoCalendar

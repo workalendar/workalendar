@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import SUN, MON, THU, FRI, SAT
+from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 
 class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
@@ -93,8 +93,6 @@ class ChileCalendar(WesternCalendar, ChristianMixin):
         (9, 18, "National holiday"),
         (9, 19, "Army holiday"),
         (10, 12, "Columbus Day"),
-        # Note: about 10/31: This holiday moves in relation to the day of week
-        (10, 31, "Reformation Day"),
         (12, 31, "Banking Holiday"),
     )
     include_good_friday = True
@@ -111,6 +109,15 @@ class ChileCalendar(WesternCalendar, ChristianMixin):
         september_20 = date(year, 9, 20)
         if september_20.weekday() == FRI:
             days.append((september_20, '"Bridge" holiday'))
+
+        reformation_day = date(year, 10, 31)
+        if reformation_day.weekday() == WED:
+            reformation_day = date(year, 11, 2)
+        elif reformation_day.weekday() == TUE:
+            reformation_day = date(year, 10, 27)
+
+        days.append((reformation_day, "Reformation Day"))
+
         return days
 
 class MexicoCalendar(WesternCalendar, ChristianMixin):
