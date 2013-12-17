@@ -52,7 +52,7 @@ class JapanCalendar(WesternCalendar, EphemMixin):
     def get_variable_days(self, year):
         # usual variable days
 
-        equinoxes = EphemMixin.calculate_equinoxes(self, year, 'Asia/Tokyo')
+        equinoxes = self.calculate_equinoxes(year, 'Asia/Tokyo')
 
         days = super(JapanCalendar, self).get_variable_days(year)
         days += [
@@ -75,26 +75,6 @@ class JapanCalendar(WesternCalendar, EphemMixin):
 
         return days
 
-   # def calculate_equinoxes(self, year):
-        """ calculate equinox with time zone """
-
-
-"""
-        import ephem
-        import pytz
-
-        tz = pytz.timezone('Asia/Tokyo')
-
-        d1 = ephem.next_equinox(str(year))
-        d = ephem.Date(str(d1))
-        equinox1 = d.datetime() + tz.utcoffset(d.datetime())
-
-        d2 = ephem.next_equinox(d1)
-        d = ephem.Date(str(d2))
-        equinox2 = d.datetime() + tz.utcoffset(d.datetime())
-
-        return (equinox1.date(), equinox2.date())
-"""
 
 class QatarCalendar(IslamicMixin, Calendar):
     WEEKEND_DAYS = (FRI, SAT)
