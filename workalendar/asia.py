@@ -135,3 +135,4 @@ class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
             (LunarCalendar.lunar(year, 8, 15), "Mid-Autumn Festival"),
         ]
         return days
+

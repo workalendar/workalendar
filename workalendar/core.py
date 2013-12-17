@@ -454,3 +454,4 @@ class IslamicMixin(CalverterMixin):
 
 class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
+
