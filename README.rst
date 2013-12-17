@@ -9,10 +9,12 @@ Workalendar is a Python module that offers classes able to handle calendars,
 list legal / religious holidays and gives working-day-related computation
 functions.
 
+
 Status
 ======
 
 This is barely beta. Please consider this module as a work in progres.
+
 
 Usage sample
 ============
@@ -50,11 +52,12 @@ Travis status:
 .. image:: https://api.travis-ci.org/novapost/workalendar.png
 
 
-To run test, just install nose with ``pip install nose`` and run::
+To run test, just install tox with ``pip install tox`` and run::
 
-    nosetests
+    tox
 
 from the command line.
+
 
 Available Calendars
 ===================
