@@ -17,7 +17,7 @@ This is barely beta. Please consider this module as a work in progres.
 Usage sample
 ============
 
-::
+.. code-block:: python
 
     >>> from datetime import date
     >>> from workalendar.europe import FranceCalendar
