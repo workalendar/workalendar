@@ -103,7 +103,8 @@ class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
         # longitude of 15° (usually around April 4th or 5th)
         qingming = EphemMixin.solar_term(self, year, 15, 'Asia/Taipei')
 
-        days = [
+        days = super(TaiwanCalendar, self).get_variable_days(year)
+        days += [
             # a day before
             (lunar_first_day - timedelta(days=1), "Chinese New Year's Eve"),
             (lunar_first_day, "Chinese New Year"),
