@@ -43,6 +43,12 @@ Usage sample
     >>> cal.is_working_day(date(2012, 12, 26))
     True
 
+External dependencies
+=====================
+
+You may want to install ``python-dev`` and/or ``python3-dev`` on your machine to
+either run the installation or run tests via tox.
+
 
 Tests
 =====
