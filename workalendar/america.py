@@ -120,6 +120,7 @@ class ChileCalendar(WesternCalendar, ChristianMixin):
 
         return days
 
+
 class MexicoCalendar(WesternCalendar, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
