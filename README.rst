@@ -75,6 +75,7 @@ America
 -------
 
 * Brazil (incl. São Paulo state and city)
+* Chile
 * Mexico
 * United States of America (only the federal state holidays at the moment)
 

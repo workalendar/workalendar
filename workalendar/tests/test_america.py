@@ -4,7 +4,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import UnitedStatesCalendar
 from workalendar.america import BrazilCalendar, BrazilSaoPaoloStateCalendar
 from workalendar.america import BrazilSaoPaoloCityCalendar
-from workalendar.america import MexicoCalendar
+from workalendar.america import MexicoCalendar, ChileCalendar
 
 
 class UnitedStatesCalendarTest(GenericCalendarTest):
@@ -79,6 +79,39 @@ class SaoPaoloCityCalendar(SaoPaoloStateCalendar):
         self.assertIn(date(2013, 3, 29), holidays)  # Sexta-feira da Paixão
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
+
+
+class ChileCalendarTest(GenericCalendarTest):
+    cal_class = ChileCalendar
+
+    def test_holidays_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 3, 29), holidays)
+        self.assertIn(date(2013, 3, 30), holidays)
+        self.assertIn(date(2013, 5, 1), holidays)
+        self.assertIn(date(2013, 5, 21), holidays)
+        self.assertIn(date(2013, 6, 29), holidays)
+        self.assertIn(date(2013, 7, 16), holidays)
+        self.assertIn(date(2013, 8, 15), holidays)
+        self.assertIn(date(2013, 9, 18), holidays)
+        self.assertIn(date(2013, 9, 19), holidays)
+        self.assertIn(date(2013, 9, 20), holidays)
+        self.assertIn(date(2013, 10, 12), holidays)
+        self.assertIn(date(2013, 10, 31), holidays)
+        self.assertIn(date(2013, 11, 1), holidays)
+        self.assertIn(date(2013, 12, 8), holidays)
+        self.assertIn(date(2013, 12, 25), holidays)
+        self.assertIn(date(2013, 12, 31), holidays)
+
+    def test_reformation_day(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertNotIn(date(2012, 10, 31), holidays)
+        self.assertIn(date(2012, 11, 2), holidays)
+        #
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 10, 31), holidays)
+        self.assertIn(date(2017, 10, 27), holidays)
 
 
 class MexicoCalendarTest(GenericCalendarTest):
