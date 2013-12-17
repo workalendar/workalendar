@@ -2,7 +2,7 @@
 
 from datetime import timedelta
 from workalendar.core import LunarCalendar, WesternCalendar, Calendar
-from workalendar.core import MON, FRI, SAT, IslamicMixin
+from workalendar.core import MON, FRI, SAT, IslamicMixin, EphemMixin
 
 
 class SouthKoreaCalendar(LunarCalendar):
@@ -35,7 +35,7 @@ class SouthKoreaCalendar(LunarCalendar):
         return days
 
 
-class JapanCalendar(WesternCalendar):
+class JapanCalendar(WesternCalendar, EphemMixin):
     "Japan calendar class"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -52,7 +52,7 @@ class JapanCalendar(WesternCalendar):
     def get_variable_days(self, year):
         # usual variable days
 
-        equinoxes = self.calculate_equinoxes(year)
+        equinoxes = EphemMixin.calculate_equinoxes(self, year, 'Asia/Tokyo')
 
         days = super(JapanCalendar, self).get_variable_days(year)
         days += [
@@ -75,9 +75,11 @@ class JapanCalendar(WesternCalendar):
 
         return days
 
-    def calculate_equinoxes(self, year):
+   # def calculate_equinoxes(self, year):
         """ calculate equinox with time zone """
 
+
+"""
         import ephem
         import pytz
 
@@ -92,7 +94,7 @@ class JapanCalendar(WesternCalendar):
         equinox2 = d.datetime() + tz.utcoffset(d.datetime())
 
         return (equinox1.date(), equinox2.date())
-
+"""
 
 class QatarCalendar(IslamicMixin, Calendar):
     WEEKEND_DAYS = (FRI, SAT)
@@ -105,3 +107,31 @@ class QatarCalendar(IslamicMixin, Calendar):
     length_eid_al_fitr = 4
     include_eid_al_adha = True
     length_eid_al_adha = 4
+
+class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
+    "Taiwan (Republic of China) calendar"
+    FIXED_HOLIDAYS = LunarCalendar.FIXED_HOLIDAYS + WesternCalendar.FIXED_HOLIDAYS + (
+        (2, 28, "228 Peace Memorial Day"),
+        (4, 4, "Combination of Women's Day and Children's Day"),
+        (10, 10, "National Day/Double Tenth Day"),
+    )
+
+    def get_variable_days(self, year):
+        lunar_first_day = LunarCalendar.lunar(year, 1, 1)
+
+        # Qingming begins when the sun reaches the celestial
+        # longitude of 15° (usually around April 4th or 5th)
+        qingming = EphemMixin.solar_term(self, year, 15, 'Asia/Taipei')
+
+        days = [
+            # a day before
+            (lunar_first_day - timedelta(days=1), "Chinese New Year's Eve"),
+            (lunar_first_day, "Chinese New Year"),
+            # a day after
+            (LunarCalendar.lunar(year, 1, 2), "Chinese New Year"),
+            (LunarCalendar.lunar(year, 1, 3), "Chinese New Year"),
+            (qingming, "Qingming Festival"),
+            (LunarCalendar.lunar(year, 5, 5), "Dragon Boat Festival"),
+            (LunarCalendar.lunar(year, 8, 15), "Mid-Autumn Festival"),
+        ]
+        return days
