@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 from os.path import join, dirname, abspath
+import sys
+
+PY2 = sys.version_info[0] == 2
 
 try:
     from setuptools import setup
@@ -14,6 +17,18 @@ def read_relative_file(filename):
     with open(join(dirname(abspath(__file__)), filename)) as f:
         return f.read()
 
+REQUIREMENTS = [
+    'python-dateutil',
+    'lunardate',
+    'pytz',
+    'pyCalverter',
+]
+
+if PY2:
+    REQUIREMENTS.append('pyephem')
+else:
+    REQUIREMENTS.append('ephem')
+
 if __name__ == '__main__':
     setup(
         name='workalendar',
@@ -26,13 +41,7 @@ if __name__ == '__main__':
         url='https://github.com/novapost/workalendar',
         license='MIT License',
         include_package_data=True,
-        install_requires=[
-            'python-dateutil',
-            'lunardate',
-            'pyephem',
-            'pytz',
-            'pyCalverter',
-        ],
+        install_requires=REQUIREMENTS,
         zip_safe=False,
         classifiers=(
             'Development Status :: 3 - Alpha',
