@@ -378,10 +378,10 @@ class IslamicMixin(CalverterMixin):
         if self.include_start_ramadan:
             days.append((9, 1, "Start of ramadan"))
         if self.include_eid_al_fitr:
-            for x in xrange(self.length_eid_al_fitr):
+            for x in range(self.length_eid_al_fitr):
                 days.append((10, x + 1, "Eid al-Fitr"))
         if self.include_eid_al_adha:
-            for x in xrange(self.length_eid_al_adha):
+            for x in range(self.length_eid_al_adha):
                 days.append((12, x + 10, "Eid al-Adha"))
         if self.include_day_of_sacrifice:
             days.append((12, 10, self.include_day_of_sacrifice_label))
