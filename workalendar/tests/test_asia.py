@@ -70,22 +70,23 @@ class QatarCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 18), holidays)  # eid al adha
         self.assertIn(date(2013, 12, 18), holidays)  # National Day
 
+
 class TaiwanCalendarTest(GenericCalendarTest):
 
     cal_class = TaiwanCalendar
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)   # New Year
-        self.assertIn(date(2013, 2, 9), holidays)   # Chinese new year's eve
-        self.assertIn(date(2013, 2, 10), holidays)  # Chinese new year
-        self.assertIn(date(2013, 2, 11), holidays)  # Spring Festival
-        self.assertIn(date(2013, 2, 12), holidays)  # Spring Festival
-        self.assertIn(date(2013, 2, 28), holidays)  # 228 Peace Memorial Day
-        self.assertIn(date(2013, 4, 4), holidays)   # Children's Day
-        self.assertIn(date(2013, 6, 12), holidays)  # Dragon Boat Festival
-        self.assertIn(date(2013, 9, 19), holidays)  # Mid-Autumn Festival
-        self.assertIn(date(2013, 10, 10), holidays) # National Day
+        self.assertIn(date(2013, 1, 1), holidays)    # New Year
+        self.assertIn(date(2013, 2, 9), holidays)    # Chinese new year's eve
+        self.assertIn(date(2013, 2, 10), holidays)   # Chinese new year
+        self.assertIn(date(2013, 2, 11), holidays)   # Spring Festival
+        self.assertIn(date(2013, 2, 12), holidays)   # Spring Festival
+        self.assertIn(date(2013, 2, 28), holidays)   # 228 Peace Memorial Day
+        self.assertIn(date(2013, 4, 4), holidays)    # Children's Day
+        self.assertIn(date(2013, 6, 12), holidays)   # Dragon Boat Festival
+        self.assertIn(date(2013, 9, 19), holidays)   # Mid-Autumn Festival
+        self.assertIn(date(2013, 10, 10), holidays)  # National Day
 
     def test_qingming_festival(self):
         self.assertIn(date(2001, 4, 5), self.cal.holidays_set(2001))
@@ -99,4 +100,3 @@ class TaiwanCalendarTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
-
