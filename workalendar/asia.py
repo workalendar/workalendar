@@ -88,12 +88,17 @@ class QatarCalendar(IslamicMixin, Calendar):
     include_eid_al_adha = True
     length_eid_al_adha = 4
 
+
 class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
     "Taiwan (Republic of China) calendar"
-    FIXED_HOLIDAYS = LunarCalendar.FIXED_HOLIDAYS + WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 28, "228 Peace Memorial Day"),
-        (4, 4, "Combination of Women's Day and Children's Day"),
-        (10, 10, "National Day/Double Tenth Day"),
+    FIXED_HOLIDAYS = (
+        LunarCalendar.FIXED_HOLIDAYS +
+        WesternCalendar.FIXED_HOLIDAYS +
+        (
+            (2, 28, "228 Peace Memorial Day"),
+            (4, 4, "Combination of Women's Day and Children's Day"),
+            (10, 10, "National Day/Double Tenth Day"),
+        )
     )
 
     def get_variable_days(self, year):
@@ -116,4 +121,3 @@ class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
             (LunarCalendar.lunar(year, 8, 15), "Mid-Autumn Festival"),
         ]
         return days
-

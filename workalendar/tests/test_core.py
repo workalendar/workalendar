@@ -209,6 +209,7 @@ class JalaliMixinTest(GenericCalendarTest):
         days = self.cal.converted(2013)
         self.assertEquals(len(days), 365)
 
+
 class EphemMixinTest(GenericCalendarTest):
     cal_class = EphemMixin
 
@@ -251,4 +252,3 @@ class EphemMixinTest(GenericCalendarTest):
             self.cal.solar_term(2014, 15),
             date(2014, 4, 4)
         )
-

@@ -303,6 +303,7 @@ class LunarCalendar(Calendar):
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
 
+
 class EphemMixin(LunarCalendar):
     def calculate_equinoxes(self, year, timezone='UTC'):
         """ calculate equinox with time zone """
@@ -317,7 +318,7 @@ class EphemMixin(LunarCalendar):
         d = ephem.Date(str(d2))
         equinox2 = d.datetime() + tz.utcoffset(d.datetime())
 
-        return (equinox1.date(), equinox2.date())    
+        return (equinox1.date(), equinox2.date())
 
     def solar_term(self, year, degrees, timezone='UTC'):
         """
@@ -359,6 +360,7 @@ class EphemMixin(LunarCalendar):
         solar_term = d.datetime() + tz.utcoffset(d.datetime())
 
         return solar_term.date()
+
 
 class CalverterMixin(Calendar):
     conversion_method = None
@@ -454,4 +456,3 @@ class IslamicMixin(CalverterMixin):
 
 class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
-
