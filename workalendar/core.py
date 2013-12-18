@@ -171,6 +171,8 @@ class Calendar(object):
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
     include_epiphany = False
+    include_clean_monday = False
+    include_annunciation = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
@@ -198,6 +200,11 @@ class ChristianMixin(Calendar):
         "Return the date of the last friday before easter"
         sunday = self.get_easter_sunday(year)
         return sunday - timedelta(days=2)
+
+    def get_clean_monday(self, year):
+        "Return the clean monday date"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=48)
 
     def get_easter_saturday(self, year):
         "Return the Easter Saturday date"
@@ -230,6 +237,10 @@ class ChristianMixin(Calendar):
         days = super(ChristianMixin, self).get_variable_days(year)
         if self.include_epiphany:
             days.append((date(year, 1, 6), "Epiphany"))
+        if self.include_clean_monday:
+            days.append((self.get_clean_monday(year), "Clean Monday"))
+        if self.include_annunciation:
+            days.append((date(year, 3, 25), "Annunciation"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
@@ -269,7 +280,7 @@ class WesternCalendar(Calendar):
     (chiefly Europe and Northern America)
 
     """
-    EASTER_METHOD = 3  # 3 is 'Western'
+    EASTER_METHOD = easter.EASTER_WESTERN
     WEEKEND_DAYS = (SAT, SUN)
     shift_new_years_day = False
 
@@ -290,6 +301,10 @@ class WesternCalendar(Calendar):
                     self.find_following_working_day(new_year),
                     "New Year shift"))
         return days
+
+
+class OrthodoxMixin(ChristianMixin):
+    EASTER_METHOD = easter.EASTER_ORTHODOX
 
 
 class LunarCalendar(Calendar):

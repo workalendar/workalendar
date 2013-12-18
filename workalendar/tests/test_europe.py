@@ -4,7 +4,7 @@ from workalendar.europe import FranceCalendar, FranceAlsaceMoselleCalendar
 from workalendar.europe import CzechRepublicCalendar, ItalyCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
 from workalendar.europe import UnitedKingdomNorthernIrelandCalendar
-from workalendar.europe import HungaryCalendar
+from workalendar.europe import GreeceCalendar, HungaryCalendar
 from workalendar.europe import NorwayCalendar
 
 
@@ -76,6 +76,28 @@ class FranceAlsaceMoselleCalendarTest(FranceCalendarTest):
     def test_business_days_computations(self):
         super(FranceAlsaceMoselleCalendarTest, self) \
             .test_business_days_computations()
+
+
+class GreeceCalendarTest(GenericCalendarTest):
+    cal_class = GreeceCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2013, 3, 18), holidays)  # Clean monday
+        # Annunciation & Independance day
+        self.assertIn(date(2013, 3, 25), holidays)
+        self.assertIn(date(2013, 5, 1), holidays)  # labour day
+        self.assertIn(date(2013, 5, 3), holidays)  # good friday
+        self.assertIn(date(2013, 5, 5), holidays)  # easter
+        self.assertIn(date(2013, 5, 6), holidays)  # easter monday
+        self.assertIn(date(2013, 6, 23), holidays)  # pentecost sunday
+        self.assertIn(date(2013, 6, 24), holidays)  # whit monday
+        self.assertIn(date(2013, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2013, 10, 28), holidays)  # Ochi Day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
+        self.assertIn(date(2013, 12, 26), holidays)  # Glorifying mother of God
 
 
 class HungaryCalendarTest(GenericCalendarTest):

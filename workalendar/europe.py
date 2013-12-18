@@ -1,5 +1,6 @@
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin, THU, MON
+from workalendar.core import WesternCalendar, ChristianMixin, OrthodoxMixin
+from workalendar.core import THU, MON
 
 
 class CzechRepublicCalendar(WesternCalendar, ChristianMixin):
@@ -40,6 +41,27 @@ class FranceAlsaceMoselleCalendar(FranceCalendar):
     "France Alsace/Moselle calendar class"
     include_good_friday = True
     include_boxing_day = True
+
+
+class GreeceCalendar(OrthodoxMixin, WesternCalendar):
+    "Greece"
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (3, 25, "Independence Day"),
+        (5, 1, "Labour Day"),
+        (10, 28, "Ohi Day"),
+    )
+    include_epiphany = True
+    include_clean_monday = True
+    include_annunciation = True
+    include_good_friday = True
+    include_easter_sunday = True
+    include_easter_monday = True
+    include_whit_sunday = True
+    whit_sunday_label = "Pentecost"
+    include_whit_monday = True
+    include_assumption = True
+    include_boxing_day = True
+    boxing_day_label = "Glorifying Mother of God"
 
 
 class HungaryCalendar(WesternCalendar, ChristianMixin):
