@@ -237,18 +237,18 @@ class EphemMixinTest(GenericCalendarTest):
     def test_qingming_festivals(self):
         self.assertEquals(
             self.cal.solar_term(2001, 15),
-            date(2001, 04, 04)
+            date(2001, 4, 4)
         )
         self.assertEquals(
             self.cal.solar_term(2001, 15, 'Asia/Taipei'),
-            date(2001, 04, 05)
+            date(2001, 4, 5)
         )
         self.assertEquals(
             self.cal.solar_term(2011, 15),
-            date(2011, 04, 05)
+            date(2011, 4, 5)
         )
         self.assertEquals(
             self.cal.solar_term(2014, 15),
-            date(2014, 04, 04)
+            date(2014, 4, 4)
         )
 
