@@ -91,9 +91,10 @@ America
 Asia
 ----
 
-* South Korea
 * Japan
 * Qatar
+* South Korea
+* Taiwan
 
 Oceania
 -------

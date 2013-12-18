@@ -3,6 +3,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.core import MON, TUE, THU, FRI
 from workalendar.core import Calendar, LunarCalendar
 from workalendar.core import IslamicMixin, JalaliMixin
+from workalendar.core import EphemMixin
 
 
 class CalendarTest(GenericCalendarTest):
@@ -207,3 +208,47 @@ class JalaliMixinTest(GenericCalendarTest):
     def test_year_conversion(self):
         days = self.cal.converted(2013)
         self.assertEquals(len(days), 365)
+
+class EphemMixinTest(GenericCalendarTest):
+    cal_class = EphemMixin
+
+    def test_calculate_some_equinoxes(self):
+        self.assertEquals(
+            self.cal.calculate_equinoxes(2010),
+            (date(2010, 3, 20), date(2010, 9, 23))
+        )
+        self.assertEquals(
+            self.cal.calculate_equinoxes(2010, 'Asia/Taipei'),
+            (date(2010, 3, 21), date(2010, 9, 23))
+        )
+        self.assertEquals(
+            self.cal.calculate_equinoxes(2013),
+            (date(2013, 3, 20), date(2013, 9, 22))
+        )
+        self.assertEquals(
+            self.cal.calculate_equinoxes(2014),
+            (date(2014, 3, 20), date(2014, 9, 23))
+        )
+        self.assertEquals(
+            self.cal.calculate_equinoxes(2020),
+            (date(2020, 3, 20), date(2020, 9, 22))
+        )
+
+    def test_qingming_festivals(self):
+        self.assertEquals(
+            self.cal.solar_term(2001, 15),
+            date(2001, 4, 4)
+        )
+        self.assertEquals(
+            self.cal.solar_term(2001, 15, 'Asia/Taipei'),
+            date(2001, 4, 5)
+        )
+        self.assertEquals(
+            self.cal.solar_term(2011, 15),
+            date(2011, 4, 5)
+        )
+        self.assertEquals(
+            self.cal.solar_term(2014, 15),
+            date(2014, 4, 4)
+        )
+
