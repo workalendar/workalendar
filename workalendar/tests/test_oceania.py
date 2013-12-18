@@ -10,6 +10,7 @@ from workalendar.oceania import SouthAustraliaCalendar
 from workalendar.oceania import TasmaniaCalendar, HobartCalendar
 from workalendar.oceania import VictoriaCalendar
 from workalendar.oceania import WesternAustraliaCalendar
+from workalendar.oceania import MarshallIslandCalendar
 
 
 class AustraliaCalendarTest(GenericCalendarTest):
@@ -154,3 +155,21 @@ class WesternAustraliaCalendarTest(AustraliaCalendarTest):
         # The western Australia territory, since it's based on the Governor
         # Decision (it is typically the last Monday of September or the first
         # Monday of October)
+
+
+class MarshallIslandCalendarTest(GenericCalendarTest):
+    cal_class = MarshallIslandCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 3, 3), holidays)  # Remembrance day
+        self.assertIn(date(2013, 3, 29), holidays)  # (good friday)
+        self.assertIn(date(2013, 5, 1), holidays)  # constitution day
+        self.assertIn(date(2013, 7, 5), holidays)  # Fishermens
+        self.assertIn(date(2013, 9, 6), holidays)  # labour day
+        self.assertIn(date(2013, 9, 27), holidays)  # Manit Day
+        self.assertIn(date(2013, 11, 17), holidays)  # presidents day
+        self.assertIn(date(2013, 12, 6), holidays)  # gospel day
+        self.assertIn(date(2013, 12, 25), holidays)  # Xmas
+        self.assertIn(date(2013, 12, 31), holidays)  # new year's eve

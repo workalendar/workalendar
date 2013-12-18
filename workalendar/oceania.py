@@ -1,5 +1,5 @@
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, TUE
+from workalendar.core import MON, TUE, FRI
 from datetime import date
 
 
@@ -284,4 +284,34 @@ class WesternAustraliaCalendar(AustraliaCalendar):
         days = super(WesternAustraliaCalendar, self).get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_western_australia_day(year))
+        return days
+
+
+class MarshallIslandCalendar(WesternCalendar, ChristianMixin):
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (3, 3, "Remembrance Day"),
+        (5, 1, "Constitution Day"),
+        (11, 17, "Presidents' Day"),
+        (12, 31, "New Year's Eve"),
+    )
+    include_good_friday = True
+
+    def get_variable_days(self, year):
+        days = super(MarshallIslandCalendar, self).get_variable_days(year)
+        days.append((
+            MarshallIslandCalendar.get_nth_weekday_in_month(year, 7, FRI),
+            "Fishermen's Holiday"
+        ))
+        days.append((
+            MarshallIslandCalendar.get_nth_weekday_in_month(year, 9, FRI),
+            "Labour Day"
+        ))
+        days.append((
+            MarshallIslandCalendar.get_last_weekday_in_month(year, 9, FRI),
+            "Manit Day"
+        ))
+        days.append((
+            MarshallIslandCalendar.get_nth_weekday_in_month(year, 12, FRI),
+            "Gospel Day"
+        ))
         return days
