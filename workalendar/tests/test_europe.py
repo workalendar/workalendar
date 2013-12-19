@@ -5,7 +5,7 @@ from workalendar.europe import CzechRepublicCalendar, ItalyCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
 from workalendar.europe import UnitedKingdomNorthernIrelandCalendar
 from workalendar.europe import HungaryCalendar
-from workalendar.europe import NorwayCalendar
+from workalendar.europe import NorwayCalendar, FinlandCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -25,6 +25,35 @@ class CzechRepublicCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+
+
+class FinlandCalendarTest(GenericCalendarTest):
+    cal_class = FinlandCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 1), holidays)  # may day
+        self.assertIn(date(2013, 5, 9), holidays)  # ascension
+        self.assertIn(date(2013, 5, 19), holidays)  # pentecost
+        self.assertIn(date(2013, 6, 21), holidays)  # midsummer eve
+        self.assertIn(date(2013, 6, 22), holidays)  # midsummer day
+        self.assertIn(date(2013, 11, 2), holidays)  # all saints (special)
+        self.assertIn(date(2013, 12, 6), holidays)  # Independence day
+        self.assertIn(date(2013, 12, 24), holidays)  # XMas eve
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
+        self.assertIn(date(2013, 12, 26), holidays)  # St Stephens
+
+    def test_year_2014(self):
+        # testing the special rule variable holidays
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 6, 20), holidays)  # midsummer eve
+        self.assertIn(date(2014, 6, 21), holidays)  # midsummer day
+        self.assertIn(date(2014, 11, 1), holidays)  # all saints (special)
 
 
 class FranceCalendarTest(GenericCalendarTest):

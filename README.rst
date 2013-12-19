@@ -72,6 +72,7 @@ Europe
 ------
 
 * Czech Republic
+* Finland
 * France
 * France (Alsace / Moselle)
 * Hungary
