@@ -100,6 +100,7 @@ Oceania
 -------
 
 * Australia (incl. its different states)
+* Marshall Islands
 
 Africa
 ------
