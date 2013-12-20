@@ -186,6 +186,7 @@ class ChristianMixin(Calendar):
     whit_sunday_label = 'Whit Sunday'
     include_whit_monday = False
     whit_monday_label = 'Whit Monday'
+    include_corpus_christi = True
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
 
@@ -225,6 +226,9 @@ class ChristianMixin(Calendar):
         easter = self.get_easter_sunday(year)
         return easter + timedelta(days=49)
 
+    def get_corpus_christi(self, year):
+        return self.get_easter_sunday(year) + timedelta(days=60)
+
     def get_variable_days(self, year):
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
@@ -259,6 +263,8 @@ class ChristianMixin(Calendar):
             days.append((self.get_whit_monday(year), self.whit_monday_label))
         if self.include_whit_sunday:
             days.append((self.get_whit_sunday(year), self.whit_sunday_label))
+        if self.include_corpus_christi:
+            days.append((self.get_corpus_christi(year), "Corpus Christi"))
         return days
 
 

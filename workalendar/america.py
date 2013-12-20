@@ -69,9 +69,7 @@ class BrazilSaoPaoloCityCalendar(BrazilSaoPaoloStateCalendar):
         (11, 20, "Dia da Consciência Negra")
     )
     include_easter_sunday = True
-
-    def get_corpus_christi(self, year):
-        return self.get_easter_sunday(year) + timedelta(days=60)
+    include_corpus_christi = True
 
     def get_carnaval(self, year):
         return self.get_easter_sunday(year) - timedelta(days=47)
@@ -80,7 +78,6 @@ class BrazilSaoPaoloCityCalendar(BrazilSaoPaoloStateCalendar):
         days = super(BrazilSaoPaoloCityCalendar, self).get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
-        days.append((self.get_corpus_christi(year), "Corpus Christi"))
         return days
 
 
