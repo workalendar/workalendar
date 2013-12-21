@@ -171,6 +171,7 @@ class Calendar(object):
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
     include_epiphany = False
+    include_ash_wednesday = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
@@ -189,6 +190,10 @@ class ChristianMixin(Calendar):
     include_corpus_christi = True
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
+
+    def get_ash_wednesday(self, year):
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=46)
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -234,6 +239,8 @@ class ChristianMixin(Calendar):
         days = super(ChristianMixin, self).get_variable_days(year)
         if self.include_epiphany:
             days.append((date(year, 1, 6), "Epiphany"))
+        if self.include_ash_wednesday:
+            days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
