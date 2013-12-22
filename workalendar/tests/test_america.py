@@ -4,7 +4,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import UnitedStatesCalendar
 from workalendar.america import BrazilCalendar, BrazilSaoPaoloStateCalendar
 from workalendar.america import BrazilSaoPaoloCityCalendar
-from workalendar.america import MexicoCalendar, ChileCalendar
+from workalendar.america import MexicoCalendar, ChileCalendar, PanamaCalendar
 
 
 class UnitedStatesCalendarTest(GenericCalendarTest):
@@ -146,3 +146,24 @@ class MexicoCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2021)
         # December 25th, 2022 is a saturday, so we shift to friday
         self.assertIn(date(2021, 12, 24), holidays)
+
+
+class PanamaCalendarTest(GenericCalendarTest):
+    cal_class = PanamaCalendar
+
+    def test_holidays_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 1, 9), holidays)  # Martyrs day
+        self.assertIn(date(2013, 2, 12), holidays)  # carnival tuesday
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 30), holidays)  # easter saturday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 5, 1), holidays)  # labour day
+        self.assertIn(date(2013, 11, 3), holidays)  # independence day
+        self.assertIn(date(2013, 11, 5), holidays)  # colon day
+        # Shout in Villa de los Santos
+        self.assertIn(date(2013, 11, 10), holidays)
+        self.assertIn(date(2013, 12, 2), holidays)  # Independence from spain
+        self.assertIn(date(2013, 12, 8), holidays)  # mother day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
