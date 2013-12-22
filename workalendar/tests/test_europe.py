@@ -5,7 +5,7 @@ from workalendar.europe import CzechRepublicCalendar, ItalyCalendar
 from workalendar.europe import IcelandCalendar, UnitedKingdomCalendar
 from workalendar.europe import UnitedKingdomNorthernIrelandCalendar
 from workalendar.europe import GreeceCalendar, HungaryCalendar
-from workalendar.europe import NorwayCalendar
+from workalendar.europe import NorwayCalendar, PolandCalendar
 
 
 class CzechRepublicCalendarTest(GenericCalendarTest):
@@ -136,6 +136,26 @@ class NorwayCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 20), holidays)  # Whit monday
         self.assertIn(date(2013, 12, 25), holidays)  # Xmas
         self.assertIn(date(2013, 12, 26), holidays)  # St Stephens
+
+
+class PolandCalendarTest(GenericCalendarTest):
+    cal_class = PolandCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # New Year
+        self.assertIn(date(2013, 1, 6), holidays)  # Trzech Kroli
+        self.assertIn(date(2013, 3, 31), holidays)  # Easter Sunday
+        self.assertIn(date(2013, 4, 1), holidays)  # Easter Monday
+        self.assertIn(date(2013, 5, 1), holidays)  # Labor Day
+        self.assertIn(date(2013, 5, 3), holidays)  # Constitution Day
+        self.assertIn(date(2013, 5, 19), holidays)  # Pentecost
+        self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
+        self.assertIn(date(2013, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2013, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2013, 11, 11), holidays)  # Independence Day
+        self.assertIn(date(2013, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
 
 class IcelandCalendarTest(GenericCalendarTest):

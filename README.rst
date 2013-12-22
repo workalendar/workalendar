@@ -79,6 +79,7 @@ Europe
 * Iceland
 * Italy
 * Norway
+* Poland
 * United Kingdom (incl. Northern Ireland)
 
 America
@@ -87,6 +88,7 @@ America
 * Brazil (incl. São Paulo state and city)
 * Chile
 * Mexico
+* Panama
 * United States of America (only the federal state holidays at the moment)
 
 Asia
@@ -101,6 +103,7 @@ Oceania
 -------
 
 * Australia (incl. its different states)
+* Marshall Islands
 
 Africa
 ------

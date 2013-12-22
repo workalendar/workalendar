@@ -69,9 +69,7 @@ class BrazilSaoPaoloCityCalendar(BrazilSaoPaoloStateCalendar):
         (11, 20, "Dia da Consciência Negra")
     )
     include_easter_sunday = True
-
-    def get_corpus_christi(self, year):
-        return self.get_easter_sunday(year) + timedelta(days=60)
+    include_corpus_christi = True
 
     def get_carnaval(self, year):
         return self.get_easter_sunday(year) - timedelta(days=47)
@@ -80,7 +78,6 @@ class BrazilSaoPaoloCityCalendar(BrazilSaoPaoloStateCalendar):
         days = super(BrazilSaoPaoloCityCalendar, self).get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
-        days.append((self.get_corpus_christi(year), "Corpus Christi"))
         return days
 
 
@@ -156,4 +153,28 @@ class MexicoCalendar(WesternCalendar, ChristianMixin):
         next_new_year = date(year + 1, 1, 1)
         if next_new_year.weekday():
             days.append((date(year, 12, 31), "New Year Day substitute"))
+        return days
+
+
+class PanamaCalendar(WesternCalendar, ChristianMixin):
+
+    include_good_friday = True
+    include_easter_saturday = True
+    include_easter_sunday = True
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (1, 9, "Martyrs' Day"),
+        (5, 1, "Labour Day"),
+        (11, 3, "Independence Day"),
+        (11, 5, "Colon Day"),
+        (11, 10, "Shout in Villa de los Santos"),
+        (12, 2, "Independence from Spain"),
+        (12, 8, "Mothers' Day"),
+    )
+
+    def get_variable_days(self, year):
+        days = super(PanamaCalendar, self).get_variable_days(year)
+        days.append(
+            (self.get_ash_wednesday(year) - timedelta(days=1), "Carnival")
+        )
         return days
