@@ -3,7 +3,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.africa import BeninCalendar, AlgeriaCalendar
 from workalendar.africa import SouthAfricaCalendar, IvoryCoastCalendar
-from workalendar.africa import SaoTomeAndPrincipeCalendar
+from workalendar.africa import SaoTomeAndPrincipeCalendar, MadagascarCalendar
 
 
 class AlgeriaCalendarTest(GenericCalendarTest):
@@ -68,6 +68,23 @@ class SouthAfricaCalendarTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 27), holidays)  # freedom day
         self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
+
+
+class MadagascarCalendar(GenericCalendarTest):
+    cal_class = MadagascarCalendar
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 3, 29), holidays)  # martyrs day
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 1), holidays)  # labour day
+        self.assertIn(date(2013, 5, 9), holidays)  # ascension
+        self.assertIn(date(2013, 5, 20), holidays)  # whit monday
+        self.assertIn(date(2013, 6, 26), holidays)  # independence day
+        self.assertIn(date(2013, 8, 15), holidays)  # assumption
+        self.assertIn(date(2013, 11, 1), holidays)  # all saints
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
 
 
 class IvoryCoastCalendarTest(GenericCalendarTest):

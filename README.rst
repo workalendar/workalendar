@@ -111,6 +111,7 @@ Africa
 * Algeria
 * Benin
 * Ivory Coast
+* Madagascar
 * São Tomé
 * South Africa
 
