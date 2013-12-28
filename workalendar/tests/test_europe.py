@@ -120,7 +120,7 @@ class GreeceCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 1, 1), holidays)  # new year
         self.assertIn(date(2013, 1, 6), holidays)  # epiphany
         self.assertIn(date(2013, 3, 18), holidays)  # Clean monday
-        # Annunciation & Independance day
+        # Annunciation & Independence day
         self.assertIn(date(2013, 3, 25), holidays)
         self.assertIn(date(2013, 5, 1), holidays)  # labour day
         self.assertIn(date(2013, 5, 3), holidays)  # good friday

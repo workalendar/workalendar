@@ -2,13 +2,12 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import UnitedStatesCalendar
-from workalendar.america import BrazilCalendar, BrazilSaoPaoloStateCalendar
-from workalendar.america import BrazilSaoPaoloCityCalendar
+from workalendar.america import BrazilCalendar, BrazilSaoPauloStateCalendar
+from workalendar.america import BrazilSaoPauloCityCalendar
 from workalendar.america import MexicoCalendar, ChileCalendar, PanamaCalendar
 
 
 class UnitedStatesCalendarTest(GenericCalendarTest):
-
     cal_class = UnitedStatesCalendar
 
     def test_year_2013(self):
@@ -58,8 +57,8 @@ class BrazilCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # Natal
 
 
-class SaoPaoloStateCalendar(BrazilCalendarTest):
-    cal_class = BrazilSaoPaoloStateCalendar
+class SaoPauloStateCalendar(BrazilCalendarTest):
+    cal_class = BrazilSaoPauloStateCalendar
 
     def test_regional_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -67,8 +66,8 @@ class SaoPaoloStateCalendar(BrazilCalendarTest):
         self.assertIn(date(2013, 7, 9), holidays)
 
 
-class SaoPaoloCityCalendar(SaoPaoloStateCalendar):
-    cal_class = BrazilSaoPaoloCityCalendar
+class SaoPauloCityCalendar(SaoPauloStateCalendar):
+    cal_class = BrazilSaoPauloCityCalendar
 
     def test_city_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -123,7 +122,7 @@ class MexicoCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 2, 4), holidays)  # Constitution day
         self.assertIn(date(2013, 3, 18), holidays)  # Benito Juárez's birthday
         self.assertIn(date(2013, 5, 1), holidays)  # Labour day
-        self.assertIn(date(2013, 9, 16), holidays)  # Independance day
+        self.assertIn(date(2013, 9, 16), holidays)  # Independence day
         self.assertIn(date(2013, 11, 18), holidays)  # Revolution day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
 

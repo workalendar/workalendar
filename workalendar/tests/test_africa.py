@@ -14,7 +14,7 @@ class AlgeriaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 1, 1), holidays)  # New year
         self.assertIn(date(2013, 1, 24), holidays)   # Milad un Nabi
         self.assertIn(date(2013, 5, 1), holidays)  # Labour day
-        self.assertIn(date(2013, 7, 5), holidays)  # Independance day
+        self.assertIn(date(2013, 7, 5), holidays)  # Independence day
         self.assertIn(date(2013, 8, 8), holidays)  # Eid ul-fitr
         self.assertIn(date(2013, 10, 15), holidays)  # Eid el-ada
         self.assertIn(date(2013, 11, 1), holidays)  # Anniversary revolution
@@ -32,7 +32,7 @@ class BeninCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 9), holidays)   # Ascension
         self.assertIn(date(2013, 5, 20), holidays)   # Whit Monday
         self.assertIn(date(2013, 5, 1), holidays)  # Labour day
-        self.assertIn(date(2013, 8, 1), holidays)  # Independance Day
+        self.assertIn(date(2013, 8, 1), holidays)  # Independence Day
         self.assertIn(date(2013, 8, 15), holidays)  # Assumption
         self.assertIn(date(2013, 10, 26), holidays)  # Armed Forces Day
         self.assertIn(date(2013, 11, 1), holidays)  # All Saints Day
@@ -97,7 +97,7 @@ class IvoryCoastCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 1), holidays)  # labour day
         self.assertIn(date(2013, 5, 9), holidays)  # ascension
         self.assertIn(date(2013, 5, 20), holidays)  # whit monday
-        self.assertIn(date(2013, 8, 7), holidays)  # Independance day
+        self.assertIn(date(2013, 8, 7), holidays)  # Independence day
         self.assertIn(date(2013, 8, 15), holidays)  # Assumption
         self.assertIn(date(2013, 11, 1), holidays)  # All saints
         self.assertIn(date(2013, 11, 15), holidays)  # National peace day
@@ -118,7 +118,7 @@ class SaoTomeAndPrincipeCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 1, 1), holidays)  # new year
         self.assertIn(date(2013, 2, 3), holidays)  # Martyrs' day
         self.assertIn(date(2013, 5, 1), holidays)  # Labour Day
-        self.assertIn(date(2013, 7, 12), holidays)  # Independance Day
+        self.assertIn(date(2013, 7, 12), holidays)  # Independence Day
         self.assertIn(date(2013, 9, 6), holidays)  # Armed Forces Day
         self.assertIn(date(2013, 9, 30), holidays)  # Agricultural Reform Day
         self.assertIn(date(2013, 11, 1), holidays)  # All saints

@@ -12,7 +12,7 @@ class SouthKoreaCalendarTest(GenericCalendarTest):
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)    # new year
-        self.assertIn(date(2013, 3, 1), holidays)    # independance day
+        self.assertIn(date(2013, 3, 1), holidays)    # Independence day
         self.assertIn(date(2013, 5, 5), holidays)    # children's day
         self.assertIn(date(2013, 6, 6), holidays)    # Memorial day
         self.assertIn(date(2013, 8, 15), holidays)   # Liberation day

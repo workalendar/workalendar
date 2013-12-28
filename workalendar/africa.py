@@ -15,7 +15,7 @@ class AlgeriaCalendar(WesternCalendar, IslamicMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
-        (7, 5, "Independance Day"),
+        (7, 5, "Independence Day"),
         (11, 1, "Anniversary of the revolution"),
     )
 
@@ -40,7 +40,7 @@ class BeninCalendar(WesternCalendar, IslamicMixin, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 10, "Traditional Day"),
         (5, 1, "Labour Day"),
-        (8, 1, "Independance Day"),
+        (8, 1, "Independence Day"),
         (10, 26, "Armed Forces Day"),
         (11, 30, "National Day"),
     )
@@ -60,7 +60,7 @@ class IvoryCoastCalendar(WesternCalendar, ChristianMixin, IslamicMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
-        (8, 7, "Independance Day"),
+        (8, 7, "Independence Day"),
         (11, 15, "National Peace Day"),
     )
 
@@ -84,7 +84,7 @@ class SaoTomeAndPrincipeCalendar(WesternCalendar, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 3, "Martyr's Day"),
         (5, 1, "Labour Day"),
-        (7, 12, "Independance Day"),
+        (7, 12, "Independence Day"),
         (9, 6, "Armed Forces Day"),
         (9, 30, "Agricultural Reform Day"),
         (12, 21, u"São Tomé Day"),
