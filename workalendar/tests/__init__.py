@@ -6,7 +6,6 @@ from workalendar.core import Calendar
 
 
 class GenericCalendarTest(TestCase):
-
     cal_class = Calendar
 
     def setUp(self):
