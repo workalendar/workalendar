@@ -295,7 +295,8 @@ class WesternAustralia(Australia):
         return days
 
 
-class MarshallIsland(WesternCalendar, ChristianMixin):
+class MarshallIslands(WesternCalendar, ChristianMixin):
+    "Marshall Islands"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Remembrance Day"),
         (5, 1, "Constitution Day"),
@@ -305,21 +306,21 @@ class MarshallIsland(WesternCalendar, ChristianMixin):
     include_good_friday = True
 
     def get_variable_days(self, year):
-        days = super(MarshallIsland, self).get_variable_days(year)
+        days = super(MarshallIslands, self).get_variable_days(year)
         days.append((
-            MarshallIsland.get_nth_weekday_in_month(year, 7, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 7, FRI),
             "Fishermen's Holiday"
         ))
         days.append((
-            MarshallIsland.get_nth_weekday_in_month(year, 9, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 9, FRI),
             "Labour Day"
         ))
         days.append((
-            MarshallIsland.get_last_weekday_in_month(year, 9, FRI),
+            MarshallIslands.get_last_weekday_in_month(year, 9, FRI),
             "Manit Day"
         ))
         days.append((
-            MarshallIsland.get_nth_weekday_in_month(year, 12, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 12, FRI),
             "Gospel Day"
         ))
         return days

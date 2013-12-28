@@ -10,7 +10,7 @@ from workalendar.oceania import SouthAustralia
 from workalendar.oceania import Tasmania, Hobart
 from workalendar.oceania import Victoria
 from workalendar.oceania import WesternAustralia
-from workalendar.oceania import MarshallIsland
+from workalendar.oceania import MarshallIslands
 
 
 class AustraliaTest(GenericCalendarTest):
@@ -157,8 +157,8 @@ class WesternAustraliaTest(AustraliaTest):
         # Monday of October)
 
 
-class MarshallIslandTest(GenericCalendarTest):
-    cal_class = MarshallIsland
+class MarshallIslandsTest(GenericCalendarTest):
+    cal_class = MarshallIslands
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
