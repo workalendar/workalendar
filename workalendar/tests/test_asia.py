@@ -1,13 +1,13 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.asia import SouthKoreaCalendar, JapanCalendar
-from workalendar.asia import QatarCalendar
-from workalendar.asia import TaiwanCalendar
+from workalendar.asia import SouthKorea, Japan
+from workalendar.asia import Qatar
+from workalendar.asia import Taiwan
 
 
-class SouthKoreaCalendarTest(GenericCalendarTest):
+class SouthKoreaTest(GenericCalendarTest):
 
-    cal_class = SouthKoreaCalendar
+    cal_class = SouthKorea
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -30,9 +30,9 @@ class SouthKoreaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 9, 20), holidays)
 
 
-class JapanCalendarTest(GenericCalendarTest):
+class JapanTest(GenericCalendarTest):
 
-    cal_class = JapanCalendar
+    cal_class = Japan
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -55,8 +55,8 @@ class JapanCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 14), holidays)  # Health and Sports Day
 
 
-class QatarCalendarTest(GenericCalendarTest):
-    cal_class = QatarCalendar
+class QatarTest(GenericCalendarTest):
+    cal_class = Qatar
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -71,9 +71,9 @@ class QatarCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 18), holidays)  # National Day
 
 
-class TaiwanCalendarTest(GenericCalendarTest):
+class TaiwanTest(GenericCalendarTest):
 
-    cal_class = TaiwanCalendar
+    cal_class = Taiwan
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)

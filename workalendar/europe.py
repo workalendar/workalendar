@@ -3,8 +3,8 @@ from workalendar.core import WesternCalendar, ChristianMixin, OrthodoxMixin
 from workalendar.core import THU, MON, FRI, SAT
 
 
-class CzechRepublicCalendar(WesternCalendar, ChristianMixin):
-    "Czech Republic calendar class"
+class CzechRepublic(WesternCalendar, ChristianMixin):
+    "Czech Republic"
     include_easter_monday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -21,7 +21,7 @@ class CzechRepublicCalendar(WesternCalendar, ChristianMixin):
     )
 
 
-class FinlandCalendar(WesternCalendar, ChristianMixin):
+class Finland(WesternCalendar, ChristianMixin):
     "Finland"
     include_epiphany = True
     include_good_friday = True
@@ -40,32 +40,32 @@ class FinlandCalendar(WesternCalendar, ChristianMixin):
     )
 
     def get_midsummer_eve(self, year):
-        date_eve = FinlandCalendar.get_nth_weekday_in_month(
+        date_eve = Finland.get_nth_weekday_in_month(
             year, 6, FRI, start=date(year, 6, 19))
         return date_eve
 
     def get_midsummer_day(self, year):
-        date_eve = FinlandCalendar.get_nth_weekday_in_month(
+        date_eve = Finland.get_nth_weekday_in_month(
             year, 6, SAT, start=date(year, 6, 20))
         return date_eve
 
     def get_variable_all_saints(self, year):
         all_saints = date(year, 10, 31)
         if all_saints.weekday() != SAT:
-            all_saints = FinlandCalendar.get_nth_weekday_in_month(
+            all_saints = Finland.get_nth_weekday_in_month(
                 year, 11, SAT)
         return all_saints
 
     def get_variable_days(self, year):
-        days = super(FinlandCalendar, self).get_variable_days(year)
+        days = super(Finland, self).get_variable_days(year)
         days.append((self.get_midsummer_eve(year), "Midsummer's Eve"))
         days.append((self.get_midsummer_day(year), "Midsummer's Day"))
         days.append((self.get_variable_all_saints(year), "All Saints"))
         return days
 
 
-class FranceCalendar(WesternCalendar, ChristianMixin):
-    "France calendar class"
+class France(WesternCalendar, ChristianMixin):
+    "France"
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
@@ -80,13 +80,13 @@ class FranceCalendar(WesternCalendar, ChristianMixin):
     )
 
 
-class FranceAlsaceMoselleCalendar(FranceCalendar):
-    "France Alsace/Moselle calendar class"
+class FranceAlsaceMoselle(France):
+    "France Alsace/Moselle"
     include_good_friday = True
     include_boxing_day = True
 
 
-class GreeceCalendar(OrthodoxMixin, WesternCalendar):
+class Greece(OrthodoxMixin, WesternCalendar):
     "Greece"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Independence Day"),
@@ -107,7 +107,7 @@ class GreeceCalendar(OrthodoxMixin, WesternCalendar):
     boxing_day_label = "Glorifying Mother of God"
 
 
-class HungaryCalendar(WesternCalendar, ChristianMixin):
+class Hungary(WesternCalendar, ChristianMixin):
     "Hungary"
     include_easter_sunday = True
     include_easter_monday = True
@@ -127,8 +127,8 @@ class HungaryCalendar(WesternCalendar, ChristianMixin):
     )
 
 
-class IcelandCalendar(WesternCalendar, ChristianMixin):
-    "Iceland calendar class"
+class Iceland(WesternCalendar, ChristianMixin):
+    "Iceland"
     include_holy_thursday = True
     include_good_friday = True
     include_easter_monday = True
@@ -153,19 +153,19 @@ class IcelandCalendar(WesternCalendar, ChristianMixin):
             start=date(year, 4, 19))
 
     def get_variable_days(self, year):
-        days = super(IcelandCalendar, self).get_variable_days(year)
+        days = super(Iceland, self).get_variable_days(year)
         days += [
             (
                 self.get_first_day_of_summer(year),
                 "First day of summer"),
             (
-                WesternCalendar.get_nth_weekday_in_month(year, 8, MON),
+                Iceland.get_nth_weekday_in_month(year, 8, MON),
                 "Commerce Day"),
         ]
         return days
 
 
-class ItalyCalendar(WesternCalendar, ChristianMixin):
+class Italy(WesternCalendar, ChristianMixin):
     "Italy"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Liberation Day"),
@@ -182,7 +182,7 @@ class ItalyCalendar(WesternCalendar, ChristianMixin):
     boxing_day_label = "St Stephen's Day"
 
 
-class NorwayCalendar(WesternCalendar, ChristianMixin):
+class Norway(WesternCalendar, ChristianMixin):
     "Norway"
     include_holy_thursday = True
     include_good_friday = True
@@ -200,7 +200,7 @@ class NorwayCalendar(WesternCalendar, ChristianMixin):
     )
 
 
-class PolandCalendar(WesternCalendar, ChristianMixin):
+class Poland(WesternCalendar, ChristianMixin):
     "Poland"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 6, 'Trzech Kroli'),
@@ -218,8 +218,8 @@ class PolandCalendar(WesternCalendar, ChristianMixin):
     include_boxing_day = True
 
 
-class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
-    "United Kingdom calendar"
+class UnitedKingdom(WesternCalendar, ChristianMixin):
+    "United Kingdom"
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
@@ -228,24 +228,24 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
 
     def get_early_may_bank_holiday(self, year):
         return (
-            UnitedKingdomCalendar.get_nth_weekday_in_month(year, 5, MON),
+            UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
             "Early May Bank Holiday"
         )
 
     def get_spring_bank_holiday(self, year):
         return (
-            UnitedKingdomCalendar.get_last_weekday_in_month(year, 5, MON),
+            UnitedKingdom.get_last_weekday_in_month(year, 5, MON),
             "Spring Bank Holiday"
         )
 
     def get_late_summer_bank_holiday(self, year):
         return (
-            UnitedKingdomCalendar.get_last_weekday_in_month(year, 8, MON),
+            UnitedKingdom.get_last_weekday_in_month(year, 8, MON),
             "Late Summer Bank Holiday"
         )
 
     def get_variable_days(self, year):
-        days = super(UnitedKingdomCalendar, self).get_variable_days(year)
+        days = super(UnitedKingdom, self).get_variable_days(year)
         days.append(self.get_early_may_bank_holiday(year))
         days.append(self.get_spring_bank_holiday(year))
         days.append(self.get_late_summer_bank_holiday(year))
@@ -258,10 +258,10 @@ class UnitedKingdomCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class UnitedKingdomNorthernIrelandCalendar(UnitedKingdomCalendar):
+class UnitedKingdomNorthernIreland(UnitedKingdom):
 
     def get_variable_days(self, year):
-        days = super(UnitedKingdomNorthernIrelandCalendar, self) \
+        days = super(UnitedKingdomNorthernIreland, self) \
             .get_variable_days(year)
         # St Patrick's day
         st_patrick = date(year, 3, 17)
