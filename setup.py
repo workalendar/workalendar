@@ -33,7 +33,7 @@ if __name__ == '__main__':
     setup(
         name='workalendar',
         packages=['workalendar'],
-        version='0.0.2-dev',
+        version='0.1-dev',
         description='Worldwide holidays and working days helper and toolkit.',
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         install_requires=REQUIREMENTS,
         zip_safe=False,
         classifiers=(
-            'Development Status :: 3 - Alpha',
+            'Development Status :: 4 - Beta',
             'Intended Audience :: Developers',
             'License :: OSI Approved :: MIT License',
             'Programming Language :: Python',
