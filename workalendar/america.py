@@ -126,6 +126,7 @@ class Chile(WesternCalendar, ChristianMixin):
 
 
 class Mexico(WesternCalendar, ChristianMixin):
+    "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (9, 16, "Independence Day"),
@@ -164,6 +165,7 @@ class Mexico(WesternCalendar, ChristianMixin):
 
 
 class Panama(WesternCalendar, ChristianMixin):
+    "Panama"
     include_good_friday = True
     include_easter_saturday = True
     include_easter_sunday = True

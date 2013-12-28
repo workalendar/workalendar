@@ -259,7 +259,7 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
 
 
 class UnitedKingdomNorthernIreland(UnitedKingdom):
-
+    "Northern Ireland (UK)"
     def get_variable_days(self, year):
         days = super(UnitedKingdomNorthernIreland, self) \
             .get_variable_days(year)
