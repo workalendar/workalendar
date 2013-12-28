@@ -22,8 +22,8 @@ Usage sample
 .. code-block:: python
 
     >>> from datetime import date
-    >>> from workalendar.europe import FranceCalendar
-    >>> cal = FranceCalendar()
+    >>> from workalendar.europe import France
+    >>> cal = France()
     >>> cal.holidays(2012)
     [(datetime.date(2012, 1, 1), 'New year'),
      (datetime.date(2012, 4, 9), 'Easter Monday'),
