@@ -17,12 +17,15 @@ def read_relative_file(filename):
     with open(join(dirname(abspath(__file__)), filename)) as f:
         return f.read()
 
+NAME = 'workalendar'
+DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
     'python-dateutil',
     'lunardate',
     'pytz',
     'pyCalverter',
 ]
+VERSION = read_relative_file('VERSION')
 
 if PY2:
     REQUIREMENTS.append('pyephem')
@@ -31,10 +34,10 @@ else:
 
 if __name__ == '__main__':
     setup(
-        name='workalendar',
+        name=NAME,
+        description=DESCRIPTION,
         packages=['workalendar'],
-        version='0.1-dev',
-        description='Worldwide holidays and working days helper and toolkit.',
+        version=VERSION,
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
         author_email='bruno.bord@novapost.fr',
