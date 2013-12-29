@@ -1,14 +1,24 @@
-# Changelog
+CHANGELOG
+=========
 
-## current
+0.1 (unreleased)
+----------------
 
-+ added LunarCalendar, including lunar month calculations
-+ added SouthKoreanCalendar, for a LunarCalendar proof of concept
+- added LunarCalendar, including lunar month calculations
+- added SouthKoreanCalendar, for a LunarCalendar proof of concept
+- added Python3 support
+- added Algeria, Australia, Brazil, Chile, Czech Republic,
+  Finland, France Alsace-Moselle, Greece, Hungary, Iceland,
+  Italy, Ivory Coast, Japan, Madagascar, Marshall Islands,
+  Mexico, Northern Ireland, Norway, Panama, Poland, Qatar,
+  South Africa, São Tomé, Taiwan, United Kingdom calendars
 
-## v0.0.1
 
-* First released version
-+ Core calendar classes, Western (European and North American) easter
-  computations,
-+ United States federal days
-+ France legal holidays days
+v0.0.1 (2013-11-21)
+-------------------
+
+- First released version
+- Core calendar classes, Western (European and North American)
+  easter computations,
+- United States federal days
+- France legal holidays days
