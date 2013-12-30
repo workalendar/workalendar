@@ -5,8 +5,8 @@ from workalendar.core import LunarCalendar, WesternCalendar, Calendar
 from workalendar.core import MON, FRI, SAT, IslamicMixin, EphemMixin
 
 
-class SouthKoreaCalendar(LunarCalendar):
-    "South Korean calendar"
+class SouthKorea(LunarCalendar):
+    "South Korea"
     FIXED_HOLIDAYS = LunarCalendar.FIXED_HOLIDAYS + (
         (3, 1, "Independence Day"),
         (5, 5, "Children's Day"),
@@ -35,8 +35,8 @@ class SouthKoreaCalendar(LunarCalendar):
         return days
 
 
-class JapanCalendar(WesternCalendar, EphemMixin):
-    "Japan calendar class"
+class Japan(WesternCalendar, EphemMixin):
+    "Japan"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 11, "Foundation Day"),
@@ -54,29 +54,30 @@ class JapanCalendar(WesternCalendar, EphemMixin):
 
         equinoxes = self.calculate_equinoxes(year, 'Asia/Tokyo')
 
-        days = super(JapanCalendar, self).get_variable_days(year)
+        days = super(Japan, self).get_variable_days(year)
         days += [
-            (WesternCalendar.get_nth_weekday_in_month(year, 1, MON, 2),
+            (Japan.get_nth_weekday_in_month(year, 1, MON, 2),
                 'Coming of Age Day'),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 7, MON, 3),
+            (Japan.get_nth_weekday_in_month(year, 7, MON, 3),
                 "Marine Day"),
 
             (equinoxes[0], "Vernal Equinox Day"),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 9, MON, 3),
+            (Japan.get_nth_weekday_in_month(year, 9, MON, 3),
                 "Respect-for-the-Aged Day"),
 
             (equinoxes[1], "Autumnal Equinox Day"),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 10, MON, 2),
+            (Japan.get_nth_weekday_in_month(year, 10, MON, 2),
                 "Health and Sports Day"),
         ]
 
         return days
 
 
-class QatarCalendar(IslamicMixin, Calendar):
+class Qatar(IslamicMixin, Calendar):
+    "Qatar"
     WEEKEND_DAYS = (FRI, SAT)
 
     FIXED_HOLIDAYS = (
@@ -89,8 +90,8 @@ class QatarCalendar(IslamicMixin, Calendar):
     length_eid_al_adha = 4
 
 
-class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
-    "Taiwan (Republic of China) calendar"
+class Taiwan(EphemMixin, LunarCalendar, WesternCalendar):
+    "Taiwan (Republic of China)"
     FIXED_HOLIDAYS = (
         LunarCalendar.FIXED_HOLIDAYS +
         WesternCalendar.FIXED_HOLIDAYS +
@@ -108,7 +109,7 @@ class TaiwanCalendar(EphemMixin, LunarCalendar, WesternCalendar):
         # longitude of 15° (usually around April 4th or 5th)
         qingming = EphemMixin.solar_term(self, year, 15, 'Asia/Taipei')
 
-        days = super(TaiwanCalendar, self).get_variable_days(year)
+        days = super(Taiwan, self).get_variable_days(year)
         days += [
             # a day before
             (lunar_first_day - timedelta(days=1), "Chinese New Year's Eve"),

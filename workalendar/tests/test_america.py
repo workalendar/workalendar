@@ -1,14 +1,14 @@
 #-*- coding: utf-8 -*-
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.america import UnitedStatesCalendar
-from workalendar.america import BrazilCalendar, BrazilSaoPauloStateCalendar
-from workalendar.america import BrazilSaoPauloCityCalendar
-from workalendar.america import MexicoCalendar, ChileCalendar, PanamaCalendar
+from workalendar.america import UnitedStates
+from workalendar.america import Brazil, BrazilSaoPauloState
+from workalendar.america import BrazilSaoPauloCity
+from workalendar.america import Mexico, Chile, Panama
 
 
-class UnitedStatesCalendarTest(GenericCalendarTest):
-    cal_class = UnitedStatesCalendar
+class UnitedStatesTest(GenericCalendarTest):
+    cal_class = UnitedStates
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -25,11 +25,11 @@ class UnitedStatesCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 28), holidays)  # Thanskgiving
 
     def test_presidential_year(self):
-        self.assertTrue(UnitedStatesCalendar.is_presidential_year(2012))
-        self.assertFalse(UnitedStatesCalendar.is_presidential_year(2013))
-        self.assertFalse(UnitedStatesCalendar.is_presidential_year(2014))
-        self.assertFalse(UnitedStatesCalendar.is_presidential_year(2015))
-        self.assertTrue(UnitedStatesCalendar.is_presidential_year(2016))
+        self.assertTrue(UnitedStates.is_presidential_year(2012))
+        self.assertFalse(UnitedStates.is_presidential_year(2013))
+        self.assertFalse(UnitedStates.is_presidential_year(2014))
+        self.assertFalse(UnitedStates.is_presidential_year(2015))
+        self.assertTrue(UnitedStates.is_presidential_year(2016))
 
     def test_inauguration_day(self):
         holidays = self.cal.holidays_set(2008)
@@ -42,8 +42,8 @@ class UnitedStatesCalendarTest(GenericCalendarTest):
         self.assertIn(date(1985, 1, 21), holidays)
 
 
-class BrazilCalendarTest(GenericCalendarTest):
-    cal_class = BrazilCalendar
+class BrazilTest(GenericCalendarTest):
+    cal_class = Brazil
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -57,8 +57,8 @@ class BrazilCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # Natal
 
 
-class SaoPauloStateCalendar(BrazilCalendarTest):
-    cal_class = BrazilSaoPauloStateCalendar
+class SaoPauloStateTest(BrazilTest):
+    cal_class = BrazilSaoPauloState
 
     def test_regional_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -66,8 +66,8 @@ class SaoPauloStateCalendar(BrazilCalendarTest):
         self.assertIn(date(2013, 7, 9), holidays)
 
 
-class SaoPauloCityCalendar(SaoPauloStateCalendar):
-    cal_class = BrazilSaoPauloCityCalendar
+class SaoPauloCityTest(SaoPauloStateTest):
+    cal_class = BrazilSaoPauloCity
 
     def test_city_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -80,8 +80,8 @@ class SaoPauloCityCalendar(SaoPauloStateCalendar):
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
 
 
-class ChileCalendarTest(GenericCalendarTest):
-    cal_class = ChileCalendar
+class ChileTest(GenericCalendarTest):
+    cal_class = Chile
 
     def test_holidays_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -113,8 +113,8 @@ class ChileCalendarTest(GenericCalendarTest):
         self.assertIn(date(2017, 10, 27), holidays)
 
 
-class MexicoCalendarTest(GenericCalendarTest):
-    cal_class = MexicoCalendar
+class MexicoTest(GenericCalendarTest):
+    cal_class = Mexico
 
     def test_holidays_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -147,8 +147,8 @@ class MexicoCalendarTest(GenericCalendarTest):
         self.assertIn(date(2021, 12, 24), holidays)
 
 
-class PanamaCalendarTest(GenericCalendarTest):
-    cal_class = PanamaCalendar
+class PanamaTest(GenericCalendarTest):
+    cal_class = Panama
 
     def test_holidays_2013(self):
         holidays = self.cal.holidays_set(2013)

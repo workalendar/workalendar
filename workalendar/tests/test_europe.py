@@ -1,20 +1,20 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.europe import CzechRepublicCalendar
-from workalendar.europe import FinlandCalendar
-from workalendar.europe import FranceCalendar, FranceAlsaceMoselleCalendar
-from workalendar.europe import GreeceCalendar
-from workalendar.europe import HungaryCalendar
-from workalendar.europe import IcelandCalendar
-from workalendar.europe import ItalyCalendar
-from workalendar.europe import NorwayCalendar
-from workalendar.europe import PolandCalendar
-from workalendar.europe import UnitedKingdomCalendar
-from workalendar.europe import UnitedKingdomNorthernIrelandCalendar
+from workalendar.europe import CzechRepublic
+from workalendar.europe import Finland
+from workalendar.europe import France, FranceAlsaceMoselle
+from workalendar.europe import Greece
+from workalendar.europe import Hungary
+from workalendar.europe import Iceland
+from workalendar.europe import Italy
+from workalendar.europe import Norway
+from workalendar.europe import Poland
+from workalendar.europe import UnitedKingdom
+from workalendar.europe import UnitedKingdomNorthernIreland
 
 
-class CzechRepublicCalendarTest(GenericCalendarTest):
-    cal_class = CzechRepublicCalendar
+class CzechRepublicTest(GenericCalendarTest):
+    cal_class = CzechRepublic
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -32,8 +32,8 @@ class CzechRepublicCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)
 
 
-class FinlandCalendarTest(GenericCalendarTest):
-    cal_class = FinlandCalendar
+class FinlandTest(GenericCalendarTest):
+    cal_class = Finland
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -61,9 +61,9 @@ class FinlandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2014, 11, 1), holidays)  # all saints (special)
 
 
-class FranceCalendarTest(GenericCalendarTest):
+class FranceTest(GenericCalendarTest):
 
-    cal_class = FranceCalendar
+    cal_class = France
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -95,25 +95,25 @@ class FranceCalendarTest(GenericCalendarTest):
         self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
 
 
-class FranceAlsaceMoselleCalendarTest(FranceCalendarTest):
-    cal_class = FranceAlsaceMoselleCalendar
+class FranceAlsaceMoselleTest(FranceTest):
+    cal_class = FranceAlsaceMoselle
 
     def test_year_2013(self):
-        super(FranceAlsaceMoselleCalendarTest, self).test_year_2013()
+        super(FranceAlsaceMoselleTest, self).test_year_2013()
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 29), holidays)  # Good friday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_working_days(self):
-        super(FranceAlsaceMoselleCalendarTest, self).test_working_days()
+        super(FranceAlsaceMoselleTest, self).test_working_days()
 
     def test_business_days_computations(self):
-        super(FranceAlsaceMoselleCalendarTest, self) \
+        super(FranceAlsaceMoselleTest, self) \
             .test_business_days_computations()
 
 
-class GreeceCalendarTest(GenericCalendarTest):
-    cal_class = GreeceCalendar
+class GreeceTest(GenericCalendarTest):
+    cal_class = Greece
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -134,8 +134,8 @@ class GreeceCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Glorifying mother of God
 
 
-class HungaryCalendarTest(GenericCalendarTest):
-    cal_class = HungaryCalendar
+class HungaryTest(GenericCalendarTest):
+    cal_class = Hungary
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -153,8 +153,8 @@ class HungaryCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Second day of XMas
 
 
-class NorwayCalendarTest(GenericCalendarTest):
-    cal_class = NorwayCalendar
+class NorwayTest(GenericCalendarTest):
+    cal_class = Norway
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -172,8 +172,8 @@ class NorwayCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # St Stephens
 
 
-class PolandCalendarTest(GenericCalendarTest):
-    cal_class = PolandCalendar
+class PolandTest(GenericCalendarTest):
+    cal_class = Poland
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -192,8 +192,8 @@ class PolandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
 
-class IcelandCalendarTest(GenericCalendarTest):
-    cal_class = IcelandCalendar
+class IcelandTest(GenericCalendarTest):
+    cal_class = Iceland
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -213,8 +213,8 @@ class IcelandCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 31), holidays)
 
 
-class ItalyCalendarTest(GenericCalendarTest):
-    cal_class = ItalyCalendar
+class ItalyTest(GenericCalendarTest):
+    cal_class = Italy
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -231,8 +231,8 @@ class ItalyCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
 
 
-class UnitedKingdomCalendarTest(GenericCalendarTest):
-    cal_class = UnitedKingdomCalendar
+class UnitedKingdomTest(GenericCalendarTest):
+    cal_class = UnitedKingdom
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -258,8 +258,8 @@ class UnitedKingdomCalendarTest(GenericCalendarTest):
         self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
 
 
-class UnitedKingdomNorthernIrelandTest(UnitedKingdomCalendarTest):
-    cal_class = UnitedKingdomNorthernIrelandCalendar
+class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
+    cal_class = UnitedKingdomNorthernIreland
 
     def test_regional_2013(self):
         holidays = self.cal.holidays_set(2013)

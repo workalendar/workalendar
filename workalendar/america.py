@@ -7,8 +7,8 @@ from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 
-class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
-    "USA calendar"
+class UnitedStates(WesternCalendar, ChristianMixin):
+    "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 4, 'Independence Day'),
         (11, 11, 'Veterans Day'),
@@ -20,28 +20,28 @@ class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(UnitedStatesCalendar, self).get_variable_days(year)
+        days = super(UnitedStates, self).get_variable_days(year)
         days += [
-            (WesternCalendar.get_nth_weekday_in_month(year, 1, MON, 3),
+            (UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3),
                 'Martin Luther King, Jr. Day'),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 2, MON, 3),
+            (UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3),
                 "Washington's Birthday"),
 
-            (WesternCalendar.get_last_weekday_in_month(year, 5, MON),
+            (UnitedStates.get_last_weekday_in_month(year, 5, MON),
                 "Memorial Day"),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 9, MON),
+            (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
                 "Labor Day"),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 10, MON, 2),
+            (UnitedStates.get_nth_weekday_in_month(year, 10, MON, 2),
                 "Colombus Day"),
 
-            (WesternCalendar.get_nth_weekday_in_month(year, 11, THU, 4),
+            (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
                 "Thanksgiving Day"),
         ]
         # Inauguration day
-        if UnitedStatesCalendar.is_presidential_year(year - 1):
+        if UnitedStates.is_presidential_year(year - 1):
             inauguration_day = date(year, 1, 20)
             if inauguration_day.weekday() == SUN:
                 inauguration_day = date(year, 1, 21)
@@ -49,7 +49,8 @@ class UnitedStatesCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class BrazilCalendar(WesternCalendar, ChristianMixin):
+class Brazil(WesternCalendar, ChristianMixin):
+    "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 21, "Tiradentes' Day"),
         (5, 1, "Labour Day"),
@@ -60,14 +61,16 @@ class BrazilCalendar(WesternCalendar, ChristianMixin):
     )
 
 
-class BrazilSaoPauloStateCalendar(BrazilCalendar):
-    FIXED_HOLIDAYS = BrazilCalendar.FIXED_HOLIDAYS + (
+class BrazilSaoPauloState(Brazil):
+    "Brazil São Paulo State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 9, "Constitutional Revolution of 1932"),
     )
 
 
-class BrazilSaoPauloCityCalendar(BrazilSaoPauloStateCalendar):
-    FIXED_HOLIDAYS = BrazilSaoPauloStateCalendar.FIXED_HOLIDAYS + (
+class BrazilSaoPauloCity(BrazilSaoPauloState):
+    "Brazil São Paulo City"
+    FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
         (1, 25, "Anniversary of the city of São Paulo"),
         (11, 20, "Dia da Consciência Negra")
     )
@@ -78,13 +81,14 @@ class BrazilSaoPauloCityCalendar(BrazilSaoPauloStateCalendar):
         return self.get_easter_sunday(year) - timedelta(days=47)
 
     def get_variable_days(self, year):
-        days = super(BrazilSaoPauloCityCalendar, self).get_variable_days(year)
+        days = super(BrazilSaoPauloCity, self).get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
         return days
 
 
-class ChileCalendar(WesternCalendar, ChristianMixin):
+class Chile(WesternCalendar, ChristianMixin):
+    "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (5, 21, "Navy Day"),
@@ -102,7 +106,7 @@ class ChileCalendar(WesternCalendar, ChristianMixin):
     include_immaculate_conception = True
 
     def get_variable_days(self, year):
-        days = super(ChileCalendar, self).get_variable_days(year)
+        days = super(Chile, self).get_variable_days(year)
         september_17 = date(year, 9, 17)
         if september_17.weekday() == MON:
             days.append((september_17, '"Bridge" holiday'))
@@ -121,30 +125,31 @@ class ChileCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class MexicoCalendar(WesternCalendar, ChristianMixin):
+class Mexico(WesternCalendar, ChristianMixin):
+    "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (9, 16, "Independence Day"),
     )
 
     def get_variable_days(self, year):
-        days = super(MexicoCalendar, self).get_variable_days(year)
+        days = super(Mexico, self).get_variable_days(year)
         days.append(
-            (MexicoCalendar.get_nth_weekday_in_month(year, 2, MON),
+            (Mexico.get_nth_weekday_in_month(year, 2, MON),
              "Constitution Day"))
 
         days.append(
-            (MexicoCalendar.get_nth_weekday_in_month(year, 3, MON, 3),
+            (Mexico.get_nth_weekday_in_month(year, 3, MON, 3),
              "Benito Juárez's birthday"))
 
         days.append(
-            (MexicoCalendar.get_nth_weekday_in_month(year, 11, MON, 3),
+            (Mexico.get_nth_weekday_in_month(year, 11, MON, 3),
              "Revolution Day"))
 
         return days
 
     def get_calendar_holidays(self, year):
-        days = super(MexicoCalendar, self).get_calendar_holidays(year)
+        days = super(Mexico, self).get_calendar_holidays(year)
         # If any statutory day is on Sunday, the monday is off
         # If it's on a Saturday, the Friday is off
         for day, label in days:
@@ -159,7 +164,8 @@ class MexicoCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class PanamaCalendar(WesternCalendar, ChristianMixin):
+class Panama(WesternCalendar, ChristianMixin):
+    "Panama"
     include_good_friday = True
     include_easter_saturday = True
     include_easter_sunday = True
@@ -175,7 +181,7 @@ class PanamaCalendar(WesternCalendar, ChristianMixin):
     )
 
     def get_variable_days(self, year):
-        days = super(PanamaCalendar, self).get_variable_days(year)
+        days = super(Panama, self).get_variable_days(year)
         days.append(
             (self.get_ash_wednesday(year) - timedelta(days=1), "Carnival")
         )

@@ -1,20 +1,20 @@
 from datetime import date
 
 from workalendar.tests import GenericCalendarTest
-from workalendar.oceania import AustraliaCalendar
-from workalendar.oceania import AustraliaCapitalTerritoryCalendar
-from workalendar.oceania import AustraliaNewSouthWalesCalendar
-from workalendar.oceania import AustraliaNorthernTerritoryCalendar
-from workalendar.oceania import AustraliaQueenslandCalendar
-from workalendar.oceania import SouthAustraliaCalendar
-from workalendar.oceania import TasmaniaCalendar, HobartCalendar
-from workalendar.oceania import VictoriaCalendar
-from workalendar.oceania import WesternAustraliaCalendar
-from workalendar.oceania import MarshallIslandCalendar
+from workalendar.oceania import Australia
+from workalendar.oceania import AustraliaCapitalTerritory
+from workalendar.oceania import AustraliaNewSouthWales
+from workalendar.oceania import AustraliaNorthernTerritory
+from workalendar.oceania import AustraliaQueensland
+from workalendar.oceania import SouthAustralia
+from workalendar.oceania import Tasmania, Hobart
+from workalendar.oceania import Victoria
+from workalendar.oceania import WesternAustralia
+from workalendar.oceania import MarshallIslands
 
 
-class AustraliaCalendarTest(GenericCalendarTest):
-    cal_class = AustraliaCalendar
+class AustraliaTest(GenericCalendarTest):
+    cal_class = Australia
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -34,8 +34,8 @@ class AustraliaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2010, 4, 26), holidays)
 
 
-class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
-    cal_class = AustraliaCapitalTerritoryCalendar
+class AustraliaCapitalTerritoryTest(AustraliaTest):
+    cal_class = AustraliaCapitalTerritory
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -48,8 +48,8 @@ class AustraliaCapitalTerritoryCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
 
-class AustraliaNewSouthWalesCalendarTest(AustraliaCalendarTest):
-    cal_class = AustraliaNewSouthWalesCalendar
+class AustraliaNewSouthWalesTest(AustraliaTest):
+    cal_class = AustraliaNewSouthWales
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -65,8 +65,8 @@ class AustraliaNewSouthWalesCalendarTest(AustraliaCalendarTest):
         self.assertNotIn(date(2010, 4, 26), holidays)
 
 
-class AustraliaNorthernTerritoryCalendarTest(AustraliaCalendarTest):
-    cal_class = AustraliaNorthernTerritoryCalendar
+class AustraliaNorthernTerritoryTest(AustraliaTest):
+    cal_class = AustraliaNorthernTerritory
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -77,8 +77,8 @@ class AustraliaNorthernTerritoryCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
 
-class AustraliaQueenslandCalendarTest(AustraliaCalendarTest):
-    cal_class = AustraliaQueenslandCalendar
+class AustraliaQueenslandTest(AustraliaTest):
+    cal_class = AustraliaQueensland
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -88,8 +88,8 @@ class AustraliaQueenslandCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
 
-class SouthAustraliaCalendarTest(AustraliaCalendarTest):
-    cal_class = SouthAustraliaCalendar
+class SouthAustraliaTest(AustraliaTest):
+    cal_class = SouthAustralia
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -100,8 +100,8 @@ class SouthAustraliaCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Proclamation day
 
 
-class TasmaniaCalendarTest(AustraliaCalendarTest):
-    cal_class = TasmaniaCalendar
+class TasmaniaTest(AustraliaTest):
+    cal_class = Tasmania
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -115,14 +115,14 @@ class TasmaniaCalendarTest(AustraliaCalendarTest):
         self.assertNotIn(date(2010, 4, 26), holidays)
 
 
-class NonHobartTest(TasmaniaCalendarTest):
+class NonHobartTest(TasmaniaTest):
     def test_tasmania_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 11, 4), holidays)  # Recreation Day
 
 
-class HobartCalendarTest(TasmaniaCalendarTest):
-    cal_class = HobartCalendar
+class HobartTest(TasmaniaTest):
+    cal_class = Hobart
 
     def test_hobart_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -131,8 +131,8 @@ class HobartCalendarTest(TasmaniaCalendarTest):
         self.assertNotIn(date(2013, 11, 4), holidays)  # Recreation Day
 
 
-class VictoriaCalendarTest(AustraliaCalendarTest):
-    cal_class = VictoriaCalendar
+class VictoriaTest(AustraliaTest):
+    cal_class = Victoria
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -143,8 +143,8 @@ class VictoriaCalendarTest(AustraliaCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
 
-class WesternAustraliaCalendarTest(AustraliaCalendarTest):
-    cal_class = WesternAustraliaCalendar
+class WesternAustraliaTest(AustraliaTest):
+    cal_class = WesternAustralia
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -157,8 +157,8 @@ class WesternAustraliaCalendarTest(AustraliaCalendarTest):
         # Monday of October)
 
 
-class MarshallIslandCalendarTest(GenericCalendarTest):
-    cal_class = MarshallIslandCalendar
+class MarshallIslandsTest(GenericCalendarTest):
+    cal_class = MarshallIslands
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
