@@ -25,7 +25,7 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-VERSION = read_relative_file('VERSION')
+__VERSION__ = '0.1.dev0'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         name=NAME,
         description=DESCRIPTION,
         packages=['workalendar'],
-        version=VERSION,
+        version=__VERSION__,
         long_description=read_relative_file('README.rst'),
         author='Bruno Bord',
         author_email='bruno.bord@novapost.fr',
