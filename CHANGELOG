@@ -12,6 +12,9 @@ CHANGELOG
   Italy, Ivory Coast, Japan, Madagascar, Marshall Islands,
   Mexico, Northern Ireland, Norway, Panama, Poland, Qatar,
   South Africa, São Tomé, Taiwan, United Kingdom calendars
+- BACKWARDS INCOMPATIBILITY: calendar suffix for class names are now obsolete.
+  e.g: to use the Japan calendar, simply import `workalendar.asia.Japan` instead
+  of JapanCalendar.
 
 
 v0.0.1 (2013-11-21)
