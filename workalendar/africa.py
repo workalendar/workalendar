@@ -1,12 +1,14 @@
 #-*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 from datetime import timedelta, date
 from workalendar.core import WesternCalendar
 from workalendar.core import SUN
 from workalendar.core import IslamicMixin, ChristianMixin
 
 
-class AlgeriaCalendar(WesternCalendar, IslamicMixin):
-    "Algeria calendar"
+class Algeria(WesternCalendar, IslamicMixin):
+    "Algeria"
     # Islamic holidays
     include_prophet_birthday = True
     include_eid_al_fitr = True
@@ -24,8 +26,8 @@ class AlgeriaCalendar(WesternCalendar, IslamicMixin):
     )
 
 
-class BeninCalendar(WesternCalendar, IslamicMixin, ChristianMixin):
-    "Benin calendar"
+class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
+    "Benin"
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
@@ -46,7 +48,7 @@ class BeninCalendar(WesternCalendar, IslamicMixin, ChristianMixin):
     )
 
 
-class IvoryCoastCalendar(WesternCalendar, ChristianMixin, IslamicMixin):
+class IvoryCoast(WesternCalendar, ChristianMixin, IslamicMixin):
     "Ivory Coast"
     include_easter_monday = True
     include_ascension = True
@@ -65,7 +67,7 @@ class IvoryCoastCalendar(WesternCalendar, ChristianMixin, IslamicMixin):
     )
 
 
-class MadagascarCalendar(WesternCalendar, ChristianMixin):
+class Madagascar(WesternCalendar, ChristianMixin):
     "Madagascar"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 29, "Martyrs' Day"),
@@ -79,8 +81,8 @@ class MadagascarCalendar(WesternCalendar, ChristianMixin):
     include_all_saints = True
 
 
-class SaoTomeAndPrincipeCalendar(WesternCalendar, ChristianMixin):
-    u"São Tomé and Príncipe"
+class SaoTomeAndPrincipe(WesternCalendar, ChristianMixin):
+    "São Tomé and Príncipe"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 3, "Martyr's Day"),
         (5, 1, "Labour Day"),
@@ -92,8 +94,8 @@ class SaoTomeAndPrincipeCalendar(WesternCalendar, ChristianMixin):
     include_all_saints = True
 
 
-class SouthAfricaCalendar(WesternCalendar, ChristianMixin):
-    "South Africa calendar"
+class SouthAfrica(WesternCalendar, ChristianMixin):
+    "South Africa"
     include_good_friday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -111,7 +113,7 @@ class SouthAfricaCalendar(WesternCalendar, ChristianMixin):
         return (self.get_good_friday(year), "Family Day")
 
     def get_variable_days(self, year):
-        days = super(SouthAfricaCalendar, self).get_variable_days(year)
+        days = super(SouthAfrica, self).get_variable_days(year)
         days.append(self.get_family_day(year))
         # compute shifting days
         for month, day, label in self.FIXED_HOLIDAYS:

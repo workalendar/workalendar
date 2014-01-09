@@ -1,13 +1,13 @@
 #-*- coding: utf-8 -*-
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.africa import BeninCalendar, AlgeriaCalendar
-from workalendar.africa import SouthAfricaCalendar, IvoryCoastCalendar
-from workalendar.africa import SaoTomeAndPrincipeCalendar, MadagascarCalendar
+from workalendar.africa import Benin, Algeria
+from workalendar.africa import SouthAfrica, IvoryCoast
+from workalendar.africa import SaoTomeAndPrincipe, Madagascar
 
 
-class AlgeriaCalendarTest(GenericCalendarTest):
-    cal_class = AlgeriaCalendar
+class AlgeriaTest(GenericCalendarTest):
+    cal_class = Algeria
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -22,8 +22,8 @@ class AlgeriaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 14), holidays)  # Ashura
 
 
-class BeninCalendarTest(GenericCalendarTest):
-    cal_class = BeninCalendar
+class BeninTest(GenericCalendarTest):
+    cal_class = Benin
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -44,8 +44,8 @@ class BeninCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 8, 8), holidays)  # Eid al-Fitr
 
 
-class SouthAfricaCalendarTest(GenericCalendarTest):
-    cal_class = SouthAfricaCalendar
+class SouthAfricaTest(GenericCalendarTest):
+    cal_class = SouthAfrica
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -70,8 +70,8 @@ class SouthAfricaCalendarTest(GenericCalendarTest):
         self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
 
 
-class MadagascarCalendar(GenericCalendarTest):
-    cal_class = MadagascarCalendar
+class Madagascar(GenericCalendarTest):
+    cal_class = Madagascar
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -87,8 +87,8 @@ class MadagascarCalendar(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
 
 
-class IvoryCoastCalendarTest(GenericCalendarTest):
-    cal_class = IvoryCoastCalendar
+class IvoryCoastTest(GenericCalendarTest):
+    cal_class = IvoryCoast
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -110,8 +110,8 @@ class IvoryCoastCalendarTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 15), holidays)  # Feast of sacrifice
 
 
-class SaoTomeAndPrincipeCalendarTest(GenericCalendarTest):
-    cal_class = SaoTomeAndPrincipeCalendar
+class SaoTomeAndPrincipeTest(GenericCalendarTest):
+    cal_class = SaoTomeAndPrincipe
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)

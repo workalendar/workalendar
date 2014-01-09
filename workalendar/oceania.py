@@ -3,8 +3,8 @@ from workalendar.core import MON, TUE, FRI
 from datetime import date
 
 
-class AustraliaCalendar(WesternCalendar, ChristianMixin):
-    "Australia base calendar"
+class Australia(WesternCalendar, ChristianMixin):
+    "Australia"
     include_good_friday = True
     include_easter_monday = True
     include_queens_birthday = False
@@ -18,19 +18,19 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
 
     def get_canberra_day(self, year):
         return (
-            AustraliaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
+            Australia.get_nth_weekday_in_month(year, 3, MON, 2),
             "Canberra Day"
         )
 
     def get_queens_birthday(self, year):
         return (
-            AustraliaCalendar.get_nth_weekday_in_month(year, 6, MON, 2),
+            Australia.get_nth_weekday_in_month(year, 6, MON, 2),
             "Queen's Birthday"
         )
 
     def get_labour_day_october(self, year):
         return (
-            AustraliaCalendar.get_nth_weekday_in_month(year, 10, MON),
+            Australia.get_nth_weekday_in_month(year, 10, MON),
             'Labour Day'
         )
 
@@ -44,7 +44,7 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(AustraliaCalendar, self).get_variable_days(year)
+        days = super(Australia, self).get_variable_days(year)
         january_first = date(year, 1, 1)
         if january_first.weekday() in self.get_weekend_days():
             days.append((
@@ -69,7 +69,8 @@ class AustraliaCalendar(WesternCalendar, ChristianMixin):
         return days
 
 
-class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
+class AustraliaCapitalTerritory(Australia):
+    "Australia Capital Territory"
     include_easter_saturday = True
     include_queens_birthday = True
     include_labour_day_october = True
@@ -96,7 +97,7 @@ class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
         return (day, "Family & Community Day")
 
     def get_variable_days(self, year):
-        days = super(AustraliaCapitalTerritoryCalendar, self) \
+        days = super(AustraliaCapitalTerritory, self) \
             .get_variable_days(year)
         days += [
             self.get_canberra_day(year),
@@ -105,7 +106,8 @@ class AustraliaCapitalTerritoryCalendar(AustraliaCalendar):
         return days
 
 
-class AustraliaNewSouthWalesCalendar(AustraliaCalendar):
+class AustraliaNewSouthWales(Australia):
+    "Australia New South Wales"
     include_queens_birthday = True
     include_easter_saturday = True
     include_easter_sunday = True
@@ -114,27 +116,28 @@ class AustraliaNewSouthWalesCalendar(AustraliaCalendar):
     shift_anzac_day = False
 
 
-class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
+class AustraliaNorthernTerritory(Australia):
+    "Australia Northern Territory"
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
 
     def get_may_day(self, year):
         return (
-            AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(
                 year, 5, MON),
             "May Day"
         )
 
     def get_picnic_day(self, year):
         return (
-            AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(
                 year, 8, MON),
             "Picnic Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaNorthernTerritoryCalendar, self) \
+        days = super(AustraliaNorthernTerritory, self) \
             .get_variable_days(year)
         days += [
             self.get_may_day(year),
@@ -143,20 +146,21 @@ class AustraliaNorthernTerritoryCalendar(AustraliaCalendar):
         return days
 
 
-class AustraliaQueenslandCalendar(AustraliaCalendar):
+class AustraliaQueensland(Australia):
+    "Australia Queensland"
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
 
     def get_labour_day_may(self, year):
         return (
-            AustraliaNorthernTerritoryCalendar.get_nth_weekday_in_month(
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(
                 year, 5, MON),
             "Labour Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaQueenslandCalendar, self) \
+        days = super(AustraliaQueensland, self) \
             .get_variable_days(year)
         days += [
             self.get_labour_day_may(year),
@@ -164,14 +168,15 @@ class AustraliaQueenslandCalendar(AustraliaCalendar):
         return days
 
 
-class SouthAustraliaCalendar(AustraliaCalendar):
+class SouthAustralia(Australia):
+    "South Australia"
     include_easter_saturday = True
     include_queens_birthday = True
     include_labour_day_october = True
 
     def get_adelaides_cup(self, year):
         return (
-            SouthAustraliaCalendar.get_nth_weekday_in_month(
+            SouthAustralia.get_nth_weekday_in_month(
                 year, 3, MON, 2),
             "Adelaide's cup"
         )
@@ -180,7 +185,7 @@ class SouthAustraliaCalendar(AustraliaCalendar):
         return (date(year, 12, 26), "Proclamation Day")
 
     def get_variable_days(self, year):
-        days = super(SouthAustraliaCalendar, self) \
+        days = super(SouthAustralia, self) \
             .get_variable_days(year)
         days += [
             self.get_adelaides_cup(year),
@@ -189,7 +194,8 @@ class SouthAustraliaCalendar(AustraliaCalendar):
         return days
 
 
-class TasmaniaCalendar(AustraliaCalendar):
+class Tasmania(Australia):
+    "Tasmania"
     include_queens_birthday = True
     include_boxing_day = True
     shift_anzac_day = False
@@ -200,78 +206,80 @@ class TasmaniaCalendar(AustraliaCalendar):
 
     def get_eight_hours_day(self, year):
         return (
-            TasmaniaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
+            Tasmania.get_nth_weekday_in_month(year, 3, MON, 2),
             "Eight hours Day"
         )
 
     def get_recreation_day(self, year):
         return (
-            TasmaniaCalendar.get_nth_weekday_in_month(year, 11, MON),
+            Tasmania.get_nth_weekday_in_month(year, 11, MON),
             "Recreation Day"
         )
 
     def get_variable_days(self, year):
-        days = super(TasmaniaCalendar, self).get_variable_days(year)
+        days = super(Tasmania, self).get_variable_days(year)
         days.append(self.get_eight_hours_day(year))
         if self.has_recreation_day:
             days.append(self.get_recreation_day(year))
         return days
 
 
-class HobartCalendar(TasmaniaCalendar):
-
+class Hobart(Tasmania):
+    "Hobart"
     @property
     def has_recreation_day(self):
         return False
 
     def get_hobart(self, year):
         return (
-            HobartCalendar.get_nth_weekday_in_month(year, 2, MON, 2),
+            Hobart.get_nth_weekday_in_month(year, 2, MON, 2),
             "Royal Hobart Regatta"
         )
 
     def get_variable_days(self, year):
-        days = super(HobartCalendar, self).get_variable_days(year)
+        days = super(Hobart, self).get_variable_days(year)
         days.append(self.get_hobart(year))
         return days
 
 
-class VictoriaCalendar(AustraliaCalendar):
+class Victoria(Australia):
+    "Victoria"
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
 
     def get_labours_day_in_march(self, year):
         return (
-            VictoriaCalendar.get_nth_weekday_in_month(year, 3, MON, 2),
+            Victoria.get_nth_weekday_in_month(year, 3, MON, 2),
             "Labour Day"
         )
 
     def get_melbourne_cup(self, year):
         return (
-            VictoriaCalendar.get_nth_weekday_in_month(year, 11, TUE),
+            Victoria.get_nth_weekday_in_month(year, 11, TUE),
             "Melbourne Cup"
         )
 
     def get_variable_days(self, year):
-        days = super(VictoriaCalendar, self).get_variable_days(year)
+        days = super(Victoria, self).get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_melbourne_cup(year))
         return days
 
 
-class WesternAustraliaCalendar(AustraliaCalendar):
+class WesternAustralia(Australia):
+    "Western Australia"
     include_boxing_day = True
 
     def get_labours_day_in_march(self, year):
         return (
-            WesternAustraliaCalendar.get_nth_weekday_in_month(year, 3, MON),
+            WesternAustralia.get_nth_weekday_in_month(year, 3, MON),
             "Labour Day"
         )
 
     def get_western_australia_day(self, year):
         return (
-            WesternAustraliaCalendar.get_nth_weekday_in_month(year, 6, MON),
+            WesternAustralia.get_nth_weekday_in_month(year, 6, MON),
             "Western Australia Day"
         )
 
@@ -281,13 +289,14 @@ class WesternAustraliaCalendar(AustraliaCalendar):
         # Decision (it is typically the last Monday of September or the first
         # Monday of October)
 
-        days = super(WesternAustraliaCalendar, self).get_variable_days(year)
+        days = super(WesternAustralia, self).get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_western_australia_day(year))
         return days
 
 
-class MarshallIslandCalendar(WesternCalendar, ChristianMixin):
+class MarshallIslands(WesternCalendar, ChristianMixin):
+    "Marshall Islands"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Remembrance Day"),
         (5, 1, "Constitution Day"),
@@ -297,21 +306,21 @@ class MarshallIslandCalendar(WesternCalendar, ChristianMixin):
     include_good_friday = True
 
     def get_variable_days(self, year):
-        days = super(MarshallIslandCalendar, self).get_variable_days(year)
+        days = super(MarshallIslands, self).get_variable_days(year)
         days.append((
-            MarshallIslandCalendar.get_nth_weekday_in_month(year, 7, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 7, FRI),
             "Fishermen's Holiday"
         ))
         days.append((
-            MarshallIslandCalendar.get_nth_weekday_in_month(year, 9, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 9, FRI),
             "Labour Day"
         ))
         days.append((
-            MarshallIslandCalendar.get_last_weekday_in_month(year, 9, FRI),
+            MarshallIslands.get_last_weekday_in_month(year, 9, FRI),
             "Manit Day"
         ))
         days.append((
-            MarshallIslandCalendar.get_nth_weekday_in_month(year, 12, FRI),
+            MarshallIslands.get_nth_weekday_in_month(year, 12, FRI),
             "Gospel Day"
         ))
         return days
