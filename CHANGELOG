@@ -1,17 +1,16 @@
 CHANGELOG
 =========
 
-0.1 (unreleased)
+0.1 (2014-02-17)
 ----------------
 
 - added LunarCalendar, including lunar month calculations
 - added SouthKoreanCalendar, for a LunarCalendar proof of concept
 - added Python3 support
-- added Algeria, Australia, Brazil, Chile, Czech Republic,
-  Finland, France Alsace-Moselle, Greece, Hungary, Iceland,
-  Italy, Ivory Coast, Japan, Madagascar, Marshall Islands,
-  Mexico, Northern Ireland, Norway, Panama, Poland, Qatar,
-  South Africa, São Tomé, Taiwan, United Kingdom calendars
+- added Algeria, Australia, Brazil, Chile, Czech Republic, Finland,
+  France Alsace-Moselle, Greece, Hungary, Iceland, Italy, Ivory Coast, Japan,
+  Madagascar, Marshall Islands, Mexico, Northern Ireland, Norway, Panama,
+  Poland, Qatar, South Africa, São Tomé, Taiwan, United Kingdom calendars.
 - BACKWARDS INCOMPATIBILITY: calendar suffix for class names are now obsolete.
   e.g: to use the Japan calendar, simply import `workalendar.asia.Japan` instead
   of JapanCalendar.
