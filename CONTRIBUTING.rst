@@ -13,6 +13,17 @@ If any of the computed holidays for the country / area your are using is
 **wrong**, please report
 `it using the Github issues <https://github.com/novapost/workalendar/issues>`_.
 
+Report an issue
+===============
+
+If you think you've found a bug you can report an issue. In order to help us
+sort this out, please follow the guidelines:
+
+* Tell us which version (master, PyPI release) you are using.
+* Tell us which Python version you are using, and your platform.
+* Give us extensive details on the country/area Calendar, the exact date(s) that was (were) computed and the one(s) that should've been the correct result.
+* If possible, please provide us a reliable source about the designated country/area calendar, where we could effectively check that we were wrong about a date, and giving us a way to patch our code properly so we can fix the bug.
+
 
 Adding new calendars
 ====================
