@@ -155,3 +155,13 @@ you're almost there.
 We're planning to build a complete documentation for the other cases (special
 holiday rules, other calendar types, other religions, etc). But with this
 tutorial you're sorted for a lot of other calendars.
+
+
+Other code contributions
+========================
+
+There are dozens of calendars all over the world. We'd appreciate you to
+contribute to the core of the library by adding some new Mixins or Calendars.
+
+Bear in mind that the code you'd provide **must** be tested using unittests
+before you submit your pull-request.
