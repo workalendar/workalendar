@@ -26,7 +26,7 @@ methods, it's not that difficult to add a calendar to our codebase. A few
 3. Implement the class using the core class APIs as much as possible. Test it until all tests pass.
 4. Make a nice pull-request we'll be glad to review and merge when it's perfect.
 
-..note::
+.. note::
 
     Please respect the PEP8 convention, otherwise your PR won't be accepted.
 
@@ -44,7 +44,7 @@ For the sake of the example, it has the following specs:
 
 Here is a list of the holidays in *Zhraa*:
 
-* January 1st, New year's eve,
+* January 1st, New year's Day,
 * May 1st, Labour day,
 * Easter Monday, which is variable (from march to may),
 * The first monday in June, to celebrate the birth of the Founder of the Kingdom, Zhraa (nobody knows the exact day he was born, so this day was chosen as a convention),
