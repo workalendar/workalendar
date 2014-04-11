@@ -101,9 +101,6 @@ class Calendar(object):
         By providing ``extra_holidays``, you'll state that these dates **are**
         holidays, even if not in the regular calendar holidays (or weekends).
 
-        Please note that the ``extra_working_days`` list has priority over the
-        ``extra_holidays`` list.
-
         """
         if extra_holidays and day in extra_holidays:
             return True
