@@ -192,6 +192,8 @@ class MockCalendarTest(GenericCalendarTest):
         self.assertFalse(
             self.cal.is_working_day(target_working_day,
                                     extra_holidays=extra_holidays))
+        # test is_holiday
+        self.assertTrue(self.cal.is_holiday(christmas))
 
 
 class IslamicMixinTest(GenericCalendarTest):
