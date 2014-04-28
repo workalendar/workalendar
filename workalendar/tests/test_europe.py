@@ -2,6 +2,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import CzechRepublic
 from workalendar.europe import Finland
+from workalendar.europe import Sweden
 from workalendar.europe import France, FranceAlsaceMoselle
 from workalendar.europe import Greece
 from workalendar.europe import Hungary
@@ -30,6 +31,67 @@ class CzechRepublicTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+
+
+class SwedenTest(GenericCalendarTest):
+    cal_class = Sweden
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 1), holidays)  # may day
+        self.assertIn(date(2013, 5, 9), holidays)  # ascension
+        self.assertIn(date(2013, 5, 19), holidays)  # pentecost
+        self.assertIn(date(2013, 6, 6), holidays)  # national day
+        self.assertIn(date(2013, 6, 21), holidays)  # midsummer eve
+        self.assertIn(date(2013, 6, 22), holidays)  # midsummer day
+        self.assertIn(date(2013, 11, 2), holidays)  # all saints
+        self.assertIn(date(2013, 12, 24), holidays)  # xmas eve
+        self.assertIn(date(2013, 12, 25), holidays)  # xmas day
+        self.assertIn(date(2013, 12, 26), holidays)  # second day of xmas
+        self.assertIn(date(2013, 12, 31), holidays)  # new year's eve
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)  # new year
+        self.assertIn(date(2014, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2014, 4, 18), holidays)  # good friday
+        self.assertIn(date(2014, 4, 20), holidays)  # easter sunday
+        self.assertIn(date(2014, 4, 21), holidays)  # easter monday
+        self.assertIn(date(2014, 5, 1), holidays)  # may day
+        self.assertIn(date(2014, 5, 29), holidays)  # ascension
+        self.assertIn(date(2014, 6, 6), holidays)  # national day
+        self.assertIn(date(2014, 6, 8), holidays)  # pentecost
+        self.assertIn(date(2014, 6, 20), holidays)  # midsummer eve
+        self.assertIn(date(2014, 6, 21), holidays)  # midsummer day
+        self.assertIn(date(2014, 11, 1), holidays)  # all saints
+        self.assertIn(date(2014, 12, 24), holidays)  # xmas eve
+        self.assertIn(date(2014, 12, 25), holidays)  # xmas day
+        self.assertIn(date(2014, 12, 26), holidays)  # second day of xmas
+        self.assertIn(date(2014, 12, 31), holidays)  # new year's eve
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)  # new year
+        self.assertIn(date(2015, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2015, 4, 3), holidays)  # good friday
+        self.assertIn(date(2015, 4, 5), holidays)  # easter sunday
+        self.assertIn(date(2015, 4, 6), holidays)  # easter monday
+        self.assertIn(date(2015, 5, 1), holidays)  # may day
+        self.assertIn(date(2015, 5, 14), holidays)  # ascension
+        self.assertIn(date(2015, 5, 24), holidays)  # pentecost
+        self.assertIn(date(2015, 6, 6), holidays)  # national day
+        self.assertIn(date(2015, 6, 19), holidays)  # midsummer eve
+        self.assertIn(date(2015, 6, 20), holidays)  # midsummer day
+        self.assertIn(date(2015, 10, 31), holidays)  # all saints
+        self.assertIn(date(2015, 12, 24), holidays)  # xmas eve
+        self.assertIn(date(2015, 12, 25), holidays)  # xmas day
+        self.assertIn(date(2015, 12, 26), holidays)  # second day of xmas
+        self.assertIn(date(2015, 12, 31), holidays)  # new year's eve
 
 
 class FinlandTest(GenericCalendarTest):
