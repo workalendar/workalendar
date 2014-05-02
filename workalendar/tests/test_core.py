@@ -1,4 +1,5 @@
 from datetime import date
+from datetime import datetime
 from workalendar.tests import GenericCalendarTest
 from workalendar.core import MON, TUE, THU, FRI
 from workalendar.core import Calendar, LunarCalendar
@@ -194,6 +195,10 @@ class MockCalendarTest(GenericCalendarTest):
                                     extra_holidays=extra_holidays))
         # test is_holiday
         self.assertTrue(self.cal.is_holiday(christmas))
+
+    def test_datetime(self):
+        self.assertFalse(
+            self.cal.is_working_day(datetime(2014, 1, 1)))
 
 
 class IslamicMixinTest(GenericCalendarTest):
