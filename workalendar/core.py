@@ -5,7 +5,7 @@ import ephem
 import pytz
 
 from calendar import monthrange
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from math import pi
 
 from dateutil import easter
@@ -83,6 +83,10 @@ class Calendar(object):
         ``extra_holidays`` list.
 
         """
+        # a little exception: chop the datetime type
+        if type(day) is datetime:
+            day = day.date()
+
         # Extra lists exceptions
         if extra_working_days and day in extra_working_days:
             return True
