@@ -511,7 +511,7 @@ class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
 
 
-class Holiday(datetime.date):
+class Holiday(date):
     """
     A named holiday with a name, a textual indicated date, the indicated date,
     and a weekend hint (used to calculate an observed date). For example, to
@@ -526,7 +526,7 @@ class Holiday(datetime.date):
     >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
     """
     def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
-        return datetime.date.__new__(cls, date.year, date.month, date.day)
+        return super(Holiday, cls).__new__(cls, date.year, date.month, date.day)
 
     def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
         self.name = name
