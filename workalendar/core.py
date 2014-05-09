@@ -63,6 +63,7 @@ class Holiday(date):
 
     def replace(self, *args, **kwargs):
         replaced = super(Holiday, self).replace(*args, **kwargs)
+        replaced.name = self.name
         replaced.indication = self.indication
         replaced.weekend_hint = self.weekend_hint
         return replaced
