@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from datetime import timedelta, date
+from datetime import timedelta
 from workalendar.core import WesternCalendar
 from workalendar.core import SUN
 from workalendar.core import IslamicMixin, ChristianMixin
@@ -116,11 +116,9 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         days = super(SouthAfrica, self).get_variable_days(year)
         days.append(self.get_family_day(year))
         # compute shifting days
-        for month, day, label in self.FIXED_HOLIDAYS:
-            holiday = date(year, month, day)
+        for holiday in self.get_fixed_holidays(year):
             if holiday.weekday() == SUN:
-                days.append((
-                    holiday + timedelta(days=1),
-                    "%s substitute" % label
-                ))
+                sub = holiday + timedelta(days=1)
+                sub.name = sub.name + ' substitute'
+                days.append(sub)
         return days
