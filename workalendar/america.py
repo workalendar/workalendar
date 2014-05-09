@@ -23,22 +23,28 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
         days += [
-            Holiday("Martin Luther King, Jr. Day", "3rd Monday in January",
+            Holiday(
+                "Martin Luther King, Jr. Day", "3rd Monday in January",
                 date(year, 1, 1) + rd.relativedelta(weekday=rd.MO(3))),
 
-            Holiday("Washington's Birthday", "3rd Monday in February",
+            Holiday(
+                "Washington's Birthday", "3rd Monday in February",
                 date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(3))),
 
-            Holiday("Memorial Day", "Last Monday in May",
+            Holiday(
+                "Memorial Day", "Last Monday in May",
                 date(year, 5, 31) + rd.relativedelta(weekday=rd.MO(-1))),
 
-            Holiday("Labor Day", "1st Monday in September",
+            Holiday(
+                "Labor Day", "1st Monday in September",
                 date(year, 9, 1) + rd.relativedelta(weekday=rd.MO(1))),
 
-            Holiday("Colombus Day", "2nd Monday in October",
+            Holiday(
+                "Colombus Day", "2nd Monday in October",
                 date(year, 10, 1) + rd.relativedelta(weekday=rd.MO(2))),
 
-            Holiday("Thanksgiving Day", "4th Thursday in November",
+            Holiday(
+                "Thanksgiving Day", "4th Thursday in November",
                 date(year, 11, 1) + rd.relativedelta(weekday=rd.TH(4))),
         ]
         # Inauguration day

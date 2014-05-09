@@ -28,7 +28,8 @@ class Holiday(date):
     But if New Year's Eve is also a holiday, and it too falls on a weekend,
     many calendars will have that holiday fall back to the previous friday:
 
-    >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
+    >>> nye = Holiday("New year's eve", "Last day of the year",
+    ...     date(2014, 12, 31), rd.FR(-1))
 
     For compatibility, a Holiday may be treated like a tuple of (label, date)
 
@@ -40,7 +41,8 @@ class Holiday(date):
 
     """
     def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
-        return super(Holiday, cls).__new__(cls, date.year, date.month, date.day)
+        return super(Holiday, cls).__new__(cls, date.year, date.month,
+            date.day)
 
     def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
         self.name = name
@@ -70,8 +72,8 @@ class Holiday(date):
 
     def __add__(self, delta):
         sum = super(Holiday, self).__add__(delta)
-        return self.__class__(self.name, self.indication, sum,
-            self.weekend_hint)
+        return self.__class__(
+            self.name, self.indication, sum, self.weekend_hint)
 
     @property
     def observed(self):
@@ -115,8 +117,10 @@ class Calendar(object):
     def get_fixed_holidays(self, year):
         """Return the fixed days according to the FIXED_HOLIDAYS class property
         """
-        fixed_holidays = map(Holiday._from_fixed_definition,
-            self.FIXED_HOLIDAYS)
+        fixed_holidays = map(
+            Holiday._from_fixed_definition,
+            self.FIXED_HOLIDAYS,
+        )
         return [day.replace(year=year) for day in fixed_holidays]
 
     def get_variable_days(self, year):
