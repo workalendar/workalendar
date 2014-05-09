@@ -16,6 +16,67 @@ from dateutil import relativedelta as rd
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
+class Holiday(date):
+    """
+    A named holiday with a name, a textual indicated date, the indicated date,
+    and a weekend hint (used to calculate an observed date). For example, to
+    create a holiday for New Year's Day, but have it observed on Monday if it
+    falls on a weekend:
+
+    >>> nyd = Holiday("New year", "First day in January", date(2014, 1, 1))
+
+    But if New Year's Eve is also a holiday, and it too falls on a weekend,
+    many calendars will have that holiday fall back to the previous friday:
+
+    >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
+
+    For compatibility, a Holiday may be treated like a tuple of (label, date)
+
+    >>> nyd[0]
+    'New year'
+    >>> nyd[1] == date(2014, 1, 1)
+    True
+    >>> label, d = nyd
+
+    """
+    def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
+        return super(Holiday, cls).__new__(cls, date.year, date.month, date.day)
+
+    def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
+        self.name = name
+        self.indication = indication
+        self.weekend_hint = weekend_hint
+
+    def __getitem__(self, n):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self.name, self
+        return tp[n]
+
+    def __iter__(self):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self.name, self
+        return iter(tp)
+
+    def replace(self, *args, **kwargs):
+        replaced = self.replace(*args, **kwargs)
+        replaced.indication = self.indication
+        replaced.weekend_hint = self.weekend_hint
+
+    @property
+    def observed(self):
+        """
+        The date this holiday is observed. If the holiday occurs on a weekend,
+        it is normally observed on the following Monday.
+        The weekend hint might be rd.FR(-1), meaning the previous Friday.
+        """
+        delta = rd.relativedelta(weekday=self.weekend_hint)
+        return self + delta if self.weekday() > 4 else self
+
+
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
@@ -323,7 +384,7 @@ class WesternCalendar(Calendar):
     shift_new_years_day = False
 
     FIXED_HOLIDAYS = (
-        (1, 1, 'New year'),
+        Holiday('New year', 'First day in January', date(2000, 1, 1)),
     )
 
     def get_weekend_days(self):
@@ -509,64 +570,3 @@ class IslamicMixin(CalverterMixin):
 
 class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
-
-
-class Holiday(date):
-    """
-    A named holiday with a name, a textual indicated date, the indicated date,
-    and a weekend hint (used to calculate an observed date). For example, to
-    create a holiday for New Year's Day, but have it observed on Monday if it
-    falls on a weekend:
-
-    >>> nyd = Holiday("New year", "First day in January", date(2014, 1, 1))
-
-    But if New Year's Eve is also a holiday, and it too falls on a weekend,
-    many calendars will have that holiday fall back to the previous friday:
-
-    >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
-
-    For compatibility, a Holiday may be treated like a tuple of (label, date)
-
-    >>> nyd[0]
-    'New year'
-    >>> nyd[1] == date(2014, 1, 1)
-    True
-    >>> label, d = nyd
-
-    """
-    def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
-        return super(Holiday, cls).__new__(cls, date.year, date.month, date.day)
-
-    def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
-        self.name = name
-        self.indication = indication
-        self.weekend_hint = weekend_hint
-
-    def __getitem__(self, n):
-        """
-        for compatibility as a two-tuple
-        """
-        tp = self.name, self
-        return tp[n]
-
-    def __iter__(self):
-        """
-        for compatibility as a two-tuple
-        """
-        tp = self.name, self
-        return iter(tp)
-
-    def replace(self, *args, **kwargs):
-        replaced = self.replace(*args, **kwargs)
-        replaced.indication = self.indication
-        replaced.weekend_hint = self.weekend_hint
-
-    @property
-    def observed(self):
-        """
-        The date this holiday is observed. If the holiday occurs on a weekend,
-        it is normally observed on the following Monday.
-        The weekend hint might be rd.FR(-1), meaning the previous Friday.
-        """
-        delta = rd.relativedelta(weekday=self.weekend_hint)
-        return self + delta if self.weekday() > 4 else self
