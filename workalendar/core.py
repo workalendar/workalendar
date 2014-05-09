@@ -51,14 +51,14 @@ class Holiday(date):
         """
         for compatibility as a two-tuple
         """
-        tp = self.name, self
+        tp = self, self.name
         return tp[n]
 
     def __iter__(self):
         """
         for compatibility as a two-tuple
         """
-        tp = self.name, self
+        tp = self, self.name
         return iter(tp)
 
     def replace(self, *args, **kwargs):
