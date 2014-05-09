@@ -524,6 +524,15 @@ class Holiday(date):
     many calendars will have that holiday fall back to the previous friday:
 
     >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
+
+    For compatibility, a Holiday may be treated like a tuple of (label, date)
+
+    >>> nyd[0]
+    'New year'
+    >>> nyd[1] == date(2014, 1, 1)
+    True
+    >>> label, d = nyd
+
     """
     def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
         return super(Holiday, cls).__new__(cls, date.year, date.month, date.day)
@@ -532,6 +541,20 @@ class Holiday(date):
         self.name = name
         self.indication = indication
         self.weekend_hint = weekend_hint
+
+    def __getitem__(self, n):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self.name, self
+        return tp[n]
+
+    def __iter__(self):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self.name, self
+        return iter(tp)
 
     def replace(self, *args, **kwargs):
         replaced = self.replace(*args, **kwargs)
