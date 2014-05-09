@@ -89,6 +89,16 @@ class Holiday(date):
             item = Holiday(label, None, date(2000, month, day))
         return item
 
+    @classmethod
+    def _from_resolved_definition(cls, item):
+        """For backward compatibility, load Holiday object from a two-tuple
+        or existing Holiday instance.
+        """
+        if isinstance(item, tuple):
+            date, label = item
+            item = Holiday(label, None, date)
+        return item
+
 
 class Calendar(object):
 
@@ -123,7 +133,9 @@ class Calendar(object):
             return self._holidays[year]
 
         # Here we process the holiday specific calendar
-        temp_calendar = tuple(self.get_calendar_holidays(year))
+        days = self.get_calendar_holidays(year)
+        days = map(Holiday._from_resolved_definition, days)
+        temp_calendar = tuple(days)
 
         # it is sorted
         self._holidays[year] = sorted(temp_calendar)
