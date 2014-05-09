@@ -76,6 +76,17 @@ class Holiday(date):
         delta = rd.relativedelta(weekday=self.weekend_hint)
         return self + delta if self.weekday() > 4 else self
 
+    @classmethod
+    def _from_fixed_definition(cls, item):
+        """For backward compatibility, load Holiday object from an item of
+        FIXED_HOLIDAYS class property, which might be just a tuple of
+        month, day, label.
+        """
+        if isinstance(item, tuple):
+            month, day, label = item
+            item = Holiday(label, None, date(2000, month, day))
+        return item
+
 
 class Calendar(object):
 
@@ -87,18 +98,9 @@ class Calendar(object):
     def get_fixed_holidays(self, year):
         """Return the fixed days according to the FIXED_HOLIDAYS class property
         """
-        fixed_holidays = self._load_fixed_holidays()
+        fixed_holidays = map(Holiday._from_fixed_definition,
+            self.FIXED_HOLIDAYS)
         return [day.replace(year=year) for day in fixed_holidays]
-
-    @classmethod
-    def _load_fixed_holidays(cls):
-        """For backward compatibility, load Holiday objects from tuples in
-        FIXED_HOLIDAYS class property.
-        """
-        return (
-            Holiday(label, None, date(2000, month, day))
-            for month, day, label in cls.FIXED_HOLIDAYS
-        )
 
     def get_variable_days(self, year):
         return []
