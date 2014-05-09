@@ -41,8 +41,8 @@ class Holiday(date):
 
     """
     def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
-        return super(Holiday, cls).__new__(cls, date.year, date.month,
-            date.day)
+        return super(Holiday, cls).__new__(
+            cls, date.year, date.month, date.day)
 
     def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
         self.name = name
