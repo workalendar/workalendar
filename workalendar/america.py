@@ -3,15 +3,15 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.core import WesternCalendar, ChristianMixin, Holiday
 from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 4, 'Independence Day'),
-        (11, 11, 'Veterans Day'),
+        Holiday('Independence Day', 'July 4', date(2000, 7, 4)),
+        Holiday('Veterans Day', 'Nov 11', date(2000, 11, 11)),
     )
 
     @staticmethod
