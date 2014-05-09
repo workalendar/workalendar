@@ -119,6 +119,6 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         for holiday in self.get_fixed_holidays(year):
             if holiday.weekday() == SUN:
                 sub = holiday + timedelta(days=1)
-                sub.name = sub.name + ' substitute'
+                sub.name += ' substitute'
                 days.append(sub)
         return days
