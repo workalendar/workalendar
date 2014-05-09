@@ -525,6 +525,11 @@ class Holiday(datetime.date):
         self.indication = indication
         self.weekend_hint = weekend_hint
 
+    def replace(self, *args, **kwargs):
+        replaced = self.replace(*args, **kwargs)
+        replaced.indication = self.indication
+        replaced.weekend_hint = self.weekend_hint
+
     @property
     def observed(self):
         """
