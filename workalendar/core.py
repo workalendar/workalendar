@@ -62,9 +62,10 @@ class Holiday(date):
         return iter(tp)
 
     def replace(self, *args, **kwargs):
-        replaced = self.replace(*args, **kwargs)
+        replaced = super(Holiday, self).replace(*args, **kwargs)
         replaced.indication = self.indication
         replaced.weekend_hint = self.weekend_hint
+        return replaced
 
     @property
     def observed(self):
