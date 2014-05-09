@@ -68,6 +68,11 @@ class Holiday(date):
         replaced.weekend_hint = self.weekend_hint
         return replaced
 
+    def __add__(self, delta):
+        sum = super(Holiday, self).__add__(delta)
+        return self.__class__(self.name, self.indication, sum,
+            self.weekend_hint)
+
     @property
     def observed(self):
         """
