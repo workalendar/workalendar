@@ -26,10 +26,18 @@ class Calendar(object):
     def get_fixed_holidays(self, year):
         """Return the fixed days according to the FIXED_HOLIDAYS class property
         """
-        days = []
-        for month, day, label in self.FIXED_HOLIDAYS:
-            days.append((date(year, month, day), label))
-        return days
+        fixed_holidays = self._load_fixed_holidays()
+        return [day.replace(year=year) for day in fixed_holidays]
+
+    @classmethod
+    def _load_fixed_holidays(cls):
+        """For backward compatibility, load Holiday objects from tuples in
+        FIXED_HOLIDAYS class property.
+        """
+        return (
+            Holiday(label, None, date(2000, month, day))
+            for month, day, label in cls.FIXED_HOLIDAYS
+        )
 
     def get_variable_days(self, year):
         return []
