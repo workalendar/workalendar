@@ -11,6 +11,7 @@ from math import pi
 from dateutil import easter
 from lunardate import LunarDate
 from calverter import Calverter
+from dateutil import relativedelta as rd
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -500,3 +501,36 @@ class IslamicMixin(CalverterMixin):
 
 class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
+
+
+class Holiday(datetime.date):
+    """
+    A named holiday with a name, a textual indicated date, the indicated date,
+    and a weekend hint (used to calculate an observed date). For example, to
+    create a holiday for New Year's Day, but have it observed on Monday if it
+    falls on a weekend:
+
+    >>> nyd = Holiday("New year", "First day in January", date(2014, 1, 1))
+
+    But if New Year's Eve is also a holiday, and it too falls on a weekend,
+    many calendars will have that holiday fall back to the previous friday:
+
+    >>> nye = Holiday("New year's eve", "Last day of the year", date(2014, 12, 31), rd.FR(-1))
+    """
+    def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
+        return datetime.date.__new__(cls, date.year, date.month, date.day)
+
+    def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
+        self.name = name
+        self.indication = indication
+        self.weekend_hint = weekend_hint
+
+    @property
+    def observed(self):
+        """
+        The date this holiday is observed. If the holiday occurs on a weekend,
+        it is normally observed on the following Monday.
+        The weekend hint might be rd.FR(-1), meaning the previous Friday.
+        """
+        delta = rd.relativedelta(weekday=self.weekend_hint)
+        return self + delta if self.weekday() > 4 else self
