@@ -152,7 +152,7 @@ class Calendar(object):
         observance_shift = getattr(holiday, 'observance_shift',
             self.observance_shift)
         delta = rd.relativedelta(**observance_shift)
-        should_shift = holiday.weekday() > FRI
+        should_shift = holiday.weekday() in self.get_weekend_days()
         return holiday + delta if should_shift else holiday
 
     def holidays_set(self, year=None):

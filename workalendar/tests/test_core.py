@@ -4,7 +4,7 @@ from datetime import datetime
 import dateutil.relativedelta as rd
 
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI
+from workalendar.core import MON, TUE, THU, FRI, SAT, SUN
 from workalendar.core import Calendar, LunarCalendar
 from workalendar.core import IslamicMixin, JalaliMixin
 from workalendar.core import EphemMixin
@@ -218,6 +218,9 @@ class SimpleObservanceCalendar(Calendar):
         ),
         Holiday(date(2000, 12, 25), 'Christmas', indication='December 25th'),
     )
+
+    def get_weekend_days(self):
+        return SAT, SUN
 
 
 class ObservanceCalendarTest(GenericCalendarTest):
