@@ -1,10 +1,14 @@
 from datetime import date
 from datetime import datetime
+
+import dateutil.relativedelta as rd
+
 from workalendar.tests import GenericCalendarTest
 from workalendar.core import MON, TUE, THU, FRI
 from workalendar.core import Calendar, LunarCalendar
 from workalendar.core import IslamicMixin, JalaliMixin
 from workalendar.core import EphemMixin
+from workalendar.core import Holiday
 
 
 class CalendarTest(GenericCalendarTest):
@@ -199,6 +203,41 @@ class MockCalendarTest(GenericCalendarTest):
     def test_datetime(self):
         self.assertFalse(
             self.cal.is_working_day(datetime(2014, 1, 1)))
+
+
+class SimpleObservanceCalendar(Calendar):
+    """
+    A simple calendar with a couple of holidays with typical observance rules:
+    If a holiday falls on a weekend, then its observance is shifted to a
+    nearby weekday.
+    """
+    FIXED_HOLIDAYS = (
+        Holiday(
+            'Christmas Eve', 'December 24th', date(2000, 12, 24),
+            weekend_hint=rd.FR(-1),
+        ),
+        Holiday('Christmas', 'December 25th', date(2000, 12, 25)),
+    )
+
+
+class ObservanceCalendarTest(GenericCalendarTest):
+    """
+    A simple calendar with days shifted for observance.
+    """
+    cal_class = SimpleObservanceCalendar
+
+    def test_observance(self):
+        """
+        Each Holiday returned by the calendar should be aware of its indicated
+        date and observance date.
+        """
+        holidays = list(self.cal.holidays(2011))
+        assert len(holidays) == 2
+        xmas_eve, xmas_day = holidays
+        assert xmas_eve == date(2011, 12, 24)
+        assert xmas_eve.observed == date(2011, 12, 23)
+        assert xmas_day == date(2011, 12, 25)
+        assert xmas_day.observed == date(2011, 12, 26)
 
 
 class IslamicMixinTest(GenericCalendarTest):
