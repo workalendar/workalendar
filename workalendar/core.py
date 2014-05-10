@@ -31,13 +31,13 @@ class Holiday(date):
     >>> nye = Holiday("New year's eve", "Last day of the year",
     ...     date(2014, 12, 31), rd.FR(-1))
 
-    For compatibility, a Holiday may be treated like a tuple of (label, date)
+    For compatibility, a Holiday may be treated like a tuple of (date, label)
 
-    >>> nyd[0]
-    'New year'
-    >>> nyd[1] == date(2014, 1, 1)
+    >>> nyd[0] == date(2014, 1, 1)
     True
-    >>> label, d = nyd
+    >>> nyd[1]
+    'New year'
+    >>> d, label = nyd
 
     """
     def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
