@@ -23,13 +23,13 @@ class Holiday(date):
     create a holiday for New Year's Day, but have it observed on Monday if it
     falls on a weekend:
 
-    >>> nyd = Holiday("New year", "First day in January", date(2014, 1, 1))
+    >>> nyd = Holiday(date(2014, 1, 1), "New year")
 
     But if New Year's Eve is also a holiday, and it too falls on a weekend,
     many calendars will have that holiday fall back to the previous friday:
 
-    >>> nye = Holiday("New year's eve", "Last day of the year",
-    ...     date(2014, 12, 31), rd.FR(-1))
+    >>> nye = Holiday(date(2014, 12, 31), "New year's eve",
+    ...     weekend_hint=rd.FR(-1))
 
     For compatibility, a Holiday may be treated like a tuple of (date, label)
 
