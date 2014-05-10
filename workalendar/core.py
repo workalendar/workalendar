@@ -149,9 +149,8 @@ class Calendar(object):
         the observance_shift.
         """
         # observance_shift may be overridden in the holiday itself
-        observance_shift = getattr(holiday, 'observance_shift',
-            self.observance_shift)
-        delta = rd.relativedelta(**observance_shift)
+        shift = getattr(holiday, 'observance_shift', self.observance_shift)
+        delta = rd.relativedelta(**shift)
         should_shift = holiday.weekday() in self.get_weekend_days()
         return holiday + delta if should_shift else holiday
 

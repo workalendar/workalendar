@@ -64,11 +64,11 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             inauguration_day = date(year, 1, 20)
             if inauguration_day.weekday() == SUN:
                 inauguration_day = date(year, 1, 21)
+            ind = "January 20 (or 21st if Sunday) following an election year"
             h = Holiday(
                 inauguration_day,
                 "Inauguration Day",
-                indication="January 20 (or 21st if Sunday) following an "
-                    "election year",
+                indication=ind,
             )
             days.append(h)
         return days
