@@ -149,7 +149,8 @@ class Calendar(object):
         meaning the previous Friday.
         """
         delta = rd.relativedelta(weekday=holiday.observance_hint)
-        return holiday + delta if holiday.weekday() > 4 else holiday
+        should_shift = holiday.weekday() > FRI
+        return holiday + delta if should_shift else holiday
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
