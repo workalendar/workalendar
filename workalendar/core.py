@@ -29,7 +29,7 @@ class Holiday(date):
     many calendars will have that holiday fall back to the previous friday:
 
     >>> nye = Holiday(date(2014, 12, 31), "New year's eve",
-    ...     weekend_hint=rd.FR(-1))
+    ...     observance_hint=rd.FR(-1))
 
     For compatibility, a Holiday may be treated like a tuple of (date, label)
 
@@ -40,7 +40,8 @@ class Holiday(date):
     >>> d, label = nyd
     """
 
-    weekend_hint = rd.MO(1)
+    observance_hint = rd.MO(1)
+    "By default, observe the holiday on the following Monday"
 
     def __new__(cls, date, *args, **kwargs):
         return super(Holiday, cls).__new__(
@@ -78,11 +79,12 @@ class Holiday(date):
     @property
     def observed(self):
         """
-        The date this holiday is observed. If the holiday occurs on a weekend,
-        it is normally observed on the following Monday.
-        The weekend hint might be rd.FR(-1), meaning the previous Friday.
+        The date this holiday is observed. If the holiday occurs on a
+        non-working day, it may be observed on the following Monday or
+        another day indicated by the observance_hint, such as rd.FR(-1),
+        meaning the previous Friday.
         """
-        delta = rd.relativedelta(weekday=self.weekend_hint)
+        delta = rd.relativedelta(weekday=self.observance_hint)
         return self + delta if self.weekday() > 4 else self
 
     @classmethod
