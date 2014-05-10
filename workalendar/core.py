@@ -18,10 +18,8 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 class Holiday(date):
     """
-    A named holiday with a name, a textual indicated date, the indicated date,
-    and a weekend hint (used to calculate an observed date). For example, to
-    create a holiday for New Year's Day, but have it observed on Monday if it
-    falls on a weekend:
+    A named holiday with an indicated date, name, and additional keyword
+    attributes.
 
     >>> nyd = Holiday(date(2014, 1, 1), "New year")
 
@@ -29,7 +27,7 @@ class Holiday(date):
     many calendars will have that holiday fall back to the previous friday:
 
     >>> nye = Holiday(date(2014, 12, 31), "New year's eve",
-    ...     observance_hint=rd.FR(-1))
+    ...     observance_shift=dict(weekday=rd.FR(-1)))
 
     For compatibility, a Holiday may be treated like a tuple of (date, label)
 
@@ -39,9 +37,6 @@ class Holiday(date):
     'New year'
     >>> d, label = nyd
     """
-
-    observance_hint = rd.MO(1)
-    "By default, observe the holiday on the following Monday"
 
     def __new__(cls, date, *args, **kwargs):
         return super(Holiday, cls).__new__(
@@ -101,6 +96,12 @@ class Holiday(date):
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
+    observance_shift = dict(weekday=rd.MO(1))
+    """
+    The shift for the observance of a holiday defined as keyword parameters to
+    a rd.relativedelta instance.
+    By default, holidays are shifted to the Monday following the weekend.
+    """
 
     def __init__(self):
         self._holidays = {}
@@ -144,11 +145,13 @@ class Calendar(object):
     def get_observed_date(self, holiday):
         """
         The date the holiday is observed for this calendar. If the holiday
-        occurs on a weekend, it may be observed on the following Monday or
-        another day indicated by the observance_hint, such as rd.FR(-1),
-        meaning the previous Friday.
+        occurs on a weekend, it may be observed on another day as indicated by
+        the observance_shift.
         """
-        delta = rd.relativedelta(weekday=holiday.observance_hint)
+        # observance_shift may be overridden in the holiday itself
+        observance_shift = getattr(holiday, 'observance_shift',
+            self.observance_shift)
+        delta = rd.relativedelta(**observance_shift)
         should_shift = holiday.weekday() > FRI
         return holiday + delta if should_shift else holiday
 
