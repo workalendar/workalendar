@@ -102,10 +102,10 @@ class LunarCalendarTest(GenericCalendarTest):
 class MockCalendar(Calendar):
 
     def holidays(self, year=None):
-        return tuple((
-            (date(year, 12, 25), 'Christmas'),
-            (date(year, 1, 1), 'New year'),
-        ))
+        return (
+            Holiday(date(year, 12, 25), 'Christmas'),
+            Holiday(date(year, 1, 1), 'New year'),
+        )
 
     def get_weekend_days(self):
         return []  # no week-end, yes, it's sad
