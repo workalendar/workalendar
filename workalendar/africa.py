@@ -115,10 +115,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super(SouthAfrica, self).get_variable_days(year)
         days.append(self.get_family_day(year))
-        # compute shifting days
-        for holiday in self.get_fixed_holidays(year):
-            if holiday.weekday() == SUN:
-                sub = holiday + timedelta(days=1)
-                sub.name += ' substitute'
-                days.append(sub)
         return days
+
+    def get_weekend_days(self):
+        return SUN,

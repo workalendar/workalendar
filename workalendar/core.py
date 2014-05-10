@@ -194,7 +194,9 @@ class Calendar(object):
         # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
-        if self.is_holiday(day, extra_holidays=extra_holidays):
+        if extra_holidays and day in extra_holidays:
+            return False
+        if self.is_observed_holiday(day):
             return False
         return True
 
@@ -212,6 +214,12 @@ class Calendar(object):
         if day in self.holidays_set(day.year):
             return True
         return False
+
+    def is_observed_holiday(self, day):
+        """Return True if it's an observed holiday.
+        """
+        observed = set(map(self.get_observed_date, self.holidays(day.year)))
+        return day in observed
 
     def add_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None):
