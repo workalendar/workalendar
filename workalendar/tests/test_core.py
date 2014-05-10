@@ -213,10 +213,10 @@ class SimpleObservanceCalendar(Calendar):
     """
     FIXED_HOLIDAYS = (
         Holiday(
-            'Christmas Eve', 'December 24th', date(2000, 12, 24),
+            date(2000, 12, 24), 'Christmas Eve', indication='December 24th',
             weekend_hint=rd.FR(-1),
         ),
-        Holiday('Christmas', 'December 25th', date(2000, 12, 25)),
+        Holiday(date(2000, 12, 25), 'Christmas', indication='December 25th'),
     )
 
 

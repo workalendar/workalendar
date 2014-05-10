@@ -38,16 +38,17 @@ class Holiday(date):
     >>> nyd[1]
     'New year'
     >>> d, label = nyd
-
     """
-    def __new__(cls, name, indication, date, weekend_hint=rd.MO(1)):
+
+    weekend_hint = rd.MO(1)
+
+    def __new__(cls, date, *args, **kwargs):
         return super(Holiday, cls).__new__(
             cls, date.year, date.month, date.day)
 
-    def __init__(self, name, indication, date, weekend_hint=rd.MO(1)):
+    def __init__(self, date, name='Holiday', **kwargs):
         self.name = name
-        self.indication = indication
-        self.weekend_hint = weekend_hint
+        vars(self).update(kwargs)
 
     def __getitem__(self, n):
         """
@@ -65,17 +66,14 @@ class Holiday(date):
 
     def replace(self, *args, **kwargs):
         replaced = super(Holiday, self).replace(*args, **kwargs)
-        replaced.name = self.name
-        replaced.indication = self.indication
-        replaced.weekend_hint = self.weekend_hint
+        vars(replaced).update(vars(self))
         return replaced
 
     def __add__(self, delta):
         sum = super(Holiday, self).__add__(delta)
         if sum is NotImplemented:
             return sum
-        return self.__class__(
-            self.name, self.indication, sum, self.weekend_hint)
+        return self.__class__(sum)
 
     @property
     def observed(self):
@@ -95,7 +93,8 @@ class Holiday(date):
         """
         if isinstance(item, tuple):
             month, day, label = item
-            item = Holiday(label, None, date(2000, month, day))
+            any_year = 2000
+            item = Holiday(date(any_year, month, day), label)
         return item
 
     @classmethod
@@ -104,8 +103,7 @@ class Holiday(date):
         or existing Holiday instance.
         """
         if isinstance(item, tuple):
-            date, label = item
-            item = Holiday(label, None, date)
+            item = Holiday(*item)
         return item
 
 
@@ -411,7 +409,8 @@ class WesternCalendar(Calendar):
     shift_new_years_day = False
 
     FIXED_HOLIDAYS = (
-        Holiday('New year', 'First day in January', date(2000, 1, 1)),
+        Holiday(
+            date(2000, 1, 1), 'New year', indication='First day in January'),
     )
 
     def get_weekend_days(self):
