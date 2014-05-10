@@ -65,12 +65,6 @@ class Holiday(date):
         vars(replaced).update(vars(self))
         return replaced
 
-    def __add__(self, delta):
-        sum = super(Holiday, self).__add__(delta)
-        if sum is NotImplemented:
-            return sum
-        return self.__class__(sum)
-
     @classmethod
     def _from_fixed_definition(cls, item):
         """For backward compatibility, load Holiday object from an item of
