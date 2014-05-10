@@ -76,17 +76,6 @@ class Holiday(date):
             return sum
         return self.__class__(sum)
 
-    @property
-    def observed(self):
-        """
-        The date this holiday is observed. If the holiday occurs on a
-        non-working day, it may be observed on the following Monday or
-        another day indicated by the observance_hint, such as rd.FR(-1),
-        meaning the previous Friday.
-        """
-        delta = rd.relativedelta(weekday=self.observance_hint)
-        return self + delta if self.weekday() > 4 else self
-
     @classmethod
     def _from_fixed_definition(cls, item):
         """For backward compatibility, load Holiday object from an item of
@@ -151,6 +140,16 @@ class Calendar(object):
         # it is sorted
         self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
+
+    def get_observed_date(self, holiday):
+        """
+        The date the holiday is observed for this calendar. If the holiday
+        occurs on a weekend, it may be observed on the following Monday or
+        another day indicated by the observance_hint, such as rd.FR(-1),
+        meaning the previous Friday.
+        """
+        delta = rd.relativedelta(weekday=holiday.observance_hint)
+        return holiday + delta if holiday.weekday() > 4 else holiday
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
