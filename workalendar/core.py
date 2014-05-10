@@ -150,7 +150,7 @@ class Calendar(object):
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
-        return set([day for day, label in self.holidays(year)])
+        return set(self.holidays(year))
 
     def get_weekend_days(self):
         """Return a list (or a tuple) of weekdays that are *not* working days.
