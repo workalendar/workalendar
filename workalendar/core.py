@@ -72,6 +72,8 @@ class Holiday(date):
 
     def __add__(self, delta):
         sum = super(Holiday, self).__add__(delta)
+        if sum is NotImplemented:
+            return sum
         return self.__class__(
             self.name, self.indication, sum, self.weekend_hint)
 
