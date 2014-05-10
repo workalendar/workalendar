@@ -189,9 +189,7 @@ class Calendar(object):
             return False
         if extra_holidays and day in extra_holidays:
             return False
-        if self.is_observed_holiday(day):
-            return False
-        return True
+        return not self.is_observed_holiday(day)
 
     def is_holiday(self, day, extra_holidays=None):
         """Return True if it's an holiday.
@@ -204,9 +202,7 @@ class Calendar(object):
         if extra_holidays and day in extra_holidays:
             return True
 
-        if day in self.holidays_set(day.year):
-            return True
-        return False
+        return day in self.holidays_set(day.year)
 
     def is_observed_holiday(self, day):
         """Return True if it's an observed holiday.
