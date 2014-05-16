@@ -338,6 +338,7 @@ class EuropeanCentralBank(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_easter_monday = True
 
+
 class Belgium(WesternCalendar, ChristianMixin):
     "Belgium"
 
@@ -352,4 +353,3 @@ class Belgium(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_assumption = True
     include_all_saints = True
-

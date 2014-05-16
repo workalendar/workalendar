@@ -349,6 +349,7 @@ class EuropeanCentralBankTest(GenericCalendarTest):
         self.assertIn(date(2014, 12, 25), holidays)  # XMas
         self.assertIn(date(2014, 12, 26), holidays)  # St Stephen
 
+
 class BelgiumTest(GenericCalendarTest):
     cal_class = Belgium
 
