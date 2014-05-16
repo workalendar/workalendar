@@ -13,6 +13,7 @@ from workalendar.europe import Poland
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
+from workalendar.europe import Belgium
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -347,3 +348,32 @@ class EuropeanCentralBankTest(GenericCalendarTest):
         self.assertIn(date(2014, 5, 1), holidays)  # Labour day
         self.assertIn(date(2014, 12, 25), holidays)  # XMas
         self.assertIn(date(2014, 12, 26), holidays)  # St Stephen
+
+
+class BelgiumTest(GenericCalendarTest):
+    cal_class = Belgium
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 7, 21), holidays)
+        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+        self.assertIn(date(2014, 11, 11), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 7, 21), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
