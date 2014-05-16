@@ -72,6 +72,7 @@ Europe
 ------
 
 * Czech Republic
+* European Central Bank
 * Finland
 * France
 * France (Alsace / Moselle)
