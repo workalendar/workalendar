@@ -164,9 +164,17 @@ days computation. It's very easy to add days like the "Birthday of the Founder":
 There you are. Commit with a nice commit message, test, make sure it works for
 the other years as well and you're almost there.
 
-We're planning to build a complete documentation for the other cases (special
-holiday rules, other calendar types, other religions, etc). But with this
-tutorial you're sorted for a lot of other calendars.
+The final step
+##############
+
+Do not forget to add your calendar in the ``README.rst`` file, included in the
+appropriate continent.
+
+.. note::
+
+    We're planning to build a complete documentation for the other cases
+    (special holiday rules, other calendar types, other religions, etc). But
+    with this tutorial you're sorted for a lot of other calendars.
 
 
 Other code contributions
