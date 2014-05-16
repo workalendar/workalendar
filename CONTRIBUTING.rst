@@ -7,7 +7,7 @@ Use it (and test it)
 
 If you are using ``workalendar``, you are already contributing to it. As long
 as you are able to check its result, compare the designated working days and
-holidays to the reality, and make sure these are right,  it's fine.
+holidays to the reality, and make sure these are right, you're helping.
 
 If any of the computed holidays for the country / area your are using is
 **wrong**, please report
@@ -19,10 +19,10 @@ Report an issue
 If you think you've found a bug you can report an issue. In order to help us
 sort this out, please follow the guidelines:
 
-* Tell us which version (master, PyPI release) you are using.
+* Tell us which ``workalendar`` version (master, PyPI release) you are using.
 * Tell us which Python version you are using, and your platform.
-* Give us extensive details on the country/area Calendar, the exact date(s) that was (were) computed and the one(s) that should've been the correct result.
-* If possible, please provide us a reliable source about the designated country/area calendar, where we could effectively check that we were wrong about a date, and giving us a way to patch our code properly so we can fix the bug.
+* Give us extensive details on the country / area Calendar, the exact date(s) that was (were) computed and the one(s) that should have been the correct result.
+* If possible, please provide us a reliable source about the designated country / area calendar, where we could effectively check that we were wrong about a date, and giving us a way to patch our code properly so we can fix the bug.
 
 
 Adding new calendars
@@ -45,7 +45,7 @@ Example
 -------
 
 Let's assume you want to include the holidays of the magic (fictional) kingdom
-of "Zhraa", which has a few holidays of different kind.
+of *"Zhraa"*, which has a few holidays of different kind.
 
 For the sake of the example, it has the following specs:
 
@@ -57,7 +57,7 @@ Here is a list of the holidays in *Zhraa*:
 
 * January 1st, New year's Day,
 * May 1st, Labour day,
-* Easter Monday, which is variable (from march to may),
+* Easter Monday, which is variable (from March to May),
 * The first monday in June, to celebrate the birth of the Founder of the Kingdom, Zhraa (nobody knows the exact day he was born, so this day was chosen as a convention),
 * The birthday of the King, August 2nd.
 * Christmas Day, Dec 25th.
@@ -93,10 +93,11 @@ file and add the following code::
             self.assertIn(date(2014, 4, 21), holidays)  # easter monday
             self.assertIn(date(2014, 6, 2), holidays)  # First MON in June
 
-of course, if you run the test using the ``make test`` command, this will fail.
+of course, if you run the test using the ``make test`` command, this will fail,
+since we haven't implemented anything yet.
 
-With the ``WesternCalendar`` base class you have at least one holiday as a bonus:
-the New year's day, which is commonly a holiday.
+With the ``WesternCalendar`` base class you have at least one holiday as a
+bonus: the New year's day, which is commonly a holiday.
 
 Add fixed days
 ##############
@@ -160,8 +161,8 @@ days computation. It's very easy to add days like the "Birthday of the Founder":
     second one is the label string.
 
 
-There you are. Commit, test, make sure it works for other years as well and
-you're almost there.
+There you are. Commit with a nice commit message, test, make sure it works for
+the other years as well and you're almost there.
 
 We're planning to build a complete documentation for the other cases (special
 holiday rules, other calendar types, other religions, etc). But with this
