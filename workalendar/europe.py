@@ -329,6 +329,7 @@ class UnitedKingdomNorthernIreland(UnitedKingdom):
 
 
 class EuropeanCentralBank(WesternCalendar, ChristianMixin):
+    "European Central Bank"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (12, 26, "St. Stephen's Day"),
