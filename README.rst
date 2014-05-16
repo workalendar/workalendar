@@ -128,6 +128,13 @@ the same official day decided by religious authorities, and this may vary
 country by country. Whenever it's possible, try to adjust your results with
 the official data provided by the adequate authorities.
 
+Contributing
+============
+
+Please read our `CONTRIBUTING.rst <https://github.com/novapost/workalendar/blob/master/CONTRIBUTING.rst>`_
+document to discover how you can contribute to ``workalendar``. Pull-requests
+are very welcome.
+
 License
 =======
 
