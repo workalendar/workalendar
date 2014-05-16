@@ -164,11 +164,13 @@ days computation. It's very easy to add days like the "Birthday of the Founder":
 There you are. Commit with a nice commit message, test, make sure it works for
 the other years as well and you're almost there.
 
-The final step
-##############
+The final steps
+###############
 
-Do not forget to add your calendar in the ``README.rst`` file, included in the
-appropriate continent.
+Do not forget to:
+
+1. put the appropriate doctring in the Calendar class.
+2. add your calendar in the ``README.rst`` file, included in the appropriate continent.
 
 .. note::
 
