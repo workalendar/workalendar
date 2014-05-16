@@ -71,6 +71,7 @@ Available Calendars
 Europe
 ------
 
+* Belgium
 * Czech Republic
 * European Central Bank
 * Finland
