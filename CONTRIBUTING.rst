@@ -63,6 +63,18 @@ Here is a list of the holidays in *Zhraa*:
 * Christmas Day, Dec 25th.
 
 
+Getting ready
+#############
+
+You'll need to install ``workalendar`` dependencies beforehand. What's great is
+that you'll use virtualenv to set it up. Or even better: ``virtualenvwrapper``.
+Just go in your working copy (cloned from github) of workalendar and type, for
+example::
+
+    mkvirtualenv WORKALENDAR
+    pip install -e ./
+
+
 Test-driven start
 #################
 
@@ -93,8 +105,13 @@ file and add the following code::
             self.assertIn(date(2014, 4, 21), holidays)  # easter monday
             self.assertIn(date(2014, 6, 2), holidays)  # First MON in June
 
-of course, if you run the test using the ``make test`` command, this will fail,
-since we haven't implemented anything yet.
+of course, if you run the test using the ``tox`` or ``nosetests`` command,
+this will fail, since we haven't implemented anything yet.
+
+Install tox using the following command::
+
+    workon WORKALENDAR
+    pip install tox
 
 With the ``WesternCalendar`` base class you have at least one holiday as a
 bonus: the New year's day, which is commonly a holiday.
