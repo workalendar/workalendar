@@ -12,6 +12,7 @@ from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
+from workalendar.europe import EuropeanCentralBank
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -333,3 +334,16 @@ class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 7, 12), holidays)  # Battle of the Boyne
         self.assertIn(date(2014, 7, 14), holidays)  # Battle of the Boyne sub
+
+
+class EuropeanCentralBankTest(GenericCalendarTest):
+    cal_class = EuropeanCentralBank
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)  # New year's day
+        self.assertIn(date(2014, 4, 18), holidays)  # Good friday
+        self.assertIn(date(2014, 4, 21), holidays)  # easter monday
+        self.assertIn(date(2014, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2014, 12, 25), holidays)  # XMas
+        self.assertIn(date(2014, 12, 26), holidays)  # St Stephen
