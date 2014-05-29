@@ -343,7 +343,7 @@ class UnitedKingdomScotlandTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        
+
         self.assertIn(date(2013, 1, 1), holidays)  # new year day
         self.assertIn(date(2013, 1, 2), holidays)  # 2nd of january
         self.assertIn(date(2013, 3, 29), holidays)  # good friday
@@ -363,8 +363,8 @@ class UnitedKingdomScotlandTest(GenericCalendarTest):
     def test_shift_2010(self):
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 1, 1), holidays)  # new year day (Fri)
-        #self.assertIn(date(2012, 1, 2), holidays)  # 2nd jan (Sat)
         self.assertIn(date(2010, 1, 4), holidays)  # 2nd jan shift (Monday)
+
 
 class EuropeanCentralBankTest(GenericCalendarTest):
     cal_class = EuropeanCentralBank
