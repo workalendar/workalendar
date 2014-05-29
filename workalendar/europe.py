@@ -305,6 +305,57 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         return days
 
 
+class UnitedKingdomScotland(WesternCalendar, ChristianMixin):
+    "Scotland (United Kingdom)"
+    include_good_friday = True
+    include_easter_sunday = True  # although not convinced!
+    include_boxing_day = True
+    shift_new_years_day = False
+
+    def get_early_may_bank_holiday(self, year):
+        return (
+            UnitedKingdomScotland.get_nth_weekday_in_month(year, 5, MON),
+            "Early May Bank Holiday"
+        )
+
+    def get_spring_bank_holiday(self, year):
+        return (
+            UnitedKingdomScotland.get_last_weekday_in_month(year, 5, MON),
+            "Spring Bank Holiday"
+        )
+
+    def get_late_summer_bank_holiday(self, year):
+        return (
+            UnitedKingdomScotland.get_nth_weekday_in_month(year, 8, MON),
+            "Late Summer Bank Holiday"
+        )
+
+    def get_variable_days(self, year):
+        days = super(UnitedKingdomScotland, self).get_variable_days(year)
+        days.append(self.get_early_may_bank_holiday(year))
+        days.append(self.get_spring_bank_holiday(year))
+        days.append(self.get_late_summer_bank_holiday(year))
+        # Boxing day & XMas shift
+        christmas = date(year, 12, 25)
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            days.append((shift, "Christmas Shift"))
+            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
+        # new year and 2nd jan shift
+        new_year = date(year, 1, 1)
+        second_jan = date(year, 1, 2)
+        if new_year.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(new_year)
+            days.append((shift, "New Year Shift"))
+            days.append((shift + timedelta(days=1), "2nd January Shift"))
+        elif second_jan.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(second_jan)
+            days.append((shift, "2nd January Shift"))
+        else:  # neither 1st/2nd jan on weekend
+            days.append((second_jan, "2nd January Shift"))
+        return days
+
+
 class UnitedKingdomNorthernIreland(UnitedKingdom):
     "Northern Ireland (UK)"
     def get_variable_days(self, year):
