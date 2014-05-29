@@ -11,6 +11,7 @@ from workalendar.europe import Italy
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import UnitedKingdom
+from workalendar.europe import UnitedKingdomScotland
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
 from workalendar.europe import Belgium
@@ -335,6 +336,34 @@ class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 7, 12), holidays)  # Battle of the Boyne
         self.assertIn(date(2014, 7, 14), holidays)  # Battle of the Boyne sub
+
+
+class UnitedKingdomScotlandTest(GenericCalendarTest):
+    cal_class = UnitedKingdomScotland
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+
+        self.assertIn(date(2013, 1, 1), holidays)  # new year day
+        self.assertIn(date(2013, 1, 2), holidays)  # 2nd of january
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 5, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2013, 8, 5), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2013, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
+
+    def test_shift_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)  # new year day
+        self.assertIn(date(2012, 1, 2), holidays)  # new year day shift
+        self.assertIn(date(2012, 1, 3), holidays)  # 2nd jan shift
+
+    def test_shift_2010(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 1, 1), holidays)  # new year day (Fri)
+        self.assertIn(date(2010, 1, 4), holidays)  # 2nd jan shift (Monday)
 
 
 class EuropeanCentralBankTest(GenericCalendarTest):
