@@ -1,0 +1,10 @@
+#!/Users/martin/Projects/workalendar/venv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'tox==1.7.1','console_scripts','tox-quickstart'
+__requires__ = 'tox==1.7.1'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('tox==1.7.1', 'console_scripts', 'tox-quickstart')()
+    )

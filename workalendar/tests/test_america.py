@@ -4,7 +4,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import UnitedStates
 from workalendar.america import Brazil, BrazilSaoPauloState
 from workalendar.america import BrazilSaoPauloCity
-from workalendar.america import Mexico, Chile, Panama
+from workalendar.america import Mexico, Chile, Panama, Canada
 
 
 class UnitedStatesTest(GenericCalendarTest):
@@ -166,3 +166,32 @@ class PanamaTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 2), holidays)  # Independence from spain
         self.assertIn(date(2013, 12, 8), holidays)  # mother day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
+
+
+class CanadaTest(GenericCalendarTest):
+    cal_class = Canada
+
+    def test_holidays_2011(self):
+        holidays = self.cal.holidays_set(2011)
+        self.assertIn(date(2011, 1, 3), holidays)
+        self.assertIn(date(2011, 7, 1), holidays)
+        self.assertIn(date(2011, 9, 5), holidays)
+        self.assertIn(date(2011, 12, 26), holidays)
+
+    def test_holidays_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 2), holidays)  # New years shift
+        self.assertIn(date(2012, 7, 2), holidays)  # Canada day shift
+        self.assertIn(date(2012, 9, 3), holidays)  # Labour day
+        self.assertIn(date(2012, 12, 25), holidays)
+
+    def test_holidays_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 7, 1), holidays)
+        self.assertIn(date(2013, 9, 2), holidays)
+        self.assertIn(date(2013, 12, 25), holidays)
+
+    def test_holidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 2), holidays)
