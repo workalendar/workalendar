@@ -87,32 +87,6 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
         return days
 
 
-class Canada(WesternCalendar, ChristianMixin):
-    "Canada"
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 1, "Canada Day"),
-    )
-    shift_new_years_day = True
-    include_good_friday = False  # National except QC
-    include_easter_monday = False  # QC only
-
-    def get_variable_days(self, year):
-        # usual variable days
-        days = super(Canada, self).get_variable_days(year)
-        days += [
-            (Canada.get_nth_weekday_in_month(year, 9, MON, 1), "Labor Day")
-        ]
-        canadaday = date(year, 7, 1)
-        if canadaday.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(canadaday)
-            days.append((shift, "Canada Day Shift"))
-        christmas = date(year, 12, 25)
-        if christmas.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(christmas)
-            days.append((shift, "Christmas Shift"))
-        return days
-
-
 class Chile(WesternCalendar, ChristianMixin):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
