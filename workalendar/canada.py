@@ -49,7 +49,7 @@ class VictoriaDayMixin(Calendar):
     "Monday preceding the 25th of May"
 
     def get_victoria_day(self, year):
-        for day in xrange(18, 25):
+        for day in range(18, 25):
             if date(year, 5, day).weekday() == MON:
                 return (date(year, 5, day), "Victoria Day")
 
