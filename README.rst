@@ -94,6 +94,7 @@ America
 * Mexico
 * Panama
 * United States of America (only the federal state holidays at the moment)
+* Canada (including provincial and territory holidays)
 
 Asia
 ----
