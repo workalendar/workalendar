@@ -142,6 +142,7 @@ class FranceTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 1), holidays)  # Toussaint
         self.assertIn(date(2013, 11, 11), holidays)  # Armistice
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
+        self.assertNotIn(date(2013, 5, 30), holidays)  # Corpus Christi
 
     def test_working_days(self):
         self.assertFalse(self.cal.is_working_day(date(2013, 1, 1)))  # holiday

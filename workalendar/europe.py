@@ -118,6 +118,7 @@ class France(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_all_saints = True
     include_assumption = True
+    include_corpus_christi = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
