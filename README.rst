@@ -93,7 +93,7 @@ America
 * Chile
 * Mexico
 * Panama
-* United States of America (only the federal state holidays at the moment)
+* United States of America (including state holidays)
 * Canada (including provincial and territory holidays)
 
 Asia

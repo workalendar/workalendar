@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
+from workalendar.core import SUN, MON, TUE, WED, FRI, SAT
 
 
 class Brazil(WesternCalendar, ChristianMixin):
