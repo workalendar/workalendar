@@ -205,7 +205,7 @@ class ChristianMixin(Calendar):
     whit_sunday_label = 'Whit Sunday'
     include_whit_monday = False
     whit_monday_label = 'Whit Monday'
-    include_corpus_christi = True
+    include_corpus_christi = False
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
 
