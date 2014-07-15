@@ -16,8 +16,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         (11, 11, 'Veterans Day'),
     )
 
-    include_corpus_christi = False
-
     @staticmethod
     def is_presidential_year(year):
         return (year % 4) == 0
