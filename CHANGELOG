@@ -1,10 +1,19 @@
 CHANGELOG
 =========
 
-0.2 (unreleased)
+0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+
+0.2.0 (2014-07-15)
+----------------
+
+- How to contribute documentation,
+- Added Belgium, European Central Bank, Sweden, every specific calendar in the
+  United States of America, Canada.
+- BUGFIX: fixed a corpus christi bug. This day used to be included in every
+  ChristianMixin calendar, except noticed otherwise. Now it's not included by
+  default and should be set to "True" when needed.
 
 
 0.1 (2014-02-17)
