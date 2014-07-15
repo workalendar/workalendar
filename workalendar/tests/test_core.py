@@ -291,3 +291,6 @@ class MockChristianCalendarTest(GenericCalendarTest):
 
         # The only Christian day that is a holiday for every calendar
         self.assertIn(date(2014, 12, 25), holidays)  # XMas
+
+        # Only 2 days: Jan 1st and Christmas
+        self.assertEquals(len(holidays), 2)
