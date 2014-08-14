@@ -353,3 +353,20 @@ class Belgium(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_assumption = True
     include_all_saints = True
+
+
+class Germany(WesternCalendar, ChristianMixin):
+    "Germany"
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (1, 1, "New Year"),
+        (5, 1, "Labour Day"),
+        (10, 3, "Day of German Unity"),
+        (12, 25, "First Christmas Day"),
+        (12, 26, "Second Christmas Day"),
+    )
+
+    include_easter_monday = True
+    include_ascension = True
+    include_whit_monday = True
+    include_good_friday = True

@@ -77,6 +77,7 @@ Europe
 * Finland
 * France
 * France (Alsace / Moselle)
+* Germany
 * Greece
 * Hungary
 * Iceland

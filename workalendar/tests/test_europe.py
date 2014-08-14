@@ -14,6 +14,7 @@ from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
 from workalendar.europe import Belgium
+from workalendar.europe import Germany
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -377,3 +378,30 @@ class BelgiumTest(GenericCalendarTest):
         self.assertIn(date(2015, 8, 15), holidays)
         self.assertIn(date(2015, 11, 1), holidays)
         self.assertIn(date(2015, 12, 25), holidays)
+
+class GermanyTest(GenericCalendarTest):
+    cal_class = Germany
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 10, 3), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 10, 3), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)
