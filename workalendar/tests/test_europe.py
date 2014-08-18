@@ -379,6 +379,7 @@ class BelgiumTest(GenericCalendarTest):
         self.assertIn(date(2015, 11, 1), holidays)
         self.assertIn(date(2015, 12, 25), holidays)
 
+
 class GermanyTest(GenericCalendarTest):
     cal_class = Germany
 
