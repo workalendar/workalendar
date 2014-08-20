@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin, OrthodoxMixin
 from workalendar.core import THU, MON, FRI, SAT
@@ -359,10 +360,8 @@ class Germany(WesternCalendar, ChristianMixin):
     "Germany"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 1, "New Year"),
         (5, 1, "Labour Day"),
         (10, 3, "Day of German Unity"),
-        (12, 25, "First Christmas Day"),
         (12, 26, "Second Christmas Day"),
     )
 
@@ -370,3 +369,78 @@ class Germany(WesternCalendar, ChristianMixin):
     include_ascension = True
     include_whit_monday = True
     include_good_friday = True
+
+
+class BadenWurttemberg(Germany):
+    "Baden-Württemberg"
+
+    include_epiphany = True
+    include_corpus_christi = True
+    include_all_saints = True
+
+
+class Bavaria(Germany):
+    "Bavaria"
+
+    include_epiphany = True
+    include_corpus_christi = True
+    include_all_saints = True
+    include_assumption = True
+
+
+class Berlin(Germany):
+    "Berlin"
+
+
+class Brandenburg(Germany):
+    "Brandenburg"
+
+
+class Bremen(Germany):
+    "Bremen"
+
+
+class Hamburg(Germany):
+    "Hamburg"
+
+
+class Hesse(Germany):
+    "Hesse"
+
+
+class MecklenburgVorpommern(Germany):
+    "Mecklenburg-Vorpommern"
+
+
+class LowerSaxony(Germany):
+    "Lower Saxony"
+
+
+class NorthRhineWestphalia(Germany):
+    "North Rhine-Westphalia"
+
+
+class RhinelandPalatinate(Germany):
+    "Rhineland-Palatinate"
+
+
+class Saarland(Germany):
+    "Saarland"
+
+
+class Saxony(Germany):
+    "Saxony"
+
+
+class SaxonyAnhalt(Germany):
+    "Saxony-Anhalt"
+
+
+class SchleswigHolstein(Germany):
+    "Schleswig-Holstein"
+
+
+class Thuringia(Germany):
+    "Thüringia"
+
+
