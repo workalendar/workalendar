@@ -459,7 +459,7 @@ class Saxony(Germany):
     def get_repentance_day(self, year):
         "Wednesday before November 23"
         day = date(year, 11, 23)
-        while day.weekday() != 2: # 2=Wednesday
+        while day.weekday() != 2:  # 2=Wednesday
             day -= timedelta(days=1)
         return (day, "Repentance Day")
 
@@ -489,4 +489,3 @@ class Thuringia(Germany):
     FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
         (10, 31, "Reformation Day"),
     )
-
