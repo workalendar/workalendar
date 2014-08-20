@@ -396,6 +396,10 @@ class Berlin(Germany):
 class Brandenburg(Germany):
     "Brandenburg"
 
+    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
+        (10, 31, "Reformation Day"),
+    )
+
 
 class Bremen(Germany):
     "Bremen"
@@ -408,9 +412,15 @@ class Hamburg(Germany):
 class Hesse(Germany):
     "Hesse"
 
+    include_corpus_christi = True
+
 
 class MecklenburgVorpommern(Germany):
     "Mecklenburg-Vorpommern"
+
+    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
+        (10, 31, "Reformation Day"),
+    )
 
 
 class LowerSaxony(Germany):
@@ -420,21 +430,53 @@ class LowerSaxony(Germany):
 class NorthRhineWestphalia(Germany):
     "North Rhine-Westphalia"
 
+    include_corpus_christi = True
+    include_all_saints = True
+
 
 class RhinelandPalatinate(Germany):
     "Rhineland-Palatinate"
+
+    include_corpus_christi = True
+    include_all_saints = True
 
 
 class Saarland(Germany):
     "Saarland"
 
+    include_corpus_christi = True
+    include_assumption = True
+    include_all_saints = True
+
 
 class Saxony(Germany):
     "Saxony"
 
+    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
+        (10, 31, "Reformation Day"),
+    )
+
+    def get_repentance_day(self, year):
+        "Wednesday before November 23"
+        day = date(year, 11, 23)
+        while day.weekday() != 2: # 2=Wednesday
+            day -= timedelta(days=1)
+        return (day, "Repentance Day")
+
+    def get_variable_days(self, year):
+        days = super(Germany, self).get_variable_days(year)
+        days.append(self.get_repentance_day(year))
+        return days
+
 
 class SaxonyAnhalt(Germany):
     "Saxony-Anhalt"
+
+    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
+        (10, 31, "Reformation Day"),
+    )
+
+    include_epiphany = True
 
 
 class SchleswigHolstein(Germany):
@@ -442,6 +484,9 @@ class SchleswigHolstein(Germany):
 
 
 class Thuringia(Germany):
-    "Thüringia"
+    "Thuringia"
 
+    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
+        (10, 31, "Reformation Day"),
+    )
 
