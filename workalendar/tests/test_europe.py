@@ -426,7 +426,6 @@ class BadenWurttembergTest(GermanyTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 6), holidays)
         self.assertIn(date(2015, 6, 4), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
         self.assertIn(date(2015, 11, 1), holidays)
 
 
@@ -466,32 +465,8 @@ class BavariaTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 26), holidays)
 
 
-class BerlinTest(GenericCalendarTest):
+class BerlinTest(GermanyTest):
     cal_class = Berlin
-
-    def test_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
 
 
 class BrandenburgTest(GenericCalendarTest):
@@ -524,90 +499,24 @@ class BrandenburgTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 26), holidays)
 
 
-class BremenTest(GenericCalendarTest):
+class BremenTest(GermanyTest):
     cal_class = Bremen
 
-    def test_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
 
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
-
-
-class HamburgTest(GenericCalendarTest):
+class HamburgTest(GermanyTest):
     cal_class = Hamburg
 
-    def test_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
 
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
-
-
-class HesseTest(GenericCalendarTest):
+class HesseTest(GermanyTest):
     cal_class = Hesse
 
-    def test_year_2014(self):
+    def test_extra_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
         self.assertIn(date(2014, 6, 19), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
 
-    def test_year_2015(self):
+    def test_extra_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
         self.assertIn(date(2015, 6, 4), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
 
 
 class MecklenburgVorpommernTest(GenericCalendarTest):
@@ -640,32 +549,8 @@ class MecklenburgVorpommernTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 26), holidays)
 
 
-class LowerSaxonyTest(GenericCalendarTest):
+class LowerSaxonyTest(GermanyTest):
     cal_class = LowerSaxony
-
-    def test_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
 
 
 class NorthRhineWestphaliaTest(GenericCalendarTest):
@@ -830,32 +715,8 @@ class SaxonyAnhaltTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 26), holidays)
 
 
-class SchleswigHolsteinTest(GenericCalendarTest):
+class SchleswigHolsteinTest(GermanyTest):
     cal_class = SchleswigHolstein
-
-    def test_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 1), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 5, 1), holidays)
-        self.assertIn(date(2014, 5, 29), holidays)
-        self.assertIn(date(2014, 6, 9), holidays)
-        self.assertIn(date(2014, 10, 3), holidays)
-        self.assertIn(date(2014, 12, 25), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 10, 3), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
 
 
 class ThuringiaTest(GenericCalendarTest):
