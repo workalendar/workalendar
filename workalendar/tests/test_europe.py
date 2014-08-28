@@ -12,6 +12,14 @@ from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
+from workalendar.europe import EuropeanCentralBank
+from workalendar.europe import Belgium
+from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
+                                Brandenburg, Bremen, Hamburg, Hesse,
+                                MecklenburgVorpommern, LowerSaxony,
+                                NorthRhineWestphalia, RhinelandPalatinate,
+                                Saarland, Saxony, SaxonyAnhalt,
+                                SchleswigHolstein, Thuringia)
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -333,3 +341,283 @@ class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 7, 12), holidays)  # Battle of the Boyne
         self.assertIn(date(2014, 7, 14), holidays)  # Battle of the Boyne sub
+
+
+class EuropeanCentralBankTest(GenericCalendarTest):
+    cal_class = EuropeanCentralBank
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)  # New year's day
+        self.assertIn(date(2014, 4, 18), holidays)  # Good friday
+        self.assertIn(date(2014, 4, 21), holidays)  # easter monday
+        self.assertIn(date(2014, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2014, 12, 25), holidays)  # XMas
+        self.assertIn(date(2014, 12, 26), holidays)  # St Stephen
+
+
+class BelgiumTest(GenericCalendarTest):
+    cal_class = Belgium
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 7, 21), holidays)
+        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+        self.assertIn(date(2014, 11, 11), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 7, 21), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+
+
+class GermanyTest(GenericCalendarTest):
+    cal_class = Germany
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 10, 3), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 10, 3), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)
+
+
+class BadenWurttembergTest(GermanyTest):
+    cal_class = BadenWurttemberg
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 6), holidays)
+        self.assertIn(date(2014, 6, 19), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 6), holidays)
+        self.assertIn(date(2015, 6, 4), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+
+
+class BavariaTest(GenericCalendarTest):
+    cal_class = Bavaria
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 1, 6), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 6, 19), holidays)
+        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertIn(date(2014, 10, 3), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 6), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 6, 4), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 10, 3), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)
+
+
+class BerlinTest(GermanyTest):
+    cal_class = Berlin
+
+
+class BrandenburgTest(GenericCalendarTest):
+    cal_class = Brandenburg
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 29), holidays)
+        self.assertIn(date(2014, 6, 9), holidays)
+        self.assertIn(date(2014, 10, 3), holidays)
+        self.assertIn(date(2014, 10, 31), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 14), holidays)
+        self.assertIn(date(2015, 5, 25), holidays)
+        self.assertIn(date(2015, 10, 3), holidays)
+        self.assertIn(date(2015, 10, 31), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)
+
+
+class BremenTest(GermanyTest):
+    cal_class = Bremen
+
+
+class HamburgTest(GermanyTest):
+    cal_class = Hamburg
+
+
+class HesseTest(GermanyTest):
+    cal_class = Hesse
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 6, 19), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 6, 4), holidays)
+
+
+class MecklenburgVorpommernTest(GermanyTest):
+    cal_class = MecklenburgVorpommern
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 10, 31), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 10, 31), holidays)
+
+
+class LowerSaxonyTest(GermanyTest):
+    cal_class = LowerSaxony
+
+
+class NorthRhineWestphaliaTest(GermanyTest):
+    cal_class = NorthRhineWestphalia
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 6, 19), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 6, 4), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+
+
+class RhinelandPalatinateTest(GermanyTest):
+    cal_class = RhinelandPalatinate
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 6, 19), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 6, 4), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+
+
+class SaarlandTest(GermanyTest):
+    cal_class = Saarland
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 6, 19), holidays)
+        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertIn(date(2014, 11, 1), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 6, 4), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+
+
+class SaxonyTest(GermanyTest):
+    cal_class = Saxony
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 11, 19), holidays)
+        self.assertIn(date(2014, 10, 31), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 11, 18), holidays)
+        self.assertIn(date(2015, 10, 31), holidays)
+
+
+class SaxonyAnhaltTest(GermanyTest):
+    cal_class = SaxonyAnhalt
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 10, 31), holidays)
+        self.assertIn(date(2014, 1, 6), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 10, 31), holidays)
+        self.assertIn(date(2015, 1, 6), holidays)
+
+
+class SchleswigHolsteinTest(GermanyTest):
+    cal_class = SchleswigHolstein
+
+
+class ThuringiaTest(GermanyTest):
+    cal_class = Thuringia
+
+    def test_extra_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 10, 31), holidays)
+
+    def test_extra_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 10, 31), holidays)
