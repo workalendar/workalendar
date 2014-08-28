@@ -5,8 +5,8 @@ import dateutil.relativedelta as rd
 
 from workalendar.tests import GenericCalendarTest
 from workalendar.core import MON, TUE, THU, FRI, SAT, SUN
-from workalendar.core import Calendar, LunarCalendar
-from workalendar.core import IslamicMixin, JalaliMixin
+from workalendar.core import Calendar, LunarCalendar, WesternCalendar
+from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
 from workalendar.core import EphemMixin
 from workalendar.core import Holiday
 
@@ -301,3 +301,38 @@ class EphemMixinTest(GenericCalendarTest):
             self.cal.solar_term(2014, 15),
             date(2014, 4, 4)
         )
+
+
+class MockChristianCalendar(WesternCalendar, ChristianMixin):
+    pass
+
+
+class MockChristianCalendarTest(GenericCalendarTest):
+    cal_class = MockChristianCalendar
+
+    def test_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 1, 6), holidays)  # Epiphany
+        self.assertNotIn(date(2014, 3, 3), holidays)  # Clean Monday
+        self.assertNotIn(date(2014, 3, 5), holidays)  # Ash Wednesday
+        self.assertNotIn(date(2014, 3, 25), holidays)  # Annunciation
+        self.assertNotIn(date(2014, 4, 17), holidays)  # Holy Thursday
+        self.assertNotIn(date(2014, 4, 18), holidays)  # 'Good Friday
+        self.assertNotIn(date(2014, 4, 19), holidays)  # Easter sat
+        self.assertNotIn(date(2014, 4, 20), holidays)  # Easter Sun
+        self.assertNotIn(date(2014, 4, 21), holidays)  # Easter Mon
+        self.assertNotIn(date(2014, 5, 29), holidays)  # Ascension
+        self.assertNotIn(date(2014, 6, 8), holidays)   # Whit Sunday
+        self.assertNotIn(date(2014, 6, 9), holidays)   # Whit Monday
+        self.assertNotIn(date(2014, 6, 19), holidays)  # Corp. Christi
+        self.assertNotIn(date(2014, 8, 15), holidays)  # Assumption
+        self.assertNotIn(date(2014, 11, 1), holidays)  # All Saints
+        self.assertNotIn(date(2014, 12, 8), holidays)  # Imm. Conc.
+        self.assertNotIn(date(2014, 12, 24), holidays)  # Xmas Eve
+        self.assertNotIn(date(2014, 12, 26), holidays)  # Boxing Day
+
+        # The only Christian day that is a holiday for every calendar
+        self.assertIn(date(2014, 12, 25), holidays)  # XMas
+
+        # Only 2 days: Jan 1st and Christmas
+        self.assertEquals(len(holidays), 2)

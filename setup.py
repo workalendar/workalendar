@@ -25,35 +25,37 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-__VERSION__ = '0.2-dev'
+__VERSION__ = '0.3-dev'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
 else:
     REQUIREMENTS.append('ephem')
 
+params = dict(
+    name=NAME,
+    description=DESCRIPTION,
+    packages=['workalendar'],
+    version=__VERSION__,
+    long_description=read_relative_file('README.rst'),
+    author='Bruno Bord',
+    author_email='bruno.bord@novapost.fr',
+    url='https://github.com/novapost/workalendar',
+    license='MIT License',
+    include_package_data=True,
+    install_requires=REQUIREMENTS,
+    zip_safe=False,
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+    ],
+)
+
 if __name__ == '__main__':
-    setup(
-        name=NAME,
-        description=DESCRIPTION,
-        packages=['workalendar'],
-        version=__VERSION__,
-        long_description=read_relative_file('README.rst'),
-        author='Bruno Bord',
-        author_email='bruno.bord@novapost.fr',
-        url='https://github.com/novapost/workalendar',
-        license='MIT License',
-        include_package_data=True,
-        install_requires=REQUIREMENTS,
-        zip_safe=False,
-        classifiers=(
-            'Development Status :: 4 - Beta',
-            'Intended Audience :: Developers',
-            'License :: OSI Approved :: MIT License',
-            'Programming Language :: Python',
-            'Programming Language :: Python :: 2',
-            'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 3.3',
-        )
-    )
+    setup(**params)

@@ -3,75 +3,8 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date, timedelta
-from dateutil import relativedelta as rd
-from workalendar.core import WesternCalendar, ChristianMixin, Holiday
+from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import SUN, MON, TUE, WED, FRI, SAT
-
-
-class UnitedStates(WesternCalendar, ChristianMixin):
-    "United States of America"
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        Holiday(date(2000, 7, 4), 'Independence Day', indication='July 4'),
-        Holiday(date(2000, 11, 11), 'Veterans Day', indication='Nov 11'),
-    )
-
-    @staticmethod
-    def is_presidential_year(year):
-        return (year % 4) == 0
-
-    def get_variable_days(self, year):
-        # usual variable days
-        days = super(UnitedStates, self).get_variable_days(year)
-        days += [
-            Holiday(
-                date(year, 1, 1) + rd.relativedelta(weekday=rd.MO(3)),
-                "Martin Luther King, Jr. Day",
-                indication="3rd Monday in January",
-            ),
-
-            Holiday(
-                date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(3)),
-                "Washington's Birthday",
-                indication="3rd Monday in February",
-            ),
-
-            Holiday(
-                date(year, 5, 31) + rd.relativedelta(weekday=rd.MO(-1)),
-                "Memorial Day",
-                indication="Last Monday in May",
-            ),
-
-            Holiday(
-                date(year, 9, 1) + rd.relativedelta(weekday=rd.MO(1)),
-                "Labor Day",
-                indication="1st Monday in September",
-            ),
-
-            Holiday(
-                date(year, 10, 1) + rd.relativedelta(weekday=rd.MO(2)),
-                "Colombus Day",
-                indication="2nd Monday in October",
-            ),
-
-            Holiday(
-                date(year, 11, 1) + rd.relativedelta(weekday=rd.TH(4)),
-                "Thanksgiving Day",
-                indication="4th Thursday in November",
-            ),
-        ]
-        # Inauguration day
-        if UnitedStates.is_presidential_year(year - 1):
-            inauguration_day = date(year, 1, 20)
-            if inauguration_day.weekday() == SUN:
-                inauguration_day = date(year, 1, 21)
-            ind = "January 20 (or 21st if Sunday) following an election year"
-            h = Holiday(
-                inauguration_day,
-                "Inauguration Day",
-                indication=ind,
-            )
-            days.append(h)
-        return days
 
 
 class Brazil(WesternCalendar, ChristianMixin):
