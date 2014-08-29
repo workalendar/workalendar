@@ -11,13 +11,91 @@ from math import pi
 from dateutil import easter
 from lunardate import LunarDate
 from calverter import Calverter
+from dateutil import relativedelta as rd
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
+
+
+class Holiday(date):
+    """
+    A named holiday with an indicated date, name, and additional keyword
+    attributes.
+
+    >>> nyd = Holiday(date(2014, 1, 1), "New year")
+
+    But if New Year's Eve is also a holiday, and it too falls on a weekend,
+    many calendars will have that holiday fall back to the previous friday:
+
+    >>> nye = Holiday(date(2014, 12, 31), "New year's eve",
+    ...     observance_shift=dict(weekday=rd.FR(-1)))
+
+    For compatibility, a Holiday may be treated like a tuple of (date, label)
+
+    >>> nyd[0] == date(2014, 1, 1)
+    True
+    >>> nyd[1]
+    'New year'
+    >>> d, label = nyd
+    """
+
+    def __new__(cls, date, *args, **kwargs):
+        return super(Holiday, cls).__new__(
+            cls, date.year, date.month, date.day)
+
+    def __init__(self, date, name='Holiday', **kwargs):
+        self.name = name
+        vars(self).update(kwargs)
+
+    def __getitem__(self, n):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self, self.name
+        return tp[n]
+
+    def __iter__(self):
+        """
+        for compatibility as a two-tuple
+        """
+        tp = self, self.name
+        return iter(tp)
+
+    def replace(self, *args, **kwargs):
+        replaced = super(Holiday, self).replace(*args, **kwargs)
+        vars(replaced).update(vars(self))
+        return replaced
+
+    @classmethod
+    def _from_fixed_definition(cls, item):
+        """For backward compatibility, load Holiday object from an item of
+        FIXED_HOLIDAYS class property, which might be just a tuple of
+        month, day, label.
+        """
+        if isinstance(item, tuple):
+            month, day, label = item
+            any_year = 2000
+            item = Holiday(date(any_year, month, day), label)
+        return item
+
+    @classmethod
+    def _from_resolved_definition(cls, item):
+        """For backward compatibility, load Holiday object from a two-tuple
+        or existing Holiday instance.
+        """
+        if isinstance(item, tuple):
+            item = Holiday(*item)
+        return item
 
 
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
+    observance_shift = dict(weekday=rd.MO(1))
+    """
+    The shift for the observance of a holiday defined as keyword parameters to
+    a rd.relativedelta instance.
+    By default, holidays are shifted to the Monday following the weekend.
+    """
 
     def __init__(self):
         self._holidays = {}
@@ -25,10 +103,11 @@ class Calendar(object):
     def get_fixed_holidays(self, year):
         """Return the fixed days according to the FIXED_HOLIDAYS class property
         """
-        days = []
-        for month, day, label in self.FIXED_HOLIDAYS:
-            days.append((date(year, month, day), label))
-        return days
+        fixed_holidays = map(
+            Holiday._from_fixed_definition,
+            self.FIXED_HOLIDAYS,
+        )
+        return [day.replace(year=year) for day in fixed_holidays]
 
     def get_variable_days(self, year):
         return []
@@ -49,15 +128,29 @@ class Calendar(object):
             return self._holidays[year]
 
         # Here we process the holiday specific calendar
-        temp_calendar = tuple(self.get_calendar_holidays(year))
+        days = self.get_calendar_holidays(year)
+        days = map(Holiday._from_resolved_definition, days)
+        temp_calendar = tuple(days)
 
         # it is sorted
         self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
 
+    def get_observed_date(self, holiday):
+        """
+        The date the holiday is observed for this calendar. If the holiday
+        occurs on a weekend, it may be observed on another day as indicated by
+        the observance_shift.
+        """
+        # observance_shift may be overridden in the holiday itself
+        shift = getattr(holiday, 'observance_shift', self.observance_shift)
+        delta = rd.relativedelta(**shift)
+        should_shift = holiday.weekday() in self.get_weekend_days()
+        return holiday + delta if should_shift else holiday
+
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
-        return set([day for day, label in self.holidays(year)])
+        return set(self.holidays(year))
 
     def get_weekend_days(self):
         """Return a list (or a tuple) of weekdays that are *not* working days.
@@ -94,9 +187,9 @@ class Calendar(object):
         # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
-        if self.is_holiday(day, extra_holidays=extra_holidays):
+        if extra_holidays and day in extra_holidays:
             return False
-        return True
+        return not self.is_observed_holiday(day)
 
     def is_holiday(self, day, extra_holidays=None):
         """Return True if it's an holiday.
@@ -109,9 +202,13 @@ class Calendar(object):
         if extra_holidays and day in extra_holidays:
             return True
 
-        if day in self.holidays_set(day.year):
-            return True
-        return False
+        return day in self.holidays_set(day.year)
+
+    def is_observed_holiday(self, day):
+        """Return True if it's an observed holiday.
+        """
+        observed = set(map(self.get_observed_date, self.holidays(day.year)))
+        return day in observed
 
     def add_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None):
@@ -314,7 +411,8 @@ class WesternCalendar(Calendar):
     shift_new_years_day = False
 
     FIXED_HOLIDAYS = (
-        (1, 1, 'New year'),
+        Holiday(
+            date(2000, 1, 1), 'New year', indication='First day in January'),
     )
 
     def get_weekend_days(self):
