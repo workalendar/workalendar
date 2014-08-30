@@ -94,9 +94,8 @@ class Calendar(object):
         # Regular rules
         if day.weekday() in self.get_weekend_days():
             return False
-        if self.is_holiday(day, extra_holidays=extra_holidays):
-            return False
-        return True
+
+        return not self.is_holiday(day, extra_holidays=extra_holidays)
 
     def is_holiday(self, day, extra_holidays=None):
         """Return True if it's an holiday.
@@ -109,9 +108,7 @@ class Calendar(object):
         if extra_holidays and day in extra_holidays:
             return True
 
-        if day in self.holidays_set(day.year):
-            return True
-        return False
+        return day in self.holidays_set(day.year)
 
     def add_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None):
