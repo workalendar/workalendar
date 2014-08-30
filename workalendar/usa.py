@@ -3,8 +3,8 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin, Calendar
-from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
+from .core import WesternCalendar, ChristianMixin, Calendar
+from .core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
