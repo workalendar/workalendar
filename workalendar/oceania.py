@@ -1,5 +1,5 @@
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, TUE, FRI
+from .core import WesternCalendar, ChristianMixin
+from .core import MON, TUE, FRI
 from datetime import date
 
 

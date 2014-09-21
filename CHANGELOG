@@ -5,6 +5,7 @@ CHANGELOG
 ----------------
 
 - Germany calendar added, thx to @rndusr
+- Support building on systems where LANG=C (Ubuntu) #92
 
 
 0.2.0 (2014-07-15)

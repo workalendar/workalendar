@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.africa import Benin, Algeria
-from workalendar.africa import SouthAfrica, IvoryCoast
-from workalendar.africa import SaoTomeAndPrincipe, Madagascar
+from . import GenericCalendarTest
+from ..africa import Benin, Algeria
+from ..africa import SouthAfrica, IvoryCoast
+from ..africa import SaoTomeAndPrincipe, Madagascar
 
 
 class AlgeriaTest(GenericCalendarTest):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.usa import (UnitedStates, Alabama, Florida, Arkansas,
+from . import GenericCalendarTest
+from ..usa import (UnitedStates, Alabama, Florida, Arkansas,
                              Alaska, Arizona, California, Colorado,
                              Connecticut, Delaware, Georgia, Indiana,
                              Illinois, Idaho, Iowa, Kansas, Kentucky,

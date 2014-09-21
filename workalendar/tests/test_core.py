@@ -3,12 +3,12 @@ from datetime import datetime
 
 import dateutil.relativedelta as rd
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI, SAT, SUN
-from workalendar.core import Calendar, LunarCalendar, WesternCalendar
-from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
-from workalendar.core import EphemMixin
-from workalendar.core import Holiday
+from . import GenericCalendarTest
+from ..core import MON, TUE, THU, FRI, SAT, SUN
+from ..core import Calendar, LunarCalendar, WesternCalendar
+from ..core import IslamicMixin, JalaliMixin, ChristianMixin
+from ..core import EphemMixin
+from ..core import Holiday
 
 
 class CalendarTest(GenericCalendarTest):

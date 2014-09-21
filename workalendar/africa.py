@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from workalendar.core import WesternCalendar
-from workalendar.core import SUN
-from workalendar.core import IslamicMixin, ChristianMixin
+from .core import WesternCalendar
+from .core import SUN
+from .core import IslamicMixin, ChristianMixin
 
 
 class Algeria(WesternCalendar, IslamicMixin):
