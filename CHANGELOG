@@ -1,8 +1,18 @@
 CHANGELOG
 =========
 
-0.3 (unreleased)
+1.0 (2014-09-21)
 ----------------
+
+Initial release of Calendra based on Workalendar 0.2.
+
+- Adds Holiday class per `Workalendar Pull Request #72
+  <https://github.com/novapost/workalendar/pull/79>`_. Adds support for giving
+  holidays a more rich description and better resolution of observed versus
+  indicated holidays. See the pull request for detail on the motivation and
+  implementation. See the usa.UnitedStates calendar for example usage.
+
+Includes these changes slated for workalendar 0.3:
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
