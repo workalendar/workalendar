@@ -19,7 +19,7 @@ def read_relative_file(filename):
     with io.open(path, encoding='utf-8') as f:
         return f.read()
 
-NAME = 'workalendar'
+NAME = 'calendra'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
     'python-dateutil',
@@ -27,7 +27,7 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-__VERSION__ = '0.3-dev'
+__VERSION__ = '1.0'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
@@ -37,12 +37,12 @@ else:
 params = dict(
     name=NAME,
     description=DESCRIPTION,
-    packages=['workalendar'],
+    packages=['calendra'],
     version=__VERSION__,
     long_description=read_relative_file('README.rst'),
-    author='Bruno Bord',
-    author_email='bruno.bord@novapost.fr',
-    url='https://github.com/novapost/workalendar',
+    author='Jason R. Coombs',
+    author_email='jaraco@jaraco.com',
+    url='https://github.com/jaraco/calendra',
     license='MIT License',
     include_package_data=True,
     install_requires=REQUIREMENTS,

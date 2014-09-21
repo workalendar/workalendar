@@ -1,17 +1,17 @@
-=========================
-Contribute to Workalendar
-=========================
+======================
+Contribute to Calendra
+======================
 
 Use it (and test it)
 ====================
 
-If you are using ``workalendar``, you are already contributing to it. As long
+If you are using ``calendra``, you are already contributing to it. As long
 as you are able to check its result, compare the designated working days and
 holidays to the reality, and make sure these are right, you're helping.
 
 If any of the computed holidays for the country / area your are using is
 **wrong**, please report
-`it using the Github issues <https://github.com/novapost/workalendar/issues>`_.
+`it using the Github issues <https://github.com/jaraco/calendra/issues>`_.
 
 Report an issue
 ===============
@@ -19,7 +19,7 @@ Report an issue
 If you think you've found a bug you can report an issue. In order to help us
 sort this out, please follow the guidelines:
 
-* Tell us which ``workalendar`` version (master, PyPI release) you are using.
+* Tell us which ``calendra`` version (master, PyPI release) you are using.
 * Tell us which Python version you are using, and your platform.
 * Give us extensive details on the country / area Calendar, the exact date(s) that was (were) computed and the one(s) that should have been the correct result.
 * If possible, please provide us a reliable source about the designated country / area calendar, where we could effectively check that we were wrong about a date, and giving us a way to patch our code properly so we can fix the bug.
@@ -28,12 +28,12 @@ sort this out, please follow the guidelines:
 Adding new calendars
 ====================
 
-Since ``workalendar`` is mainly built around configuration variables and generic
+Since ``calendra`` is mainly built around configuration variables and generic
 methods, it's not that difficult to add a calendar to our codebase. A few
 **mandatory** steps should be observed:
 
 1. Fork the repository and create a new branch named after the calendar you want to implement,
-2. Add a test class to the workalendar test suite that checks holidays,
+2. Add a test class to the test suite that checks holidays,
 3. Implement the class using the core class APIs as much as possible. Test it until all tests pass.
 4. Make a nice pull-request we'll be glad to review and merge when it's perfect.
 
@@ -66,12 +66,12 @@ Here is a list of the holidays in *Zhraa*:
 Getting ready
 #############
 
-You'll need to install ``workalendar`` dependencies beforehand. What's great is
+You'll need to install ``calendra`` dependencies beforehand. What's great is
 that you'll use virtualenv to set it up. Or even better: ``virtualenvwrapper``.
-Just go in your working copy (cloned from github) of workalendar and type, for
+Just go in your working copy (cloned from github) of calendra and type, for
 example::
 
-    mkvirtualenv WORKALENDAR
+    mkvirtualenv CALENDRA
     pip install -e ./
 
 
@@ -79,17 +79,17 @@ Test-driven start
 #################
 
 
-Let's prepare the Zhraa class. In the ``workalendar/oceania.py`` file, add
+Let's prepare the Zhraa class. In the ``calendra/oceania.py`` file, add
 a class like this::
 
     class Zhraa(WesternCalendar):
         pass
 
 
-Now, we're building a test class. Edit the ``workalendar/tests/test_oceania.py``
+Now, we're building a test class. Edit the ``calendra/tests/test_oceania.py``
 file and add the following code::
 
-    from workalendar.oceania import Zhraa
+    from ..oceania import Zhraa
     # snip...
 
     class ZhraaTest(GenericCalendarTest):
@@ -110,7 +110,7 @@ this will fail, since we haven't implemented anything yet.
 
 Install tox using the following command::
 
-    workon WORKALENDAR
+    workon CALENDRA
     pip install tox
 
 With the ``WesternCalendar`` base class you have at least one holiday as a
