@@ -27,7 +27,6 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-__VERSION__ = '1.0'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
@@ -38,7 +37,7 @@ params = dict(
     name=NAME,
     description=DESCRIPTION,
     packages=['calendra'],
-    version=__VERSION__,
+    use_vcs_version=True,
     long_description=read_relative_file('README.rst'),
     author='Jason R. Coombs',
     author_email='jaraco@jaraco.com',
@@ -56,6 +55,9 @@ params = dict(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+    ],
+    setup_requires=[
+        'hgtools',
     ],
 )
 
