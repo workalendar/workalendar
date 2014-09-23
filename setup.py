@@ -45,7 +45,7 @@ params = dict(
     license='MIT License',
     include_package_data=True,
     install_requires=REQUIREMENTS,
-    zip_safe=False,
+    zip_safe=True,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
