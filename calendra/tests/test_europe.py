@@ -1,4 +1,5 @@
 from datetime import date
+
 from . import GenericCalendarTest
 from ..europe import CzechRepublic
 from ..europe import Finland
@@ -14,12 +15,12 @@ from ..europe import UnitedKingdom
 from ..europe import UnitedKingdomNorthernIreland
 from ..europe import EuropeanCentralBank
 from ..europe import Belgium
-from ..europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
-                                Brandenburg, Bremen, Hamburg, Hesse,
-                                MecklenburgVorpommern, LowerSaxony,
-                                NorthRhineWestphalia, RhinelandPalatinate,
-                                Saarland, Saxony, SaxonyAnhalt,
-                                SchleswigHolstein, Thuringia)
+from ..europe import (
+    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen, Hamburg,
+    Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
+    RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt, SchleswigHolstein,
+    Thuringia,
+)
 
 
 class CzechRepublicTest(GenericCalendarTest):
