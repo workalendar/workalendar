@@ -15,11 +15,11 @@ from ..europe import UnitedKingdomNorthernIreland
 from ..europe import EuropeanCentralBank
 from ..europe import Belgium
 from ..europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
-                                Brandenburg, Bremen, Hamburg, Hesse,
-                                MecklenburgVorpommern, LowerSaxony,
-                                NorthRhineWestphalia, RhinelandPalatinate,
-                                Saarland, Saxony, SaxonyAnhalt,
-                                SchleswigHolstein, Thuringia)
+                      Brandenburg, Bremen, Hamburg, Hesse,
+                      MecklenburgVorpommern, LowerSaxony,
+                      NorthRhineWestphalia, RhinelandPalatinate,
+                      Saarland, Saxony, SaxonyAnhalt,
+                      SchleswigHolstein, Thuringia)
 
 
 class CzechRepublicTest(GenericCalendarTest):

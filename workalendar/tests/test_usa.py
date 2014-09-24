@@ -2,17 +2,17 @@
 from datetime import date
 from . import GenericCalendarTest
 from ..usa import (UnitedStates, Alabama, Florida, Arkansas,
-                             Alaska, Arizona, California, Colorado,
-                             Connecticut, Delaware, Georgia, Indiana,
-                             Illinois, Idaho, Iowa, Kansas, Kentucky,
-                             Louisiana, Maine, Maryland, Massachusetts,
-                             Minnesota, Michigan, Mississippi, Missouri,
-                             Montana, Nebraska, Nevada, NewHampshire,
-                             NewJersey, NewMexico, NewYork, NorthCarolina,
-                             NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
-                             RhodeIsland, SouthCarolina, SouthDakota,
-                             Tennessee, Texas, Utah, Vermont, Virginia,
-                             Washington, WestVirginia, Wisconsin, Wyoming)
+                   Alaska, Arizona, California, Colorado,
+                   Connecticut, Delaware, Georgia, Indiana,
+                   Illinois, Idaho, Iowa, Kansas, Kentucky,
+                   Louisiana, Maine, Maryland, Massachusetts,
+                   Minnesota, Michigan, Mississippi, Missouri,
+                   Montana, Nebraska, Nevada, NewHampshire,
+                   NewJersey, NewMexico, NewYork, NorthCarolina,
+                   NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
+                   RhodeIsland, SouthCarolina, SouthDakota,
+                   Tennessee, Texas, Utah, Vermont, Virginia,
+                   Washington, WestVirginia, Wisconsin, Wyoming)
 
 
 class UnitedStatesTest(GenericCalendarTest):
