@@ -6,6 +6,9 @@ CHANGELOG
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
+- little improvement to directly return a tested value.
+- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
+  next Monday) #95
 
 
 0.2.0 (2014-07-15)
