@@ -325,16 +325,20 @@ class UnitedKingdomTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2011)
         self.assertIn(date(2011, 12, 25), holidays)  # XMas day indicated
         self.assertIn(date(2011, 12, 26), holidays)  # Boxing day
-        assert self.cal.is_observed_holiday(date(2011, 12, 26)) # XMas observ
-        assert self.cal.is_observed_holiday(date(2011, 12, 27)) # Boxing observ
+        # XMas observed
+        assert self.cal.is_observed_holiday(date(2011, 12, 26))
+        # Boxing observed
+        assert self.cal.is_observed_holiday(date(2011, 12, 27))
 
     def test_shift_2015(self):
         """
         Christmas is on a Friday and Boxing Day on a Saturday. Only Boxing Day
         should be shifted.
         """
-        assert self.cal.is_observed_holiday(date(2015, 12, 25)) # XMas observ
-        assert self.cal.is_observed_holiday(date(2015, 12, 28)) # Boxing observ
+        # XMas observed
+        assert self.cal.is_observed_holiday(date(2015, 12, 25))
+        # Boxing observed
+        assert self.cal.is_observed_holiday(date(2015, 12, 28))
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
