@@ -389,12 +389,20 @@ class ChristianMixin(Calendar):
             days.append((date(year, 11, 1), "All Saints Day"))
         if self.include_immaculate_conception:
             days.append((date(year, 12, 8), "Immaculate Conception"))
+        christmas = None
         if self.include_christmas:
-            days.append((date(year, 12, 25), "Christmas Day"))
+            christmas = Holiday(date(year, 12, 25), "Christmas Day")
+            days.append(christmas)
         if self.include_christmas_eve:
             days.append((date(year, 12, 24), "Christmas Eve"))
         if self.include_boxing_day:
-            days.append((date(year, 12, 26), self.boxing_day_label))
+            boxing_day = Holiday(
+                date(year, 12, 26),
+                self.boxing_day_label,
+                indication="Day after Christmas",
+                observe_after=christmas
+            )
+            days.append(boxing_day)
         if self.include_ascension:
             days.append((
                 self.get_ascension_thursday(year), "Ascension Thursday"))

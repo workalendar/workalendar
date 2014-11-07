@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from datetime import date, timedelta
+
+from dateutil import relativedelta as rd
+
 from .core import WesternCalendar, ChristianMixin, OrthodoxMixin
 from .core import THU, MON, FRI, SAT
+from .core import Holiday
 
 
 class CzechRepublic(WesternCalendar, ChristianMixin):
@@ -275,35 +279,25 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     shift_new_years_day = True
 
-    def get_early_may_bank_holiday(self, year):
-        return (
-            UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
-            "Early May Bank Holiday"
-        )
-
-    def get_spring_bank_holiday(self, year):
-        return (
-            UnitedKingdom.get_last_weekday_in_month(year, 5, MON),
-            "Spring Bank Holiday"
-        )
-
-    def get_late_summer_bank_holiday(self, year):
-        return (
-            UnitedKingdom.get_last_weekday_in_month(year, 8, MON),
-            "Late Summer Bank Holiday"
-        )
-
     def get_variable_days(self, year):
         days = super(UnitedKingdom, self).get_variable_days(year)
-        days.append(self.get_early_may_bank_holiday(year))
-        days.append(self.get_spring_bank_holiday(year))
-        days.append(self.get_late_summer_bank_holiday(year))
-        # Boxing day & XMas shift
-        christmas = date(year, 12, 25)
-        if christmas.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(christmas)
-            days.append((shift, "Christmas Shift"))
-            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
+        days += [
+            Holiday(
+                date(year, 5, 1) + rd.relativedelta(weekday=rd.MO(1)),
+                "Early May Bank Holiday",
+                indication="1st Monday in May",
+            ),
+            Holiday(
+                date(year, 5, 30) + rd.relativedelta(weekday=rd.MO(-1)),
+                "Spring Bank Holiday",
+                indication="Last Monday in May",
+            ),
+            Holiday(
+                date(year, 8, 31) + rd.relativedelta(weekday=rd.MO(-1)),
+                "Late Summer Bank Holiday",
+                indication="Last Monday in August",
+            ),
+        ]
         return days
 
 

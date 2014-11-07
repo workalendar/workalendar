@@ -320,13 +320,13 @@ class UnitedKingdomTest(GenericCalendarTest):
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)  # new year day
-        self.assertIn(date(2012, 1, 2), holidays)  # new year day shift
 
     def test_shift_2011(self):
         holidays = self.cal.holidays_set(2011)
-        self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
-        self.assertIn(date(2011, 12, 26), holidays)  # XMas day shift
-        self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
+        self.assertIn(date(2011, 12, 25), holidays)  # XMas day indicated
+        self.assertIn(date(2011, 12, 26), holidays)  # Boxing day
+        assert self.cal.is_observed_holiday(date(2011, 12, 26)) # XMas observ
+        assert self.cal.is_observed_holiday(date(2011, 12, 27)) # Boxing observ
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
