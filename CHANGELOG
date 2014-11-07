@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.1.2 (2014-11-07)
+------------------
+
+Fixed issues with packaging (disabled installation an zip egg and now use
+setuptools always).
+
 1.1 (2014-11-07)
 ----------------
 
