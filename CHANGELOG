@@ -6,6 +6,11 @@ CHANGELOG
 
 UnitedKingdom Calendar now uses indicated/observed Holidays.
 
+Includes these changes slated for workalendar 0.3:
+
+- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
+  next Monday) #95
+
 1.0 (2014-09-21)
 ----------------
 
@@ -21,6 +26,7 @@ Includes these changes slated for workalendar 0.3:
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
+- little improvement to directly return a tested value.
 
 
 0.2.0 (2014-07-15)
