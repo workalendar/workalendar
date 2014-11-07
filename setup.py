@@ -53,7 +53,7 @@ params = dict(
         'Programming Language :: Python :: 3.3',
     ],
     setup_requires=[
-        'hgtools',
+        'hgtools>=5',
     ],
 )
 
