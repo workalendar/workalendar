@@ -141,12 +141,20 @@ class Calendar(object):
         The date the holiday is observed for this calendar. If the holiday
         occurs on a weekend, it may be observed on another day as indicated by
         the observance_shift.
+
+        The holiday may also specify an 'observe_after' such that it is always
+        shifted after a preceding holiday. For example, Boxing day is always
+        observed after Christmas Day is observed.
         """
         # observance_shift may be overridden in the holiday itself
         shift = getattr(holiday, 'observance_shift', self.observance_shift)
         delta = rd.relativedelta(**shift)
         should_shift = holiday.weekday() in self.get_weekend_days()
-        return holiday + delta if should_shift else holiday
+        shifted = holiday + delta if should_shift else holiday
+        precedent = getattr(holiday, 'observe_after', None)
+        while precedent and shifted <= self.get_observed_date(precedent):
+            shifted += timedelta(days=1)
+        return shifted
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
