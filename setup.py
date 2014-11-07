@@ -4,13 +4,9 @@ import io
 from os.path import join, dirname, abspath
 import sys
 
+import setuptools
+
 PY2 = sys.version_info[0] == 2
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup  # NOQA
-
 
 def read_relative_file(filename):
     """Returns contents of the given file, whose path is supposed relative
@@ -62,4 +58,4 @@ params = dict(
 )
 
 if __name__ == '__main__':
-    setup(**params)
+    setuptools.setup(**params)
