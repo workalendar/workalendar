@@ -1,8 +1,8 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.asia import SouthKorea, Japan
-from workalendar.asia import Qatar
-from workalendar.asia import Taiwan
+from . import GenericCalendarTest
+from ..asia import SouthKorea, Japan
+from ..asia import Qatar
+from ..asia import Taiwan
 
 
 class SouthKoreaTest(GenericCalendarTest):

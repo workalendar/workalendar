@@ -1,16 +1,16 @@
 from datetime import date
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.oceania import Australia
-from workalendar.oceania import AustraliaCapitalTerritory
-from workalendar.oceania import AustraliaNewSouthWales
-from workalendar.oceania import AustraliaNorthernTerritory
-from workalendar.oceania import AustraliaQueensland
-from workalendar.oceania import SouthAustralia
-from workalendar.oceania import Tasmania, Hobart
-from workalendar.oceania import Victoria
-from workalendar.oceania import WesternAustralia
-from workalendar.oceania import MarshallIslands
+from . import GenericCalendarTest
+from ..oceania import Australia
+from ..oceania import AustraliaCapitalTerritory
+from ..oceania import AustraliaNewSouthWales
+from ..oceania import AustraliaNorthernTerritory
+from ..oceania import AustraliaQueensland
+from ..oceania import SouthAustralia
+from ..oceania import Tasmania, Hobart
+from ..oceania import Victoria
+from ..oceania import WesternAustralia
+from ..oceania import MarshallIslands
 
 
 class AustraliaTest(GenericCalendarTest):

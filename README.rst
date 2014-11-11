@@ -1,20 +1,27 @@
-===========
-Workalendar
-===========
+========
+Calendra
+========
 
 Overview
 ========
 
-Workalendar is a Python module that offers classes able to handle calendars,
+Calendra is a Python module that offers classes able to handle calendars,
 list legal / religious holidays and gives working-day-related computation
 functions.
 
+History
+=======
+
+Calendra is a fork of `Workalendar <https://github.com/novapost/workalendar>`_
+designed to be more extensible and introspectable, adding interfaces where
+`Workalendar is philosophically opposed for the sake of simplicity
+<https://github.com/novapost/workalendar/pull/79>`_.
 
 Status
 ======
 
-This is barely beta. Please consider this module as a work in progres.
-
+The project is stable and in production use. Calendra follows the principles
+of `semver <https://semver.org>`_ for released verisons.
 
 Usage sample
 ============
@@ -55,7 +62,7 @@ Tests
 
 Travis status:
 
-.. image:: https://api.travis-ci.org/novapost/workalendar.png
+.. image:: https://api.travis-ci.org/jaraco/calendra.png
 
 
 To run test, just install tox with ``pip install tox`` and run::
@@ -135,8 +142,8 @@ the official data provided by the adequate authorities.
 Contributing
 ============
 
-Please read our `CONTRIBUTING.rst <https://github.com/novapost/workalendar/blob/master/CONTRIBUTING.rst>`_
-document to discover how you can contribute to ``workalendar``. Pull-requests
+Please read our `CONTRIBUTING.rst <https://github.com/jaraco/calandra/blob/master/CONTRIBUTING.rst>`_
+document to discover how you can contribute to ``calendra``. Pull-requests
 are very welcome.
 
 License

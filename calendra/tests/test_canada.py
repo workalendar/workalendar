@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.canada import Canada, Ontario, Quebec, BritishColumbia
-from workalendar.canada import Alberta, Saskatchewan, Manitoba, NewBrunswick
-from workalendar.canada import NovaScotia, PrinceEdwardIsland, Newfoundland
-from workalendar.canada import Yukon, NorthwestTerritories, Nunavut
+from . import GenericCalendarTest
+from ..canada import Canada, Ontario, Quebec, BritishColumbia
+from ..canada import Alberta, Saskatchewan, Manitoba, NewBrunswick
+from ..canada import NovaScotia, PrinceEdwardIsland, Newfoundland
+from ..canada import Yukon, NorthwestTerritories, Nunavut
 
 
 class CanadaTest(GenericCalendarTest):

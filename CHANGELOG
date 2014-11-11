@@ -1,14 +1,38 @@
 CHANGELOG
 =========
 
-0.3 (unreleased)
+1.1.2 (2014-11-07)
+------------------
+
+Fixed issues with packaging (disabled installation an zip egg and now use
+setuptools always).
+
+1.1 (2014-11-07)
 ----------------
+
+UnitedKingdom Calendar now uses indicated/observed Holidays.
+
+Includes these changes slated for workalendar 0.3:
+
+- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
+  next Monday) #95
+
+1.0 (2014-09-21)
+----------------
+
+Initial release of Calendra based on Workalendar 0.2.
+
+- Adds Holiday class per `Workalendar Pull Request #72
+  <https://github.com/novapost/workalendar/pull/79>`_. Adds support for giving
+  holidays a more rich description and better resolution of observed versus
+  indicated holidays. See the pull request for detail on the motivation and
+  implementation. See the usa.UnitedStates calendar for example usage.
+
+Includes these changes slated for workalendar 0.3:
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
 - little improvement to directly return a tested value.
-- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
-  next Monday) #95
 
 
 0.2.0 (2014-07-15)

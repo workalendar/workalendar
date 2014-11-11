@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.africa import Benin, Algeria
-from workalendar.africa import SouthAfrica, IvoryCoast
-from workalendar.africa import SaoTomeAndPrincipe, Madagascar
+from . import GenericCalendarTest
+from ..africa import Benin, Algeria
+from ..africa import SouthAfrica, IvoryCoast
+from ..africa import SaoTomeAndPrincipe, Madagascar
 
 
 class AlgeriaTest(GenericCalendarTest):
@@ -49,6 +49,7 @@ class SouthAfricaTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
+
         self.assertIn(date(2013, 1, 1), holidays)  # new year
         self.assertIn(date(2013, 3, 21), holidays)  # human rights day
         # good friday, becoming family day
@@ -56,18 +57,28 @@ class SouthAfricaTest(GenericCalendarTest):
         self.assertIn(date(2013, 4, 27), holidays)  # freedom day
         self.assertIn(date(2013, 5, 1), holidays)  # labour day
         self.assertIn(date(2013, 6, 16), holidays)  # youth day
-        self.assertIn(date(2013, 6, 17), holidays)  # youth day - shift
+        self.assertNotIn(date(2013, 6, 17), holidays)  # youth day - observed
         self.assertIn(date(2013, 8, 9), holidays)  # national women's day
         self.assertIn(date(2013, 9, 24), holidays)  # heritage day
         self.assertIn(date(2013, 12, 16), holidays)  # day of reconciliation
         self.assertIn(date(2013, 12, 25), holidays)  # christmas
         self.assertIn(date(2013, 12, 26), holidays)  # day of goodwill
 
+        # test that Youth Day is observed on 17-Jun and is not a working day
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2013, 6, 17), observed)
+        self.assertFalse(self.cal.is_working_day(date(2013, 6, 17)))
+
     def test_year_2014(self):
         # test shifting
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 27), holidays)  # freedom day
-        self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
+        self.assertNotIn(date(2014, 4, 28), holidays)  # freedom day - observ
+
+        # test that Freedom Day is observed on 28-Apr and is not a working day
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2014, 4, 28), observed)
+        self.assertFalse(self.cal.is_working_day(date(2014, 4, 28)))
 
 
 class Madagascar(GenericCalendarTest):

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.america import Brazil, BrazilSaoPauloState
-from workalendar.america import BrazilSaoPauloCity
-from workalendar.america import Mexico, Chile, Panama
+from . import GenericCalendarTest
+from ..america import Brazil, BrazilSaoPauloState
+from ..america import BrazilSaoPauloCity
+from ..america import Mexico, Chile, Panama
 
 
 class BrazilTest(GenericCalendarTest):

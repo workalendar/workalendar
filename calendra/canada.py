@@ -3,8 +3,8 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin, Calendar
-from workalendar.core import SUN, MON, SAT
+from .core import WesternCalendar, ChristianMixin, Calendar
+from .core import SUN, MON, SAT
 
 
 class Canada(WesternCalendar, ChristianMixin):

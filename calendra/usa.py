@@ -3,8 +3,9 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin, Calendar
-from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
+from dateutil import relativedelta as rd
+from .core import WesternCalendar, ChristianMixin, Calendar, Holiday
+from .core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
@@ -12,8 +13,8 @@ NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 4, 'Independence Day'),
-        (11, 11, 'Veterans Day'),
+        Holiday(date(2000, 7, 4), 'Independence Day', indication='July 4'),
+        Holiday(date(2000, 11, 11), 'Veterans Day', indication='Nov 11'),
     )
 
     @staticmethod
@@ -24,30 +25,54 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
         days += [
-            (UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3),
-                'Martin Luther King, Jr. Day'),
+            Holiday(
+                date(year, 1, 1) + rd.relativedelta(weekday=rd.MO(3)),
+                "Martin Luther King, Jr. Day",
+                indication="3rd Monday in January",
+            ),
 
-            (UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3),
-                "Washington's Birthday"),
+            Holiday(
+                date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(3)),
+                "Washington's Birthday",
+                indication="3rd Monday in February",
+            ),
 
-            (UnitedStates.get_last_weekday_in_month(year, 5, MON),
-                "Memorial Day"),
+            Holiday(
+                date(year, 5, 31) + rd.relativedelta(weekday=rd.MO(-1)),
+                "Memorial Day",
+                indication="Last Monday in May",
+            ),
 
-            (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
-                "Labor Day"),
+            Holiday(
+                date(year, 9, 1) + rd.relativedelta(weekday=rd.MO(1)),
+                "Labor Day",
+                indication="1st Monday in September",
+            ),
 
-            (UnitedStates.get_nth_weekday_in_month(year, 10, MON, 2),
-                "Colombus Day"),
+            Holiday(
+                date(year, 10, 1) + rd.relativedelta(weekday=rd.MO(2)),
+                "Colombus Day",
+                indication="2nd Monday in October",
+            ),
 
-            (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
-                "Thanksgiving Day"),
+            Holiday(
+                date(year, 11, 1) + rd.relativedelta(weekday=rd.TH(4)),
+                "Thanksgiving Day",
+                indication="4th Thursday in November",
+            ),
         ]
         # Inauguration day
         if UnitedStates.is_presidential_year(year - 1):
             inauguration_day = date(year, 1, 20)
             if inauguration_day.weekday() == SUN:
                 inauguration_day = date(year, 1, 21)
-            days.append((inauguration_day, "Inauguration Day"))
+            ind = "January 20 (or 21st if Sunday) following an election year"
+            h = Holiday(
+                inauguration_day,
+                "Inauguration Day",
+                indication=ind,
+            )
+            days.append(h)
         return days
 
 

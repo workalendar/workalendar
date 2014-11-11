@@ -1,25 +1,26 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.europe import CzechRepublic
-from workalendar.europe import Finland
-from workalendar.europe import Sweden
-from workalendar.europe import France, FranceAlsaceMoselle
-from workalendar.europe import Greece
-from workalendar.europe import Hungary
-from workalendar.europe import Iceland
-from workalendar.europe import Italy
-from workalendar.europe import Norway
-from workalendar.europe import Poland
-from workalendar.europe import UnitedKingdom
-from workalendar.europe import UnitedKingdomNorthernIreland
-from workalendar.europe import EuropeanCentralBank
-from workalendar.europe import Belgium
-from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
-                                Brandenburg, Bremen, Hamburg, Hesse,
-                                MecklenburgVorpommern, LowerSaxony,
-                                NorthRhineWestphalia, RhinelandPalatinate,
-                                Saarland, Saxony, SaxonyAnhalt,
-                                SchleswigHolstein, Thuringia)
+
+from . import GenericCalendarTest
+from ..europe import CzechRepublic
+from ..europe import Finland
+from ..europe import Sweden
+from ..europe import France, FranceAlsaceMoselle
+from ..europe import Greece
+from ..europe import Hungary
+from ..europe import Iceland
+from ..europe import Italy
+from ..europe import Norway
+from ..europe import Poland
+from ..europe import UnitedKingdom
+from ..europe import UnitedKingdomNorthernIreland
+from ..europe import EuropeanCentralBank
+from ..europe import Belgium
+from ..europe import (
+    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen, Hamburg,
+    Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
+    RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt, SchleswigHolstein,
+    Thuringia,
+)
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -319,19 +320,25 @@ class UnitedKingdomTest(GenericCalendarTest):
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)  # new year day
-        self.assertIn(date(2012, 1, 2), holidays)  # new year day shift
 
     def test_shift_2011(self):
         holidays = self.cal.holidays_set(2011)
-        self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
-        self.assertIn(date(2011, 12, 26), holidays)  # XMas day shift
-        self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
+        self.assertIn(date(2011, 12, 25), holidays)  # XMas day indicated
+        self.assertIn(date(2011, 12, 26), holidays)  # Boxing day
+        # XMas observed
+        assert self.cal.is_observed_holiday(date(2011, 12, 26))
+        # Boxing observed
+        assert self.cal.is_observed_holiday(date(2011, 12, 27))
 
     def test_shift_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 12, 25), holidays)  # Christmas it's friday
-        self.assertIn(date(2015, 12, 26), holidays)  # Boxing day it's saturday
-        self.assertIn(date(2015, 12, 28), holidays)  # Boxing day shift
+        """
+        Christmas is on a Friday and Boxing Day on a Saturday. Only Boxing Day
+        should be shifted.
+        """
+        # XMas observed
+        assert self.cal.is_observed_holiday(date(2015, 12, 25))
+        # Boxing observed
+        assert self.cal.is_observed_holiday(date(2015, 12, 28))
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):

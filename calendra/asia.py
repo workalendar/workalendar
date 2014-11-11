@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from datetime import timedelta
-from workalendar.core import LunarCalendar, WesternCalendar, Calendar
-from workalendar.core import MON, FRI, SAT, IslamicMixin, EphemMixin
+from .core import LunarCalendar, WesternCalendar, Calendar
+from .core import MON, FRI, SAT, IslamicMixin, EphemMixin
 
 
 class SouthKorea(LunarCalendar):
