@@ -84,7 +84,7 @@ class Finland(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
-        (12, 6, "Labour Day"),
+        (12, 6, "Independence Day"),
     )
 
     def get_midsummer_eve(self, year):
