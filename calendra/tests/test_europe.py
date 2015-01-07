@@ -131,6 +131,15 @@ class FinlandTest(GenericCalendarTest):
         self.assertIn(date(2014, 6, 21), holidays)  # midsummer day
         self.assertIn(date(2014, 11, 1), holidays)  # all saints (special)
 
+    def test_holidays_not_shifted(self):
+        """
+        Holidays should not be shifted for Finland.
+        """
+        holidays = self.cal.holidays_set(2014)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2014, 12, 6), observed)
+        self.assertTrue(self.cal.is_working_day(date(2014, 12, 8)))
+
 
 class FranceTest(GenericCalendarTest):
 
