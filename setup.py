@@ -54,6 +54,10 @@ params = dict(
     ],
     setup_requires=[
         'hgtools>=5',
+        'pytest-runner',
+    ],
+    tests_require=[
+        'pytest',
     ],
 )
 
