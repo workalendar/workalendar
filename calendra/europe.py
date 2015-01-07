@@ -87,6 +87,8 @@ class Finland(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day"
 
+    observance_shift = None
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (12, 6, "Independence Day"),
