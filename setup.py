@@ -59,6 +59,7 @@ params = dict(
     tests_require=[
         'pytest',
         'pytest-cov',
+        'pytest-pep8',
     ],
 )
 
