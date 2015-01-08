@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import io
 from os.path import join, dirname, abspath
 import sys
@@ -7,6 +7,7 @@ import sys
 import setuptools
 
 PY2 = sys.version_info[0] == 2
+
 
 def read_relative_file(filename):
     """Returns contents of the given file, whose path is supposed relative
