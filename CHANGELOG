@@ -4,7 +4,6 @@ CHANGELOG
 0.3 (unreleased)
 ----------------
 
-- Fix Belgian National Day title
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
 - little improvement to directly return a tested value.
@@ -12,6 +11,8 @@ CHANGELOG
   next Monday) #95
 - BUGFIX: Renaming the Finnish "Independance Day" #101 (thx to
   @mikko-ahlroth-vincit)
+- BUGFIX: Renaming Showa Day. "ō is not romji" #100 (thx @shinriyo)
+- BUGFIX: Belgian National Day title #99 (thx @laulaz)
 
 
 0.2.0 (2014-07-15)
