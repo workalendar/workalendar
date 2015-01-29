@@ -207,6 +207,15 @@ class MockCalendarTest(GenericCalendarTest):
             self.cal.add_working_days(day, -7),
             date(self.year - 1, 12, 26)
         )
+        self.assertEquals(
+            self.cal.sub_working_days(day, 7),
+            date(self.year - 1, 12, 26)
+        )
+        # Negative argument to sub_working_days -> converted to positive.
+        self.assertEquals(
+            self.cal.sub_working_days(day, -7),
+            date(self.year - 1, 12, 26)
+        )
 
 
 class IslamicMixinTest(GenericCalendarTest):
