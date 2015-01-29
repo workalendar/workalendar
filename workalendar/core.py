@@ -125,8 +125,10 @@ class Calendar(object):
         """
         days = 0
         temp_day = day
+        day_added = 1 if delta >= 0 else -1
+        delta = abs(delta)
         while days < delta:
-            temp_day = temp_day + timedelta(days=1)
+            temp_day = temp_day + timedelta(days=day_added)
             if self.is_working_day(temp_day,
                                    extra_working_days=extra_working_days,
                                    extra_holidays=extra_holidays):
