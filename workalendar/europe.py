@@ -349,7 +349,7 @@ class Belgium(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
-        (7, 21, "Labour Day"),
+        (7, 21, "National Day"),
         (11, 11, "Armistice of 1918"),
     )
 

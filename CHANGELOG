@@ -4,6 +4,7 @@ CHANGELOG
 0.3 (unreleased)
 ----------------
 
+- Fix Belgian National Day title
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
 - little improvement to directly return a tested value.
