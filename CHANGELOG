@@ -9,6 +9,8 @@ CHANGELOG
 - little improvement to directly return a tested value.
 - BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
   next Monday) #95
+- BUGFIX: Renaming the Finnish "Independance Day" #101 (thx to
+  @mikko-ahlroth-vincit)
 
 
 0.2.0 (2014-07-15)
