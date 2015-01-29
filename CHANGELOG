@@ -7,6 +7,8 @@ CHANGELOG
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
 - little improvement to directly return a tested value.
+- ``delta`` argument for ``add_working_days()`` can be negative. added a
+  ``sub_working_days()`` method that computes working days backwards.
 - BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
   next Monday) #95
 - BUGFIX: Renaming the Finnish "Independance Day" #101 (thx to
