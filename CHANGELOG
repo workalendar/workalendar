@@ -1,8 +1,8 @@
 CHANGELOG
 =========
 
-0.3 (unreleased)
-----------------
+0.3.0 (2015-01-30)
+------------------
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
