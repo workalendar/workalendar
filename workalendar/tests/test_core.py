@@ -1,10 +1,10 @@
 from datetime import date
 from datetime import datetime
-from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI
-from workalendar.core import Calendar, LunarCalendar, WesternCalendar
-from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
-from workalendar.core import EphemMixin
+from . import GenericCalendarTest
+from ..core import MON, TUE, THU, FRI
+from ..core import Calendar, LunarCalendar, WesternCalendar
+from ..core import IslamicMixin, JalaliMixin, ChristianMixin
+from ..core import EphemMixin
 
 
 class CalendarTest(GenericCalendarTest):

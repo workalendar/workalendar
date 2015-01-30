@@ -1,25 +1,25 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.europe import CzechRepublic
-from workalendar.europe import Finland
-from workalendar.europe import Sweden
-from workalendar.europe import France, FranceAlsaceMoselle
-from workalendar.europe import Greece
-from workalendar.europe import Hungary
-from workalendar.europe import Iceland
-from workalendar.europe import Italy
-from workalendar.europe import Norway
-from workalendar.europe import Poland
-from workalendar.europe import UnitedKingdom
-from workalendar.europe import UnitedKingdomNorthernIreland
-from workalendar.europe import EuropeanCentralBank
-from workalendar.europe import Belgium
-from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
-                                Brandenburg, Bremen, Hamburg, Hesse,
-                                MecklenburgVorpommern, LowerSaxony,
-                                NorthRhineWestphalia, RhinelandPalatinate,
-                                Saarland, Saxony, SaxonyAnhalt,
-                                SchleswigHolstein, Thuringia)
+from . import GenericCalendarTest
+from ..europe import CzechRepublic
+from ..europe import Finland
+from ..europe import Sweden
+from ..europe import France, FranceAlsaceMoselle
+from ..europe import Greece
+from ..europe import Hungary
+from ..europe import Iceland
+from ..europe import Italy
+from ..europe import Norway
+from ..europe import Poland
+from ..europe import UnitedKingdom
+from ..europe import UnitedKingdomNorthernIreland
+from ..europe import EuropeanCentralBank
+from ..europe import Belgium
+from ..europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
+                      Brandenburg, Bremen, Hamburg, Hesse,
+                      MecklenburgVorpommern, LowerSaxony,
+                      NorthRhineWestphalia, RhinelandPalatinate,
+                      Saarland, Saxony, SaxonyAnhalt,
+                      SchleswigHolstein, Thuringia)
 
 
 class CzechRepublicTest(GenericCalendarTest):

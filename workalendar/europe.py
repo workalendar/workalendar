@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin, OrthodoxMixin
-from workalendar.core import THU, MON, FRI, SAT
+from .core import WesternCalendar, ChristianMixin, OrthodoxMixin
+from .core import THU, MON, FRI, SAT
 
 
 class CzechRepublic(WesternCalendar, ChristianMixin):
