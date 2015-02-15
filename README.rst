@@ -29,7 +29,7 @@ Usage sample
 .. code-block:: python
 
     >>> from datetime import date
-    >>> from workalendar.europe import France
+    >>> from calendra.europe import France
     >>> cal = France()
     >>> cal.holidays(2012)
     [(datetime.date(2012, 1, 1), 'New year'),
