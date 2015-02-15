@@ -223,6 +223,10 @@ class Calendar(object):
                          extra_working_days=None, extra_holidays=None):
         """Add `delta` working days to the date.
 
+        the ``delta`` parameter might be positive or negative. If it's
+        negative, you may want to use the ``sub_working_days()`` method with
+        a positive ``delta`` argument.
+
         By providing ``extra_working_days``, you'll state that these dates
         **are** working days.
 
@@ -234,13 +238,39 @@ class Calendar(object):
         """
         days = 0
         temp_day = day
+        day_added = 1 if delta >= 0 else -1
+        delta = abs(delta)
         while days < delta:
-            temp_day = temp_day + timedelta(days=1)
+            temp_day = temp_day + timedelta(days=day_added)
             if self.is_working_day(temp_day,
                                    extra_working_days=extra_working_days,
                                    extra_holidays=extra_holidays):
                 days += 1
         return temp_day
+
+    def sub_working_days(self, day, delta,
+                         extra_working_days=None, extra_holidays=None):
+        """
+        Substract `delta` working days to the date.
+
+        This method is a shortcut / helper. Users may want to use either::
+
+            cal.add_working_days(my_date, -7)
+            cal.sub_working_days(my_date, 7)
+
+        The other parameters are to be used exactly as in the
+        ``add_working_days`` method.
+
+        A negative ``delta`` argument will be converted into its absolute
+        value. Hence, the two following calls are equivalent::
+
+            cal.sub_working_days(my_date, -7)
+            cal.sub_working_days(my_date, 7)
+
+        """
+        delta = abs(delta)
+        return self.add_working_days(
+            day, -delta, extra_working_days, extra_holidays)
 
     def find_following_working_day(self, day):
         "Looks for the following working day"

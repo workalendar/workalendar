@@ -204,6 +204,23 @@ class MockCalendarTest(GenericCalendarTest):
         self.assertFalse(
             self.cal.is_working_day(datetime(2014, 1, 1)))
 
+    def test_add_working_days_backwards(self):
+        day = date(self.year, 1, 3)
+        # since this calendar has no weekends, we'll just have a 1-day-shift
+        self.assertEquals(
+            self.cal.add_working_days(day, -7),
+            date(self.year - 1, 12, 26)
+        )
+        self.assertEquals(
+            self.cal.sub_working_days(day, 7),
+            date(self.year - 1, 12, 26)
+        )
+        # Negative argument to sub_working_days -> converted to positive.
+        self.assertEquals(
+            self.cal.sub_working_days(day, -7),
+            date(self.year - 1, 12, 26)
+        )
+
 
 class SimpleObservanceCalendar(Calendar):
     """

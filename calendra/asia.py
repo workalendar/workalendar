@@ -40,7 +40,7 @@ class Japan(WesternCalendar, EphemMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 11, "Foundation Day"),
-        (4, 29, "Shōwa Day"),
+        (4, 29, "Showa Day"),
         (5, 3, "Constitution Memorial Day"),
         (5, 4, "Greenery Day"),
         (5, 5, "Children's Day"),

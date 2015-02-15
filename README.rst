@@ -49,6 +49,9 @@ Usage sample
     False
     >>> cal.is_working_day(date(2012, 12, 26))
     True
+    >>> cal.add_working_days(date(2012, 12, 23), 5)  # 5 working days after Xmas
+    datetime.date(2012, 12, 31)
+
 
 External dependencies
 =====================
