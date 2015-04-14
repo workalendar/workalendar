@@ -24,12 +24,8 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
     'more_itertools',
+    'ephem',
 ]
-
-if PY2:
-    REQUIREMENTS.append('pyephem')
-else:
-    REQUIREMENTS.append('ephem')
 
 params = dict(
     name=NAME,
