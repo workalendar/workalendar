@@ -23,6 +23,7 @@ REQUIREMENTS = [
     'lunardate',
     'pytz',
     'pyCalverter',
+    'more_itertools',
 ]
 
 if PY2:

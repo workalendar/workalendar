@@ -13,7 +13,12 @@ NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        Holiday(date(2000, 7, 4), 'Independence Day', indication='July 4'),
+        Holiday(
+            date(2000, 7, 4),
+            'Independence Day',
+            indication='July 4',
+            observance_shift=Holiday.nearest_weekday,
+        ),
         Holiday(date(2000, 11, 11), 'Veterans Day', indication='Nov 11'),
     )
 

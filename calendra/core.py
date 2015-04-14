@@ -3,6 +3,7 @@
 import warnings
 import ephem
 import pytz
+import itertools
 
 from calendar import monthrange
 from datetime import date, timedelta, datetime
@@ -12,6 +13,7 @@ from dateutil import easter
 from lunardate import LunarDate
 from calverter import Calverter
 from dateutil import relativedelta as rd
+from more_itertools import recipes
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -64,6 +66,22 @@ class Holiday(date):
         replaced = super(Holiday, self).replace(*args, **kwargs)
         vars(replaced).update(vars(self))
         return replaced
+
+    def nearest_weekday(self, calendar):
+        """
+        Return the nearest weekday to self.
+        """
+        weekend_days = calendar.get_weekend_days()
+        deltas = (timedelta(n) for n in itertools.count())
+        candidates = recipes.flatten(
+            (self - delta, self + delta)
+            for delta in deltas
+        )
+        matches = (
+            day for day in candidates
+            if day.weekday() not in weekend_days
+        )
+        return next(matches)
 
     @classmethod
     def _from_fixed_definition(cls, item):
@@ -148,6 +166,8 @@ class Calendar(object):
         """
         # observance_shift may be overridden in the holiday itself
         shift = getattr(holiday, 'observance_shift', self.observance_shift)
+        if callable(shift):
+            return shift(holiday, self)
         shift = shift or {}
         delta = rd.relativedelta(**shift)
         should_shift = holiday.weekday() in self.get_weekend_days()
