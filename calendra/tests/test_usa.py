@@ -35,6 +35,14 @@ class UnitedStatesTest(GenericCalendarTest):
         """
         Independence Day should shift to the nearest weekday.
         """
+        holidays = self.cal.holidays_set(2010)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2010, 7, 5), observed)
+
+        holidays = self.cal.holidays_set(2011)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2011, 7, 4), observed)
+
         holidays = self.cal.holidays_set(2015)
         observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2015, 7, 3), observed)
