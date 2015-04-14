@@ -31,6 +31,14 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 14), holidays)  # Colombus
         self.assertIn(date(2013, 11, 28), holidays)  # Thanskgiving
 
+    def test_independence_day_nearest_weekday(self):
+        """
+        Independence Day should shift to the nearest weekday.
+        """
+        holidays = self.cal.holidays_set(2015)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2015, 7, 3), observed)
+
     def test_presidential_year(self):
         self.assertTrue(UnitedStates.is_presidential_year(2012))
         self.assertFalse(UnitedStates.is_presidential_year(2013))
