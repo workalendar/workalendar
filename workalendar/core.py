@@ -233,6 +233,7 @@ class ChristianMixin(Calendar):
     include_clean_monday = False
     include_annunciation = False
     include_ash_wednesday = False
+    include_palm_sunday = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
@@ -255,6 +256,10 @@ class ChristianMixin(Calendar):
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
         return sunday - timedelta(days=46)
+
+    def get_palm_sunday(self, year):
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=7)
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -311,6 +316,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
             days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
+        if self.include_palm_sunday:
+            days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
