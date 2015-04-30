@@ -83,6 +83,12 @@ class Chile(WesternCalendar, ChristianMixin):
         return days
 
 
+class Colombia(WesternCalendar, ChristianMixin):
+
+    def get_variable_days(self, year):
+        return []
+
+
 class Mexico(WesternCalendar, ChristianMixin):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

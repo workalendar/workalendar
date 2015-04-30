@@ -3,6 +3,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import Brazil, BrazilSaoPauloState
 from workalendar.america import BrazilSaoPauloCity
+from workalendar.america import Colombia
 from workalendar.america import Mexico, Chile, Panama
 
 
@@ -109,6 +110,34 @@ class MexicoTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2021)
         # December 25th, 2022 is a saturday, so we shift to friday
         self.assertIn(date(2021, 12, 24), holidays)
+
+
+class ColombiaTest(GenericCalendarTest):
+    cal_class = Colombia
+
+    def test_holidays_2015(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 1, 12), holidays)
+        self.assertIn(date(2014, 3, 23), holidays)
+        self.assertIn(date(2014, 3, 29), holidays)
+        self.assertIn(date(2014, 4, 2), holidays)
+        self.assertIn(date(2014, 4, 3), holidays)
+        self.assertIn(date(2014, 4, 5), holidays)
+        self.assertIn(date(2014, 5, 1), holidays)
+        self.assertIn(date(2014, 5, 18), holidays)
+        self.assertIn(date(2014, 6, 8), holidays)
+        self.assertIn(date(2014, 6, 15), holidays)
+        self.assertIn(date(2014, 6, 29), holidays)
+        self.assertIn(date(2014, 7, 20), holidays)
+        self.assertIn(date(2014, 8, 7), holidays)
+        self.assertIn(date(2014, 8, 17), holidays)
+        self.assertIn(date(2014, 10, 12), holidays)
+        self.assertIn(date(2014, 11, 2), holidays)
+        self.assertIn(date(2014, 11, 16), holidays)
+        self.assertIn(date(2014, 12, 8), holidays)
+        self.assertIn(date(2014, 12, 25), holidays)
+        self.assertEqual(len(holidays), 21)
 
 
 class PanamaTest(GenericCalendarTest):
