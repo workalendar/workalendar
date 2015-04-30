@@ -146,7 +146,8 @@ class Colombia(WesternCalendar, ChristianMixin):
             (self.get_assumption(year), "Assumption of Mary to Heaven"),
             (self.get_race_day(year), "Race Day"),
             (self.get_all_saints(year), "All Saints"),
-            (self.get_cartagena_independence(year), "Cartagena's Independence"),
+            (self.get_cartagena_independence(year),
+                "Cartagena's Independence"),
         ])
 
         return days

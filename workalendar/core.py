@@ -212,7 +212,8 @@ class Calendar(object):
 
     @staticmethod
     def get_first_weekday_after(day, weekday):
-        """Get the first weekday after a given day. If the day is the same weekday, the same day will be returned.
+        """Get the first weekday after a given day. If the day is the same
+        weekday, the same day will be returned.
 
         >>> # the first monday after Apr 1 2015
         >>> Calendar.get_first_weekday_after(date(2015, 4, 1), 0)
