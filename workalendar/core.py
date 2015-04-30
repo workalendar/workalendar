@@ -210,6 +210,22 @@ class Calendar(object):
             day = day - timedelta(days=1)
         return day
 
+    @staticmethod
+    def get_first_weekday_after(day, weekday):
+        """Get the first weekday after a given day. If the day is the same weekday, the same day will be returned.
+
+        >>> # the first monday after Apr 1 2015
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), 0)
+        datetime.date(2015, 4, 6)
+
+        >>> # the first tuesday after Apr 14 2015
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), 1)
+        datetime.date(2015, 4, 14)
+        """
+        day_delta = (day.weekday() - weekday) % 7
+        day = day + timedelta(days=day_delta)
+        return day
+
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
