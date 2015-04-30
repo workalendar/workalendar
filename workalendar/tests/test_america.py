@@ -103,7 +103,7 @@ class ColombiaTest(GenericCalendarTest):
         self.assertIn(date(2015, 11, 16), holidays)
         self.assertIn(date(2015, 12, 8), holidays)
         self.assertIn(date(2015, 12, 25), holidays)
-        self.assertEqual(len(holidays), 21)
+        self.assertEqual(len(holidays), 20)
 
 
 class MexicoTest(GenericCalendarTest):
