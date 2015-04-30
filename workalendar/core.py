@@ -222,7 +222,7 @@ class Calendar(object):
         >>> Calendar.get_first_weekday_after(date(2015, 4, 14), 1)
         datetime.date(2015, 4, 14)
         """
-        day_delta = (day.weekday() - weekday) % 7
+        day_delta = (weekday - day.weekday()) % 7
         day = day + timedelta(days=day_delta)
         return day
 
