@@ -95,6 +95,7 @@ America
 
 * Brazil (incl. São Paulo state and city)
 * Chile
+* Colombia
 * Mexico
 * Panama
 * United States of America (including state holidays)
