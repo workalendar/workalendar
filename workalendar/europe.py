@@ -22,6 +22,29 @@ class CzechRepublic(WesternCalendar, ChristianMixin):
     )
 
 
+class Denmark(WesternCalendar, ChristianMixin):
+    "Denmark"
+    include_good_friday = True
+    include_easter_sunday = True
+    include_easter_monday = True
+    include_ascension = True
+    include_whit_sunday = True
+    whit_sunday_label = "Pentecost Sunday"
+    include_whit_monday = True
+    whit_monday_label = "Pentecost Monday"
+    include_boxing_day = True
+    boxing_day_label = "Second Day of Christmas"
+
+    include_holy_thursday = True
+    include_christmas_eve = True
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (5, 1, "Labour Day"),
+        (6, 5, "Constitution Day"),
+        (12, 31, "New Year's Eve")
+    )
+
+
 class Sweden(WesternCalendar, ChristianMixin):
     "Sweden"
     include_epiphany = True
