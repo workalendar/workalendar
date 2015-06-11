@@ -33,6 +33,22 @@ class AustraliaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 4, 26), holidays)
 
+    def test_oceania_shift_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        # Christmas day is on sunday in 2016
+        # Boxing day is on 26th
+        self.assertIn(date(2016, 12, 26), holidays)
+        # Boxing day shift on 27th
+        self.assertIn(date(2016, 12, 27), holidays)
+
+    def test_oceania_shift_2009(self):
+        holidays = self.cal.holidays_set(2009)
+        # Boxing day is on saturday in 2009
+        # Boxing day is on 26th
+        self.assertIn(date(2009, 12, 26), holidays)
+        # Boxing day shift on 28th
+        self.assertIn(date(2009, 12, 28), holidays)
+
 
 class AustraliaCapitalTerritoryTest(AustraliaTest):
     cal_class = AustraliaCapitalTerritory
