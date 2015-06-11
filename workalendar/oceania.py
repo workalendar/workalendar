@@ -1,6 +1,6 @@
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import MON, TUE, FRI
-from datetime import date
+from datetime import date, timedelta
 
 
 class Australia(WesternCalendar, ChristianMixin):
@@ -9,6 +9,7 @@ class Australia(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_queens_birthday = False
     include_labour_day_october = False
+    include_boxing_day = True
     # Shall we shift Anzac Day?
     shift_anzac_day = True
 
@@ -66,6 +67,17 @@ class Australia(WesternCalendar, ChristianMixin):
             days.append(self.get_queens_birthday(year))
         if self.include_labour_day_october:
             days.append(self.get_labour_day_october(year))
+
+        christmas = date(year, 12, 25)
+        boxing_day = date(year, 12, 26)
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            days.append((shift, "Christmas Shift"))
+            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
+        elif boxing_day.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(boxing_day)
+            days.append((shift, "Boxing Day Shift"))
+
         return days
 
 
@@ -80,9 +92,12 @@ class AustraliaCapitalTerritory(Australia):
         # Since this day is picked unsing the school year calendar, there's no
         # mathematical way yet to provide it surely
 
-        # TODO: Family & Community Day was celebrated on the first Tuesday of
+        # Family & Community Day was celebrated on the first Tuesday of
         # November in 2007, 2008 and 2009
-        if year == 2010:
+        if year in (2007, 2008, 2009):
+            day = AustraliaCapitalTerritory.get_nth_weekday_in_month(
+                year, 11, TUE)
+        elif year == 2010:
             day = date(2010, 9, 27)
         elif year == 2011:
             day = date(2011, 10, 10)
