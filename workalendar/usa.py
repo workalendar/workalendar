@@ -64,7 +64,7 @@ class FloatToNearestWeekdayMixin(Calendar):
                 new_holidays.append((holiday[0] + timedelta(days=1),
                                      holiday[1] + " (Observed)"))
 
-        if year > 0 and date(year+1, 1, 1).weekday() == SAT:
+        if year > 0 and date(year + 1, 1, 1).weekday() == SAT:
             new_holidays.append((date(year, 12, 31,),
                                  "New Years Day (Observed)"))
 
