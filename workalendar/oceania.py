@@ -92,6 +92,10 @@ class AustraliaCapitalTerritory(Australia):
             day = date(2013, 9, 30)
         elif year == 2014:
             day = date(2014, 9, 29)
+        elif year == 2015:
+            day = date(2015, 9, 28)
+        elif year == 2016:
+            day = date(2016, 9, 26)
         else:
             raise Exception("Year %d is not implemented, Sorry" % year)
         return (day, "Family & Community Day")
