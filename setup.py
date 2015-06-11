@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import io
 from os.path import join, dirname, abspath
 import sys
@@ -27,7 +27,7 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-__VERSION__ = '0.4.0-dev'
+__VERSION__ = '0.4.0'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
