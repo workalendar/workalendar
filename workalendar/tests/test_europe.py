@@ -669,3 +669,16 @@ class PortugalTest(GenericCalendarTest):
         self.assertIn(date(2015, 8, 15), holidays)  # Assunção de Nossa Senhora
         self.assertIn(date(2015, 12, 8), holidays)  # Imaculada Conceição
         self.assertIn(date(2015, 12, 25), holidays)  # Natal
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # Ano Novo
+        self.assertIn(date(2016, 2, 9), holidays)  # Entrudo
+        self.assertIn(date(2016, 3, 25), holidays)  # Sexta-Feira Santa
+        self.assertIn(date(2016, 3, 27), holidays)  # Domingo de Páscoa
+        self.assertIn(date(2016, 4, 25), holidays)  # Dia da Liberdade
+        self.assertIn(date(2016, 5, 1), holidays)  # Dia do Trabalhador
+        self.assertIn(date(2016, 6, 10), holidays)  # Dia de Portugal
+        self.assertIn(date(2016, 8, 15), holidays)  # Assunção de Nossa Senhora
+        self.assertIn(date(2016, 12, 8), holidays)  # Imaculada Conceição
+        self.assertIn(date(2016, 12, 25), holidays)  # Natal
