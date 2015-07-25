@@ -88,6 +88,7 @@ Europe
 * Italy
 * Norway
 * Poland
+* Portugal
 * Sweden
 * United Kingdom (incl. Northern Ireland)
 
