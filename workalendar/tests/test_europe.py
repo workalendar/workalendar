@@ -1,3 +1,4 @@
+# coding=utf-8
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import CzechRepublic
@@ -11,6 +12,7 @@ from workalendar.europe import Iceland
 from workalendar.europe import Italy
 from workalendar.europe import Norway
 from workalendar.europe import Poland
+from workalendar.europe import Portugal
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
