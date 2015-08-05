@@ -306,7 +306,7 @@ class ChristianMixin(Calendar):
     def get_corpus_christi(self, year):
         return self.get_easter_sunday(year) + timedelta(days=60)
 
-    def get_variable_days(self, year):
+    def get_variable_days(self, year):  # noqa
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
         if self.include_epiphany:
