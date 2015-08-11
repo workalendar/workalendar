@@ -149,6 +149,7 @@ class France(WesternCalendar, ChristianMixin):
         (11, 11, "Armistice Day"),
     )
 
+
 class Luxembourg(WesternCalendar, ChristianMixin):
     "Luxembourg"
     include_easter_monday = True
@@ -162,6 +163,7 @@ class Luxembourg(WesternCalendar, ChristianMixin):
         (5, 1, "Labour Day"),
         (6, 23, "Luxembourg National Holiday"),
     )
+
 
 class FranceAlsaceMoselle(France):
     "France Alsace/Moselle"
