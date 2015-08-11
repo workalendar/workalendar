@@ -10,6 +10,7 @@ from workalendar.europe import Greece
 from workalendar.europe import Hungary
 from workalendar.europe import Iceland
 from workalendar.europe import Italy
+from workalendar.europe import Luxembourg
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
@@ -189,6 +190,22 @@ class FranceTest(GenericCalendarTest):
         self.assertEquals(self.cal.add_working_days(day, 2), date(2013, 11, 4))
         self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
 
+class LuxembourgTest(GenericCalendarTest):
+
+    cal_class = Luxembourg
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)   # new year
+        self.assertIn(date(2016, 3, 28), holidays)   # easter
+        self.assertIn(date(2016, 5, 1), holidays)   # labour day
+        self.assertIn(date(2016, 5, 5), holidays)   # Ascension
+        self.assertIn(date(2016, 5, 16), holidays)  # Pentecote
+        self.assertIn(date(2016, 6, 23), holidays)  # Luxembourg National Holiday
+        self.assertIn(date(2016, 8, 15), holidays)  # Assomption
+        self.assertIn(date(2016, 11, 1), holidays)  # Toussaint
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen´s Day
 
 class FranceAlsaceMoselleTest(FranceTest):
     cal_class = FranceAlsaceMoselle
