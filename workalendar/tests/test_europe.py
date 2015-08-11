@@ -194,7 +194,7 @@ class LuxembourgTest(GenericCalendarTest):
 
     cal_class = Luxembourg
 
-    def test_year_2013(self):
+    def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 1, 1), holidays)   # new year
         self.assertIn(date(2016, 3, 28), holidays)   # easter
