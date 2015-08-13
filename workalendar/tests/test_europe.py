@@ -11,6 +11,7 @@ from workalendar.europe import Hungary
 from workalendar.europe import Iceland
 from workalendar.europe import Italy
 from workalendar.europe import Luxembourg
+from workalendar.europe import Netherlands
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
@@ -343,6 +344,30 @@ class LuxembourgTest(GenericCalendarTest):
         self.assertIn(date(2016, 11, 1), holidays)  # Toussaint
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen´s Day
+
+
+class NetherlandsTest(GenericCalendarTest):
+
+    cal_class = Netherlands
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)   # New Year
+        self.assertIn(date(2015, 4, 3), holidays)   # Good friday
+        self.assertIn(date(2015, 4, 5), holidays)   # Easter Sunday
+        self.assertIn(date(2015, 4, 6), holidays)   # Easter Monday
+        self.assertIn(date(2015, 4, 27), holidays)  # King's Day
+        self.assertIn(date(2015, 5, 5), holidays)   # Liberation Day
+        self.assertIn(date(2015, 5, 14), holidays)  # Ascension
+        self.assertIn(date(2015, 5, 24), holidays)  # whit sunday
+        self.assertIn(date(2015, 5, 25), holidays)  # whit monday
+        self.assertIn(date(2015, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen´s Day
+
+    def test_year_2025(self):
+        """ In 2025 King's Day is on 26 April """
+        holidays = self.cal.holidays_set(2025)
+        self.assertIn(date(2025, 4, 26), holidays)   # King's Day
 
 
 class UnitedKingdomTest(GenericCalendarTest):
