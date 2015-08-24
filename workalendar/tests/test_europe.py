@@ -15,6 +15,7 @@ from workalendar.europe import Netherlands
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
+from workalendar.europe import Spain
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
@@ -726,3 +727,18 @@ class PortugalTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 15), holidays)  # Assunção de Nossa Senhora
         self.assertIn(date(2016, 12, 8), holidays)  # Imaculada Conceição
         self.assertIn(date(2016, 12, 25), holidays)  # Natal
+
+
+class Spain(GenericCalendarTest):
+    cal_class = Spain
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 6), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 10, 12), holidays)
+        self.assertIn(date(2015, 12, 8), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)

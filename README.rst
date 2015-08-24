@@ -93,6 +93,7 @@ Europe
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
+* Spain
 
 America
 -------
