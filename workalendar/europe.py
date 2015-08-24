@@ -585,3 +585,16 @@ class Portugal(WesternCalendar, ChristianMixin):
         days.append((self.get_variable_entrudo(year), "Entrudo"))
 
         return days
+
+
+class Spain(WesternCalendar, ChristianMixin):
+    "Spain"
+    include_epiphany = True
+    include_immaculate_conception = True
+    include_good_friday = True
+    include_assumption = True
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (5, 1, u"Día del trabajador"),
+        (10, 12, u"Fiesta nacional de España")
+    )
