@@ -52,7 +52,7 @@ class Sweden(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_ascension = True
     include_whit_sunday = True
-    whit_sunday_abel = "Pentecost"
+    whit_sunday_label = "Pentecost"
     # Christmas Eve is not a holiday but not a work day either
     include_christmas_eve = True
     include_boxing_day = True
