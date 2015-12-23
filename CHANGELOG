@@ -4,9 +4,10 @@ CHANGELOG
 0.5.0 (unreleased)
 ------------------
 
-- Added Luxembourg
-- Added Netherlands
-- Added Spain
+- Added Luxembourg (#111)
+- Added Netherlands (#113)
+- Added Spain (#114)
+- Bugfix: fixed the name of the Pentecost for Sweden (#115)
 
 0.4.1 (2015-08-05)
 ------------------
