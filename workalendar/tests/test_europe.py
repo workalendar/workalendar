@@ -129,6 +129,10 @@ class SwedenTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 26), holidays)  # second day of xmas
         self.assertIn(date(2015, 12, 31), holidays)  # new year's eve
 
+    def test_pentecost(self):
+        holidays = self.cal.holidays(2015)
+        self.assertIn((date(2015, 5, 24), 'Pentecost'), holidays)
+
 
 class FinlandTest(GenericCalendarTest):
     cal_class = Finland
