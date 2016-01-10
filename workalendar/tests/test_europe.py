@@ -2,6 +2,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import CzechRepublic
+from workalendar.europe import Denmark
 from workalendar.europe import Slovakia
 from workalendar.europe import Finland
 from workalendar.europe import Sweden
@@ -45,6 +46,28 @@ class CzechRepublicTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+
+
+class DenmarkTest(GenericCalendarTest):
+    cal_class = Denmark
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)    # nytaarsdag
+        self.assertIn(date(2015, 3, 29), holidays)   # palmesoendag
+        self.assertIn(date(2015, 4, 2), holidays)    # skaertaarsdag
+        self.assertIn(date(2015, 4, 3), holidays)    # langfredag
+        self.assertIn(date(2015, 4, 5), holidays)    # paaskedag
+        self.assertIn(date(2015, 4, 6), holidays)    # 2. paaskedag
+        self.assertIn(date(2015, 5, 1), holidays)    # st bededag
+        self.assertIn(date(2015, 5, 14), holidays)   # kristi himmelfart
+        self.assertIn(date(2015, 5, 24), holidays)   # pinsedag
+        self.assertIn(date(2015, 5, 25), holidays)   # 2. pinsedag
+        self.assertIn(date(2015, 6, 5), holidays)    # grundlovsdag
+        self.assertIn(date(2015, 12, 24), holidays)  # juleaftensdag
+        self.assertIn(date(2015, 12, 25), holidays)  # juledag
+        self.assertIn(date(2015, 12, 26), holidays)  # 2. juledag
+        self.assertIn(date(2015, 12, 31), holidays)  # nytaarsaften
 
 
 class SlovakiaTest(GenericCalendarTest):
