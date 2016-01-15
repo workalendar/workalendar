@@ -1,16 +1,15 @@
 """Working day tools
 """
 import warnings
-import ephem
-import pytz
-
 from calendar import monthrange
 from datetime import date, timedelta, datetime
 from math import pi
 
+import ephem
+import pytz
+from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
-from calverter import Calverter
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -54,6 +53,14 @@ class Calendar(object):
         # it is sorted
         self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
+
+    def get_holiday_label(self, day):
+        """Return the label of the holiday, if the date is a holiday"""
+        # a little exception: chop the datetime type
+        if type(day) is datetime:
+            day = day.date()
+        return {day: label for day, label in self.holidays(day.year)
+                }.get(day)
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
