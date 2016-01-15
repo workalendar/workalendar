@@ -105,6 +105,10 @@ class Calendar(object):
         holidays, even if not in the regular calendar holidays (or weekends).
 
         """
+        # a little exception: chop the datetime type
+        if type(day) is datetime:
+            day = day.date()
+
         if extra_holidays and day in extra_holidays:
             return True
 
