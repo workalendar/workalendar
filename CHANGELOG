@@ -6,6 +6,7 @@ master (unreleased)
 
 - Added Denmark (#117).
 - Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
+- Added datetime to date conversion in is_holiday()
 
 0.4.2 (2015-12-23)
 ------------------
