@@ -69,13 +69,13 @@ class FloatToNearestWeekdayMixin(Calendar):
                                  "New Years Day (Observed)"))
 
         year = holiday_lookup[0].year
-        if (date(year, 12, 25) in holiday_lookup
-                and date(year, 12, 24) in holiday_lookup and
+        if (date(year, 12, 25) in holiday_lookup and
+                date(year, 12, 24) in holiday_lookup and
                 date(year, 12, 25).weekday() == SAT):
             new_holidays.append((date(year, 12, 23),
                                  "Christmas Eve (Observed)"))
-        if (date(year, 12, 25) in holiday_lookup
-                and date(year, 12, 24) in holiday_lookup and
+        if (date(year, 12, 25) in holiday_lookup and
+                date(year, 12, 24) in holiday_lookup and
                 date(year, 12, 25).weekday() == MON):
             new_holidays.append((date(year, 12, 26),
                                  "Christmas Eve (Observed)"))
@@ -88,20 +88,20 @@ class WashingtonsBirthdayInDecemberMixin(Calendar):
     """Floating observance, to give long weekend at christmas"""
     def get_washington_birthday(self, year,
                                 label="Washington's Birthday (Observed)"):
-        chrsitmas_day = date(year, 12, 25).weekday()
-        if chrsitmas_day == MON:
+        christmas_day = date(year, 12, 25).weekday()
+        if christmas_day == MON:
             day = (date(year, 12, 26), label)  # TUE
-        elif chrsitmas_day == TUE:
+        elif christmas_day == TUE:
             day = (date(year, 12, 24), label)  # MON
-        elif chrsitmas_day == WED:
+        elif christmas_day == WED:
             day = (date(year, 12, 24), label)  # TUE
-        elif chrsitmas_day == THU:
+        elif christmas_day == THU:
             day = (date(year, 12, 26), label)  # FRI
-        elif chrsitmas_day == FRI:
+        elif christmas_day == FRI:
             day = (date(year, 12, 24), label)  # THU
-        elif chrsitmas_day == SAT:
+        elif christmas_day == SAT:
             day = (date(year, 12, 23), label)  # THU
-        else:  # chrsitmas_day == SUN:
+        else:  # christmas_day == SUN:
             day = (date(year, 12, 23), label)  # FRI
         return day
 
