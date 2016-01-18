@@ -58,7 +58,7 @@ Tests
 
 Travis status:
 
-.. image:: https://api.travis-ci.org/novapost/workalendar.png
+.. image:: https://api.travis-ci.org/novafloss/workalendar.png
 
 
 To run test, just install tox with ``pip install tox`` and run::
@@ -145,7 +145,7 @@ the official data provided by the adequate authorities.
 Contributing
 ============
 
-Please read our `CONTRIBUTING.rst <https://github.com/novapost/workalendar/blob/master/CONTRIBUTING.rst>`_
+Please read our `CONTRIBUTING.rst <https://github.com/novafloss/workalendar/blob/master/CONTRIBUTING.rst>`_
 document to discover how you can contribute to ``workalendar``. Pull-requests
 are very welcome.
 

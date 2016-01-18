@@ -11,7 +11,7 @@ holidays to the reality, and make sure these are right, you're helping.
 
 If any of the computed holidays for the country / area your are using is
 **wrong**, please report
-`it using the Github issues <https://github.com/novapost/workalendar/issues>`_.
+`it using the Github issues <https://github.com/novafloss/workalendar/issues>`_.
 
 Report an issue
 ===============
