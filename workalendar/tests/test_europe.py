@@ -769,3 +769,14 @@ class Spain(GenericCalendarTest):
         self.assertIn(date(2015, 10, 12), holidays)
         self.assertIn(date(2015, 12, 8), holidays)
         self.assertIn(date(2015, 12, 25), holidays)
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 6), holidays)
+        self.assertIn(date(2016, 3, 25), holidays)
+        self.assertIn(date(2016, 8, 15), holidays)
+        self.assertIn(date(2016, 10, 12), holidays)
+        self.assertIn(date(2016, 11, 1), holidays)
+        self.assertIn(date(2016, 12, 6), holidays)
+        self.assertIn(date(2016, 12, 8), holidays)
