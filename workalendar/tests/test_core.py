@@ -213,6 +213,18 @@ class MockCalendarTest(GenericCalendarTest):
         self.assertFalse(
             self.cal.is_working_day(datetime(2014, 1, 1)))
 
+    def test_get_holiday_label(self):
+        self.assertEqual(
+            self.cal.get_holiday_label(date(2014, 1, 1)), 'New year')
+        self.assertIsNone(
+            self.cal.get_holiday_label(date(2014, 1, 2)))
+
+    def test_get_holiday_label_with_datetime(self):
+        self.assertEqual(
+            self.cal.get_holiday_label(datetime(2014, 1, 1)), 'New year')
+        self.assertIsNone(
+            self.cal.get_holiday_label(datetime(2014, 1, 2)))
+
     def test_add_working_days_backwards(self):
         day = date(self.year, 1, 3)
         # since this calendar has no weekends, we'll just have a 1-day-shift
