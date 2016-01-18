@@ -69,13 +69,13 @@ class FloatToNearestWeekdayMixin(Calendar):
                                  "New Years Day (Observed)"))
 
         year = holiday_lookup[0].year
-        if (date(year, 12, 25) in holiday_lookup
-                and date(year, 12, 24) in holiday_lookup and
+        if (date(year, 12, 25) in holiday_lookup and
+                date(year, 12, 24) in holiday_lookup and
                 date(year, 12, 25).weekday() == SAT):
             new_holidays.append((date(year, 12, 23),
                                  "Christmas Eve (Observed)"))
-        if (date(year, 12, 25) in holiday_lookup
-                and date(year, 12, 24) in holiday_lookup and
+        if (date(year, 12, 25) in holiday_lookup and
+                date(year, 12, 24) in holiday_lookup and
                 date(year, 12, 25).weekday() == MON):
             new_holidays.append((date(year, 12, 26),
                                  "Christmas Eve (Observed)"))
