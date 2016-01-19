@@ -4,6 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
+- Added Spain 2016 (#123)
 - Added Denmark (#117).
 - Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
 - Added datetime to date conversion in is_holiday() (#118)
