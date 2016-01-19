@@ -1,15 +1,15 @@
 CHANGELOG
 =========
 
-master (unreleased)
+0.4.3 (2016-01-19)
 -------------------
 
-- Added Spain 2016 (#123)
 - Added Denmark (#117).
 - Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
 - Added datetime to date conversion in is_holiday() (#118)
 - Added function to get the holiday label by date (#120)
 - Moved from `novapost` to the `novafloss` organization, handling FLOSS projects in People Doc Inc. (#116)
+- Added Spain 2016 (#123)
 
 0.4.2 (2015-12-23)
 ------------------

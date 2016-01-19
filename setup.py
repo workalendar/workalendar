@@ -27,7 +27,7 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-__VERSION__ = '0.5.0.dev0'
+__VERSION__ = '0.4.3'
 
 if PY2:
     REQUIREMENTS.append('pyephem')
