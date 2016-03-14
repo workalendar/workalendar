@@ -1,6 +1,35 @@
 CHANGELOG
 =========
 
+1.5
+---
+
+Incorporate changes from workalendar 0.4.3:
+
+- Added Denmark (#117).
+- Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
+- Added datetime to date conversion in is_holiday() (#118)
+- Added function to get the holiday label by date (#120)
+- Moved from `novapost` to the `novafloss` organization, handling FLOSS projects in People Doc Inc. (#116)
+- Added Spain 2016 (#123)
+
+Incorporate changes from workalendar 0.4.2:
+
+- Added Luxembourg (#111)
+- Added Netherlands (#113)
+- Added Spain (#114)
+- Bugfix: fixed the name of the Pentecost for Sweden (#115)
+
+Incorporate changes from workalendar 0.4.1:
+
+- Added Portugal, thx to @borfast (#110).
+
+Incorporate changes from workalendar 0.4.0:
+
+- Added Colombia calendar, thx to @spalac24
+- Added Slovakia calendar, thx to @Adman
+- Fixed the Boxing day & boxing day shift for Australia
+
 1.4 (2015-04-14)
 ----------------
 

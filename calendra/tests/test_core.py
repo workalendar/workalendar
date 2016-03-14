@@ -88,6 +88,19 @@ class CalendarTest(GenericCalendarTest):
             date(2013, 1, 31)
         )
 
+    def test_get_next_weekday_after(self):
+        # the first monday after Apr 1 2015
+        self.assertEquals(
+            Calendar.get_first_weekday_after(date(2015, 4, 1), 0),
+            date(2015, 4, 6)
+        )
+
+        # the first tuesday after Apr 14 2015
+        self.assertEquals(
+            Calendar.get_first_weekday_after(date(2015, 4, 14), 1),
+            date(2015, 4, 14)
+        )
+
 
 class LunarCalendarTest(GenericCalendarTest):
     cal_class = LunarCalendar
@@ -203,6 +216,20 @@ class MockCalendarTest(GenericCalendarTest):
     def test_datetime(self):
         self.assertFalse(
             self.cal.is_working_day(datetime(2014, 1, 1)))
+        self.assertTrue(
+            self.cal.is_holiday(datetime(2014, 1, 1)))
+
+    def test_get_holiday_label(self):
+        self.assertEqual(
+            self.cal.get_holiday_label(date(2014, 1, 1)), 'New year')
+        self.assertIsNone(
+            self.cal.get_holiday_label(date(2014, 1, 2)))
+
+    def test_get_holiday_label_with_datetime(self):
+        self.assertEqual(
+            self.cal.get_holiday_label(datetime(2014, 1, 1)), 'New year')
+        self.assertIsNone(
+            self.cal.get_holiday_label(datetime(2014, 1, 2)))
 
     def test_add_working_days_backwards(self):
         day = date(self.year, 1, 3)

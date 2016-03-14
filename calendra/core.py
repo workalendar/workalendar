@@ -1,17 +1,16 @@
 """Working day tools
 """
 import warnings
-import ephem
-import pytz
 import itertools
-
 from calendar import monthrange
 from datetime import date, timedelta, datetime
 from math import pi
 
+import ephem
+import pytz
+from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
-from calverter import Calverter
 from dateutil import relativedelta as rd
 from more_itertools import recipes
 
@@ -154,6 +153,14 @@ class Calendar(object):
         self._holidays[year] = sorted(temp_calendar)
         return self._holidays[year]
 
+    def get_holiday_label(self, day):
+        """Return the label of the holiday, if the date is a holiday"""
+        # a little exception: chop the datetime type
+        if type(day) is datetime:
+            day = day.date()
+        return {day: label for day, label in self.holidays(day.year)
+                }.get(day)
+
     def get_observed_date(self, holiday):
         """
         The date the holiday is observed for this calendar. If the holiday
@@ -228,6 +235,10 @@ class Calendar(object):
         holidays, even if not in the regular calendar holidays (or weekends).
 
         """
+        # a little exception: chop the datetime type
+        if type(day) is datetime:
+            day = day.date()
+
         if extra_holidays and day in extra_holidays:
             return True
 
@@ -339,6 +350,23 @@ class Calendar(object):
             day = day - timedelta(days=1)
         return day
 
+    @staticmethod
+    def get_first_weekday_after(day, weekday):
+        """Get the first weekday after a given day. If the day is the same
+        weekday, the same day will be returned.
+
+        >>> # the first monday after Apr 1 2015
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), 0)
+        datetime.date(2015, 4, 6)
+
+        >>> # the first tuesday after Apr 14 2015
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), 1)
+        datetime.date(2015, 4, 14)
+        """
+        day_delta = (weekday - day.weekday()) % 7
+        day = day + timedelta(days=day_delta)
+        return day
+
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin
@@ -346,6 +374,7 @@ class ChristianMixin(Calendar):
     include_clean_monday = False
     include_annunciation = False
     include_ash_wednesday = False
+    include_palm_sunday = False
     include_holy_thursday = False
     include_good_friday = False
     include_easter_monday = False
@@ -368,6 +397,10 @@ class ChristianMixin(Calendar):
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
         return sunday - timedelta(days=46)
+
+    def get_palm_sunday(self, year):
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=7)
 
     def get_holy_thursday(self, year):
         "Return the date of the last thursday before easter"
@@ -413,7 +446,7 @@ class ChristianMixin(Calendar):
     def get_corpus_christi(self, year):
         return self.get_easter_sunday(year) + timedelta(days=60)
 
-    def get_variable_days(self, year):
+    def get_variable_days(self, year):  # noqa
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
         if self.include_epiphany:
@@ -424,6 +457,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
             days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
+        if self.include_palm_sunday:
+            days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:

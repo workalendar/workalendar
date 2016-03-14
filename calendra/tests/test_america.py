@@ -3,6 +3,7 @@ from datetime import date
 from . import GenericCalendarTest
 from ..america import Brazil, BrazilSaoPauloState
 from ..america import BrazilSaoPauloCity
+from ..america import Colombia
 from ..america import Mexico, Chile, Panama
 
 
@@ -75,6 +76,34 @@ class ChileTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2017)
         self.assertNotIn(date(2017, 10, 31), holidays)
         self.assertIn(date(2017, 10, 27), holidays)
+
+
+class ColombiaTest(GenericCalendarTest):
+    cal_class = Colombia
+
+    def test_holidays_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 12), holidays)
+        self.assertIn(date(2015, 3, 23), holidays)
+        self.assertIn(date(2015, 3, 29), holidays)
+        self.assertIn(date(2015, 4, 2), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 5), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 18), holidays)
+        self.assertIn(date(2015, 6, 8), holidays)
+        self.assertIn(date(2015, 6, 15), holidays)
+        self.assertIn(date(2015, 6, 29), holidays)
+        self.assertIn(date(2015, 7, 20), holidays)
+        self.assertIn(date(2015, 8, 7), holidays)
+        self.assertIn(date(2015, 8, 17), holidays)
+        self.assertIn(date(2015, 10, 12), holidays)
+        self.assertIn(date(2015, 11, 2), holidays)
+        self.assertIn(date(2015, 11, 16), holidays)
+        self.assertIn(date(2015, 12, 8), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertEqual(len(holidays), 20)
 
 
 class MexicoTest(GenericCalendarTest):

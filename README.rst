@@ -83,6 +83,7 @@ Europe
 
 * Belgium
 * Czech Republic
+* Denmark
 * European Central Bank
 * Finland
 * France
@@ -92,16 +93,23 @@ Europe
 * Hungary
 * Iceland
 * Italy
+* Luxembourg
+* Netherlands
 * Norway
 * Poland
+* Portugal
+* Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
+* Spain
+* Slovenia
 
 America
 -------
 
 * Brazil (incl. São Paulo state and city)
 * Chile
+* Colombia
 * Mexico
 * Panama
 * United States of America (including state holidays)
