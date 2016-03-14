@@ -31,7 +31,7 @@ params = dict(
     name=NAME,
     description=DESCRIPTION,
     packages=['calendra'],
-    use_vcs_version=True,
+    use_scm_version=True,
     long_description=read_relative_file('README.rst'),
     author='Bruno Bord',
     author_email='bruno.bord@people-doc.com',
@@ -51,7 +51,7 @@ params = dict(
         'Programming Language :: Python :: 3.3',
     ],
     setup_requires=[
-        'hgtools>=5',
+        'setuptools_scm',
         'pytest-runner>=2.2.1',
     ],
     tests_require=[
