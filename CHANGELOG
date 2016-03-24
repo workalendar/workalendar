@@ -4,7 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Workalendar now being compatible with Python 3.4 and 3.5 (#128)
 
 
 0.4.5 (2016-05-09)
