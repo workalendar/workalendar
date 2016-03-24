@@ -96,6 +96,7 @@ Europe
 * United Kingdom (incl. Northern Ireland)
 * Spain
 * Slovenia
+* Switzerland
 
 America
 -------
