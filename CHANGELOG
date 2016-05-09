@@ -1,10 +1,11 @@
 CHANGELOG
 =========
 
-master (unreleased)
+0.4.5 (2016-05-09)
 ------------------
 
-- Nothing changed yet.
+- Added Slovenia, thx to @ratek1 (#124),
+- Added Switzerland, thx to @sykaeh (#127),
 
 
 0.4.3 & 0.4.4 (2016-01-19 & 2016-05-09)
