@@ -1,8 +1,10 @@
 CHANGELOG
 =========
 
-0.4.3 (2016-01-19)
--------------------
+0.4.3 & 0.4.4 (2016-01-19 & 2016-05-09)
+---------------------------------------
+
+**Sorry, I think I completely broke the 0.4.3 release by trying to delete a naughty file...**
 
 - Added Denmark (#117).
 - Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
