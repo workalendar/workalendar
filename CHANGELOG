@@ -1,8 +1,8 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+0.5.0 (2016-06-14)
+------------------
 
 - Workalendar now being compatible with Python 3.4 and 3.5 (#128),
 - A new holiday has appeared in Japan as of 2016 (#131), thx @suhara for the report.
