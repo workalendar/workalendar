@@ -93,6 +93,8 @@ class Sweden(WesternCalendar, ChristianMixin):
     include_christmas_eve = True
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
+    
+    observance_shift = None
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
