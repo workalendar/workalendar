@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+from datetime import date, timedelta
 
-from datetime import timedelta
 from .core import LunarCalendar, WesternCalendar, Calendar
 from .core import MON, FRI, SAT, IslamicMixin, EphemMixin
 
@@ -48,6 +48,17 @@ class Japan(WesternCalendar, EphemMixin):
         (11, 23, "Labour Thanksgiving Day"),
         (12, 23, "The Emperor's Birthday"),
     )
+
+    def get_fixed_holidays(self, year):
+        """
+        Fixed holidays for Japan.
+
+        As of 2016, the "Mountain Day is being added"
+        """
+        days = super(Japan, self).get_fixed_holidays(year)
+        if year >= 2016:
+            days.append((date(year, 8, 11), "Mountain Day"))
+        return days
 
     def get_variable_days(self, year):
         # usual variable days

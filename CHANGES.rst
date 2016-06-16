@@ -1,6 +1,18 @@
 CHANGELOG
 =========
 
+1.7
+---
+
+Incorporate changes from workalendar 0.5.0:
+
+- A new holiday has appeared in Japan as of 2016 (#131), thx @suhara for the report.
+
+Incorporate changes from workalendar 0.4.5:
+
+- Added Slovenia, thx to @ratek1 (#124).
+- Added Switzerland, thx to @sykaeh (#127).
+
 1.6
 ---
 

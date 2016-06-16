@@ -54,6 +54,18 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2013, 9, 16), holidays)   # Respect-for-the-Aged Day
         self.assertIn(date(2013, 10, 14), holidays)  # Health and Sports Day
 
+    def test_year_2016(self):
+        # Before 2016, no Mountain Day
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 8, 11), holidays)   # Mountain Day
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 8, 11), holidays)   # Mountain Day
+        # After 2016, yes
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 8, 11), holidays)   # Mountain Day
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 8, 11), holidays)   # Mountain Day
+
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar
