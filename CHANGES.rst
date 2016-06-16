@@ -1,10 +1,13 @@
 CHANGELOG
 =========
 
-1.5.1
------
+1.6
+---
 
 - #6: Remove observance shift for Sweden.
+- Use `jaraco skeleton <https://github.com/jaraco/skeleton>`_ to
+  maintain the project structure, adding automatic releases
+  from continuous integration and bundled documentation.
 
 1.5
 ---
