@@ -1,49 +1,58 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+
+# Project skeleton maintained at https://github.com/jaraco/skeleton
+
 import io
-from os.path import join, dirname, abspath
 import sys
 
 import setuptools
 
-PY2 = sys.version_info[0] == 2
+with io.open('README.rst', encoding='utf-8') as readme:
+    long_description = readme.read()
 
+needs_pytest = {'pytest', 'test'}.intersection(sys.argv)
+pytest_runner = ['pytest_runner'] if needs_pytest else []
+needs_sphinx = {'release', 'build_sphinx', 'upload_docs'}.intersection(sys.argv)
+sphinx = ['sphinx', 'rst.linker'] if needs_sphinx else []
+needs_wheel = {'release', 'bdist_wheel'}.intersection(sys.argv)
+wheel = ['wheel'] if needs_wheel else []
 
-def read_relative_file(filename):
-    """Returns contents of the given file, whose path is supposed relative
-    to this module."""
-    path = join(dirname(abspath(__file__)), filename)
-    with io.open(path, encoding='utf-8') as f:
-        return f.read()
+name = 'calendra'
+description = 'Worldwide holidays and working days helper and toolkit.'
 
-NAME = 'calendra'
-DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
-REQUIREMENTS = [
-    'python-dateutil',
-    'lunardate',
-    'pytz',
-    'pyCalverter',
-    'more_itertools',
-    'ephem',
-]
-
-params = dict(
-    name=NAME,
-    description=DESCRIPTION,
-    packages=['calendra'],
+setup_params = dict(
+    name=name,
     use_scm_version=True,
-    long_description=read_relative_file('README.rst'),
-    author='Jason R. Coombs',
-    author_email='jaraco@jaraco.com',
-    url='https://github.com/jaraco/calendra',
-    license='MIT License',
+    author="Jason R. Coombs",
+    author_email="jaraco@jaraco.com",
+    description=description or name,
+    long_description=long_description,
+    url="https://github.com/jaraco/" + name,
+    packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=REQUIREMENTS,
-    zip_safe=False,
+    namespace_packages=name.split('.')[:-1],
+    install_requires=[
+        'python-dateutil',
+        'lunardate',
+        'pytz',
+        'pyCalverter',
+        'more_itertools',
+        'ephem',
+    ],
+    extras_require={
+    },
+    setup_requires=[
+        'setuptools_scm>=1.9',
+    ] + pytest_runner + sphinx + wheel,
+    tests_require=[
+        'pytest>=2.8',
+        'pytest-cov',
+        'pytest-pep8',
+    ],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
@@ -52,16 +61,8 @@ params = dict(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    setup_requires=[
-        'setuptools_scm',
-        'pytest-runner>=2.2.1',
-    ],
-    tests_require=[
-        'pytest',
-        'pytest-cov',
-        'pytest-pep8',
-    ],
+    entry_points={
+    },
 )
-
 if __name__ == '__main__':
-    setuptools.setup(**params)
+    setuptools.setup(**setup_params)
