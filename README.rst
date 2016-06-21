@@ -78,6 +78,7 @@ Europe
 * Czech Republic
 * Denmark
 * European Central Bank
+* Estonia
 * Finland
 * France
 * France (Alsace / Moselle)
