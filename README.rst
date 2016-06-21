@@ -77,8 +77,8 @@ Europe
 * Belgium
 * Czech Republic
 * Denmark
-* European Central Bank
 * Estonia
+* European Central Bank
 * Finland
 * France
 * France (Alsace / Moselle)
