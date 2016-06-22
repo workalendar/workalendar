@@ -5,6 +5,7 @@ master (unreleased)
 -------------------
 
 - Added Estonia, thx to @landler (#134),
+- Europe-related modules being reorganized, thx to @Natim (#135),
 
 
 0.5.0 (2016-06-14)
