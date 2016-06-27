@@ -18,17 +18,26 @@ class Netherlands(WesternCalendar, ChristianMixin):
         (12, 31, "New Year's Eve"),
     )
 
-    def get_kingsday(self, year):
-        """27 April unless this is a Sunday in which case it is the 26th """
-        if (date(year, 4, 27).weekday() != 6):
-            return date(year, 4, 27)
-        return date(year, 4, 26)
+    def get_king_queen_day(self, year):
+        """27 April unless this is a Sunday in which case it is the 26th
+
+        Before 2013 it was called Queensday, falling on
+        30 April, unless this is a Sunday in which case it is the 29th.
+        """
+        if year > 2013:
+            if date(year, 4, 27).weekday() != 6:
+                return date(year, 4, 27), "King's day"
+            else:
+                return date(year, 4, 26), "King's day"
+        else:
+            if date(year, 4, 30).weekday() != 6:
+                return date(year, 4, 30), "Queen's day"
+            else:
+                return date(year, 4, 29), "Queen's day"
 
     def get_variable_days(self, year):
         days = super(Netherlands, self).get_variable_days(year)
         days += [
-            (
-                self.get_kingsday(year),
-                "King's Day")
+            self.get_king_queen_day(year)
         ]
         return days
