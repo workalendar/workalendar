@@ -400,6 +400,11 @@ class NetherlandsTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2025)
         self.assertIn(date(2025, 4, 26), holidays)   # King's Day
 
+    def test_year_1990(self):
+        """ In 1990 Queen's day was on 30 April """
+        holidays = self.cal.holidays_set(1990)
+        self.assertIn(date(1990, 4, 30), holidays)   # Queen's Day
+
 
 class UnitedKingdomTest(GenericCalendarTest):
     cal_class = UnitedKingdom
