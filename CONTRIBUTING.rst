@@ -204,6 +204,7 @@ Do not forget to:
 
 1. put the appropriate doctring in the Calendar class.
 2. add your calendar in the ``README.rst`` file, included in the appropriate continent.
+3. add your calendar to the ``CHANGELOG`` file.
 
 .. note::
 
