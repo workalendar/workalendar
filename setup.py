@@ -38,7 +38,7 @@ else:
 params = dict(
     name=NAME,
     description=DESCRIPTION,
-    packages=['workalendar'],
+    packages=['workalendar', 'workalendar.europe'],
     version=__VERSION__,
     long_description=read_relative_file('README.rst'),
     author='Bruno Bord',
