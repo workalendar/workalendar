@@ -1,14 +1,16 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+0.6.1 (2016-06-29)
+------------------
 
 - Added Estonia, thx to @landler (#134),
 - Europe-related modules being reorganized, thx to @Natim (#135),
 - Fixed King / Queen's day in Netherlands, thx to @PeterJacob (#138),
 - Added a pull-request template (#125),
 - Added a Makefile for various dev-related tasks -- installs, running tests, uploading to PyPI... (#133).
+
+*Note:* the 0.6.0 was erroneously uploaded ; this v0.6.1 cancels and replaces the v0.6.0.
 
 0.5.0 (2016-06-14)
 ------------------
