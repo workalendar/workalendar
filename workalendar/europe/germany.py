@@ -47,6 +47,8 @@ class Brandenburg(Germany):
         (10, 31, "Reformation Day"),
     )
 
+    include_easter_sunday = True
+
 
 class Bremen(Germany):
     "Bremen"
