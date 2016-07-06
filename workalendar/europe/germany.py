@@ -46,6 +46,8 @@ class Brandenburg(Germany):
     FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
         (10, 31, "Reformation Day"),
     )
+    
+    include_easter_sunday = True
 
 
 class Bremen(Germany):
