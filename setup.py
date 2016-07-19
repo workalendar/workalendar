@@ -3,14 +3,9 @@
 import io
 from os.path import join, dirname, abspath
 import sys
-from setuptools import find_packages
+from setuptools import setup, find_packages
 
 PY2 = sys.version_info[0] == 2
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup  # NOQA
 
 
 def read_relative_file(filename):
