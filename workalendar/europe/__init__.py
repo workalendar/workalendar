@@ -17,7 +17,7 @@ from .poland import Poland
 from .portugal import Portugal
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Spain
+from .spain import Spain, Catalonia
 from .sweden import Sweden
 from .switzerland import Switzerland
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
@@ -33,6 +33,7 @@ from .germany import (
 
 __all__ = (
     Belgium,
+    Catalonia,
     CzechRepublic,
     Denmark,
     Estonia,
