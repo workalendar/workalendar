@@ -818,7 +818,6 @@ class CataloniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 1, 6), holidays)
         self.assertIn(date(2016, 3, 25), holidays)
         self.assertIn(date(2016, 3, 28), holidays)
-        # self.assertIn(date(2016, 5, 16), holidays)
         self.assertIn(date(2016, 6, 24), holidays)
         self.assertIn(date(2016, 8, 15), holidays)
         self.assertIn(date(2016, 9, 11), holidays)
