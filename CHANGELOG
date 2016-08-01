@@ -6,7 +6,7 @@ master (unreleased)
 
 - Easter Sunday is a Brandenburg federate state holiday (#143), thx @uvchik.
 - Added Catalonia (#145), thx @ferranp.
-
+- Use `find_packages()` to fetch package directories in `setup.py` (#141, #144)
 
 0.6.1 (2016-06-29)
 ------------------
