@@ -8,6 +8,7 @@ master (unreleased)
 - Added Catalonia (#145), thx @ferranp.
 - Use `find_packages()` to fetch package directories in `setup.py` (#141, #144).
 - use py.test instead of nosetests for tests (#146).
+- cleanup: remove unused ``swiss.py`` file (#147).
 
 0.6.1 (2016-06-29)
 ------------------
