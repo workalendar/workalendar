@@ -119,7 +119,7 @@ file and add the following code::
             self.assertIn(date(2014, 4, 21), holidays)  # easter monday
             self.assertIn(date(2014, 6, 2), holidays)  # First MON in June
 
-of course, if you run the test using the ``tox`` or ``nosetests`` command,
+of course, if you run the test using the ``tox`` or ``py.test`` command,
 this will fail, since we haven't implemented anything yet.
 
 Install tox using the following command::
