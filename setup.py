@@ -23,7 +23,7 @@ REQUIREMENTS = [
     'pytz',
     'pyCalverter',
 ]
-version = '0.7.0'
+version = '0.7.1.dev0'
 __VERSION__ = version
 
 if PY2:
