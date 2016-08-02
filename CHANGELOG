@@ -1,8 +1,8 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+0.7.0 (2016-08-02)
+------------------
 
 - Easter Sunday is a Brandenburg federate state holiday (#143), thx @uvchik.
 - Added Catalonia (#145), thx @ferranp.
