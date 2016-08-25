@@ -50,6 +50,14 @@ class CzechRepublicTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
 
+    def test_year_good_friday(self):
+        # Good Friday not yet a holiday before 2016
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 4, 3), holidays)
+        # Good friday will be a holiday as of 2016
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 3, 25), holidays)
+
 
 class DenmarkTest(GenericCalendarTest):
     cal_class = Denmark
