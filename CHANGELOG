@@ -1,8 +1,8 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+0.8.0 (2016-08-25)
+------------------
 
 - Fix Czech Republic calendar - as of 2016, Good Friday has become a holiday (#148).
 
