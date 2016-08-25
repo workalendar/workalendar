@@ -13,11 +13,12 @@ branches:
   - skeleton
 deploy:
   provider: pypi
+  server: https://upload.pypi.org/legacy/
   on:
     tags: true
     all_branches: true
     python: 3.5
   user: jaraco
-  distributions: release
+  distributions: dists
   password:
     secure: lq5T3nLudhmOP8mKbAh7QsyXjhRUi+zbACi6M8lPCj1+XPj+6uUdMaq3A/fg0+EivGffw8PKceXeMlHboQI0hD9Bt4ISmeixlDi7wNcOSP/TWks2VFr9Gq+nI85LjLwZ9jyLh9CZ1C8gedWy0DfarnDSZ9/5k6Ts39zK0yKcQLg=
