@@ -5,6 +5,7 @@ from workalendar.core import WesternCalendar, ChristianMixin
 class CzechRepublic(WesternCalendar, ChristianMixin):
     "Czech Republic"
     include_easter_monday = True
+    include_good_friday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 1, "Restoration Day of the Independent Czech State"),
@@ -18,3 +19,8 @@ class CzechRepublic(WesternCalendar, ChristianMixin):
         (12, 24, "Christmas Eve"),
         (12, 26, "St. Stephen's Day (The Second Christmas Day)"),
     )
+
+    def get_variable_days(self, year):
+        # As of 2016, Good Friday became a holiday
+        self.include_good_friday = (year >= 2016)
+        return super(CzechRepublic, self).get_variable_days(year)
