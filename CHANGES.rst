@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.7.1
+-----
+
+- #7: Avoid crashing on import when installed as zip package.
+
 1.7
 ---
 
