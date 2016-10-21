@@ -1,6 +1,32 @@
 CHANGELOG
 =========
 
+1.8
+---
+
+Now tests are run using tox and releases are made automatically
+using Travis-CI deployment framework.
+
+Incorporate changes from workalendar 0.8.0:
+
+- Fix Czech Republic calendar - as of 2016, Good Friday has become a holiday (#148).
+
+Incorporate changes from workalendar 0.7.0:
+
+- Easter Sunday is a Brandenburg federate state holiday (#143), thx @uvchik.
+- Added Catalonia (#145), thx @ferranp.
+- Use `find_packages()` to fetch package directories in `setup.py` (#141, #144).
+- use py.test instead of nosetests for tests (#146).
+- cleanup: remove unused ``swiss.py`` file (#147).
+
+Incorporate changes from workalendar 0.6.1:
+
+- Added Estonia, thx to @landler (#134),
+- Europe-related modules being reorganized, thx to @Natim (#135),
+- Fixed King / Queen's day in Netherlands, thx to @PeterJacob (#138),
+- Added a pull-request template (#125),
+- Added a Makefile for various dev-related tasks -- installs, running tests, uploading to PyPI... (#133).
+
 1.7.1
 -----
 

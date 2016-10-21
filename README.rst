@@ -94,6 +94,7 @@ Europe
 * Belgium
 * Czech Republic
 * Denmark
+* Estonia
 * European Central Bank
 * Finland
 * France
@@ -111,7 +112,7 @@ Europe
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
-* Spain
+* Spain (incl. Catalonia)
 * Slovenia
 * Switzerland
 

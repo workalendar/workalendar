@@ -51,7 +51,7 @@ For the sake of the example, it has the following specs:
 
 * it's a Gregorian-based Calendar (i.e. the Western European / American one),
 * even if the King is not versed into religions, the kingdom includes a few Christian holidays,
-* even if you never knew about it, it is set in Oceania,
+* even if you never knew about it, it is set in Europe,
 
 Here is a list of the holidays in *Zhraa*:
 
@@ -79,17 +79,31 @@ Test-driven start
 #################
 
 
-Let's prepare the Zhraa class. In the ``calendra/oceania.py`` file, add
-a class like this::
+Let's prepare the Zhraa class. Edit the ``calendra/europe/zhraa.py`` file and add a class like this::
+
+    from workalendar.core import WesternCalendar
 
     class Zhraa(WesternCalendar):
         pass
 
 
-Now, we're building a test class. Edit the ``calendra/tests/test_oceania.py``
+Meanwhile, in the ``calendra/europe/__init__.py`` file, add these snippets where needed:
+
+.. code-block:: python
+
+    from .zhraa import Zhraa
+    # ...
+    __all__ = (
+        Belgium,
+        CzechRepublic,
+        # ...
+        Zhraa,
+    )
+
+Now, we're building a test class. Edit the ``calendra/tests/test_europe.py``
 file and add the following code::
 
-    from ..oceania import Zhraa
+    from ..europe import Zhraa
     # snip...
 
     class ZhraaTest(GenericCalendarTest):
@@ -105,7 +119,7 @@ file and add the following code::
             self.assertIn(date(2014, 4, 21), holidays)  # easter monday
             self.assertIn(date(2014, 6, 2), holidays)  # First MON in June
 
-of course, if you run the test using the ``tox`` or ``nosetests`` command,
+of course, if you run the test using the ``tox`` or ``py.test`` command,
 this will fail, since we haven't implemented anything yet.
 
 Install tox using the following command::
@@ -137,6 +151,8 @@ Day as a holiday. Now we can add Easter monday just by triggering the correct
 flag.
 
 ::
+
+    from workalendar.core import WesternCalendar, ChristianMixin
 
     class Zhraa(WesternCalendar, ChristianMixin):
         include_easter_monday = True
@@ -188,6 +204,7 @@ Do not forget to:
 
 1. put the appropriate doctring in the Calendar class.
 2. add your calendar in the ``README.rst`` file, included in the appropriate continent.
+3. add your calendar to the ``CHANGELOG`` file.
 
 .. note::
 

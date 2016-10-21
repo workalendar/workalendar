@@ -5,6 +5,7 @@ from . import GenericCalendarTest
 from ..europe import CzechRepublic
 from ..europe import Denmark
 from ..europe import Slovakia
+from ..europe import Estonia
 from ..europe import Finland
 from ..europe import Sweden
 from ..europe import France, FranceAlsaceMoselle
@@ -17,7 +18,7 @@ from ..europe import Netherlands
 from ..europe import Norway
 from ..europe import Poland
 from ..europe import Portugal
-from ..europe import Spain
+from ..europe import Spain, Catalonia
 from ..europe import Slovenia
 from ..europe import UnitedKingdom
 from ..europe import UnitedKingdomNorthernIreland
@@ -49,6 +50,14 @@ class CzechRepublicTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+
+    def test_year_good_friday(self):
+        # Good Friday not yet a holiday before 2016
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 4, 3), holidays)
+        # Good friday will be a holiday as of 2016
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 3, 25), holidays)
 
 
 class DenmarkTest(GenericCalendarTest):
@@ -414,6 +423,11 @@ class NetherlandsTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2025)
         self.assertIn(date(2025, 4, 26), holidays)   # King's Day
 
+    def test_year_1990(self):
+        """ In 1990 Queen's day was on 30 April """
+        holidays = self.cal.holidays_set(1990)
+        self.assertIn(date(1990, 4, 30), holidays)   # Queen's Day
+
 
 class UnitedKingdomTest(GenericCalendarTest):
     cal_class = UnitedKingdom
@@ -602,6 +616,7 @@ class BrandenburgTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 1, 1), holidays)
         self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 20), holidays)
         self.assertIn(date(2014, 4, 21), holidays)
         self.assertIn(date(2014, 5, 1), holidays)
         self.assertIn(date(2014, 5, 29), holidays)
@@ -615,6 +630,7 @@ class BrandenburgTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)
         self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 5), holidays)
         self.assertIn(date(2015, 4, 6), holidays)
         self.assertIn(date(2015, 5, 1), holidays)
         self.assertIn(date(2015, 5, 14), holidays)
@@ -779,7 +795,7 @@ class PortugalTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Natal
 
 
-class Spain(GenericCalendarTest):
+class SpainTest(GenericCalendarTest):
     cal_class = Spain
 
     def test_year_2015(self):
@@ -803,6 +819,43 @@ class Spain(GenericCalendarTest):
         self.assertIn(date(2016, 11, 1), holidays)
         self.assertIn(date(2016, 12, 6), holidays)
         self.assertIn(date(2016, 12, 8), holidays)
+
+
+class CataloniaTest(GenericCalendarTest):
+    cal_class = Catalonia
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 6), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 6), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 6, 24), holidays)
+        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertIn(date(2015, 9, 11), holidays)
+        self.assertIn(date(2015, 10, 12), holidays)
+        self.assertIn(date(2015, 11, 1), holidays)
+        self.assertIn(date(2015, 12, 6), holidays)
+        self.assertIn(date(2015, 12, 8), holidays)
+        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 6), holidays)
+        self.assertIn(date(2016, 3, 25), holidays)
+        self.assertIn(date(2016, 3, 28), holidays)
+        self.assertIn(date(2016, 6, 24), holidays)
+        self.assertIn(date(2016, 8, 15), holidays)
+        self.assertIn(date(2016, 9, 11), holidays)
+        self.assertIn(date(2016, 10, 12), holidays)
+        self.assertIn(date(2016, 11, 1), holidays)
+        self.assertIn(date(2016, 12, 6), holidays)
+        self.assertIn(date(2016, 12, 8), holidays)
+        self.assertIn(date(2016, 12, 25), holidays)
+        self.assertIn(date(2016, 12, 26), holidays)
 
 
 class SloveniaTest(GenericCalendarTest):
@@ -874,3 +927,37 @@ class SwitzerlandTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 1), holidays)
         self.assertIn(date(2016, 12, 25), holidays)
         self.assertIn(date(2016, 12, 26), holidays)
+
+
+class EstoniaTest(GenericCalendarTest):
+    cal_class = Estonia
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)  # new year
+        self.assertIn(date(2015, 2, 24), holidays)  # independence day
+        self.assertIn(date(2015, 4, 3), holidays)  # good friday
+        self.assertIn(date(2015, 4, 5), holidays)  # easter sunday
+        self.assertIn(date(2015, 5, 1), holidays)  # spring day
+        self.assertIn(date(2015, 5, 24), holidays)  # pentecost
+        self.assertIn(date(2015, 6, 23), holidays)  # victory day
+        self.assertIn(date(2015, 6, 24), holidays)  # midsummer day
+        self.assertIn(date(2015, 8, 20), holidays)  # restoration of independ.
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas eve
+        self.assertIn(date(2015, 12, 25), holidays)  # XMas
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing day
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # new year
+        self.assertIn(date(2016, 2, 24), holidays)  # independence day
+        self.assertIn(date(2016, 3, 25), holidays)  # good friday
+        self.assertIn(date(2016, 3, 27), holidays)  # easter sunday
+        self.assertIn(date(2016, 5, 1), holidays)  # spring day
+        self.assertIn(date(2016, 5, 15), holidays)  # pentecost
+        self.assertIn(date(2016, 6, 23), holidays)  # victory day
+        self.assertIn(date(2016, 6, 24), holidays)  # midsummer day
+        self.assertIn(date(2016, 8, 20), holidays)  # restoration of independ.
+        self.assertIn(date(2016, 12, 24), holidays)  # XMas eve
+        self.assertIn(date(2016, 12, 25), holidays)  # XMas
+        self.assertIn(date(2016, 12, 26), holidays)  # Boxing day
