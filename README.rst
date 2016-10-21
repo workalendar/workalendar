@@ -1,12 +1,12 @@
-.. image:: https://img.shields.io/pypi/v/skeleton.svg
-   :target: https://pypi.org/project/skeleton
+.. image:: https://img.shields.io/pypi/v/calendra.svg
+   :target: https://pypi.org/project/calendra
 
-.. image:: https://img.shields.io/pypi/pyversions/skeleton.svg
+.. image:: https://img.shields.io/pypi/pyversions/calendra.svg
 
-.. image:: https://img.shields.io/pypi/dm/skeleton.svg
+.. image:: https://img.shields.io/pypi/dm/calendra.svg
 
-.. image:: https://img.shields.io/travis/jaraco/skeleton/master.svg
-   :target: http://travis-ci.org/jaraco/skeleton
+.. image:: https://img.shields.io/travis/jaraco/calendra/master.svg
+   :target: http://travis-ci.org/jaraco/calendra
 
 License is indicated in the project metadata (typically one or more
 of the Trove classifiers). For more details, see `this explanation
