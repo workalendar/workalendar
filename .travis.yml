@@ -5,12 +5,15 @@ python:
 - 3.3
 - 3.4
 - 3.5
+install:
+- pip install tox "setuptools>=28.2"
 script:
-- pip install -U pytest
-- python setup.py test
+- tox
 branches:
   except:
   - skeleton
+before_deploy:
+- pip install https://dl.dropboxusercontent.com/u/54081/cheeseshop/setuptools_scm-1.15.0rc1.tar.gz
 deploy:
   provider: pypi
   server: https://upload.pypi.org/legacy/

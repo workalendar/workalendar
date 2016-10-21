@@ -8,6 +8,10 @@
 .. image:: https://img.shields.io/travis/jaraco/skeleton/master.svg
    :target: http://travis-ci.org/jaraco/skeleton
 
+License is indicated in the project metadata (typically one or more
+of the Trove classifiers). For more details, see `this explanation
+<https://github.com/jaraco/skeleton/issues/1>`_.
+
 Overview
 ========
 

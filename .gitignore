@@ -1,7 +1,0 @@
-*.pyc
-*.egg-info
-dist/
-build/
-.cache/
-.coverage
-.tox/
