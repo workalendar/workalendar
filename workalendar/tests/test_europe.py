@@ -531,6 +531,18 @@ class GermanyTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 25), holidays)
         self.assertIn(date(2015, 12, 26), holidays)
 
+    def test_year_reformation_day(self):
+        # Reformation Day is included each year in:
+        # Brandenburg, MecklenburgVorpommern, Saxony, SaxonyAnhalt & Thuringia
+        holidays = self.cal.holidays_set(2015)
+        if self.cal.include_reformation_day:
+            self.assertIn(date(2015, 10, 31), holidays)
+        else:
+            self.assertNotIn(date(2015, 10, 31), holidays)
+        # But in the year 2017, it's included for the whole country
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 10, 31), holidays)
+
 
 class BadenWurttembergTest(GermanyTest):
     cal_class = BadenWurttemberg

@@ -17,6 +17,24 @@ class Germany(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_boxing_day = True
     boxing_day_label = "Second Christmas Day"
+    # German-specific holiday
+    include_reformation_day = False
+
+    def get_reformation_day(self, year):
+        """
+        Reformation Day is a fixed date.
+
+        It's handled via the variable_days because it can be activated
+        depending on the Länder or the year (see #150).
+        """
+        day = date(year, 10, 31)
+        return (day, "Reformation Day")
+
+    def get_variable_days(self, year):
+        days = super(Germany, self).get_variable_days(year)
+        if self.include_reformation_day or year == 2017:
+            days.append(self.get_reformation_day(year))
+        return days
 
 
 class BadenWurttemberg(Germany):
@@ -43,11 +61,8 @@ class Berlin(Germany):
 class Brandenburg(Germany):
     "Brandenburg"
 
-    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
-        (10, 31, "Reformation Day"),
-    )
-
     include_easter_sunday = True
+    include_reformation_day = True
 
 
 class Bremen(Germany):
@@ -67,9 +82,7 @@ class Hesse(Germany):
 class MecklenburgVorpommern(Germany):
     "Mecklenburg-Vorpommern"
 
-    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
-        (10, 31, "Reformation Day"),
-    )
+    include_reformation_day = True
 
 
 class LowerSaxony(Germany):
@@ -101,9 +114,7 @@ class Saarland(Germany):
 class Saxony(Germany):
     "Saxony"
 
-    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
-        (10, 31, "Reformation Day"),
-    )
+    include_reformation_day = True
 
     def get_repentance_day(self, year):
         "Wednesday before November 23"
@@ -113,7 +124,7 @@ class Saxony(Germany):
         return (day, "Repentance Day")
 
     def get_variable_days(self, year):
-        days = super(Germany, self).get_variable_days(year)
+        days = super(Saxony, self).get_variable_days(year)
         days.append(self.get_repentance_day(year))
         return days
 
@@ -121,11 +132,8 @@ class Saxony(Germany):
 class SaxonyAnhalt(Germany):
     "Saxony-Anhalt"
 
-    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
-        (10, 31, "Reformation Day"),
-    )
-
     include_epiphany = True
+    include_reformation_day = True
 
 
 class SchleswigHolstein(Germany):
@@ -134,7 +142,4 @@ class SchleswigHolstein(Germany):
 
 class Thuringia(Germany):
     "Thuringia"
-
-    FIXED_HOLIDAYS = Germany.FIXED_HOLIDAYS + (
-        (10, 31, "Reformation Day"),
-    )
+    include_reformation_day = True
