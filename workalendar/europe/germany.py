@@ -113,7 +113,7 @@ class Saxony(Germany):
         return (day, "Repentance Day")
 
     def get_variable_days(self, year):
-        days = super(Germany, self).get_variable_days(year)
+        days = super(Saxony, self).get_variable_days(year)
         days.append(self.get_repentance_day(year))
         return days
 
