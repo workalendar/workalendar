@@ -349,6 +349,39 @@ class IcelandTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
+class IrelandTest(GenericCalendarTest):
+    cal_class = Ireland
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)    # Tue New Year's Day
+        self.assertIn(date(2013, 3, 17), holidays)   # Sun St Patricks day
+        self.assertIn(date(2013, 3, 18), holidays)   # Mon St Patricks day shift
+        self.assertIn(date(2013, 4, 1), holidays)    # Mon Easter Monday
+        self.assertIn(date(2013, 5, 6), holidays)    # Mon May day
+        self.assertIn(date(2013, 6, 3), holidays)    # Mon June Holiday
+        self.assertIn(date(2013, 8, 5), holidays)    # Mon August Holiday
+        self.assertIn(date(2013, 10, 28), holidays)  # Mon October Holiday
+        self.assertIn(date(2013, 12, 25), holidays)  # Wed Christmas
+        self.assertIn(date(2013, 12, 26), holidays)  # Thu St Stepehen's
+        
+    def test_shift_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)    # new year day
+        self.assertIn(date(2012, 1, 2), holidays)    # new year day shift
+
+    def test_shift_2011(self):
+        holidays = self.cal.holidays_set(2011)
+        self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
+        self.assertIn(date(2011, 12, 26), holidays)  # Xmas day shift
+        self.assertIn(date(2011, 12, 27), holidays)  # St Stephen's day shift
+
+    def test_shift_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 12, 25), holidays)  # Christmas it's friday
+        self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen's day it's saturday
+        self.assertIn(date(2015, 12, 28), holidays)  # St. Stephen's day shift
+
 
 class IrelandTest(GenericCalendarTest):
     cal_class = Ireland
