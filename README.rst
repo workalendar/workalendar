@@ -86,6 +86,7 @@ Europe
 * Greece
 * Hungary
 * Iceland
+* Ireland
 * Italy
 * Luxembourg
 * Netherlands
