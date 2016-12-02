@@ -349,39 +349,6 @@ class IcelandTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
-class IrelandTest(GenericCalendarTest):
-    cal_class = Ireland
-
-    def test_year_2013(self):
-        holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # Tue New Year's Day
-        self.assertIn(date(2013, 3, 17), holidays)   # Sun St Patricks day
-        self.assertIn(date(2013, 3, 18), holidays)   # Mon St Patricks day shift
-        self.assertIn(date(2013, 4, 1), holidays)    # Mon Easter Monday
-        self.assertIn(date(2013, 5, 6), holidays)    # Mon May day
-        self.assertIn(date(2013, 6, 3), holidays)    # Mon June Holiday
-        self.assertIn(date(2013, 8, 5), holidays)    # Mon August Holiday
-        self.assertIn(date(2013, 10, 28), holidays)  # Mon October Holiday
-        self.assertIn(date(2013, 12, 25), holidays)  # Wed Christmas
-        self.assertIn(date(2013, 12, 26), holidays)  # Thu St Stepehen's
-        
-    def test_shift_2012(self):
-        holidays = self.cal.holidays_set(2012)
-        self.assertIn(date(2012, 1, 1), holidays)    # new year day
-        self.assertIn(date(2012, 1, 2), holidays)    # new year day shift
-
-    def test_shift_2011(self):
-        holidays = self.cal.holidays_set(2011)
-        self.assertIn(date(2011, 12, 25), holidays)  # Christmas it's sunday
-        self.assertIn(date(2011, 12, 26), holidays)  # Xmas day shift
-        self.assertIn(date(2011, 12, 27), holidays)  # St Stephen's day shift
-
-    def test_shift_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 12, 25), holidays)  # Christmas it's friday
-        self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen's day it's saturday
-        self.assertIn(date(2015, 12, 28), holidays)  # St. Stephen's day shift
-
 
 class IrelandTest(GenericCalendarTest):
     cal_class = Ireland
@@ -390,7 +357,7 @@ class IrelandTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)    # Tue New Year's Day
         self.assertIn(date(2013, 3, 17), holidays)   # Sun St Patricks day
-        self.assertIn(date(2013, 3, 18), holidays)   # Mon St Patricks day shift
+        self.assertIn(date(2013, 3, 18), holidays)   # Mon St Patricks shift
         self.assertIn(date(2013, 4, 1), holidays)    # Mon Easter Monday
         self.assertIn(date(2013, 5, 6), holidays)    # Mon May day
         self.assertIn(date(2013, 6, 3), holidays)    # Mon June Holiday
@@ -413,8 +380,34 @@ class IrelandTest(GenericCalendarTest):
     def test_shift_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 12, 25), holidays)  # Christmas it's friday
-        self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen's day it's saturday
+        self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen's day Sat
         self.assertIn(date(2015, 12, 28), holidays)  # St. Stephen's day shift
+
+    def test_whit_mon(self):
+        holidays_1972 = self.cal.holidays_set(1972)
+        holidays_1973 = self.cal.holidays_set(1973)
+        # holidays_1974 = self.cal.holidays_set(1974) Overlaps with June Hol
+        holidays_1975 = self.cal.holidays_set(1975)
+        self.assertIn(date(1972, 5, 22), holidays_1972)     # Whit Monday
+        self.assertIn(date(1973, 6, 11), holidays_1973)
+        # self.assertNotIn(date(1974, 6, 3), holidays_1974) # Overlaps Jun Hol
+        self.assertNotIn(date(1975, 5, 19), holidays_1975)  # No Whit Monday
+
+    def test_may_day(self):
+        holidays_1993 = self.cal.holidays_set(1993)
+        holidays_1994 = self.cal.holidays_set(1994)
+        holidays_1995 = self.cal.holidays_set(1995)
+        self.assertNotIn(date(1993, 5, 1), holidays_1993)  # No May Day
+        self.assertIn(date(1994, 5, 2), holidays_1994)     # May Day
+        self.assertIn(date(1995, 5, 1), holidays_1995)
+
+    def test_october_holiday(self):
+        holidays_1976 = self.cal.holidays_set(1976)
+        holidays_1977 = self.cal.holidays_set(1977)
+        holidays_1978 = self.cal.holidays_set(1978)
+        self.assertNotIn(date(1976, 10, 25), holidays_1976)  # No October Hol
+        self.assertIn(date(1977, 10, 31), holidays_1977)     # October Hol
+        self.assertIn(date(1978, 10, 30), holidays_1978)
 
 
 class ItalyTest(GenericCalendarTest):

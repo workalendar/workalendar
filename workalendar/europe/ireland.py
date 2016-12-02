@@ -10,9 +10,7 @@ class Ireland(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day"
-
     shift_new_years_day = True
-
 
     def get_june_holiday(self, year):
         return (
@@ -42,14 +40,14 @@ class Ireland(WesternCalendar, ChristianMixin):
             days.append((
                 self.get_whit_monday(year),
                 self.whit_monday_label
-            )) 
+            ))
 
         # May Day
         if year >= 1994:
             days.append((
                 Ireland.get_nth_weekday_in_month(year, 5, MON),
                 "May Day"
-            )) 
+            ))
 
         days.append(self.get_june_holiday(year))
         days.append(self.get_august_holiday(year))
