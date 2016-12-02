@@ -9,6 +9,7 @@ from .france import France, FranceAlsaceMoselle
 from .greece import Greece
 from .hungary import Hungary
 from .iceland import Iceland
+from .ireland import Ireland
 from .italy import Italy
 from .luxembourg import Luxembourg
 from .netherlands import Netherlands
@@ -44,6 +45,7 @@ __all__ = (
     Greece,
     Hungary,
     Iceland,
+    Ireland,
     Italy,
     Luxembourg,
     Netherlands,
