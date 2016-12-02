@@ -349,6 +349,7 @@ class IcelandTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
+
 class IrelandTest(GenericCalendarTest):
     cal_class = Ireland
 
@@ -364,7 +365,7 @@ class IrelandTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 28), holidays)  # Mon October Holiday
         self.assertIn(date(2013, 12, 25), holidays)  # Wed Christmas
         self.assertIn(date(2013, 12, 26), holidays)  # Thu St Stepehen's
-        
+
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)    # new year day
