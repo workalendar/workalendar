@@ -1,5 +1,6 @@
 # coding=utf-8
 from datetime import date
+from workalendar.europe import Austria
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import CzechRepublic
 from workalendar.europe import Denmark
@@ -31,6 +32,26 @@ from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
                                 NorthRhineWestphalia, RhinelandPalatinate,
                                 Saarland, Saxony, SaxonyAnhalt,
                                 SchleswigHolstein, Thuringia)
+
+
+class AustriaTest(GenericCalendarTest):
+    cal_class = Austria
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016,  1,  1), holidays)  # New Years day
+        self.assertIn(date(2016,  1,  6), holidays)  # Epiphany
+        self.assertIn(date(2016,  3, 28), holidays)  # easter monday
+        self.assertIn(date(2016,  5,  1), holidays)  # National Holiday
+        self.assertIn(date(2016,  5,  5), holidays)  # Ascension Day
+        self.assertIn(date(2016,  5, 16), holidays)  # Whit monday
+        self.assertIn(date(2016,  5, 26), holidays)  # Corpus Christi
+        self.assertIn(date(2016,  8, 15), holidays)  # Assumption
+        self.assertIn(date(2016, 10, 26), holidays)  # national day again
+        self.assertIn(date(2016, 11,  1), holidays)  # all saints
+        self.assertIn(date(2016, 12,  8), holidays)  # Immaculate conception
+        self.assertIn(date(2016, 12, 25), holidays)  # Xmas
+        self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
 
 
 class CzechRepublicTest(GenericCalendarTest):

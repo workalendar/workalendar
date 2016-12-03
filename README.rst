@@ -74,6 +74,7 @@ Available Calendars
 Europe
 ------
 
+* Austria
 * Belgium
 * Czech Republic
 * Denmark

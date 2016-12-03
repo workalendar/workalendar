@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .austria import Austria
 from .belgium import Belgium
 from .czech_republic import CzechRepublic
 from .estonia import Estonia
@@ -33,6 +34,7 @@ from .germany import (
 
 
 __all__ = (
+    Austria,
     Belgium,
     Catalonia,
     CzechRepublic,
