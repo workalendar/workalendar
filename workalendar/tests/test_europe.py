@@ -495,6 +495,12 @@ class NetherlandsTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(1990)
         self.assertIn(date(1990, 4, 30), holidays)   # Queen's Day
 
+    def test_new_years_eve(self):
+        # For some reason, the new year's eve was added to the list of fixed
+        # holidays. It appears it's not a holiday
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 12, 31), holidays)
+
 
 class UnitedKingdomTest(GenericCalendarTest):
     cal_class = UnitedKingdom

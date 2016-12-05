@@ -4,7 +4,8 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-- Add Ireland. thx @gregn610 (#152)
+- Add Ireland. thx @gregn610 (#152).
+- Bugfix: New Year's Eve is not a holiday in Netherlands (#154).
 - Add Austria. thx @gregn610 (#153)
 
 
