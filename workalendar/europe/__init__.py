@@ -21,7 +21,6 @@ from .slovenia import Slovenia
 from .spain import Spain, Catalonia
 from .sweden import Sweden
 from .switzerland import Switzerland
-from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
 
 # Germany
 from .germany import (
@@ -57,8 +56,6 @@ __all__ = (
     Spain,
     Sweden,
     Switzerland,
-    UnitedKingdom,
-    UnitedKingdomNorthernIreland,
 
     # Germany
     Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
