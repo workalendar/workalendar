@@ -2,6 +2,7 @@
 from .austria import Austria
 from .belgium import Belgium
 from .bulgaria import Bulgaria
+from .croatia import Croatia
 from .czech_republic import CzechRepublic
 from .estonia import Estonia
 from .european_central_bank import EuropeanCentralBank
@@ -39,6 +40,7 @@ __all__ = (
     Belgium,
     Bulgaria,
     Catalonia,
+    Croatia,
     CzechRepublic,
     Denmark,
     Estonia,
