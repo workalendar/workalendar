@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .austria import Austria
 from .belgium import Belgium
+from .croatia import Croatia
 from .czech_republic import CzechRepublic
 from .estonia import Estonia
 from .european_central_bank import EuropeanCentralBank
@@ -37,6 +38,7 @@ __all__ = (
     Austria,
     Belgium,
     Catalonia,
+    Croatia,
     CzechRepublic,
     Denmark,
     Estonia,
