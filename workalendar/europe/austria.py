@@ -6,7 +6,7 @@ class Austria(WesternCalendar, ChristianMixin):
     "Austria"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5,   1, "National Holiday"),  # Staatsfeiertag
+        (5, 1, "National Holiday"),  # Staatsfeiertag
         (10, 26, "National Holiday"),  # Nationalfeiertag
     )
 

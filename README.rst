@@ -77,6 +77,7 @@ Europe
 * Austria
 * Belgium
 * Bulgaria
+* Croatia
 * Czech Republic
 * Denmark
 * Estonia
