@@ -2,6 +2,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import Austria
+from workalendar.europe import Bulgaria
 from workalendar.europe import Belgium
 from workalendar.europe import Croatia
 from workalendar.europe import CzechRepublic
@@ -55,6 +56,26 @@ class AustriaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
 
 
+class BulgariaTest(GenericCalendarTest):
+    cal_class = Bulgaria
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016,  1,  1), holidays)   # New Year's Day
+        self.assertIn(date(2016,  3,  3), holidays)   # Liberation Day
+        self.assertIn(date(2016,  3, 27), holidays)   # Easter Sun
+        self.assertIn(date(2016,  3, 28), holidays)   # Easter Mon
+        self.assertIn(date(2016,  5,  1), holidays)   # International Workers'
+        self.assertIn(date(2016,  5,  6), holidays)   # St George's Day
+        self.assertIn(date(2016,  5, 24), holidays)   # St Cyril & Methodius
+        self.assertIn(date(2016,  9,  6), holidays)   # Unification Day
+        self.assertIn(date(2016,  9, 22), holidays)   # Independence Day
+        self.assertIn(date(2016, 12, 24), holidays)   # Christmas Eve
+        self.assertIn(date(2016, 12, 25), holidays)   # Christmas 1
+        self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
+        # Non-attendance day for schools, otherwise a working day.
+        self.assertNotIn(date(2016, 11,  1), holidays)   # National Awakening
+        
 class CroatiaTest(GenericCalendarTest):
     cal_class = Croatia
 
