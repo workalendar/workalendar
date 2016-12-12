@@ -9,6 +9,12 @@ Workalendar is a Python module that offers classes able to handle calendars,
 list legal / religious holidays and gives working-day-related computation
 functions.
 
+Status
+======
+
+This library is ready for production, although we may warn eventual users: some calendars may not be up-to-date, and this library doesn't cover all the existing countries on earth (yet).
+
+If you spot any bug or wish to add a calendar, please refer to the `Contributing doc <CONTRIBUTING.rst>`_.
 
 Usage sample
 ============
