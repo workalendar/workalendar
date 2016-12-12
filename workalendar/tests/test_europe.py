@@ -1,8 +1,10 @@
 # coding=utf-8
 from datetime import date
+from workalendar.tests import GenericCalendarTest
 from workalendar.europe import Austria
 from workalendar.europe import Bulgaria
-from workalendar.tests import GenericCalendarTest
+from workalendar.europe import Belgium
+from workalendar.europe import Croatia
 from workalendar.europe import CzechRepublic
 from workalendar.europe import Denmark
 from workalendar.europe import Slovakia
@@ -22,11 +24,10 @@ from workalendar.europe import Poland
 from workalendar.europe import Portugal
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
+from workalendar.europe import Switzerland
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
-from workalendar.europe import Belgium
-from workalendar.europe import Switzerland
 from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
                                 Brandenburg, Bremen, Hamburg, Hesse,
                                 MecklenburgVorpommern, LowerSaxony,
@@ -74,6 +75,26 @@ class BulgariaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
         # Non-attendance day for schools, otherwise a working day.
         self.assertNotIn(date(2016, 11,  1), holidays)   # National Awakening
+        
+class CroatiaTest(GenericCalendarTest):
+    cal_class = Croatia
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day Nova Godin
+        self.assertIn(date(2016, 1, 6), holidays)   # Epiphany Bogojavljenje,
+        self.assertIn(date(2016, 3, 27), holidays)  # Easter Sunday Uskrs i us
+        self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
+        self.assertIn(date(2016, 5, 1), holidays)   # Intl Workers' Day Međunar
+        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi Tijelovo
+        self.assertIn(date(2016, 6, 22), holidays)  # Anti-Fascist Day Dan anti
+        self.assertIn(date(2016, 6, 25), holidays)  # Statehood Day 	Dan drž
+        self.assertIn(date(2016, 8, 5), holidays)   # Victory & Homeland Thanks
+        self.assertIn(date(2016, 8, 15), holidays)  # Assumption of Mary 	Vel
+        self.assertIn(date(2016, 10, 8), holidays)  # Independence Day Dan neov
+        self.assertIn(date(2016, 11, 1), holidays)  # All Saints' Day Dan svih
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas Božić
+        self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen's Day Prvi d
 
 
 class CzechRepublicTest(GenericCalendarTest):
