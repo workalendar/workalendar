@@ -10,12 +10,6 @@ list legal / religious holidays and gives working-day-related computation
 functions.
 
 
-Status
-======
-
-This is barely beta. Please consider this module as a work in progres.
-
-
 Usage sample
 ============
 
