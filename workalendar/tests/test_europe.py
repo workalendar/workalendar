@@ -880,6 +880,12 @@ class SaxonyTest(GermanyTest):
         self.assertIn(date(2015, 11, 18), holidays)
         self.assertIn(date(2015, 10, 31), holidays)
 
+    def test_extra_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 11, 16), holidays)
+        self.assertNotIn(date(2016, 11, 23), holidays)
+        self.assertIn(date(2016, 10, 31), holidays)
+
 
 class SaxonyAnhaltTest(GermanyTest):
     cal_class = SaxonyAnhalt
