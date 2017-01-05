@@ -51,7 +51,11 @@ class Bavaria(Germany):
     include_epiphany = True
     include_corpus_christi = True
     include_all_saints = True
-    include_assumption = True
+#   Wikipedia says about DE_BY:
+#   (5) 	Public holiday only in approx. 1700 communities with predominantly
+#           Catholic population and in the cities of Augsburg and Munich.
+#   (6) 	Schools are closed all over the state on that day.
+#   include_assumption = False
 
 
 class Berlin(Germany):
@@ -118,7 +122,7 @@ class Saxony(Germany):
 
     def get_repentance_day(self, year):
         "Wednesday before November 23"
-        day = date(year, 11, 23)
+        day = date(year, 11, 22)
         while day.weekday() != 2:  # 2=Wednesday
             day -= timedelta(days=1)
         return (day, "Repentance Day")

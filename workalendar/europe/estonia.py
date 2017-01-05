@@ -20,3 +20,12 @@ class Estonia(WesternCalendar, ChristianMixin):
         (6, 24, "Jaanipäev"),
         (8, 20, "Taasiseseisvumispäev")
     )
+
+    def get_fixed_holidays(self, year):
+        """Return the fixed days according to the FIXED_HOLIDAYS class property
+        """
+        days = []
+        # EE Independence
+        if year >= 1991:
+            return super(Estonia, self).get_fixed_holidays(year)
+        return days

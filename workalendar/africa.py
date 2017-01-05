@@ -182,5 +182,6 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
             days.append((date(year, 5, 7), "National Elections"))
         if year == 2016:
             days.append((date(year, 8, 3), "Local Elections"))
+            days.append((date(year, 12, 27), "Christmas shifted"))
 
         return days

@@ -326,7 +326,7 @@ class GreeceTest(GenericCalendarTest):
         self.assertIn(date(2013, 3, 25), holidays)
         self.assertIn(date(2013, 5, 1), holidays)  # labour day
         self.assertIn(date(2013, 5, 3), holidays)  # good friday
-        self.assertIn(date(2013, 5, 5), holidays)  # easter
+        self.assertNotIn(date(2013, 5, 5), holidays)  # easter
         self.assertIn(date(2013, 5, 6), holidays)  # easter monday
         self.assertIn(date(2013, 6, 23), holidays)  # pentecost sunday
         self.assertIn(date(2013, 6, 24), holidays)  # whit monday
@@ -553,7 +553,7 @@ class UnitedKingdomTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)  # new year day
         self.assertIn(date(2013, 3, 29), holidays)  # good friday
-        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertNotIn(date(2013, 3, 31), holidays)  # easter sunday
         self.assertIn(date(2013, 4, 1), holidays)  # easter monday
         self.assertIn(date(2013, 5, 6), holidays)  # Early May Bank Holiday
         self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
@@ -563,7 +563,7 @@ class UnitedKingdomTest(GenericCalendarTest):
 
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
-        self.assertIn(date(2012, 1, 1), holidays)  # new year day
+        self.assertNotIn(date(2012, 1, 1), holidays)  # new year day
         self.assertIn(date(2012, 1, 2), holidays)  # new year day shift
 
     def test_shift_2011(self):
@@ -705,7 +705,7 @@ class BavariaTest(GenericCalendarTest):
         self.assertIn(date(2014, 5, 29), holidays)
         self.assertIn(date(2014, 6, 9), holidays)
         self.assertIn(date(2014, 6, 19), holidays)
-        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertNotIn(date(2014, 8, 15), holidays)
         self.assertIn(date(2014, 10, 3), holidays)
         self.assertIn(date(2014, 11, 1), holidays)
         self.assertIn(date(2014, 12, 25), holidays)
@@ -721,7 +721,7 @@ class BavariaTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 14), holidays)
         self.assertIn(date(2015, 5, 25), holidays)
         self.assertIn(date(2015, 6, 4), holidays)
-        self.assertIn(date(2015, 8, 15), holidays)
+        self.assertNotIn(date(2015, 8, 15), holidays)
         self.assertIn(date(2015, 10, 3), holidays)
         self.assertIn(date(2015, 11, 1), holidays)
         self.assertIn(date(2015, 12, 25), holidays)
