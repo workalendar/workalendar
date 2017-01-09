@@ -474,6 +474,16 @@ class Germany(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     boxing_day_label = "Second Christmas Day"
 
+    def get_variable_days(self, year):
+        days = super(Germany, self).get_variable_days(year)
+
+        if year == 2017:
+            days += [
+                (date(2017, 10, 31), 'Reformation day'),
+            ]
+
+        return days
+
 
 class BadenWurttemberg(Germany):
     "Baden-Württemberg"

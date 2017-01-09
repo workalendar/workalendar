@@ -515,6 +515,10 @@ class GermanyTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 25), holidays)
         self.assertIn(date(2015, 12, 26), holidays)
 
+    def test_extra_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 10, 31), holidays)
+
 
 class BadenWurttembergTest(GermanyTest):
     cal_class = BadenWurttemberg
