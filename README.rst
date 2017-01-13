@@ -78,6 +78,7 @@ Europe
 * Belgium
 * Bulgaria
 * Croatia
+* Cyprus
 * Czech Republic
 * Denmark
 * Estonia
@@ -91,6 +92,7 @@ Europe
 * Iceland
 * Ireland
 * Italy
+* Latvia
 * Luxembourg
 * Netherlands
 * Norway

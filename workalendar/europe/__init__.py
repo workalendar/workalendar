@@ -3,6 +3,7 @@ from .austria import Austria
 from .belgium import Belgium
 from .bulgaria import Bulgaria
 from .croatia import Croatia
+from .cyprus import Cyprus
 from .czech_republic import CzechRepublic
 from .estonia import Estonia
 from .european_central_bank import EuropeanCentralBank
@@ -14,6 +15,7 @@ from .hungary import Hungary
 from .iceland import Iceland
 from .ireland import Ireland
 from .italy import Italy
+from .latvia import Latvia
 from .luxembourg import Luxembourg
 from .netherlands import Netherlands
 from .norway import Norway
@@ -41,6 +43,7 @@ __all__ = (
     Bulgaria,
     Catalonia,
     Croatia,
+    Cyprus,
     CzechRepublic,
     Denmark,
     Estonia,
@@ -53,6 +56,7 @@ __all__ = (
     Iceland,
     Ireland,
     Italy,
+    Latvia,
     Luxembourg,
     Netherlands,
     Norway,

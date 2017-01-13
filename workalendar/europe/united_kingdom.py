@@ -7,7 +7,8 @@ from workalendar.core import MON
 class UnitedKingdom(WesternCalendar, ChristianMixin):
     "United Kingdom"
     include_good_friday = True
-    include_easter_sunday = True
+    # include_easter_sunday = True
+    # https://github.com/novafloss/workalendar/issues/160/
     include_easter_monday = True
     include_boxing_day = True
     shift_new_years_day = True
@@ -45,6 +46,18 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         elif boxing_day.weekday() in self.get_weekend_days():
             shift = self.find_following_working_day(boxing_day)
             days.append((shift, "Boxing Day Shift"))
+        return days
+
+    def get_calendar_holidays(self, year):
+        """Get calendar holidays.
+        If you want to override this, please make sure that it **must** return
+        a list of tuples (date, holiday_name)."""
+        days = self.get_fixed_holidays(year) + self.get_variable_days(year)
+        # Wikipedia says NYD not proclaimed if 1 Jan on Saturday or Sunday
+        new_year = date(year, 1, 1)
+        if new_year.weekday() in self.get_weekend_days():
+            days = [(dd, dn) for dd, dn in days if not
+                    (dd.day == 1 and dd.month == 1)]
         return days
 
 

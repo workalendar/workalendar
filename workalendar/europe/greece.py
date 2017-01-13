@@ -13,10 +13,11 @@ class Greece(OrthodoxMixin, WesternCalendar):
     include_clean_monday = True
     include_annunciation = True
     include_good_friday = True
-    include_easter_sunday = True
+    # GR Pentecost. Sundays aren't official holidays
     include_easter_monday = True
-    include_whit_sunday = True
-    whit_sunday_label = "Pentecost"
+    # Sundays aren't official holidays
+    # include_whit_sunday = True
+    # whit_sunday_label = "Pentecost"
     include_whit_monday = True
     include_assumption = True
     include_boxing_day = True
