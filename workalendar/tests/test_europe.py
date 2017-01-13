@@ -351,7 +351,8 @@ class GreeceTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 3), holidays)  # good friday
         self.assertNotIn(date(2013, 5, 5), holidays)  # easter
         self.assertIn(date(2013, 5, 6), holidays)  # easter monday
-        self.assertIn(date(2013, 6, 23), holidays)  # pentecost sunday
+        # Note that Easter Sunday and Pentecost, are not official holidays as they always occur on a Sunday
+        # self.assertIn(date(2013, 6, 23), holidays)  # pentecost sunday
         self.assertIn(date(2013, 6, 24), holidays)  # whit monday
         self.assertIn(date(2013, 8, 15), holidays)  # Assumption
         self.assertIn(date(2013, 10, 28), holidays)  # Ochi Day
