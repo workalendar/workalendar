@@ -17,6 +17,7 @@ from workalendar.europe import Hungary
 from workalendar.europe import Iceland
 from workalendar.europe import Ireland
 from workalendar.europe import Italy
+from workalendar.europe import Latvia
 from workalendar.europe import Luxembourg
 from workalendar.europe import Netherlands
 from workalendar.europe import Norway
@@ -491,6 +492,35 @@ class ItalyTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 8), holidays)  # immaculate Conception
         self.assertIn(date(2013, 12, 25), holidays)  # christmas
         self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
+
+
+class LatviaTest(GenericCalendarTest):
+
+    cal_class = Latvia
+
+    def test_year_2017(self):
+        """
+        https://www.bank.lv/en/about-us/public-holidays-in-latvia
+        """
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017,  1,  1), holidays)  # New Year's Day
+        self.assertIn(date(2017,  4, 14), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  4, 16), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  4, 17), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  5,  1), holidays)  # Labour Day, C
+        self.assertIn(date(2017,  5,  4), holidays)  # Restoration of Independe
+        self.assertIn(date(2017,  6, 23), holidays)  # Midsummer Day
+        self.assertIn(date(2017,  6, 24), holidays)  # St. John's Day
+        self.assertIn(date(2017, 11, 18), holidays)  # Proclamation
+        self.assertIn(date(2017, 11, 20), holidays)  # Proclamation Observed
+        self.assertIn(date(2017, 12, 24), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 26), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 31), holidays)  # New Year's Eve
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013,  5, 6), holidays)  # Restoration Day Observed
 
 
 class LuxembourgTest(GenericCalendarTest):

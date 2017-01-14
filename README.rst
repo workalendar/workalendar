@@ -91,6 +91,7 @@ Europe
 * Iceland
 * Ireland
 * Italy
+* Latvia
 * Luxembourg
 * Netherlands
 * Norway
