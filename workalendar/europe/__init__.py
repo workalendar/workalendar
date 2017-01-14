@@ -15,6 +15,7 @@ from .iceland import Iceland
 from .ireland import Ireland
 from .italy import Italy
 from .luxembourg import Luxembourg
+from .malta import Malta
 from .netherlands import Netherlands
 from .norway import Norway
 from .poland import Poland
@@ -54,6 +55,7 @@ __all__ = (
     Ireland,
     Italy,
     Luxembourg,
+    Malta,
     Netherlands,
     Norway,
     Poland,

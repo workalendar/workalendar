@@ -92,6 +92,7 @@ Europe
 * Ireland
 * Italy
 * Luxembourg
+* Malta
 * Netherlands
 * Norway
 * Poland
