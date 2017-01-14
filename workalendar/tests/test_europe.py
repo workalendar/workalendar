@@ -363,22 +363,21 @@ class MaltaTest(GenericCalendarTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         # National Holidays
-        self.assertIn(date(2017, 3, 31), holidays)  #Jum il-Ħelsien
-        self.assertIn(date(2017, 6, 7), holidays)  # June 7 - Sette Giugno
-        self.assertIn(date(2017, 9, 8), holidays)  #Jum il-Vitorja
-        self.assertIn(date(2017, 9, 21), holidays)  #Jum l-Indipendenza
-        self.assertIn(date(2017, 12, 13), holidays)  #Jum ir-Repubblika
+        self.assertIn(date(2017, 3, 31), holidays)  # Jum il-Ħelsien
+        self.assertIn(date(2017, 6, 7), holidays)  # Sette Giugno
+        self.assertIn(date(2017, 9, 8), holidays)  # Jum il-Vitorja
+        self.assertIn(date(2017, 9, 21), holidays)  # Jum l-Indipendenza
+        self.assertIn(date(2017, 12, 13), holidays)  # Jum ir-Repubblika
         # Public Holidays
-        self.assertIn(date(2017, 1, 1), holidays)  #L-Ewwel tas-Sena
-        self.assertIn(date(2017, 2, 10), holidays)  #Nawfraġju ta' San Pawl
-        self.assertIn(date(2017, 3, 19), holidays)  #San Ġużepp)
-        self.assertIn(date(2017, 4, 14), holidays)  #Il-Ġimgħa l-Kbira
-        self.assertIn(date(2017, 5, 1), holidays)  #Jum il-Ħaddiem
-        self.assertIn(date(2017, 6, 29), holidays)  #L-Imnarja
-        self.assertIn(date(2017, 8, 15), holidays)  #Santa Marija
-        self.assertIn(date(2017, 12, 8), holidays)  #Il-Kunċizzjoni
-        self.assertIn(date(2017, 12, 25), holidays)  #Il-Milied
-
+        self.assertIn(date(2017, 1, 1), holidays)  # L-Ewwel tas-Sena
+        self.assertIn(date(2017, 2, 10), holidays)  # Nawfraġju ta' San Pawl
+        self.assertIn(date(2017, 3, 19), holidays)  # San Ġużepp
+        self.assertIn(date(2017, 4, 14), holidays)  # Il-Ġimgħa l-Kbira
+        self.assertIn(date(2017, 5, 1), holidays)  # Jum il-Ħaddiem
+        self.assertIn(date(2017, 6, 29), holidays)  # L-Imnarja
+        self.assertIn(date(2017, 8, 15), holidays)  # Santa Marija
+        self.assertIn(date(2017, 12, 8), holidays)  # Il-Kunċizzjoni
+        self.assertIn(date(2017, 12, 25), holidays)  # Il-Milied
 
 
 class NorwayTest(GenericCalendarTest):
