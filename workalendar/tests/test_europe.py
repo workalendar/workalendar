@@ -505,6 +505,7 @@ class LatviaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017,  1,  1), holidays)  # New Year's Day
         self.assertIn(date(2017,  4, 14), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  4, 16), holidays)  # Easter 14 and 17 april
         self.assertIn(date(2017,  4, 17), holidays)  # Easter 14 and 17 april
         self.assertIn(date(2017,  5,  1), holidays)  # Labour Day, C
         self.assertIn(date(2017,  5,  4), holidays)  # Restoration of Independe

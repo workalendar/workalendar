@@ -15,6 +15,7 @@ class Latvia(WesternCalendar, ChristianMixin):
     )
 
     include_good_friday = True
+    include_easter_sunday = True
     include_easter_monday = True
     include_christmas_eve = True
     include_christmas = True
