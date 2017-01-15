@@ -59,6 +59,7 @@ __all__ = (
     Norway,
     Poland,
     Portugal,
+    Romania,
     Slovakia,
     Slovenia,
     Spain,
