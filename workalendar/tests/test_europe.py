@@ -22,6 +22,7 @@ from workalendar.europe import Netherlands
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
+from workalendar.europe import Romania
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
 from workalendar.europe import Switzerland
@@ -544,6 +545,28 @@ class NetherlandsTest(GenericCalendarTest):
         # holidays. It appears it's not a holiday
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 31), holidays)
+
+
+class Romania(GenericCalendarTest):
+    cal_class = Romania
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)  # Anul Nou New Year's Day
+        self.assertIn(date(2017, 1, 2), holidays)  # Anul Nou Day after New Yr
+        self.assertIn(date(2017, 1, 24), holidays)  # Unirea Principatelor Rom
+        self.assertIn(date(2017, 4, 14), holidays)  # Orthodox Good Fri
+        self.assertIn(date(2017, 4, 16), holidays)  # Orthodox Easter Sun
+        self.assertIn(date(2017, 4, 17), holidays)  # Orthodox Easter Mon
+        self.assertIn(date(2017, 5, 1), holidays)  # Ziua Muncii Labour Day
+        self.assertIn(date(2017, 6, 1), holidays)  # Ziua Copilului Children's
+        self.assertIn(date(2017, 6, 4), holidays)  # Pentecost
+        self.assertIn(date(2017, 6, 5), holidays)  # Whit Monday
+        self.assertIn(date(2017, 8, 15), holidays)  # Adormirea Maicii Domnului
+        self.assertIn(date(2017, 11, 30), holidays)  # Sfântul Andrei St. Andre
+        self.assertIn(date(2017, 12, 1), holidays)  # Ziua Națională/Marea Unir
+        self.assertIn(date(2017, 12, 25), holidays)  # Crăciunul Christmas
+        self.assertIn(date(2017, 12, 26), holidays)  # Crăciunul Christmas
 
 
 class UnitedKingdomTest(GenericCalendarTest):

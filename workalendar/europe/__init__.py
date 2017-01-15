@@ -19,6 +19,7 @@ from .netherlands import Netherlands
 from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
+from .romania import Romania
 from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
