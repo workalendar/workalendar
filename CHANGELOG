@@ -1,15 +1,16 @@
 CHANGELOG
 =========
 
-master (2017-01-07)
+master (unreleased)
 -------------------
 
 - Add Cyprus. thx @gregn610 (#174).
+- Fixed Saxony repentance day for the year 2016. thx @Natim (#168).
 
 1.0.0 (2016-12-12)
 ------------------
 
-After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved. 
+After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved.
 
 - Add Ireland. thx @gregn610 (#152).
 - Bugfix: New Year's Eve is not a holiday in Netherlands (#154).
