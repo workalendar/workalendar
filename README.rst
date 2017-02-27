@@ -94,6 +94,7 @@ Europe
 * Italy
 * Latvia
 * Luxembourg
+* Malta
 * Netherlands
 * Norway
 * Poland
