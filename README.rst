@@ -99,6 +99,7 @@ Europe
 * Norway
 * Poland
 * Portugal
+* Romania
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
