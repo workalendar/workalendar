@@ -4,7 +4,7 @@ from workalendar.core import WesternCalendar, OrthodoxMixin
 
 
 class Romania(WesternCalendar, OrthodoxMixin):
-    "Latvia"
+    "Romania"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1,   2,  "Day After New Years"),
