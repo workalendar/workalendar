@@ -23,7 +23,7 @@ from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
 from .sweden import Sweden
-from .switzerland import Switzerland
+from .switzerland import Switzerland, Vaud
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
 
 # Germany
@@ -63,6 +63,7 @@ __all__ = (
     Spain,
     Sweden,
     Switzerland,
+    Vaud,
     UnitedKingdom,
     UnitedKingdomNorthernIreland,
 

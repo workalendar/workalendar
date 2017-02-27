@@ -24,7 +24,7 @@ from workalendar.europe import Poland
 from workalendar.europe import Portugal
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
-from workalendar.europe import Switzerland
+from workalendar.europe import Switzerland, Vaud
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
@@ -1050,6 +1050,22 @@ class SwitzerlandTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 1), holidays)
         self.assertIn(date(2016, 12, 25), holidays)
         self.assertIn(date(2016, 12, 26), holidays)
+
+
+class VaudTest(GenericCalendarTest):
+    cal_class = Vaud
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 9, 19), holidays)
+        self.assertNotIn(date(2016, 5, 1), holidays)
+        self.assertNotIn(date(2016, 12, 26), holidays)
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 9, 18), holidays)
+        self.assertNotIn(date(2017, 5, 1), holidays)
+        self.assertNotIn(date(2017, 12, 26), holidays)
 
 
 class EstoniaTest(GenericCalendarTest):
