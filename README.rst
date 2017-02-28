@@ -106,6 +106,7 @@ Europe
 * Spain (incl. Catalonia)
 * Slovenia
 * Switzerland
+  * Vaud
 
 America
 -------
