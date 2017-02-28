@@ -11,6 +11,8 @@ master (unreleased)
 - Add Malta. thx @gregn610 (#179).
 - Add Romania. thx @gregn610 (#180).
 - Add Canton of Vaud (Switzerland) - @brutasse (#182)
+- Fixed January 2nd state holiday (#181).
+
 
 1.0.0 (2016-12-12)
 ------------------
