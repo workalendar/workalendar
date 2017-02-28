@@ -5,6 +5,7 @@ from workalendar.europe import Austria
 from workalendar.europe import Bulgaria
 from workalendar.europe import Belgium
 from workalendar.europe import Croatia
+from workalendar.europe import Cyprus
 from workalendar.europe import CzechRepublic
 from workalendar.europe import Denmark
 from workalendar.europe import Slovakia
@@ -17,11 +18,14 @@ from workalendar.europe import Hungary
 from workalendar.europe import Iceland
 from workalendar.europe import Ireland
 from workalendar.europe import Italy
+from workalendar.europe import Latvia
 from workalendar.europe import Luxembourg
+from workalendar.europe import Malta
 from workalendar.europe import Netherlands
 from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
+from workalendar.europe import Romania
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
 from workalendar.europe import Switzerland, Vaud
@@ -96,6 +100,28 @@ class CroatiaTest(GenericCalendarTest):
         self.assertIn(date(2016, 11, 1), holidays)  # All Saints' Day Dan svih
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas Božić
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen's Day Prvi d
+
+
+class Cyprus(GenericCalendarTest):
+    cal_class = Cyprus
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)    # New Year's Day
+        self.assertIn(date(2017, 1, 6), holidays)    # Epiphany
+        self.assertIn(date(2017, 2, 27), holidays)   # Green Monday
+        self.assertIn(date(2017, 3, 25), holidays)   # Greek Independence Day
+        self.assertIn(date(2017, 4, 1), holidays)    # Cyprus National Holiday
+        self.assertIn(date(2017, 4, 14), holidays)   # Good Friday (Orthodox)
+        self.assertIn(date(2017, 4, 17), holidays)   # Easter Monday (Orthodox)
+        self.assertIn(date(2017, 4, 18), holidays)   # Easter Tues banks only
+        self.assertIn(date(2017, 5, 1), holidays)    # Labour Day/May Day
+        self.assertIn(date(2017, 6, 5), holidays)    # Orthodox Pentecost Mon
+        self.assertIn(date(2017, 7, 15), holidays)   # Assumption
+        self.assertIn(date(2017, 10, 1), holidays)   # Cyprus Independence Day
+        self.assertIn(date(2017, 10, 28), holidays)  # Ochi Day
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2017, 12, 26), holidays)  # Boxing Day
 
 
 class CzechRepublicTest(GenericCalendarTest):
@@ -355,6 +381,30 @@ class HungaryTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Second day of XMas
 
 
+class MaltaTest(GenericCalendarTest):
+    """Rollover rules changed in 2005"""
+    cal_class = Malta
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # National Holidays
+        self.assertIn(date(2017, 3, 31), holidays)  # Jum il-Ħelsien
+        self.assertIn(date(2017, 6, 7), holidays)  # Sette Giugno
+        self.assertIn(date(2017, 9, 8), holidays)  # Jum il-Vitorja
+        self.assertIn(date(2017, 9, 21), holidays)  # Jum l-Indipendenza
+        self.assertIn(date(2017, 12, 13), holidays)  # Jum ir-Repubblika
+        # Public Holidays
+        self.assertIn(date(2017, 1, 1), holidays)  # L-Ewwel tas-Sena
+        self.assertIn(date(2017, 2, 10), holidays)  # Nawfraġju ta' San Pawl
+        self.assertIn(date(2017, 3, 19), holidays)  # San Ġużepp
+        self.assertIn(date(2017, 4, 14), holidays)  # Il-Ġimgħa l-Kbira
+        self.assertIn(date(2017, 5, 1), holidays)  # Jum il-Ħaddiem
+        self.assertIn(date(2017, 6, 29), holidays)  # L-Imnarja
+        self.assertIn(date(2017, 8, 15), holidays)  # Santa Marija
+        self.assertIn(date(2017, 12, 8), holidays)  # Il-Kunċizzjoni
+        self.assertIn(date(2017, 12, 25), holidays)  # Il-Milied
+
+
 class NorwayTest(GenericCalendarTest):
     cal_class = Norway
 
@@ -493,6 +543,35 @@ class ItalyTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
 
 
+class LatviaTest(GenericCalendarTest):
+
+    cal_class = Latvia
+
+    def test_year_2017(self):
+        """
+        https://www.bank.lv/en/about-us/public-holidays-in-latvia
+        """
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017,  1,  1), holidays)  # New Year's Day
+        self.assertIn(date(2017,  4, 14), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  4, 16), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  4, 17), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017,  5,  1), holidays)  # Labour Day, C
+        self.assertIn(date(2017,  5,  4), holidays)  # Restoration of Independe
+        self.assertIn(date(2017,  6, 23), holidays)  # Midsummer Day
+        self.assertIn(date(2017,  6, 24), holidays)  # St. John's Day
+        self.assertIn(date(2017, 11, 18), holidays)  # Proclamation
+        self.assertIn(date(2017, 11, 20), holidays)  # Proclamation Observed
+        self.assertIn(date(2017, 12, 24), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 26), holidays)  # Christmas
+        self.assertIn(date(2017, 12, 31), holidays)  # New Year's Eve
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013,  5, 6), holidays)  # Restoration Day Observed
+
+
 class LuxembourgTest(GenericCalendarTest):
 
     cal_class = Luxembourg
@@ -544,6 +623,28 @@ class NetherlandsTest(GenericCalendarTest):
         # holidays. It appears it's not a holiday
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 31), holidays)
+
+
+class Romania(GenericCalendarTest):
+    cal_class = Romania
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)  # Anul Nou New Year's Day
+        self.assertIn(date(2017, 1, 2), holidays)  # Anul Nou Day after New Yr
+        self.assertIn(date(2017, 1, 24), holidays)  # Unirea Principatelor Rom
+        self.assertIn(date(2017, 4, 14), holidays)  # Orthodox Good Fri
+        self.assertIn(date(2017, 4, 16), holidays)  # Orthodox Easter Sun
+        self.assertIn(date(2017, 4, 17), holidays)  # Orthodox Easter Mon
+        self.assertIn(date(2017, 5, 1), holidays)  # Ziua Muncii Labour Day
+        self.assertIn(date(2017, 6, 1), holidays)  # Ziua Copilului Children's
+        self.assertIn(date(2017, 6, 4), holidays)  # Pentecost
+        self.assertIn(date(2017, 6, 5), holidays)  # Whit Monday
+        self.assertIn(date(2017, 8, 15), holidays)  # Adormirea Maicii Domnului
+        self.assertIn(date(2017, 11, 30), holidays)  # Sfântul Andrei St. Andre
+        self.assertIn(date(2017, 12, 1), holidays)  # Ziua Națională/Marea Unir
+        self.assertIn(date(2017, 12, 25), holidays)  # Crăciunul Christmas
+        self.assertIn(date(2017, 12, 26), holidays)  # Crăciunul Christmas
 
 
 class UnitedKingdomTest(GenericCalendarTest):
@@ -856,6 +957,12 @@ class SaxonyTest(GermanyTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 11, 18), holidays)
         self.assertIn(date(2015, 10, 31), holidays)
+
+    def test_extra_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 11, 16), holidays)
+        self.assertNotIn(date(2016, 11, 23), holidays)
+        self.assertIn(date(2016, 10, 31), holidays)
 
 
 class SaxonyAnhaltTest(GermanyTest):

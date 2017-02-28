@@ -1,15 +1,21 @@
 CHANGELOG
 =========
 
-1.1.0 (unreleased)
-------------------
+master (unreleased)
+-------------------
 
-- Added Canton of Vaud (Switzerland) by @brutasse
+- Add Cyprus. thx @gregn610 (#174).
+- Fixed Saxony repentance day for the year 2016. thx @Natim (#168).
+- Fixed Historical and one-off holidays for South Africa. thx @gregn610 (#173).
+- Add Latvia. thx @gregn610 (#178).
+- Add Malta. thx @gregn610 (#179).
+- Add Romania. thx @gregn610 (#180).
+- Add Canton of Vaud (Switzerland) - @brutasse (#182)
 
 1.0.0 (2016-12-12)
 ------------------
 
-After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved. 
+After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved.
 
 - Add Ireland. thx @gregn610 (#152).
 - Bugfix: New Year's Eve is not a holiday in Netherlands (#154).

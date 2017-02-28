@@ -118,7 +118,7 @@ class Saxony(Germany):
 
     def get_repentance_day(self, year):
         "Wednesday before November 23"
-        day = date(year, 11, 23)
+        day = date(year, 11, 22)
         while day.weekday() != 2:  # 2=Wednesday
             day -= timedelta(days=1)
         return (day, "Repentance Day")
