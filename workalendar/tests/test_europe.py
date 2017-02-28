@@ -552,14 +552,14 @@ class LatviaTest(GenericCalendarTest):
         https://www.bank.lv/en/about-us/public-holidays-in-latvia
         """
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017,  1,  1), holidays)  # New Year's Day
-        self.assertIn(date(2017,  4, 14), holidays)  # Easter 14 and 17 april
-        self.assertIn(date(2017,  4, 16), holidays)  # Easter 14 and 17 april
-        self.assertIn(date(2017,  4, 17), holidays)  # Easter 14 and 17 april
-        self.assertIn(date(2017,  5,  1), holidays)  # Labour Day, C
-        self.assertIn(date(2017,  5,  4), holidays)  # Restoration of Independe
-        self.assertIn(date(2017,  6, 23), holidays)  # Midsummer Day
-        self.assertIn(date(2017,  6, 24), holidays)  # St. John's Day
+        self.assertIn(date(2017, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2017, 4, 14), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017, 4, 16), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017, 4, 17), holidays)  # Easter 14 and 17 april
+        self.assertIn(date(2017, 5, 1), holidays)  # Labour Day, C
+        self.assertIn(date(2017, 5, 4), holidays)  # Restoration of Independe
+        self.assertIn(date(2017, 6, 23), holidays)  # Midsummer Day
+        self.assertIn(date(2017, 6, 24), holidays)  # St. John's Day
         self.assertIn(date(2017, 11, 18), holidays)  # Proclamation
         self.assertIn(date(2017, 11, 20), holidays)  # Proclamation Observed
         self.assertIn(date(2017, 12, 24), holidays)  # Christmas
@@ -569,7 +569,7 @@ class LatviaTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013,  5, 6), holidays)  # Restoration Day Observed
+        self.assertIn(date(2013, 5, 6), holidays)  # Restoration Day Observed
 
 
 class LuxembourgTest(GenericCalendarTest):
@@ -1124,6 +1124,32 @@ class SloveniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 11, 1), holidays)
         self.assertIn(date(2016, 12, 25), holidays)
         self.assertIn(date(2016, 12, 26), holidays)
+
+    def test_january_second(self):
+        # From 1955 until May 2012, when the National Assembly of Slovenia
+        # passed the Public Finance Balance Act, 2 January was a work-free day.
+        # It has been re-introduced in 2017.
+        # Source - Wikipedia
+        # https://en.wikipedia.org/wiki/Public_holidays_in_Slovenia
+
+        # Before 1955...
+        holidays = self.cal.holidays_set(1953)
+        self.assertNotIn(date(1953, 1, 2), holidays)
+        holidays = self.cal.holidays_set(1954)
+        self.assertNotIn(date(1953, 1, 2), holidays)
+        # Ranging from 1955 to 2012
+        for year in range(1955, 2013):
+            holidays = self.cal.holidays_set(year)
+            self.assertIn(date(year, 1, 2), holidays)
+
+        # As of 2012, it was no more
+        for year in range(2013, 2017):
+            holidays = self.cal.holidays_set(year)
+            self.assertNotIn(date(year, 1, 2), holidays)
+
+        # In 2017, january 2nd became a state holiday
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 2), holidays)
 
 
 class SwitzerlandTest(GenericCalendarTest):
