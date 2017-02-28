@@ -7,12 +7,12 @@ class Romania(WesternCalendar, OrthodoxMixin):
     "Romania"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1,   2,  "Day After New Years"),
-        (1,  24,  "Union Day"),
-        (5,   1,  "Labour Day"),
-        (8,  15, "Dormition of the Theotokos"),
+        (1, 2, "Day After New Years"),
+        (1, 24, "Union Day"),
+        (5, 1, "Labour Day"),
+        (8, 15, "Dormition of the Theotokos"),
         (11, 30, "St. Andrew's Day"),
-        (12,  1, "National Day/Great Union"),
+        (12, 1, "National Day/Great Union"),
     )
 
     include_good_friday = True
