@@ -3,8 +3,7 @@ language: python
 python:
 - 2.7
 - 3.3
-- 3.4
-- 3.5
+- 3.6
 install:
 - pip install tox "setuptools>=28.2"
 script:
@@ -12,16 +11,15 @@ script:
 branches:
   except:
   - skeleton
-before_deploy:
-- pip install https://dl.dropboxusercontent.com/u/54081/cheeseshop/setuptools_scm-1.15.0rc1.tar.gz
 deploy:
   provider: pypi
   server: https://upload.pypi.org/legacy/
   on:
     tags: true
     all_branches: true
-    python: 3.5
+    python: 3.6
   user: jaraco
   distributions: dists
+  skip_upload_docs: true
   password:
     secure: lq5T3nLudhmOP8mKbAh7QsyXjhRUi+zbACi6M8lPCj1+XPj+6uUdMaq3A/fg0+EivGffw8PKceXeMlHboQI0hD9Bt4ISmeixlDi7wNcOSP/TWks2VFr9Gq+nI85LjLwZ9jyLh9CZ1C8gedWy0DfarnDSZ9/5k6Ts39zK0yKcQLg=
