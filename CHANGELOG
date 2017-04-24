@@ -6,6 +6,7 @@ master (unreleased)
 
 - Moved all the calendar of countries on the american continent in their own modules (#188).
 - Refactor base Calendar class get_weekend_days to use WEEKEND_DAYS more intelligently (#191 + #192).
+- Many corrections to the Brazil and various states / cities (#187).
 
 
 1.1.0 (2017-02-28)
