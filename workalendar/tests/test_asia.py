@@ -83,6 +83,7 @@ class QatarTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 18), holidays)  # National Day
 
     def test_weekend(self):
+        # In Qatar, Week-end days are Friday / Sunday.
         weekend_day = date(2017, 5, 12)  # This is a Friday
         non_weekend_day = date(2017, 5, 14)  # This is a Sunday
         self.assertFalse(self.cal.is_working_day(weekend_day))

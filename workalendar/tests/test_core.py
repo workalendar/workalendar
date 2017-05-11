@@ -1,7 +1,7 @@
 from datetime import date
 from datetime import datetime
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI
+from workalendar.core import MON, TUE, THU, FRI, WED
 from workalendar.core import Calendar, LunarCalendar, WesternCalendar
 from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
 from workalendar.core import EphemMixin
@@ -338,3 +338,60 @@ class MockChristianCalendarTest(GenericCalendarTest):
 
         # Only 2 days: Jan 1st and Christmas
         self.assertEquals(len(holidays), 2)
+
+
+class NoWeekendCalendar(Calendar):
+    """
+    This calendar class has no WEEKEND_DAYS and no `get_weekend_days()` method.
+    It has to fail when trying to fetch its weekend days / holidays
+    """
+
+
+class NoWeekendCalendarTest(GenericCalendarTest):
+    cal_class = NoWeekendCalendar
+
+    def test_weekend(self):
+        day = date(2017, 5, 13)  # This is a Saturday
+        with self.assertRaises(NotImplementedError):
+            self.cal.is_working_day(day)
+        day = date(2017, 5, 17)  # This is a Wednesday
+        with self.assertRaises(NotImplementedError):
+            self.cal.is_working_day(day)
+
+
+class WeekendOnWednesdayCalendar(Calendar):
+    """
+    This calendar class weekend days is on Wednesday and we don't overwrite
+    the `get_weekend_days()` method. It should be fine.
+    """
+    WEEKEND_DAYS = (WED,)
+
+
+class WeekendOnWednesdayCalendarTest(GenericCalendarTest):
+    cal_class = WeekendOnWednesdayCalendar
+
+    def test_weekend(self):
+        day = date(2017, 5, 13)  # This is a Saturday
+        self.assertTrue(self.cal.is_working_day(day))
+        day = date(2017, 5, 17)  # This is a Wednesday
+        self.assertFalse(self.cal.is_working_day(day))
+
+
+class OverwriteGetWeekendDaysCalendar(Calendar):
+    """
+    This calendar class has no WEEKEND_DAYS and we overwrite
+    its `get_weekend_days` method.
+    Should work.
+    """
+    def get_weekend_days(self):
+        return (WED,)
+
+
+class OverwriteGetWeekendDaysCalendarTest(GenericCalendarTest):
+    cal_class = OverwriteGetWeekendDaysCalendar
+
+    def test_weekend(self):
+        day = date(2017, 5, 13)  # This is a Saturday
+        self.assertTrue(self.cal.is_working_day(day))
+        day = date(2017, 5, 17)  # This is a Wednesday
+        self.assertFalse(self.cal.is_working_day(day))
