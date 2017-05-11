@@ -26,6 +26,16 @@ class BrazilAcre(Brazil):
     )
 
 
+class BrazilAlagoas(Brazil):
+    "Brazil Alagoas State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 24, "São João"),
+        (6, 29, "São Pedro"),
+        (9, 16, "Emancipação política de Alagoas"),
+        (11, 20, "Consciência Negra")
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
