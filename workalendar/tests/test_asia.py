@@ -82,6 +82,12 @@ class QatarTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 18), holidays)  # eid al adha
         self.assertIn(date(2013, 12, 18), holidays)  # National Day
 
+    def test_weekend(self):
+        weekend_day = date(2017, 5, 12)  # This is a Friday
+        non_weekend_day = date(2017, 5, 14)  # This is a Sunday
+        self.assertFalse(self.cal.is_working_day(weekend_day))
+        self.assertTrue(self.cal.is_working_day(non_weekend_day))
+
 
 class TaiwanTest(GenericCalendarTest):
 
