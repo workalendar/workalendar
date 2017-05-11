@@ -17,6 +17,7 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
+    WEEKEND_DAYS = ()
 
     def __init__(self):
         self._holidays = {}
@@ -72,8 +73,11 @@ class Calendar(object):
         e.g: return (SAT, SUN,)
 
         """
-        raise NotImplementedError("Your Calendar class must implement the"
-                                  " `get_weekend_days` method")
+        if self.WEEKEND_DAYS:
+            return self.WEEKEND_DAYS
+        else:
+            raise NotImplementedError("Your Calendar class must provide WEEKEND_DAYS"
+                                      " or implement the `get_weekend_days` method")
 
     def is_working_day(self, day,
                        extra_working_days=None, extra_holidays=None):
@@ -378,10 +382,6 @@ class WesternCalendar(Calendar):
     FIXED_HOLIDAYS = (
         (1, 1, 'New year'),
     )
-
-    def get_weekend_days(self):
-        "Week-end days are SATurday and SUNday."
-        return self.WEEKEND_DAYS
 
     def get_variable_days(self, year):
         days = super(WesternCalendar, self).get_variable_days(year)
