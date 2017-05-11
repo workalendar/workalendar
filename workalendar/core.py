@@ -76,8 +76,9 @@ class Calendar(object):
         if self.WEEKEND_DAYS:
             return self.WEEKEND_DAYS
         else:
-            raise NotImplementedError("Your Calendar class must provide WEEKEND_DAYS"
-                                      " or implement the `get_weekend_days` method")
+            raise NotImplementedError("Your Calendar class must provide "
+                                      "WEEKEND_DAYS or implement the "
+                                      "`get_weekend_days` method")
 
     def is_working_day(self, day,
                        extra_working_days=None, extra_holidays=None):
