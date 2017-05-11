@@ -5,7 +5,8 @@ from __future__ import (absolute_import, division, print_function,
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
-    Brazil, BrazilSaoPauloState, BrazilSaoPauloCity
+    Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
+    BrazilAcre
 )
 
 
@@ -22,6 +23,18 @@ class BrazilTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 2), holidays)  # Finados
         self.assertIn(date(2013, 11, 15), holidays)  # Proclamação da República
         self.assertIn(date(2013, 12, 25), holidays)  # Natal
+
+
+class BrazilAcreTest(BrazilTest):
+    cal_class = BrazilAcre
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 23), holidays)  # Dia do evangélico
+        self.assertIn(date(2017, 6, 15), holidays)  # niversário do Acre
+        self.assertIn(date(2017, 9, 5), holidays)  # Dia da Amazônia
+        # Assinatura do Tratado de Petrópolis
+        self.assertIn(date(2017, 11, 17), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):

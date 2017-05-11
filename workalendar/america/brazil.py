@@ -16,6 +16,16 @@ class Brazil(WesternCalendar, ChristianMixin):
     )
 
 
+class BrazilAcre(Brazil):
+    "Brazil Acre State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (1, 23, "Dia do evangélico"),
+        (6, 15, "Aniversário do Acre"),
+        (9, 5, "Dia da Amazônia"),
+        (11, 17, "Assinatura do Tratado de Petrópolis"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
