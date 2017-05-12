@@ -502,7 +502,7 @@ class CalverterMixin(Calendar):
         return self.ISLAMIC_HOLIDAYS
 
     def get_variable_days(self, year):
-        warnings.warn('Please take not that, due to arbitrary decisions, '
+        warnings.warn('Please take note that, due to arbitrary decisions, '
                       'this Islamic calendar computation may be wrong.')
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
@@ -525,10 +525,11 @@ class IslamicMixin(CalverterMixin):
     include_start_ramadan = False
     include_eid_al_fitr = False
     length_eid_al_fitr = 1
+    eid_al_fitr_label = "Eid al-Fitr"
     include_eid_al_adha = False
     length_eid_al_adha = 1
     include_day_of_sacrifice = False
-    include_day_of_sacrifice_label = "Eid al-Adha"
+    day_of_sacrifice_label = "Eid al-Adha"
     include_islamic_new_year = False
     include_laylat_al_qadr = False
 
@@ -548,12 +549,12 @@ class IslamicMixin(CalverterMixin):
             days.append((9, 1, "Start of ramadan"))
         if self.include_eid_al_fitr:
             for x in range(self.length_eid_al_fitr):
-                days.append((10, x + 1, "Eid al-Fitr"))
+                days.append((10, x + 1, self.eid_al_fitr_label))
         if self.include_eid_al_adha:
             for x in range(self.length_eid_al_adha):
                 days.append((12, x + 10, "Eid al-Adha"))
         if self.include_day_of_sacrifice:
-            days.append((12, 10, self.include_day_of_sacrifice_label))
+            days.append((12, 10, self.day_of_sacrifice_label))
         if self.include_laylat_al_qadr:
             warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
                           " by the religious authorities. It is not possible"
