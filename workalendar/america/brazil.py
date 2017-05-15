@@ -46,6 +46,15 @@ class BrazilAmapa(Brazil):
     )
 
 
+class BrazilAmazonas(Brazil):
+    "Brazil Amazonas State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (9, 5, "Elevação do Amazonas á categoria de província"),
+        (11, 20, "Consciência Negra"),
+        (12, 8, "Dia de Nossa Senhora da Conceição"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
