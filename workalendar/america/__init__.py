@@ -3,7 +3,8 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from .brazil import (
-    Brazil, BrazilAcre, BrazilAlagoas, BrazilSaoPauloState, BrazilSaoPauloCity,
+    Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa,
+    BrazilSaoPauloState, BrazilSaoPauloCity,
 )
 from .chile import Chile
 from .colombia import Colombia
@@ -15,6 +16,7 @@ __all__ = (
     Brazil,
     BrazilAcre,
     BrazilAlagoas,
+    BrazilAmapa,
     BrazilSaoPauloState,
     BrazilSaoPauloCity,
     Chile,

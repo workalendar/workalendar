@@ -6,7 +6,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
     Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
-    BrazilAcre, BrazilAlagoas
+    BrazilAcre, BrazilAlagoas, BrazilAmapa
 )
 
 
@@ -46,6 +46,17 @@ class BrazilAlagoasTest(BrazilTest):
         self.assertIn(date(2017, 6, 29), holidays)  # São Pedro
         # Emancipação política de Alagoas
         self.assertIn(date(2017, 9, 16), holidays)
+        self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
+
+
+class BrazilAmapaTest(BrazilTest):
+    cal_class = BrazilAmapa
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 3, 19), holidays)  # Dia de São José
+        self.assertIn(date(2017, 7, 25), holidays)  # São Tiago
+        self.assertIn(date(2017, 10, 5), holidays)  # Criação do estado
         self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
 
 

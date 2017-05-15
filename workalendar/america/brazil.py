@@ -36,6 +36,16 @@ class BrazilAlagoas(Brazil):
     )
 
 
+class BrazilAmapa(Brazil):
+    "Brazil Amapá State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (3, 19, "Dia de São José"),
+        (7, 25, "São Tiago"),
+        (10, 5, "Criação do estado"),
+        (11, 20, "Consciência Negra"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
