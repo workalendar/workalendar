@@ -92,6 +92,14 @@ class BrazilGoias(Brazil):
     )
 
 
+class BrazilMaranhao(Brazil):
+    "Brazil Maranhão State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (7, 28, "Adesão do Maranhão á independência do Brasil"),
+        (12, 8, "Dia de Nossa Senhora da Conceição"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

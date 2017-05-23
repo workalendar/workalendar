@@ -8,6 +8,7 @@ from workalendar.america import (
     Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
+    BrazilMaranhao,
 )
 
 
@@ -113,6 +114,17 @@ class BrazilGoiasTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 10, 28), holidays)  # Dia do Servidor Público
+
+
+class BrazilMaranhaoTest(BrazilTest):
+    cal_class = BrazilMaranhao
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Adesão do Maranhão á independência do Brasil
+        self.assertIn(date(2017, 7, 28), holidays)
+        # Dia de Nossa Senhora da Conceição
+        self.assertIn(date(2017, 12, 8), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):
