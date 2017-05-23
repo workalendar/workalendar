@@ -78,6 +78,13 @@ class BrazilDistritoFederal(Brazil):
     )
 
 
+class BrazilEspiritoSanto(Brazil):
+    "Brazil Espírito Santo State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (10, 28, "Dia do Servidor Público"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

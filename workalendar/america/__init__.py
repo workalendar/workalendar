@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 
 from .brazil import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
-    BrazilBahia, BrazilCeara, BrazilDistritoFederal,
+    BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
     BrazilSaoPauloState, BrazilSaoPauloCity,
 )
 from .chile import Chile
@@ -22,6 +22,7 @@ __all__ = (
     BrazilBahia,
     BrazilCeara,
     BrazilDistritoFederal,
+    BrazilEspiritoSanto,
     BrazilSaoPauloState,
     BrazilSaoPauloCity,
     Chile,
