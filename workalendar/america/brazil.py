@@ -62,6 +62,14 @@ class BrazilBahia(Brazil):
     )
 
 
+class BrazilCeara(Brazil):
+    "Brazil Ceará State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (3, 19, "São José"),
+        (3, 23, "Data Manga do Ceará")
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

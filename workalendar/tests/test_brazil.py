@@ -7,6 +7,7 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
     Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
+    BrazilCeara,
 )
 
 
@@ -78,6 +79,15 @@ class BrazilBahiaTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 7, 2), holidays)  # Independência da Bahia
+
+
+class BrazilCearaTest(BrazilTest):
+    cal_class = BrazilCeara
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 3, 19), holidays)  # São José
+        self.assertIn(date(2017, 3, 23), holidays)  # Data Manga do Ceará
 
 
 class SaoPauloStateTest(BrazilTest):
