@@ -100,6 +100,13 @@ class BrazilMaranhao(Brazil):
     )
 
 
+class BrazilMatoGrosso(Brazil):
+    "Brazil Mato Grosso State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (11, 29, "Consciência Negra"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
