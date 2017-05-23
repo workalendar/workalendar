@@ -70,6 +70,14 @@ class BrazilCeara(Brazil):
     )
 
 
+class BrazilDistritoFederal(Brazil):
+    "Brazil Distrito Federal State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 21, "Fundação de Brasília"),
+        (11, 30, "Dia do Evangélico"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
