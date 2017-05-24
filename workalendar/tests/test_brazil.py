@@ -9,7 +9,7 @@ from workalendar.america import (
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
-    BrazilParaiba,
+    BrazilParaiba, BrazilPernambuco,
 )
 
 
@@ -159,6 +159,14 @@ class BrazilParaibaTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 8, 5), holidays)  # Fundação do Estado
+
+
+class BrazilPernambucoTest(BrazilTest):
+    cal_class = BrazilPernambuco
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 6, 24), holidays)  # São João
 
 
 class SaoPauloStateTest(BrazilTest):

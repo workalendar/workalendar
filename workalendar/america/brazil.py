@@ -128,6 +128,13 @@ class BrazilParaiba(Brazil):
     )
 
 
+class BrazilPernambuco(Brazil):
+    "Brazil Pernambuco State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 24, "São João"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
