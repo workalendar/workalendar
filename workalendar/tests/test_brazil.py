@@ -10,7 +10,7 @@ from workalendar.america import (
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
-    BrazilRioGrandeDoNorte,
+    BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
 )
 
 
@@ -203,6 +203,14 @@ class BrazilRioGrandeDoNorteTest(BrazilTest):
         self.assertIn(date(2017, 6, 29), holidays)  # Dua de São Pedro
         # Mártires de Cunhaú e Uruaçuu
         self.assertIn(date(2017, 10, 3), holidays)
+
+
+class BrazilRioGrandeDoSulTest(BrazilTest):
+    cal_class = BrazilRioGrandeDoSul
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 9, 20), holidays)  # Revolução Farroupilha
 
 
 class SaoPauloStateTest(BrazilTest):

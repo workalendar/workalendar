@@ -184,6 +184,13 @@ class BrazilRioGrandeDoNorte(Brazil):
     )
 
 
+class BrazilRioGrandeDoSul(Brazil):
+    "Brazil Rio Grande do Sul State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (9, 20, "Revolução Farroupilha"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
