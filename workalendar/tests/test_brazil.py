@@ -8,7 +8,7 @@ from workalendar.america import (
     Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
-    BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
+    BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara
 )
 
 
@@ -141,6 +141,15 @@ class BrazilMatoGrossoDoSulTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 10, 11), holidays)  # Criação do estado
+
+
+class BrazilParaTest(BrazilTest):
+    cal_class = BrazilPara
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Adesão do Grão-Pará á independência do Brasil
+        self.assertIn(date(2017, 8, 15), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):

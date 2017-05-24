@@ -114,6 +114,13 @@ class BrazilMatoGrossoDoSul(Brazil):
     )
 
 
+class BrazilPara(Brazil):
+    "Brazil Pará State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
