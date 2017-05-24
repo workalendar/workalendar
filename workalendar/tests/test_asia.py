@@ -97,7 +97,8 @@ class SingaporeTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)  # New Year
         self.assertIn(date(2013, 2, 11), holidays)  # CNY
-        self.assertIn(date(2013, 2, 12), holidays)  # Rolled CNY - currently fails
+        # Rolled Chinese New Year: currently fails
+        self.assertIn(date(2013, 2, 12), holidays)  # Rolles CNY
         self.assertIn(date(2013, 3, 29), holidays)  # Good Friday
         self.assertIn(date(2013, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2013, 5, 24), holidays)  # Vesak Day
@@ -126,6 +127,7 @@ class SingaporeTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 5, 1), holidays)
         self.assertIn(date(2016, 5, 2), holidays)
+
 
 class TaiwanTest(GenericCalendarTest):
 
@@ -156,7 +158,3 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
-
-if __name__ == '__main__':
-    import unittest
-    unittest.main()

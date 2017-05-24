@@ -2,7 +2,9 @@
 from datetime import date, timedelta
 
 from workalendar.core import LunarCalendar, WesternCalendar, Calendar
-from workalendar.core import MON, FRI, SAT, SUN, ChristianMixin, IslamicMixin, EphemMixin
+from workalendar.core import (
+    MON, FRI, SAT, SUN, ChristianMixin, IslamicMixin, EphemMixin
+)
 
 
 class Japan(WesternCalendar, EphemMixin):
@@ -70,6 +72,7 @@ class Qatar(IslamicMixin, Calendar):
     include_eid_al_adha = True
     length_eid_al_adha = 4
 
+
 class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
     "Singapore"
     include_good_friday = True
@@ -84,35 +87,50 @@ class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
 
     # Diwali/Deepavali is sometimes celebrated on a different day to India
     # so this can't be put into a HinduMixin
-    DEEPAVALI = {2000: date(2000, 10, 26), 2001: date(2001, 11, 14),
-                 2002: date(2002, 11, 3), 2003: date(2003, 10, 23),
-                 2004: date(2004, 11, 11), 2005: date(2005, 11, 1),
-                 2006: date(2006, 10, 21), 2007: date(2007, 11, 8),
-                 2008: date(2008, 10, 27), 2009: date(2009, 10, 17),
-                 2010: date(2010, 11, 5), 2011: date(2011, 10, 26),
-                 2012: date(2012, 11, 13), 2013: date(2013, 11, 2),
-                 2014: date(2014, 10, 22), 2015: date(2015, 11, 10),
-                 2016: date(2016, 10, 29), 2017: date(2017, 10, 18),
-                 2018: date(2018, 11, 6)  # This might change
-                }
+    DEEPAVALI = {
+        2000: date(2000, 10, 26),
+        2001: date(2001, 11, 14),
+        2002: date(2002, 11, 3),
+        2003: date(2003, 10, 23),
+        2004: date(2004, 11, 11),
+        2005: date(2005, 11, 1),
+        2006: date(2006, 10, 21),
+        2007: date(2007, 11, 8),
+        2008: date(2008, 10, 27),
+        2009: date(2009, 10, 17),
+        2010: date(2010, 11, 5),
+        2011: date(2011, 10, 26),
+        2012: date(2012, 11, 13),
+        2013: date(2013, 11, 2),
+        2014: date(2014, 10, 22),
+        2015: date(2015, 11, 10),
+        2016: date(2016, 10, 29),
+        2017: date(2017, 10, 18),
+        2018: date(2018, 11, 6)  # This might change
+    }
 
     def get_variable_days(self, year):
         # Call super on all parents
         days = []
         pre_shifted_days = super(Singapore, self).get_variable_days(year)
-        pre_shifted_days += super(Singapore, self).get_variable_days(year)
-        pre_shifted_days += super(Singapore, self).get_variable_days(year)
-        pre_shifted_days += [(LunarCalendar.lunar(year, 1, 1), "Chinese New Year"),
-                             (LunarCalendar.lunar(year, 1, 2), "Chinese New Year"),
-                             (LunarCalendar.lunar(year, 4, 15), "Vesak Day")]
+        pre_shifted_days += [
+            (LunarCalendar.lunar(year, 1, 1), "Chinese New Year"),
+            (LunarCalendar.lunar(year, 1, 2), "Chinese New Year"),
+            (LunarCalendar.lunar(year, 4, 15), "Vesak Day")
+        ]
         pre_shifted_days += [(date(year, 1, 1), "New Year"),
                              (date(year, 5, 1), "Labour Day"),
                              (date(year, 8, 9), "National Day")]
         # Singapore rolls all Sunday holidays.
         # I feel this should be baked deeper in the class hierarchy
         for holiday, label in pre_shifted_days:
-            day = (self.find_following_working_day(holiday), label + ' shift') \
-            if holiday.weekday() == SUN else (holiday, label)
+            if holiday.weekday() == SUN:
+                day = (
+                    self.find_following_working_day(holiday),
+                    label + ' shift'
+                )
+            else:
+                day = (holiday, label)
             days.append(day)
 
         # Add in Deepavali (hardcoded dates, so no need to shift)
