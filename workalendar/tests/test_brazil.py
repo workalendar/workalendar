@@ -10,6 +10,7 @@ from workalendar.america import (
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
+    BrazilRioGrandeDoNorte,
 )
 
 
@@ -192,6 +193,16 @@ class BrazilRioDeJaneiroTest(BrazilTest):
         self.assertIn(date(2017, 11, 20), holidays)  # Dia da Consciência Negra
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
+
+
+class BrazilRioGrandeDoNorteTest(BrazilTest):
+    cal_class = BrazilRioGrandeDoNorte
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 6, 29), holidays)  # Dua de São Pedro
+        # Mártires de Cunhaú e Uruaçuu
+        self.assertIn(date(2017, 10, 3), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):

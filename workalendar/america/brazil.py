@@ -176,6 +176,14 @@ class BrazilRioDeJaneiro(Brazil):
         return days
 
 
+class BrazilRioGrandeDoNorte(Brazil):
+    "Brazil Rio Grande do Norte State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 29, "Dua de São Pedro"),
+        (10, 3, "Mártires de Cunhaú e Uruaçuu"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
