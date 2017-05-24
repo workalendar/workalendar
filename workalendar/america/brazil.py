@@ -135,6 +135,14 @@ class BrazilPernambuco(Brazil):
     )
 
 
+class BrazilPiaui(Brazil):
+    "Brazil Piauí State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (3, 13, "Dia da Batalha do Jenipapo"),
+        (10, 19, "Dia do Piauí"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

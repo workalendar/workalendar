@@ -9,7 +9,7 @@ from workalendar.america import (
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
-    BrazilParaiba, BrazilPernambuco,
+    BrazilParaiba, BrazilPernambuco, BrazilPiaui,
 )
 
 
@@ -167,6 +167,16 @@ class BrazilPernambucoTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 6, 24), holidays)  # São João
+
+
+class BrazilPiauiTest(BrazilTest):
+    cal_class = BrazilPiaui
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Dia da Batalha do Jenipapo
+        self.assertIn(date(2017, 3, 13), holidays)
+        self.assertIn(date(2017, 10, 19), holidays)  # Dia do Piauí
 
 
 class SaoPauloStateTest(BrazilTest):
