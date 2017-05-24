@@ -2,6 +2,7 @@
 from datetime import timedelta
 
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.core import MON
 
 
 class Brazil(WesternCalendar, ChristianMixin):
@@ -14,6 +15,14 @@ class Brazil(WesternCalendar, ChristianMixin):
         (11, 2, "All Souls' Day"),
         (11, 15, "Republic Day"),
     )
+
+    def get_carnaval(self, year):
+        """
+        Return the third day of Carnaval (Tuesday)
+
+        This day is shared holidays by several Brazil states.
+        """
+        return self.get_easter_sunday(year) - timedelta(days=47)
 
 
 class BrazilAcre(Brazil):
@@ -143,6 +152,30 @@ class BrazilPiaui(Brazil):
     )
 
 
+class BrazilRioDeJaneiro(Brazil):
+    "Brazil Rio de Janeiro State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 23, "Dia de São Jorge"),
+        (10, 28, "Dia do Funcionário Público"),
+        (11, 20, "Dia da Consciência Negra"),
+        (12, 8, "Dia de Nossa Senhora da Conceição"),
+    )
+
+    def get_dia_do_comercio(self, year):
+        """
+        Return Dia do Comércio variable date
+
+        It happens on the 3rd Monday of october.
+        """
+        return BrazilRioDeJaneiro.get_nth_weekday_in_month(year, 10, MON, 3)
+
+    def get_variable_days(self, year):
+        days = super(BrazilRioDeJaneiro, self).get_variable_days(year)
+        days.append((self.get_carnaval(year), "Carnaval"))
+        days.append((self.get_dia_do_comercio(year), "Dia do Comércio"))
+        return days
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -158,9 +191,6 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
     )
     include_easter_sunday = True
     include_corpus_christi = True
-
-    def get_carnaval(self, year):
-        return self.get_easter_sunday(year) - timedelta(days=47)
 
     def get_variable_days(self, year):
         days = super(BrazilSaoPauloCity, self).get_variable_days(year)

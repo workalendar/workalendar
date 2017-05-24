@@ -7,6 +7,7 @@ from .brazil import (
     BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
     BrazilGoias, BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
     BrazilPara, BrazilParaiba, BrazilPernambuco, BrazilPiaui,
+    BrazilRioDeJaneiro,
     BrazilSaoPauloState, BrazilSaoPauloCity,
 )
 from .chile import Chile
@@ -33,6 +34,7 @@ __all__ = (
     BrazilParaiba,
     BrazilPernambuco,
     BrazilPiaui,
+    BrazilRioDeJaneiro,
     BrazilSaoPauloState,
     BrazilSaoPauloCity,
     Chile,
