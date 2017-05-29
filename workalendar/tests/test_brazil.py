@@ -260,9 +260,17 @@ class SaoPauloCityTest(SaoPauloStateTest):
         self.assertIn(date(2013, 1, 25), holidays)
         self.assertIn(date(2013, 2, 12), holidays)  # Carnaval
         self.assertIn(date(2013, 11, 20), holidays)  # Dia da Consciência Negra
-        self.assertIn(date(2013, 3, 29), holidays)  # Sexta-feira da Paixão
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
+
+        # Variable day: Good Friday
+        good_friday = date(2013, 3, 29)
+        self.assertIn(good_friday, holidays)  # Sexta-feira da Paixão
+        # Label test
+        self.assertEqual(
+            self.cal.get_holiday_label(good_friday),
+            "Sexta-feira da Paixão",
+        )
 
 
 class BrazilSergipeTest(BrazilTest):

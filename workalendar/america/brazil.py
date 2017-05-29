@@ -231,11 +231,12 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
     )
     include_easter_sunday = True
     include_corpus_christi = True
+    include_good_friday = True
+    good_friday_label = "Sexta-feira da Paixão"
 
     def get_variable_days(self, year):
         days = super(BrazilSaoPauloCity, self).get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
-        days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
         return days
 
 
