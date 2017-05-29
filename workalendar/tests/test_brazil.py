@@ -14,7 +14,7 @@ from workalendar.america import (
     BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
     # Cities
     BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
-    BrazilCariacicaCity,
+    BrazilCariacicaCity, BrazilGuarapariCity,
 )
 
 
@@ -348,3 +348,14 @@ class BrazilCariacicaCityTest(BrazilTest):
             self.cal.get_holiday_label(good_friday),
             "Paixão do Cristo",
         )
+
+
+class BrazilGuarapariCityTest(BrazilTest):
+    cal_class = BrazilGuarapariCity
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 6, 29), holidays),  # São Pedro
+        self.assertIn(date(2017, 9, 19), holidays),  # Emancipação de Guarapari
+        self.assertIn(date(2017, 11, 29), holidays),  # Consciência Negra
+        self.assertIn(date(2017, 12, 8), holidays),  # Nossa Senhora Conceição

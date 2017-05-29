@@ -283,3 +283,13 @@ class BrazilCariacicaCity(Brazil):
     include_corpus_christi = True
     include_good_friday = True
     good_friday_label = "Paixão do Cristo"
+
+
+class BrazilGuarapariCity(Brazil):
+    "Brazil Guarapari City"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 29, "São Pedro"),
+        (9, 19, "Emancipação de Guarapari"),
+        (11, 29, "Consciência Negra"),
+        (12, 8, "Nossa Senhora Conceição"),
+    )
