@@ -241,3 +241,12 @@ class BrazilSergipe(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 8, "Autonomia política de Sergipe"),
     )
+
+
+class BrazilTocantins(Brazil):
+    "Brazil Tocantins State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (1, 1, "Instalação de Tocantins"),
+        (9, 8, "Nossa Senhora da Natividade"),
+        (10, 5, "Criação de Tocantins"),
+    )

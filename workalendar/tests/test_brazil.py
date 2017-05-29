@@ -11,7 +11,7 @@ from workalendar.america import (
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
-    BrazilRoraima, BrazilSantaCatarina, BrazilSergipe,
+    BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
 )
 
 
@@ -270,3 +270,14 @@ class BrazilSergipeTest(BrazilTest):
         holidays = self.cal.holidays_set(2017)
         # Autonomia política de Sergipe
         self.assertIn(date(2017, 7, 8), holidays)
+
+
+class BrazilTocantinsTest(BrazilTest):
+    cal_class = BrazilTocantins
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)  # Instalação de Tocantins
+        # Nossa Senhora da Natividade
+        self.assertIn(date(2017, 9, 8), holidays)
+        self.assertIn(date(2017, 10, 5), holidays)  # Criação de Tocantins
