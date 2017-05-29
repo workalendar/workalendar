@@ -11,7 +11,7 @@ from workalendar.america import (
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
-    BrazilRoraima, BrazilSantaCatarina,
+    BrazilRoraima, BrazilSantaCatarina, BrazilSergipe,
 )
 
 
@@ -261,3 +261,12 @@ class SaoPauloCityTest(SaoPauloStateTest):
         self.assertIn(date(2013, 3, 29), holidays)  # Sexta-feira da Paixão
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
+
+
+class BrazilSergipeTest(BrazilTest):
+    cal_class = BrazilSergipe
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Autonomia política de Sergipe
+        self.assertIn(date(2017, 7, 8), holidays)

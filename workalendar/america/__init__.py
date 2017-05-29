@@ -8,8 +8,8 @@ from .brazil import (
     BrazilGoias, BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
     BrazilPara, BrazilParaiba, BrazilPernambuco, BrazilPiaui,
     BrazilRioDeJaneiro, BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
-    BrazilRondonia, BrazilRoraima, BrazilSantaCatarina,
-    BrazilSaoPauloState, BrazilSaoPauloCity,
+    BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
+    BrazilSaoPauloCity, BrazilSergipe,
 )
 from .chile import Chile
 from .colombia import Colombia
@@ -43,6 +43,7 @@ __all__ = (
     BrazilSantaCatarina,
     BrazilSaoPauloState,
     BrazilSaoPauloCity,
+    BrazilSergipe,
     Chile,
     Colombia,
     Mexico,

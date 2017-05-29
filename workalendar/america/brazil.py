@@ -234,3 +234,10 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_good_friday(year), "Sexta-feira da Paixão"))
         return days
+
+
+class BrazilSergipe(Brazil):
+    "Brazil Sergipe State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (7, 8, "Autonomia política de Sergipe"),
+    )
