@@ -11,6 +11,7 @@ from workalendar.america import (
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
+    BrazilRoraima,
 )
 
 
@@ -220,6 +221,14 @@ class BrazilRondoniaTest(BrazilTest):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 1, 4), holidays)  # Criação do estado
         self.assertIn(date(2017, 6, 18), holidays)  # Dia do Evangélico
+
+
+class BrazilRoraimaTest(BrazilTest):
+    cal_class = BrazilRoraima
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 10, 5), holidays)  # Criação de Roraima
 
 
 class SaoPauloStateTest(BrazilTest):

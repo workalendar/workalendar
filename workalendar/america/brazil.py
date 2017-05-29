@@ -199,6 +199,13 @@ class BrazilRondonia(Brazil):
     )
 
 
+class BrazilRoraima(Brazil):
+    "Brazil Roraima State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (10, 5, "Criação de Roraima"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
