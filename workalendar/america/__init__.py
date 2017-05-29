@@ -10,7 +10,7 @@ from .brazil import (
     BrazilRioDeJaneiro, BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
     BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
     BrazilSaoPauloCity, BrazilSergipe, BrazilTocantins, BrazilVitoriaCity,
-    BrazilVilaVelhaCity,
+    BrazilVilaVelhaCity, BrazilCariacicaCity,
 )
 from .chile import Chile
 from .colombia import Colombia
@@ -48,6 +48,7 @@ __all__ = (
     BrazilTocantins,
     BrazilVitoriaCity,
     BrazilVilaVelhaCity,
+    BrazilCariacicaCity,
     Chile,
     Colombia,
     Mexico,

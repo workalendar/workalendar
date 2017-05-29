@@ -14,6 +14,7 @@ from workalendar.america import (
     BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
     # Cities
     BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
+    BrazilCariacicaCity,
 )
 
 
@@ -323,3 +324,27 @@ class BrazilVilaVelhaCityTest(BrazilTest):
         holidays = self.cal.holidays_set(2017)
         # Colonização do Solo Espírito-santense
         self.assertIn(date(2017, 5, 23), holidays)
+
+
+class BrazilCariacicaCityTest(BrazilTest):
+    cal_class = BrazilCariacicaCity
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        self.assertIn(date(2017, 4, 13), holidays)  # Nossa Senhora da Penha
+        # São João Batista / Aniversãrio de Cariacica
+        self.assertIn(date(2017, 6, 24), holidays)
+
+        # Variable days: Corpus Christie
+        corpus_christie = date(2017, 6, 15)
+        self.assertIn(corpus_christie, holidays)
+
+        # Variable days: Good friday
+        good_friday = date(2017, 4, 14)
+        self.assertIn(good_friday, holidays)
+        # Test label
+        self.assertEqual(
+            self.cal.get_holiday_label(good_friday),
+            "Paixão do Cristo",
+        )

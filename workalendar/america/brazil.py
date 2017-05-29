@@ -272,3 +272,14 @@ class BrazilVilaVelhaCity(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (5, 23, "Colonização do Solo Espírito-santense"),
     )
+
+
+class BrazilCariacicaCity(Brazil):
+    "Brazil Cariacica City"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 13, "Nossa Senhora da Penha"),
+        (6, 24, "São João Batista / Aniversãrio de Cariacica"),
+    )
+    include_corpus_christi = True
+    include_good_friday = True
+    good_friday_label = "Paixão do Cristo"
