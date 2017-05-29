@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+
 from datetime import timedelta
 
 from workalendar.core import WesternCalendar, ChristianMixin
@@ -250,3 +253,14 @@ class BrazilTocantins(Brazil):
         (9, 8, "Nossa Senhora da Natividade"),
         (10, 5, "Criação de Tocantins"),
     )
+
+
+class BrazilVitoriaCity(Brazil):
+    "Brazil Vitória City"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 24, "Nossa Senhora da Penha"),  # Our Lady of Pain?
+        (9, 8, "Nossa Senhora da Vitória"),  # Our Lady of Vitória
+    )
+    include_corpus_christi = True
+    include_good_friday = True
+    good_friday_label = "Paixão do Cristo"

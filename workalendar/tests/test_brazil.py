@@ -5,13 +5,15 @@ from __future__ import (absolute_import, division, print_function,
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
-    Brazil, BrazilSaoPauloState, BrazilSaoPauloCity,
+    Brazil, BrazilSaoPauloState,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
     BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
+    # Cities
+    BrazilSaoPauloCity, BrazilVitoriaCity,
 )
 
 
@@ -281,3 +283,26 @@ class BrazilTocantinsTest(BrazilTest):
         # Nossa Senhora da Natividade
         self.assertIn(date(2017, 9, 8), holidays)
         self.assertIn(date(2017, 10, 5), holidays)  # Criação de Tocantins
+
+
+class BrazilVitoriaCityTest(BrazilTest):
+    cal_class = BrazilVitoriaCity
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        self.assertIn(date(2017, 4, 24), holidays)  # Nossa Senhora da Penha
+        self.assertIn(date(2017, 9, 8), holidays)  # Nossa Senhora da Vitória
+
+        # Variable days: Corpus Christie
+        corpus_christie = date(2017, 6, 15)
+        self.assertIn(corpus_christie, holidays)
+
+        # Variable days: Good friday
+        good_friday = date(2017, 4, 14)
+        self.assertIn(good_friday, holidays)
+        # Test label
+        self.assertEqual(
+            self.cal.get_holiday_label(good_friday),
+            "Paixão do Cristo",
+        )
