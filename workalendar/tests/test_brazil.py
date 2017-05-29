@@ -13,7 +13,7 @@ from workalendar.america import (
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
     BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
     # Cities
-    BrazilSaoPauloCity, BrazilVitoriaCity,
+    BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
 )
 
 
@@ -314,3 +314,12 @@ class BrazilVitoriaCityTest(BrazilTest):
             self.cal.get_holiday_label(good_friday),
             "Paixão do Cristo",
         )
+
+
+class BrazilVilaVelhaCityTest(BrazilTest):
+    cal_class = BrazilVilaVelhaCity
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Colonização do Solo Espírito-santense
+        self.assertIn(date(2017, 5, 23), holidays)

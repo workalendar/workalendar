@@ -265,3 +265,10 @@ class BrazilVitoriaCity(Brazil):
     include_corpus_christi = True
     include_good_friday = True
     good_friday_label = "Paixão do Cristo"
+
+
+class BrazilVilaVelhaCity(Brazil):
+    "Brazil Vila Velha City"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (5, 23, "Colonização do Solo Espírito-santense"),
+    )
