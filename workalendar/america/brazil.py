@@ -191,6 +191,14 @@ class BrazilRioGrandeDoSul(Brazil):
     )
 
 
+class BrazilRondonia(Brazil):
+    "Brazil Rondônia State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (1, 4, "Criação do estado"),
+        (6, 18, "Dia do Evangélico"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

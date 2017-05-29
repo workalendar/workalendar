@@ -10,7 +10,7 @@ from workalendar.america import (
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
-    BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
+    BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
 )
 
 
@@ -211,6 +211,15 @@ class BrazilRioGrandeDoSulTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 9, 20), holidays)  # Revolução Farroupilha
+
+
+class BrazilRondoniaTest(BrazilTest):
+    cal_class = BrazilRondonia
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 4), holidays)  # Criação do estado
+        self.assertIn(date(2017, 6, 18), holidays)  # Dia do Evangélico
 
 
 class SaoPauloStateTest(BrazilTest):
