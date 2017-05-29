@@ -293,3 +293,23 @@ class BrazilGuarapariCity(Brazil):
         (11, 29, "Consciência Negra"),
         (12, 8, "Nossa Senhora Conceição"),
     )
+
+
+class BrazilSerraCity(Brazil):
+    "Brazil Serra City"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 29, "São Pedro"),
+        (12, 8, "Nossa Senhora Conceição"),
+        (12, 26, "Dia do Serrano"),
+    )
+    include_ash_wednesday = True
+    ash_wednesday_label = "Quarta-feira de cinzas"
+    include_good_friday = True
+    good_friday_label = "Paixão do Cristo"
+
+    def get_variable_days(self, year):
+        days = super(BrazilSerraCity, self).get_variable_days(year)
+        carnaval_tuesday = self.get_carnaval(year)
+        days.append((carnaval_tuesday - timedelta(days=1), "Carnaval Monday"))
+        days.append((carnaval_tuesday, "Carnaval"))
+        return days

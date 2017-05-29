@@ -252,6 +252,7 @@ class ChristianMixin(Calendar):
     include_clean_monday = False
     include_annunciation = False
     include_ash_wednesday = False
+    ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
     include_holy_thursday = False
     include_good_friday = False
@@ -335,7 +336,9 @@ class ChristianMixin(Calendar):
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
-            days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
+            days.append(
+                (self.get_ash_wednesday(year), self.ash_wednesday_label)
+            )
         if self.include_palm_sunday:
             days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:

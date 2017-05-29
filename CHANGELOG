@@ -8,6 +8,7 @@ master (unreleased)
 - Refactor base Calendar class get_weekend_days to use WEEKEND_DAYS more intelligently (#191 + #192).
 - Many corrections to the Brazil and various states / cities (#187).
 - Added a ``good_friday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
+- Added a ``ash_wednesday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
 
 
 1.1.0 (2017-02-28)

@@ -14,7 +14,7 @@ from workalendar.america import (
     BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
     # Cities
     BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
-    BrazilCariacicaCity, BrazilGuarapariCity,
+    BrazilCariacicaCity, BrazilGuarapariCity, BrazilSerraCity,
 )
 
 
@@ -359,3 +359,36 @@ class BrazilGuarapariCityTest(BrazilTest):
         self.assertIn(date(2017, 9, 19), holidays),  # Emancipação de Guarapari
         self.assertIn(date(2017, 11, 29), holidays),  # Consciência Negra
         self.assertIn(date(2017, 12, 8), holidays),  # Nossa Senhora Conceição
+
+
+class BrazilSerraCityTest(BrazilTest):
+    cal_class = BrazilSerraCity
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        self.assertIn(date(2017, 6, 29), holidays)  # São Pedro
+        self.assertIn(date(2017, 12, 8), holidays)  # Nossa Senhora Conceição
+        self.assertIn(date(2017, 12, 26), holidays)  # Dia do Serrano
+
+        # Variable days: Carnaval (Monday & Tuesday)
+        self.assertIn(date(2017, 2, 27), holidays)  # Monday
+        self.assertIn(date(2017, 2, 28), holidays)  # Tuesday
+
+        # Variable days: Ash Wednesday (Quarta-feira de cinzas)
+        ash_wednesday = date(2017, 3, 1)
+        self.assertIn(ash_wednesday, holidays)
+        # Test label
+        self.assertEqual(
+            self.cal.get_holiday_label(ash_wednesday),
+            "Quarta-feira de cinzas",
+        )
+
+        # Variable days: Good Friday (Paixão de Cristo)
+        good_friday = date(2017, 4, 14)
+        self.assertIn(good_friday, holidays)
+        # Test label
+        self.assertEqual(
+            self.cal.get_holiday_label(good_friday),
+            "Paixão do Cristo",
+        )
