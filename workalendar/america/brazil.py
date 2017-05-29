@@ -206,6 +206,13 @@ class BrazilRoraima(Brazil):
     )
 
 
+class BrazilSantaCatarina(Brazil):
+    "Brazil Santa Catarina State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (8, 11, "Criação da capitania, separando-se de SP"),
+    )
+
+
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

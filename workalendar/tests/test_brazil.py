@@ -11,7 +11,7 @@ from workalendar.america import (
     BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
     BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
     BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
-    BrazilRoraima,
+    BrazilRoraima, BrazilSantaCatarina,
 )
 
 
@@ -229,6 +229,15 @@ class BrazilRoraimaTest(BrazilTest):
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 10, 5), holidays)  # Criação de Roraima
+
+
+class BrazilSantaCatarinaTest(BrazilTest):
+    cal_class = BrazilSantaCatarina
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # Criação da capitania, separando-se de SP
+        self.assertIn(date(2017, 8, 11), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):
