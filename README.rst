@@ -111,7 +111,7 @@ Europe
 America
 -------
 
-* Brazil (incl. São Paulo state and city)
+* Brazil (all states and cities, except the city of Viana)
 * Chile
 * Colombia
 * Mexico
