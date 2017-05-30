@@ -96,9 +96,9 @@ class SingaporeTest(GenericCalendarTest):
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)  # New Year
-        self.assertIn(date(2013, 2, 11), holidays)  # CNY
-        # Rolled Chinese New Year: currently fails
-        self.assertIn(date(2013, 2, 12), holidays)  # Rolles CNY
+        self.assertIn(date(2013, 2, 10), holidays)  # CNY1
+        self.assertIn(date(2013, 2, 11), holidays)  # CNY2
+        self.assertIn(date(2013, 2, 12), holidays)  # Rolled day for CNY
         self.assertIn(date(2013, 3, 29), holidays)  # Good Friday
         self.assertIn(date(2013, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2013, 5, 24), holidays)  # Vesak Day
@@ -106,6 +106,7 @@ class SingaporeTest(GenericCalendarTest):
         self.assertIn(date(2013, 8, 9), holidays)  # National Day
         self.assertIn(date(2013, 10, 15), holidays)  # Hari Raya Haji
         self.assertIn(date(2013, 11, 3), holidays)  # Deepavali
+        self.assertIn(date(2013, 11, 4), holidays)  # Deepavali shift
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas Day
 
     def test_year_2018(self):
@@ -122,10 +123,12 @@ class SingaporeTest(GenericCalendarTest):
         self.assertIn(date(2018, 11, 6), holidays)  # Deepavali
         self.assertIn(date(2018, 12, 25), holidays)  # Christmas Day
 
-    def test_HolidayRoll(self):
+    def test_fixed_holiday_shift(self):
         # Labour Day was on a Sunday in 2016
         holidays = self.cal.holidays_set(2016)
-        self.assertNotIn(date(2016, 5, 1), holidays)
+        # Labour Day (sunday)
+        self.assertIn(date(2016, 5, 1), holidays)
+        # Shifted day (Monday)
         self.assertIn(date(2016, 5, 2), holidays)
 
 

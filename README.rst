@@ -124,6 +124,7 @@ Asia
 
 * Japan
 * Qatar
+* Singapore
 * South Korea
 * Taiwan
 
