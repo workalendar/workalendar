@@ -1,4 +1,6 @@
-"""Working day tools
+# -*- coding: utf-8 -*-
+"""
+Working day tools
 """
 import warnings
 from calendar import monthrange
@@ -250,9 +252,11 @@ class ChristianMixin(Calendar):
     include_clean_monday = False
     include_annunciation = False
     include_ash_wednesday = False
+    ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
     include_holy_thursday = False
     include_good_friday = False
+    good_friday_label = "Good Friday"
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
@@ -332,13 +336,15 @@ class ChristianMixin(Calendar):
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
-            days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
+            days.append(
+                (self.get_ash_wednesday(year), self.ash_wednesday_label)
+            )
         if self.include_palm_sunday:
             days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
-            days.append((self.get_good_friday(year), "Good Friday"))
+            days.append((self.get_good_friday(year), self.good_friday_label))
         if self.include_easter_saturday:
             days.append((self.get_easter_saturday(year), "Easter Saturday"))
         if self.include_easter_sunday:
