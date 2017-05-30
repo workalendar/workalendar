@@ -62,7 +62,13 @@ class BrazilAmapaTest(BrazilTest):
 
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 3, 19), holidays)  # Dia de São José
+        # Dia de São José
+        sao_jose = date(2017, 3, 19)
+        self.assertIn(sao_jose, holidays)
+        # Check its label
+        self.assertEqual(
+            self.cal.get_holiday_label(sao_jose), "Dia de São José")
+
         self.assertIn(date(2017, 7, 25), holidays)  # São Tiago
         self.assertIn(date(2017, 10, 5), holidays)  # Criação do estado
         self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
@@ -194,7 +200,15 @@ class BrazilRioDeJaneiroTest(BrazilTest):
         self.assertIn(date(2017, 10, 16), holidays)  # Dia do Comércio
         # Dia do Funcionário Público
         self.assertIn(date(2017, 10, 28), holidays)
-        self.assertIn(date(2017, 11, 20), holidays)  # Dia da Consciência Negra
+        # Dia da Consciência Negra
+        consciencia_negra = date(2017, 11, 20)
+        self.assertIn(consciencia_negra, holidays)
+        # check its label
+        self.assertEqual(
+            self.cal.get_holiday_label(consciencia_negra),
+            "Dia da Consciência Negra",
+        )
+
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
 
@@ -204,7 +218,13 @@ class BrazilRioGrandeDoNorteTest(BrazilTest):
 
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 6, 29), holidays)  # Dua de São Pedro
+        # Dua de São Pedro
+        sao_pedro = date(2017, 6, 29)
+        self.assertIn(sao_pedro, holidays)
+        # Check the label
+        self.assertEqual(
+            self.cal.get_holiday_label(sao_pedro), "Dua de São Pedro"
+        )
         # Mártires de Cunhaú e Uruaçuu
         self.assertIn(date(2017, 10, 3), holidays)
 
@@ -260,7 +280,14 @@ class SaoPauloCityTest(SaoPauloStateTest):
         # Aniversário da Cidade de São Paulo
         self.assertIn(date(2013, 1, 25), holidays)
         self.assertIn(date(2013, 2, 12), holidays)  # Carnaval
-        self.assertIn(date(2013, 11, 20), holidays)  # Dia da Consciência Negra
+        # Dia da Consciência Negra
+        consciencia_negra = date(2013, 11, 20)
+        self.assertIn(consciencia_negra, holidays)
+        # check its label
+        self.assertEqual(
+            self.cal.get_holiday_label(consciencia_negra),
+            "Dia da Consciência Negra",
+        )
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
 
@@ -334,7 +361,13 @@ class BrazilCariacicaCityTest(BrazilTest):
         # Fixed days
         self.assertIn(date(2017, 4, 13), holidays)  # Nossa Senhora da Penha
         # São João Batista / Aniversãrio de Cariacica
-        self.assertIn(date(2017, 6, 24), holidays)
+        sao_joao = date(2017, 6, 24)
+        self.assertIn(sao_joao, holidays)
+        # Check São João label
+        self.assertEqual(
+            self.cal.get_holiday_label(sao_joao),
+            "São João Batista / Aniversãrio de Cariacica"
+        )
 
         # Variable days: Corpus Christie
         corpus_christie = date(2017, 6, 15)
