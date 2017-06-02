@@ -4,7 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-Nothing here yet.
+- Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 
 1.2.0 (2017-05-30)
 ------------------
