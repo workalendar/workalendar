@@ -1,7 +1,8 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
+
 from workalendar.asia import Japan, Qatar, Singapore
-from workalendar.asia import SouthKorea, Taiwan
+from workalendar.asia import SouthKorea, Taiwan, Malaysia
 
 
 class SouthKoreaTest(GenericCalendarTest):
@@ -64,6 +65,50 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 11), holidays)   # Mountain Day
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 8, 11), holidays)   # Mountain Day
+
+
+class MalaysiaTest(GenericCalendarTest):
+    cal_class = Malaysia
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)    # New Year's Day
+        self.assertIn(date(2013, 1, 28), holidays)   # Thaipusam
+        self.assertIn(date(2013, 2, 1), holidays)    # Federal Territory Day
+        self.assertIn(date(2013, 2, 11), holidays)   # 2nd day of Lunar NY
+        self.assertIn(date(2013, 2, 12), holidays)   # 1st day (Sun lieu)
+        self.assertIn(date(2013, 5, 1), holidays)    # Workers' Day
+        self.assertIn(date(2013, 5, 24), holidays)   # Vesak Day
+        self.assertIn(date(2013, 8, 8), holidays)    # 1st day eid-al-fitr
+        self.assertIn(date(2013, 8, 9), holidays)    # 2nd day eid-al-fitr
+        self.assertIn(date(2013, 8, 31), holidays)   # National Day
+        self.assertIn(date(2013, 9, 16), holidays)   # Malaysia Day
+        self.assertIn(date(2013, 10, 15), holidays)  # Hari Raya Haji
+        self.assertIn(date(2013, 11, 2), holidays)   # Deepavali
+        self.assertIn(date(2013, 11, 5), holidays)   # Islamic New Year
+        self.assertIn(date(2013, 12, 25), holidays)  # Xmas
+
+    def test_year_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)    # New Year's Day
+        self.assertIn(date(2012, 1, 24), holidays)   # Federal Territory Day
+        self.assertIn(date(2012, 2, 1), holidays)    # 2nd day of Lunar NY
+        self.assertIn(date(2012, 5, 1), holidays)    # 1st day (Sun lieu)
+        self.assertIn(date(2012, 5, 5), holidays)    # Workers' Day
+        self.assertIn(date(2012, 8, 19), holidays)   # 1st day eid-al-fitr
+        self.assertIn(date(2012, 8, 20), holidays)   # 2nd day eid-al-fitr
+        self.assertIn(date(2012, 8, 31), holidays)   # National Day
+        self.assertIn(date(2012, 9, 16), holidays)   # Malaysia Day
+        self.assertIn(date(2012, 10, 26), holidays)  # Hari Raya Haji
+        self.assertIn(date(2012, 11, 13), holidays)  # Islamic New Year
+        self.assertIn(date(2012, 11, 15), holidays)  # Deepavali
+        self.assertIn(date(2012, 12, 25), holidays)  # Xmas
+
+    def test_nuzul_al_quran(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 6, 12), holidays)
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 6, 1), holidays)
 
 
 class QatarTest(GenericCalendarTest):
