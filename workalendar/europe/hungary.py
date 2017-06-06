@@ -20,3 +20,9 @@ class Hungary(WesternCalendar, ChristianMixin):
         (8, 20, "St Stephen's Day"),
         (10, 23, "National Day"),
     )
+
+    def get_variable_days(self, year):
+        days = super(Hungary, self).get_variable_days(year)
+        if year >= 2017:
+            days.append((self.get_good_friday(year), self.good_friday_label))
+        return days
