@@ -123,6 +123,7 @@ Asia
 ----
 
 * Japan
+* Malaysia
 * Qatar
 * Singapore
 * South Korea

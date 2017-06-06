@@ -538,6 +538,7 @@ class IslamicMixin(CalverterMixin):
     day_of_sacrifice_label = "Eid al-Adha"
     include_islamic_new_year = False
     include_laylat_al_qadr = False
+    include_nuzul_al_quran = False
 
     def get_islamic_holidays(self):
         """Return a list of Islamic (month, day, label) for islamic holidays.
@@ -553,6 +554,8 @@ class IslamicMixin(CalverterMixin):
             days.append((3, 13, "Day after Prophet's Birthday"))
         if self.include_start_ramadan:
             days.append((9, 1, "Start of ramadan"))
+        if self.include_nuzul_al_quran:
+            days.append((9, 17, "Nuzul Al-Qur'an"))
         if self.include_eid_al_fitr:
             for x in range(self.length_eid_al_fitr):
                 days.append((10, x + 1, self.eid_al_fitr_label))
