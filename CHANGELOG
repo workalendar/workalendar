@@ -7,6 +7,7 @@ master (unreleased)
 - Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 - Added Malaysia, by @gregyhj (#201).
 - Added Good Friday in the list of Hungarian holidays, as of the year 2017 (#203), thx to @mariusz-korzekwa for the bug report.
+- Assigned a minimal setuptools version, to avoid naughty ``DistributionNotFound`` exceptions with obsolete versions (#74).
 
 1.2.0 (2017-05-30)
 ------------------
