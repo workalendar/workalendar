@@ -22,7 +22,7 @@ REQUIREMENTS = [
     'lunardate',
     'pytz',
     'pyCalverter',
-    'setuptools==0.6c11',
+    'setuptools==1.0',
 ]
 version = '1.3.0.dev0'
 __VERSION__ = version
