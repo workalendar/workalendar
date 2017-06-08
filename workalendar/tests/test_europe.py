@@ -1,5 +1,7 @@
 # coding=utf-8
 from datetime import date
+from collections import Counter
+
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import Austria
 from workalendar.europe import Bulgaria
@@ -193,6 +195,19 @@ class SlovakiaTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 24), holidays)
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 26), holidays)
+
+    def test_removed_duplicate(self):
+        holidays = self.cal.holidays(2017)
+        counter = Counter(day for day, label in holidays)
+        # Only one "all saints"
+        self.assertEqual(counter[date(2017, 11, 1)], 1)
+        # Only one "XMas eve"
+        self.assertEqual(counter[date(2017, 12, 24)], 1)
+        # De-duplicate, XMas day was configured twice.
+        # Refs #205.
+        self.assertEqual(counter[date(2017, 12, 25)], 1)
+        # Only one St Stephen
+        self.assertEqual(counter[date(2017, 12, 25)], 1)
 
 
 class SwedenTest(GenericCalendarTest):

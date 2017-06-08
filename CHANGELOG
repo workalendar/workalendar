@@ -8,6 +8,7 @@ master (unreleased)
 - Added Malaysia, by @gregyhj (#201).
 - Added Good Friday in the list of Hungarian holidays, as of the year 2017 (#203), thx to @mariusz-korzekwa for the bug report.
 - Assigned a minimal setuptools version, to avoid naughty ``DistributionNotFound`` exceptions with obsolete versions (#74).
+- Fixed a bug in Slovakia calendar, de-duplicated Christmas Day, that appeared twice (#205).
 
 1.2.0 (2017-05-30)
 ------------------
