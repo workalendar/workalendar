@@ -1,8 +1,8 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+1.3.0 (2017-06-09)
+------------------
 
 - Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 - Added Malaysia, by @gregyhj (#201).
