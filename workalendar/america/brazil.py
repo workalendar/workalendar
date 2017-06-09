@@ -290,9 +290,9 @@ class BrazilTocantins(Brazil):
     )
 
 
-class BrazilVitoriaCity(Brazil):
+class BrazilVitoriaCity(BrazilEspiritoSanto):
     "Brazil Vitória City"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (4, 24, "Nossa Senhora da Penha"),  # Our Lady of Pain?
         (9, 8, "Nossa Senhora da Vitória"),  # Our Lady of Vitória
     )
@@ -301,16 +301,16 @@ class BrazilVitoriaCity(Brazil):
     good_friday_label = "Paixão do Cristo"
 
 
-class BrazilVilaVelhaCity(Brazil):
+class BrazilVilaVelhaCity(BrazilEspiritoSanto):
     "Brazil Vila Velha City"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (5, 23, "Colonização do Solo Espírito-santense"),
     )
 
 
-class BrazilCariacicaCity(Brazil):
+class BrazilCariacicaCity(BrazilEspiritoSanto):
     "Brazil Cariacica City"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (4, 13, "Nossa Senhora da Penha"),
     )
     include_corpus_christi = True
@@ -320,9 +320,9 @@ class BrazilCariacicaCity(Brazil):
     sao_joao_label = "São João Batista / Aniversãrio de Cariacica"
 
 
-class BrazilGuarapariCity(Brazil):
+class BrazilGuarapariCity(BrazilEspiritoSanto):
     "Brazil Guarapari City"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (9, 19, "Emancipação de Guarapari"),
     )
     include_sao_pedro = True
@@ -331,9 +331,9 @@ class BrazilGuarapariCity(Brazil):
     include_nossa_senhora_conceicao = True
 
 
-class BrazilSerraCity(Brazil):
+class BrazilSerraCity(BrazilEspiritoSanto):
     "Brazil Serra City"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (12, 26, "Dia do Serrano"),
     )
     include_ash_wednesday = True

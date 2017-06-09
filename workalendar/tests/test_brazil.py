@@ -321,7 +321,10 @@ class BrazilTocantinsTest(BrazilTest):
         self.assertIn(date(2017, 10, 5), holidays)  # Criação de Tocantins
 
 
-class BrazilVitoriaCityTest(BrazilTest):
+class BrazilVitoriaCityTest(BrazilEspiritoSantoTest):
+    """
+    Vitória city is in the Espírito Santo state
+    """
     cal_class = BrazilVitoriaCity
 
     def test_year_2017_city(self):
@@ -344,7 +347,10 @@ class BrazilVitoriaCityTest(BrazilTest):
         )
 
 
-class BrazilVilaVelhaCityTest(BrazilTest):
+class BrazilVilaVelhaCityTest(BrazilEspiritoSantoTest):
+    """
+    Vila Velha city is in the Espírito Santo state
+    """
     cal_class = BrazilVilaVelhaCity
 
     def test_year_2017_city(self):
@@ -353,7 +359,10 @@ class BrazilVilaVelhaCityTest(BrazilTest):
         self.assertIn(date(2017, 5, 23), holidays)
 
 
-class BrazilCariacicaCityTest(BrazilTest):
+class BrazilCariacicaCityTest(BrazilEspiritoSantoTest):
+    """
+    Cariacica city is in the Espírito Santo state
+    """
     cal_class = BrazilCariacicaCity
 
     def test_year_2017_city(self):
@@ -383,7 +392,10 @@ class BrazilCariacicaCityTest(BrazilTest):
         )
 
 
-class BrazilGuarapariCityTest(BrazilTest):
+class BrazilGuarapariCityTest(BrazilEspiritoSantoTest):
+    """
+    Guarapari city is in the Espírito Santo state
+    """
     cal_class = BrazilGuarapariCity
 
     def test_year_2017_city(self):
@@ -394,7 +406,10 @@ class BrazilGuarapariCityTest(BrazilTest):
         self.assertIn(date(2017, 12, 8), holidays),  # Nossa Senhora Conceição
 
 
-class BrazilSerraCityTest(BrazilTest):
+class BrazilSerraCityTest(BrazilEspiritoSantoTest):
+    """
+    Serra city is in the Espírito Santo state
+    """
     cal_class = BrazilSerraCity
 
     def test_year_2017_city(self):

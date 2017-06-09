@@ -9,6 +9,7 @@ master (unreleased)
 - Added Good Friday in the list of Hungarian holidays, as of the year 2017 (#203), thx to @mariusz-korzekwa for the bug report.
 - Assigned a minimal setuptools version, to avoid naughty ``DistributionNotFound`` exceptions with obsolete versions (#74).
 - Fixed a bug in Slovakia calendar, de-duplicated Christmas Day, that appeared twice (#205).
+- Fixed important bugs in the calendars of the following Brazilian cities: Vitória, Vila Velha, Cariacica, Guarapari and Serra - thx to Fernanda Gonçalves Rodrigues, who confirmed this issue raised by @Skippern (#199).
 
 1.2.0 (2017-05-30)
 ------------------
