@@ -23,7 +23,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
-        days += [
+        days.extend([
             (UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3),
                 'Martin Luther King, Jr. Day'),
 
@@ -41,7 +41,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
             (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
                 "Thanksgiving Day"),
-        ]
+        ])
         # Inauguration day
         if UnitedStates.is_presidential_year(year - 1):
             inauguration_day = date(year, 1, 20)
@@ -111,7 +111,7 @@ class CesarChavezDayMixin(Calendar):
     def get_chavez_day(self, year):
         days = [(date(year, 3, 31), "Cesar Chavez Day")]
         if date(year, 3, 31).weekday() == SUN:
-            days += [(date(year, 4, 1), "Cesar Chavez Day (Observed)")]
+            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
         return days
 
 
@@ -140,8 +140,9 @@ class PatriotsDayMixin(Calendar):
 class ConfederateMemorialDayMixin(Calendar):
     """4th Monday of April"""
     def get_confederate_day(self, year):
-        return (Alabama.get_nth_weekday_in_month(year, 4, MON, 4),
-                "Confederate Day")
+        day = ConfederateMemorialDayMixin.get_nth_weekday_in_month(
+            year, 4, MON, 4)
+        return (day, "Confederate Day")
 
 
 class ThanksgivingFridayMixin(Calendar):
@@ -155,15 +156,17 @@ class Alabama(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     "Alabama"
     def get_variable_days(self, year):
         days = super(Alabama, self).get_variable_days(year)
-        days = super(Alabama, self).float(days)
-        days = days + [self.get_confederate_day(year)]
-        days = days + [(Alabama.get_nth_weekday_in_month(year, 6, MON, 1),
-                        "Jefferson Davis Birthday")]
+        days = self.float(days)
+        days.extend([
+            self.get_confederate_day(year),
+            (Alabama.get_nth_weekday_in_month(year, 6, MON, 1),
+             "Jefferson Davis Birthday")
+        ])
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Alabama, self).get_fixed_holidays(year)
-        days = super(Alabama, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -175,14 +178,15 @@ class Alaska(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(Alaska, self).get_variable_days(year)
-        days = super(Alaska, self).float(days)
-        days = days + [(Alabama.get_last_weekday_in_month(year, 3, MON),
-                        "Seward's Day")]
+        days = self.float(days)
+        days.append(
+            (Alabama.get_last_weekday_in_month(year, 3, MON), "Seward's Day")
+        )
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Alaska, self).get_fixed_holidays(year)
-        days = super(Alaska, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -190,12 +194,12 @@ class Arizona(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
     """Arizona"""
     def get_variable_days(self, year):
         days = super(Arizona, self).get_variable_days(year)
-        days = super(Arizona, self).float(days)
+        days = self.float(days)
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Arizona, self).get_fixed_holidays(year)
-        days = super(Arizona, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -210,7 +214,7 @@ class Arkansas(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
     def get_fixed_holidays(self, year):
         days = super(Arkansas, self).get_fixed_holidays(year)
-        days = super(Arkansas, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -219,15 +223,17 @@ class California(UnitedStates, WesternCalendar, ThanksgivingFridayMixin,
     """California"""
     def get_variable_days(self, year):
         days = super(California, self).get_variable_days(year)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [(self.get_nth_weekday_in_month(year, 10, MON, 2),
-                  "Indingenous People's Day")]
-        days += self.get_chavez_day(year)
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            (self.get_nth_weekday_in_month(year, 10, MON, 2),
+             "Indingenous People's Day")
+        ])
+        days.extend(self.get_chavez_day(year))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(California, self).get_fixed_holidays(year)
-        days = super(California, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -237,12 +243,12 @@ class Colorado(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
     def get_variable_days(self, year):
         days = super(Colorado, self).get_variable_days(year)
-        days += self.get_chavez_day(year)
+        days.extend(self.get_chavez_day(year))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Colorado, self).get_fixed_holidays(year)
-        days = super(Colorado, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -256,12 +262,12 @@ class Connecticut(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(Connecticut, self).get_variable_days(year)
-        days = super(Connecticut, self).float(days)
+        days = self.float(days)
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Connecticut, self).get_fixed_holidays(year)
-        days = super(Connecticut, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -274,7 +280,7 @@ class Delaware(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Delaware, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -287,14 +293,16 @@ class Florida(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
     """Florida"""
     def get_variable_days(self, year):
         days = super(Florida, self).get_variable_days(year)
-        days = super(Florida, self).float(days)
-        days = days + [(Florida.get_nth_weekday_in_month(year, 11, FRI, 4),
-                        "Friday after Thanksgiving")]
+        days = self.float(days)
+        days.append(
+            (Florida.get_nth_weekday_in_month(year, 11, FRI, 4),
+             "Friday after Thanksgiving")
+        )
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Florida, self).get_fixed_holidays(year)
-        days = super(Florida, self).float(days, year)
+        days = self.float(days, year)
         return days
 
 
@@ -303,11 +311,13 @@ class Georgia(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     """Georgia"""
     def get_variable_days(self, year):
         days = super(Georgia, self).get_variable_days(year)
-        days = super(Georgia, self).float(days)
-        days += [self.get_confederate_day(year)]
-        days += [(Georgia.get_nth_weekday_in_month(year, 11, FRI, 4),
-                  "Robert E. Lee's Birthday (Observed)")]
-        days += [self.get_washington_birthday(year)]
+        days = self.float(days)
+        days.extend([
+            self.get_confederate_day(year),
+            (Georgia.get_nth_weekday_in_month(year, 11, FRI, 4),
+             "Robert E. Lee's Birthday (Observed)"),
+            self.get_washington_birthday(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -344,7 +354,7 @@ class Illinois(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Illinois, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -361,8 +371,10 @@ class Indiana(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Indiana, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_washington_birthday(year)]
-        days += [self.get_thanksgiving_friday(year)]
+        days.extend([
+            self.get_washington_birthday(year),
+            self.get_thanksgiving_friday(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -377,7 +389,7 @@ class Iowa(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Iowa, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -394,8 +406,10 @@ class Kansas(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Kansas, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [self.get_day_after_christmas(year)]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            self.get_day_after_christmas(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -412,8 +426,10 @@ class Kentucky(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Kentucky, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [self.get_day_after_christmas(year)]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            self.get_day_after_christmas(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -430,7 +446,7 @@ class Louisiana(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Louisiana, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_mardis_gras(year)]
+        days.append(self.get_mardis_gras(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -446,8 +462,10 @@ class Maine(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Maine, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_patriots_day(year)]
-        days += [self.get_thanksgiving_friday(year)]
+        days.extend([
+            self.get_patriots_day(year),
+            self.get_thanksgiving_friday(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -462,7 +480,7 @@ class Maryland(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Maryland, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -477,7 +495,7 @@ class Massachusetts(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Massachusetts, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_patriots_day(year)]
+        days.append(self.get_patriots_day(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -494,12 +512,12 @@ class Michigan(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Michigan, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Michigan, self).get_fixed_holidays(year)
-        days += [(date(year, 12, 31), "New Years Eve")]
+        days.append((date(year, 12, 31), "New Years Eve"))
         days = self.float(days, year)
         return days
 
@@ -510,7 +528,7 @@ class Minnesota(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Minnesota, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -525,8 +543,10 @@ class Mississippi(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Mississippi, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_confederate_day(year)]
-        days += [self.get_thanksgiving_friday(year)]
+        days.extend([
+            self.get_confederate_day(year),
+            self.get_thanksgiving_friday(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -573,9 +593,10 @@ class Nebraska(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Nebraska, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [(self.get_last_weekday_in_month(year, 4, FRI),
-                  "Arbor Day")]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            (self.get_last_weekday_in_month(year, 4, FRI), "Arbor Day")
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -590,9 +611,10 @@ class Nevada(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Nevada, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [(self.get_last_weekday_in_month(year, 10, FRI),
-                  "Nevada Day")]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            (self.get_last_weekday_in_month(year, 10, FRI), "Nevada Day")
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -603,11 +625,11 @@ class Nevada(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 class NewHampshire(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
                    ThanksgivingFridayMixin):
-    """NewHampshire"""
+    """New Hampshire"""
     def get_variable_days(self, year):
         days = super(NewHampshire, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -617,7 +639,7 @@ class NewHampshire(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 
 class NewJersey(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
-    """NewJersey"""
+    """New Jersey"""
     include_good_friday = True
 
     def get_variable_days(self, year):
@@ -633,11 +655,11 @@ class NewJersey(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
 class NewMexico(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
                 ThanksgivingFridayMixin):
-    """NewMexico"""
+    """New Mexico"""
     def get_variable_days(self, year):
         days = super(NewMexico, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -647,7 +669,7 @@ class NewMexico(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 
 class NewYork(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
-    """NewYork"""
+    """New York"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (2, 12, "Lincoln's Birthday"),
     )
@@ -665,15 +687,17 @@ class NewYork(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
 class NorthCarolina(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
                     ThanksgivingFridayMixin, DayAfterChristmasNoFloatMixin):
-    """NorthCarolina"""
+    """North Carolina"""
     include_good_friday = True
     include_christmas_eve = True
 
     def get_variable_days(self, year):
         days = super(NorthCarolina, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [self.get_day_after_christmas(year)]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            self.get_day_after_christmas(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -683,7 +707,7 @@ class NorthCarolina(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 
 class NorthDakota(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
-    """NorthDakota"""
+    """North Dakota"""
     include_good_friday = True
 
     def get_variable_days(self, year):
@@ -722,7 +746,7 @@ class Oklahoma(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Oklahoma, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -753,7 +777,7 @@ class Pennsylvania(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Pennsylvania, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -763,13 +787,13 @@ class Pennsylvania(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 
 class RhodeIsland(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
-    """RhodeIsland"""
+    """Rhode Island"""
 
     def get_variable_days(self, year):
         days = super(RhodeIsland, self).get_variable_days(year)
         days = self.float(days)
-        days += [(self.get_nth_weekday_in_month(year, 8, MON, 2),
-                  "Victory Day")]
+        days.append(
+            (self.get_nth_weekday_in_month(year, 8, MON, 2), "Victory Day"))
         return days
 
     def get_fixed_holidays(self, year):
@@ -780,7 +804,7 @@ class RhodeIsland(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
 
 class SouthCarolina(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
                     ThanksgivingFridayMixin, DayAfterChristmasNoFloatMixin):
-    """SouthCarolina"""
+    """South Carolina"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (5, 10, "Confederate Memorial Day"),
     )
@@ -790,8 +814,10 @@ class SouthCarolina(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(SouthCarolina, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [self.get_day_after_christmas(year)]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            self.get_day_after_christmas(year)
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -801,7 +827,7 @@ class SouthCarolina(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
 
 
 class SouthDakota(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
-    """SouthDakota"""
+    """South Dakota"""
     def get_variable_days(self, year):
         days = super(SouthDakota, self).get_variable_days(year)
         days = self.float(days)
@@ -821,7 +847,7 @@ class Tennessee(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Tennessee, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -838,17 +864,19 @@ class Texas(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Texas, self).get_variable_days(year)
         days = self.float(days)
-        days += self.get_chavez_day(year)
+        days.extend(self.get_chavez_day(year))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Texas, self).get_fixed_holidays(year)
         days = self.float(days, year)
-        days += [(date(year, 1, 19), "Confederate Heroes Day")]
-        days += [(date(year, 3, 2), "Texas Independence Day")]
-        days += [(date(year, 4, 21), "San Jacinto Day")]
-        days += [(date(year, 6, 19), "Emancipation Day")]
-        days += [(date(year, 8, 27), "Lyndon B. Jonhson Day")]
+        days.extend([
+            (date(year, 1, 19), "Confederate Heroes Day"),
+            (date(year, 3, 2), "Texas Independence Day"),
+            (date(year, 4, 21), "San Jacinto Day"),
+            (date(year, 6, 19), "Emancipation Day"),
+            (date(year, 8, 27), "Lyndon B. Jonhson Day")
+        ])
         return days
 
 
@@ -878,8 +906,10 @@ class Vermont(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin):
     def get_variable_days(self, year):
         days = super(Vermont, self).get_variable_days(year)
         days = self.float(days)
-        days += [(self.get_nth_weekday_in_month(year, 3, TUE, 1),
-                  "Town Meeting Day")]
+        days.append(
+            (self.get_nth_weekday_in_month(year, 3, TUE, 1),
+             "Town Meeting Day")
+        )
         return days
 
     def get_fixed_holidays(self, year):
@@ -896,11 +926,13 @@ class Virginia(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Virginia, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [(self.get_nth_weekday_in_month(year, 1, FRI, 3),
-                  "Lee-Jackson Day")]
-        days += [(self.get_nth_weekday_in_month(year, 11, WED, 4),
-                  "Additional Thanksgiving Holiday")]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            (self.get_nth_weekday_in_month(year, 1, FRI, 3),
+             "Lee-Jackson Day"),
+            (self.get_nth_weekday_in_month(year, 11, WED, 4),
+             "Additional Thanksgiving Holiday")
+        ])
         return days
 
     def get_fixed_holidays(self, year):
@@ -916,7 +948,7 @@ class Washington(UnitedStates, WesternCalendar, ThanksgivingFridayMixin,
     def get_variable_days(self, year):
         days = super(Washington, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
@@ -927,23 +959,24 @@ class Washington(UnitedStates, WesternCalendar, ThanksgivingFridayMixin,
 
 class WestVirginia(UnitedStates, WesternCalendar, ThanksgivingFridayMixin,
                    FloatToNearestWeekdayMixin):
-    """WestVirginia"""
+    """West Virginia"""
     include_christmas_eve = True
 
     def get_variable_days(self, year):
         days = super(WestVirginia, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
-        days += [(date(year, 6, 20), "West Virgina Day")]
+        days.extend([
+            self.get_thanksgiving_friday(year),
+            (date(year, 6, 20), "West Virgina Day")
+        ])
         if date(year, 6, 20).weekday() == SUN:
-            days += [(date(year, 6, 21), "West Virgina Day (Observed)")]
-
+            days.append((date(year, 6, 21), "West Virgina Day (Observed)"))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(WestVirginia, self).get_fixed_holidays(year)
         days = self.float(days, year)
-        days += [(date(year, 12, 31), "New Years Eve")]
+        days.append((date(year, 12, 31), "New Years Eve"))
         return days
 
 
@@ -955,12 +988,12 @@ class Wisconsin(UnitedStates, WesternCalendar, FloatToNearestWeekdayMixin,
     def get_variable_days(self, year):
         days = super(Wisconsin, self).get_variable_days(year)
         days = self.float(days)
-        days += [self.get_thanksgiving_friday(year)]
+        days.append(self.get_thanksgiving_friday(year))
         return days
 
     def get_fixed_holidays(self, year):
         days = super(Wisconsin, self).get_fixed_holidays(year)
-        days += [(date(year, 12, 31), "New Years Eve")]
+        days.append((date(year, 12, 31), "New Years Eve"))
         days = self.float(days, year)
         return days
 

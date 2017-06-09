@@ -36,7 +36,5 @@ class Netherlands(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Netherlands, self).get_variable_days(year)
-        days += [
-            self.get_king_queen_day(year)
-        ]
+        days.append(self.get_king_queen_day(year))
         return days

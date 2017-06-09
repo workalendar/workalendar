@@ -17,9 +17,10 @@ class Canada(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         # usual variable days
         days = super(Canada, self).get_variable_days(year)
-        days += [
+        days.append(
             (Canada.get_nth_weekday_in_month(year, 9, MON, 1), "Labor Day")
-        ]
+        )
+        # Canada day
         canadaday = date(year, 7, 1)
         if canadaday.weekday() in self.get_weekend_days():
             shift = self.find_following_working_day(canadaday)
@@ -58,16 +59,15 @@ class AugustCivicHolidayMixin(Calendar):
     "1st Monday of August; different names depending on location"
 
     def get_civic_holiday(self, year, label="Civic Holiday"):
-        return (self.get_nth_weekday_in_month(year, 8, MON),
-                label)
+        return (self.get_nth_weekday_in_month(year, 8, MON), label)
 
 
 class ThanksgivingMixin(Calendar):
     "2nd Monday of October"
 
     def get_thanksgiving(self, year):
-        return (self.get_nth_weekday_in_month(year, 10, MON, 2),
-                "Thanksgiving")
+        thanksgiving = self.get_nth_weekday_in_month(year, 10, MON, 2)
+        return (thanksgiving, "Thanksgiving")
 
 
 class BoxingDayMixin(Calendar):
@@ -120,13 +120,13 @@ class Ontario(Canada, BoxingDayMixin, ThanksgivingMixin, VictoriaDayMixin,
 
     def get_variable_days(self, year):
         days = super(Ontario, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_family_day(year)),
             (self.get_victoria_day(year)),
             (self.get_civic_holiday(year, "Civic Holiday (Not for all)")),
             (self.get_thanksgiving(year)),
-        ]
-        days += self.get_boxing_day(year)
+        ])
+        days.extend(self.get_boxing_day(year))
 
         return days
 
@@ -137,12 +137,11 @@ class Quebec(Canada, VictoriaDayMixin, StJeanBaptisteMixin, ThanksgivingMixin):
 
     def get_variable_days(self, year):
         days = super(Quebec, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
-        ]
-        days += self.get_st_jean(year)
-
+        ])
+        days.extend(self.get_st_jean(year))
         return days
 
 
@@ -158,13 +157,12 @@ class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
 
     def get_variable_days(self, year):
         days = super(BritishColumbia, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_family_day(year)),
             (self.get_victoria_day(year)),
             (self.get_civic_holiday(year, "British Columbia Day")),
             (self.get_thanksgiving(year)),
-        ]
-
+        ])
         return days
 
 
@@ -178,12 +176,11 @@ class Alberta(Canada, LateFamilyDayMixin, VictoriaDayMixin, ThanksgivingMixin):
 
     def get_variable_days(self, year):
         days = super(Alberta, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_family_day(year)),
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
-        ]
-
+        ])
         return days
 
 
@@ -195,14 +192,13 @@ class Saskatchewan(Canada, LateFamilyDayMixin, VictoriaDayMixin,
 
     def get_variable_days(self, year):
         days = super(Saskatchewan, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_family_day(year)),
             (self.get_victoria_day(year)),
             (self.get_civic_holiday(year)),
             (self.get_thanksgiving(year)),
-        ]
-        days += self.get_remembrance_day(year)
-
+        ])
+        days.extend(self.get_remembrance_day(year))
         return days
 
 
@@ -213,13 +209,12 @@ class Manitoba(Canada, LateFamilyDayMixin, VictoriaDayMixin,
 
     def get_variable_days(self, year):
         days = super(Manitoba, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_family_day(year, "Louis Riel Day")),
             (self.get_victoria_day(year)),
             (self.get_civic_holiday(year)),
             (self.get_thanksgiving(year)),
-        ]
-
+        ])
         return days
 
 
@@ -234,9 +229,7 @@ class NewBrunswick(Canada, AugustCivicHolidayMixin):
 
     def get_variable_days(self, year):
         days = super(NewBrunswick, self).get_variable_days(year)
-        days += [
-            (self.get_civic_holiday(year)),
-        ]
+        days.append(self.get_civic_holiday(year))
         return days
 
 
@@ -247,13 +240,9 @@ class NovaScotia(Canada, RemembranceDayShiftMixin, LateFamilyDayMixin):
 
     def get_variable_days(self, year):
         days = super(NovaScotia, self).get_variable_days(year)
-        days += (self.get_remembrance_day(year))
-
+        days.extend(self.get_remembrance_day(year))
         if year >= 2015:
-            days += [
-                (self.get_family_day(year, "Viola Desmond Day")),
-            ]
-
+            days.append(self.get_family_day(year, "Viola Desmond Day"))
         return days
 
 
@@ -264,11 +253,8 @@ class PrinceEdwardIsland(Canada, LateFamilyDayMixin, RemembranceDayShiftMixin):
 
     def get_variable_days(self, year):
         days = super(PrinceEdwardIsland, self).get_variable_days(year)
-        days += [
-            (self.get_family_day(year, "Islander Day")),
-        ]
-        days += (self.get_remembrance_day(year))
-
+        days.append((self.get_family_day(year, "Islander Day")))
+        days.extend(self.get_remembrance_day(year))
         return days
 
 
@@ -288,13 +274,11 @@ class Yukon(Canada, VictoriaDayMixin, ThanksgivingMixin):
 
     def get_variable_days(self, year):
         days = super(Yukon, self).get_variable_days(year)
-        days += [
-            (self.get_nth_weekday_in_month(year, 8, MON, 3),
-             "Discovery Day"),
+        days.extend([
+            (self.get_nth_weekday_in_month(year, 8, MON, 3), "Discovery Day"),
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
-        ]
-
+        ])
         return days
 
 
@@ -310,13 +294,11 @@ class NorthwestTerritories(Canada, RemembranceDayShiftMixin, VictoriaDayMixin,
 
     def get_variable_days(self, year):
         days = super(NorthwestTerritories, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
-        ]
-
-        days += (self.get_remembrance_day(year))
-
+        ])
+        days.extend(self.get_remembrance_day(year))
         return days
 
 
@@ -327,15 +309,15 @@ class Nunavut(Canada, VictoriaDayMixin, ThanksgivingMixin,
 
     def get_variable_days(self, year):
         days = super(Nunavut, self).get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
-        ]
+        ])
 
-        days += (self.get_remembrance_day(year))
+        days.extend(self.get_remembrance_day(year))
+
         nuvanutday = date(year, 7, 9)
-        days += [(nuvanutday, "Nuvanut Day")]
+        days.append((nuvanutday, "Nuvanut Day"))
         if nuvanutday.weekday() == SUN:
-            days += [(date(year, 7, 10), "Nuvanut Day (Shift)")]
-
+            days.append((date(year, 7, 10), "Nuvanut Day (Shift)"))
         return days

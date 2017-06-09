@@ -116,12 +116,11 @@ class AustraliaCapitalTerritory(Australia):
         return (day, "Family & Community Day")
 
     def get_variable_days(self, year):
-        days = super(AustraliaCapitalTerritory, self) \
-            .get_variable_days(year)
-        days += [
+        days = super(AustraliaCapitalTerritory, self).get_variable_days(year)
+        days.extend([
             self.get_canberra_day(year),
             self.get_family_community_day(year),
-        ]
+        ])
         return days
 
 
@@ -143,25 +142,22 @@ class AustraliaNorthernTerritory(Australia):
 
     def get_may_day(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(
-                year, 5, MON),
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
             "May Day"
         )
 
     def get_picnic_day(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(
-                year, 8, MON),
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 8, MON),
             "Picnic Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaNorthernTerritory, self) \
-            .get_variable_days(year)
-        days += [
+        days = super(AustraliaNorthernTerritory, self).get_variable_days(year)
+        days.extend([
             self.get_may_day(year),
             self.get_picnic_day(year),
-        ]
+        ])
         return days
 
 
@@ -173,17 +169,13 @@ class AustraliaQueensland(Australia):
 
     def get_labour_day_may(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(
-                year, 5, MON),
+            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
             "Labour Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaQueensland, self) \
-            .get_variable_days(year)
-        days += [
-            self.get_labour_day_may(year),
-        ]
+        days = super(AustraliaQueensland, self).get_variable_days(year)
+        days.append(self.get_labour_day_may(year))
         return days
 
 
@@ -195,8 +187,7 @@ class SouthAustralia(Australia):
 
     def get_adelaides_cup(self, year):
         return (
-            SouthAustralia.get_nth_weekday_in_month(
-                year, 3, MON, 2),
+            SouthAustralia.get_nth_weekday_in_month(year, 3, MON, 2),
             "Adelaide's cup"
         )
 
@@ -204,12 +195,11 @@ class SouthAustralia(Australia):
         return (date(year, 12, 26), "Proclamation Day")
 
     def get_variable_days(self, year):
-        days = super(SouthAustralia, self) \
-            .get_variable_days(year)
-        days += [
+        days = super(SouthAustralia, self).get_variable_days(year)
+        days.extend([
             self.get_adelaides_cup(year),
             self.get_proclamation_day(year),
-        ]
+        ])
         return days
 
 
@@ -307,7 +297,6 @@ class WesternAustralia(Australia):
         # The western Australia territory, since it's based on the Governor
         # Decision (it is typically the last Monday of September or the first
         # Monday of October)
-
         days = super(WesternAustralia, self).get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_western_australia_day(year))

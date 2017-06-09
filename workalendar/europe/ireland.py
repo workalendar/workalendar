@@ -25,6 +25,7 @@ class Ireland(WesternCalendar, ChristianMixin):
         )
 
     def get_variable_days(self, year):
+        self.include_whit_monday = (year <= 1973)
         days = super(Ireland, self).get_variable_days(year)
 
         # St Patrick's day
@@ -34,13 +35,6 @@ class Ireland(WesternCalendar, ChristianMixin):
             days.append((
                 self.find_following_working_day(st_patrick),
                 "Saint Patrick substitute"))
-
-        # Whit Monday
-        if year <= 1973:
-            days.append((
-                self.get_whit_monday(year),
-                self.whit_monday_label
-            ))
 
         # May Day
         if year >= 1994:

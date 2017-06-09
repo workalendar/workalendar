@@ -22,7 +22,7 @@ class Hungary(WesternCalendar, ChristianMixin):
     )
 
     def get_variable_days(self, year):
+        # As of 2017, Good Friday became a holiday
+        self.include_good_friday = (year >= 2017)
         days = super(Hungary, self).get_variable_days(year)
-        if year >= 2017:
-            days.append((self.get_good_friday(year), self.good_friday_label))
         return days
