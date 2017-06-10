@@ -9,3 +9,11 @@ env:
 script: tox -e $TOX_ENV
 install:
     - pip install tox
+matrix:
+  include:
+    - python: 3.6
+      env:
+        - TOX_ENV=py36
+    - python: 3.6
+      env:
+        - TOX_ENV=flake8
