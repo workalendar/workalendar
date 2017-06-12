@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from copy import copy
-from datetime import date, timedelta
+from datetime import date
 
-from workalendar.core import LunarCalendar, WesternCalendar
+from workalendar.core import ChineseNewYearCalendar, WesternCalendar
 from workalendar.core import (
-    SUN, ChristianMixin, IslamicMixin
+    ChristianMixin, IslamicMixin
 )
 
 
-class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
+class Singapore(WesternCalendar,
+                ChineseNewYearCalendar, ChristianMixin, IslamicMixin):
     "Singapore"
     include_good_friday = True
     include_eid_al_fitr = True
@@ -16,7 +16,6 @@ class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
     include_day_of_sacrifice = True
     day_of_sacrifice_label = "Hari Raya Haji"
 
-    # All holidays in Singapore will roll on a Sunday
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (8, 9, "National Day"),
@@ -45,38 +44,10 @@ class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
         2017: date(2017, 10, 18),
         2018: date(2018, 11, 6)  # This might change
     }
-
-    def get_chinese_new_year(self, year):
-        """
-        Compute Chinese New Year days. To return a list of holidays
-
-        * If the CNY1 falls on MON-FRI, there's not shift.
-        * If the CNY1 falls on SAT, the CNY2 is shifted to the Monday after.
-        * If the CNY1 falls on SUN, the CNY1 is shifted to the Monday after,
-          and CNY2 is shifted to the Tuesday after.
-        """
-        new_year_day_1 = LunarCalendar.lunar(year, 1, 1)
-        new_year_day_2 = LunarCalendar.lunar(year, 1, 2)
-        days = [
-            (new_year_day_1, "Chinese Lunar New Year's Day"),
-            (new_year_day_2, "Second day of Chinese Lunar New Year"),
-        ]
-        if new_year_day_1.weekday() == SUN:
-            days.append(
-                (new_year_day_2 + timedelta(days=1),
-                 "Second day of Chinese Lunar New Year shift"),
-            )
-        return days
-
-    def get_shifted_holidays(self, dates):
-        # Singapore rolls all Sunday holidays.
-        # I feel this should be baked deeper in the class hierarchy
-        for holiday, label in dates:
-            if holiday.weekday() == SUN:
-                yield (
-                    holiday + timedelta(days=1),
-                    label + ' shift'
-                )
+    chinese_new_year_label = "Chinese Lunar New Year's Day"
+    include_chinese_second_day = True
+    chinese_second_day_label = "Second day of Chinese Lunar New Year"
+    shift_sunday_holidays = True
 
     def get_variable_days(self, year):
         """
@@ -84,13 +55,9 @@ class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
         """
         days = super(Singapore, self).get_variable_days(year)
 
-        # The `get_shifted_holidays` method will take care of the shifts.
-        for day in self.get_chinese_new_year(year):
-            days.append(day)
-
         # Vesak Day
         days.append(
-            (LunarCalendar.lunar(year, 4, 15), "Vesak Day"),
+            (ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"),
         )
 
         # Add in Deepavali (hardcoded dates, so no need to shift)
@@ -99,16 +66,4 @@ class Singapore(WesternCalendar, ChristianMixin, IslamicMixin):
             msg = 'Missing date for Singapore Deepavali for year: %s' % year
             raise KeyError(msg)
         days.append((deepavali, 'Deepavali'))
-        return days
-
-    def get_calendar_holidays(self, year):
-        """
-        In Singapore, any holiday that fall on SUN is shifted to the next
-        available working day.
-        """
-        # Unshifted days are here:
-        days = super(Singapore, self).get_calendar_holidays(year)
-        days_to_inspect = copy(days)
-        for day_shifted in self.get_shifted_holidays(days_to_inspect):
-            days.append(day_shifted)
         return days

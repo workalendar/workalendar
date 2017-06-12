@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
-
-from workalendar.core import LunarCalendar
+from workalendar.core import ChineseNewYearCalendar, WesternCalendar
 
 
-class SouthKorea(LunarCalendar):
+class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
     "South Korea"
-    FIXED_HOLIDAYS = LunarCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 1, "Independence Day"),
         (5, 5, "Children's Day"),
         (6, 6, "Memorial Day"),
@@ -15,20 +13,19 @@ class SouthKorea(LunarCalendar):
         (10, 9, "Hangul Day"),
         (12, 25, "Christmas Day"),
     )
+    chinese_new_year_label = "Korean New Year's Day"
+    include_chinese_new_year_eve = True
+    chinese_new_year_eve_label = "Korean New Year's Day"
+    include_chinese_second_day = True
+    chinese_second_day_label = "Korean New Year's Day"
 
     def get_variable_days(self, year):
-        lunar_first_day = LunarCalendar.lunar(year, 1, 1)
-        days = [
-            # new year (3 days)
-            (lunar_first_day, "Korean New Year's Day"),
-            # a day before
-            (lunar_first_day - timedelta(days=1), "Korean New Year's Day"),
-            # a day after
-            (LunarCalendar.lunar(year, 1, 2), "Korean New Year's Day"),
-            (LunarCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
+        days = super(SouthKorea, self).get_variable_days(year)
+        days.extend([
+            (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
             # Midautumn Festival (3 days)
-            (LunarCalendar.lunar(year, 8, 14), "Midautumn Festival"),
-            (LunarCalendar.lunar(year, 8, 15), "Midautumn Festival"),
-            (LunarCalendar.lunar(year, 8, 16), "Midautumn Festival"),
-        ]
+            (ChineseNewYearCalendar.lunar(year, 8, 14), "Midautumn Festival"),
+            (ChineseNewYearCalendar.lunar(year, 8, 15), "Midautumn Festival"),
+            (ChineseNewYearCalendar.lunar(year, 8, 16), "Midautumn Festival"),
+        ])
         return days
