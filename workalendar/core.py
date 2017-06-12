@@ -2,6 +2,7 @@
 """
 Working day tools
 """
+from copy import copy
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
@@ -406,15 +407,103 @@ class OrthodoxMixin(ChristianMixin):
 
 
 class LunarCalendar(Calendar):
-    """Calendar including lunar days
     """
-    FIXED_HOLIDAYS = (
-        (1, 1, 'Lunar new year'),
-    )
-
+    Calendar ready to compute luncar calendar days
+    """
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
+
+
+class ChineseNewYearCalendar(LunarCalendar):
+    """
+    Calendar including toolsets to compute the Chinese New Year holidays.
+    """
+    include_chinese_new_year_eve = False
+    chinese_new_year_eve_label = "Chinese New Year's eve"
+    # Chinese New Year will be included by default
+    include_chinese_new_year = True
+    chinese_new_year_label = 'Chinese New Year'
+    # Some countries include the 2nd lunar day as a holiday
+    include_chinese_second_day = False
+    chinese_second_day_label = "Chinese New Year (2nd day)"
+    shift_sunday_holidays = False
+
+    def get_chinese_new_year(self, year):
+        """
+        Compute Chinese New Year days. To return a list of holidays.
+
+        By default, it'll at least return the Chinese New Year holidays chosen
+        using the following options:
+
+        * ``include_chinese_new_year_eve``
+        * ``include_chinese_new_year`` (on by default)
+        * ``include_chinese_second_day``
+
+        If the ``shift_sunday_holidays`` option is on, the rules are the
+        following.
+
+        * If the CNY1 falls on MON-FRI, there's not shift.
+        * If the CNY1 falls on SAT, the CNY2 is shifted to the Monday after.
+        * If the CNY1 falls on SUN, the CNY1 is shifted to the Monday after,
+          and CNY2 is shifted to the Tuesday after.
+        """
+        days = []
+
+        lunar_first_day = ChineseNewYearCalendar.lunar(year, 1, 1)
+        # Chinese new year's eve
+        if self.include_chinese_new_year_eve:
+            days.append((
+                lunar_first_day - timedelta(days=1),
+                self.chinese_new_year_eve_label
+            ))
+        # Chinese new year (is included by default)
+        if self.include_chinese_new_year:
+            days.append((lunar_first_day, self.chinese_new_year_label))
+
+        if self.include_chinese_second_day:
+            lunar_second_day = lunar_first_day + timedelta(days=1)
+            days.append((
+                lunar_second_day,
+                self.chinese_second_day_label
+            ))
+            if self.shift_sunday_holidays:
+                if lunar_first_day.weekday() == SUN:
+                    days.append(
+                        (lunar_second_day + timedelta(days=1),
+                         "Second day of Chinese Lunar New Year shift"),
+                    )
+        return days
+
+    def get_variable_days(self, year):
+        days = super(ChineseNewYearCalendar, self).get_variable_days(year)
+        days.extend(self.get_chinese_new_year(year))
+        return days
+
+    def get_shifted_holidays(self, dates):
+        """
+        Taking a list of existing holidays, yield a list of 'shifted' days if
+        the holiday falls on SUN.
+        """
+        for holiday, label in dates:
+            if holiday.weekday() == SUN:
+                yield (
+                    holiday + timedelta(days=1),
+                    label + ' shift'
+                )
+
+    def get_calendar_holidays(self, year):
+        """
+        Take into account the eventual shift to the next MON if any holiday
+        falls on SUN.
+        """
+        # Unshifted days are here:
+        days = super(ChineseNewYearCalendar, self).get_calendar_holidays(year)
+        if self.shift_sunday_holidays:
+            days_to_inspect = copy(days)
+            for day_shifted in self.get_shifted_holidays(days_to_inspect):
+                days.append(day_shifted)
+        return days
 
 
 class EphemMixin(LunarCalendar):
