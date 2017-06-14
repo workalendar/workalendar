@@ -212,14 +212,8 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
 
 class ColoradoTest(UnitedStatesTest):
     cal_class = Colorado
-
-    def test_state_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 3, 31), holidays)  # Cesar Chavez Day
-
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 3, 31), holidays)   # Cesar Chavez Day
+    # Colorado has only federal state holidays.
+    # NOTE: Cesar Chavez Day is an optional holiday
 
 
 class ConnecticutTest(UnitedStatesTest):

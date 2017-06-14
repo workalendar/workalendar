@@ -7,4 +7,5 @@ from .core import UnitedStates
 
 class Colorado(UnitedStates):
     """Colorado"""
-    include_cesar_chavez_day = True
+    # Colorado has only federal state holidays.
+    # NOTE: Cesar Chavez Day is an optional holiday
