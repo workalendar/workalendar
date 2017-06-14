@@ -90,7 +90,7 @@ class NoColumbus(object):
     Some States don't include Columbus Day:
 
     * Alaska
-    * ...
+    * Arkansas
     """
     def test_columbus_day(self):
         # This overrides UnitedStates.test_columbus_day
@@ -170,27 +170,29 @@ class ArizonaTest(UnitedStatesTest):
         self.assertEqual(label, "Lincoln/Washington Presidents' Day")
 
 
-class ArkansasTest(UnitedStatesTest):
+class ArkansasTest(NoColumbus, UnitedStatesTest):
     cal_class = Arkansas
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 12, 24), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 12, 24), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
 
     def test_christmas_2016(self):
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 12, 23), holidays)
-        self.assertIn(date(2016, 12, 26), holidays)
+        self.assertIn(date(2016, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2016, 12, 23), holidays)  # XMas Eve shifted
 
-    def test_christmas_2010(self):
-        holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 12, 23), holidays)
-        self.assertIn(date(2010, 12, 24), holidays)
+    def test_president_day_label(self):
+        # Presidents day is renamed in Alabama
+        _, label = self.cal.get_presidents_day(2017)
+        self.assertEqual(
+            label,
+            "George Washington's Birthday and Daisy Gatson Bates Day"
+        )
 
 
 class CaliforniaTest(UnitedStatesTest):
