@@ -3,12 +3,13 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from workalendar.core import MON
-from .core import UnitedStates, CesarChavezDayMixin
+from .core import UnitedStates
 
 
-class California(UnitedStates, CesarChavezDayMixin):
+class California(UnitedStates):
     """California"""
     include_thanksgiving_friday = True
+    include_cesar_chavez_day = True
 
     def get_variable_days(self, year):
         days = super(California, self).get_variable_days(year)

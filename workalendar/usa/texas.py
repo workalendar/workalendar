@@ -3,12 +3,13 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
-from .core import UnitedStates, CesarChavezDayMixin
+from .core import UnitedStates
 
 
-class Texas(UnitedStates, CesarChavezDayMixin):
+class Texas(UnitedStates):
     """Texas"""
     include_good_friday = True
+    include_cesar_chavez_day = True
 
     # FIXME: fixed days that DON'T float.
     def get_fixed_holidays(self, year):

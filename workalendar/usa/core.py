@@ -32,6 +32,10 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     columbus_day_label = "Columbus Day"
     # Confederation day
     include_confederation_day = False
+
+    # Include Cesar Chavez day(s)
+    include_cesar_chavez_day = False
+
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
@@ -116,6 +120,17 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         day = UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3)
         return (day, self.presidents_day_label)
 
+    def get_cesar_chavez_days(self, year):
+        """
+        Cesar Chavez day is on 31st of March, float to 1st April if Monday.
+
+        Will return a list of days.
+        """
+        days = [(date(year, 3, 31), "Cesar Chavez Day")]
+        if date(year, 3, 31).weekday() == SUN:
+            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
+        return days
+
     def get_washington_birthday_december(self, year):
         """
         Floating observance, to give long weekend at christmas.
@@ -166,6 +181,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_federal_presidents_day:
             days.append(self.get_presidents_day(year))
 
+        if self.include_cesar_chavez_day:
+            days.extend(self.get_cesar_chavez_days(year))
+
         if self.include_columbus_day:
             days.append(self.get_columbus_day(year))
 
@@ -194,20 +212,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         days = super(UnitedStates, self).get_calendar_holidays(year)
         days = self.shift(days, year)
-        return days
-
-
-class CesarChavezDayMixin(Calendar):
-    """31st of March, float to 1st April if Monday"""
-    def get_chavez_day(self, year):
-        days = [(date(year, 3, 31), "Cesar Chavez Day")]
-        if date(year, 3, 31).weekday() == SUN:
-            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
-        return days
-
-    def get_variable_days(self, year):
-        days = super(CesarChavezDayMixin, self).get_variable_days(year)
-        days.extend(self.get_chavez_day(year))
         return days
 
 
