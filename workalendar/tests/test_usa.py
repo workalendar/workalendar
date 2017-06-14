@@ -91,6 +91,7 @@ class NoColumbus(object):
 
     * Alaska
     * Arkansas
+    * California
     """
     def test_columbus_day(self):
         # This overrides UnitedStates.test_columbus_day
@@ -195,7 +196,7 @@ class ArkansasTest(NoColumbus, UnitedStatesTest):
         )
 
 
-class CaliforniaTest(UnitedStatesTest):
+class CaliforniaTest(NoColumbus, UnitedStatesTest):
     cal_class = California
 
     def test_state_year_2014(self):
