@@ -11,14 +11,8 @@ class Michigan(UnitedStates):
     include_christmas_eve = True
     include_thanksgiving_friday = True
 
-    def get_variable_days(self, year):
-        days = super(Michigan, self).get_variable_days(year)
-        days = self.float(days, year)
-        return days
-
     # FIXME: fixed with float here
     def get_fixed_holidays(self, year):
         days = super(Michigan, self).get_fixed_holidays(year)
         days.append((date(year, 12, 31), "New Years Eve"))
-        days = self.float(days, year)
         return days

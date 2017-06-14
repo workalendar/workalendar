@@ -15,14 +15,8 @@ class Georgia(UnitedStates, WashingtonsBirthdayInDecemberMixin):
 
     def get_variable_days(self, year):
         days = super(Georgia, self).get_variable_days(year)
-        days = self.float(days, year)
         days.extend([
             (Georgia.get_nth_weekday_in_month(year, 11, FRI, 4),
              "Robert E. Lee's Birthday (Observed)"),
         ])
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Georgia, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         return days

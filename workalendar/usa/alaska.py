@@ -14,13 +14,7 @@ class Alaska(UnitedStates):
 
     def get_variable_days(self, year):
         days = super(Alaska, self).get_variable_days(year)
-        days = self.float(days, year)
         days.append(
             (Alaska.get_last_weekday_in_month(year, 3, MON), "Seward's Day")
         )
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Alaska, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         return days

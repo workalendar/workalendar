@@ -14,7 +14,6 @@ class WestVirginia(UnitedStates):
 
     def get_variable_days(self, year):
         days = super(WestVirginia, self).get_variable_days(year)
-        days = self.float(days, year)
         days.extend([
             (date(year, 6, 20), "West Virgina Day")
         ])
@@ -25,6 +24,5 @@ class WestVirginia(UnitedStates):
     # FIXME: fixed holidays that don't float.
     def get_fixed_holidays(self, year):
         days = super(WestVirginia, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         days.append((date(year, 12, 31), "New Years Eve"))
         return days

@@ -17,8 +17,3 @@ class California(UnitedStates, CesarChavezDayMixin):
              "Indingenous People's Day")
         ])
         return days
-
-    def get_fixed_holidays(self, year):
-        days = super(California, self).get_fixed_holidays(year)
-        days = self.float(days, year)
-        return days

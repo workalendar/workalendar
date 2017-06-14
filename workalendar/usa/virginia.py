@@ -15,7 +15,6 @@ class Virginia(UnitedStates, DayAfterChristmasNoFloatMixin):
 
     def get_variable_days(self, year):
         days = super(Virginia, self).get_variable_days(year)
-        days = self.float(days, year)
         days.extend([
             (self.get_nth_weekday_in_month(year, 1, FRI, 3),
              "Lee-Jackson Day"),
@@ -26,6 +25,5 @@ class Virginia(UnitedStates, DayAfterChristmasNoFloatMixin):
 
     def get_fixed_holidays(self, year):
         days = super(Virginia, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         days += [self.get_day_after_christmas(year)]
         return days

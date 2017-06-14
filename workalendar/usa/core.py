@@ -36,8 +36,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         # (11, 11),  # Veterans day won't be shifted
     )
 
-    # FIXME: for retro-compatibility reasons, still named "float()"
-    def float(self, holidays, year):
+    def shift(self, holidays, year):
         new_holidays = []
         holiday_lookup = [x[0] for x in holidays]
         exceptions = [
@@ -166,7 +165,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         Will return holidays and their shifted days
         """
         days = super(UnitedStates, self).get_calendar_holidays(year)
-        days = self.float(days, year)
+        days = self.shift(days, year)
         return days
 
 

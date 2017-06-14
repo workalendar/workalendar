@@ -12,13 +12,7 @@ class Nebraska(UnitedStates):
 
     def get_variable_days(self, year):
         days = super(Nebraska, self).get_variable_days(year)
-        days = self.float(days, year)
         days.extend([
             (self.get_last_weekday_in_month(year, 4, FRI), "Arbor Day")
         ])
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Nebraska, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         return days

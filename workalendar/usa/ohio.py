@@ -10,13 +10,3 @@ class Ohio(UnitedStates):
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (12, 1, "Rosa Parks Day"),
     )
-
-    def get_variable_days(self, year):
-        days = super(Ohio, self).get_variable_days(year)
-        days = self.float(days, year)
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Ohio, self).get_fixed_holidays(year)
-        days = self.float(days, year)
-        return days

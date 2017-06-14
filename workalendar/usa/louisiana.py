@@ -16,11 +16,5 @@ class Louisiana(UnitedStates):
 
     def get_variable_days(self, year):
         days = super(Louisiana, self).get_variable_days(year)
-        days = self.float(days, year)
         days.append(self.get_mardi_gras(year))
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Louisiana, self).get_fixed_holidays(year)
-        days = self.float(days, year)
         return days
