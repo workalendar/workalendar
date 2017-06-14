@@ -26,7 +26,6 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2013, 5, 27), holidays)  # Memorial day
         self.assertIn(date(2013, 7, 4), holidays)  # Nation day
         self.assertIn(date(2013, 9, 2), holidays)  # Labour day
-        self.assertIn(date(2013, 10, 14), holidays)  # Colombus
         self.assertIn(date(2013, 11, 11), holidays)  # Armistice
         self.assertIn(date(2013, 11, 28), holidays)  # Thanskgiving
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
@@ -56,7 +55,6 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2014, 5, 26), holidays)  # Memorial day
         self.assertIn(date(2014, 7, 4), holidays)  # Nation day
         self.assertIn(date(2014, 9, 1), holidays)  # Labour day
-        self.assertIn(date(2014, 10, 13), holidays)  # Colombus
         self.assertIn(date(2014, 11, 11), holidays)  # Armistice
         self.assertIn(date(2014, 11, 27), holidays)  # Thanskgiving
         self.assertIn(date(2014, 12, 25), holidays)  # XMas
@@ -69,10 +67,14 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 25), holidays)  # Memorial day
         self.assertIn(date(2015, 7, 4), holidays)   # Nation day
         self.assertIn(date(2015, 9, 7), holidays)  # Labour day
-        self.assertIn(date(2015, 10, 12), holidays)  # Colombus
         self.assertIn(date(2015, 11, 11), holidays)  # Armistice
         self.assertIn(date(2015, 11, 26), holidays)  # Thanskgiving
         self.assertIn(date(2015, 12, 25), holidays)  # XMas
+
+    def test_columbus_day(self):
+        holidays = self.cal.holidays_set(2017)
+        # Columbus Day is included here
+        self.assertIn(date(2017, 10, 9), holidays)
 
 
 class NoShiftBoxingDay(object):
@@ -81,6 +83,20 @@ class NoShiftBoxingDay(object):
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 12, 26), holidays)
         self.assertNotIn(date(2010, 12, 27), holidays)
+
+
+class NoColumbus(object):
+    """
+    Some States don't include Columbus Day:
+
+    * Alaska
+    * ...
+    """
+    def test_columbus_day(self):
+        # This overrides UnitedStates.test_columbus_day
+        holidays = self.cal.holidays_set(2017)
+        # Columbus Day... Not included
+        self.assertNotIn(date(2017, 10, 9), holidays)
 
 
 class AlabamaTest(UnitedStatesTest):
@@ -114,19 +130,30 @@ class AlabamaTest(UnitedStatesTest):
         self.assertIn(date(2015, 6, 1), holidays)  # Jefferson Davis' birthday
 
 
-class AlaskaTest(UnitedStatesTest):
+class AlaskaTest(NoColumbus, UnitedStatesTest):
     cal_class = Alaska
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 3, 31), holidays)
+        self.assertIn(date(2014, 3, 31), holidays)  # Seward's Day
+        self.assertIn(date(2014, 10, 18), holidays)  # Alaska Day
+        # Alaska Day is on SAT, shift to FRI
         self.assertIn(date(2014, 10, 17), holidays)
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 3, 30), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 3, 30), holidays)  # Seward's Day
+        self.assertIn(date(2015, 10, 18), holidays)  # Alaska Day
+        # Alaska day is on SUN: shifted to MON
         self.assertIn(date(2015, 10, 19), holidays)
+
+    def test_state_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 3, 27), holidays)  # Seward's Day
+        self.assertIn(date(2017, 10, 18), holidays)  # Alaska Day
+        # Alaska day is on WED: no shift
+        self.assertNotIn(date(2017, 10, 19), holidays)
+        self.assertNotIn(date(2017, 10, 17), holidays)
 
 
 class ArizonaTest(UnitedStatesTest):

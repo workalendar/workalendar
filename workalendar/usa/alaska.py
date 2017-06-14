@@ -11,6 +11,7 @@ class Alaska(UnitedStates):
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (10, 18, 'Alaska Day'),
     )
+    include_columbus_day = False
 
     def get_variable_days(self, year):
         days = super(Alaska, self).get_variable_days(year)
