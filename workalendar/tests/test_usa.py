@@ -159,11 +159,15 @@ class AlaskaTest(NoColumbus, UnitedStatesTest):
 class ArizonaTest(UnitedStatesTest):
     cal_class = Arizona
 
-    # NOTE: Arizona only has federal holidays.
-    def test_state_year_2015(self):
-        # FIXME: tests for floating holidays
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    def test_mlk_label(self):
+        # Martin Luther King day is renamed in Alabama
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(label, "Dr. Martin Luther King Jr./Civil Rights Day")
+
+    def test_president_day_label(self):
+        # Presidents day is renamed in Alabama
+        _, label = self.cal.get_presidents_day(2017)
+        self.assertEqual(label, "Lincoln/Washington Presidents' Day")
 
 
 class ArkansasTest(UnitedStatesTest):
