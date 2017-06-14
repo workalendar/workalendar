@@ -23,6 +23,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Some states don't include Washington's Birthday, or move it to December.
     include_federal_presidents_day = True
     presidents_day_label = "Washington's Birthday"
+    # When you move it to december
+    include_washington_birthday_december = False
+    label_washington_birthday_december = "Washington's Birthday (Observed)"
 
     # Columbus day is included by default
     include_columbus_day = True
@@ -113,6 +116,28 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         day = UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3)
         return (day, self.presidents_day_label)
 
+    def get_washington_birthday_december(self, year):
+        """
+        Floating observance, to give long weekend at christmas.
+        It's only observed in Georgia and Indiana.
+        """
+        christmas_day = date(year, 12, 25).weekday()
+        if christmas_day == MON:
+            day = date(year, 12, 26)  # TUE
+        elif christmas_day == TUE:
+            day = date(year, 12, 24)  # MON
+        elif christmas_day == WED:
+            day = date(year, 12, 24)  # TUE
+        elif christmas_day == THU:
+            day = date(year, 12, 26)  # FRI
+        elif christmas_day == FRI:
+            day = date(year, 12, 24)  # THU
+        elif christmas_day == SAT:
+            day = date(year, 12, 23)  # THU
+        else:  # christmas_day == SUN:
+            day = date(year, 12, 23)  # FRI
+        return (day, self.label_washington_birthday_december)
+
     def get_columbus_day(self, year):
         """
         Columbus day is on the 2nd MON of October.
@@ -147,6 +172,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
 
+        if self.include_washington_birthday_december:
+            days.append(self.get_washington_birthday_december(year))
+
         # Inauguration day
         if UnitedStates.is_presidential_year(year - 1):
             inauguration_day = date(year, 1, 20)
@@ -166,38 +194,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         days = super(UnitedStates, self).get_calendar_holidays(year)
         days = self.shift(days, year)
-        return days
-
-
-class WashingtonsBirthdayInDecemberMixin(Calendar):
-    """Floating observance, to give long weekend at christmas.
-
-    It's only observed in Georgia and Indiana.
-    """
-    label_washington_bday_observed = "Washington's Birthday (Observed)"
-
-    def get_washington_birthday(self, year):
-        christmas_day = date(year, 12, 25).weekday()
-        if christmas_day == MON:
-            day = date(year, 12, 26)  # TUE
-        elif christmas_day == TUE:
-            day = date(year, 12, 24)  # MON
-        elif christmas_day == WED:
-            day = date(year, 12, 24)  # TUE
-        elif christmas_day == THU:
-            day = date(year, 12, 26)  # FRI
-        elif christmas_day == FRI:
-            day = date(year, 12, 24)  # THU
-        elif christmas_day == SAT:
-            day = date(year, 12, 23)  # THU
-        else:  # christmas_day == SUN:
-            day = date(year, 12, 23)  # FRI
-        return (day, self.label_washington_bday_observed)
-
-    def get_variable_days(self, year):
-        days = super(WashingtonsBirthdayInDecemberMixin, self) \
-            .get_variable_days(year)
-        days.append(self.get_washington_birthday(year))
         return days
 
 

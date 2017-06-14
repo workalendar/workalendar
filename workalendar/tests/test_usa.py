@@ -231,14 +231,14 @@ class GeorgiaTest(UnitedStatesTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 28), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 27), holidays)
         self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
 
 
 class HawaiiTest(UnitedStatesTest):
@@ -277,14 +277,14 @@ class IndianaTest(UnitedStatesTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 18), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)
         self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
 
 
 class IowaTest(UnitedStatesTest):
