@@ -86,31 +86,32 @@ class NoShiftBoxingDay(object):
 class AlabamaTest(UnitedStatesTest):
     cal_class = Alabama
 
+    def test_mlk_label(self):
+        # Martin Luther King day is renamed in Alabama
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(label, "Robert E. Lee/Martin Luther King Birthday")
+
+    def test_president_day_label(self):
+        # Presidents day is renamed in Alabama
+        _, label = self.cal.get_presidents_day(2017)
+        self.assertEqual(label, "George Washington/Thomas Jefferson Birthday")
+
+    def test_columbus_day_label(self):
+        # Columbus day is renamed in Alabama
+        _, label = self.cal.get_columbus_day(2017)
+        self.assertEqual(
+            label,
+            "Columbus Day / Fraternal Day / American Indian Heritage Day")
+
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 28), holidays)
-        self.assertIn(date(2014, 6, 2), holidays)
+        self.assertIn(date(2014, 4, 28), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2014, 6, 2), holidays)  # Jefferson Davis' birthday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 27), holidays)
-        self.assertIn(date(2015, 6, 1), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
-
-    def test_state_year_2010(self):
-        holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 1, 18), holidays)
-        self.assertIn(date(2010, 2, 15), holidays)
-        self.assertIn(date(2010, 4, 26), holidays)
-        self.assertIn(date(2010, 5, 31), holidays)
-        self.assertIn(date(2010, 6, 7), holidays)
-        self.assertIn(date(2010, 7, 5), holidays)
-        self.assertIn(date(2010, 9, 6), holidays)
-        self.assertIn(date(2010, 10, 11), holidays)
-        self.assertIn(date(2010, 11, 11), holidays)
-        self.assertIn(date(2010, 11, 25), holidays)
-        self.assertIn(date(2010, 12, 24), holidays)
-        self.assertIn(date(2010, 12, 31), holidays)
+        self.assertIn(date(2015, 4, 27), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2015, 6, 1), holidays)  # Jefferson Davis' birthday
 
 
 class AlaskaTest(UnitedStatesTest):
