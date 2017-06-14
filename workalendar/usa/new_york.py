@@ -2,10 +2,10 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class NewYork(UnitedStates, FloatToNearestWeekdayMixin):
+class NewYork(UnitedStates):
     """New York"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (2, 12, "Lincoln's Birthday"),
@@ -13,7 +13,7 @@ class NewYork(UnitedStates, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(NewYork, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         return days
 
     def get_fixed_holidays(self, year):

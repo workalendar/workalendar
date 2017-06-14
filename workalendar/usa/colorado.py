@@ -2,10 +2,10 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from .core import UnitedStates, FloatToNearestWeekdayMixin, CesarChavezDayMixin
+from .core import UnitedStates, CesarChavezDayMixin
 
 
-class Colorado(UnitedStates, FloatToNearestWeekdayMixin, CesarChavezDayMixin):
+class Colorado(UnitedStates, CesarChavezDayMixin):
     """Colorado"""
 
     def get_variable_days(self, year):

@@ -4,19 +4,18 @@ from __future__ import (absolute_import, division, print_function,
 
 from workalendar.core import WED, FRI
 from .core import (
-    UnitedStates, FloatToNearestWeekdayMixin, DayAfterChristmasNoFloatMixin
+    UnitedStates, DayAfterChristmasNoFloatMixin
 )
 
 
-class Virginia(UnitedStates, FloatToNearestWeekdayMixin,
-               DayAfterChristmasNoFloatMixin):
+class Virginia(UnitedStates, DayAfterChristmasNoFloatMixin):
     """Virginia"""
     include_christmas_eve = True
     include_thanksgiving_friday = True
 
     def get_variable_days(self, year):
         days = super(Virginia, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.extend([
             (self.get_nth_weekday_in_month(year, 1, FRI, 3),
              "Lee-Jackson Day"),

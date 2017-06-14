@@ -3,10 +3,10 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from workalendar.core import TUE
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class Vermont(UnitedStates, FloatToNearestWeekdayMixin):
+class Vermont(UnitedStates):
     """Vermont"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (8, 16, "Bennington Battle Day"),
@@ -14,7 +14,7 @@ class Vermont(UnitedStates, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(Vermont, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.append(
             (self.get_nth_weekday_in_month(year, 3, TUE, 1),
              "Town Meeting Day")

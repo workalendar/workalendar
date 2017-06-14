@@ -2,11 +2,11 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 from workalendar.core import MON
 
 
-class Alaska(UnitedStates, FloatToNearestWeekdayMixin):
+class Alaska(UnitedStates):
     """Alaska"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (10, 18, 'Alaska Day'),
@@ -14,7 +14,7 @@ class Alaska(UnitedStates, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(Alaska, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.append(
             (Alaska.get_last_weekday_in_month(year, 3, MON), "Seward's Day")
         )

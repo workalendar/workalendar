@@ -3,12 +3,11 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from .core import (
-    UnitedStates, FloatToNearestWeekdayMixin, DayAfterChristmasNoFloatMixin
+    UnitedStates, DayAfterChristmasNoFloatMixin
 )
 
 
-class SouthCarolina(UnitedStates, FloatToNearestWeekdayMixin,
-                    DayAfterChristmasNoFloatMixin):
+class SouthCarolina(UnitedStates, DayAfterChristmasNoFloatMixin):
     """South Carolina"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (5, 10, "Confederate Memorial Day"),
@@ -19,7 +18,7 @@ class SouthCarolina(UnitedStates, FloatToNearestWeekdayMixin,
 
     def get_variable_days(self, year):
         days = super(SouthCarolina, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.extend([
             self.get_day_after_christmas(year)
         ])

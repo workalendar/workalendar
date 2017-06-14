@@ -3,11 +3,10 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from workalendar.core import MON
-from .core import UnitedStates, FloatToNearestWeekdayMixin, CesarChavezDayMixin
+from .core import UnitedStates, CesarChavezDayMixin
 
 
-class California(UnitedStates, FloatToNearestWeekdayMixin,
-                 CesarChavezDayMixin):
+class California(UnitedStates, CesarChavezDayMixin):
     """California"""
     include_thanksgiving_friday = True
 

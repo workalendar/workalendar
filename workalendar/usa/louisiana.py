@@ -3,10 +3,10 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import timedelta
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class Louisiana(UnitedStates, FloatToNearestWeekdayMixin):
+class Louisiana(UnitedStates):
     """Louisiana"""
     include_good_friday = True
 
@@ -16,7 +16,7 @@ class Louisiana(UnitedStates, FloatToNearestWeekdayMixin):
 
     def get_variable_days(self, year):
         days = super(Louisiana, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.append(self.get_mardi_gras(year))
         return days
 

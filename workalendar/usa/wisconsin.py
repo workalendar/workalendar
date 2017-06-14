@@ -3,17 +3,17 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class Wisconsin(UnitedStates, FloatToNearestWeekdayMixin):
+class Wisconsin(UnitedStates):
     """Wisconsin"""
     include_christmas_eve = True
     include_thanksgiving_friday = True
 
     def get_variable_days(self, year):
         days = super(Wisconsin, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         return days
 
     # FIXME: fixed holidays that don't float

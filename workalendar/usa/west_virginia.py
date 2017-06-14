@@ -4,17 +4,17 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import date
 from workalendar.core import SUN
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class WestVirginia(UnitedStates, FloatToNearestWeekdayMixin):
+class WestVirginia(UnitedStates):
     """West Virginia"""
     include_christmas_eve = True
     include_thanksgiving_friday = True
 
     def get_variable_days(self, year):
         days = super(WestVirginia, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.extend([
             (date(year, 6, 20), "West Virgina Day")
         ])

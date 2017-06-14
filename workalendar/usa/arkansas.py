@@ -2,16 +2,16 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from .core import UnitedStates, FloatToNearestWeekdayMixin
+from .core import UnitedStates
 
 
-class Arkansas(UnitedStates, FloatToNearestWeekdayMixin):
+class Arkansas(UnitedStates):
     """Arkansas"""
     include_christmas_eve = True
 
     def get_variable_days(self, year):
         days = super(Arkansas, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         return days
 
     def get_fixed_holidays(self, year):

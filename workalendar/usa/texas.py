@@ -3,16 +3,16 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
-from .core import UnitedStates, FloatToNearestWeekdayMixin, CesarChavezDayMixin
+from .core import UnitedStates, CesarChavezDayMixin
 
 
-class Texas(UnitedStates, FloatToNearestWeekdayMixin, CesarChavezDayMixin):
+class Texas(UnitedStates, CesarChavezDayMixin):
     """Texas"""
     include_good_friday = True
 
     def get_variable_days(self, year):
         days = super(Texas, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         return days
 
     # FIXME: fixed days that DON'T float.

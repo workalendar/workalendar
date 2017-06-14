@@ -4,19 +4,18 @@ from __future__ import (absolute_import, division, print_function,
 
 from workalendar.core import FRI
 from .core import (
-    UnitedStates, FloatToNearestWeekdayMixin,
+    UnitedStates,
     WashingtonsBirthdayInDecemberMixin
 )
 
 
-class Georgia(UnitedStates, FloatToNearestWeekdayMixin,
-              WashingtonsBirthdayInDecemberMixin):
+class Georgia(UnitedStates, WashingtonsBirthdayInDecemberMixin):
     """Georgia"""
     include_confederation_day = True
 
     def get_variable_days(self, year):
         days = super(Georgia, self).get_variable_days(year)
-        days = self.float(days)
+        days = self.float(days, year)
         days.extend([
             (Georgia.get_nth_weekday_in_month(year, 11, FRI, 4),
              "Robert E. Lee's Birthday (Observed)"),
