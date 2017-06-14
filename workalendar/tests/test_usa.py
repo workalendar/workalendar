@@ -75,6 +75,14 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 25), holidays)  # XMas
 
 
+class NoShiftBoxingDay(object):
+    def test_no_shift_boxing_day(self):
+        # Dec, 26th is on SUN, but no shift here to the next MON
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 12, 26), holidays)
+        self.assertNotIn(date(2010, 12, 27), holidays)
+
+
 class AlabamaTest(UnitedStatesTest):
     cal_class = Alabama
 
@@ -298,38 +306,36 @@ class IowaTest(UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class KansasTest(UnitedStatesTest):
+class KansasTest(NoShiftBoxingDay, UnitedStatesTest):
     cal_class = Kansas
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
 
 
-class KentuckyTest(UnitedStatesTest):
+class KentuckyTest(NoShiftBoxingDay, UnitedStatesTest):
     cal_class = Kentucky
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 18), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 26), holidays)
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
 
 
 class LouisianaTest(UnitedStatesTest):
@@ -538,23 +544,22 @@ class NewYorkTest(UnitedStatesTest):
         self.assertIn(date(2015, 7, 3), holidays)
 
 
-class NorthCarolinaTest(UnitedStatesTest):
+class NorthCarolinaTest(NoShiftBoxingDay, UnitedStatesTest):
     cal_class = NorthCarolina
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 18), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
 
 
 class NorthDakotaTest(UnitedStatesTest):
@@ -635,23 +640,22 @@ class RhodeIslandTest(UnitedStatesTest):
         self.assertIn(date(2015, 8, 10), holidays)
 
 
-class SouthCarolinaTest(UnitedStatesTest):
+class SouthCarolinaTest(NoShiftBoxingDay, UnitedStatesTest):
     cal_class = SouthCarolina
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 5, 9), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 5, 10), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing day
 
 
 class SouthDakotaTest(UnitedStatesTest):
@@ -730,7 +734,7 @@ class VermontTest(UnitedStatesTest):
         self.assertIn(date(2015, 8, 17), holidays)
 
 
-class VirginiaTest(UnitedStatesTest):
+class VirginiaTest(NoShiftBoxingDay, UnitedStatesTest):
     cal_class = Virginia
 
     def test_state_year_2014(self):
@@ -738,17 +742,16 @@ class VirginiaTest(UnitedStatesTest):
         self.assertIn(date(2014, 1, 17), holidays)
         self.assertIn(date(2014, 11, 26), holidays)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 26), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 16), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 25), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
 
 
 class WashingtonTest(UnitedStatesTest):

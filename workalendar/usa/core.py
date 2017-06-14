@@ -36,6 +36,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Include Cesar Chavez day(s)
     include_cesar_chavez_day = False
 
+    # Boxing day label is not "boxing day" in the US
+    boxing_day_label = "Day After Christmas"
+
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
@@ -212,13 +215,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         days = super(UnitedStates, self).get_calendar_holidays(year)
         days = self.shift(days, year)
-        return days
-
-
-class DayAfterChristmasNoFloatMixin(Calendar):
-    """26th of December - but doesn't ever float"""
-    def get_day_after_christmas(self, year):
-        days = (date(year, 12, 26), "Day After Christmas")
         return days
 
 

@@ -3,15 +3,17 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from workalendar.core import WED, FRI
-from .core import (
-    UnitedStates, DayAfterChristmasNoFloatMixin
-)
+from .core import UnitedStates
 
 
-class Virginia(UnitedStates, DayAfterChristmasNoFloatMixin):
+class Virginia(UnitedStates):
     """Virginia"""
     include_christmas_eve = True
     include_thanksgiving_friday = True
+    include_boxing_day = True
+    shift_exceptions = (
+        (12, 26),
+    )
 
     def get_variable_days(self, year):
         days = super(Virginia, self).get_variable_days(year)
@@ -21,9 +23,4 @@ class Virginia(UnitedStates, DayAfterChristmasNoFloatMixin):
             (self.get_nth_weekday_in_month(year, 11, WED, 4),
              "Additional Thanksgiving Holiday")
         ])
-        return days
-
-    def get_fixed_holidays(self, year):
-        days = super(Virginia, self).get_fixed_holidays(year)
-        days += [self.get_day_after_christmas(year)]
         return days
