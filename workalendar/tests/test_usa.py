@@ -358,13 +358,12 @@ class MaineTest(UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)   # Patriot's day
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 20), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 20), holidays)   # Patriot's day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
@@ -386,12 +385,11 @@ class MassachusettsTest(UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 21), holidays)
+        self.assertIn(date(2014, 4, 21), holidays)  # Patriot's day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 20), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 20), holidays)  # Patriot's day
 
 
 class MichiganTest(UnitedStatesTest):

@@ -2,12 +2,9 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from .core import UnitedStates, PatriotsDayMixin
+from .core import UnitedStates
 
 
-class Massachusetts(UnitedStates, PatriotsDayMixin):
+class Massachusetts(UnitedStates):
     """Massachusetts"""
-    def get_variable_days(self, year):
-        days = super(Massachusetts, self).get_variable_days(year)
-        days.append(self.get_patriots_day(year))
-        return days
+    include_patriots_day = True

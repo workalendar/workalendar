@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import date, timedelta
 
-from workalendar.core import WesternCalendar, ChristianMixin, Calendar
+from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
 
 
@@ -35,6 +35,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     # Include Cesar Chavez day(s)
     include_cesar_chavez_day = False
+    # Patriot's day
+    include_patriots_day = False
 
     # Boxing day label is not "boxing day" in the US
     boxing_day_label = "Day After Christmas"
@@ -134,6 +136,10 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
         return days
 
+    def get_patriots_day(self, year):
+        """3rd Monday of April"""
+        return (self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day")
+
     def get_washington_birthday_december(self, year):
         """
         Floating observance, to give long weekend at christmas.
@@ -187,6 +193,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_cesar_chavez_day:
             days.extend(self.get_cesar_chavez_days(year))
 
+        if self.include_patriots_day:
+            days.append(self.get_patriots_day(year))
+
         if self.include_columbus_day:
             days.append(self.get_columbus_day(year))
 
@@ -215,12 +224,4 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         days = super(UnitedStates, self).get_calendar_holidays(year)
         days = self.shift(days, year)
-        return days
-
-
-class PatriotsDayMixin(Calendar):
-    """3rd Monday of April"""
-    def get_patriots_day(self, year):
-        days = (self.get_nth_weekday_in_month(year, 4, MON, 3),
-                "Patriots Day")
         return days
