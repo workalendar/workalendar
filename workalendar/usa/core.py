@@ -27,6 +27,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     include_washington_birthday_december = False
     label_washington_birthday_december = "Washington's Birthday (Observed)"
 
+    include_lincoln_birthday = False
+
     # Columbus day is included by default
     include_columbus_day = True
     columbus_day_label = "Columbus Day"
@@ -171,6 +173,17 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         day = UnitedStates.get_nth_weekday_in_month(year, 10, MON, 2)
         return (day, self.columbus_day_label)
 
+    def get_lincoln_birthday(self, year):
+        """
+        February the 2nd is Lincoln's birthday in the following States:
+
+        * Connecticut,
+        * Illinois,
+        * Missouri,
+        * New York
+        """
+        return (date(year, 2, 12), "Lincoln's Birthday")
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
@@ -189,6 +202,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_federal_presidents_day:
             days.append(self.get_presidents_day(year))
+
+        if self.include_lincoln_birthday:
+            days.append(self.get_lincoln_birthday(year))
 
         if self.include_cesar_chavez_day:
             days.extend(self.get_cesar_chavez_days(year))

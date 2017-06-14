@@ -7,7 +7,5 @@ from .core import UnitedStates
 
 class Illinois(UnitedStates):
     """Illinois"""
-    FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (2, 12, "Lincoln's Birthday"),
-    )
     include_thanksgiving_friday = True
+    include_lincoln_birthday = True

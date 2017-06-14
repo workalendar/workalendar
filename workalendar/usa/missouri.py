@@ -8,6 +8,6 @@ from .core import UnitedStates
 class Missouri(UnitedStates):
     """Missouri"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (2, 12, "Lincoln's Birthday"),
         (5, 8, "Truman Day"),
     )
+    include_lincoln_birthday = True
