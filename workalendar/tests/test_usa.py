@@ -22,7 +22,6 @@ class UnitedStatesTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)   # New Year
         self.assertIn(date(2013, 1, 21), holidays)  # Martin Luther King
-        self.assertIn(date(2013, 2, 18), holidays)  # Washington's bday
         self.assertIn(date(2013, 5, 27), holidays)  # Memorial day
         self.assertIn(date(2013, 7, 4), holidays)  # Nation day
         self.assertIn(date(2013, 9, 2), holidays)  # Labour day
@@ -36,6 +35,18 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertFalse(UnitedStates.is_presidential_year(2014))
         self.assertFalse(UnitedStates.is_presidential_year(2015))
         self.assertTrue(UnitedStates.is_presidential_year(2016))
+
+    def test_election_day(self):
+        # Election day is:
+        # the Tuesday next after the first Monday in the month of November
+        self.assertEqual(date(2013, 11, 5), self.cal.get_election_date(2013))
+        self.assertEqual(date(2014, 11, 4), self.cal.get_election_date(2014))
+        self.assertEqual(date(2015, 11, 3), self.cal.get_election_date(2015))
+        self.assertEqual(date(2016, 11, 8), self.cal.get_election_date(2016))
+        self.assertEqual(date(2017, 11, 7), self.cal.get_election_date(2017))
+        self.assertEqual(date(2018, 11, 6), self.cal.get_election_date(2018))
+        self.assertEqual(date(2019, 11, 5), self.cal.get_election_date(2019))
+        self.assertEqual(date(2020, 11, 3), self.cal.get_election_date(2020))
 
     def test_inauguration_day(self):
         holidays = self.cal.holidays_set(2008)
@@ -51,7 +62,6 @@ class UnitedStatesTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 1, 1), holidays)   # New Year
         self.assertIn(date(2014, 1, 20), holidays)  # Martin Luther King
-        self.assertIn(date(2014, 2, 17), holidays)  # Washington's bday
         self.assertIn(date(2014, 5, 26), holidays)  # Memorial day
         self.assertIn(date(2014, 7, 4), holidays)  # Nation day
         self.assertIn(date(2014, 9, 1), holidays)  # Labour day
@@ -63,7 +73,6 @@ class UnitedStatesTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)   # New Year
         self.assertIn(date(2015, 1, 19), holidays)  # Martin Luther King
-        self.assertIn(date(2015, 2, 16), holidays)  # Washington's bday
         self.assertIn(date(2015, 5, 25), holidays)  # Memorial day
         self.assertIn(date(2015, 7, 4), holidays)   # Nation day
         self.assertIn(date(2015, 9, 7), holidays)  # Labour day
@@ -75,6 +84,14 @@ class UnitedStatesTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2017)
         # Columbus Day is included here
         self.assertIn(date(2017, 10, 9), holidays)
+
+    def test_presidential_day(self):
+        # Washington's birthday, or sometimes called otherwise, may not
+        # be included.
+        holidays = self.cal.holidays_set(2017)
+        day, _ = self.cal.get_presidents_day(2017)
+        # Washington's birthday is included here
+        self.assertIn(day, holidays)
 
 
 class NoShiftBoxingDay(object):
@@ -92,12 +109,25 @@ class NoColumbus(object):
     * Alaska
     * Arkansas
     * California
+    * Delaware
     """
     def test_columbus_day(self):
         # This overrides UnitedStates.test_columbus_day
         holidays = self.cal.holidays_set(2017)
         # Columbus Day... Not included
         self.assertNotIn(date(2017, 10, 9), holidays)
+
+
+class NoPresidentialDay(object):
+    """
+    Washington's birthday is not included in Delaware calendar.
+    """
+    def test_presidential_day(self):
+        # This function *overwrites* UnitedStates.test_presidential_day
+        holidays = self.cal.holidays_set(2017)
+        day, _ = self.cal.get_presidents_day(2017)
+        # Washington's birthday not included here
+        self.assertNotIn(day, holidays)
 
 
 class AlabamaTest(UnitedStatesTest):
@@ -230,19 +260,32 @@ class ConnecticutTest(UnitedStatesTest):
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
-class DelawareTest(UnitedStatesTest):
+class DelawareTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     cal_class = Delaware
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_election_day_even_years(self):
+        # Election Day is a public holiday on even years.
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(self.cal.get_election_date(2014), holidays)
+        # Odd year -- not included
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(self.cal.get_election_date(2015), holidays)
+        # Even year
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(self.cal.get_election_date(2016), holidays)
+        # Odd year -- not included
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
 class FloridaTest(UnitedStatesTest):

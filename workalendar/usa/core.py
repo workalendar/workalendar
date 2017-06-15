@@ -97,6 +97,18 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     def is_presidential_year(year):
         return (year % 4) == 0
 
+    def get_election_date(self, year):
+        """
+        Return the Election Day *Date*
+
+        Definition: on an election year, "the Tuesday next after the first
+        Monday in the month of November".
+        """
+        first_monday_november = self.get_nth_weekday_in_month(year, 11, MON)
+        return self.get_nth_weekday_in_month(
+            year, 11, TUE, start=first_monday_november
+        )
+
     def get_thanksgiving_friday(self, year):
         "Thanksgiving friday is on the 4th Friday in November"
         return (
