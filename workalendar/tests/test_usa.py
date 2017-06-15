@@ -377,7 +377,7 @@ class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
         self.assertIn(date(2016, 4, 16), holidays)  # Emancipation Day
 
 
-class FloridaTest(UnitedStatesTest):
+class FloridaTest(NoColombus, NoPresidentialDay, UnitedStatesTest):
     cal_class = Florida
 
     def test_state_year_2014(self):
