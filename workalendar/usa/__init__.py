@@ -12,6 +12,7 @@ from .california import California
 from .colorado import Colorado
 from .connecticut import Connecticut
 from .delaware import Delaware
+from .district_columbia import DistrictOfColumbia
 from .florida import Florida
 from .georgia import Georgia
 from .hawaii import Hawaii
@@ -67,6 +68,7 @@ __all__ = [
     Colorado,
     Connecticut,
     Delaware,
+    DistrictOfColumbia,
     Florida,
     Georgia,
     Hawaii,

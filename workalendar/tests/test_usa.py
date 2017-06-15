@@ -1,27 +1,60 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from workalendar.tests import GenericCalendarTest
-from workalendar.usa import (UnitedStates, Alabama, Florida, Arkansas,
-                             Alaska, Arizona, California, Colorado,
-                             Connecticut, Delaware, Georgia, Hawaii,
-                             Indiana, Illinois, Idaho, Iowa, Kansas, Kentucky,
-                             Louisiana, Maine, Maryland, Massachusetts,
-                             Minnesota, Michigan, Mississippi, Missouri,
-                             Montana, Nebraska, Nevada, NewHampshire,
-                             NewJersey, NewMexico, NewYork, NorthCarolina,
-                             NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
-                             RhodeIsland, SouthCarolina, SouthDakota,
-                             Tennessee, Texas, Utah, Vermont, Virginia,
-                             Washington, WestVirginia, Wisconsin, Wyoming)
+from workalendar.usa import (
+    UnitedStates, Alabama, Florida, Arkansas, Alaska, Arizona, California,
+    Colorado, Connecticut, Delaware, DistrictOfColumbia, Georgia, Hawaii,
+    Indiana, Illinois, Idaho, Iowa, Kansas, Kentucky, Louisiana, Maine,
+    Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Missouri,
+    Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork,
+    NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
+    RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont,
+    Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+)
 
 
 class UnitedStatesTest(GenericCalendarTest):
     cal_class = UnitedStates
 
+    def test_martin_luther_king_day(self):
+        # All States observe this day, but it started in 1985 only.
+        holidays = self.cal.holidays_set(2013)
+        mlk_day = self.cal.get_martin_luther_king_date(2013)
+        self.assertEqual(date(2013, 1, 21), mlk_day)
+        self.assertIn(mlk_day, holidays)
+
+        holidays = self.cal.holidays_set(2014)
+        mlk_day = self.cal.get_martin_luther_king_date(2014)
+        self.assertEqual(date(2014, 1, 20), mlk_day)
+        self.assertIn(mlk_day, holidays)
+
+        # Shifted in 2015
+        holidays = self.cal.holidays_set(2015)
+        mlk_day = self.cal.get_martin_luther_king_date(2015)
+        self.assertEqual(date(2015, 1, 19), mlk_day)
+        self.assertIn(mlk_day, holidays)
+
+        # Let's get into the past
+        holidays = self.cal.holidays_set(1986)
+        mlk_day = self.cal.get_martin_luther_king_date(1986)
+        self.assertEqual(date(1986, 1, 20), mlk_day)
+        self.assertIn(mlk_day, holidays)
+
+        holidays = self.cal.holidays_set(1985)
+        mlk_day = self.cal.get_martin_luther_king_date(1985)
+        self.assertEqual(date(1985, 1, 21), mlk_day)
+        self.assertIn(mlk_day, holidays)
+
+        # No MLK Day before 1985
+        # 3rd Monday of January was the 16th
+        holidays = self.cal.holidays_set(1984)
+        self.assertNotIn(date(1984, 1, 16), holidays)
+        with self.assertRaises(ValueError):
+            self.cal.get_martin_luther_king_date(1984)
+
     def test_federal_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)   # New Year
-        self.assertIn(date(2013, 1, 21), holidays)  # Martin Luther King
         self.assertIn(date(2013, 5, 27), holidays)  # Memorial day
         self.assertIn(date(2013, 7, 4), holidays)  # Nation day
         self.assertIn(date(2013, 9, 2), holidays)  # Labour day
@@ -48,20 +81,9 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertEqual(date(2019, 11, 5), self.cal.get_election_date(2019))
         self.assertEqual(date(2020, 11, 3), self.cal.get_election_date(2020))
 
-    def test_inauguration_day(self):
-        holidays = self.cal.holidays_set(2008)
-        self.assertNotIn(date(2008, 1, 20), holidays)
-        holidays = self.cal.holidays_set(2009)
-        self.assertIn(date(2009, 1, 20), holidays)
-        # case when inauguration day is a sunday
-        holidays = self.cal.holidays_set(1985)
-        self.assertNotIn(date(1985, 1, 20), holidays)
-        self.assertIn(date(1985, 1, 21), holidays)
-
     def test_federal_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 1, 1), holidays)   # New Year
-        self.assertIn(date(2014, 1, 20), holidays)  # Martin Luther King
         self.assertIn(date(2014, 5, 26), holidays)  # Memorial day
         self.assertIn(date(2014, 7, 4), holidays)  # Nation day
         self.assertIn(date(2014, 9, 1), holidays)  # Labour day
@@ -72,7 +94,6 @@ class UnitedStatesTest(GenericCalendarTest):
     def test_federal_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)   # New Year
-        self.assertIn(date(2015, 1, 19), holidays)  # Martin Luther King
         self.assertIn(date(2015, 5, 25), holidays)  # Memorial day
         self.assertIn(date(2015, 7, 4), holidays)   # Nation day
         self.assertIn(date(2015, 9, 7), holidays)  # Labour day
@@ -92,6 +113,40 @@ class UnitedStatesTest(GenericCalendarTest):
         day, _ = self.cal.get_presidents_day(2017)
         # Washington's birthday is included here
         self.assertIn(day, holidays)
+
+    def test_get_inauguration_date(self):
+        self.assertEqual(
+            date(2017, 1, 20), self.cal.get_inauguration_date(2017))
+        # Not an "inauguration day" year
+        with self.assertRaises(ValueError):
+            self.cal.get_inauguration_date(2016)
+        with self.assertRaises(ValueError):
+            self.cal.get_inauguration_date(2015)
+        with self.assertRaises(ValueError):
+            self.cal.get_inauguration_date(2014)
+        # Shifted to MON, since the 20th was on SUN
+        self.assertEqual(
+            date(2013, 1, 21), self.cal.get_inauguration_date(2013))
+        # 2009, back to normal
+        self.assertEqual(
+            date(2009, 1, 20), self.cal.get_inauguration_date(2009))
+
+    def test_inauguration_day(self):
+        # NOTE: 2013 test is not relevant, it's the same day as MLK day.
+        # NOTE: 1985 test is not relevant, it's the same day as MLK day.
+        # By default, it's not a public holiday
+        self.assertNotIn(
+            self.cal.get_inauguration_date(2017),
+            self.cal.holidays_set(2017)
+        )
+        self.assertNotIn(
+            self.cal.get_inauguration_date(2009),
+            self.cal.holidays_set(2009)
+        )
+        self.assertNotIn(
+            self.cal.get_inauguration_date(1957),
+            self.cal.holidays_set(1957)
+        )
 
 
 class NoShiftBoxingDay(object):
@@ -128,6 +183,24 @@ class NoPresidentialDay(object):
         day, _ = self.cal.get_presidents_day(2017)
         # Washington's birthday not included here
         self.assertNotIn(day, holidays)
+
+
+class InaugurationDay(object):
+    """
+    When Inauguration Day is a public holiday
+    """
+    def test_inauguration_day(self):
+        # This method overwrites UnitedStatesTest.test_inauguration_day
+        self.assertIn(
+            self.cal.get_inauguration_date(2017),
+            self.cal.holidays_set(2017)
+        )
+        # NOTE: 2013 test is not relevant, it's the same as MLK Day
+        self.assertIn(
+            self.cal.get_inauguration_date(2009),
+            self.cal.holidays_set(2009)
+        )
+        # NOTE: 1985 is not relevant, it's the same as MLK Day
 
 
 class AlabamaTest(UnitedStatesTest):
@@ -286,6 +359,22 @@ class DelawareTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         # Odd year -- not included
         holidays = self.cal.holidays_set(2017)
         self.assertNotIn(self.cal.get_election_date(2017), holidays)
+
+
+class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
+    cal_class = DistrictOfColumbia
+
+    def test_state_year_2017(self):
+        # President elected in 2016, Inauguration Day is year+1
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 20), holidays)  # Inauguration Day
+        self.assertIn(date(2017, 4, 16), holidays)  # Emancipation Day
+
+    def test_state_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        # No Inauguration Day the other years
+        self.assertNotIn(date(2016, 1, 20), holidays)
+        self.assertIn(date(2016, 4, 16), holidays)  # Emancipation Day
 
 
 class FloridaTest(UnitedStatesTest):
@@ -819,6 +908,21 @@ class VirginiaTest(NoShiftBoxingDay, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
+
+    def test_inauguration_day(self):
+        # Overwriting this test: in 2017, this day is a public holiday for
+        # Virginia State: Lee-Jackson Day
+        # NOTE: 2013 test is not relevant, it's the same day as MLK day.
+        # NOTE: 1985 test is not relevant, it's the same day as MLK day.
+        # By default, it's not a public holiday
+        self.assertNotIn(
+            self.cal.get_inauguration_date(2009),
+            self.cal.holidays_set(2009)
+        )
+        self.assertNotIn(
+            self.cal.get_inauguration_date(1957),
+            self.cal.holidays_set(1957)
+        )
 
 
 class WashingtonTest(UnitedStatesTest):

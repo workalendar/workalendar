@@ -43,6 +43,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Boxing day label is not "boxing day" in the US
     boxing_day_label = "Day After Christmas"
 
+    # Inauguration Day
+    include_inauguration_day = False
+
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
@@ -123,11 +126,22 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")
 
+    def get_martin_luther_king_date(self, year):
+        """
+        Martin Luther King is on 3rd MON of January, starting of 1985.
+
+        """
+        if year < 1985:
+            raise ValueError(
+                "Martin Luther King Day became a holiday in 1985"
+            )
+        return UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3)
+
     def get_martin_luther_king_day(self, year):
         """
-        Martin Luther King days is on the 3rd MON of January
+        Return holiday record for Martin Luther King Jr. Day.
         """
-        day = UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3)
+        day = self.get_martin_luther_king_date(year)
         return (day, self.martin_luther_king_label)
 
     def get_presidents_day(self, year):
@@ -196,18 +210,35 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         return (date(year, 2, 12), "Lincoln's Birthday")
 
+    def get_inauguration_date(self, year):
+        """
+        If the year is an Inauguration Year, will return the Inauguration Day
+        date.
+
+        If this day falls on SUN, it's replaced by the next MON.
+        If the year is not a Inauguration Year, it raises a ValueError.
+        """
+        if ((year - 1) % 4) != 0:
+            raise ValueError(
+                "The year {} is not an Inauguration Year".format(year))
+        inauguration_day = date(year, 1, 20)
+        if inauguration_day.weekday() == SUN:
+            inauguration_day = date(year, 1, 21)
+        return inauguration_day
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
-        days.extend([
-            self.get_martin_luther_king_day(year),
 
+        # Martin Luther King's Day started only in 1985
+        if year >= 1985:
+            days.append(self.get_martin_luther_king_day(year))
+
+        days.extend([
             (UnitedStates.get_last_weekday_in_month(year, 5, MON),
                 "Memorial Day"),
-
             (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
                 "Labor Day"),
-
             (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
                 "Thanksgiving Day"),
         ])
@@ -233,12 +264,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_washington_birthday_december:
             days.append(self.get_washington_birthday_december(year))
 
-        # Inauguration day
-        if UnitedStates.is_presidential_year(year - 1):
-            inauguration_day = date(year, 1, 20)
-            if inauguration_day.weekday() == SUN:
-                inauguration_day = date(year, 1, 21)
-            days.append((inauguration_day, "Inauguration Day"))
+        if self.include_inauguration_day:
+            # Is it a "Inauguration year"?
+            if UnitedStates.is_presidential_year(year - 1):
+                days.append(
+                    (self.get_inauguration_date(year), "Inauguration Day")
+                )
 
         if self.include_thanksgiving_friday:
             days.append(
