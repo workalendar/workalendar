@@ -8,3 +8,5 @@ from .core import UnitedStates
 class Iowa(UnitedStates):
     """Iowa"""
     include_thanksgiving_friday = True
+    include_columbus_day = False
+    include_federal_presidents_day = False

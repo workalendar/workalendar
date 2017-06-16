@@ -575,7 +575,7 @@ class IndianaTest(ElectionDayEvenYears, NoPresidentialDay, UnitedStatesTest):
         self.assertEqual(date(2018, 12, 24), washington_bday)
 
 
-class IowaTest(UnitedStatesTest):
+class IowaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     cal_class = Iowa
 
     def test_state_year_2014(self):
