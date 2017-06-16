@@ -490,7 +490,7 @@ class IdahoTest(UnitedStatesTest):
             label, "Martin Luther King Jr. / Idaho Human Rights Day")
 
 
-class IllinoisTest(UnitedStatesTest):
+class IllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
     cal_class = Illinois
 
     def test_state_year_2014(self):

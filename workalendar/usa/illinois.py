@@ -9,3 +9,4 @@ class Illinois(UnitedStates):
     """Illinois"""
     include_thanksgiving_friday = True
     include_lincoln_birthday = True
+    include_election_day_even = True
