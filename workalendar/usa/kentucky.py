@@ -9,7 +9,9 @@ class Kentucky(UnitedStates):
     """Kentucky"""
     include_good_friday = True
     include_thanksgiving_friday = True
-    include_boxing_day = True
-    shift_exceptions = (
-        (12, 26),
+    include_christmas_eve = True
+    include_columbus_day = False
+    include_federal_presidents_day = False
+    FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
+        (12, 31, "New Year's Eve"),
     )
