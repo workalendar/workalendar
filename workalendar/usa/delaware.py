@@ -11,9 +11,4 @@ class Delaware(UnitedStates):
     include_thanksgiving_friday = True
     include_federal_presidents_day = False
     include_columbus_day = False
-
-    def get_variable_days(self, year):
-        days = super(Delaware, self).get_variable_days(year)
-        if (year % 2) == 0:
-            days.append((self.get_election_date(year), "Election Day"))
-        return days
+    include_election_day_even = True

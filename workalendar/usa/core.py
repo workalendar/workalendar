@@ -40,6 +40,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Boxing day label is not "boxing day" in the US
     boxing_day_label = "Day After Christmas"
 
+    # Election Day
+    include_election_day_even = False
     # Inauguration Day
     include_inauguration_day = False
 
@@ -264,6 +266,10 @@ class UnitedStates(WesternCalendar, ChristianMixin):
                 days.append(
                     (self.get_inauguration_date(year), "Inauguration Day")
                 )
+
+        if self.include_election_day_even:
+            if (year % 2) == 0:
+                days.append((self.get_election_date(year), "Election Day"))
 
         if self.include_thanksgiving_friday:
             days.append(

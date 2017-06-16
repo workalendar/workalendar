@@ -149,6 +149,12 @@ class UnitedStatesTest(GenericCalendarTest):
             self.cal.holidays_set(1957)
         )
 
+    def test_election_day_even_years(self):
+        # By default, election day is not included
+        for year in range(2013, 2020):
+            holidays = self.cal.holidays_set(year)
+            self.assertNotIn(self.cal.get_election_date(year), holidays)
+
 
 class NoShiftBoxingDay(object):
     def test_no_shift_boxing_day(self):
@@ -202,6 +208,26 @@ class InaugurationDay(object):
             self.cal.holidays_set(2009)
         )
         # NOTE: 1985 is not relevant, it's the same as MLK Day
+
+
+class ElectionDayEvenYears(object):
+    """
+    Some state include the election day on even years
+    """
+    def test_election_day_even_years(self):
+        # This method overwrites UnitedStates.test_election_day_even_years()
+        # Election Day is a public holiday on even years.
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(self.cal.get_election_date(2014), holidays)
+        # Odd year -- not included
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(self.cal.get_election_date(2015), holidays)
+        # Even year
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(self.cal.get_election_date(2016), holidays)
+        # Odd year -- not included
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
 class AlabamaTest(UnitedStatesTest):
@@ -334,7 +360,8 @@ class ConnecticutTest(UnitedStatesTest):
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
-class DelawareTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
+class DelawareTest(ElectionDayEvenYears, NoPresidentialDay, NoColumbus,
+                   UnitedStatesTest):
     cal_class = Delaware
 
     def test_state_year_2014(self):
@@ -346,20 +373,6 @@ class DelawareTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-
-    def test_election_day_even_years(self):
-        # Election Day is a public holiday on even years.
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(self.cal.get_election_date(2014), holidays)
-        # Odd year -- not included
-        holidays = self.cal.holidays_set(2015)
-        self.assertNotIn(self.cal.get_election_date(2015), holidays)
-        # Even year
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(self.cal.get_election_date(2016), holidays)
-        # Odd year -- not included
-        holidays = self.cal.holidays_set(2017)
-        self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
 class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
@@ -437,9 +450,33 @@ class GeorgiaTest(NoPresidentialDay, UnitedStatesTest):
         )
 
 
-class HawaiiTest(UnitedStatesTest):
+class HawaiiTest(ElectionDayEvenYears, NoColumbus, UnitedStatesTest):
     cal_class = Hawaii
-    # NOTE: Hawaii only has federal holidays
+
+    def test_state_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 3, 26),
+                      holidays)  # Prince Jonah Kuhio Kalanianaole
+        self.assertIn(date(2017, 3, 27),
+                      holidays)  # Prince Jonah Kuhio Kalanianaole (shifted)
+        self.assertIn(date(2017, 4, 14), holidays)  # Good Friday
+        self.assertIn(date(2017, 6, 11), holidays)  # Kamehameha
+        self.assertIn(date(2017, 6, 12), holidays)  # Kamehameha (shifted)
+        self.assertIn(date(2017, 8, 18), holidays)  # Statehood day
+
+    def test_state_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 26),
+                      holidays)  # Prince Jonah Kuhio Kalanianaole
+
+        self.assertIn(date(2018, 3, 30), holidays)  # Good Friday
+        self.assertIn(date(2018, 6, 11), holidays)  # Kamehameha
+        self.assertIn(date(2018, 8, 17), holidays)  # Statehood day
+
+        # Prince Jonah Kuhio Kalanianaole is not shifted
+        self.assertNotIn(date(2018, 3, 27), holidays)
+        # Kamehameha is not shifted
+        self.assertNotIn(date(2018, 6, 12), holidays)
 
 
 class IdahoTest(UnitedStatesTest):
