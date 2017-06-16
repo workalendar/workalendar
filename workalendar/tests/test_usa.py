@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from unittest import skip
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.usa import (
@@ -377,7 +378,7 @@ class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
         self.assertIn(date(2016, 4, 16), holidays)  # Emancipation Day
 
 
-class FloridaTest(NoColombus, NoPresidentialDay, UnitedStatesTest):
+class FloridaTest(NoColumbus, NoPresidentialDay, UnitedStatesTest):
     cal_class = Florida
 
     def test_state_year_2014(self):
@@ -390,21 +391,50 @@ class FloridaTest(NoColombus, NoPresidentialDay, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class GeorgiaTest(UnitedStatesTest):
+class GeorgiaTest(NoPresidentialDay, UnitedStatesTest):
     cal_class = Georgia
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 28), holidays)
-        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2014, 4, 28), holidays)  # Confederate Memorial
+        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 27), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2015, 4, 27), holidays)  # Confederate Memorial
+        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
+
+    @skip("Confusing Rule, it's impossible to decide")
+    def test_washington_birthday(self):
+        # Source: https://georgia.gov/popular-topic/observing-state-holidays
+        day, _ = self.cal.get_washington_birthday_december(2017)
+        self.assertEqual(day, date(2017, 12, 26))
+
+        day, _ = self.cal.get_washington_birthday_december(2016)
+        self.assertEqual(
+            day,
+            date(2016, 12, 27),
+        )
+
+        day, _ = self.cal.get_washington_birthday_december(2015)
+        self.assertEqual(
+            day,
+            date(2015, 12, 24),
+        )
+
+        day, _ = self.cal.get_washington_birthday_december(2014)
+        self.assertEqual(
+            day,
+            date(2014, 12, 26),
+        )
+
+        day, _ = self.cal.get_washington_birthday_december(2013)
+        self.assertEqual(
+            day,
+            date(2013, 12, 24),
+        )
 
 
 class HawaiiTest(UnitedStatesTest):
@@ -435,21 +465,41 @@ class IllinoisTest(UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class IndianaTest(UnitedStatesTest):
+class IndianaTest(NoPresidentialDay, UnitedStatesTest):
     cal_class = Indiana
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
+
+    @skip("Confusing Rule, it's impossible to decide")
+    def test_washington_birthday(self):
+        # Sources:
+        # http://www.in.gov/spd/files/2018_Holidays.pdf
+        # http://www.in.gov/spd/files/2017_Holidays.pdf
+        # http://www.in.gov/spd/files/2016_Holidays.pdf
+
+        # Year 2016, shifted to the 26th
+        washington_bday = self.cal.get_washington_birthday_december(2016)
+        self.assertEqual(date(2016, 12, 26), washington_bday)
+
+        # Year 2017, shifted to the 26th
+        washington_bday = self.cal.get_washington_birthday_december(2017)
+        self.assertEqual(date(2017, 12, 26), washington_bday)
+
+        # Year 2018, back to XMas Eve
+        washington_bday = self.cal.get_washington_birthday_december(2018)
+        self.assertEqual(date(2018, 12, 24), washington_bday)
 
 
 class IowaTest(UnitedStatesTest):

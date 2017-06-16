@@ -23,9 +23,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Some states don't include Washington's Birthday, or move it to December.
     include_federal_presidents_day = True
     presidents_day_label = "Washington's Birthday"
-    # When you move it to december
-    include_washington_birthday_december = False
-    label_washington_birthday_december = "Washington's Birthday (Observed)"
 
     include_lincoln_birthday = False
 
@@ -260,9 +257,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
-
-        if self.include_washington_birthday_december:
-            days.append(self.get_washington_birthday_december(year))
 
         if self.include_inauguration_day:
             # Is it a "Inauguration year"?
