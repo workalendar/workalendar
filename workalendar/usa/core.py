@@ -42,6 +42,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     # Election Day
     include_election_day_even = False
+    election_day_label = "Election Day"
     # Inauguration Day
     include_inauguration_day = False
 
@@ -110,6 +111,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return self.get_nth_weekday_in_month(
             year, 11, TUE, start=first_monday_november
         )
+
+    def get_election_day(self, year):
+        """
+        Return the Election Day
+        """
+        return (self.get_election_date(year), self.election_day_label)
 
     def get_thanksgiving_friday(self, year):
         "Thanksgiving friday is on the 4th Friday in November"
@@ -269,7 +276,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_election_day_even:
             if (year % 2) == 0:
-                days.append((self.get_election_date(year), "Election Day"))
+                days.append(self.get_election_day(year))
 
         if self.include_thanksgiving_friday:
             days.append(

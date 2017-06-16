@@ -504,22 +504,56 @@ class IllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class IndianaTest(NoPresidentialDay, UnitedStatesTest):
+class IndianaTest(ElectionDayEvenYears, NoPresidentialDay, UnitedStatesTest):
     cal_class = Indiana
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
-        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        # Thanksgiving Friday -- Renamed into Lincoln's Birthday
+        self.assertIn(date(2014, 11, 28), holidays)
         # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
+
+        # Primary Election Day, only happen on even years
+        self.assertIn(date(2014, 5, 6), holidays)
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
-        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+        # Thanksgiving Friday -- Renamed into Lincoln's Birthday
+        self.assertIn(date(2015, 11, 27), holidays)
         # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
+
+        # Primary Election Day, only happen on even years
+        self.assertNotIn(date(2015, 5, 5), holidays)
+
+    def test_primary_election_day(self):
+        # Source:
+        # -> https://www.timeanddate.com/holidays/us/primary-election-indiana
+        # Year 2010
+        election_day, _ = self.cal.get_primary_election_day(2010)
+        self.assertEqual(election_day, date(2010, 5, 4))
+        # Year 2012
+        election_day, _ = self.cal.get_primary_election_day(2012)
+        self.assertEqual(election_day, date(2012, 5, 8))
+        # Year 2014
+        election_day, _ = self.cal.get_primary_election_day(2014)
+        self.assertEqual(election_day, date(2014, 5, 6))
+        # Year 2016
+        election_day, _ = self.cal.get_primary_election_day(2016)
+        self.assertEqual(election_day, date(2016, 5, 3))
+
+    def test_election_day_label(self):
+        # Election Day is "General Election Day" in Indiana
+        _, label = self.cal.get_election_day(2017)
+        self.assertEqual(label, "General Election Day")
+
+    def test_lincoln_birthday_label(self):
+        # Lincoln's Birthday is set on Thanksgiving Friday
+        _, label = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(label, "Lincoln's Birthday")
 
     @skip("Confusing Rule, it's impossible to decide")
     def test_washington_birthday(self):
