@@ -482,10 +482,12 @@ class HawaiiTest(ElectionDayEvenYears, NoColumbus, UnitedStatesTest):
 class IdahoTest(UnitedStatesTest):
     cal_class = Idaho
 
-    # NOTE: Arizona only has federal holidays.
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    # NOTE: Idaho only has federal holidays.
+    def test_mlk_label(self):
+        # Martin Luther King day is renamed in Alabama
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(
+            label, "Martin Luther King Jr. / Idaho Human Rights Day")
 
 
 class IllinoisTest(UnitedStatesTest):

@@ -7,3 +7,6 @@ from .core import UnitedStates
 
 class Idaho(UnitedStates):
     """Idaho"""
+    martin_luther_king_label = (
+        "Martin Luther King Jr. / Idaho Human Rights Day"
+    )
