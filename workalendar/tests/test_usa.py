@@ -787,13 +787,12 @@ class NebraskaTest(UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 25), holidays)
+        self.assertIn(date(2014, 4, 25), holidays)  # Arbor Day
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 24), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 24), holidays)  # Arbor Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
