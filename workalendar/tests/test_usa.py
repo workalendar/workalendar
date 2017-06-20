@@ -855,7 +855,7 @@ class NewJerseyTest(ElectionDayEveryYear, UnitedStatesTest):
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
-class NewMexicoTest(UnitedStatesTest):
+class NewMexicoTest(NoPresidentialDay, UnitedStatesTest):
     cal_class = NewMexico
 
     def test_state_year_2014(self):
@@ -864,8 +864,12 @@ class NewMexicoTest(UnitedStatesTest):
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_thanksgiving_friday_label(self):
+        # New Mexico is celebrating Presidents' Day on Thanksgiving Friday
+        _, label = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(label, "Presidents' Day")
 
 
 class NewYorkTest(UnitedStatesTest):

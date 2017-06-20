@@ -8,3 +8,5 @@ from .core import UnitedStates
 class NewMexico(UnitedStates):
     """New Mexico"""
     include_thanksgiving_friday = True
+    thanksgiving_friday_label = "Presidents' Day"
+    include_federal_presidents_day = False
