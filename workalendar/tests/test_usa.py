@@ -796,19 +796,23 @@ class NebraskaTest(UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class NevadaTest(UnitedStatesTest):
+class NevadaTest(NoColumbus, UnitedStatesTest):
     cal_class = Nevada
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 10, 31), holidays)
+        self.assertIn(date(2014, 10, 31), holidays)  # Nevada Day
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 10, 30), holidays)
+        self.assertIn(date(2015, 10, 30), holidays)  # Nevada Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_thanksgiving_friday_label(self):
+        # Thanksgiving Friday Label is Family Day in Nevada
+        _, label = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(label, "Family Day")
 
 
 class NewHampshireTest(UnitedStatesTest):
