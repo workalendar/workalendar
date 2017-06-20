@@ -12,8 +12,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 4, 'Independence Day'),
-        (11, 11, 'Veterans Day'),
     )
+    # Veterans day label
+    veterans_day_label = 'Veterans Day'
 
     # MLK
     martin_luther_king_label = 'Martin Luther King, Jr. Day'
@@ -45,6 +46,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     election_day_label = "Election Day"
     # Inauguration Day
     include_inauguration_day = False
+
+    # National Memorial Day
+    national_memorial_day_label = "Memorial Day"
 
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
@@ -232,6 +236,15 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             inauguration_day = date(year, 1, 21)
         return inauguration_day
 
+    def get_national_memorial_day(self, year):
+        """
+        Return National Memorial Day
+        """
+        return (
+            UnitedStates.get_last_weekday_in_month(year, 5, MON),
+            self.national_memorial_day_label
+        )
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
@@ -241,8 +254,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             days.append(self.get_martin_luther_king_day(year))
 
         days.extend([
-            (UnitedStates.get_last_weekday_in_month(year, 5, MON),
-                "Memorial Day"),
+            self.get_national_memorial_day(year),
             (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
                 "Labor Day"),
             (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
@@ -282,6 +294,19 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             days.append(
                 self.get_thanksgiving_friday(year)
             )
+        return days
+
+    def get_veterans_day(self, year):
+        """
+        Return Veterans Day (November 11th).
+
+        Placed here because some States are renaming it.
+        """
+        return (date(year, 11, 11), self.veterans_day_label)
+
+    def get_fixed_holidays(self, year):
+        days = super(UnitedStates, self).get_fixed_holidays(year)
+        days.append(self.get_veterans_day(year))
         return days
 
     def get_calendar_holidays(self, year):

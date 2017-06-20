@@ -732,19 +732,35 @@ class MinnesotaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class MississippiTest(UnitedStatesTest):
+class MississippiTest(NoColumbus, UnitedStatesTest):
     cal_class = Mississippi
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 28), holidays)
+        self.assertIn(date(2014, 4, 28), holidays)  # Confederate Memorial Day
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 27), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 27), holidays)  # Confederate Memorial Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_mlk_label(self):
+        # Martin Luther King day is renamed in Mississippi
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(
+            label, "Martin Luther King's and Robert E. Lee's Birthdays")
+
+    def test_national_memorial_label(self):
+        # National Memorial Day is renamed in Mississippi
+        _, label = self.cal.get_national_memorial_day(2017)
+        self.assertEqual(
+            label, "National Memorial Day / Jefferson Davis Birthday")
+
+    def test_veterans_label(self):
+        # Veterans Day is renamed in Mississippi
+        _, label = self.cal.get_veterans_day(2017)
+        self.assertEqual(label, "Armistice Day (Veterans Day)")
 
 
 class MissouriTest(UnitedStatesTest):
