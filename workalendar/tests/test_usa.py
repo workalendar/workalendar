@@ -872,7 +872,7 @@ class NewMexicoTest(NoPresidentialDay, UnitedStatesTest):
         self.assertEqual(label, "Presidents' Day")
 
 
-class NewYorkTest(UnitedStatesTest):
+class NewYorkTest(ElectionDayEveryYear, UnitedStatesTest):
     cal_class = NewYork
 
     def test_state_year_2014(self):

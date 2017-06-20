@@ -42,7 +42,13 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     boxing_day_label = "Day After Christmas"
 
     # Election Day
+    # To include every year?
+    include_election_day_every_year = False
+    # To include on even years?
     include_election_day_even = False
+    # NOTE: if it's included on every year, it'll also be included
+    # on even years. Setting these two flags to ON will give priority to the
+    # yearly flag.
     election_day_label = "Election Day"
     # Inauguration Day
     include_inauguration_day = False
@@ -286,7 +292,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
                     (self.get_inauguration_date(year), "Inauguration Day")
                 )
 
-        if self.include_election_day_even:
+        if self.include_election_day_every_year:
+            days.append(self.get_election_day(year))
+        elif self.include_election_day_even:
             if (year % 2) == 0:
                 days.append(self.get_election_day(year))
 

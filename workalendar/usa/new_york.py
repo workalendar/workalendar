@@ -8,3 +8,4 @@ from .core import UnitedStates
 class NewYork(UnitedStates):
     """New York"""
     include_lincoln_birthday = True
+    include_election_day_every_year = True
