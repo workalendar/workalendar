@@ -824,8 +824,12 @@ class NewHampshireTest(UnitedStatesTest):
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_mlk_label(self):
+        # Martin Luther King day is renamed in New Hampshire
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(label, "Martin Luther King, Jr. Civil Rights Day")
 
 
 class NewJerseyTest(UnitedStatesTest):

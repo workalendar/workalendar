@@ -8,3 +8,4 @@ from .core import UnitedStates
 class NewHampshire(UnitedStates):
     """New Hampshire"""
     include_thanksgiving_friday = True
+    martin_luther_king_label = "Martin Luther King, Jr. Civil Rights Day"
