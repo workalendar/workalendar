@@ -777,13 +777,9 @@ class MissouriTest(UnitedStatesTest):
         self.assertIn(date(2015, 5, 8), holidays)   # Truman Day
 
 
-class MontanaTest(UnitedStatesTest):
+class MontanaTest(ElectionDayEvenYears, UnitedStatesTest):
     cal_class = Montana
-
-    # NOTE: Montana has only federal holidays
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    # NOTE: Montana include only Federal Holidays + General Election Day
 
 
 class NebraskaTest(UnitedStatesTest):
