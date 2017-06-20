@@ -8,3 +8,4 @@ from .core import UnitedStates
 class Minnesota(UnitedStates):
     """Minnesota"""
     include_thanksgiving_friday = True
+    include_columbus_day = False

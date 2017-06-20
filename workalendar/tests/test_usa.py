@@ -720,7 +720,7 @@ class MichiganTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):
         self.assertIn(date(2017, 12, 29), holidays)
 
 
-class MinnesotaTest(UnitedStatesTest):
+class MinnesotaTest(NoColumbus, UnitedStatesTest):
     cal_class = Minnesota
 
     def test_state_year_2014(self):
@@ -729,7 +729,6 @@ class MinnesotaTest(UnitedStatesTest):
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
