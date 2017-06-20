@@ -9,6 +9,8 @@ from .core import UnitedStates
 class Louisiana(UnitedStates):
     """Louisiana"""
     include_good_friday = True
+    include_election_day_even = True
+    include_columbus_day = False
 
     def get_mardi_gras(self, year):
         sunday = self.get_easter_sunday(year)

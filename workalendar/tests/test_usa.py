@@ -610,19 +610,18 @@ class KentuckyTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 12, 31), holidays)  # NY Eve
 
 
-class LouisianaTest(UnitedStatesTest):
+class LouisianaTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):
     cal_class = Louisiana
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 3, 4), holidays)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 3, 4), holidays)  # Mardi Gras
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 2, 17), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 2, 17), holidays)  # Mardi Gras
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
 class MaineTest(UnitedStatesTest):
