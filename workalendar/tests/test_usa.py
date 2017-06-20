@@ -251,6 +251,17 @@ class ElectionDayPresidentialYears(object):
         self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
+class ElectionDayEveryYear(object):
+    """
+    Some State include election day on every year
+    """
+    def test_election_day_inclusion(self):
+        # Election day is included *every year*
+        for year in range(2013, 2020):
+            holidays = self.cal.holidays_set(year)
+            self.assertIn(self.cal.get_election_date(year), holidays)
+
+
 class AlabamaTest(UnitedStatesTest):
     cal_class = Alabama
 
@@ -832,17 +843,16 @@ class NewHampshireTest(UnitedStatesTest):
         self.assertEqual(label, "Martin Luther King, Jr. Civil Rights Day")
 
 
-class NewJerseyTest(UnitedStatesTest):
+class NewJerseyTest(ElectionDayEveryYear, UnitedStatesTest):
     cal_class = NewJersey
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
 class NewMexicoTest(UnitedStatesTest):
