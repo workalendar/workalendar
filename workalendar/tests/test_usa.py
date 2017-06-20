@@ -769,12 +769,12 @@ class MissouriTest(UnitedStatesTest):
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 2, 12), holidays)  # Lincoln's Birthday
-        self.assertIn(date(2014, 5, 8), holidays)
+        self.assertIn(date(2014, 5, 8), holidays)   # Truman Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
-        self.assertIn(date(2015, 5, 8), holidays)
+        self.assertIn(date(2015, 5, 8), holidays)   # Truman Day
 
 
 class MontanaTest(UnitedStatesTest):
