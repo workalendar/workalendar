@@ -690,21 +690,34 @@ class MassachusettsTest(UnitedStatesTest):
         self.assertIn(date(2015, 4, 20), holidays)  # Patriot's day
 
 
-class MichiganTest(UnitedStatesTest):
+class MichiganTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):
     cal_class = Michigan
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 31), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 31), holidays)  # New Years Eve
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 31), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2015, 12, 31), holidays)  # New Years Eve
+
+    def test_state_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 11, 24), holidays)  # Thanksgiving Friday
+
+        # XMas Eve
+        self.assertIn(date(2017, 12, 24), holidays)
+        # XMAs Eve is on SUN, shifted to Dec, 22nd
+        self.assertIn(date(2017, 12, 22), holidays)
+
+        # New Years Eve
+        self.assertIn(date(2017, 12, 31), holidays)
+        # New Years Eve is on SUN, shifted to Dec, 29nd
+        self.assertIn(date(2017, 12, 29), holidays)
 
 
 class MinnesotaTest(UnitedStatesTest):
