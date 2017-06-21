@@ -9,3 +9,4 @@ class Pennsylvania(UnitedStates):
     """Pennsylvania"""
     include_good_friday = True
     include_thanksgiving_friday = True
+    include_election_day_every_year = True
