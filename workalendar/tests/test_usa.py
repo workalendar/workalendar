@@ -995,17 +995,17 @@ class PennsylvaniaTest(ElectionDayEveryYear, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
-class RhodeIslandTest(UnitedStatesTest):
+class RhodeIslandTest(NoPresidentialDay, ElectionDayEvenYears,
+                      UnitedStatesTest):
     cal_class = RhodeIsland
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 8, 11), holidays)
+        self.assertIn(date(2014, 8, 11), holidays)  # Victory Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 8, 10), holidays)
+        self.assertIn(date(2015, 8, 10), holidays)  # Victory Day
 
 
 class SouthCarolinaTest(NoShiftBoxingDay, UnitedStatesTest):
