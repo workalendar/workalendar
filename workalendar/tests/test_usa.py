@@ -943,17 +943,16 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         self.assertNotIn(date(2020, 12, 29), holidays)
 
 
-class NorthDakotaTest(UnitedStatesTest):
+class NorthDakotaTest(NoColumbus, UnitedStatesTest):
     cal_class = NorthDakota
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 
 class OhioTest(UnitedStatesTest):
