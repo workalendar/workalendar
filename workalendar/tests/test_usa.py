@@ -884,22 +884,63 @@ class NewYorkTest(ElectionDayEveryYear, UnitedStatesTest):
         self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
 
 
-class NorthCarolinaTest(NoShiftBoxingDay, UnitedStatesTest):
+class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     cal_class = NorthCarolina
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
         self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
         self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
+
+    def test_state_year_2016_xmas(self):
+        # XMAS falls on SUN
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 12, 23), holidays)  # Day 1 - FRI
+        self.assertIn(date(2016, 12, 26), holidays)  # Day 2 - MON
+        self.assertIn(date(2016, 12, 27), holidays)  # Day 3 - TUE
+        # 22nd and 28th are not included
+        self.assertNotIn(date(2016, 12, 22), holidays)  # THU
+        self.assertNotIn(date(2016, 12, 28), holidays)  # WED
+
+    def test_state_year_2017_xmas(self):
+        # XMAS falls on MON
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 12, 25), holidays)  # Day 1 - MON
+        self.assertIn(date(2017, 12, 26), holidays)  # Day 2 - TUE
+        self.assertIn(date(2017, 12, 27), holidays)  # Day 3 - WED
+        # 22nd and 28th are not included
+        self.assertNotIn(date(2017, 12, 22), holidays)  # FRI
+        self.assertNotIn(date(2017, 12, 23), holidays)  # SAT
+        self.assertNotIn(date(2017, 12, 28), holidays)  # THU
+
+    def test_state_year_2018_xmas(self):
+        # XMAS falls on TUE
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 12, 24), holidays)  # Day 1 - MON
+        self.assertIn(date(2018, 12, 25), holidays)  # Day 2 - TUE
+        self.assertIn(date(2018, 12, 26), holidays)  # Day 3 - WED
+        # No shift:
+        self.assertNotIn(date(2018, 12, 23), holidays)
+        self.assertNotIn(date(2018, 12, 27), holidays)
+
+    def test_state_year_2020_xmas(self):
+        # XMAS falls on FRI
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 12, 24), holidays)  # Day 1 - THU
+        self.assertIn(date(2020, 12, 25), holidays)  # Day 2 - FRI
+        self.assertIn(date(2020, 12, 28), holidays)  # Day 3 - MON
+        # 23rd adn 29th are not included
+        self.assertNotIn(date(2020, 12, 23), holidays)
+        self.assertNotIn(date(2020, 12, 29), holidays)
 
 
 class NorthDakotaTest(UnitedStatesTest):
