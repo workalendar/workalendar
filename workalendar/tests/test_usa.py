@@ -957,15 +957,9 @@ class NorthDakotaTest(NoColumbus, UnitedStatesTest):
 
 class OhioTest(UnitedStatesTest):
     cal_class = Ohio
-
-    def test_state_year_2014(self):
-        holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 12, 1), holidays)
-
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 12, 1), holidays)
+    # Ohio includes only Federal holidays.
+    # The wikipedia page say it also includes Election Day, but no official
+    # document confirms this.
 
 
 class OklahomaTest(UnitedStatesTest):

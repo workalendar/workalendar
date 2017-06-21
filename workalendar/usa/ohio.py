@@ -7,6 +7,7 @@ from .core import UnitedStates
 
 class Ohio(UnitedStates):
     """Ohio"""
-    FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (12, 1, "Rosa Parks Day"),
-    )
+
+# NOTE: Ohio includes only Federal holidays.
+# The wikipedia page say it also includes Election Day, but no official
+# document confirms this.
