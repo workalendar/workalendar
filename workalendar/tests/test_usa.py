@@ -1043,11 +1043,12 @@ class SouthCarolinaTest(NoColumbus, UnitedStatesTest):
 
 class SouthDakotaTest(UnitedStatesTest):
     cal_class = SouthDakota
+    # NOTE: South Dakota has all federal holidays, except Columbus Day,
+    # but it's renamed as "Native Americans Day"
 
-    # NOTE: South Dakota only has federal holidays.
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    def test_columbus_day_label(self):
+        _, label = self.cal.get_columbus_day(2017)
+        self.assertEqual(label, "Native Americans Day")
 
 
 class TennesseeTest(UnitedStatesTest):
