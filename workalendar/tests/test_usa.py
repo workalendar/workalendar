@@ -976,13 +976,9 @@ class OklahomaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing day
 
 
-class OregonTest(UnitedStatesTest):
+class OregonTest(NoColumbus, UnitedStatesTest):
     cal_class = Oregon
-
-    # NOTE: Oregon has only the federal holidays
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    # NOTE: Oregon has only the federal holidays, except Columbus Day
 
 
 class PennsylvaniaTest(UnitedStatesTest):

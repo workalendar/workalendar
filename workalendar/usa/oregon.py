@@ -7,3 +7,4 @@ from .core import UnitedStates
 
 class Oregon(UnitedStates):
     """Oregon"""
+    include_columbus_day = False
