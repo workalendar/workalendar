@@ -7,5 +7,7 @@ from .core import UnitedStates
 
 class Tennessee(UnitedStates):
     """Tennessee"""
+    include_columbus_day = False
+
     include_good_friday = True
-    include_thanksgiving_friday = True
+    include_christmas_eve = True

@@ -1051,19 +1051,18 @@ class SouthDakotaTest(UnitedStatesTest):
         self.assertEqual(label, "Native Americans Day")
 
 
-class TennesseeTest(UnitedStatesTest):
+class TennesseeTest(NoColumbus, UnitedStatesTest):
     cal_class = Tennessee
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
 
 
 class TexasTest(UnitedStatesTest):
