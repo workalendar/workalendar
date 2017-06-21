@@ -1008,22 +1008,37 @@ class RhodeIslandTest(NoPresidentialDay, ElectionDayEvenYears,
         self.assertIn(date(2015, 8, 10), holidays)  # Victory Day
 
 
-class SouthCarolinaTest(NoShiftBoxingDay, UnitedStatesTest):
+class SouthCarolinaTest(NoColumbus, UnitedStatesTest):
     cal_class = SouthCarolina
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
+        # Confederate Memorial Day
+        self.assertIn(date(2014, 5, 10), holidays)
+        # Observed here, it falls on SAT
         self.assertIn(date(2014, 5, 9), holidays)
+
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
         self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
         self.assertIn(date(2014, 12, 26), holidays)  # Boxing day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 5, 10), holidays)
+        self.assertIn(date(2015, 5, 10), holidays)  # Confederate Memorial Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing day
+
+    @skip("No clear rules for implementing the XMas Eve shift")
+    def test_state_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 5, 10), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2017, 11, 23), holidays)  # Thanksgiving Friday
+        # Xmas Eve falls on SUN
+        self.assertIn(date(2017, 12, 24), holidays)
+        # Christmas Eve observed here
+        self.assertIn(date(2017, 12, 22), holidays)
+        self.assertIn(date(2017, 12, 26), holidays)  # Boxing day
 
 
 class SouthDakotaTest(UnitedStatesTest):

@@ -10,10 +10,7 @@ class SouthCarolina(UnitedStates):
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (5, 10, "Confederate Memorial Day"),
     )
-    include_good_friday = True
-    include_christmas_eve = True
     include_thanksgiving_friday = True
+    include_christmas_eve = True
     include_boxing_day = True
-    shift_exceptions = (
-        (12, 26),
-    )
+    include_columbus_day = False
