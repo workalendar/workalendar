@@ -7,5 +7,6 @@ from .core import UnitedStates
 
 class Oklahoma(UnitedStates):
     """Oklahoma"""
-    include_christmas_eve = True
     include_thanksgiving_friday = True
+    include_boxing_day = True
+    include_columbus_day = False
