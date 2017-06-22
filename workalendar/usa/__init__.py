@@ -47,7 +47,7 @@ from .rhode_island import RhodeIsland
 from .south_carolina import SouthCarolina
 from .south_dakota import SouthDakota
 from .tennessee import Tennessee
-from .texas import Texas
+from .texas import TexasBase, Texas
 from .utah import Utah
 from .vermont import Vermont
 from .virginia import Virginia
@@ -103,6 +103,7 @@ __all__ = [
     SouthCarolina,
     SouthDakota,
     Tennessee,
+    TexasBase,
     Texas,
     Utah,
     Vermont,

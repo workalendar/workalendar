@@ -9,8 +9,8 @@ from workalendar.usa import (
     Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Missouri,
     Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork,
     NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
-    RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, Vermont,
-    Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+    RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
+    Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
 )
 
 
@@ -1065,28 +1065,37 @@ class TennesseeTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
 
 
-class TexasTest(UnitedStatesTest):
+class TexasBaseTest(NoColumbus, UnitedStatesTest):
+    cal_class = TexasBase
+    # NOTE: "Stock" Texas doesn't include Columbus Day,
+    # state holidays are handled differently
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        # Check that state holidays are not included here
+        self.assertNotIn(date(2014, 1, 19), holidays)  # Confederate Heroes Day
+        self.assertNotIn(date(2014, 3, 2), holidays)  # Texas Independence Day
+        self.assertNotIn(date(2014, 4, 21), holidays)  # San Jacinto Day
+        self.assertNotIn(date(2014, 6, 19), holidays)  # Emancipation Day
+        self.assertNotIn(date(2014, 8, 27), holidays)  # Lyndon B. Johnson Day
+        self.assertNotIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        self.assertNotIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertNotIn(date(2014, 12, 26), holidays)  # Boxing day
+
+
+class TexasTest(TexasBaseTest):
     cal_class = Texas
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 19), holidays)
-        self.assertIn(date(2014, 3, 2), holidays)
-        self.assertIn(date(2014, 3, 31), holidays)  # Cesar Chavez Day
-        self.assertIn(date(2014, 4, 18), holidays)
-        self.assertIn(date(2014, 4, 21), holidays)
-        self.assertIn(date(2014, 6, 19), holidays)
-        self.assertIn(date(2014, 8, 27), holidays)
-
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 3, 2), holidays)
-        self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 21), holidays)
-        self.assertIn(date(2015, 6, 19), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 8, 27), holidays)
+        self.assertIn(date(2014, 1, 19), holidays)  # Confederate Heroes Day
+        self.assertIn(date(2014, 3, 2), holidays)  # Texas Independence Day
+        self.assertIn(date(2014, 4, 21), holidays)  # San Jacinto Day
+        self.assertIn(date(2014, 6, 19), holidays)  # Emancipation Day
+        self.assertIn(date(2014, 8, 27), holidays)  # Lyndon B. Johnson Day
+        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing day
 
 
 class UtahTest(UnitedStatesTest):
