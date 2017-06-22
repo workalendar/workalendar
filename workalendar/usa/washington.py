@@ -7,4 +7,4 @@ from .core import UnitedStates
 
 class Washington(UnitedStates):
     """Washington"""
-    include_thanksgiving_friday = True
+    include_columbus_day = False
