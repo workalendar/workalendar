@@ -17,7 +17,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     veterans_day_label = 'Veterans Day'
 
     # MLK
-    martin_luther_king_label = 'Martin Luther King, Jr. Day'
+    martin_luther_king_label = 'Birthday of Martin Luther King, Jr.'
 
     include_thanksgiving_friday = False
     thanksgiving_friday_label = "Thanksgiving Friday"

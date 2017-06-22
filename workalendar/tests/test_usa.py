@@ -53,6 +53,10 @@ class UnitedStatesTest(GenericCalendarTest):
         with self.assertRaises(ValueError):
             self.cal.get_martin_luther_king_date(1984)
 
+    def test_mlk_label(self):
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(label, "Birthday of Martin Luther King, Jr.")
+
     def test_federal_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)   # New Year
@@ -82,6 +86,10 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertEqual(date(2019, 11, 5), self.cal.get_election_date(2019))
         self.assertEqual(date(2020, 11, 3), self.cal.get_election_date(2020))
 
+    def test_election_day_label(self):
+        _, label = self.cal.get_election_day(2017)
+        self.assertEqual(label, "Election Day")
+
     def test_federal_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 1, 1), holidays)   # New Year
@@ -107,6 +115,10 @@ class UnitedStatesTest(GenericCalendarTest):
         # Columbus Day is included here
         self.assertIn(date(2017, 10, 9), holidays)
 
+    def test_columbus_day_label(self):
+        _, label = self.cal.get_columbus_day(2017)
+        self.assertEqual(label, "Columbus Day")
+
     def test_presidential_day(self):
         # Washington's birthday, or sometimes called otherwise, may not
         # be included.
@@ -114,6 +126,10 @@ class UnitedStatesTest(GenericCalendarTest):
         day, _ = self.cal.get_presidents_day(2017)
         # Washington's birthday is included here
         self.assertIn(day, holidays)
+
+    def test_president_day_label(self):
+        _, label = self.cal.get_presidents_day(2017)
+        self.assertEqual(label, "Washington's Birthday")
 
     def test_get_inauguration_date(self):
         self.assertEqual(
@@ -154,6 +170,18 @@ class UnitedStatesTest(GenericCalendarTest):
         for year in range(2013, 2020):
             holidays = self.cal.holidays_set(year)
             self.assertNotIn(self.cal.get_election_date(year), holidays)
+
+    def test_thanksgiving_friday_label(self):
+        _, label = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(label, "Thanksgiving Friday")
+
+    def test_national_memorial_label(self):
+        _, label = self.cal.get_national_memorial_day(2017)
+        self.assertEqual(label, "Memorial Day")
+
+    def test_veterans_label(self):
+        _, label = self.cal.get_veterans_day(2017)
+        self.assertEqual(label, "Veterans Day")
 
 
 class NoColumbus(object):
@@ -258,16 +286,19 @@ class AlabamaTest(UnitedStatesTest):
     cal_class = Alabama
 
     def test_mlk_label(self):
+        # Overwrite UnitedStatesTest.test_mlk_label
         # Martin Luther King day is renamed in Alabama
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(label, "Robert E. Lee/Martin Luther King Birthday")
 
     def test_president_day_label(self):
+        # Overwrite UnitedStatesTest.test_president_day_label
         # Presidents day is renamed in Alabama
         _, label = self.cal.get_presidents_day(2017)
         self.assertEqual(label, "George Washington/Thomas Jefferson Birthday")
 
     def test_columbus_day_label(self):
+        # Overwrite UnitedStatesTest.test_columbus_day_label
         # Columbus day is renamed in Alabama
         _, label = self.cal.get_columbus_day(2017)
         self.assertEqual(
@@ -315,12 +346,14 @@ class ArizonaTest(UnitedStatesTest):
     cal_class = Arizona
 
     def test_mlk_label(self):
-        # Martin Luther King day is renamed in Alabama
+        # Overwrite UnitedStatesTest.test_mlk_label
+        # Martin Luther King day is renamed in Arizona
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(label, "Dr. Martin Luther King Jr./Civil Rights Day")
 
     def test_president_day_label(self):
-        # Presidents day is renamed in Alabama
+        # Overwrite UnitedStatesTest.test_president_day_label
+        # Presidents day is renamed in Arizona
         _, label = self.cal.get_presidents_day(2017)
         self.assertEqual(label, "Lincoln/Washington Presidents' Day")
 
@@ -342,7 +375,8 @@ class ArkansasTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2016, 12, 23), holidays)  # XMas Eve shifted
 
     def test_president_day_label(self):
-        # Presidents day is renamed in Alabama
+        # Overwrite UnitedStatesTest.test_president_day_label
+        # Presidents day is renamed in Arkansas
         _, label = self.cal.get_presidents_day(2017)
         self.assertEqual(
             label,
@@ -427,6 +461,11 @@ class FloridaTest(NoColumbus, NoPresidentialDay, UnitedStatesTest):
         self.assertIn(date(2015, 7, 3), holidays)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
+    def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
+        _, label = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(label, "Friday after Thanksgiving")
+
 
 class GeorgiaTest(NoPresidentialDay, UnitedStatesTest):
     cal_class = Georgia
@@ -505,10 +544,11 @@ class HawaiiTest(ElectionDayEvenYears, NoColumbus, UnitedStatesTest):
 
 class IdahoTest(UnitedStatesTest):
     cal_class = Idaho
-
     # NOTE: Idaho only has federal holidays.
+
     def test_mlk_label(self):
-        # Martin Luther King day is renamed in Alabama
+        # Overwrite UnitedStatesTest.test_mlk_label
+        # Martin Luther King day is renamed in Idaho
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(
             label, "Martin Luther King Jr. / Idaho Human Rights Day")
@@ -570,11 +610,13 @@ class IndianaTest(ElectionDayEvenYears, NoPresidentialDay, UnitedStatesTest):
         self.assertEqual(election_day, date(2016, 5, 3))
 
     def test_election_day_label(self):
+        # Overwrite UnitedStatesTest.test_election_day_label
         # Election Day is "General Election Day" in Indiana
         _, label = self.cal.get_election_day(2017)
         self.assertEqual(label, "General Election Day")
 
-    def test_lincoln_birthday_label(self):
+    def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
         # Lincoln's Birthday is set on Thanksgiving Friday
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Lincoln's Birthday")
@@ -675,7 +717,8 @@ class MarylandTest(ElectionDayPresidentialYears, UnitedStatesTest):
         # Thanksgiving Friday == Native American Heritage Day
         self.assertIn(date(2015, 11, 27), holidays)
 
-    def test_native_american_friday_label(self):
+    def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
         # Thanksgiving Friday label changed to "Native American Heritage Day"
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Native American Heritage Day")
@@ -749,18 +792,21 @@ class MississippiTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
     def test_mlk_label(self):
+        # Overwrite UnitedStatesTest.test_mlk_label
         # Martin Luther King day is renamed in Mississippi
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(
             label, "Martin Luther King's and Robert E. Lee's Birthdays")
 
     def test_national_memorial_label(self):
+        # Overwrite UnitedStatesTest.test_national_memorial_label
         # National Memorial Day is renamed in Mississippi
         _, label = self.cal.get_national_memorial_day(2017)
         self.assertEqual(
             label, "National Memorial Day / Jefferson Davis Birthday")
 
     def test_veterans_label(self):
+        # Overwrite UnitedStatesTest.test_veterans_label
         # Veterans Day is renamed in Mississippi
         _, label = self.cal.get_veterans_day(2017)
         self.assertEqual(label, "Armistice Day (Veterans Day)")
@@ -813,6 +859,7 @@ class NevadaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
     def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
         # Thanksgiving Friday Label is Family Day in Nevada
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Family Day")
@@ -830,6 +877,7 @@ class NewHampshireTest(UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
     def test_mlk_label(self):
+        # Overwrite UnitedStatesTest.test_mlk_label
         # Martin Luther King day is renamed in New Hampshire
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(label, "Martin Luther King, Jr. Civil Rights Day")
@@ -859,6 +907,7 @@ class NewMexicoTest(NoPresidentialDay, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
     def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
         # New Mexico is celebrating Presidents' Day on Thanksgiving Friday
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Presidents' Day")
@@ -1039,6 +1088,7 @@ class SouthDakotaTest(UnitedStatesTest):
     # but it's renamed as "Native Americans Day"
 
     def test_columbus_day_label(self):
+        # Overwrite UnitedStatesTest.test_columbus_day_label
         _, label = self.cal.get_columbus_day(2017)
         self.assertEqual(label, "Native Americans Day")
 
@@ -1145,6 +1195,7 @@ class VirginiaTest(UnitedStatesTest):
         self.assertNotIn(date(2015, 11, 25), holidays)
 
     def test_president_day_label(self):
+        # Overwrite UnitedStatesTest.test_president_day_label
         _, label = self.cal.get_presidents_day(2017)
         self.assertEqual(label, "George Washington Day")
 
@@ -1205,6 +1256,7 @@ class WestVirginiaTest(ElectionDayEvenYears, UnitedStatesTest):
         self.assertNotIn(date(2016, 12, 30), holidays)  # NO SHIFT for NYE
 
     def test_election_day_label(self):
+        # Overwrite UnitedStatesTest.test_election_day_label
         _, label = self.cal.get_election_day(2017)
         self.assertEqual(label, "Election Day / Susan B. Anthony Day")
 
@@ -1228,6 +1280,7 @@ class WyomingTest(UnitedStatesTest):
     # NOTE: Wyoming only has all federal holidays
 
     def test_mlk_label(self):
+        # Overwrite UnitedStatesTest.test_mlk_label
         _, label = self.cal.get_martin_luther_king_day(2017)
         self.assertEqual(
             label,
