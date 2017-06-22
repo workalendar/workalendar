@@ -1110,19 +1110,20 @@ class UtahTest(UnitedStatesTest):
         self.assertIn(date(2015, 7, 24), holidays)  # Pioneer Day
 
 
-class VermontTest(UnitedStatesTest):
+class VermontTest(NoColumbus, UnitedStatesTest):
     cal_class = Vermont
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 3, 4), holidays)
-        self.assertIn(date(2014, 8, 15), holidays)
+        self.assertIn(date(2014, 3, 4), holidays)  # Town Meeting Day
+        self.assertIn(date(2014, 8, 16), holidays)  # Bennington Battle Day
+        self.assertIn(date(2014, 8, 15), holidays)  # Shifted to FRI
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 3, 3), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 8, 17), holidays)
+        self.assertIn(date(2015, 3, 3), holidays)  # Town Meeting Day
+        self.assertIn(date(2015, 8, 16), holidays)  # Bennington Battle Day
+        self.assertIn(date(2015, 8, 17), holidays)  # Shifted to MON
 
 
 class VirginiaTest(NoShiftBoxingDay, UnitedStatesTest):

@@ -11,6 +11,7 @@ class Vermont(UnitedStates):
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (8, 16, "Bennington Battle Day"),
     )
+    include_columbus_day = False
 
     def get_variable_days(self, year):
         days = super(Vermont, self).get_variable_days(year)
