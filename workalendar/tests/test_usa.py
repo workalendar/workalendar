@@ -1103,12 +1103,11 @@ class UtahTest(UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 7, 24), holidays)
+        self.assertIn(date(2014, 7, 24), holidays)  # Pioneer Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 7, 24), holidays)
+        self.assertIn(date(2015, 7, 24), holidays)  # Pioneer Day
 
 
 class VermontTest(UnitedStatesTest):
