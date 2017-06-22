@@ -7,4 +7,4 @@ from .core import UnitedStates
 
 class Wyoming(UnitedStates):
     """Wyoming"""
-    pass
+    martin_luther_king_label = "Martin Luther King, Jr. / Wyoming Equality Day"

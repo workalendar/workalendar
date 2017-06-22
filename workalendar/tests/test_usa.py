@@ -1225,8 +1225,11 @@ class WisconsinTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
 
 class WyomingTest(UnitedStatesTest):
     cal_class = Wyoming
+    # NOTE: Wyoming only has all federal holidays
 
-    # NOTE: Wyoming has only federal holidays
-    def test_state_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+    def test_mlk_label(self):
+        _, label = self.cal.get_martin_luther_king_day(2017)
+        self.assertEqual(
+            label,
+            "Martin Luther King, Jr. / Wyoming Equality Day"
+        )
