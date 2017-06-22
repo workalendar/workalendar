@@ -156,14 +156,6 @@ class UnitedStatesTest(GenericCalendarTest):
             self.assertNotIn(self.cal.get_election_date(year), holidays)
 
 
-class NoShiftBoxingDay(object):
-    def test_no_shift_boxing_day(self):
-        # Dec, 26th is on SUN, but no shift here to the next MON
-        holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 12, 26), holidays)
-        self.assertNotIn(date(2010, 12, 27), holidays)
-
-
 class NoColumbus(object):
     """
     Some States don't include Columbus Day:
@@ -1126,24 +1118,35 @@ class VermontTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 8, 17), holidays)  # Shifted to MON
 
 
-class VirginiaTest(NoShiftBoxingDay, UnitedStatesTest):
+class VirginiaTest(UnitedStatesTest):
     cal_class = Virginia
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 1, 17), holidays)
-        self.assertIn(date(2014, 11, 26), holidays)
+        self.assertIn(date(2014, 1, 17), holidays)   # Lee-Jackson Day
+        self.assertIn(date(2014, 11, 26), holidays)  # Thanksgiving Wednesday
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
         self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
-        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 16), holidays)
-        self.assertIn(date(2015, 11, 25), holidays)
+        self.assertIn(date(2015, 1, 16), holidays)  # Lee-Jackson Day
+        self.assertIn(date(2015, 11, 25), holidays)  # Thanksgiving Wednesday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
-        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
+
+    def test_exclude_thanksgiving_wednesday(self):
+        # Sub class
+        class VirginiaExclude(Virginia):
+            include_thanksgiving_wednesday = False
+        cal = VirginiaExclude()
+        holidays = cal.holidays_set(2015)
+        # Not Thanksgiving Wednesday
+        self.assertNotIn(date(2015, 11, 25), holidays)
+
+    def test_president_day_label(self):
+        _, label = self.cal.get_presidents_day(2017)
+        self.assertEqual(label, "George Washington Day")
 
     def test_inauguration_day(self):
         # Overwriting this test: in 2017, this day is a public holiday for
