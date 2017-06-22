@@ -1209,21 +1209,18 @@ class WestVirginiaTest(ElectionDayEvenYears, UnitedStatesTest):
         self.assertEqual(label, "Election Day / Susan B. Anthony Day")
 
 
-class WisconsinTest(UnitedStatesTest):
+class WisconsinTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     cal_class = Wisconsin
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 31), holidays)
+        self.assertIn(date(2014, 12, 24), holidays)  # Xmas Eve
+        self.assertIn(date(2014, 12, 31), holidays)  # New Years Eve
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
-        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 31), holidays)
+        self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
+        self.assertIn(date(2015, 12, 31), holidays)  # New Years Eve
 
 
 class WyomingTest(UnitedStatesTest):
