@@ -1169,23 +1169,44 @@ class WashingtonTest(NoColumbus, UnitedStatesTest):
     # NOTE: Washington State includes all federal holidays, except Columbus Day
 
 
-class WestVirginiaTest(UnitedStatesTest):
+class WestVirginiaTest(ElectionDayEvenYears, UnitedStatesTest):
     cal_class = WestVirginia
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 6, 20), holidays)
+        self.assertIn(date(2014, 6, 20), holidays)  # West Virginia Day
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)
-        self.assertIn(date(2014, 12, 31), holidays)
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 6, 20), holidays)
-        self.assertIn(date(2015, 7, 3), holidays)
+        self.assertIn(date(2015, 6, 20), holidays)  # West Virginia Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2015, 12, 24), holidays)
-        self.assertIn(date(2015, 12, 31), holidays)
+
+    def test_state_half_holidays_base(self):
+        # Using the "stock" calendar
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 12, 24), holidays)  # XMas Eve
+        self.assertNotIn(date(2015, 12, 31), holidays)  # NYE
+
+    def test_state_half_holidays_included(self):
+        class WestVirginiaInclude(WestVirginia):
+            west_virginia_include_christmas_eve = True
+            west_virginia_include_nye = True
+        cal = WestVirginiaInclude()
+        holidays = cal.holidays_set(2015)
+        self.assertIn(date(2015, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2015, 12, 31), holidays)  # NYE
+        # Test that these days are not shifted
+        # In 2016, XMas Eve and NYE are on SAT
+        holidays = cal.holidays_set(2016)
+        self.assertIn(date(2016, 12, 24), holidays)  # XMas Eve
+        self.assertIn(date(2016, 12, 31), holidays)  # NYE
+        self.assertNotIn(date(2016, 12, 23), holidays)  # NO SHIFT for XMas Eve
+        self.assertNotIn(date(2016, 12, 30), holidays)  # NO SHIFT for NYE
+
+    def test_election_day_label(self):
+        _, label = self.cal.get_election_day(2017)
+        self.assertEqual(label, "Election Day / Susan B. Anthony Day")
 
 
 class WisconsinTest(UnitedStatesTest):

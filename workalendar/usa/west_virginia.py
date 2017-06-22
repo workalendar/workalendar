@@ -1,28 +1,50 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
+"""
+West Virginia
 
+Christmas Eve and New Years Eve are considered as half-holidays. By default,
+they're not included as "non-working days". If for your personal use you want
+to include them, you may just have to create a class like this:
+
+.. code::
+
+    class WestVirginiaIncludeEves(WestVirginia):
+        west_virginia_include_christmas_eve = True
+        west_virginia_include_nye = True
+
+"""
 from datetime import date
-from workalendar.core import SUN
+
 from .core import UnitedStates
 
 
 class WestVirginia(UnitedStates):
     """West Virginia"""
-    include_christmas_eve = True
     include_thanksgiving_friday = True
+    include_election_day_even = True
+    election_day_label = "Election Day / Susan B. Anthony Day"
 
-    def get_variable_days(self, year):
-        days = super(WestVirginia, self).get_variable_days(year)
-        days.extend([
-            (date(year, 6, 20), "West Virgina Day")
-        ])
-        if date(year, 6, 20).weekday() == SUN:
-            days.append((date(year, 6, 21), "West Virgina Day (Observed)"))
-        return days
+    # West Virginia specific "half-holidays"
+    west_virginia_include_christmas_eve = False
+    west_virginia_include_nye = False
+    FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
+        (6, 20, "West Virgina Day"),
+    )
+    shift_exceptions = (
+        (12, 24),
+        (12, 31),
+    )
 
-    # FIXME: fixed holidays that don't float.
     def get_fixed_holidays(self, year):
         days = super(WestVirginia, self).get_fixed_holidays(year)
-        days.append((date(year, 12, 31), "New Years Eve"))
+        if self.west_virginia_include_christmas_eve:
+            days.append(
+                (date(year, 12, 24), "Christmas Eve")
+            )
+        if self.west_virginia_include_nye:
+            days.append(
+                (date(year, 12, 31), "New Years Eve")
+            )
         return days
