@@ -4,7 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-Nothing here yet.
+- Splitted `africa.py` file into an `africa/` module (#236).
 
 2.0.0 (2017-06-23)
 ------------------
