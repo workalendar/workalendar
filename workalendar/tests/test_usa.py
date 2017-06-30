@@ -3,7 +3,9 @@ from unittest import skip
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.usa import (
-    UnitedStates, Alabama, Florida, Arkansas, Alaska, Arizona, California,
+    UnitedStates,
+    Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty,
+    Florida, Arkansas, Alaska, Arizona, California,
     Colorado, Connecticut, Delaware, DistrictOfColumbia, Georgia, Hawaii,
     Indiana, Illinois, Idaho, Iowa, Kansas, Kentucky, Louisiana, Maine,
     Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Missouri,
@@ -183,6 +185,12 @@ class UnitedStatesTest(GenericCalendarTest):
         _, label = self.cal.get_veterans_day(2017)
         self.assertEqual(label, "Veterans Day")
 
+    def test_mardi_gras(self):
+        year = 2017
+        day, _ = self.cal.get_mardi_gras(year)
+        holidays = self.cal.holidays_set(year)
+        self.assertNotIn(day, holidays)
+
 
 class NoColumbus(object):
     """
@@ -282,6 +290,17 @@ class ElectionDayEveryYear(object):
             self.assertIn(self.cal.get_election_date(year), holidays)
 
 
+class IncludeMardiGras(object):
+    """
+    Louisiana and some areas (Alabama Counties) include Mardi Gras
+    """
+    def test_mardi_gras(self):
+        year = 2017
+        day, _ = self.cal.get_mardi_gras(year)
+        holidays = self.cal.holidays_set(year)
+        self.assertIn(day, holidays)
+
+
 class AlabamaTest(UnitedStatesTest):
     cal_class = Alabama
 
@@ -314,6 +333,22 @@ class AlabamaTest(UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 27), holidays)  # Confederate Memorial Day
         self.assertIn(date(2015, 6, 1), holidays)  # Jefferson Davis' birthday
+
+
+class AlabamaBaldwinCountyTest(IncludeMardiGras, AlabamaTest):
+    cal_class = AlabamaBaldwinCounty
+
+
+class AlabamaMobileCountyTest(IncludeMardiGras, AlabamaTest):
+    cal_class = AlabamaMobileCounty
+
+
+class AlabamaPerryCountyTest(AlabamaTest):
+    cal_class = AlabamaPerryCounty
+
+    def test_county_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 11, 13), holidays)  # Obama Day
 
 
 class AlaskaTest(NoColumbus, UnitedStatesTest):
@@ -676,17 +711,16 @@ class KentuckyTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 12, 31), holidays)  # NY Eve
 
 
-class LouisianaTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):
+class LouisianaTest(IncludeMardiGras, NoColumbus, ElectionDayEvenYears,
+                    UnitedStatesTest):
     cal_class = Louisiana
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
-        self.assertIn(date(2014, 3, 4), holidays)  # Mardi Gras
         self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 2, 17), holidays)  # Mardi Gras
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
 
 

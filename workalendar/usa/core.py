@@ -56,6 +56,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # National Memorial Day
     national_memorial_day_label = "Memorial Day"
 
+    # Some regional variants
+    include_mardi_gras = False
+
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
@@ -251,6 +254,13 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             self.national_memorial_day_label
         )
 
+    def get_mardi_gras(self, year):
+        """
+        Mardi Gras is the Tuesday happening 47 days before Easter
+        """
+        sunday = self.get_easter_sunday(year)
+        return (sunday - timedelta(days=47), "Mardi Gras")
+
     def get_variable_days(self, year):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
@@ -266,6 +276,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
                 "Thanksgiving Day"),
         ])
+
+        if self.include_mardi_gras:
+            days.append(self.get_mardi_gras(year))
 
         if self.include_federal_presidents_day:
             days.append(self.get_presidents_day(year))
@@ -302,6 +315,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             days.append(
                 self.get_thanksgiving_friday(year)
             )
+
         return days
 
     def get_veterans_day(self, year):

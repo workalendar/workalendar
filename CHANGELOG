@@ -5,6 +5,7 @@ master (unreleased)
 -------------------
 
 - Splitted `africa.py` file into an `africa/` module (#236).
+- Added Alabama Counties - Baldwin County, Mobile County, Perry County. Refactored UnitedStates classes to have a parameter to include the "Mardi Gras" day (#214).
 
 2.0.0 (2017-06-23)
 ------------------
