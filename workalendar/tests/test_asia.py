@@ -9,6 +9,30 @@ class HongKongTest(GenericCalendarTest):
 
     cal_class = HongKong
 
+    def test_year_2010(self):
+        """ Interesting because Christmas fell on a Saturday and CNY fell
+            on a Sunday, so didn't roll, and Ching Ming was on the same day
+            as Easter Monday """
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 1, 1), holidays)    # New Year
+        self.assertIn(date(2010, 2, 13), holidays)   # Chinese new year (shift)
+        self.assertIn(date(2010, 2, 15), holidays)   # Chinese new year
+        self.assertIn(date(2010, 2, 16), holidays)   # Chinese new year
+        self.assertNotIn(date(2010, 2, 17), holidays)  # Not Chinese new year
+        self.assertIn(date(2010, 4, 2), holidays)    # Good Friday
+        self.assertIn(date(2010, 4, 3), holidays)    # Day after Good Friday
+        self.assertIn(date(2010, 4, 5), holidays)    # Easter Monday
+        self.assertIn(date(2010, 4, 6), holidays)    # Ching Ming (shifted)
+        self.assertIn(date(2010, 5, 1), holidays)    # Labour Day
+        self.assertIn(date(2010, 5, 21), holidays)   # Buddha's Birthday
+        self.assertIn(date(2010, 6, 16), holidays)   # Tuen Ng Festival
+        self.assertIn(date(2010, 7, 1), holidays)    # HK SAR Establishment Day
+        self.assertIn(date(2010, 9, 23), holidays)   # Day after Mid-Autumn
+        self.assertIn(date(2010, 10, 1), holidays)   # National Day
+        self.assertIn(date(2010, 10, 16), holidays)  # Chung Yeung Festival
+        self.assertIn(date(2010, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2010, 12, 27), holidays)  # Boxing Day (shifted)
+
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)    # New Year
@@ -194,6 +218,12 @@ class QatarTest(GenericCalendarTest):
 class SingaporeTest(GenericCalendarTest):
 
     cal_class = Singapore
+
+    def test_CNY_2010(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 2, 14), holidays)  # CNY1
+        self.assertIn(date(2010, 2, 15), holidays)  # CNY2
+        self.assertIn(date(2010, 2, 16), holidays)  # Rolled day for CNY
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
