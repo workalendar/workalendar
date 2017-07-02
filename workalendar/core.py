@@ -503,8 +503,10 @@ class ChineseNewYearCalendar(LunarCalendar):
                          "Chinese Lunar New Year shift"),
                     )
                 else:
-                    shift_day = lunar_third_day if self.include_chinese_third_day \
-                        else lunar_second_day
+                    if self.include_chinese_third_day:
+                        shift_day = lunar_third_day
+                    else:
+                        shift_day = lunar_second_day
                     days.append(
                         (shift_day + timedelta(days=1),
                          "Chinese Lunar New Year shift"),
