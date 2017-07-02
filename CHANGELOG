@@ -5,6 +5,7 @@ master (unreleased)
 -------------------
 
 - Added Hong Kong, by @nedlowe (#235).
+- Splitted `africa.py` file into an `africa/` module (#236).
 
 2.0.0 (2017-06-23)
 ------------------
