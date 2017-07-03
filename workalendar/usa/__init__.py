@@ -4,7 +4,8 @@ from __future__ import (absolute_import, division, print_function,
 
 from .core import UnitedStates
 
-from .alabama import Alabama
+from .alabama import (
+    Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty)
 from .alaska import Alaska
 from .arizona import Arizona
 from .arkansas import Arkansas
@@ -60,7 +61,7 @@ NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
 __all__ = [
     UnitedStates,  # Generic federal calendar
-    Alabama,
+    Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty,
     Alaska,
     Arizona,
     Arkansas,
