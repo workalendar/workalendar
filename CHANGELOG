@@ -4,6 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
+- Added Hong Kong, by @nedlowe (#235).
 - Splitted `africa.py` file into an `africa/` module (#236).
 - Added Alabama Counties - Baldwin County, Mobile County, Perry County. Refactored UnitedStates classes to have a parameter to include the "Mardi Gras" day (#214).
 

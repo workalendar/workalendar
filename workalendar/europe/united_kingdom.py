@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date, timedelta
+from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import MON
 
@@ -36,15 +36,8 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         days.append(self.get_spring_bank_holiday(year))
         days.append(self.get_late_summer_bank_holiday(year))
         # Boxing day & XMas shift
-        christmas = date(year, 12, 25)
-        boxing_day = date(year, 12, 26)
-        if christmas.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(christmas)
-            days.append((shift, "Christmas Shift"))
-            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
-        elif boxing_day.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(boxing_day)
-            days.append((shift, "Boxing Day Shift"))
+        shifts = self.shift_christmas_boxing_days(year=year)
+        days.extend(shifts)
         return days
 
 

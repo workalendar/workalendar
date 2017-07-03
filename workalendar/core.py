@@ -327,6 +327,23 @@ class ChristianMixin(Calendar):
     def get_corpus_christi(self, year):
         return self.get_easter_sunday(year) + timedelta(days=60)
 
+    def shift_christmas_boxing_days(self, year):
+        """ When Christmas and/or Boxing Day falls on a weekend, it is rolled
+            forward to the next weekday.
+        """
+        christmas = date(year, 12, 25)
+        boxing_day = date(year, 12, 26)
+        boxing_day_label = "{} Shift".format(self.boxing_day_label)
+        results = []
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            results.append((shift, "Christmas Shift"))
+            results.append((shift + timedelta(days=1), boxing_day_label))
+        elif boxing_day.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(boxing_day)
+            results.append((shift, boxing_day_label))
+        return results
+
     def get_variable_days(self, year):  # noqa
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
@@ -427,7 +444,11 @@ class ChineseNewYearCalendar(LunarCalendar):
     # Some countries include the 2nd lunar day as a holiday
     include_chinese_second_day = False
     chinese_second_day_label = "Chinese New Year (2nd day)"
+    include_chinese_third_day = False
+    chinese_third_day_label = "Chinese New Year (3rd day)"
     shift_sunday_holidays = False
+    # Some calendars roll a starting Sunday CNY to Sat
+    shift_start_cny_sunday = False
 
     def get_chinese_new_year(self, year):
         """
@@ -467,12 +488,35 @@ class ChineseNewYearCalendar(LunarCalendar):
                 lunar_second_day,
                 self.chinese_second_day_label
             ))
-            if self.shift_sunday_holidays:
-                if lunar_first_day.weekday() == SUN:
+        if self.include_chinese_third_day:
+            lunar_third_day = lunar_first_day + timedelta(days=2)
+            days.append((
+                lunar_third_day,
+                self.chinese_third_day_label
+            ))
+
+        if self.shift_sunday_holidays:
+            if lunar_first_day.weekday() == SUN:
+                if self.shift_start_cny_sunday:
                     days.append(
-                        (lunar_second_day + timedelta(days=1),
-                         "Second day of Chinese Lunar New Year shift"),
+                        (lunar_first_day - timedelta(days=1),
+                         "Chinese Lunar New Year shift"),
                     )
+                else:
+                    if self.include_chinese_third_day:
+                        shift_day = lunar_third_day
+                    else:
+                        shift_day = lunar_second_day
+                    days.append(
+                        (shift_day + timedelta(days=1),
+                         "Chinese Lunar New Year shift"),
+                    )
+            if (lunar_second_day.weekday() == SUN
+                    and self.include_chinese_third_day):
+                days.append(
+                    (lunar_third_day + timedelta(days=1),
+                     "Chinese Lunar New Year shift"),
+                )
         return days
 
     def get_variable_days(self, year):

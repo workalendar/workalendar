@@ -88,6 +88,7 @@ Europe
 * France (Alsace / Moselle)
 * Germany
 * Greece
+* Hong Kong
 * Hungary
 * Iceland
 * Ireland
