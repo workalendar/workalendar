@@ -88,7 +88,6 @@ Europe
 * France (Alsace / Moselle)
 * Germany
 * Greece
-* Hong Kong
 * Hungary
 * Iceland
 * Ireland
@@ -123,6 +122,7 @@ America
 Asia
 ----
 
+* Hong Kong
 * Japan
 * Malaysia
 * Qatar
