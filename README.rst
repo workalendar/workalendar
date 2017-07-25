@@ -111,7 +111,7 @@ Europe
 America
 -------
 
-* Brazil (all states and cities, except the city of Viana)
+* Brazil (all states, cities and for bank transactions, except the city of Viana)
 * Chile
 * Colombia
 * Mexico
