@@ -11,7 +11,7 @@ from .brazil import (
     BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
     BrazilSaoPauloCity, BrazilSergipe, BrazilTocantins, BrazilVitoriaCity,
     BrazilVilaVelhaCity, BrazilCariacicaCity, BrazilGuarapariCity,
-    BrazilSerraCity,
+    BrazilSerraCity, BrazilBankCalendar
 )
 from .chile import Chile
 from .colombia import Colombia
@@ -52,6 +52,7 @@ __all__ = (
     BrazilCariacicaCity,
     BrazilGuarapariCity,
     BrazilSerraCity,
+    BrazilBankCalendar,
     Chile,
     Colombia,
     Mexico,
