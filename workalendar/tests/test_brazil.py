@@ -527,3 +527,8 @@ class BrazilBankCalendarTest(BrazilTest):
         last_day = date(2017, 12, 29)
         working_day = self.cal.find_following_working_day(last_day)
         self.assertEquals(working_day, date(2018, 1, 2))
+
+    def test_year_2017_find_next_working_day_for_already_working_day(self):
+        already_working_day = date(2017, 7, 25)
+        working_day = self.cal.find_following_working_day(already_working_day)
+        self.assertEquals(working_day, date(2017, 7, 25))
