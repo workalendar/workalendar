@@ -1,10 +1,10 @@
 CHANGELOG
 =========
 
-master (unreleased)
--------------------
+2.3.1 (2017-07-27)
+------------------
 
-- Nothing to see here
+I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.3.0 version... I tried to remove it from PyPI, but it failed at some point. In order to make sure that the latest version has the highest version number, I'm releasing this "dumb" version. It is equivalent to the 2.1.0 release, but at least, if you upgrade, you have all the 2.0+ niceties...
 
 2.1.0 (2017-07-27)
 ------------------
