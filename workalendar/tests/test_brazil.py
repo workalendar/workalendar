@@ -15,6 +15,8 @@ from workalendar.america import (
     # Cities
     BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
     BrazilCariacicaCity, BrazilGuarapariCity, BrazilSerraCity,
+    # Banks
+    BrazilBankCalendar
 )
 
 
@@ -440,3 +442,93 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
             self.cal.get_holiday_label(good_friday),
             "Paixão do Cristo",
         )
+
+
+class BrazilBankCalendarTest(BrazilTest):
+    cal_class = BrazilBankCalendar
+
+    def test_year_2017_holidays(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)  # New year
+        self.assertIn(date(2017, 2, 27), holidays)  # Monday carnaval
+        self.assertIn(date(2017, 2, 28), holidays)  # Tuesday carnaval
+        self.assertIn(date(2017, 4, 14), holidays)  # Good friday
+        self.assertIn(date(2017, 4, 21), holidays)  # Tiradentes
+        self.assertIn(date(2017, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2017, 6, 15), holidays)  # Corpus Christi
+        self.assertIn(date(2017, 9, 7), holidays)  # Independence day
+        self.assertIn(date(2017, 10, 12), holidays)  # Our Lady Aparecida
+        self.assertIn(date(2017, 11, 2), holidays)  # All Souls' Day
+        self.assertIn(date(2017, 11, 15), holidays)  # Republic day
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2017_find_next_working_day_for_new_year(self):
+        new_year = date(2017, 1, 1)
+        working_day = self.cal.find_following_working_day(new_year)
+        self.assertEquals(working_day, date(2017, 1, 2))
+
+    def test_year_2017_find_next_working_day_for_monday_carnaval(self):
+        monday_carnaval = date(2017, 2, 27)
+        working_day = self.cal.find_following_working_day(monday_carnaval)
+        self.assertEquals(working_day, date(2017, 3, 1))
+
+    def test_year_2017_find_next_working_day_for_tuesday_carnaval(self):
+        tuesday_carnaval = date(2017, 2, 28)
+        working_day = self.cal.find_following_working_day(tuesday_carnaval)
+        self.assertEquals(working_day, date(2017, 3, 1))
+
+    def test_year_2017_find_next_working_day_for_good_friday(self):
+        good_friday = date(2017, 4, 14)
+        working_day = self.cal.find_following_working_day(good_friday)
+        self.assertEquals(working_day, date(2017, 4, 17))
+
+    def test_year_2017_find_next_working_day_for_tiradentes(self):
+        tiradentes = date(2017, 4, 21)
+        working_day = self.cal.find_following_working_day(tiradentes)
+        self.assertEquals(working_day, date(2017, 4, 24))
+
+    def test_year_2017_find_next_working_day_for_labour_day(self):
+        labour_day = date(2017, 5, 1)
+        working_day = self.cal.find_following_working_day(labour_day)
+        self.assertEquals(working_day, date(2017, 5, 2))
+
+    def test_year_2017_find_next_working_day_for_corpus_christi(self):
+        corpus_christi = date(2017, 6, 15)
+        working_day = self.cal.find_following_working_day(corpus_christi)
+        self.assertEquals(working_day, date(2017, 6, 16))
+
+    def test_year_2017_find_next_working_day_for_independence_day(self):
+        independence_day = date(2017, 9, 7)
+        working_day = self.cal.find_following_working_day(independence_day)
+        self.assertEquals(working_day, date(2017, 9, 8))
+
+    def test_year_2017_find_next_working_day_for_our_lady_aparecida(self):
+        our_lady_aparecida = date(2017, 10, 12)
+        working_day = self.cal.find_following_working_day(our_lady_aparecida)
+        self.assertEquals(working_day, date(2017, 10, 13))
+
+    def test_year_2017_find_next_working_day_for_our_all_souls(self):
+        all_souls = date(2017, 11, 2)
+        working_day = self.cal.find_following_working_day(all_souls)
+        self.assertEquals(working_day, date(2017, 11, 3))
+
+    def test_year_2017_find_next_working_day_for_our_republic_day(self):
+        republic_day = date(2017, 11, 15)
+        working_day = self.cal.find_following_working_day(republic_day)
+        self.assertEquals(working_day, date(2017, 11, 16))
+
+    def test_year_2017_find_next_working_day_for_our_christmas_day(self):
+        christmas_day = date(2017, 12, 25)
+        working_day = self.cal.find_following_working_day(christmas_day)
+        self.assertEquals(working_day, date(2017, 12, 26))
+
+    def test_year_2017_find_next_working_day_for_last_day(self):
+        # last day of year for only internal bank transactions
+        last_day = date(2017, 12, 29)
+        working_day = self.cal.find_following_working_day(last_day)
+        self.assertEquals(working_day, date(2018, 1, 2))
+
+    def test_year_2017_find_next_working_day_for_already_working_day(self):
+        already_working_day = date(2017, 7, 25)
+        working_day = self.cal.find_following_working_day(already_working_day)
+        self.assertEquals(working_day, date(2017, 7, 25))
