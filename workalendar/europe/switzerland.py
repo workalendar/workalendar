@@ -6,6 +6,7 @@ from workalendar.core import WesternCalendar, ChristianMixin
 
 class Switzerland(WesternCalendar, ChristianMixin):
     "Switzerland"
+    iso = 'CH'
 
     include_good_friday = True
     include_easter_sunday = True
