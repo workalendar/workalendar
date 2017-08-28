@@ -5,6 +5,7 @@ from workalendar.core import WesternCalendar, ChristianMixin
 class Austria(WesternCalendar, ChristianMixin):
     "Austria"
     iso = 'AT'
+    name = 'Austria'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "National Holiday"),  # Staatsfeiertag
