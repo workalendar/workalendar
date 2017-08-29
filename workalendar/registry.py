@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from workalendar.europe import (
-    Austria, Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen, Hamburg, Hesse, MecklenburgVorpommern,
-    LowerSaxony, NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt, SchleswigHolstein,
-    Thuringia, Switzerland
-)
 
 
 class IsoRegistry(object):
+    """
+    Registry for all calendars retrievable by ISO 3166-2 codes associated with countries
+    where they are used as official calendars.
+
+    Two letter codes are favored for any subdivisions.
+    """
 
     def __init__(self):
         self.region_registry = {}
@@ -25,6 +26,14 @@ class IsoRegistry(object):
         target_registry[cls.iso] = cls
 
     def get_instance(self, iso_code):
+        """
+        Retrieves calendar associated with given ``iso_code``.
+
+        If calendar of subdivision is not registered (for subdivision like ISO codes, e.g. GB-ENG)
+        returns calendar of containing region (e.g. United Kingdom for ISO code GB) if it's available.
+
+        :rtype: Calendar
+        """
         code_elements, is_subregion = self._code_elements(iso_code)
         if is_subregion and iso_code in self.subregion_registry:
             return self.subregion_registry.get(iso_code)
@@ -35,26 +44,31 @@ class IsoRegistry(object):
 
 
 registry = IsoRegistry()
-registry.register(Austria)
-registry.register(Germany)
-registry.register(BadenWurttemberg)
-registry.register(Bavaria)
-registry.register(Berlin)
-registry.register(Brandenburg)
-registry.register(Bremen)
-registry.register(Hamburg)
-registry.register(Hesse)
-registry.register(MecklenburgVorpommern)
-registry.register(LowerSaxony)
-registry.register(NorthRhineWestphalia)
-registry.register(RhinelandPalatinate)
-registry.register(Saarland)
-registry.register(Saxony)
-registry.register(SaxonyAnhalt)
-registry.register(SchleswigHolstein)
-registry.register(Thuringia)
-registry.register(Switzerland)
 
+
+def iso_register(cls):
+    """
+    Registers Calendar class as country or region in IsoRegistry.
+
+    Registered country must set class variables ``iso`` and ``name``.
+
+    >>> from workalendar.core import Calendar
+    >>> from workalendar.registry import iso_register
+    >>> @iso_register
+    >>> class MyRegion(Calendar):
+    >>>     iso = 'MC-MR'
+    >>>     name = 'My region'
+
+    Region calendar is then retrievable from registry:
+
+    >>> from workalendar.registry import registry
+    >>> calendar = registry.get_instance('PL')
+    """
+    registry.register(cls)
+    return cls
+
+
+from workalendar.europe import __all__
 
 # class MetaRegistered(type):
 #     def __new__(mcs, name, bases, class_dict):
