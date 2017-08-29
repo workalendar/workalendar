@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Bulgaria(WesternCalendar, ChristianMixin):
     "Bulgaria"
+    iso = 'BG'
+    name = 'Bulgaria'
+
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Liberation Day"),  # Ден на Освобождението на Б

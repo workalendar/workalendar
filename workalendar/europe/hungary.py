@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Hungary(WesternCalendar, ChristianMixin):
     "Hungary"
+    iso = 'HU'
+    name = 'Hungary'
+
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True

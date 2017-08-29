@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Austria(WesternCalendar, ChristianMixin):
     "Austria"
     iso = 'AT'

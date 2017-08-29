@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Netherlands(WesternCalendar, ChristianMixin):
     "Netherlands"
+    iso = 'NL'
+    name = 'Netherlands'
+
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True

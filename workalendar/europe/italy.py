@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Italy(WesternCalendar, ChristianMixin):
     "Italy"
+    iso = 'IT'
+    name = 'Italy'
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Liberation Day"),
         (5, 1, "International Workers' Day"),

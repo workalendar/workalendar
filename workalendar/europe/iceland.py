@@ -2,10 +2,15 @@
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import THU, MON
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Iceland(WesternCalendar, ChristianMixin):
     "Iceland"
+    iso = 'IS'
+    name = 'Iceland'
+
     include_holy_thursday = True
     include_good_friday = True
     include_easter_monday = True

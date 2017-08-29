@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Norway(WesternCalendar, ChristianMixin):
     "Norway"
+    iso = 'NO'
+    name = 'Norway'
+
     include_holy_thursday = True
     include_good_friday = True
     include_easter_sunday = True

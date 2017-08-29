@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Slovenia(WesternCalendar, ChristianMixin):
     "Slovenia"
+    iso = 'SL'
+    name = 'Slovenia'
+
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True

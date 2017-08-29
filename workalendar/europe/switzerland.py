@@ -2,8 +2,10 @@
 from datetime import date, timedelta
 
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Switzerland(WesternCalendar, ChristianMixin):
     "Switzerland"
     iso = 'CH'
@@ -25,8 +27,12 @@ class Switzerland(WesternCalendar, ChristianMixin):
     )
 
 
+@iso_register
 class Vaud(Switzerland):
     """Canton of Vaud"""
+    iso = 'CH-VD'
+    name = 'Vaud'
+
     include_boxing_day = False
     include_federal_thanksgiving_monday = True
 

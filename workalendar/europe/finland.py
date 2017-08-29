@@ -2,10 +2,15 @@
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import FRI, SAT
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Finland(WesternCalendar, ChristianMixin):
     "Finland"
+    iso = 'FI'
+    name = 'Finland'
+
     include_epiphany = True
     include_good_friday = True
     include_easter_sunday = True

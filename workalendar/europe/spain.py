@@ -2,10 +2,15 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Spain(WesternCalendar, ChristianMixin):
     "Spain"
+    iso = 'ES'
+    name = 'Spain'
+
     include_epiphany = True
     include_immaculate_conception = True
     include_good_friday = True

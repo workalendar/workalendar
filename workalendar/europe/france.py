@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class France(WesternCalendar, ChristianMixin):
     "France"
+    iso = 'FR'
+    name = 'France'
+
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True

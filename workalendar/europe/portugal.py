@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Portugal(WesternCalendar, ChristianMixin):
     "Portugal"
+    iso = 'PT'
+    name = 'Portugal'
+
     include_good_friday = True
     include_easter_sunday = True
 

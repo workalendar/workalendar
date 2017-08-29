@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from workalendar.core import WesternCalendar, OrthodoxMixin
+from workalendar.registry import iso_register
 
 
+@iso_register
 class Romania(WesternCalendar, OrthodoxMixin):
     "Romania"
+    iso = 'RO'
+    name = 'Romania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Years"),
