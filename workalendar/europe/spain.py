@@ -5,10 +5,8 @@ from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('ES')
 class Spain(WesternCalendar, ChristianMixin):
-    "Spain"
-    iso = 'ES'
     name = 'Spain'
 
     include_epiphany = True

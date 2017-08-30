@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import FRI, SAT
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('FI')
 class Finland(WesternCalendar, ChristianMixin):
-    "Finland"
-    iso = 'FI'
     name = 'Finland'
 
     include_epiphany = True

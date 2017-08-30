@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('LU')
 class Luxembourg(WesternCalendar, ChristianMixin):
-    "Luxembourg"
-    iso = 'LU'
     name = 'Luxembourg'
 
     include_easter_monday = True

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from functools import wraps
 
 
 class IsoRegistry(object):
@@ -20,10 +21,10 @@ class IsoRegistry(object):
             is_subregion = True
         return code_elements, is_subregion
 
-    def register(self, cls):
-        _, is_subregion = self._code_elements(cls.iso)
+    def register(self, iso_code, cls):
+        _, is_subregion = self._code_elements(iso_code)
         target_registry = self.subregion_registry if is_subregion else self.region_registry
-        target_registry[cls.iso] = cls
+        target_registry[iso_code] = cls
 
     def get_instance(self, iso_code):
         """
@@ -46,7 +47,7 @@ class IsoRegistry(object):
 registry = IsoRegistry()
 
 
-def iso_register(cls):
+def iso_register(iso_code):
     """
     Registers Calendar class as country or region in IsoRegistry.
 
@@ -54,32 +55,19 @@ def iso_register(cls):
 
     >>> from workalendar.core import Calendar
     >>> from workalendar.registry import iso_register
-    >>> @iso_register
+    >>> @iso_register('MC-MR')
     >>> class MyRegion(Calendar):
-    >>>     iso = 'MC-MR'
-    >>>     name = 'My region'
+    >>>     pass
 
     Region calendar is then retrievable from registry:
 
     >>> from workalendar.registry import registry
-    >>> calendar = registry.get_instance('PL')
+    >>> calendar = registry.get_instance('MC-MR')
     """
-    registry.register(cls)
-    return cls
+    def wrapper(cls):
+        registry.register(iso_code, cls)
+        return cls
+    return wrapper
 
 
 from workalendar.europe import __all__
-
-# class MetaRegistered(type):
-#     def __new__(mcs, name, bases, class_dict):
-#         cls = type.__new__(mcs, name, bases, class_dict)
-#         registry.register(name, cls)
-#         return cls
-#
-#
-# class RegisteredMixin(object):
-#     __metaclass__ = MetaRegistered
-
-
-# from workalendar.registry import registry
-# print registry.items()

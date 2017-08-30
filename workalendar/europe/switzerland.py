@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date, timedelta
-
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('CH')
 class Switzerland(WesternCalendar, ChristianMixin):
-    "Switzerland"
-    iso = 'CH'
     name = 'Switzerland'
 
     include_good_friday = True
@@ -27,10 +25,8 @@ class Switzerland(WesternCalendar, ChristianMixin):
     )
 
 
-@iso_register
+@iso_register('CH-VD')
 class Vaud(Switzerland):
-    """Canton of Vaud"""
-    iso = 'CH-VD'
     name = 'Vaud'
 
     include_boxing_day = False

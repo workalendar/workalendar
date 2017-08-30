@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('EE')
 class Estonia(WesternCalendar, ChristianMixin):
-    "Estonia"
-    iso = 'EE'
     name = 'Estonia'
 
     include_good_friday = True

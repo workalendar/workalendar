@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from workalendar.core import WesternCalendar, OrthodoxMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('RO')
 class Romania(WesternCalendar, OrthodoxMixin):
-    "Romania"
-    iso = 'RO'
     name = 'Romania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

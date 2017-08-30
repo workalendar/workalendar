@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('HR')
 class Croatia(WesternCalendar, ChristianMixin):
-    "Croatia"
-    iso = 'HR'
     name = 'Croatia'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

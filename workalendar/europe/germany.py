@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date, timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register
+@iso_register('DE')
 class Germany(WesternCalendar, ChristianMixin):
-    "Germany"
-    iso = 'DE'
     name = 'Germany'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -41,10 +40,8 @@ class Germany(WesternCalendar, ChristianMixin):
         return days
 
 
-@iso_register
+@iso_register('DE-BW')
 class BadenWurttemberg(Germany):
-    "Baden-Württemberg"
-    iso = 'DE-BW'
     name = "Baden-Wuerttemberg"
 
     include_epiphany = True
@@ -52,10 +49,8 @@ class BadenWurttemberg(Germany):
     include_all_saints = True
 
 
-@iso_register
+@iso_register('DE-BY')
 class Bavaria(Germany):
-    "Bavaria"
-    iso = 'DE-BY'
     name = 'Bavaria'
 
     include_epiphany = True
@@ -64,86 +59,66 @@ class Bavaria(Germany):
     include_assumption = True
 
 
-@iso_register
+@iso_register('DE-BE')
 class Berlin(Germany):
-    "Berlin"
-    iso = 'DE-BE'
     name = 'Berlin'
 
 
-@iso_register
+@iso_register('DE-BB')
 class Brandenburg(Germany):
-    "Brandenburg"
-    iso = 'DE-BB'
     name = 'Brandenburg'
 
     include_easter_sunday = True
     include_reformation_day = True
 
 
-@iso_register
+@iso_register('DE-HB')
 class Bremen(Germany):
-    "Bremen"
-    iso = 'DE-HB'
     name = 'Bremen'
 
 
-@iso_register
+@iso_register('DE-HH')
 class Hamburg(Germany):
-    "Hamburg"
-    iso = 'DE-HH'
     name = 'Hamburg'
 
 
-@iso_register
+@iso_register('DE-HE')
 class Hesse(Germany):
-    "Hesse"
-    iso = 'DE-HE'
     name = 'Hesse'
 
     include_corpus_christi = True
 
 
-@iso_register
+@iso_register('DE-MV')
 class MecklenburgVorpommern(Germany):
-    "Mecklenburg-Vorpommern"
-    iso = 'DE-MV'
     name = 'Mecklenburg-Western Pomerania'
 
     include_reformation_day = True
 
 
-@iso_register
+@iso_register('DE-NI')
 class LowerSaxony(Germany):
-    "Lower Saxony"
-    iso = 'DE-NI'
     name = 'Lower Saxony'
 
 
-@iso_register
+@iso_register('DE-NW')
 class NorthRhineWestphalia(Germany):
-    "North Rhine-Westphalia"
-    iso = 'DE-NW'
     name = 'North Rhine-Westphalia'
 
     include_corpus_christi = True
     include_all_saints = True
 
 
-@iso_register
+@iso_register('DE-RP')
 class RhinelandPalatinate(Germany):
-    "Rhineland-Palatinate"
-    iso = 'DE-RP'
     name = 'Rhineland-Palatinate'
 
     include_corpus_christi = True
     include_all_saints = True
 
 
-@iso_register
+@iso_register('DE-SL')
 class Saarland(Germany):
-    "Saarland"
-    iso = 'DE-SL'
     name = 'Saarland'
 
     include_corpus_christi = True
@@ -151,10 +126,8 @@ class Saarland(Germany):
     include_all_saints = True
 
 
-@iso_register
+@iso_register('DE-SN')
 class Saxony(Germany):
-    "Saxony"
-    iso = 'DE-SN'
     name = 'Saxony'
 
     include_reformation_day = True
@@ -172,27 +145,21 @@ class Saxony(Germany):
         return days
 
 
-@iso_register
+@iso_register('DE-ST')
 class SaxonyAnhalt(Germany):
-    "Saxony-Anhalt"
-    iso = 'DE-ST'
     name = 'Saxony-Anhalt'
 
     include_epiphany = True
     include_reformation_day = True
 
 
-@iso_register
+@iso_register('DE-SH')
 class SchleswigHolstein(Germany):
-    "Schleswig-Holstein"
-    iso = 'DE-SH'
     name = 'Schleswig-Holstein'
 
 
-@iso_register
+@iso_register('DE-TH')
 class Thuringia(Germany):
-    "Thuringia"
-    iso = 'DE-TH'
     name = 'Thuringia'
 
     include_reformation_day = True
