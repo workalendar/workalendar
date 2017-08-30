@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collections import OrderedDict
 
 
 class IsoRegistry(object):
@@ -10,7 +11,7 @@ class IsoRegistry(object):
     """
 
     def __init__(self):
-        self.region_registry = {}
+        self.region_registry = OrderedDict()
 
     def _code_elements(self, iso_code):
         code_elements = iso_code.split('-')
@@ -51,7 +52,7 @@ class IsoRegistry(object):
         :rtype dict
         :return dict where keys are ISO codes strings and values are calendar classes
         """
-        items = {}
+        items = OrderedDict()
         for key, value in self.region_registry.items():
             code_elements, is_subregion = self._code_elements(key)
             if is_subregion and code_elements[0] == iso_code:
@@ -67,7 +68,7 @@ class IsoRegistry(object):
         :rtype dict
         :return dict where keys are ISO codes strings and values are calendar classes
         """
-        items = {}
+        items = OrderedDict()
         for region in regions:
             try:
                 items[region] = self.region_registry[region]
