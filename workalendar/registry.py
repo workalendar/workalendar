@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from functools import wraps
 
 
 class IsoRegistry(object):
@@ -12,7 +11,6 @@ class IsoRegistry(object):
 
     def __init__(self):
         self.region_registry = {}
-        self.subregion_registry = {}
 
     def _code_elements(self, iso_code):
         code_elements = iso_code.split('-')
@@ -22,13 +20,11 @@ class IsoRegistry(object):
         return code_elements, is_subregion
 
     def register(self, iso_code, cls):
-        _, is_subregion = self._code_elements(iso_code)
-        target_registry = self.subregion_registry if is_subregion else self.region_registry
-        target_registry[iso_code] = cls
+        self.region_registry[iso_code] = cls
 
-    def get_instance(self, iso_code):
+    def get_calendar_class(self, iso_code):
         """
-        Retrieves calendar associated with given ``iso_code``.
+        Retrieves calendar class associated with given ``iso_code``.
 
         If calendar of subdivision is not registered (for subdivision like ISO codes, e.g. GB-ENG)
         returns calendar of containing region (e.g. United Kingdom for ISO code GB) if it's available.
@@ -36,12 +32,50 @@ class IsoRegistry(object):
         :rtype: Calendar
         """
         code_elements, is_subregion = self._code_elements(iso_code)
-        if is_subregion and iso_code in self.subregion_registry:
-            return self.subregion_registry.get(iso_code)
-        return self.region_registry.get(code_elements[0])
+        if is_subregion and iso_code not in self.region_registry:
+            # subregion code not in region_registry
+            code = code_elements[0]
+        else:
+            # subregion code in region_registry or is not a subregion
+            code = iso_code
+        return self.region_registry.get(code)
 
-    def items(self):
-        return self.region_registry.items() + self.subregion_registry.items()
+    def get_subregions(self, iso_code):
+        """
+        Returns subregion calendar classes for given region iso_code.
+
+        >>> registry = IsoRegistry()
+        >>> # assuming calendars registered are: DE, DE-HH, DE-BE
+        >>> registry.get_subregions('DE')
+        {'DE-HH': <class 'workalendar.europe.germany.Hamburg'>, 'DE-BE': <class 'workalendar.europe.germany.Berlin'>}
+        :rtype dict
+        :return dict where keys are ISO codes strings and values are calendar classes
+        """
+        items = {}
+        for key, value in self.region_registry.items():
+            code_elements, is_subregion = self._code_elements(key)
+            if is_subregion and code_elements[0] == iso_code:
+                items[key] = value
+        return items
+
+    def items(self, regions, include_subregions=False):
+        """
+        Returns calendar classes for regions
+
+        :param regions list of ISO codes for selected regions
+        :param include_subregions boolean if subregions of selected regions should be included in result
+        :rtype dict
+        :return dict where keys are ISO codes strings and values are calendar classes
+        """
+        items = {}
+        for region in regions:
+            try:
+                items[region] = self.region_registry[region]
+            except KeyError:
+                continue
+            if include_subregions:
+                items.update(self.get_subregions(region))
+        return items
 
 
 registry = IsoRegistry()
@@ -54,15 +88,13 @@ def iso_register(iso_code):
     Registered country must set class variables ``iso`` and ``name``.
 
     >>> from workalendar.core import Calendar
-    >>> from workalendar.registry import iso_register
     >>> @iso_register('MC-MR')
     >>> class MyRegion(Calendar):
     >>>     pass
 
     Region calendar is then retrievable from registry:
 
-    >>> from workalendar.registry import registry
-    >>> calendar = registry.get_instance('MC-MR')
+    >>> calendar = registry.get_calendar_class('MC-MR')
     """
     def wrapper(cls):
         registry.register(iso_code, cls)
@@ -70,4 +102,5 @@ def iso_register(iso_code):
     return wrapper
 
 
-from workalendar.europe import *
+# right now only european countries are supported in the ISO registry
+from workalendar.europe import *        # nopep8
