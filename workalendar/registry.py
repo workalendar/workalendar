@@ -70,4 +70,4 @@ def iso_register(iso_code):
     return wrapper
 
 
-from workalendar.europe import __all__
+from workalendar.europe import *
