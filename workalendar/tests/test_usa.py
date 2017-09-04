@@ -112,6 +112,10 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertIn(date(2015, 11, 26), holidays)  # Thanskgiving
         self.assertIn(date(2015, 12, 25), holidays)  # XMas
 
+    def test_federal_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 12, 27), holidays)  # XMas
+
     def test_columbus_day(self):
         holidays = self.cal.holidays_set(2017)
         # Columbus Day is included here
@@ -975,6 +979,16 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
+
+    def test_federal_year_2017(self):
+        # It is different from other federal days.
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 4, 14), holidays)  # Good Friday
+        self.assertIn(date(2017, 11, 24), holidays)  # Thanksgiving Friday
+        self.assertIn(date(2017, 12, 24), holidays)  # Xmas Eve
+        self.assertIn(date(2017, 12, 25), holidays)  # Xmas Day
+        self.assertIn(date(2017, 12, 26), holidays)  # Day after Xmas
+        self.assertIn(date(2017, 12, 27), holidays)  # Xmas Shift
 
     def test_state_year_2016_xmas(self):
         # XMAS falls on SUN

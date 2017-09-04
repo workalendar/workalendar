@@ -14,6 +14,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         (7, 4, 'Independence Day'),
     )
     # Veterans day label
+    include_veterans_day = True
     veterans_day_label = 'Veterans Day'
 
     # MLK
@@ -104,8 +105,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             # You are observing the 26th (TUE) and 27th (WED)
             elif christmas.weekday() == MON:
                 new_holidays.append((date(year, 12, 26),
-                                     "Christmas Eve (Observed)"))
-                new_holidays.append((date(year, 12, 27),
                                      "Christmas Day (Observed)"))
         return holidays + new_holidays
 
@@ -328,7 +327,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_fixed_holidays(self, year):
         days = super(UnitedStates, self).get_fixed_holidays(year)
-        days.append(self.get_veterans_day(year))
+        if self.include_veterans_day:
+            days.append(self.get_veterans_day(year))
         return days
 
     def get_calendar_holidays(self, year):
