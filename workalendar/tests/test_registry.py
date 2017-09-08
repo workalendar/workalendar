@@ -1,13 +1,8 @@
 from datetime import date
-from datetime import datetime
 from unittest import TestCase
 
 from workalendar.registry import IsoRegistry
-from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI, WED
-from workalendar.core import Calendar, LunarCalendar, WesternCalendar
-from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
-from workalendar.core import EphemMixin
+from workalendar.core import Calendar
 
 
 class RegionCalendar(Calendar):

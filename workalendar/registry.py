@@ -4,7 +4,8 @@ from collections import OrderedDict
 
 class IsoRegistry(object):
     """
-    Registry for all calendars retrievable by ISO 3166-2 codes associated with countries
+    Registry for all calendars retrievable
+    by ISO 3166-2 codes associated with countries
     where they are used as official calendars.
 
     Two letter codes are favored for any subdivisions.
@@ -27,8 +28,10 @@ class IsoRegistry(object):
         """
         Retrieves calendar class associated with given ``iso_code``.
 
-        If calendar of subdivision is not registered (for subdivision like ISO codes, e.g. GB-ENG)
-        returns calendar of containing region (e.g. United Kingdom for ISO code GB) if it's available.
+        If calendar of subdivision is not registered
+        (for subdivision like ISO codes, e.g. GB-ENG)
+        returns calendar of containing region
+        (e.g. United Kingdom for ISO code GB) if it's available.
 
         :rtype: Calendar
         """
@@ -48,9 +51,11 @@ class IsoRegistry(object):
         >>> registry = IsoRegistry()
         >>> # assuming calendars registered are: DE, DE-HH, DE-BE
         >>> registry.get_subregions('DE')
-        {'DE-HH': <class 'workalendar.europe.germany.Hamburg'>, 'DE-BE': <class 'workalendar.europe.germany.Berlin'>}
+        {'DE-HH': <class 'workalendar.europe.germany.Hamburg'>,
+        'DE-BE': <class 'workalendar.europe.germany.Berlin'>}
         :rtype dict
-        :return dict where keys are ISO codes strings and values are calendar classes
+        :return dict where keys are ISO codes strings
+        and values are calendar classes
         """
         items = OrderedDict()
         for key, value in self.region_registry.items():
@@ -64,9 +69,11 @@ class IsoRegistry(object):
         Returns calendar classes for regions
 
         :param regions list of ISO codes for selected regions
-        :param include_subregions boolean if subregions of selected regions should be included in result
+        :param include_subregions boolean if subregions
+        of selected regions should be included in result
         :rtype dict
-        :return dict where keys are ISO codes strings and values are calendar classes
+        :return dict where keys are ISO codes strings
+        and values are calendar classes
         """
         items = OrderedDict()
         for region in regions:
