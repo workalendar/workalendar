@@ -15,6 +15,7 @@ def read_relative_file(filename):
     with io.open(path, encoding='utf-8') as f:
         return f.read()
 
+
 NAME = 'workalendar'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
@@ -24,7 +25,7 @@ REQUIREMENTS = [
     'pyCalverter',
     'setuptools>=1.0',
 ]
-version = '2.4.0.1'
+version = '2.4.0.dev0'
 __VERSION__ = version
 
 if PY2:

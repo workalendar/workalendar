@@ -8,7 +8,6 @@ from workalendar.registry import iso_register
 class Bulgaria(WesternCalendar, ChristianMixin):
     name = 'Bulgaria'
 
-
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Liberation Day"),  # Ден на Освобождението на Б
         (5, 1, "International Workers' Day"),  # Ден на труда и на междунар

@@ -76,8 +76,8 @@ __all__ = (
     'UnitedKingdomNorthernIreland',
 
     # Germany
-    'Germany', 'BadenWurttemberg', 'Bavaria', 'Berlin', 'Brandenburg', 'Bremen',
-    'Hamburg', 'Hesse', 'MecklenburgVorpommern', 'LowerSaxony',
+    'Germany', 'BadenWurttemberg', 'Bavaria', 'Berlin', 'Brandenburg',
+    'Bremen', 'Hamburg', 'Hesse', 'MecklenburgVorpommern', 'LowerSaxony',
     'NorthRhineWestphalia', 'RhinelandPalatinate', 'Saarland', 'Saxony',
     'SaxonyAnhalt', 'SchleswigHolstein', 'Thuringia',
 )

@@ -104,4 +104,4 @@ def iso_register(iso_code):
 
 
 # right now only european countries are supported in the ISO registry
-from workalendar.europe import *        # nopep8
+from workalendar.europe import *        # NoQA
