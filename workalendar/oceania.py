@@ -96,6 +96,10 @@ class AustralianCapitalTerritory(Australia):
 
         # Family & Community Day was celebrated on the first Tuesday of
         # November in 2007, 2008 and 2009
+
+        # Per Holidays (Reconciliation Day) Amendment Bill 2017, 2017 is the
+        # last year that ACT will celebrate family and community day. It is
+        # being replaced by Reconciliaton day
         if year in (2007, 2008, 2009):
             day = AustralianCapitalTerritory.get_nth_weekday_in_month(
                 year, 11, TUE)
@@ -113,16 +117,33 @@ class AustralianCapitalTerritory(Australia):
             day = date(2015, 9, 28)
         elif year == 2016:
             day = date(2016, 9, 26)
+        elif year == 2017:
+            day = date(2017, 9, 25)
         else:
-            raise Exception("Year %d is not implemented, Sorry" % year)
+            return None
         return (day, "Family & Community Day")
+
+    def get_reconciliation_day(self, year):
+        if year >= 2018:
+            reconciliation_day = date(year, 5, 27)
+            if reconciliation_day.weekday() == MON:
+                return (reconciliation_day, "Reconciliation Day")
+            else:
+                shift = AustralianCapitalTerritory.get_first_weekday_after(reconciliation_day, MON)
+                return shift, "Reconciliation Day Shift"
 
     def get_variable_days(self, year):
         days = super(AustralianCapitalTerritory, self).get_variable_days(year)
-        days.extend([
-            self.get_canberra_day(year),
-            self.get_family_community_day(year),
-        ])
+        days.append(self.get_canberra_day(year))
+
+        family_community_day = self.get_family_community_day(year)
+        if family_community_day is not None:
+            days.append(family_community_day)
+
+        reconciliation_day = self.get_reconciliation_day(year)
+        if reconciliation_day is not None:
+            days.append(reconciliation_day)
+
         return days
 
 

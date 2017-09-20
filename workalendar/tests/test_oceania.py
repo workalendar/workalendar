@@ -66,6 +66,16 @@ class AustraliaCapitalTerritoryTest(AustraliaTest):
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
+    def test_reconciliation_day(self):
+        reconciliation_day = self.cal.get_reconciliation_day(2017)
+        self.assertIsNone(reconciliation_day)
+
+        reconciliation_day = self.cal.get_reconciliation_day(2018)
+        self.assertEqual(reconciliation_day, (date(2018, 5, 28), "Reconciliation Day Shift"))
+
+        reconciliation_day = self.cal.get_reconciliation_day(2019)
+        self.assertEqual(reconciliation_day, (date(2019, 5, 27), "Reconciliation Day"))
+
 
 class NewSouthWalesTest(AustraliaTest):
     cal_class = NewSouthWales
