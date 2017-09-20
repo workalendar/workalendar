@@ -5,6 +5,7 @@ master (unreleased)
 -------------------
 
 - Dropped support for Python 3.3 (#245).
+- Fixed Travis-ci configuration for Python 3.5 and al (#252).
 
 2.3.1 (2017-07-27)
 ------------------
