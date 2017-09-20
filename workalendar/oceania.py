@@ -129,7 +129,8 @@ class AustralianCapitalTerritory(Australia):
             if reconciliation_day.weekday() == MON:
                 return (reconciliation_day, "Reconciliation Day")
             else:
-                shift = AustralianCapitalTerritory.get_first_weekday_after(reconciliation_day, MON)
+                shift = AustralianCapitalTerritory.get_first_weekday_after(
+                    reconciliation_day, MON)
                 return shift, "Reconciliation Day Shift"
 
     def get_variable_days(self, year):
