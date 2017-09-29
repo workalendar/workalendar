@@ -1,16 +1,19 @@
 from datetime import date
 
 from workalendar.tests import GenericCalendarTest
-from workalendar.oceania import Australia
-from workalendar.oceania import AustraliaCapitalTerritory
-from workalendar.oceania import AustraliaNewSouthWales
-from workalendar.oceania import AustraliaNorthernTerritory
-from workalendar.oceania import AustraliaQueensland
-from workalendar.oceania import SouthAustralia
-from workalendar.oceania import Tasmania, Hobart
-from workalendar.oceania import Victoria
-from workalendar.oceania import WesternAustralia
-from workalendar.oceania import MarshallIslands
+from workalendar.oceania import (
+    Australia,
+    AustralianCapitalTerritory,
+    NewSouthWales,
+    NorthernTerritory,
+    Queensland,
+    SouthAustralia,
+    Tasmania,
+    Hobart,
+    Victoria,
+    WesternAustralia,
+    MarshallIslands,
+)
 
 
 class AustraliaTest(GenericCalendarTest):
@@ -51,7 +54,7 @@ class AustraliaTest(GenericCalendarTest):
 
 
 class AustraliaCapitalTerritoryTest(AustraliaTest):
-    cal_class = AustraliaCapitalTerritory
+    cal_class = AustralianCapitalTerritory
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -63,9 +66,21 @@ class AustraliaCapitalTerritoryTest(AustraliaTest):
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
+    def test_reconciliation_day(self):
+        reconciliation_day = self.cal.get_reconciliation_day(2017)
+        self.assertIsNone(reconciliation_day)
 
-class AustraliaNewSouthWalesTest(AustraliaTest):
-    cal_class = AustraliaNewSouthWales
+        reconciliation_day = self.cal.get_reconciliation_day(2018)
+        self.assertEqual(reconciliation_day, (date(2018, 5, 28),
+                                              "Reconciliation Day Shift"))
+
+        reconciliation_day = self.cal.get_reconciliation_day(2019)
+        self.assertEqual(reconciliation_day, (date(2019, 5, 27),
+                                              "Reconciliation Day"))
+
+
+class NewSouthWalesTest(AustraliaTest):
+    cal_class = NewSouthWales
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -76,13 +91,16 @@ class AustraliaNewSouthWalesTest(AustraliaTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_anzac_shift(self):
-        # We don't shift
         holidays = self.cal.holidays_set(2010)
-        self.assertNotIn(date(2010, 4, 26), holidays)
+        self.assertIn(date(2010, 4, 26), holidays)
+
+        # We don't shift if ANZAC day falls on a Saturday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 25), holidays)
 
 
-class AustraliaNorthernTerritoryTest(AustraliaTest):
-    cal_class = AustraliaNorthernTerritory
+class NorthernTerritoryTest(AustraliaTest):
+    cal_class = NorthernTerritory
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -92,9 +110,17 @@ class AustraliaNorthernTerritoryTest(AustraliaTest):
         self.assertIn(date(2013, 8, 5), holidays)  # Picnic day
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
+    def test_anzac_shift(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 4, 26), holidays)
 
-class AustraliaQueenslandTest(AustraliaTest):
-    cal_class = AustraliaQueensland
+        # We don't shift if ANZAC day falls on a Saturday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 25), holidays)
+
+
+class QueenslandTest(AustraliaTest):
+    cal_class = Queensland
 
     def test_regional_specific_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -102,6 +128,14 @@ class AustraliaQueenslandTest(AustraliaTest):
         self.assertIn(date(2013, 5, 6), holidays)  # May's labour day
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_anzac_shift(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 4, 26), holidays)
+
+        # We don't shift if ANZAC day falls on a Saturday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 25), holidays)
 
 
 class SouthAustraliaTest(AustraliaTest):
@@ -115,6 +149,14 @@ class SouthAustraliaTest(AustraliaTest):
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Proclamation day
 
+    def test_anzac_shift(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 4, 26), holidays)
+
+        # We don't shift if ANZAC day falls on a Saturday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 25), holidays)
+
 
 class TasmaniaTest(AustraliaTest):
     cal_class = Tasmania
@@ -124,6 +166,7 @@ class TasmaniaTest(AustraliaTest):
         self.assertIn(date(2013, 3, 11), holidays)  # Eight hours day
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+        self.assertIn(date(2013, 4, 25), holidays)  # ANZAC day
 
     def test_anzac_shift(self):
         # We don't shift
@@ -157,6 +200,12 @@ class VictoriaTest(AustraliaTest):
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
         self.assertIn(date(2013, 11, 5), holidays)  # Melbourne's cup
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+        self.assertIn(date(2013, 4, 25), holidays)  # ANZAC day
+
+    def test_anzac_shift(self):
+        # We don't shift
+        holidays = self.cal.holidays_set(2010)
+        self.assertNotIn(date(2010, 4, 26), holidays)
 
 
 class WesternAustraliaTest(AustraliaTest):

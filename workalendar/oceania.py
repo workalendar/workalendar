@@ -1,5 +1,5 @@
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, TUE, FRI
+from workalendar.core import MON, TUE, FRI, SAT, SUN
 from datetime import date, timedelta
 
 
@@ -12,6 +12,8 @@ class Australia(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     # Shall we shift Anzac Day?
     shift_anzac_day = True
+
+    ANZAC_SHIFT_DAYS = (SAT, SUN)
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 26, "Australia Day"),
@@ -39,7 +41,7 @@ class Australia(WesternCalendar, ChristianMixin):
         anzac_day = date(year, 4, 25)
         if not self.shift_anzac_day:
             return (anzac_day, "Anzac Day")
-        if anzac_day.weekday() in self.get_weekend_days():
+        if anzac_day.weekday() in self.ANZAC_SHIFT_DAYS:
             anzac_day = self.find_following_working_day(anzac_day)
         return (anzac_day, "Anzac Day")
 
@@ -81,8 +83,8 @@ class Australia(WesternCalendar, ChristianMixin):
         return days
 
 
-class AustraliaCapitalTerritory(Australia):
-    "Australia Capital Territory"
+class AustralianCapitalTerritory(Australia):
+    "Australian Capital Territory"
     include_easter_saturday = True
     include_queens_birthday = True
     include_labour_day_october = True
@@ -94,8 +96,12 @@ class AustraliaCapitalTerritory(Australia):
 
         # Family & Community Day was celebrated on the first Tuesday of
         # November in 2007, 2008 and 2009
+
+        # Per Holidays (Reconciliation Day) Amendment Bill 2017, 2017 is the
+        # last year that ACT will celebrate family and community day. It is
+        # being replaced by Reconciliaton day
         if year in (2007, 2008, 2009):
-            day = AustraliaCapitalTerritory.get_nth_weekday_in_month(
+            day = AustralianCapitalTerritory.get_nth_weekday_in_month(
                 year, 11, TUE)
         elif year == 2010:
             day = date(2010, 9, 27)
@@ -111,49 +117,70 @@ class AustraliaCapitalTerritory(Australia):
             day = date(2015, 9, 28)
         elif year == 2016:
             day = date(2016, 9, 26)
+        elif year == 2017:
+            day = date(2017, 9, 25)
         else:
-            raise Exception("Year %d is not implemented, Sorry" % year)
+            return None
         return (day, "Family & Community Day")
 
+    def get_reconciliation_day(self, year):
+        if year >= 2018:
+            reconciliation_day = date(year, 5, 27)
+            if reconciliation_day.weekday() == MON:
+                return (reconciliation_day, "Reconciliation Day")
+            else:
+                shift = AustralianCapitalTerritory.get_first_weekday_after(
+                    reconciliation_day, MON)
+                return shift, "Reconciliation Day Shift"
+
     def get_variable_days(self, year):
-        days = super(AustraliaCapitalTerritory, self).get_variable_days(year)
-        days.extend([
-            self.get_canberra_day(year),
-            self.get_family_community_day(year),
-        ])
+        days = super(AustralianCapitalTerritory, self).get_variable_days(year)
+        days.append(self.get_canberra_day(year))
+
+        family_community_day = self.get_family_community_day(year)
+        if family_community_day is not None:
+            days.append(family_community_day)
+
+        reconciliation_day = self.get_reconciliation_day(year)
+        if reconciliation_day is not None:
+            days.append(reconciliation_day)
+
         return days
 
 
-class AustraliaNewSouthWales(Australia):
-    "Australia New South Wales"
+class NewSouthWales(Australia):
+    "New South Wales"
     include_queens_birthday = True
     include_easter_saturday = True
     include_easter_sunday = True
     include_labour_day_october = True
     include_boxing_day = True
-    shift_anzac_day = False
+
+    ANZAC_SHIFT_DAYS = (SUN,)
 
 
-class AustraliaNorthernTerritory(Australia):
-    "Australia Northern Territory"
+class NorthernTerritory(Australia):
+    "Northern Territory"
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
 
+    ANZAC_SHIFT_DAYS = (SUN,)
+
     def get_may_day(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
+            NorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
             "May Day"
         )
 
     def get_picnic_day(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 8, MON),
+            NorthernTerritory.get_nth_weekday_in_month(year, 8, MON),
             "Picnic Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaNorthernTerritory, self).get_variable_days(year)
+        days = super(NorthernTerritory, self).get_variable_days(year)
         days.extend([
             self.get_may_day(year),
             self.get_picnic_day(year),
@@ -161,20 +188,22 @@ class AustraliaNorthernTerritory(Australia):
         return days
 
 
-class AustraliaQueensland(Australia):
-    "Australia Queensland"
+class Queensland(Australia):
+    "Queensland"
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
 
+    ANZAC_SHIFT_DAYS = (SUN,)
+
     def get_labour_day_may(self, year):
         return (
-            AustraliaNorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
+            Queensland.get_nth_weekday_in_month(year, 5, MON),
             "Labour Day"
         )
 
     def get_variable_days(self, year):
-        days = super(AustraliaQueensland, self).get_variable_days(year)
+        days = super(Queensland, self).get_variable_days(year)
         days.append(self.get_labour_day_may(year))
         return days
 
@@ -184,6 +213,8 @@ class SouthAustralia(Australia):
     include_easter_saturday = True
     include_queens_birthday = True
     include_labour_day_october = True
+
+    ANZAC_SHIFT_DAYS = (SUN,)
 
     def get_adelaides_cup(self, year):
         return (
@@ -256,6 +287,7 @@ class Victoria(Australia):
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
+    shift_anzac_day = False
 
     def get_labours_day_in_march(self, year):
         return (

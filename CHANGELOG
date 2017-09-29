@@ -6,6 +6,9 @@ master (unreleased)
 
 - Dropped support for Python 3.3 (#245).
 - Fixed Travis-ci configuration for Python 3.5 and al (#252).
+- Fixed shifting ANZAC day for Australia states(#249)
+- Renamed Australian state classes to actual state names(eg. AustraliaNewSouthWales to NewSouthWales)
+- Update ACT holidays(#251)
 
 2.3.1 (2017-07-27)
 ------------------
