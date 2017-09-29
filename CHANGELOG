@@ -9,6 +9,7 @@ master (unreleased)
 - Fixed shifting ANZAC day for Australia states(#249)
 - Renamed Australian state classes to actual state names(eg. AustraliaNewSouthWales to NewSouthWales)
 - Update ACT holidays(#251)
+- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalenda.registry`` module. Please use with care at the moment (#248).
 
 2.3.1 (2017-07-27)
 ------------------

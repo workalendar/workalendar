@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register('BE')
 class Belgium(WesternCalendar, ChristianMixin):
-    "Belgium"
+    name = 'Belgium'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),

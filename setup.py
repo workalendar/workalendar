@@ -15,6 +15,7 @@ def read_relative_file(filename):
     with io.open(path, encoding='utf-8') as f:
         return f.read()
 
+
 NAME = 'workalendar'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [

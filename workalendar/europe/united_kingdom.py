@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import MON
+from workalendar.registry import iso_register
 
 
+@iso_register('GB')
 class UnitedKingdom(WesternCalendar, ChristianMixin):
-    "United Kingdom"
+    name = 'United Kingdom'
+
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
@@ -41,8 +45,10 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         return days
 
 
+@iso_register('GB-NIR')
 class UnitedKingdomNorthernIreland(UnitedKingdom):
-    "Northern Ireland (UK)"
+    name = 'Northern Ireland'
+
     def get_variable_days(self, year):
         days = super(UnitedKingdomNorthernIreland, self) \
             .get_variable_days(year)

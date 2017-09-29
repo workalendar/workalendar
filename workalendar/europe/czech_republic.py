@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register('CZ')
 class CzechRepublic(WesternCalendar, ChristianMixin):
-    "Czech Republic"
+    name = 'Czech Republic'
+
     include_easter_monday = True
     include_good_friday = True
 

@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register('IT')
 class Italy(WesternCalendar, ChristianMixin):
-    "Italy"
+    name = 'Italy'
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Liberation Day"),
         (5, 1, "International Workers' Day"),
@@ -14,6 +18,5 @@ class Italy(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_assumption = True
     include_all_saints = True
-    include_assumption = True
     include_boxing_day = True
     boxing_day_label = "St Stephen's Day"

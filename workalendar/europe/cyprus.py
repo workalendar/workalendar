@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import timedelta
 from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.registry import iso_register
 
 
+@iso_register('CY')
 class Cyprus(WesternCalendar, ChristianMixin):
-    "Cyprus"
+    name = 'Cyprus'
 
     include_epiphany = True
     include_clean_monday = True
