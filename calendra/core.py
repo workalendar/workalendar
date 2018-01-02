@@ -524,19 +524,14 @@ class WesternCalendar(Calendar):
     WEEKEND_DAYS = (SAT, SUN)
     shift_new_years_day = False
 
-    FIXED_HOLIDAYS = (
-        Holiday(
-            date(2000, 1, 1), 'New year', indication='First day in January'),
-    )
-
     def get_variable_days(self, year):
         days = super(WesternCalendar, self).get_variable_days(year)
-        new_year = date(year, 1, 1)
-        if self.shift_new_years_day:
-            if new_year.weekday() in self.get_weekend_days():
-                days.append((
-                    self.find_following_working_day(new_year),
-                    "New Year shift"))
+        new_years = Holiday(
+            date(year, 1, 1), 'New year', indication='First day in January',
+        )
+        if not self.shift_new_years_day:
+            new_years.observance_shift = None
+        days.append(new_years)
         return days
 
 

@@ -531,7 +531,8 @@ class IrelandTest(GenericCalendarTest):
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)    # new year day
-        self.assertIn(date(2012, 1, 2), holidays)    # new year day shift
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2012, 1, 2), observed)    # new year day shift
 
     def test_shift_2011(self):
         holidays = self.cal.holidays_set(2011)
