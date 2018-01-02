@@ -45,6 +45,7 @@ params = dict(
 			'pytest>=2.8',
 			'pytest-sugar',
 			'collective.checkdocs',
+			'pygments',
 			'pytest-cov',
 			'pytest-pep8',
 		],
