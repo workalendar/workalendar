@@ -735,9 +735,10 @@ class UnitedKingdomTest(GenericCalendarTest):
 
     def test_shift_2016(self):
         holidays = self.cal.holidays_set(2016)
+        observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas - Sunday
-        self.assertIn(date(2016, 12, 26), holidays)  # Boxing day - Monday
-        self.assertIn(date(2016, 12, 27), holidays)  # Christmas - shift to Tue
+        self.assertIn(date(2016, 12, 26), observed)  # Christmas - observed
+        self.assertIn(date(2016, 12, 27), observed)  # Boxing day - observed
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
