@@ -1,4 +1,6 @@
-"""Working day tools
+# -*- coding: utf-8 -*-
+"""
+Working day tools
 """
 import warnings
 import itertools
@@ -107,6 +109,7 @@ class Holiday(date):
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
+    WEEKEND_DAYS = ()
     observance_shift = dict(weekday=rd.MO(1))
     """
     The shift for the observance of a holiday defined as keyword parameters to
@@ -194,8 +197,12 @@ class Calendar(object):
         e.g: return (SAT, SUN,)
 
         """
-        raise NotImplementedError("Your Calendar class must implement the"
-                                  " `get_weekend_days` method")
+        if self.WEEKEND_DAYS:
+            return self.WEEKEND_DAYS
+        else:
+            raise NotImplementedError("Your Calendar class must provide "
+                                      "WEEKEND_DAYS or implement the "
+                                      "`get_weekend_days` method")
 
     def is_working_day(self, day,
                        extra_working_days=None, extra_holidays=None):
@@ -374,9 +381,11 @@ class ChristianMixin(Calendar):
     include_clean_monday = False
     include_annunciation = False
     include_ash_wednesday = False
+    ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
     include_holy_thursday = False
     include_good_friday = False
+    good_friday_label = "Good Friday"
     include_easter_monday = False
     include_easter_saturday = False
     include_easter_sunday = False
@@ -456,13 +465,15 @@ class ChristianMixin(Calendar):
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
-            days.append((self.get_ash_wednesday(year), "Ash Wednesday"))
+            days.append(
+                (self.get_ash_wednesday(year), self.ash_wednesday_label)
+            )
         if self.include_palm_sunday:
             days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
             days.append((self.get_holy_thursday(year), "Holy Thursday"))
         if self.include_good_friday:
-            days.append((self.get_good_friday(year), "Good Friday"))
+            days.append((self.get_good_friday(year), self.good_friday_label))
         if self.include_easter_saturday:
             days.append((self.get_easter_saturday(year), "Easter Saturday"))
         if self.include_easter_sunday:
@@ -516,10 +527,6 @@ class WesternCalendar(Calendar):
         Holiday(
             date(2000, 1, 1), 'New year', indication='First day in January'),
     )
-
-    def get_weekend_days(self):
-        "Week-end days are SATurday and SUNday."
-        return self.WEEKEND_DAYS
 
     def get_variable_days(self, year):
         days = super(WesternCalendar, self).get_variable_days(year)
@@ -639,7 +646,7 @@ class CalverterMixin(Calendar):
         return self.ISLAMIC_HOLIDAYS
 
     def get_variable_days(self, year):
-        warnings.warn('Please take not that, due to arbitrary decisions, '
+        warnings.warn('Please take note that, due to arbitrary decisions, '
                       'this Islamic calendar computation may be wrong.')
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
@@ -662,12 +669,14 @@ class IslamicMixin(CalverterMixin):
     include_start_ramadan = False
     include_eid_al_fitr = False
     length_eid_al_fitr = 1
+    eid_al_fitr_label = "Eid al-Fitr"
     include_eid_al_adha = False
     length_eid_al_adha = 1
     include_day_of_sacrifice = False
-    include_day_of_sacrifice_label = "Eid al-Adha"
+    day_of_sacrifice_label = "Eid al-Adha"
     include_islamic_new_year = False
     include_laylat_al_qadr = False
+    include_nuzul_al_quran = False
 
     def get_islamic_holidays(self):
         """Return a list of Islamic (month, day, label) for islamic holidays.
@@ -683,14 +692,16 @@ class IslamicMixin(CalverterMixin):
             days.append((3, 13, "Day after Prophet's Birthday"))
         if self.include_start_ramadan:
             days.append((9, 1, "Start of ramadan"))
+        if self.include_nuzul_al_quran:
+            days.append((9, 17, "Nuzul Al-Qur'an"))
         if self.include_eid_al_fitr:
             for x in range(self.length_eid_al_fitr):
-                days.append((10, x + 1, "Eid al-Fitr"))
+                days.append((10, x + 1, self.eid_al_fitr_label))
         if self.include_eid_al_adha:
             for x in range(self.length_eid_al_adha):
                 days.append((12, x + 10, "Eid al-Adha"))
         if self.include_day_of_sacrifice:
-            days.append((12, 10, self.include_day_of_sacrifice_label))
+            days.append((12, 10, self.day_of_sacrifice_label))
         if self.include_laylat_al_qadr:
             warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
                           " by the religious authorities. It is not possible"

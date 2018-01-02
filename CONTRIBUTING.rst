@@ -81,7 +81,7 @@ Test-driven start
 
 Let's prepare the Zhraa class. Edit the ``calendra/europe/zhraa.py`` file and add a class like this::
 
-    from workalendar.core import WesternCalendar
+    from calendra.core import WesternCalendar
 
     class Zhraa(WesternCalendar):
         pass
@@ -152,7 +152,7 @@ flag.
 
 ::
 
-    from workalendar.core import WesternCalendar, ChristianMixin
+    from calendra.core import WesternCalendar, ChristianMixin
 
     class Zhraa(WesternCalendar, ChristianMixin):
         include_easter_monday = True

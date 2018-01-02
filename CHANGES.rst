@@ -1,6 +1,44 @@
 CHANGELOG
 =========
 
+1.9
+---
+
+Incorporate changes from workalendar 1.3.0:
+
+- Added Singapore calendar, initiated by @nedlowe (#194 + #195).
+- Added Malaysia, by @gregyhj (#201).
+- Added Good Friday in the list of Hungarian holidays, as of the year 2017 (#203), thx to @mariusz-korzekwa for the bug report.
+- Assigned a minimal setuptools version, to avoid naughty ``DistributionNotFound`` exceptions with obsolete versions (#74).
+- Fixed a bug in Slovakia calendar, de-duplicated Christmas Day, that appeared twice (#205).
+- Fixed important bugs in the calendars of the following Brazilian cities: Vitória, Vila Velha, Cariacica, Guarapari and Serra - thx to Fernanda Gonçalves Rodrigues, who confirmed this issue raised by @Skippern (#199).
+
+- Moved all the calendar of countries on the american continent in their own modules (#188).
+- Refactor base Calendar class get_weekend_days to use WEEKEND_DAYS more intelligently (#191 + #192).
+- Many additions to the Brazil and various states / cities. Were added: Acre, Alagoas, Amapá, Amazonas, Bahia, Ceará, Distrito Federal, Espírito Santo State, Goiás, Maranhão, Mato Grosso, Mato Grosso do Sul, Pará, Paraíba, Pernambuco, Piauí, Rio de Janeiro, Rio Grande do Norte, Rio Grande do Sul, Rondônia, Roraima, Santa Catarina, São Paulo, Sergipe, Tocantins, City of Vitória, City of Vila Velha, City of Cariacica, City of Guarapari and City of Serra (#187).
+- Added a ``good_friday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
+- Added a ``ash_wednesday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
+
+- Added Cyprus. thx @gregn610 (#174).
+- Added Latvia. thx @gregn610 (#178).
+- Added Malta. thx @gregn610 (#179).
+- Added Romania. thx @gregn610 (#180).
+- Added Canton of Vaud (Switzerland) - @brutasse (#182).
+- Fixed January 2nd state holiday (#181).
+- Fixed Saxony repentance day for the year 2016. thx @Natim (#168).
+- Fixed Historical and one-off holidays for South Africa. thx @gregn610 (#173).
+- Minor PEP8 fixes (#186).
+
+After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved.
+
+- Add Ireland. thx @gregn610 (#152).
+- Bugfix: New Year's Eve is not a holiday in Netherlands (#154).
+- Add Austria.  thx @gregn610 (#153)
+- Add Bulgaria. thx @gregn610 (#156)
+- Add Croatia. thx @gregn610 (#157)
+
+- Reformation Day is a national holiday in Germany, but only in 2017 (#150).
+
 1.8
 ---
 

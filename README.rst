@@ -26,10 +26,10 @@ functions.
 History
 =======
 
-Calendra is a fork of `Workalendar <https://github.com/novapost/workalendar>`_
+Calendra is a fork of `Workalendar <https://github.com/peopledoc/workalendar>`_
 designed to be more extensible and introspectable, adding interfaces where
 `Workalendar is philosophically opposed for the sake of simplicity
-<https://github.com/novapost/workalendar/pull/79>`_.
+<https://github.com/peopledoc/workalendar/pull/79>`_.
 
 Status
 ======
@@ -95,7 +95,11 @@ Available Calendars
 Europe
 ------
 
+* Austria
 * Belgium
+* Bulgaria
+* Croatia
+* Cyprus
 * Czech Republic
 * Denmark
 * Estonia
@@ -107,23 +111,28 @@ Europe
 * Greece
 * Hungary
 * Iceland
+* Ireland
 * Italy
+* Latvia
 * Luxembourg
+* Malta
 * Netherlands
 * Norway
 * Poland
 * Portugal
+* Romania
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
 * Spain (incl. Catalonia)
 * Slovenia
 * Switzerland
+  * Vaud
 
 America
 -------
 
-* Brazil (incl. São Paulo state and city)
+* Brazil (all states and cities, except the city of Viana)
 * Chile
 * Colombia
 * Mexico
@@ -135,7 +144,9 @@ Asia
 ----
 
 * Japan
+* Malaysia
 * Qatar
+* Singapore
 * South Korea
 * Taiwan
 

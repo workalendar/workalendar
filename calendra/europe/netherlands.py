@@ -15,7 +15,6 @@ class Netherlands(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 5, "Liberation Day"),
-        (12, 31, "New Year's Eve"),
     )
 
     def get_king_queen_day(self, year):
