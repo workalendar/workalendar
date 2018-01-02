@@ -375,23 +375,26 @@ class AlaskaTest(NoColumbus, UnitedStatesTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 3, 31), holidays)  # Seward's Day
         self.assertIn(date(2014, 10, 18), holidays)  # Alaska Day
+        observed = set(map(self.cal.get_observed_date, holidays))
         # Alaska Day is on SAT, shift to FRI
-        self.assertIn(date(2014, 10, 17), holidays)
+        self.assertIn(date(2014, 10, 17), observed)
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 3, 30), holidays)  # Seward's Day
         self.assertIn(date(2015, 10, 18), holidays)  # Alaska Day
+        observed = set(map(self.cal.get_observed_date, holidays))
         # Alaska day is on SUN: shifted to MON
-        self.assertIn(date(2015, 10, 19), holidays)
+        self.assertIn(date(2015, 10, 19), observed)
 
     def test_state_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 3, 27), holidays)  # Seward's Day
         self.assertIn(date(2017, 10, 18), holidays)  # Alaska Day
+        observed = set(map(self.cal.get_observed_date, holidays))
         # Alaska day is on WED: no shift
-        self.assertNotIn(date(2017, 10, 19), holidays)
-        self.assertNotIn(date(2017, 10, 17), holidays)
+        self.assertNotIn(date(2017, 10, 19), observed)
+        self.assertNotIn(date(2017, 10, 17), observed)
 
 
 class ArizonaTest(UnitedStatesTest):

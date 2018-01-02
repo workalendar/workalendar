@@ -4,15 +4,24 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import date, timedelta
 
+from dateutil import relativedelta as rd
+
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
+from ..core import Holiday
 
 
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 4, 'Independence Day'),
+        Holiday(
+            date(2000, 7, 4),
+            'Independence Day',
+            indication='July 4',
+            observance_shift=Holiday.nearest_weekday,
+        ),
     )
+
     # Veterans day label
     veterans_day_label = 'Veterans Day'
 
@@ -59,56 +68,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # Some regional variants
     include_mardi_gras = False
 
-    # Shift day mechanism
-    # These days won't be shifted to next MON or previous FRI
-    shift_exceptions = (
-        # Exemple:
-        # (11, 11),  # Veterans day won't be shifted
-    )
-
-    def shift(self, holidays, year):
-        new_holidays = []
-        holiday_lookup = [x[0] for x in holidays]
-        exceptions = [
-            date(year, month, day) for month, day in self.shift_exceptions
-        ]
-
-        # For each holiday available:
-        # * if it falls on SUN, add the observed on MON
-        # * if it falls on SAT, add the observed on FRI
-        for day, label in holidays:
-            # ... except if it's been explicitely excepted.
-            if day in exceptions:
-                continue
-            if day.weekday() == SAT:
-                new_holidays.append((day - timedelta(days=1),
-                                     label + " (Observed)"))
-            elif day.weekday() == SUN:
-                new_holidays.append((day + timedelta(days=1),
-                                     label + " (Observed)"))
-
-        # If year+1 January the 1st is on SAT, add the FRI before to observed
-        if date(year + 1, 1, 1).weekday() == SAT:
-            new_holidays.append((date(year, 12, 31,),
-                                 "New Years Day (Observed)"))
-
-        # Special rules for XMas and XMas Eve
-        christmas = date(year, 12, 25)
-        christmas_eve = date(year, 12, 24)
-        # Is XMas eve in your calendar?
-        if christmas_eve in holiday_lookup:
-            # You are observing the THU before, as an extra XMas Eve
-            if christmas.weekday() == SAT:
-                new_holidays.append((date(year, 12, 23),
-                                     "Christmas Eve (Observed)"))
-            # You are observing the 26th (TUE) and 27th (WED)
-            elif christmas.weekday() == MON:
-                new_holidays.append((date(year, 12, 26),
-                                     "Christmas Eve (Observed)"))
-                new_holidays.append((date(year, 12, 27),
-                                     "Christmas Day (Observed)"))
-        return holidays + new_holidays
-
     @staticmethod
     def is_presidential_year(year):
         return (year % 4) == 0
@@ -146,31 +105,25 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return (day, "Confederate Memorial Day")
 
     def get_martin_luther_king_date(self, year):
-        """
-        Martin Luther King is on 3rd MON of January, starting of 1985.
-
-        """
         if year < 1985:
             raise ValueError(
                 "Martin Luther King Day became a holiday in 1985"
             )
-        return UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3)
+        return date(year, 1, 1) + rd.relativedelta(weekday=rd.MO(3))
 
     def get_martin_luther_king_day(self, year):
-        """
-        Return holiday record for Martin Luther King Jr. Day.
-        """
-        day = self.get_martin_luther_king_date(year)
-        return (day, self.martin_luther_king_label)
+        return Holiday(
+            self.get_martin_luther_king_date(year),
+            self.martin_luther_king_label,
+            indication="3rd Monday in January",
+        )
 
     def get_presidents_day(self, year):
-        """
-        Presidents Day is on the 3rd MON of February
-
-        May be called Washington's or Lincoln's birthday
-        """
-        day = UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3)
-        return (day, self.presidents_day_label)
+        return Holiday(
+            date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(3)),
+            self.presidents_day_label,
+            indication="3rd Monday in February",
+        )
 
     def get_cesar_chavez_days(self, year):
         """
@@ -210,13 +163,11 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return (day, self.label_washington_birthday_december)
 
     def get_columbus_day(self, year):
-        """
-        Columbus day is on the 2nd MON of October.
-
-        Only half of the states recognize it.
-        """
-        day = UnitedStates.get_nth_weekday_in_month(year, 10, MON, 2)
-        return (day, self.columbus_day_label)
+        return Holiday(
+            date(year, 10, 1) + rd.relativedelta(weekday=rd.MO(2)),
+            self.columbus_day_label,
+            indication="2nd Monday in October",
+        )
 
     def get_lincoln_birthday(self, year):
         """
@@ -246,12 +197,10 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return inauguration_day
 
     def get_national_memorial_day(self, year):
-        """
-        Return National Memorial Day
-        """
-        return (
-            UnitedStates.get_last_weekday_in_month(year, 5, MON),
-            self.national_memorial_day_label
+        return Holiday(
+            date(year, 5, 31) + rd.relativedelta(weekday=rd.MO(-1)),
+            self.national_memorial_day_label,
+            indication="Last Monday in May",
         )
 
     def get_mardi_gras(self, year):
@@ -265,17 +214,25 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         # usual variable days
         days = super(UnitedStates, self).get_variable_days(year)
 
+        days += [
+            self.get_veterans_day(year),
+            self.get_national_memorial_day(year),
+            Holiday(
+                date(year, 9, 1) + rd.relativedelta(weekday=rd.MO(1)),
+                "Labor Day",
+                indication="1st Monday in September",
+            ),
+
+            Holiday(
+                date(year, 11, 1) + rd.relativedelta(weekday=rd.TH(4)),
+                "Thanksgiving Day",
+                indication="4th Thursday in November",
+            ),
+        ]
+
         # Martin Luther King's Day started only in 1985
         if year >= 1985:
             days.append(self.get_martin_luther_king_day(year))
-
-        days.extend([
-            self.get_national_memorial_day(year),
-            (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
-                "Labor Day"),
-            (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
-                "Thanksgiving Day"),
-        ])
 
         if self.include_mardi_gras:
             days.append(self.get_mardi_gras(year))
@@ -298,11 +255,16 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
 
+        ind = "January 20 (or 21st if Sunday) following an election year"
         if self.include_inauguration_day:
             # Is it a "Inauguration year"?
             if UnitedStates.is_presidential_year(year - 1):
                 days.append(
-                    (self.get_inauguration_date(year), "Inauguration Day")
+                    Holiday(
+                        self.get_inauguration_date(year),
+                        "Inauguration Day",
+                        indication=ind,
+                    ),
                 )
 
         if self.include_election_day_every_year:
@@ -319,22 +281,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return days
 
     def get_veterans_day(self, year):
-        """
-        Return Veterans Day (November 11th).
-
-        Placed here because some States are renaming it.
-        """
-        return (date(year, 11, 11), self.veterans_day_label)
-
-    def get_fixed_holidays(self, year):
-        days = super(UnitedStates, self).get_fixed_holidays(year)
-        days.append(self.get_veterans_day(year))
-        return days
-
-    def get_calendar_holidays(self, year):
-        """
-        Will return holidays and their shifted days
-        """
-        days = super(UnitedStates, self).get_calendar_holidays(year)
-        days = self.shift(days, year)
-        return days
+        return Holiday(
+            date(year, 11, 11),
+            self.veterans_day_label,
+            indication='Nov 11',
+        )
