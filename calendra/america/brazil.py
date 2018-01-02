@@ -399,7 +399,10 @@ class BrazilBankCalendar(Brazil):
             )
         ]
 
-        return non_fixed_holidays + non_working_days
+        return (
+            super(Brazil, self).get_variable_days(year)
+            + non_fixed_holidays + non_working_days
+        )
 
     def find_following_working_day(self, day):
         """
