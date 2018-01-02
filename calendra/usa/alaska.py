@@ -14,7 +14,6 @@ class Alaska(UnitedStates):
         Holiday(
             datetime.date(2000, 10, 18),
             'Alaska Day',
-            observance_shift=Holiday.nearest_weekday,
         ),
     )
     include_columbus_day = False

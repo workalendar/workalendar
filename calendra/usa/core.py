@@ -18,9 +18,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             date(2000, 7, 4),
             'Independence Day',
             indication='July 4',
-            observance_shift=Holiday.nearest_weekday,
         ),
     )
+
+    @property
+    def observance_shift(self):
+        return Holiday.nearest_weekday
 
     # Veterans day label
     veterans_day_label = 'Veterans Day'

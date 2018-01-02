@@ -427,7 +427,8 @@ class ArkansasTest(NoColumbus, UnitedStatesTest):
     def test_christmas_2016(self):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 12, 24), holidays)  # XMas Eve
-        self.assertIn(date(2016, 12, 23), holidays)  # XMas Eve shifted
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2016, 12, 23), observed)  # XMas Eve shifted
 
     def test_president_day_label(self):
         # Overwrite UnitedStatesTest.test_president_day_label
@@ -513,7 +514,8 @@ class FloridaTest(NoColumbus, NoPresidentialDay, UnitedStatesTest):
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2015, 7, 3), observed)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
     def test_thanksgiving_friday_label(self):
@@ -573,13 +575,14 @@ class HawaiiTest(ElectionDayEvenYears, NoColumbus, UnitedStatesTest):
 
     def test_state_year_2017(self):
         holidays = self.cal.holidays_set(2017)
+        observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2017, 3, 26),
                       holidays)  # Prince Jonah Kuhio Kalanianaole
         self.assertIn(date(2017, 3, 27),
-                      holidays)  # Prince Jonah Kuhio Kalanianaole (shifted)
+                      observed)  # Prince Jonah Kuhio Kalanianaole (shifted)
         self.assertIn(date(2017, 4, 14), holidays)  # Good Friday
         self.assertIn(date(2017, 6, 11), holidays)  # Kamehameha
-        self.assertIn(date(2017, 6, 12), holidays)  # Kamehameha (shifted)
+        self.assertIn(date(2017, 6, 12), observed)  # Kamehameha (shifted)
         self.assertIn(date(2017, 8, 18), holidays)  # Statehood day
 
     def test_state_year_2018(self):
@@ -705,7 +708,8 @@ class IowaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 7, 3), holidays)
+        observed = set(map(self.cal.get_observed_date, holidays))
+        self.assertIn(date(2015, 7, 3), observed)
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
@@ -1108,14 +1112,15 @@ class SouthCarolinaTest(NoColumbus, UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
+        observed = set(map(self.cal.get_observed_date, holidays))
         # Confederate Memorial Day
         self.assertIn(date(2014, 5, 10), holidays)
         # Observed here, it falls on SAT
-        self.assertIn(date(2014, 5, 9), holidays)
+        self.assertIn(date(2014, 5, 9), observed)
 
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
-        self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
-        self.assertIn(date(2014, 12, 26), holidays)  # Boxing day
+        self.assertIn(date(2014, 12, 24), observed)  # XMas Eve
+        self.assertIn(date(2014, 12, 26), observed)  # Boxing day
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
@@ -1211,15 +1216,17 @@ class VermontTest(NoColumbus, UnitedStatesTest):
 
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
+        observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2014, 3, 4), holidays)  # Town Meeting Day
         self.assertIn(date(2014, 8, 16), holidays)  # Bennington Battle Day
-        self.assertIn(date(2014, 8, 15), holidays)  # Shifted to FRI
+        self.assertIn(date(2014, 8, 15), observed)  # Shifted to FRI
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
+        observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2015, 3, 3), holidays)  # Town Meeting Day
         self.assertIn(date(2015, 8, 16), holidays)  # Bennington Battle Day
-        self.assertIn(date(2015, 8, 17), holidays)  # Shifted to MON
+        self.assertIn(date(2015, 8, 17), observed)  # Shifted to MON
 
 
 class VirginiaTest(UnitedStatesTest):
