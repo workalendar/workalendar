@@ -2,14 +2,20 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+import datetime
+
 from .core import UnitedStates
-from ..core import MON
+from ..core import MON, Holiday
 
 
 class Alaska(UnitedStates):
     """Alaska"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (10, 18, 'Alaska Day'),
+        Holiday(
+            datetime.date(2000, 10, 18),
+            'Alaska Day',
+            observance_shift=Holiday.nearest_weekday,
+        ),
     )
     include_columbus_day = False
 
