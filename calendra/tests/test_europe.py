@@ -483,6 +483,13 @@ class PolandTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
+    def test_shift_2016(self):
+        # Poland does not roll christmas and boxing day
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas - Sunday
+        self.assertIn(date(2016, 12, 26), holidays)  # Boxing day - Monday
+        self.assertNotIn(date(2016, 12, 27), holidays)  # Christmas shift
+
 
 class IcelandTest(GenericCalendarTest):
     cal_class = Iceland
@@ -724,6 +731,12 @@ class UnitedKingdomTest(GenericCalendarTest):
         assert self.cal.is_observed_holiday(date(2015, 12, 25))
         # Boxing observed
         assert self.cal.is_observed_holiday(date(2015, 12, 28))
+
+    def test_shift_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas - Sunday
+        self.assertIn(date(2016, 12, 26), holidays)  # Boxing day - Monday
+        self.assertIn(date(2016, 12, 27), holidays)  # Christmas - shift to Tue
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):

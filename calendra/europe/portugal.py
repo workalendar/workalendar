@@ -23,5 +23,4 @@ class Portugal(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super(Portugal, self).get_variable_days(year)
         days.append((self.get_variable_entrudo(year), "Entrudo"))
-
         return days

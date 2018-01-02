@@ -9,6 +9,7 @@ from ..core import Holiday
 
 class UnitedKingdom(WesternCalendar, ChristianMixin):
     "United Kingdom"
+
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
@@ -39,6 +40,7 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
 
 class UnitedKingdomNorthernIreland(UnitedKingdom):
     "Northern Ireland (UK)"
+
     def get_variable_days(self, year):
         days = super(UnitedKingdomNorthernIreland, self) \
             .get_variable_days(year)

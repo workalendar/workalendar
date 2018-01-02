@@ -1,10 +1,22 @@
 CHANGELOG
 =========
 
-1.9
+2.0
 ---
 
-Incorporate changes from workalendar 1.3.0:
+Incorporate changes from workalendar 2.3.1:
+
+- Added Hong Kong, by @nedlowe (#235).
+- Splitted `africa.py` file into an `africa/` module (#236).
+- Added Alabama Counties - Baldwin County, Mobile County, Perry County. Refactored UnitedStates classes to have a parameter to include the "Mardi Gras" day (#214).
+- Added brazilian calendar to consider working days for bank transactions, by @fvlima (#238).
+
+- Major refactor in the USA module. Each State is now an independant module, all of the Mixins were removed, all the possible corrections have been made, following the main Wikipedia page, and cross-checking with official sources when it was possible (#171).
+- Added District of Columbia in the USA module (#217).
+- Run tests with Python3.6 in CI (#210)
+- Small refactors / cleanups in the following calendars: Hungary, Iceland, Ireland, Latvia, Netherlands, Spain, Japan, Taiwan, Australia, Canada, USA (#209).
+- Various refactors for the Asia module, essentially centered around a more convenient Chinese New Year computation toolset (#202).
+- Refactoring the USA tests: using inheritance to test federal and state-based holidays using only one "Don't Repeat Yourself" codebase (#213).
 
 - Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 - Added Malaysia, by @gregyhj (#201).

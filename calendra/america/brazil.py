@@ -5,7 +5,7 @@ from __future__ import (absolute_import, division, print_function,
 from datetime import timedelta, date
 
 from ..core import WesternCalendar, ChristianMixin
-from ..core import MON
+from ..core import MON, SAT, SUN
 
 
 class Brazil(WesternCalendar, ChristianMixin):
@@ -349,3 +349,64 @@ class BrazilSerraCity(BrazilEspiritoSanto):
         days.append((carnaval_tuesday - timedelta(days=1), "Carnaval Monday"))
         days.append((carnaval_tuesday, "Carnaval"))
         return days
+
+
+class BrazilBankCalendar(Brazil):
+    """
+    Calendar that considers only working days for bank transactions
+    for companies and the general public
+    """
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (12, 25, "Christmas Day"),
+    )
+
+    def get_last_day_of_year_for_only_internal_bank_trans(self, year):
+        """
+        The last day of year isn't a working day for public bank
+        transactions in Brazil. More details can be read in
+        http://www.bcb.gov.br/pre/bc_atende/port/servicos4.asp
+        """
+        last_day = date(year, 12, 31)
+
+        if last_day.weekday() == SAT:
+            return last_day - timedelta(days=1)
+        elif last_day.weekday() == SUN:
+            return last_day - timedelta(days=2)
+
+        return last_day
+
+    def get_variable_days(self, year):
+        """
+        Define the brazilian variable holidays and the last
+        day for only internal bank transactions
+        """
+        tuesday_carnaval = self.get_carnaval(year)
+        monday_carnaval = tuesday_carnaval - timedelta(days=1)
+        good_friday = self.get_good_friday(year)
+        corpus_christi = self.get_corpus_christi(year)
+
+        non_fixed_holidays = [
+            (monday_carnaval, "Monday carnaval"),
+            (tuesday_carnaval, "Tuesday carnaval"),
+            (good_friday, "Good friday"),
+            (corpus_christi, "Corpus Christi")
+        ]
+
+        non_working_days = [
+            (
+                self.get_last_day_of_year_for_only_internal_bank_trans(year),
+                "Last day of year for only internal bank transactions"
+            )
+        ]
+
+        return non_fixed_holidays + non_working_days
+
+    def find_following_working_day(self, day):
+        """
+        Find for the next working day by ignoring weekends,
+        fixed and non fixed holidays and the last working
+        day for only internal bank transactions in Brazil
+        """
+        while not self.is_working_day(day):
+            day = day + timedelta(days=1)
+        return day

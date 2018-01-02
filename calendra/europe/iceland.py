@@ -25,18 +25,17 @@ class Iceland(WesternCalendar, ChristianMixin):
         """It's the first thursday *after* April, 18th.
         If April the 18th is a thursday, then it jumps to the 24th.
         """
-        return WesternCalendar.get_nth_weekday_in_month(
+        return Iceland.get_nth_weekday_in_month(
             year, 4, THU,
             start=date(year, 4, 19))
 
+    def get_commerce_day(self, year):
+        return Iceland.get_nth_weekday_in_month(year, 8, MON)
+
     def get_variable_days(self, year):
         days = super(Iceland, self).get_variable_days(year)
-        days += [
-            (
-                self.get_first_day_of_summer(year),
-                "First day of summer"),
-            (
-                Iceland.get_nth_weekday_in_month(year, 8, MON),
-                "Commerce Day"),
-        ]
+        days.extend([
+            (self.get_first_day_of_summer(year), "First day of summer"),
+            (self.get_commerce_day(year), "Commerce Day"),
+        ])
         return days
