@@ -155,8 +155,8 @@ Incorporate these fixes from Workalendar 0.3:
 
 - ``delta`` argument for ``add_working_days()`` can be negative. added a
   ``sub_working_days()`` method that computes working days backwards.
-- BUGFIX: Renaming Showa Day. "ō is not romji" #100 (thx @shinriyo)
-- BUGFIX: Belgian National Day title #99 (thx @laulaz)
+- BUGFIX: Renaming Showa Day. "ō is not romji" (#100) (thx @shinriyo)
+- BUGFIX: Belgian National Day title (#99) (thx @laulaz)
 
 1.2.1
 -----
@@ -191,16 +191,15 @@ UnitedKingdom Calendar now uses indicated/observed Holidays.
 
 Includes these changes slated for workalendar 0.3:
 
-- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
-  next Monday) #95
+- BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shift to
+  next Monday) (#95)
 
 1.0
 ---
 
 Initial release of Calendra based on Workalendar 0.2.
 
-- Adds Holiday class per `Workalendar Pull Request #72
-  <https://github.com/novapost/workalendar/pull/79>`_. Adds support for giving
+- Adds Holiday class per (#72). Adds support for giving
   holidays a more rich description and better resolution of observed versus
   indicated holidays. See the pull request for detail on the motivation and
   implementation. See the usa.UnitedStates calendar for example usage.
@@ -208,5 +207,5 @@ Initial release of Calendra based on Workalendar 0.2.
 Includes these changes slated for workalendar 0.3:
 
 - Germany calendar added, thx to @rndusr
-- Support building on systems where LANG=C (Ubuntu) #92
+- Support building on systems where LANG=C (Ubuntu) (#92)
 - little improvement to directly return a tested value.
