@@ -13,6 +13,7 @@ link_files = {
 	'../CHANGES.rst': dict(
 		using=dict(
 			GH='https://github.com',
+			workalendar='https://github.com/peopledoc/workalendar/',
 		),
 		replace=[
 			dict(
@@ -29,7 +30,11 @@ link_files = {
 			),
 			dict(
 				pattern=r'\(#(?P<wk_issue>\d+)(.*?)\)',
-				url='{GH}/peopledoc/workalendar/issues/{wk_issue}',
+				url='{workalendar}issues/{wk_issue}',
+			),
+			dict(
+				pattern=r'(?P<wk_ver>[Ww]orkalendar \d+\.\d+(\.\d+)?)',
+				url='{workalendar}blob/master/CHANGELOG',
 			),
 		],
 	),
