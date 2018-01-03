@@ -24,6 +24,16 @@ designed to be more extensible and introspectable, adding interfaces where
 `Workalendar is philosophically opposed for the sake of simplicity
 <https://github.com/peopledoc/workalendar/pull/79>`_.
 
+What can Calendra do that Workalendar cannot?
+
+- Provides descriptions for holidays for the "day indicated" for each
+  Holiday (such as '3rd Monday in August').
+- Keeps distinct the indicated and observed dates for Holidays, such
+  that it's possible to determine on what day a given holiday is observed.
+- Allows the number of Holidays in a calendar year to be counted.
+- Consolidates observance logic in the core code rather than requiring
+  each calendar implementation to implement its own.
+
 Status
 ======
 
