@@ -4,10 +4,10 @@
 .. image:: https://img.shields.io/pypi/pyversions/calendra.svg
 
 .. image:: https://img.shields.io/travis/jaraco/calendra/master.svg
-   :target: http://travis-ci.org/jaraco/calendra
+   :target: https://travis-ci.org/jaraco/calendra
 
 .. image:: https://readthedocs.org/projects/calendra/badge/?version=latest
-   :target: http://calendra.readthedocs.io/en/latest/?badge=latest
+   :target: https://calendra.readthedocs.io/en/latest/?badge=latest
 
 Overview
 ========
