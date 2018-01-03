@@ -1,6 +1,3 @@
-CHANGELOG
-=========
-
 2.0
 ---
 
@@ -131,8 +128,8 @@ Incorporate changes from workalendar 0.4.0:
 - Added Slovakia calendar, thx to @Adman
 - Fixed the Boxing day & boxing day shift for Australia
 
-1.4 (2015-04-14)
-----------------
+1.4
+---
 
 ``Calendar.get_observed_date`` now allows ``observance_shift`` to be
 a callable accepting the holiday and calendar and returning the observed
@@ -141,8 +138,8 @@ locating the nearest weekday.
 
 - #5: USA Independence Day now honors the nearest weekday model.
 
-1.3 (2015-02-15)
-----------------
+1.3
+---
 
 Incorporate these fixes from Workalendar 0.3:
 
@@ -151,13 +148,13 @@ Incorporate these fixes from Workalendar 0.3:
 - BUGFIX: Renaming Showa Day. "ō is not romji" #100 (thx @shinriyo)
 - BUGFIX: Belgian National Day title #99 (thx @laulaz)
 
-1.2.1 (2015-02-15)
-------------------
+1.2.1
+-----
 
 Correct usage in example.
 
-1.2 (2015-01-07)
-----------------
+1.2
+---
 
 Fixed issue #4 where Finland holidays were shifted but shouldn't have been.
 Calendars and Holidays may now specify observance_shift=None to signal no
@@ -166,19 +163,19 @@ shift.
 Package can now be tested with pytest-runner by invoking ``python setup.py
 pytest``.
 
-1.1.3 (2014-12-29)
-------------------
+1.1.3
+-----
 
 Fix name of Finnish Independence Day.
 
-1.1.2 (2014-11-07)
-------------------
+1.1.2
+-----
 
 Fixed issues with packaging (disabled installation an zip egg and now use
 setuptools always).
 
-1.1 (2014-11-07)
-----------------
+1.1
+---
 
 UnitedKingdom Calendar now uses indicated/observed Holidays.
 
@@ -187,8 +184,8 @@ Includes these changes slated for workalendar 0.3:
 - BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
   next Monday) #95
 
-1.0 (2014-09-21)
-----------------
+1.0
+---
 
 Initial release of Calendra based on Workalendar 0.2.
 
@@ -205,8 +202,8 @@ Includes these changes slated for workalendar 0.3:
 - little improvement to directly return a tested value.
 
 
-0.2.0 (2014-07-15)
-------------------
+0.2.0
+-----
 
 - How to contribute documentation,
 - Added Belgium, European Central Bank, Sweden, every specific calendar in the
@@ -216,8 +213,8 @@ Includes these changes slated for workalendar 0.3:
   default and should be set to "True" when needed.
 
 
-0.1 (2014-02-17)
-----------------
+0.1
+---
 
 - added LunarCalendar, including lunar month calculations
 - added SouthKoreanCalendar, for a LunarCalendar proof of concept
@@ -231,8 +228,8 @@ Includes these changes slated for workalendar 0.3:
   of JapanCalendar.
 
 
-v0.0.1 (2013-11-21)
--------------------
+v0.0.1
+------
 
 - First released version
 - Core calendar classes, Western (European and North American)
