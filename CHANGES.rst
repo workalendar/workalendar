@@ -199,7 +199,7 @@ Includes these changes slated for workalendar 0.3:
 
 Initial release of Calendra based on Workalendar 0.2.
 
-- Adds Holiday class per (#72). Adds support for giving
+- Adds Holiday class per (#79). Adds support for giving
   holidays a more rich description and better resolution of observed versus
   indicated holidays. See the pull request for detail on the motivation and
   implementation. See the usa.UnitedStates calendar for example usage.
