@@ -100,6 +100,7 @@ Europe
 * Poland
 * Portugal
 * Romania
+* Russia
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)

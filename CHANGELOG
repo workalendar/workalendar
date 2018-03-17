@@ -11,6 +11,7 @@ master (unreleased)
 - Update ACT holidays( #251)
 - First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalenda.registry`` module. Please use with care at the moment (#248).
 - Moved from `novafloss` to the `peopledoc` organization, the core People Doc Inc. organization (#255)
+- Added Russia, by @vanadium23 (#259)
 
 
 2.3.1 (2017-07-27)
