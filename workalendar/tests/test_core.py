@@ -1,7 +1,9 @@
 from datetime import date
 from datetime import datetime
+from unittest import TestCase
+
 from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI, WED
+from workalendar.core import MON, TUE, THU, FRI, WED, SAT, SUN
 from workalendar.core import Calendar, LunarCalendar, WesternCalendar
 from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
 from workalendar.core import EphemMixin
@@ -395,3 +397,82 @@ class OverwriteGetWeekendDaysCalendarTest(GenericCalendarTest):
         self.assertTrue(self.cal.is_working_day(day))
         day = date(2017, 5, 17)  # This is a Wednesday
         self.assertFalse(self.cal.is_working_day(day))
+
+
+class NoHolidayCalendar(Calendar):
+    WEEKEND_DAYS = (SAT, SUN)
+
+
+class WorkingDaysDeltatest(TestCase):
+
+    def test_zero(self):
+        days = (
+            date(2018, 12, 21),  # a Thursday
+            date(2018, 12, 23),  # a Sunday
+            date(2018, 12, 25),  # a holiday in Christian calendars
+        )
+        for day in days:
+            cal = NoHolidayCalendar()
+            self.assertEqual(cal.get_working_days_delta(day, day), 0)
+            cal = MockChristianCalendar()
+            self.assertEqual(cal.get_working_days_delta(day, day), 0)
+
+    def test_no_holidays_simple(self):
+        cal = NoHolidayCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 3 days, because of the week-ends
+        self.assertEqual(delta, 3)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 3)
+
+    def test_no_holidays_over_2_years(self):
+        cal = NoHolidayCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2019, 1, 4)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 10 days, because of the week-ends
+        self.assertEqual(delta, 10)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 10)
+
+    def test_christian_simple(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 2 days, because of the week-end + Christmas Day
+        self.assertEqual(delta, 2)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 2)
+
+    def test_christian_over_2_years(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2019, 1, 4)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 8 days, because of the week-ends + Xmas day + New Year
+        self.assertEqual(delta, 8)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 8)
+
+    def test_with_datetimes(self):
+        cal = MockChristianCalendar()
+        day1 = datetime(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 2 days, because of the week-end + Christmas Day
+        self.assertEqual(delta, 2)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 2)

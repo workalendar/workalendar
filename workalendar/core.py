@@ -246,6 +246,47 @@ class Calendar(object):
         day = day + timedelta(days=day_delta)
         return day
 
+    def get_working_days_delta(self, start, end):
+        """
+        Return the number of working day between two given dates.
+        The order of the dates provided doesn't matter.
+
+        In the following example, there are 5 days, because of the week-end:
+
+        >>> cal = WesternCalendar()  # does not include easter monday
+        >>> day1 = date(2018, 3, 29)
+        >>> day2 = date(2018, 4, 5)
+        >>> cal.get_working_days_delta(day1, day2)
+        5
+
+        In France, April 1st 2018 is a holiday because it's Easter monday:
+
+        >>> cal = France()
+        >>> cal.get_working_days_delta(day1, day2)
+        4
+
+        This method should even work if your ``start`` and ``end`` arguments
+        are datetimes.
+        """
+        # Sanitize date types first.
+        if type(start) is datetime:
+            start = start.date()
+        if type(end) is datetime:
+            end = end.date()
+
+        if start == end:
+            return 0
+
+        if start > end:
+            start, end = end, start
+        # Starting count here
+        count = 0
+        while start < end:
+            start += timedelta(days=1)
+            if self.is_working_day(start):
+                count += 1
+        return count
+
 
 class ChristianMixin(Calendar):
     EASTER_METHOD = None  # to be assigned in the inherited mixin

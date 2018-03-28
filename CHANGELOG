@@ -4,7 +4,8 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-* Bugfix: deduplicate South Africa holidays that were emitted as duplicates (#265).
+- Bugfix: deduplicate South Africa holidays that were emitted as duplicates (#265).
+- Add the `get_working_days_delta` method to the core calendar class (#260).
 
 2.4.0 (2018-03-28)
 ------------------
