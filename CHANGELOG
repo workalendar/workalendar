@@ -12,6 +12,7 @@ master (unreleased)
 - First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalenda.registry`` module. Please use with care at the moment (#248).
 - Moved from `novafloss` to the `peopledoc` organization, the core People Doc Inc. organization (#255)
 - Fixing Federal Christmas Shift ; added a `include_veterans_day` flag to enable/disable Veteran's day on specific calendar - e.g. Mozilla's dedicated calendar (#242)
+- Refactored Australia family and community day calculation (#244)
 
 
 2.3.1 (2017-07-27)
