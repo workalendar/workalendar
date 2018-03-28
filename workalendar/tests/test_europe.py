@@ -29,6 +29,7 @@ from workalendar.europe import Norway
 from workalendar.europe import Poland
 from workalendar.europe import Portugal
 from workalendar.europe import Romania
+from workalendar.europe import Russia
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
 from workalendar.europe import Switzerland, Vaud
@@ -679,6 +680,22 @@ class Romania(GenericCalendarTest):
         self.assertIn(date(2017, 12, 1), holidays)  # Ziua Națională/Marea Unir
         self.assertIn(date(2017, 12, 25), holidays)  # Crăciunul Christmas
         self.assertIn(date(2017, 12, 26), holidays)  # Crăciunul Christmas
+
+
+class Russia(GenericCalendarTest):
+    cal_class = Russia
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2018, 1, 2), holidays)  # Day after New Year
+        self.assertIn(date(2018, 1, 7), holidays)  # Christmas
+        self.assertIn(date(2018, 2, 23), holidays)  # Defendence of Fatherland
+        self.assertIn(date(2018, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2018, 6, 12), holidays)  # National Day
+        self.assertIn(date(2018, 11, 5), holidays)  # Day of Unity
 
 
 class UnitedKingdomTest(GenericCalendarTest):

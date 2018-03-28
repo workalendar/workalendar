@@ -24,6 +24,7 @@ from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
 from .romania import Romania
+from .russia import Russia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
@@ -68,6 +69,7 @@ __all__ = (
     'Poland',
     'Portugal',
     'Romania',
+    'Russia',
     'Slovakia',
     'Slovenia',
     'Spain',
