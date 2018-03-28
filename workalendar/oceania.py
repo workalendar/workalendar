@@ -103,22 +103,16 @@ class AustralianCapitalTerritory(Australia):
         if year in (2007, 2008, 2009):
             day = AustralianCapitalTerritory.get_nth_weekday_in_month(
                 year, 11, TUE)
-        elif year == 2010:
-            day = date(2010, 9, 27)
-        elif year == 2011:
-            day = date(2011, 10, 10)
-        elif year == 2012:
-            day = date(2012, 10, 8)
-        elif year == 2013:
-            day = date(2013, 9, 30)
-        elif year == 2014:
-            day = date(2014, 9, 29)
-        elif year == 2015:
-            day = date(2015, 9, 28)
-        elif year == 2016:
-            day = date(2016, 9, 26)
-        elif year == 2017:
-            day = date(2017, 9, 25)
+        # Family & Community Day was celebrated on the last Monday of
+        # November in 2010, 2013, 2014, 2015, 2016, 2017
+        elif year in (2010, 2013, 2014, 2015, 2016, 2017):
+            day = AustralianCapitalTerritory.get_last_weekday_in_month(
+                year, 9, MON)
+        # Family & Community Day was celebrated on the second Monday of
+        # October in 2011 and 2012
+        elif year in (2011, 2012):
+            day = AustralianCapitalTerritory.get_nth_weekday_in_month(
+                year, 10, MON, 2)
         else:
             return None
         return (day, "Family & Community Day")
