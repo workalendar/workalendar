@@ -21,6 +21,7 @@ from workalendar.europe import Iceland
 from workalendar.europe import Ireland
 from workalendar.europe import Italy
 from workalendar.europe import Latvia
+from workalendar.europe import Lithuania
 from workalendar.europe import Luxembourg
 from workalendar.europe import Malta
 from workalendar.europe import Netherlands
@@ -1272,3 +1273,42 @@ class EstoniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 24), holidays)  # XMas eve
         self.assertIn(date(2016, 12, 25), holidays)  # XMas
         self.assertIn(date(2016, 12, 26), holidays)  # Boxing day
+
+
+class LithuaniaTest(GenericCalendarTest):
+    cal_class = Lithuania
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # new year
+        self.assertIn(date(2016, 2, 16), holidays)  # restoration of the state
+        self.assertIn(date(2016, 3, 11), holidays)  # restoration of independ.
+        self.assertIn(date(2016, 3, 27), holidays)  # easter sunday
+        self.assertIn(date(2016, 3, 28), holidays)  # easter monday
+        self.assertIn(date(2016, 5, 1), holidays)  # labour day / mother's day
+        self.assertIn(date(2016, 6, 5), holidays)  # father's day
+        self.assertIn(date(2016, 6, 24), holidays)  # st john's day
+        self.assertIn(date(2016, 7, 6), holidays)  # Anniversary of King Mind.
+        self.assertIn(date(2016, 8, 15), holidays)  # Assumption day
+        self.assertIn(date(2016, 11, 1), holidays)  # All saints day
+        self.assertIn(date(2016, 12, 24), holidays)  # Xmas eve
+        self.assertIn(date(2016, 12, 25), holidays)  # Xmas day
+        self.assertIn(date(2016, 12, 26), holidays)  # 2nd day of xmas
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)  # new year
+        self.assertIn(date(2017, 2, 16), holidays)  # restoration of the state
+        self.assertIn(date(2017, 3, 11), holidays)  # restoration of independ.
+        self.assertIn(date(2017, 4, 16), holidays)  # easter sunday
+        self.assertIn(date(2017, 4, 17), holidays)  # easter monday
+        self.assertIn(date(2017, 5, 1), holidays)  # labour day
+        self.assertIn(date(2017, 5, 7), holidays)  # mother's day
+        self.assertIn(date(2017, 6, 4), holidays)  # father's day
+        self.assertIn(date(2017, 6, 24), holidays)  # st john's day
+        self.assertIn(date(2017, 7, 6), holidays)  # Anniversary of King Mind.
+        self.assertIn(date(2017, 8, 15), holidays)  # Assumption day
+        self.assertIn(date(2017, 11, 1), holidays)  # All saints day
+        self.assertIn(date(2017, 12, 24), holidays)  # Xmas eve
+        self.assertIn(date(2017, 12, 25), holidays)  # Xmas day
+        self.assertIn(date(2017, 12, 26), holidays)  # 2nd day of xmas
