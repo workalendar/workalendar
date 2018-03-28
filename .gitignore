@@ -6,3 +6,5 @@ build/
 .tox/
 # py.test cache
 .cache/
+.pytest-cache/
+.pytest_cache/
