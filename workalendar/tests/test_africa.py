@@ -70,12 +70,6 @@ class SouthAfricaTest(GenericCalendarTest):
         self.assertIn(date(2014, 4, 27), holidays)  # freedom day
         self.assertIn(date(2014, 4, 28), holidays)  # freedom day sub
 
-#    def test_pre_1994(self):
-#        pass
-#
-#    def test_pre_1995(self):
-#        pass
-
     def test_special_1999(self):
         # National and provincial government elections – 2 June 1999[8]
         holidays = self.cal.holidays_set(1999)
@@ -152,6 +146,11 @@ class SouthAfricaTest(GenericCalendarTest):
         # 2nd Monday in July	Queen's Birthday	1952–1960
         holidays = self.cal.holidays_set(1960)
         self.assertIn(date(1960, 5, 2), holidays)
+
+    def test_remove_duplicates(self):
+        holidays = self.cal.holidays(2014)
+        dates = ["{} {}".format(x, y) for x, y in holidays]
+        self.assertEqual(len(dates), len(set(dates)))
 
 
 class Madagascar(GenericCalendarTest):
