@@ -4,7 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-Nothing here yet.
+* Bugfix: deduplicate South Africa holidays that were emitted as duplicates (#265).
 
 2.4.0 (2018-03-28)
 ------------------
