@@ -22,6 +22,7 @@ class Paraguay(WesternCalendar, ChristianMixin):
         (12, 8, "Virgin of Caacupé Day"),
         (12, 31, "New Year's Eve"),
     )
+    include_holy_thursday = True
     include_good_friday = True
     include_easter_saturday = True
     include_assumption = False
