@@ -6,6 +6,7 @@
 - Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
 - Fixed usage examples of ``get_first_weekday_after()`` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
 - Turned Changelog into a Markdown file (#272).
+- Added basic usage documentation, hosted by Github pages.
 
 ## v2.5.0 (2018-06-14)
 
