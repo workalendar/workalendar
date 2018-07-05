@@ -249,11 +249,11 @@ class Calendar(object):
         weekday, the same day will be returned.
 
         >>> # the first monday after Apr 1 2015
-        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), 0)
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), MON)
         datetime.date(2015, 4, 6)
 
         >>> # the first tuesday after Apr 14 2015
-        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), 1)
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), TUE)
         datetime.date(2015, 4, 14)
         """
         day_delta = (weekday - day.weekday()) % 7
