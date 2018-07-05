@@ -4,7 +4,7 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-Nothing here yet.
+- Allow the `add_working_days()` function to be provided a datetime, and returning a `date`.
 
 2.5.0 (2018-06-14)
 ------------------
