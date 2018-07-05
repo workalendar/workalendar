@@ -4,7 +4,8 @@ CHANGELOG
 master (unreleased)
 -------------------
 
-- Allow the `add_working_days()` function to be provided a datetime, and returning a `date`.
+- Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
+- Added a `keep_datetime` option to keep the original type of the input argument (#270).
 
 2.5.0 (2018-06-14)
 ------------------

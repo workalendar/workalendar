@@ -130,11 +130,13 @@ class Calendar(object):
         return day in self.holidays_set(day.year)
 
     def add_working_days(self, day, delta,
-                         extra_working_days=None, extra_holidays=None):
+                         extra_working_days=None, extra_holidays=None,
+                         keep_datetime=False):
         """Add `delta` working days to the date.
 
         You can provide either a date or a datetime to this function that will
-        output a ``date`` result.
+        output a ``date`` result. You can alter this behaviour using the
+        ``keep_datetime`` option set to ``True``.
 
         the ``delta`` parameter might be positive or negative. If it's
         negative, you may want to use the ``sub_working_days()`` method with
@@ -151,7 +153,7 @@ class Calendar(object):
         """
         days = 0
         temp_day = day
-        if type(temp_day) is datetime:
+        if type(temp_day) is datetime and not keep_datetime:
             temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)

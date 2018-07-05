@@ -224,6 +224,20 @@ class MockCalendarTest(GenericCalendarTest):
             date(self.year, 12, 21)
         )
 
+        # Use the `keep_datetime` option
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                0, keep_datetime=True),
+            datetime(self.year, 12, 20, 12, 34, 56)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                1, keep_datetime=True),
+            datetime(self.year, 12, 21, 12, 34, 56)
+        )
+
     def test_sub_working_days_datetime(self):
         # datetime inside, date outside
         self.assertEquals(
