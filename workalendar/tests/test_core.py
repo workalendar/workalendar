@@ -89,13 +89,13 @@ class CalendarTest(GenericCalendarTest):
     def test_get_next_weekday_after(self):
         # the first monday after Apr 1 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 1), 0),
+            Calendar.get_first_weekday_after(date(2015, 4, 1), MON),
             date(2015, 4, 6)
         )
 
         # the first tuesday after Apr 14 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 14), 1),
+            Calendar.get_first_weekday_after(date(2015, 4, 14), TUE),
             date(2015, 4, 14)
         )
 

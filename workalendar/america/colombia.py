@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import timedelta, date
 
-from workalendar.core import WesternCalendar, ChristianMixin
+from workalendar.core import WesternCalendar, ChristianMixin, MON
 
 
 class Colombia(WesternCalendar, ChristianMixin):
@@ -23,11 +23,11 @@ class Colombia(WesternCalendar, ChristianMixin):
 
     def get_epiphany(self, year):
         base_day = date(year, 1, 6)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_saint_joseph(self, year):
         base_day = date(year, 3, 19)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_ascension(self, year):
         return self.get_easter_sunday(year) + timedelta(days=43)
@@ -40,23 +40,23 @@ class Colombia(WesternCalendar, ChristianMixin):
 
     def get_saint_peter_and_saint_paul(self, year):
         base_day = date(year, 6, 29)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_assumption(self, year):
         base_day = date(year, 8, 15)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_race_day(self, year):
         base_day = date(year, 10, 12)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_all_saints(self, year):
         base_day = date(year, 11, 1)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_cartagena_independence(self, year):
         base_day = date(year, 11, 11)
-        return Colombia.get_first_weekday_after(base_day, 0)
+        return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_variable_days(self, year):
         days = super(Colombia, self).get_variable_days(year)
