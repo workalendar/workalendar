@@ -15,3 +15,4 @@ See [the repository README](https://github.com/peopledoc/workalendar#available-c
 ## Usage examples
 
 * [Basic usage](basic.md)
+* [Advanced usage](advanced.md)
