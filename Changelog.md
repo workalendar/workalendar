@@ -1,38 +1,32 @@
-CHANGELOG
-=========
+# CHANGELOG
 
-master (unreleased)
--------------------
+## master (unreleased)
 
 - Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
 - Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
 - Fixed usage examples of ``get_first_weekday_after()`` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
+- Turned Changelog into a Markdown file (#272).
 
-2.5.0 (2018-06-14)
-------------------
+## v2.5.0 (2018-06-14)
 
 - Bugfix: deduplicate South Africa holidays that were emitted as duplicates (#265).
 - Add the `get_working_days_delta` method to the core calendar class (#260).
 
-2.4.0 (2018-03-28)
-------------------
+## v2.4.0 (2018-03-28)
 
-New Calendars
-~~~~~~~~~~~~~
+### New Calendars
 
 - Added Lithuania, by @landler (#254).
 - Added Russia, by @vanadium23 (#259).
 
-Bugfixes
-~~~~~~~~
+### Bugfixes
 
 - Fixed shifting ANZAC day for Australia states (#249).
 - Renamed Australian state classes to actual state names(eg. AustraliaNewSouthWales to NewSouthWales).
 - Update ACT holidays (#251).
 - Fixing Federal Christmas Shift ; added a `include_veterans_day` flag to enable/disable Veteran's day on specific calendar - e.g. Mozilla's dedicated calendar (#242).
 
-Other
-~~~~~
+### Other
 
 - **Deprecation:** Dropped support for Python 3.3 (#245).
 - Fixed Travis-ci configuration for Python 3.5 and al (#252).
@@ -40,21 +34,18 @@ Other
 - First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalenda.registry`` module. Please use with care at the moment (#248).
 - Refactored Australia family and community day calculation (#244).
 
-2.3.1 (2017-07-27)
-------------------
+## v2.3.1 (2017-07-27)
 
 I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.3.0 version... I tried to remove it from PyPI, but it failed at some point. In order to make sure that the latest version has the highest version number, I'm releasing this "dumb" version. It is equivalent to the 2.1.0 release, but at least, if you upgrade, you have all the 2.0+ niceties...
 
-2.1.0 (2017-07-27)
-------------------
+## v2.1.0 (2017-07-27)
 
 - Added Hong Kong, by @nedlowe (#235).
 - Splitted `africa.py` file into an `africa/` module (#236).
 - Added Alabama Counties - Baldwin County, Mobile County, Perry County. Refactored UnitedStates classes to have a parameter to include the "Mardi Gras" day (#214).
 - Added brazilian calendar to consider working days for bank transactions, by @fvlima (#238).
 
-2.0.0 (2017-06-23)
-------------------
+## v2.0.0 (2017-06-23)
 
 - Major refactor in the USA module. Each State is now an independant module, all of the Mixins were removed, all the possible corrections have been made, following the main Wikipedia page, and cross-checking with official sources when it was possible (#171).
 - Added District of Columbia in the USA module (#217).
@@ -63,8 +54,7 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Various refactors for the Asia module, essentially centered around a more convenient Chinese New Year computation toolset (#202).
 - Refactoring the USA tests: using inheritance to test federal and state-based holidays using only one "Don't Repeat Yourself" codebase (#213).
 
-1.3.0 (2017-06-09)
-------------------
+## v1.3.0 (2017-06-09)
 
 - Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 - Added Malaysia, by @gregyhj (#201).
@@ -73,8 +63,7 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Fixed a bug in Slovakia calendar, de-duplicated Christmas Day, that appeared twice (#205).
 - Fixed important bugs in the calendars of the following Brazilian cities: Vitória, Vila Velha, Cariacica, Guarapari and Serra - thx to Fernanda Gonçalves Rodrigues, who confirmed this issue raised by @Skippern (#199).
 
-1.2.0 (2017-05-30)
-------------------
+## v1.2.0 (2017-05-30)
 
 - Moved all the calendar of countries on the american continent in their own modules (#188).
 - Refactor base Calendar class get_weekend_days to use WEEKEND_DAYS more intelligently (#191 + #192).
@@ -82,9 +71,7 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Added a ``good_friday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
 - Added a ``ash_wednesday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
 
-
-1.1.0 (2017-02-28)
-------------------
+## v1.1.0 (2017-02-28)
 
 - Added Cyprus. thx @gregn610 (#174).
 - Added Latvia. thx @gregn610 (#178).
@@ -96,9 +83,7 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Fixed Historical and one-off holidays for South Africa. thx @gregn610 (#173).
 - Minor PEP8 fixes (#186).
 
-
-1.0.0 (2016-12-12)
-------------------
+## v1.0.0 (2016-12-12)
 
 After several years of development, we can now say that this library is production-ready, so we're releasing its 1.0.0 version. Millions of "thank you" to all the contributors involved.
 
@@ -108,21 +93,15 @@ After several years of development, we can now say that this library is producti
 - Add Bulgaria. thx @gregn610 (#156)
 - Add Croatia. thx @gregn610 (#157)
 
-
-0.8.1 (2016-11-08)
-------------------
+## v0.8.1 (2016-11-08)
 
 - Reformation Day is a national holiday in Germany, but only in 2017 (#150).
 
-
-0.8.0 (2016-08-25)
-------------------
+## v0.8.0 (2016-08-25)
 
 - Fix Czech Republic calendar - as of 2016, Good Friday has become a holiday (#148).
 
-
-0.7.0 (2016-08-02)
-------------------
+## v0.7.0 (2016-08-02)
 
 - Easter Sunday is a Brandenburg federate state holiday (#143), thx @uvchik.
 - Added Catalonia (#145), thx @ferranp.
@@ -130,8 +109,7 @@ After several years of development, we can now say that this library is producti
 - use py.test instead of nosetests for tests (#146).
 - cleanup: remove unused ``swiss.py`` file (#147).
 
-0.6.1 (2016-06-29)
-------------------
+## v0.6.1 (2016-06-29)
 
 - Added Estonia, thx to @landler (#134),
 - Europe-related modules being reorganized, thx to @Natim (#135),
@@ -141,22 +119,17 @@ After several years of development, we can now say that this library is producti
 
 *Note:* the 0.6.0 was erroneously uploaded ; this v0.6.1 cancels and replaces the v0.6.0.
 
-0.5.0 (2016-06-14)
-------------------
+## v0.5.0 (2016-06-14)
 
 - Workalendar now being compatible with Python 3.4 and 3.5 (#128),
 - A new holiday has appeared in Japan as of 2016 (#131), thx @suhara for the report.
 
-
-0.4.5 (2016-05-09)
-------------------
+## v0.4.5 (2016-05-09)
 
 - Added Slovenia, thx to @ratek1 (#124),
 - Added Switzerland, thx to @sykaeh (#127),
 
-
-0.4.3 & 0.4.4 (2016-01-19 & 2016-05-09)
----------------------------------------
+## v0.4.3 & v0.4.4 (2016-01-19 & 2016-05-09)
 
 **Sorry, I think I completely broke the 0.4.3 release by trying to delete a naughty file...**
 
@@ -167,30 +140,24 @@ After several years of development, we can now say that this library is producti
 - Moved from `novapost` to the `novafloss` organization, handling FLOSS projects in People Doc Inc. (#116)
 - Added Spain 2016 (#123)
 
-0.4.2 (2015-12-23)
-------------------
+## v0.4.2 (2015-12-23)
 
 - Added Luxembourg (#111)
 - Added Netherlands (#113)
 - Added Spain (#114)
 - Bugfix: fixed the name of the Pentecost for Sweden (#115)
 
-0.4.1 (2015-08-05)
-------------------
+## v0.4.1 (2015-08-05)
 
 - Added Portugal, thx to @borfast (#110).
 
-
-0.4.0 (2015-06-11)
-------------------
+## v0.4.0 (2015-06-11)
 
 - Added Colombia calendar, thx to @spalac24
 - Added Slovakia calendar, thx to @Adman
 - Fixed the Boxing day & boxing day shift for Australia
 
-
-0.3.0 (2015-01-30)
-------------------
+## v0.3.0 (2015-01-30)
 
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
@@ -204,9 +171,7 @@ After several years of development, we can now say that this library is producti
 - BUGFIX: Renaming Showa Day. "ō is not romji" #100 (thx @shinriyo)
 - BUGFIX: Belgian National Day title #99 (thx @laulaz)
 
-
-0.2.0 (2014-07-15)
-------------------
+## v0.2.0 (2014-07-15)
 
 - How to contribute documentation,
 - Added Belgium, European Central Bank, Sweden, every specific calendar in the
@@ -215,9 +180,7 @@ After several years of development, we can now say that this library is producti
   ChristianMixin calendar, except noticed otherwise. Now it's not included by
   default and should be set to "True" when needed.
 
-
-0.1 (2014-02-17)
-----------------
+## v0.1 (2014-02-17)
 
 - added LunarCalendar, including lunar month calculations
 - added SouthKoreanCalendar, for a LunarCalendar proof of concept
@@ -230,9 +193,7 @@ After several years of development, we can now say that this library is producti
   e.g: to use the Japan calendar, simply import `workalendar.asia.Japan` instead
   of JapanCalendar.
 
-
-v0.0.1 (2013-11-21)
--------------------
+## v0.0.1 (2013-11-21)
 
 - First released version
 - Core calendar classes, Western (European and North American)
