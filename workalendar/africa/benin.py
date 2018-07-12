@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from workalendar.core import WesternCalendar, IslamicMixin, ChristianMixin
+from ..core import WesternCalendar, IslamicMixin, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('BJ')
 class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
     "Benin"
     include_easter_monday = True

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from workalendar.core import WesternCalendar, IslamicMixin
+from ..core import WesternCalendar, IslamicMixin
+from ..registry import iso_register
 
 
+@iso_register('DZ')
 class Algeria(WesternCalendar, IslamicMixin):
     "Algeria"
     # Islamic holidays
