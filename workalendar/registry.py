@@ -110,5 +110,7 @@ def iso_register(iso_code):
     return wrapper
 
 
-# right now only european countries are supported in the ISO registry
-from workalendar.europe import *        # NoQA
+# Europe Countried
+from workalendar.europe import *  # noqa
+# United States of America
+from workalendar.usa import *  # noqa

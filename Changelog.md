@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added Tests for Europe registry.
+- Added the United States of America states to the global registry (#257).
 
 ## v2.6.0 (2018-08-30)
 

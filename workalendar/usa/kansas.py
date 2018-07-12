@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from .core import UnitedStates
+from ..registry import iso_register
 
 # FIXME: According to wikipedia, Kansas only has all federal holidays, except
 # the Columbus Day and Washington's Birthday.
@@ -18,6 +19,7 @@ from .core import UnitedStates
 # * https://publicholidays.us/kansas/2018-dates/
 
 
+@iso_register('US-KS')
 class Kansas(UnitedStates):
     """Kansas"""
     include_federal_presidents_day = False

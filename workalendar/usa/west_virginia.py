@@ -17,9 +17,11 @@ to include them, you may just have to create a class like this:
 """
 from datetime import date
 
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-WV')
 class WestVirginia(UnitedStates):
     """West Virginia"""
     include_thanksgiving_friday = True

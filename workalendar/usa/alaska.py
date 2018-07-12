@@ -4,8 +4,10 @@ from __future__ import (absolute_import, division, print_function,
 
 from .core import UnitedStates
 from workalendar.core import MON
+from workalendar.registry import iso_register
 
 
+@iso_register('US-AK')
 class Alaska(UnitedStates):
     """Alaska"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (

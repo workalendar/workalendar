@@ -4,10 +4,12 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import date, timedelta
 
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import SUN, MON, TUE, WED, THU, FRI, SAT
+from ..core import WesternCalendar, ChristianMixin
+from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
+from ..registry import iso_register
 
 
+@iso_register('US')
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

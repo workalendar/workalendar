@@ -15,10 +15,12 @@ day by implementing the following class:
         include_thanksgiving_wednesday = False
 
 """
-from workalendar.core import WED, FRI
+from ..core import WED, FRI
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-VA')
 class Virginia(UnitedStates):
     """Virginia"""
     include_christmas_eve = True
