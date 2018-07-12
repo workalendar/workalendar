@@ -4,9 +4,11 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import timedelta
 
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('PA')
 class Panama(WesternCalendar, ChristianMixin):
     "Panama"
     include_good_friday = True

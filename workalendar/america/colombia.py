@@ -4,9 +4,11 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import timedelta, date
 
-from workalendar.core import WesternCalendar, ChristianMixin, MON
+from ..core import WesternCalendar, ChristianMixin, MON
+from ..registry import iso_register
 
 
+@iso_register('CO')
 class Colombia(WesternCalendar, ChristianMixin):
     "Colombia"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

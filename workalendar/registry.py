@@ -114,3 +114,4 @@ def iso_register(iso_code):
 from workalendar.europe import *  # noqa
 # United States of America
 from workalendar.usa import *  # noqa
+from workalendar.america import *  # noqa
