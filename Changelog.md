@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Tests for Europe registry.
 
 ## v2.6.0 (2018-08-30)
 
