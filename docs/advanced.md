@@ -1,5 +1,7 @@
 # Advanced usage
 
+[Home](index.md) / [Basic usage](basic.md)
+
 The following examples will better suit people willing to contribute to Workalendar or building their custom calendars. They use primitives and methods attached to the core Calendar class to enable computation of complex holidays, that is to say dates that are not fixed, not related to religious calendars (Christmas always happens on December 25th, right?).
 
 ## Find the following working day after a date
@@ -79,3 +81,5 @@ Colombia, as an example, states that the Epiphany Day is set to the "First Monda
 >>> Calendar.get_first_weekday_after(jan_6th, MON)
 datetime.date(2018, 1, 8)
 ```
+
+[Home](index.md) / [Basic usage](basic.md)

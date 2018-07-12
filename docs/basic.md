@@ -1,5 +1,7 @@
 # Basic usage
 
+[Home](index.md) / [Advanced usage](advanced.md)
+
 Here are basic examples of what Workalendar can do for you. As an integrator or a simple Workalendar user, you will use these methods to retrieve calendars, and get basic outputs for a given date.
 
 ## Get holidays for a given country and year
@@ -103,3 +105,5 @@ If you really need it, you can use the ``add_working_days()`` with an option tha
 >>> cal.add_working_days(datetime(2012, 12, 23, 14, 0, 39), 5, keep_datetime=True)
 datetime.datetime(2012, 12, 31, 14, 0, 39)
 ```
+
+[Home](index.md) / [Advanced usage](advanced.md)
