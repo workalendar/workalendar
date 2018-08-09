@@ -144,6 +144,7 @@ Africa
 ------
 
 * Algeria
+* Angola
 * Benin
 * Ivory Coast
 * Madagascar

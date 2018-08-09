@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## master (unreleased)
-
+- Added Angola, by @dvdmgl (#276)
+- Portugal - removed carnival from Portuguese holidays, restored missing holidays (#275)
+- Added All Souls Day to common (#274)
 - Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
 - Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
 - Fixed usage examples of ``get_first_weekday_after()`` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
