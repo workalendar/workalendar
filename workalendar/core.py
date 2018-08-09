@@ -333,6 +333,7 @@ class ChristianMixin(Calendar):
     include_corpus_christi = False
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
+    include_all_souls = False
 
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
@@ -432,6 +433,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
         if self.include_all_saints:
             days.append((date(year, 11, 1), "All Saints Day"))
+        if self.include_all_souls:
+            days.append((date(year, 11, 2), "All Souls Day"))
         if self.include_immaculate_conception:
             days.append((date(year, 12, 8), "Immaculate Conception"))
         if self.include_christmas:
