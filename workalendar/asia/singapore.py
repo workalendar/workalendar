@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 from datetime import date
 
-from workalendar.core import ChineseNewYearCalendar, WesternCalendar
-from workalendar.core import (
-    ChristianMixin, IslamicMixin
+from ..core import (
+    ChineseNewYearCalendar, WesternCalendar, ChristianMixin, IslamicMixin
 )
+from ..registry import iso_register
 
 
+@iso_register('SG')
 class Singapore(WesternCalendar,
                 ChineseNewYearCalendar, ChristianMixin, IslamicMixin):
     "Singapore"

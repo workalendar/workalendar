@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
-from workalendar.core import ChineseNewYearCalendar, WesternCalendar
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+
+from ..core import ChineseNewYearCalendar, WesternCalendar
+from ..registry import iso_register
 
 
+@iso_register('KR')
 class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
     "South Korea"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

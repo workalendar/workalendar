@@ -7,6 +7,7 @@
 - Added the America countries (Brazil + Mexico + Colombia + Chile + Panama + Canada) to the global registry (#257).
 - Changed Canada namespace to `workalendar.america.canada`.
 - Added the African countries to the global registry (#257).
+- Added the Asian countries to the global registry (#257).
 
 ## v2.6.0 (2018-08-30)
 

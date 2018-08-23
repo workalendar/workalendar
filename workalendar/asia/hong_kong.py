@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 
 from datetime import timedelta
 
-from workalendar.core import ChineseNewYearCalendar, WesternCalendar
-from workalendar.core import ChristianMixin, EphemMixin
+from ..core import ChineseNewYearCalendar, WesternCalendar
+from ..core import ChristianMixin, EphemMixin
+from ..registry import iso_register
 
 
+@iso_register('HK')
 class HongKong(EphemMixin, WesternCalendar,
                ChineseNewYearCalendar, ChristianMixin):
     "Hong Kong"

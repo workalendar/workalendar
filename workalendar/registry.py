@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from collections import OrderedDict
 
 
@@ -116,3 +118,4 @@ from workalendar.europe import *  # noqa
 from workalendar.usa import *  # noqa
 from workalendar.america import *  # noqa
 from workalendar.africa import *  # noqa
+from workalendar.asia import *  # noqa
