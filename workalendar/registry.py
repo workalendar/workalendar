@@ -119,3 +119,4 @@ from workalendar.usa import *  # noqa
 from workalendar.america import *  # noqa
 from workalendar.africa import *  # noqa
 from workalendar.asia import *  # noqa
+from workalendar.oceania import *  # noqa
