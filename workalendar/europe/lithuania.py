@@ -7,7 +7,7 @@ from workalendar.core import SUN
 
 @iso_register('LT')
 class Lithuania(WesternCalendar, ChristianMixin):
-    name = 'Lithuania'
+    'Lithuania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 16, "Restoration of the State Day"),

@@ -7,7 +7,7 @@ from workalendar.registry import iso_register
 
 @iso_register('SL')
 class Slovenia(WesternCalendar, ChristianMixin):
-    name = 'Slovenia'
+    'Slovenia'
 
     include_easter_sunday = True
     include_easter_monday = True

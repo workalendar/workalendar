@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('CZ')
 class CzechRepublic(WesternCalendar, ChristianMixin):
-    name = 'Czech Republic'
+    'Czech Republic'
 
     include_easter_monday = True
     include_good_friday = True

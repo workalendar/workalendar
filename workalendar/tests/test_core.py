@@ -530,3 +530,50 @@ class WorkingDaysDeltatest(TestCase):
         # No difference if you swap the two dates
         delta = cal.get_working_days_delta(day2, day1)
         self.assertEqual(delta, 2)
+
+
+class NoDocstring(Calendar):
+    pass
+
+
+class EmptyDocstring(Calendar):
+    ""
+
+
+class OneLineDocstring(Calendar):
+    "One line"
+
+
+class MultipleLineDocstring(Calendar):
+    """Multiple line
+
+    docstrings can span over multiple lines.
+    """
+
+
+class MultipleLineEmptyFirstDocstring(Calendar):
+    """
+
+    Multiple line empty first
+
+    docstrings can span over multiple lines.
+    """
+
+
+class CalendarClassName(TestCase):
+    def test_no_docstring(self):
+        self.assertEqual(NoDocstring.name, "NoDocstring")
+
+    def test_empty_docstring(self):
+        self.assertEqual(EmptyDocstring.name, "EmptyDocstring")
+
+    def test_oneline_docstring(self):
+        self.assertEqual(OneLineDocstring.name, "One line")
+
+    def test_multiple_line_docstring(self):
+        self.assertEqual(MultipleLineDocstring.name, "Multiple line")
+
+    def test_multiple_line_empty_first_docstring(self):
+        self.assertEqual(
+            MultipleLineEmptyFirstDocstring.name, "Multiple line empty first"
+        )

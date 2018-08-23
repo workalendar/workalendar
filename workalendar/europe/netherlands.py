@@ -7,7 +7,7 @@ from workalendar.registry import iso_register
 
 @iso_register('NL')
 class Netherlands(WesternCalendar, ChristianMixin):
-    name = 'Netherlands'
+    'Netherlands'
 
     include_good_friday = True
     include_easter_sunday = True

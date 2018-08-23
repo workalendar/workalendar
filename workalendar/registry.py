@@ -95,12 +95,12 @@ def iso_register(iso_code):
     """
     Registers Calendar class as country or region in IsoRegistry.
 
-    Registered country must set class variables ``iso`` and ``name``.
+    Registered country must set class variables ``iso`` using this decorator.
 
     >>> from workalendar.core import Calendar
     >>> @iso_register('MC-MR')
     >>> class MyRegion(Calendar):
-    >>>     pass
+    >>>     'My Region'
 
     Region calendar is then retrievable from registry:
 
@@ -112,11 +112,13 @@ def iso_register(iso_code):
     return wrapper
 
 
-# Europe Countried
+# Europe Countries
 from workalendar.europe import *  # noqa
 # United States of America
 from workalendar.usa import *  # noqa
+# American continent outside of USA
 from workalendar.america import *  # noqa
+# African continent
 from workalendar.africa import *  # noqa
 from workalendar.asia import *  # noqa
 from workalendar.oceania import *  # noqa

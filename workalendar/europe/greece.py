@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('GR')
 class Greece(OrthodoxMixin, WesternCalendar):
-    name = 'Greece'
+    'Greece'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Independence Day"),

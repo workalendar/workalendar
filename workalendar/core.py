@@ -17,6 +17,16 @@ from lunardate import LunarDate
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
+class classproperty(object):
+
+    def __init__(self, getter):
+        self.getter = getter
+        self.__doc__ = getter.__doc__
+
+    def __get__(self, instance, owner):
+        return self.getter(owner)
+
+
 class Calendar(object):
 
     FIXED_HOLIDAYS = ()
@@ -24,6 +34,15 @@ class Calendar(object):
 
     def __init__(self):
         self._holidays = {}
+
+    @classproperty
+    def name(cls):
+        class_name = cls.__name__
+        if cls.__doc__:
+            doc = cls.__doc__.split('\n')
+            doc = map(lambda s: s.strip(), doc)
+            return next(s for s in doc if s)
+        return class_name
 
     def get_fixed_holidays(self, year):
         """Return the fixed days according to the FIXED_HOLIDAYS class property

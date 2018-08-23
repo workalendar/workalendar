@@ -12,6 +12,7 @@ from ..registry import iso_register
 @iso_register('US')
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 4, 'Independence Day'),
     )
