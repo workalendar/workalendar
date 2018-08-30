@@ -2,13 +2,20 @@
 
 ## master (unreleased)
 
+### Major changes
+
+Large work on global registry: refs #13, #96 & #257.
+
 - Added Tests for Europe registry.
-- Added the United States of America states to the global registry (#257).
-- Added the America countries (Brazil + Mexico + Colombia + Chile + Panama + Canada) to the global registry (#257).
+- Revamped and cleaned up Europe countries.
+- Added the United States of America + States, American countries & sub-regions, African countries, Asian countries, Oceanian countries.
+- The global registry usage is documented.
+
+### Breaking changes
+
 - Changed Canada namespace to `workalendar.america.canada`.
-- Added the African countries to the global registry (#257).
-- Added the Asian countries to the global registry (#257).
-- Added the Oceanian countries to the global registry (#257).
+- You don't have to declare a `name` properties for Calendar classes. It will be deducted from the docstring.
+- Changed the `registry.items()` mandatory argument name to `region_codes` for more readability.
 
 ## v2.6.0 (2018-08-30)
 
@@ -54,7 +61,7 @@
 - **Deprecation:** Dropped support for Python 3.3 (#245).
 - Fixed Travis-ci configuration for Python 3.5 and al (#252).
 - Moved from `novafloss` to the `peopledoc` organization, the core People Doc Inc. organization (#255).
-- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalenda.registry`` module. Please use with care at the moment (#248).
+- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalendar.registry`` module. Please use with care at the moment (#248).
 - Refactored Australia family and community day calculation (#244).
 
 ## v2.3.1 (2017-07-27)
