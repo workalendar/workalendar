@@ -2,9 +2,12 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 import warnings
+
 from .core import UnitedStates
+from ..registry import iso_register
 
 
+@iso_register('US-MT')
 class Montana(UnitedStates):
     """Montana"""
     include_election_day_even = True

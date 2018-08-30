@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('RU')
 class Russia(WesternCalendar):
-    name = 'Russia'
+    'Russia'
 
     shift_new_years_day = True
 

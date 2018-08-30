@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('HR')
 class Croatia(WesternCalendar, ChristianMixin):
-    name = 'Croatia'
+    'Croatia'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "International Workers' Day"),

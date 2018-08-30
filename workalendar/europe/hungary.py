@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('HU')
 class Hungary(WesternCalendar, ChristianMixin):
-    name = 'Hungary'
+    'Hungary'
 
     include_easter_sunday = True
     include_easter_monday = True

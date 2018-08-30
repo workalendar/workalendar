@@ -6,7 +6,7 @@ from workalendar.registry import iso_register
 
 @iso_register('EE')
 class Estonia(WesternCalendar, ChristianMixin):
-    name = 'Estonia'
+    'Estonia'
 
     include_good_friday = True
     include_easter_sunday = True

@@ -8,7 +8,7 @@ from workalendar.registry import iso_register
 
 @iso_register('GB')
 class UnitedKingdom(WesternCalendar, ChristianMixin):
-    name = 'United Kingdom'
+    'United Kingdom'
 
     include_good_friday = True
     include_easter_sunday = True
@@ -47,7 +47,7 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
 
 @iso_register('GB-NIR')
 class UnitedKingdomNorthernIreland(UnitedKingdom):
-    name = 'Northern Ireland'
+    'Northern Ireland'
 
     def get_variable_days(self, year):
         days = super(UnitedKingdomNorthernIreland, self) \

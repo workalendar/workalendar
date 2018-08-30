@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from collections import OrderedDict
 
 
@@ -64,11 +66,11 @@ class IsoRegistry(object):
                 items[key] = value
         return items
 
-    def items(self, regions, include_subregions=False):
+    def items(self, region_codes, include_subregions=False):
         """
         Returns calendar classes for regions
 
-        :param regions list of ISO codes for selected regions
+        :param region_codes list of ISO codes for selected regions
         :param include_subregions boolean if subregions
         of selected regions should be included in result
         :rtype dict
@@ -76,13 +78,13 @@ class IsoRegistry(object):
         and values are calendar classes
         """
         items = OrderedDict()
-        for region in regions:
+        for code in region_codes:
             try:
-                items[region] = self.region_registry[region]
+                items[code] = self.region_registry[code]
             except KeyError:
                 continue
             if include_subregions:
-                items.update(self.get_subregions(region))
+                items.update(self.get_subregions(code))
         return items
 
 
@@ -93,12 +95,12 @@ def iso_register(iso_code):
     """
     Registers Calendar class as country or region in IsoRegistry.
 
-    Registered country must set class variables ``iso`` and ``name``.
+    Registered country must set class variables ``iso`` using this decorator.
 
     >>> from workalendar.core import Calendar
     >>> @iso_register('MC-MR')
     >>> class MyRegion(Calendar):
-    >>>     pass
+    >>>     'My Region'
 
     Region calendar is then retrievable from registry:
 
@@ -110,5 +112,13 @@ def iso_register(iso_code):
     return wrapper
 
 
-# right now only european countries are supported in the ISO registry
-from workalendar.europe import *        # NoQA
+# Europe Countries
+from workalendar.europe import *  # noqa
+# United States of America
+from workalendar.usa import *  # noqa
+# American continent outside of USA
+from workalendar.america import *  # noqa
+# African continent
+from workalendar.africa import *  # noqa
+from workalendar.asia import *  # noqa
+from workalendar.oceania import *  # noqa

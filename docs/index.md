@@ -16,3 +16,4 @@ See [the repository README](https://github.com/peopledoc/workalendar#available-c
 
 * [Basic usage](basic.md)
 * [Advanced usage](advanced.md)
+* [ISO Register](iso-register.md)

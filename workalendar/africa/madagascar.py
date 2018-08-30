@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('MG')
 class Madagascar(WesternCalendar, ChristianMixin):
     "Madagascar"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

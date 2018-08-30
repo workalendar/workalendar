@@ -8,7 +8,7 @@ from workalendar.registry import iso_register
 
 @iso_register('FI')
 class Finland(WesternCalendar, ChristianMixin):
-    name = 'Finland'
+    'Finland'
 
     include_epiphany = True
     include_good_friday = True

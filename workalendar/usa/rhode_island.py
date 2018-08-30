@@ -2,10 +2,12 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from workalendar.core import MON
+from ..core import MON
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-RI')
 class RhodeIsland(UnitedStates):
     """Rhode Island"""
     include_federal_presidents_day = False

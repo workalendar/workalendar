@@ -8,7 +8,7 @@ from workalendar.registry import iso_register
 
 @iso_register('IS')
 class Iceland(WesternCalendar, ChristianMixin):
-    name = 'Iceland'
+    'Iceland'
 
     include_holy_thursday = True
     include_good_friday = True

@@ -4,10 +4,12 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import timedelta, date
 
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, SAT, SUN
+from ..core import WesternCalendar, ChristianMixin
+from ..core import MON, SAT, SUN
+from ..registry import iso_register
 
 
+@iso_register('BR')
 class Brazil(WesternCalendar, ChristianMixin):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -64,6 +66,7 @@ class Brazil(WesternCalendar, ChristianMixin):
         return days
 
 
+@iso_register('BR-AC')
 class BrazilAcre(Brazil):
     "Brazil Acre State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -74,6 +77,7 @@ class BrazilAcre(Brazil):
     )
 
 
+@iso_register('BR-AL')
 class BrazilAlagoas(Brazil):
     "Brazil Alagoas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -84,6 +88,7 @@ class BrazilAlagoas(Brazil):
     include_consciencia_negra = True
 
 
+@iso_register('BR-AP')
 class BrazilAmapa(Brazil):
     "Brazil Amapá State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -95,6 +100,7 @@ class BrazilAmapa(Brazil):
     include_consciencia_negra = True
 
 
+@iso_register('BR-AM')
 class BrazilAmazonas(Brazil):
     "Brazil Amazonas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -104,6 +110,7 @@ class BrazilAmazonas(Brazil):
     include_nossa_senhora_conceicao = True
 
 
+@iso_register('BR-BA')
 class BrazilBahia(Brazil):
     "Brazil Bahia State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -111,6 +118,7 @@ class BrazilBahia(Brazil):
     )
 
 
+@iso_register('BR-CE')
 class BrazilCeara(Brazil):
     "Brazil Ceará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -119,6 +127,7 @@ class BrazilCeara(Brazil):
     include_sao_jose = True
 
 
+@iso_register('BR-DF')
 class BrazilDistritoFederal(Brazil):
     "Brazil Distrito Federal State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -127,16 +136,19 @@ class BrazilDistritoFederal(Brazil):
     )
 
 
+@iso_register('BR-ES')
 class BrazilEspiritoSanto(Brazil):
     "Brazil Espírito Santo State"
     include_servidor_publico = True
 
 
+@iso_register('BR-GO')
 class BrazilGoias(Brazil):
     "Brazil Goiás State"
     include_servidor_publico = True
 
 
+@iso_register('BR-MA')
 class BrazilMaranhao(Brazil):
     "Brazil Maranhão State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -145,12 +157,14 @@ class BrazilMaranhao(Brazil):
     include_nossa_senhora_conceicao = True
 
 
+@iso_register('BR-MT')
 class BrazilMatoGrosso(Brazil):
     "Brazil Mato Grosso State"
     include_consciencia_negra = True
     consciencia_negra_day = (11, 29)
 
 
+@iso_register('BR-MS')
 class BrazilMatoGrossoDoSul(Brazil):
     "Brazil Mato Grosso do Sul State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -158,6 +172,7 @@ class BrazilMatoGrossoDoSul(Brazil):
     )
 
 
+@iso_register('BR-PA')
 class BrazilPara(Brazil):
     "Brazil Pará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -165,6 +180,7 @@ class BrazilPara(Brazil):
     )
 
 
+@iso_register('BR-PB')
 class BrazilParaiba(Brazil):
     "Brazil Paraíba State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -172,11 +188,13 @@ class BrazilParaiba(Brazil):
     )
 
 
+@iso_register('BR-PE')
 class BrazilPernambuco(Brazil):
     "Brazil Pernambuco State"
     include_sao_joao = True
 
 
+@iso_register('BR-PI')
 class BrazilPiaui(Brazil):
     "Brazil Piauí State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -185,6 +203,7 @@ class BrazilPiaui(Brazil):
     )
 
 
+@iso_register('BR-RJ')
 class BrazilRioDeJaneiro(Brazil):
     "Brazil Rio de Janeiro State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -211,6 +230,7 @@ class BrazilRioDeJaneiro(Brazil):
         return days
 
 
+@iso_register('BR-RN')
 class BrazilRioGrandeDoNorte(Brazil):
     "Brazil Rio Grande do Norte State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -220,6 +240,7 @@ class BrazilRioGrandeDoNorte(Brazil):
     sao_pedro_label = "Dua de São Pedro"
 
 
+@iso_register('BR-RS')
 class BrazilRioGrandeDoSul(Brazil):
     "Brazil Rio Grande do Sul State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -227,6 +248,7 @@ class BrazilRioGrandeDoSul(Brazil):
     )
 
 
+@iso_register('BR-RO')
 class BrazilRondonia(Brazil):
     "Brazil Rondônia State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -235,6 +257,7 @@ class BrazilRondonia(Brazil):
     )
 
 
+@iso_register('BR-RR')
 class BrazilRoraima(Brazil):
     "Brazil Roraima State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -242,6 +265,7 @@ class BrazilRoraima(Brazil):
     )
 
 
+@iso_register('BR-SC')
 class BrazilSantaCatarina(Brazil):
     "Brazil Santa Catarina State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -249,6 +273,7 @@ class BrazilSantaCatarina(Brazil):
     )
 
 
+@iso_register('BR-SP')
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -274,6 +299,7 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
         return days
 
 
+@iso_register('BR-SE')
 class BrazilSergipe(Brazil):
     "Brazil Sergipe State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -281,6 +307,7 @@ class BrazilSergipe(Brazil):
     )
 
 
+@iso_register('BR-TO')
 class BrazilTocantins(Brazil):
     "Brazil Tocantins State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (

@@ -4,10 +4,12 @@ from __future__ import (absolute_import, division, print_function,
 
 import warnings
 from datetime import date
-from workalendar.core import MON, TUE, WED, THU, FRI, SAT
+from ..core import MON, TUE, WED, THU, FRI, SAT
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-GA')
 class Georgia(UnitedStates):
     """Georgia"""
     include_confederation_day = True
