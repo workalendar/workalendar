@@ -1,8 +1,17 @@
 # CHANGELOG
 
-## master (unreleased)
+## v2.6.0 (2018-08-30)
+
+### New Calendars
+
 - Added Angola, by @dvdmgl (#276)
+
+### Bugfixes
+
 - Portugal - removed carnival from Portuguese holidays, restored missing holidays (#275)
+
+### Other changes
+
 - Added All Souls Day to common (#274)
 - Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
 - Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
