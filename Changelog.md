@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## v2.6.0 (2018-08-30)
+## master (unreleased)
+
+Nothing here yet.
+
+## v2.6.0 (2018-08-30)
 
 ### New Calendars
 
