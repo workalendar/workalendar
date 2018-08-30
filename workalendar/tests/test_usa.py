@@ -5,7 +5,8 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.usa import (
     UnitedStates,
     Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty,
-    Florida, Arkansas, Alaska, Arizona, California,
+    Florida, Arkansas, Alaska, Arizona, California, CaliforniaEducation,
+    CaliforniaBerkeley, CaliforniaSanFrancisco, CaliforniaWestHollywood,
     Colorado, Connecticut, Delaware, DistrictOfColumbia, Georgia, Hawaii,
     Indiana, Illinois, Idaho, Iowa, Kansas, Kentucky, Louisiana, Maine,
     Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Missouri,
@@ -437,6 +438,110 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+
+class CaliforniaEducationTest(CaliforniaTest):
+    cal_class = CaliforniaEducation
+
+    def test_specific_lincoln_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 2, 12), holidays)  # Lincoln's Birthday
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 12), holidays)  # Lincoln's Birthday
+
+        # Lincoln's Birthday wasn't included in 2009
+        holidays = self.cal.holidays_set(2009)
+        self.assertNotIn(date(2009, 2, 12), holidays)
+
+    def test_specific_native_american_day(self):
+        # Native American Day occurs on the 4th MON of September
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 24), holidays)  # Native American Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 9, 23), holidays)  # Native American Day
+
+
+# Like California, except that it has:
+# * No Chavez Day,
+# * Includes Columbus day, but relabels it.
+# * Adds Lincoln's Birthday.
+class CaliforniaBerkeleyTest(UnitedStatesTest):
+    cal_class = CaliforniaBerkeley
+
+    def test_state_year_2014(self):
+        # Overwriting CaliforniaTest, there's no Chavez Day for Berkeley
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        # Overwriting CaliforniaTest, there's no Chavez Day for Berkeley
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_specific_lincoln_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 2, 12), holidays)  # Lincoln's Birthday
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 12), holidays)  # Lincoln's Birthday
+
+    def test_specific_malcomx_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 5, 19), holidays)  # Malcom X Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 5, 19), holidays)  # Malcom X Day
+
+    def test_columbus_day_label(self):
+        # Overwrite UnitedStatesTest.test_columbus_day_label
+        _, label = self.cal.get_columbus_day(2019)
+        self.assertEqual(label, "Indigenous People's Day")
+
+
+# Like California, except:
+# * No Chavez Day,
+# * Added Columbus Day
+class CaliforniaSanFranciscoTest(UnitedStatesTest):
+    cal_class = CaliforniaSanFrancisco
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+
+# Like California, except:
+# * No Chavez Day,
+# * No Thanksgiving Friday
+# * Added Harvey Milk Day
+class CaliforniaWestHollywoodTest(NoColumbus, UnitedStatesTest):
+    cal_class = CaliforniaWestHollywood
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertNotIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertNotIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_harvey_milk_day(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 5, 22), holidays)  # Harvey Milk Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 5, 22), holidays)  # Harvey Milk Day
 
 
 class ColoradoTest(UnitedStatesTest):

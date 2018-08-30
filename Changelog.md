@@ -2,7 +2,7 @@
 
 ## master
 
-Nothing here yet.
+- Added California specific calendars: California Education, Berkeley, San Francisco, West Hollywood (#215).
 
 ## v4.3.1 (2019-05-03)
 

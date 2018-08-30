@@ -8,7 +8,10 @@ from .alabama import (
 from .alaska import Alaska
 from .arizona import Arizona
 from .arkansas import Arkansas
-from .california import California
+from .california import (
+    California, CaliforniaEducation, CaliforniaBerkeley,
+    CaliforniaSanFrancisco, CaliforniaWestHollywood,
+)
 from .colorado import Colorado
 from .connecticut import Connecticut
 from .delaware import Delaware
@@ -68,6 +71,8 @@ __all__ = [
     'Arizona',
     'Arkansas',
     'California',
+    'CaliforniaEducation', 'CaliforniaBerkeley', 'CaliforniaSanFrancisco',
+    'CaliforniaWestHollywood',
     'Colorado',
     'Connecticut',
     'Delaware',
