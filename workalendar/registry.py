@@ -66,11 +66,11 @@ class IsoRegistry(object):
                 items[key] = value
         return items
 
-    def items(self, regions, include_subregions=False):
+    def items(self, region_codes, include_subregions=False):
         """
         Returns calendar classes for regions
 
-        :param regions list of ISO codes for selected regions
+        :param region_codes list of ISO codes for selected regions
         :param include_subregions boolean if subregions
         of selected regions should be included in result
         :rtype dict
@@ -78,13 +78,13 @@ class IsoRegistry(object):
         and values are calendar classes
         """
         items = OrderedDict()
-        for region in regions:
+        for code in region_codes:
             try:
-                items[region] = self.region_registry[region]
+                items[code] = self.region_registry[code]
             except KeyError:
                 continue
             if include_subregions:
-                items.update(self.get_subregions(region))
+                items.update(self.get_subregions(code))
         return items
 
 
