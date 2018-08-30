@@ -1058,7 +1058,6 @@ class PortugalTest(GenericCalendarTest):
     def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)  # Ano Novo
-        self.assertIn(date(2015, 2, 17), holidays)  # Entrudo
         self.assertIn(date(2015, 4, 3), holidays)  # Sexta-Feira Santa
         self.assertIn(date(2015, 4, 5), holidays)  # Domingo de Páscoa
         self.assertIn(date(2015, 4, 25), holidays)  # Dia da Liberdade
@@ -1068,10 +1067,15 @@ class PortugalTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 8), holidays)  # Imaculada Conceição
         self.assertIn(date(2015, 12, 25), holidays)  # Natal
 
+        self.assertNotIn(date(2015, 6, 4), holidays)  # Corpus Christi
+        self.assertNotIn(date(2015, 10, 5), holidays)  # Todos os santos
+        self.assertNotIn(date(2015, 11, 1), holidays)  # todos os santos
+        # Restauração da Independência
+        self.assertNotIn(date(2015, 12, 1), holidays)
+
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 1, 1), holidays)  # Ano Novo
-        self.assertIn(date(2016, 2, 9), holidays)  # Entrudo
         self.assertIn(date(2016, 3, 25), holidays)  # Sexta-Feira Santa
         self.assertIn(date(2016, 3, 27), holidays)  # Domingo de Páscoa
         self.assertIn(date(2016, 4, 25), holidays)  # Dia da Liberdade
@@ -1080,6 +1084,12 @@ class PortugalTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 15), holidays)  # Assunção de Nossa Senhora
         self.assertIn(date(2016, 12, 8), holidays)  # Imaculada Conceição
         self.assertIn(date(2016, 12, 25), holidays)  # Natal
+
+        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi
+        self.assertIn(date(2016, 10, 5), holidays)  # Implantação da República
+        self.assertIn(date(2016, 11, 1), holidays)  # Todos os santos
+        # Restauração da Independência
+        self.assertIn(date(2016, 12, 1), holidays)
 
 
 class SpainTest(GenericCalendarTest):

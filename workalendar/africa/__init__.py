@@ -8,6 +8,7 @@ from .ivory_coast import IvoryCoast
 from .madagascar import Madagascar
 from .sao_tome import SaoTomeAndPrincipe
 from .south_africa import SouthAfrica
+from .angola import Angola
 
 
 __all__ = (
@@ -17,4 +18,5 @@ __all__ = (
     'Madagascar',
     'SaoTomeAndPrincipe',
     'SouthAfrica',
+    'Angola',
 )
