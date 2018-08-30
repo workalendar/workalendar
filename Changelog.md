@@ -31,19 +31,19 @@ Nothing here yet.
 
 ## v2.4.0 (2018-03-28)
 
-### New Calendars
+### New Calendars
 
 - Added Lithuania, by @landler (#254).
 - Added Russia, by @vanadium23 (#259).
 
-### Bugfixes
+### Bugfixes
 
 - Fixed shifting ANZAC day for Australia states (#249).
 - Renamed Australian state classes to actual state names(eg. AustraliaNewSouthWales to NewSouthWales).
 - Update ACT holidays (#251).
 - Fixing Federal Christmas Shift ; added a `include_veterans_day` flag to enable/disable Veteran's day on specific calendar - e.g. Mozilla's dedicated calendar (#242).
 
-### Other
+### Other
 
 - **Deprecation:** Dropped support for Python 3.3 (#245).
 - Fixed Travis-ci configuration for Python 3.5 and al (#252).
@@ -210,7 +210,7 @@ After several years of development, we can now say that this library is producti
   e.g: to use the Japan calendar, simply import `workalendar.asia.Japan` instead
   of JapanCalendar.
 
-## v0.0.1 (2013-11-21)
+## v0.0.1 (2013-11-21)
 
 - First released version
 - Core calendar classes, Western (European and North American)
