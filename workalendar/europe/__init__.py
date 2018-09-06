@@ -40,6 +40,14 @@ from .germany import (
     SaxonyAnhalt, SchleswigHolstein, Thuringia
 )
 
+# Scotland
+from .scotland import (
+    Scotland, Aberdeen, Angus, Arbroath, Ayr, CarnoustieMonifieth, Clydebank,
+    DumfriesGalloway, Dundee, EastDunbartonshire, Edinburgh, Elgin, Falkirk,
+    Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,
+    Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
+    ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire
+)
 
 __all__ = (
     'Austria',
@@ -84,4 +92,12 @@ __all__ = (
     'Bremen', 'Hamburg', 'Hesse', 'MecklenburgVorpommern', 'LowerSaxony',
     'NorthRhineWestphalia', 'RhinelandPalatinate', 'Saarland', 'Saxony',
     'SaxonyAnhalt', 'SchleswigHolstein', 'Thuringia',
+    # Scotland
+    'Scotland',
+    'Aberdeen', 'Angus', 'Arbroath', 'Ayr', 'CarnoustieMonifieth',
+    'Clydebank', 'DumfriesGalloway', 'Dundee', 'EastDunbartonshire',
+    'Edinburgh', 'Elgin', 'Falkirk', 'Fife', 'Galashiels', 'Glasgow',
+    'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
+    'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
+    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire'
 )
