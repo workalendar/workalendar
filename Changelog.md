@@ -10,6 +10,7 @@
 - Added New Zealand, by @johnguant (#306).
 - Added Paraguay calendar, following the work of @reichert (#268).
 - Added China calendar, by @iamsk (#304).
+- Added Israel, by @armona, @tsehori (#281)
 
 ## v3.2.1 (2018-12-06)
 

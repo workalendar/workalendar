@@ -1,8 +1,10 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 
-from workalendar.asia import HongKong, Japan, Qatar, Singapore
-from workalendar.asia import SouthKorea, Taiwan, Malaysia, China
+from workalendar.asia import (
+    HongKong, Japan, Qatar, Singapore,
+    SouthKorea, Taiwan, Malaysia, China, Israel
+)
 
 
 class ChinaTest(GenericCalendarTest):
@@ -352,3 +354,48 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
+
+
+class IsraelTest(GenericCalendarTest):
+
+    cal_class = Israel
+
+    def test_holeidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+
+        self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
+        self.assertIn(date(2017, 4, 17), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2017, 5, 2), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was early in 2017
+        self.assertIn(date(2017, 5, 31), holidays)  # Shavuot
+        self.assertIn(
+            date(2017, 9, 21), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 22), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 30), holidays
+        )  # Yom Kippur (already a Saturday - Shabbat, weekend day)
+        self.assertIn(date(2017, 10, 5), holidays)  # Sukkot
+        self.assertIn(date(2017, 10, 12), holidays)  # Sukkot
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+
+        self.assertIn(date(2018, 3, 31), holidays)  # Passover (Pesach)
+        self.assertIn(date(2018, 4, 6), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2018, 4, 19), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2018
+        self.assertIn(date(2018, 5, 20), holidays)  # Shavuot
+        self.assertIn(
+            date(2018, 9, 10), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2018, 9, 11), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
+        self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
+        self.assertIn(date(2018, 10, 1), holidays)  # Sukkot
