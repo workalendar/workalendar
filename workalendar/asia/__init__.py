@@ -6,14 +6,16 @@ from .qatar import Qatar
 from .singapore import Singapore
 from .south_korea import SouthKorea
 from .taiwan import Taiwan
+from .israel import Israel
 
 
 __all__ = (
-    'HongKong',
-    'Japan',
-    'Malaysia',
-    'Qatar',
-    'Singapore',
-    'SouthKorea',
-    'Taiwan',
+    "HongKong",
+    "Japan",
+    "Malaysia",
+    "Qatar",
+    "Singapore",
+    "SouthKorea",
+    "Taiwan",
+    "Israel",
 )

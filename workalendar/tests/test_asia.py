@@ -1,8 +1,16 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 
-from workalendar.asia import HongKong, Japan, Qatar, Singapore
-from workalendar.asia import SouthKorea, Taiwan, Malaysia
+from workalendar.asia import (
+    HongKong,
+    Japan,
+    Qatar,
+    Singapore,
+    SouthKorea,
+    Taiwan,
+    Malaysia,
+    Israel,
+)
 
 
 class HongKongTest(GenericCalendarTest):
@@ -14,81 +22,81 @@ class HongKongTest(GenericCalendarTest):
             on a Sunday, so didn't roll, and Ching Ming was on the same day
             as Easter Monday """
         holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 1, 1), holidays)    # New Year
-        self.assertIn(date(2010, 2, 13), holidays)   # Chinese new year (shift)
-        self.assertIn(date(2010, 2, 15), holidays)   # Chinese new year
-        self.assertIn(date(2010, 2, 16), holidays)   # Chinese new year
+        self.assertIn(date(2010, 1, 1), holidays)  # New Year
+        self.assertIn(date(2010, 2, 13), holidays)  # Chinese new year (shift)
+        self.assertIn(date(2010, 2, 15), holidays)  # Chinese new year
+        self.assertIn(date(2010, 2, 16), holidays)  # Chinese new year
         self.assertNotIn(date(2010, 2, 17), holidays)  # Not Chinese new year
-        self.assertIn(date(2010, 4, 2), holidays)    # Good Friday
-        self.assertIn(date(2010, 4, 3), holidays)    # Day after Good Friday
-        self.assertIn(date(2010, 4, 5), holidays)    # Easter Monday
-        self.assertIn(date(2010, 4, 6), holidays)    # Ching Ming (shifted)
-        self.assertIn(date(2010, 5, 1), holidays)    # Labour Day
-        self.assertIn(date(2010, 5, 21), holidays)   # Buddha's Birthday
-        self.assertIn(date(2010, 6, 16), holidays)   # Tuen Ng Festival
-        self.assertIn(date(2010, 7, 1), holidays)    # HK SAR Establishment Day
-        self.assertIn(date(2010, 9, 23), holidays)   # Day after Mid-Autumn
-        self.assertIn(date(2010, 10, 1), holidays)   # National Day
+        self.assertIn(date(2010, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2010, 4, 3), holidays)  # Day after Good Friday
+        self.assertIn(date(2010, 4, 5), holidays)  # Easter Monday
+        self.assertIn(date(2010, 4, 6), holidays)  # Ching Ming (shifted)
+        self.assertIn(date(2010, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2010, 5, 21), holidays)  # Buddha's Birthday
+        self.assertIn(date(2010, 6, 16), holidays)  # Tuen Ng Festival
+        self.assertIn(date(2010, 7, 1), holidays)  # HK SAR Establishment Day
+        self.assertIn(date(2010, 9, 23), holidays)  # Day after Mid-Autumn
+        self.assertIn(date(2010, 10, 1), holidays)  # National Day
         self.assertIn(date(2010, 10, 16), holidays)  # Chung Yeung Festival
         self.assertIn(date(2010, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2010, 12, 27), holidays)  # Boxing Day (shifted)
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # New Year
-        self.assertIn(date(2013, 2, 11), holidays)   # Chinese new year
-        self.assertIn(date(2013, 2, 12), holidays)   # Chinese new year
-        self.assertIn(date(2013, 2, 13), holidays)   # Chinese new year
-        self.assertIn(date(2013, 3, 29), holidays)   # Good Friday
-        self.assertIn(date(2013, 3, 30), holidays)   # Day after Good Friday
-        self.assertIn(date(2013, 4, 1), holidays)    # Easter Monday
-        self.assertIn(date(2013, 4, 4), holidays)    # Ching Ming
-        self.assertIn(date(2013, 5, 1), holidays)    # Labour Day
-        self.assertIn(date(2013, 5, 17), holidays)   # Buddha's Birthday
-        self.assertIn(date(2013, 6, 12), holidays)   # Tuen Ng Festival
-        self.assertIn(date(2013, 7, 1), holidays)    # HK SAR Establishment Day
-        self.assertIn(date(2013, 9, 20), holidays)   # Day after Mid-Autumn
-        self.assertIn(date(2013, 10, 1), holidays)   # National Day
+        self.assertIn(date(2013, 1, 1), holidays)  # New Year
+        self.assertIn(date(2013, 2, 11), holidays)  # Chinese new year
+        self.assertIn(date(2013, 2, 12), holidays)  # Chinese new year
+        self.assertIn(date(2013, 2, 13), holidays)  # Chinese new year
+        self.assertIn(date(2013, 3, 29), holidays)  # Good Friday
+        self.assertIn(date(2013, 3, 30), holidays)  # Day after Good Friday
+        self.assertIn(date(2013, 4, 1), holidays)  # Easter Monday
+        self.assertIn(date(2013, 4, 4), holidays)  # Ching Ming
+        self.assertIn(date(2013, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2013, 5, 17), holidays)  # Buddha's Birthday
+        self.assertIn(date(2013, 6, 12), holidays)  # Tuen Ng Festival
+        self.assertIn(date(2013, 7, 1), holidays)  # HK SAR Establishment Day
+        self.assertIn(date(2013, 9, 20), holidays)  # Day after Mid-Autumn
+        self.assertIn(date(2013, 10, 1), holidays)  # National Day
         self.assertIn(date(2013, 10, 14), holidays)  # Chung Yeung Festival
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)    # New Year
-        self.assertIn(date(2016, 2, 8), holidays)    # Chinese new year
-        self.assertIn(date(2016, 2, 9), holidays)    # Chinese new year
-        self.assertIn(date(2016, 2, 10), holidays)   # Chinese new year
-        self.assertIn(date(2016, 3, 25), holidays)   # Good Friday
-        self.assertIn(date(2016, 3, 26), holidays)   # Day after Good Friday
-        self.assertIn(date(2016, 3, 28), holidays)   # Easter Monday
-        self.assertIn(date(2016, 4, 4), holidays)    # Ching Ming
-        self.assertIn(date(2016, 5, 2), holidays)    # Labour Day (shifted)
-        self.assertIn(date(2016, 5, 14), holidays)   # Buddha's Birthday
-        self.assertIn(date(2016, 6, 9), holidays)    # Tuen Ng Festival
-        self.assertIn(date(2016, 7, 1), holidays)    # HK SAR Establishment Day
-        self.assertIn(date(2016, 9, 16), holidays)   # Day after Mid-Autumn
-        self.assertIn(date(2016, 10, 1), holidays)   # National Day
+        self.assertIn(date(2016, 1, 1), holidays)  # New Year
+        self.assertIn(date(2016, 2, 8), holidays)  # Chinese new year
+        self.assertIn(date(2016, 2, 9), holidays)  # Chinese new year
+        self.assertIn(date(2016, 2, 10), holidays)  # Chinese new year
+        self.assertIn(date(2016, 3, 25), holidays)  # Good Friday
+        self.assertIn(date(2016, 3, 26), holidays)  # Day after Good Friday
+        self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
+        self.assertIn(date(2016, 4, 4), holidays)  # Ching Ming
+        self.assertIn(date(2016, 5, 2), holidays)  # Labour Day (shifted)
+        self.assertIn(date(2016, 5, 14), holidays)  # Buddha's Birthday
+        self.assertIn(date(2016, 6, 9), holidays)  # Tuen Ng Festival
+        self.assertIn(date(2016, 7, 1), holidays)  # HK SAR Establishment Day
+        self.assertIn(date(2016, 9, 16), holidays)  # Day after Mid-Autumn
+        self.assertIn(date(2016, 10, 1), holidays)  # National Day
         self.assertIn(date(2016, 10, 10), holidays)  # Chung Yeung Festival
         self.assertIn(date(2016, 12, 26), holidays)  # Christmas Day (shifted)
         self.assertIn(date(2016, 12, 27), holidays)  # Boxing Day (shifted)
 
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 1, 2), holidays)    # New Year (shifted)
-        self.assertIn(date(2017, 1, 28), holidays)   # Chinese new year
-        self.assertIn(date(2017, 1, 30), holidays)   # Chinese new year
-        self.assertIn(date(2017, 1, 31), holidays)   # Chinese new year
-        self.assertIn(date(2017, 4, 4), holidays)    # Ching Ming
-        self.assertIn(date(2017, 4, 14), holidays)   # Good Friday
-        self.assertIn(date(2017, 4, 15), holidays)   # Day after Good Friday
-        self.assertIn(date(2017, 4, 17), holidays)   # Easter Monday
-        self.assertIn(date(2017, 5, 1), holidays)    # Labour Day
-        self.assertIn(date(2017, 5, 3), holidays)    # Buddha's Birthday
-        self.assertIn(date(2017, 5, 30), holidays)   # Tuen Ng Festival
-        self.assertIn(date(2017, 7, 1), holidays)    # HK SAR Establishment Day
-        self.assertIn(date(2017, 10, 2), holidays)   # National Day (shifted)
-        self.assertIn(date(2017, 10, 5), holidays)   # Day after Mid-Autumn
+        self.assertIn(date(2017, 1, 2), holidays)  # New Year (shifted)
+        self.assertIn(date(2017, 1, 28), holidays)  # Chinese new year
+        self.assertIn(date(2017, 1, 30), holidays)  # Chinese new year
+        self.assertIn(date(2017, 1, 31), holidays)  # Chinese new year
+        self.assertIn(date(2017, 4, 4), holidays)  # Ching Ming
+        self.assertIn(date(2017, 4, 14), holidays)  # Good Friday
+        self.assertIn(date(2017, 4, 15), holidays)  # Day after Good Friday
+        self.assertIn(date(2017, 4, 17), holidays)  # Easter Monday
+        self.assertIn(date(2017, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2017, 5, 3), holidays)  # Buddha's Birthday
+        self.assertIn(date(2017, 5, 30), holidays)  # Tuen Ng Festival
+        self.assertIn(date(2017, 7, 1), holidays)  # HK SAR Establishment Day
+        self.assertIn(date(2017, 10, 2), holidays)  # National Day (shifted)
+        self.assertIn(date(2017, 10, 5), holidays)  # Day after Mid-Autumn
         self.assertIn(date(2017, 10, 28), holidays)  # Chung Yeung Festival
         self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2017, 12, 26), holidays)  # Boxing Day
@@ -117,35 +125,35 @@ class JapanTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # new year
-        self.assertIn(date(2013, 2, 11), holidays)   # Foundation Day
-        self.assertIn(date(2013, 3, 20), holidays)   # Vernal Equinox Day
-        self.assertIn(date(2013, 4, 29), holidays)   # Showa Day
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 2, 11), holidays)  # Foundation Day
+        self.assertIn(date(2013, 3, 20), holidays)  # Vernal Equinox Day
+        self.assertIn(date(2013, 4, 29), holidays)  # Showa Day
         self.assertIn(date(2013, 5, 3), holidays)  # Constitution Memorial Day
-        self.assertIn(date(2013, 5, 4), holidays)    # Greenery Day
-        self.assertIn(date(2013, 5, 5), holidays)    # Children's Day
-        self.assertIn(date(2013, 9, 23), holidays)   # Autumnal Equinox Day
-        self.assertIn(date(2013, 11, 3), holidays)   # Culture Day
+        self.assertIn(date(2013, 5, 4), holidays)  # Greenery Day
+        self.assertIn(date(2013, 5, 5), holidays)  # Children's Day
+        self.assertIn(date(2013, 9, 23), holidays)  # Autumnal Equinox Day
+        self.assertIn(date(2013, 11, 3), holidays)  # Culture Day
         self.assertIn(date(2013, 11, 23), holidays)  # Labour Thanksgiving Day
         self.assertIn(date(2013, 12, 23), holidays)  # The Emperor's Birthday
 
         # Variable days
-        self.assertIn(date(2013, 1, 14), holidays)   # Coming of Age Day
-        self.assertIn(date(2013, 7, 15), holidays)   # Marine Day
-        self.assertIn(date(2013, 9, 16), holidays)   # Respect-for-the-Aged Day
+        self.assertIn(date(2013, 1, 14), holidays)  # Coming of Age Day
+        self.assertIn(date(2013, 7, 15), holidays)  # Marine Day
+        self.assertIn(date(2013, 9, 16), holidays)  # Respect-for-the-Aged Day
         self.assertIn(date(2013, 10, 14), holidays)  # Health and Sports Day
 
     def test_year_2016(self):
         # Before 2016, no Mountain Day
         holidays = self.cal.holidays_set(2014)
-        self.assertNotIn(date(2014, 8, 11), holidays)   # Mountain Day
+        self.assertNotIn(date(2014, 8, 11), holidays)  # Mountain Day
         holidays = self.cal.holidays_set(2015)
-        self.assertNotIn(date(2015, 8, 11), holidays)   # Mountain Day
+        self.assertNotIn(date(2015, 8, 11), holidays)  # Mountain Day
         # After 2016, yes
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 8, 11), holidays)   # Mountain Day
+        self.assertIn(date(2016, 8, 11), holidays)  # Mountain Day
         holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 8, 11), holidays)   # Mountain Day
+        self.assertIn(date(2017, 8, 11), holidays)  # Mountain Day
 
 
 class MalaysiaTest(GenericCalendarTest):
@@ -153,33 +161,33 @@ class MalaysiaTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # New Year's Day
-        self.assertIn(date(2013, 1, 28), holidays)   # Thaipusam
-        self.assertIn(date(2013, 2, 1), holidays)    # Federal Territory Day
-        self.assertIn(date(2013, 2, 11), holidays)   # 2nd day of Lunar NY
-        self.assertIn(date(2013, 2, 12), holidays)   # 1st day (Sun lieu)
-        self.assertIn(date(2013, 5, 1), holidays)    # Workers' Day
-        self.assertIn(date(2013, 5, 24), holidays)   # Vesak Day
-        self.assertIn(date(2013, 8, 8), holidays)    # 1st day eid-al-fitr
-        self.assertIn(date(2013, 8, 9), holidays)    # 2nd day eid-al-fitr
-        self.assertIn(date(2013, 8, 31), holidays)   # National Day
-        self.assertIn(date(2013, 9, 16), holidays)   # Malaysia Day
+        self.assertIn(date(2013, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2013, 1, 28), holidays)  # Thaipusam
+        self.assertIn(date(2013, 2, 1), holidays)  # Federal Territory Day
+        self.assertIn(date(2013, 2, 11), holidays)  # 2nd day of Lunar NY
+        self.assertIn(date(2013, 2, 12), holidays)  # 1st day (Sun lieu)
+        self.assertIn(date(2013, 5, 1), holidays)  # Workers' Day
+        self.assertIn(date(2013, 5, 24), holidays)  # Vesak Day
+        self.assertIn(date(2013, 8, 8), holidays)  # 1st day eid-al-fitr
+        self.assertIn(date(2013, 8, 9), holidays)  # 2nd day eid-al-fitr
+        self.assertIn(date(2013, 8, 31), holidays)  # National Day
+        self.assertIn(date(2013, 9, 16), holidays)  # Malaysia Day
         self.assertIn(date(2013, 10, 15), holidays)  # Hari Raya Haji
-        self.assertIn(date(2013, 11, 2), holidays)   # Deepavali
-        self.assertIn(date(2013, 11, 5), holidays)   # Islamic New Year
+        self.assertIn(date(2013, 11, 2), holidays)  # Deepavali
+        self.assertIn(date(2013, 11, 5), holidays)  # Islamic New Year
         self.assertIn(date(2013, 12, 25), holidays)  # Xmas
 
     def test_year_2012(self):
         holidays = self.cal.holidays_set(2012)
-        self.assertIn(date(2012, 1, 1), holidays)    # New Year's Day
-        self.assertIn(date(2012, 1, 24), holidays)   # Federal Territory Day
-        self.assertIn(date(2012, 2, 1), holidays)    # 2nd day of Lunar NY
-        self.assertIn(date(2012, 5, 1), holidays)    # 1st day (Sun lieu)
-        self.assertIn(date(2012, 5, 5), holidays)    # Workers' Day
-        self.assertIn(date(2012, 8, 19), holidays)   # 1st day eid-al-fitr
-        self.assertIn(date(2012, 8, 20), holidays)   # 2nd day eid-al-fitr
-        self.assertIn(date(2012, 8, 31), holidays)   # National Day
-        self.assertIn(date(2012, 9, 16), holidays)   # Malaysia Day
+        self.assertIn(date(2012, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2012, 1, 24), holidays)  # Federal Territory Day
+        self.assertIn(date(2012, 2, 1), holidays)  # 2nd day of Lunar NY
+        self.assertIn(date(2012, 5, 1), holidays)  # 1st day (Sun lieu)
+        self.assertIn(date(2012, 5, 5), holidays)  # Workers' Day
+        self.assertIn(date(2012, 8, 19), holidays)  # 1st day eid-al-fitr
+        self.assertIn(date(2012, 8, 20), holidays)  # 2nd day eid-al-fitr
+        self.assertIn(date(2012, 8, 31), holidays)  # National Day
+        self.assertIn(date(2012, 9, 16), holidays)  # Malaysia Day
         self.assertIn(date(2012, 10, 26), holidays)  # Hari Raya Haji
         self.assertIn(date(2012, 11, 13), holidays)  # Islamic New Year
         self.assertIn(date(2012, 11, 15), holidays)  # Deepavali
@@ -270,13 +278,13 @@ class SouthKoreaTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # new year
-        self.assertIn(date(2013, 3, 1), holidays)    # Independence day
-        self.assertIn(date(2013, 5, 5), holidays)    # children's day
-        self.assertIn(date(2013, 6, 6), holidays)    # Memorial day
-        self.assertIn(date(2013, 8, 15), holidays)   # Liberation day
-        self.assertIn(date(2013, 10, 3), holidays)   # National Foundation Day
-        self.assertIn(date(2013, 10, 9), holidays)   # Hangul Day
+        self.assertIn(date(2013, 1, 1), holidays)  # new year
+        self.assertIn(date(2013, 3, 1), holidays)  # Independence day
+        self.assertIn(date(2013, 5, 5), holidays)  # children's day
+        self.assertIn(date(2013, 6, 6), holidays)  # Memorial day
+        self.assertIn(date(2013, 8, 15), holidays)  # Liberation day
+        self.assertIn(date(2013, 10, 3), holidays)  # National Foundation Day
+        self.assertIn(date(2013, 10, 9), holidays)  # Hangul Day
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
 
         # Variable days
@@ -295,15 +303,15 @@ class TaiwanTest(GenericCalendarTest):
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)    # New Year
-        self.assertIn(date(2013, 2, 9), holidays)    # Chinese new year's eve
-        self.assertIn(date(2013, 2, 10), holidays)   # Chinese new year
-        self.assertIn(date(2013, 2, 11), holidays)   # Spring Festival
-        self.assertIn(date(2013, 2, 12), holidays)   # Spring Festival
-        self.assertIn(date(2013, 2, 28), holidays)   # 228 Peace Memorial Day
-        self.assertIn(date(2013, 4, 4), holidays)    # Children's Day
-        self.assertIn(date(2013, 6, 12), holidays)   # Dragon Boat Festival
-        self.assertIn(date(2013, 9, 19), holidays)   # Mid-Autumn Festival
+        self.assertIn(date(2013, 1, 1), holidays)  # New Year
+        self.assertIn(date(2013, 2, 9), holidays)  # Chinese new year's eve
+        self.assertIn(date(2013, 2, 10), holidays)  # Chinese new year
+        self.assertIn(date(2013, 2, 11), holidays)  # Spring Festival
+        self.assertIn(date(2013, 2, 12), holidays)  # Spring Festival
+        self.assertIn(date(2013, 2, 28), holidays)  # 228 Peace Memorial Day
+        self.assertIn(date(2013, 4, 4), holidays)  # Children's Day
+        self.assertIn(date(2013, 6, 12), holidays)  # Dragon Boat Festival
+        self.assertIn(date(2013, 9, 19), holidays)  # Mid-Autumn Festival
         self.assertIn(date(2013, 10, 10), holidays)  # National Day
 
     def test_qingming_festival(self):
@@ -318,3 +326,48 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
+
+
+class IsraelTest(GenericCalendarTest):
+
+    cal_class = Israel
+
+    def test_holeidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+
+        self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
+        self.assertIn(date(2017, 4, 17), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2017, 5, 2), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was early in 2017
+        self.assertIn(date(2017, 5, 31), holidays)  # Shavuot
+        self.assertIn(
+            date(2017, 9, 21), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 22), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 30), holidays
+        )  # Yom Kippur (already a Saturday - Shabbat, weekend day)
+        self.assertIn(date(2017, 10, 5), holidays)  # Sukkot
+        self.assertIn(date(2017, 10, 12), holidays)  # Sukkot
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+
+        self.assertIn(date(2018, 3, 31), holidays)  # Passover (Pesach)
+        self.assertIn(date(2018, 4, 6), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2018, 4, 19), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2018
+        self.assertIn(date(2018, 5, 20), holidays)  # Shavuot
+        self.assertIn(
+            date(2018, 9, 10), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2018, 9, 11), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
+        self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
+        self.assertIn(date(2018, 10, 1), holidays)  # Sukkot

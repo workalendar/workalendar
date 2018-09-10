@@ -133,6 +133,7 @@ Asia
 * Singapore
 * South Korea
 * Taiwan
+* Israel
 
 Oceania
 -------
