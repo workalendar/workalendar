@@ -45,7 +45,9 @@ class Singapore(WesternCalendar,
         2015: date(2015, 11, 10),
         2016: date(2016, 10, 29),
         2017: date(2017, 10, 18),
-        2018: date(2018, 11, 6)  # This might change
+        2018: date(2018, 11, 6),
+        2019: date(2019, 10, 27),
+        2020: date(2020, 11, 14) # This might change
     }
     chinese_new_year_label = "Chinese Lunar New Year's Day"
     include_chinese_second_day = True
