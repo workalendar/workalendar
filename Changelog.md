@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added DEEPAVALI days for 2019 and 2020, thx @pvalenti (#282).
+
 
 ## v3.2.0 (2018-11-30)
 
