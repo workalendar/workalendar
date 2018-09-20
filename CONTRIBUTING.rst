@@ -201,13 +201,13 @@ days computation. It's very easy to add days like the "Birthday of the Founder":
     item being a date object (in the Python ``datetime.date`` sense) and the
     second one is the label string.
 
-Add you calendar to the global register
+Add you calendar to the global registry
 #######################################
 
 If you're adding a Country calendar that has an ISO code, you may want to add
-it to our global register.
+it to our global registry.
 
-Workalendar is providing a register that you can use to query and fetch calendar
+Workalendar is providing a registry that you can use to query and fetch calendar
 based on their ISO code. For the current example, let's pretend that the Zhraa
 Kingdom ISO code is ``ZK``.
 

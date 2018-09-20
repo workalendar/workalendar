@@ -1,6 +1,6 @@
 # Basic usage
 
-[Home](index.md) / [Advanced usage](advanced.md) / [ISO Register](iso-register.md)
+[Home](index.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md)
 
 Here are basic examples of what Workalendar can do for you. As an integrator or a simple Workalendar user, you will use these methods to retrieve calendars, and get basic outputs for a given date.
 
@@ -106,4 +106,4 @@ If you really need it, you can use the ``add_working_days()`` with an option tha
 datetime.datetime(2012, 12, 31, 14, 0, 39)
 ```
 
-[Home](index.md) / [Advanced usage](advanced.md) / [ISO Register](iso-register.md)
+[Home](index.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md)

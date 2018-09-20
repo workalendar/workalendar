@@ -4,7 +4,7 @@
 
 ### Major changes
 
-Large work on global registry: refs #13, #96 & #257.
+Large work on global registry: refs #13, #96, #257 & #284.
 
 - Added Tests for Europe registry.
 - Revamped and cleaned up Europe countries.
