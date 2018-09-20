@@ -54,6 +54,7 @@ External dependencies
 You may want to install ``python-dev`` and/or ``python3-dev`` on your machine to
 either run the installation or run tests via tox.
 
+Workalendar has been tested on Python 2.7, 3.4, 3.5, 3.6, 3.7.
 
 Tests
 =====

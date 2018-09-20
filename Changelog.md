@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added support for Python 3.7 (#283).
 
 ## v3.0.0 (2019-09-20)
 
