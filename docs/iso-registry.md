@@ -2,7 +2,7 @@
 
 [Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md)
 
-As of late August 2018, we have introduced a global calendar registry for calendars related to a country or a region that belongs to the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) or the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) for sub-regions (such as USA states, Australian territories or Canadian provinces and such).
+As of version 3.0 (August/September 2018), we have introduced a global calendar registry for calendars related to a country or a region that belongs to the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) or the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) for sub-regions (such as USA states, Australian territories or Canadian provinces and such).
 
 ## Iterate over the whole registry
 
