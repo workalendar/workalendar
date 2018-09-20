@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v3.0.0 (2019-09-20)
 
 ### Major changes
 
