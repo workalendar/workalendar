@@ -35,40 +35,55 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
 
     def get_fixed_holidays(self, year):
         days = super(SouthAfrica, self).get_fixed_holidays(year)
-        if year < 1952:
-            days.append((date(year, 5, 24), "Empire Day"))
+        if year >= 1990:
+            days.append((date(year, 3, 21), 'Human Rights Day'))
+
+        # Van Riebeeck's day & Founder's day
         if year >= 1952 and year <= 1974:
             days.append((date(year, 4, 6), "Van Riebeeck's Day"))
-        if year >= 1952 and year <= 1993:
-            days.append((date(year, 10, 10), "Kruger Day"))
+        if year >= 1980 and year <= 1994:
+            days.append((date(year, 4, 6), "Founder's Day"))
+
+        if year >= 1994:
+            days.append((date(year, 4, 27), "Freedom Day"))
+
+        if year < 1952:
+            days.append((date(year, 5, 24), "Empire Day"))
+
+        # May 31st: Union Day & Republic Day
         if year <= 1960:
             days.append((date(year, 5, 31), "Union Day"))
         if year > 1960 and year <= 1993:
             days.append((date(year, 5, 31), "Republic Day"))
-        if year > 1960 and year <= 1974:
-            days.append((date(year, 7, 10), "Family Day"))
-        if year >= 1980 and year <= 1994:
-            days.append((date(year, 4, 6), "Founder's Day"))
-        if year >= 1990:
-            days.append((date(year, 3, 21), 'Human Rights Day'))
-        if year >= 1994:
-            days.append((date(year, 4, 27), "Freedom Day"))
-            days.append((date(year, 12, 26), "Day of good will"))
+
         if year >= 1995:
             days.append((date(year, 6, 16), "Youth Day"))
+
+        if year > 1960 and year <= 1974:
+            days.append((date(year, 7, 10), "Family Day"))
+
+        if year >= 1995:
             days.append((date(year, 8, 9), "National Women Day"))
             days.append((date(year, 9, 24), "Heritage Day"))
+
+        if year >= 1952 and year <= 1993:
+            days.append((date(year, 10, 10), "Kruger Day"))
+
+        if year >= 1994:
+            days.append((date(year, 12, 26), "Day of good will"))
 
         return days
 
     def get_variable_days(self, year):
         days = super(SouthAfrica, self).get_variable_days(year)
         days.append(self.get_family_day(year))
+
+        if year <= 1993:
+            days.append((self.get_ascension_thursday(year), "Ascension Day"))
+
         if year >= 1952 and year <= 1979:
             days.append((self.get_nth_weekday_in_month(year, 9, MON, 1),
                          "Settlers' Day"))
-        if year <= 1993:
-            days.append((self.get_ascension_thursday(year), "Ascension Day"))
         return days
 
     def get_calendar_holidays(self, year):
