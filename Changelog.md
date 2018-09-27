@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added support for Python 3.7 (#283).
+- Bugfix for South Africa: disableing the possibility to compute holidays prior to the year 1910.
 
 ## v3.0.0 (2019-09-20)
 

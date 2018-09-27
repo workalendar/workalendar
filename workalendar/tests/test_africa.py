@@ -11,6 +11,7 @@ from workalendar.africa import (
     SouthAfrica,
 )
 from workalendar.core import MON
+from workalendar.exceptions import CalendarError
 
 
 class AlgeriaTest(GenericCalendarTest):
@@ -53,6 +54,10 @@ class BeninTest(GenericCalendarTest):
 
 class SouthAfricaTest(GenericCalendarTest):
     cal_class = SouthAfrica
+
+    def test_before_1910(self):
+        with self.assertRaises(CalendarError):
+            self.cal.holidays_set(1909)
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)

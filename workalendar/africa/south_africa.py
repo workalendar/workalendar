@@ -7,6 +7,7 @@ from datetime import timedelta, date
 from ..core import WesternCalendar
 from ..core import SUN, MON
 from ..core import ChristianMixin
+from ..exceptions import CalendarError
 from ..registry import iso_register
 
 
@@ -22,6 +23,12 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         (5, 1, "Workers Day"),
         (12, 16, "Day of reconcilation"),
     )
+
+    def holidays(self, year=None):
+        if year < 1910:
+            raise CalendarError("It's not possible to compute holidays prior"
+                                " to 1910 for South Africa.")
+        return super(SouthAfrica, self).holidays(year)
 
     def get_family_day(self, year):
         return (self.get_good_friday(year), "Family Day")
