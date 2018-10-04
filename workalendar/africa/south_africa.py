@@ -5,7 +5,7 @@ from __future__ import (absolute_import, division, print_function,
 from datetime import timedelta, date
 
 from ..core import WesternCalendar
-from ..core import SUN, MON
+from ..core import SUN, MON, FRI
 from ..core import ChristianMixin
 from ..exceptions import CalendarError
 from ..registry import iso_register
@@ -15,14 +15,7 @@ from ..registry import iso_register
 class SouthAfrica(WesternCalendar, ChristianMixin):
     "South Africa"
     include_good_friday = True
-    include_easter_monday = True
     include_christmas = True
-    include_boxing_day = True
-
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Workers Day"),
-        (12, 16, "Day of reconcilation"),
-    )
 
     def holidays(self, year=None):
         if year < 1910:
@@ -30,8 +23,12 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
                                 " to 1910 for South Africa.")
         return super(SouthAfrica, self).holidays(year)
 
-    def get_family_day(self, year):
-        return (self.get_good_friday(year), "Family Day")
+    def get_easter_monday_or_family_day(self, year):
+        if year < 1980:
+            label = "Easter Monday"
+        else:
+            label = "Family Day"
+        return (self.get_easter_monday(year), label)
 
     def get_fixed_holidays(self, year):
         days = super(SouthAfrica, self).get_fixed_holidays(year)
@@ -39,7 +36,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
             days.append((date(year, 3, 21), 'Human Rights Day'))
 
         # Van Riebeeck's day & Founder's day
-        if year >= 1952 and year <= 1974:
+        if year >= 1952 and year <= 1973:
             days.append((date(year, 4, 6), "Van Riebeeck's Day"))
         if year >= 1980 and year <= 1994:
             days.append((date(year, 4, 6), "Founder's Day"))
@@ -47,19 +44,23 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         if year >= 1994:
             days.append((date(year, 4, 27), "Freedom Day"))
 
-        if year < 1952:
-            days.append((date(year, 5, 24), "Empire Day"))
+        # Workers day established in 1995 to May 1st
+        if year >= 1995:
+            days.append((date(year, 5, 1), "Workers' Day"))
+
+        if year <= 1951:
+            days.append((date(year, 5, 24), "Victoria Day / Empire Day"))
 
         # May 31st: Union Day & Republic Day
         if year <= 1960:
             days.append((date(year, 5, 31), "Union Day"))
-        if year > 1960 and year <= 1993:
+        elif year <= 1993:
             days.append((date(year, 5, 31), "Republic Day"))
 
         if year >= 1995:
             days.append((date(year, 6, 16), "Youth Day"))
 
-        if year > 1960 and year <= 1974:
+        if year > 1960 and year <= 1973:
             days.append((date(year, 7, 10), "Family Day"))
 
         if year >= 1995:
@@ -69,20 +70,54 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         if year >= 1952 and year <= 1993:
             days.append((date(year, 10, 10), "Kruger Day"))
 
-        if year >= 1994:
-            days.append((date(year, 12, 26), "Day of good will"))
+        if year <= 1951:
+            december_16th_label = "Dingaan's Day"
+        elif 1952 <= year <= 1979:
+            december_16th_label = "Day of the Covenant"
+        elif 1980 <= year <= 1994:
+            december_16th_label = "Day of the Vow"
+        else:
+            december_16th_label = "Day of Reconciliation"
+        days.append((date(year, 12, 16), december_16th_label))
+
+        # Boxing day renamed
+        boxing_day_label = "Boxing Day"
+        if year >= 1980:
+            boxing_day_label = "Day of Goodwill"
+        days.append((date(year, 12, 26), boxing_day_label))
 
         return days
 
     def get_variable_days(self, year):
         days = super(SouthAfrica, self).get_variable_days(year)
-        days.append(self.get_family_day(year))
+
+        days.append(self.get_easter_monday_or_family_day(year))
+
+        # Workers day was first friday of may 1987-1989
+        if 1987 <= year <= 1989:
+            days.append(
+                (self.get_nth_weekday_in_month(year, 5, FRI), "Workers' Day")
+            )
 
         if year <= 1993:
             days.append((self.get_ascension_thursday(year), "Ascension Day"))
 
+        # Queen's Birthday on the 2nd Monday of july 1952-1960
+        if 1952 <= year <= 1960:
+            days.append((
+                self.get_nth_weekday_in_month(year, 7, MON, 2),
+                "Queen's Birthday"
+            ))
+
+        # King's Birthday on the first Monday of August 1910-1951
+        if 1910 <= year <= 1951:
+            days.append((
+                self.get_nth_weekday_in_month(year, 8, MON),
+                "King's Birthday"
+            ))
+
         if year >= 1952 and year <= 1979:
-            days.append((self.get_nth_weekday_in_month(year, 9, MON, 1),
+            days.append((self.get_nth_weekday_in_month(year, 9, MON),
                          "Settlers' Day"))
         return days
 
