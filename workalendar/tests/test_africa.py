@@ -244,6 +244,15 @@ class SouthAfricaTest(GenericCalendarTest):
             holidays_labels = [item[1] for item in holidays]
             self.assertNotIn("Queen's Birthday", holidays_labels)
 
+    def test_womens_day_label(self):
+        holidays = self.cal.holidays(2018)
+        womens_day = date(2018, 8, 9)
+        holidays_dict = dict(holidays)
+        self.assertEqual(
+            holidays_dict[womens_day],
+            'National Women’s Day'
+        )
+
     def test_family_day_in_july(self):
         # Before 1961, no Family day in July
         holidays = self.cal.holidays(1960)
@@ -447,7 +456,7 @@ class SouthAfricaTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 3), holidays)
 
 
-class Madagascar(GenericCalendarTest):
+class MadagascarTest(GenericCalendarTest):
     cal_class = Madagascar
 
     def test_year_2013(self):
