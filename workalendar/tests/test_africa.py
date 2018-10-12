@@ -250,7 +250,7 @@ class SouthAfricaTest(GenericCalendarTest):
         holidays_dict = dict(holidays)
         self.assertEqual(
             holidays_dict[womens_day],
-            'National Women’s Day'
+            "National Women's Day"
         )
 
     def test_family_day_in_july(self):

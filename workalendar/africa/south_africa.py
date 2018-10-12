@@ -64,7 +64,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
             days.append((date(year, 7, 10), "Family Day"))
 
         if year >= 1995:
-            days.append((date(year, 8, 9), "National Women’s Day"))
+            days.append((date(year, 8, 9), "National Women's Day"))
             days.append((date(year, 9, 24), "Heritage Day"))
 
         if year >= 1952 and year <= 1993:
