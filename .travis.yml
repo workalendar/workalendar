@@ -28,5 +28,10 @@ matrix:
       dist: xenial
       sudo: true
 
+    # Lints and others
     - python: 3.6
       env: TOXENV=flake8
+    - python: 2.7
+      env: TOXENV=py27-cov
+    - python: 3.6
+      env: TOXENV=py36-cov
