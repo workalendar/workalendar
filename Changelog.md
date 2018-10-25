@@ -1,11 +1,16 @@
 # CHANGELOG
 
-## master (unreleased)
+## v3.1.0 (2018-10-25)
+
+### Major changes
 
 - Added support for Python 3.7 (#283).
-- Bugfix for South Africa: disableing the possibility to compute holidays prior to the year 1910.
-- Cleans up SouthAfrica class and tests to take into account the specs of holidays that vary over the periods. As a consequence, it cleans up erroneous holidays that were duplicated in some years (#285). Thx to @surfer190 for his review & suggestions.
-- Minor change: Renamed Madagascar test class name into `MadagascarTest` (#286).
+- Fixed the `SouthAfrica` holidays calendar, taking into account the specs of holidays that vary over the periods. As a consequence, it cleaned up erroneous holidays that were duplicated in some years (#285). Thx to @surfer190 for his review & suggestions.
+- Bugfix for South Africa: disabled the possibility to compute holidays prior to the year 1910.
+
+### Minor changes
+
+- Renamed Madagascar test class name into `MadagascarTest` (#286).
 - Separated the coverage jobs from the pure tests. Their report output was disturbing in development mode, you had to scroll your way up to find eventual failing tests (#289).
 
 ## v3.0.0 (2019-09-20)
