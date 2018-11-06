@@ -5,7 +5,7 @@ from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.registry import iso_register
 
 
-@iso_register('SL')
+@iso_register('SI')
 class Slovenia(WesternCalendar, ChristianMixin):
     'Slovenia'
 
