@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fixed ISO 3166-1 code for the `Slovenia` calendar (#291, thx @john-sandall).
 
 ## v3.1.0 (2018-10-25)
 
