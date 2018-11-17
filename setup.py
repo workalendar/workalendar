@@ -25,7 +25,7 @@ REQUIREMENTS = [
     'pyCalverter',
     'setuptools>=1.0',
 ]
-version = '3.2.0.dev0'
+version = '3.1.1'
 __VERSION__ = version
 
 if PY2:

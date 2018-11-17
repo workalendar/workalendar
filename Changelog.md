@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v3.1.1 (2018-11-17)
+
+### Bugfix
 
 - Fixed ISO 3166-1 code for the `Slovenia` calendar (#291, thx @john-sandall).
 
