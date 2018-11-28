@@ -19,6 +19,7 @@ def read_relative_file(filename):
 NAME = 'workalendar'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
+    'ephem',
     'python-dateutil',
     'lunardate',
     'pytz',
@@ -27,11 +28,6 @@ REQUIREMENTS = [
 ]
 version = '3.2.0.dev0'
 __VERSION__ = version
-
-if PY2:
-    REQUIREMENTS.append('pyephem')
-else:
-    REQUIREMENTS.append('ephem')
 
 params = dict(
     name=NAME,
