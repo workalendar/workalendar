@@ -81,10 +81,13 @@ Let's say you want to know how many working days there are between April 2nd and
 50
 ```
 
+## Standard date(time) types only, please!
 
-## Don't worry about the date types!
+For your convenience, we allow both `datetime.date` and `datetime.datetime` types (and their subclasses) when using the core functions.
 
-For your convenience, we allow both `datetime.date` and `datetime.datetime` types when using the core functions. Example:
+**WARNING**: We'll only allow "dates" types coming from the Python standard library. If you're manipulating types from external library. Trying to pass a non-standard argument will result in raising a ``UnsupportedDateType`` error.
+
+Example:
 
 ```python
 >>> from datetime import date, datetime

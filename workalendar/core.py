@@ -14,6 +14,8 @@ from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
 
+from .exceptions import UnsupportedDateType
+
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
@@ -25,6 +27,23 @@ class classproperty(object):
 
     def __get__(self, instance, owner):
         return self.getter(owner)
+
+
+def cleaned_date(day, keep_datetime=False):
+    """
+    Return a "clean" date type.
+
+    * keep a `date` unchanged
+    * convert a datetime into a date,
+    * convert any "duck date" type into a date using its `date()` method.
+    """
+    if not isinstance(day, (date, datetime)):
+        raise UnsupportedDateType(
+            "`{}` is of unsupported type ({})".format(day, type(day)))
+    if not keep_datetime:
+        if hasattr(day, 'date') and callable(day.date):
+            day = day.date()
+    return day
 
 
 class Calendar(object):
@@ -79,9 +98,7 @@ class Calendar(object):
 
     def get_holiday_label(self, day):
         """Return the label of the holiday, if the date is a holiday"""
-        # a little exception: chop the datetime type
-        if type(day) is datetime:
-            day = day.date()
+        day = cleaned_date(day)
         return {day: label for day, label in self.holidays(day.year)
                 }.get(day)
 
@@ -117,9 +134,11 @@ class Calendar(object):
         ``extra_holidays`` list.
 
         """
-        # a little exception: chop the datetime type
-        if type(day) is datetime:
-            day = day.date()
+        day = cleaned_date(day)
+        if extra_working_days:
+            extra_working_days = tuple(map(cleaned_date, extra_working_days))
+        if extra_holidays:
+            extra_holidays = tuple(map(cleaned_date, extra_holidays))
 
         # Extra lists exceptions
         if extra_working_days and day in extra_working_days:
@@ -139,9 +158,10 @@ class Calendar(object):
         holidays, even if not in the regular calendar holidays (or weekends).
 
         """
-        # a little exception: chop the datetime type
-        if type(day) is datetime:
-            day = day.date()
+        day = cleaned_date(day)
+
+        if extra_holidays:
+            extra_holidays = tuple(map(cleaned_date, extra_holidays))
 
         if extra_holidays and day in extra_holidays:
             return True
@@ -170,6 +190,14 @@ class Calendar(object):
         Please note that the ``extra_working_days`` list has priority over the
         ``extra_holidays`` list.
         """
+        day = cleaned_date(day, keep_datetime)
+
+        if extra_working_days:
+            extra_working_days = tuple(map(cleaned_date, extra_working_days))
+
+        if extra_holidays:
+            extra_holidays = tuple(map(cleaned_date, extra_holidays))
+
         days = 0
         temp_day = day
         if type(temp_day) is datetime and not keep_datetime:
@@ -221,6 +249,8 @@ class Calendar(object):
         **WARNING**: this function doesn't take into account the calendar
         holidays, only the days of the week and the weekend days parameters.
         """
+        day = cleaned_date(day)
+
         while day.weekday() in self.get_weekend_days():
             day = day + timedelta(days=1)
         return day
@@ -236,6 +266,10 @@ class Calendar(object):
         >>> Calendar.get_nth_weekday_in_month(2013, 1, MON, 2)
         datetime.date(2013, 1, 14)
         """
+        # If start is `None` or Falsy, no need to check and clean
+        if start:
+            start = cleaned_date(start)
+
         day = date(year, month, 1)
         if start:
             day = start
@@ -305,11 +339,8 @@ class Calendar(object):
         This method should even work if your ``start`` and ``end`` arguments
         are datetimes.
         """
-        # Sanitize date types first.
-        if type(start) is datetime:
-            start = start.date()
-        if type(end) is datetime:
-            end = end.date()
+        start = cleaned_date(start)
+        end = cleaned_date(end)
 
         if start == end:
             return 0
