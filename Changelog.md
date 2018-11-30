@@ -1,9 +1,11 @@
 # CHANGELOG
 
-## master (unreleased)
+## v3.2.0 (2018-11-30)
+
+### Major changes
 
 - Removed dependency to `PyEphem`. This package was the "Python2-compatible" library to deal with the xephem system library. Now it's obsolete, so you don't need this dual-dependency handling, because `ephem` is compatible with Python 2 & Python 3 (#296).
-- Raise an exception when trying to use unsupported date/datetime types (#294).
+- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the [basic documentation](https://peopledoc.github.io/workalendar/basic.html#standard-datetime-types-only-please) for more details (#294).
 
 ## v3.1.1 (2018-11-17)
 

@@ -26,7 +26,7 @@ REQUIREMENTS = [
     'pyCalverter',
     'setuptools>=1.0',
 ]
-version = '3.2.0.dev0'
+version = '3.2.0'
 __VERSION__ = version
 
 params = dict(
