@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v3.2.0 (2018-11-30)
 
 ### Major changes
