@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v3.2.1 (2018-12-06)
+
+### Bugfixes
 
 - Added DEEPAVALI days for 2019 and 2020, thx @pvalenti (#282).
 - Fixed Germany Reformation Day miscalculation. Some German states include Reformation Day since the "beginning" ; in 2017, all states included Reformation Day as a holiday (500th anniversary of the Reformation) ; starting of 2018, 4 states added Reformation Day (#295).
