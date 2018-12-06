@@ -1,4 +1,5 @@
 from datetime import date
+from unittest import TestCase
 
 from workalendar.tests import GenericCalendarTest
 from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
@@ -7,6 +8,21 @@ from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
                                 NorthRhineWestphalia, RhinelandPalatinate,
                                 Saarland, Saxony, SaxonyAnhalt,
                                 SchleswigHolstein, Thuringia)
+
+
+class ReformationFlagTest(TestCase):
+    def test_flags_reformation_day(self):
+        klasses = (
+            BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen, Hamburg,
+            Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
+            RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt,
+            SchleswigHolstein, Thuringia
+        )
+        for klass in klasses:
+            if klass in (Bremen, Hamburg, LowerSaxony, SchleswigHolstein):
+                self.assertTrue(klass.include_reformation_day_2018)
+            else:
+                self.assertFalse(klass.include_reformation_day_2018)
 
 
 class GermanyTest(GenericCalendarTest):
@@ -40,13 +56,23 @@ class GermanyTest(GenericCalendarTest):
         # Reformation Day is included each year in:
         # Brandenburg, MecklenburgVorpommern, Saxony, SaxonyAnhalt & Thuringia
         holidays = self.cal.holidays_set(2015)
-        if self.cal.include_reformation_day:
+        if self.cal.include_reformation_day(2015):
             self.assertIn(date(2015, 10, 31), holidays)
         else:
             self.assertNotIn(date(2015, 10, 31), holidays)
+
         # But in the year 2017, it's included for the whole country
         holidays = self.cal.holidays_set(2017)
+        self.assertTrue(self.cal.include_reformation_day(2017))
         self.assertIn(date(2017, 10, 31), holidays)
+
+        # In 2018, Four more states have added it:
+        # Bremen, Hamburg, Lower Saxony and Schleswig-Holstein
+        holidays = self.cal.holidays_set(2018)
+        if self.cal.include_reformation_day(2018):
+            self.assertIn(date(2018, 10, 31), holidays)
+        else:
+            self.assertNotIn(date(2018, 10, 31), holidays)
 
 
 class BadenWurttembergTest(GermanyTest):
