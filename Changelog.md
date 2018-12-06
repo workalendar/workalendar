@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v3.2.1 (2018-12-06)
 
 ### Bugfixes
