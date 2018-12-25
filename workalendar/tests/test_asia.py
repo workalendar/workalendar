@@ -22,9 +22,7 @@ class ChinaTest(GenericCalendarTest):
         self.assertIn(date(2018, 4, 7), holidays)    # Ching Ming Festival
         self.assertIn(date(2018, 4, 29), holidays)   # Labour Day Holiday
         self.assertIn(date(2018, 5, 1), holidays)    # Labour Day Holiday
-        self.assertIn(date(2018, 6, 16), holidays)   # Dragon Boat Festival
         self.assertIn(date(2018, 6, 18), holidays)   # Dragon Boat Festival
-        self.assertIn(date(2018, 9, 22), holidays)   # Mid-Autumn Festival
         self.assertIn(date(2018, 9, 24), holidays)   # Mid-Autumn Festival
         self.assertIn(date(2018, 12, 30), holidays)  # New year
         self.assertIn(date(2018, 12, 31), holidays)  # New year
