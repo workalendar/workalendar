@@ -288,6 +288,17 @@ class SingaporeTest(GenericCalendarTest):
         # Shifted day (Monday)
         self.assertIn(date(2016, 5, 2), holidays)
 
+    def test_deepavali(self):
+        # At the moment, we have values for deepavali only until year 2020
+        for year in range(2000, 2021):
+            self.assertIn(year, self.cal.DEEPAVALI)
+
+    def test_deepavali_current_year(self):
+        # This is a regression test. We should be able to have the deepavali
+        # value until this year and probably a few years in the future
+        current_year = date.today().year
+        self.assertIn(current_year, self.cal.DEEPAVALI)
+
 
 class SouthKoreaTest(GenericCalendarTest):
 

@@ -20,8 +20,21 @@ class Germany(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_boxing_day = True
     boxing_day_label = "Second Christmas Day"
-    # German-specific holiday
-    include_reformation_day = False
+
+    # True if including reformation day for all years
+    all_time_include_reformation_day = False
+    # True if including reformation day since 2018
+    include_reformation_day_2018 = False
+
+    def include_reformation_day(self, year):
+        """
+        Return True if the Reformation Day is a holiday.
+        """
+        if self.all_time_include_reformation_day or year == 2017:
+            return True
+        if self.include_reformation_day_2018 and year >= 2018:
+            return True
+        return False
 
     def get_reformation_day(self, year):
         """
@@ -35,7 +48,7 @@ class Germany(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Germany, self).get_variable_days(year)
-        if self.include_reformation_day or year == 2017:
+        if self.include_reformation_day(year):
             days.append(self.get_reformation_day(year))
         return days
 
@@ -67,19 +80,20 @@ class Berlin(Germany):
 @iso_register('DE-BB')
 class Brandenburg(Germany):
     'Brandenburg'
-
     include_easter_sunday = True
-    include_reformation_day = True
+    all_time_include_reformation_day = True
 
 
 @iso_register('DE-HB')
 class Bremen(Germany):
     'Bremen'
+    include_reformation_day_2018 = True
 
 
 @iso_register('DE-HH')
 class Hamburg(Germany):
     'Hamburg'
+    include_reformation_day_2018 = True
 
 
 @iso_register('DE-HE')
@@ -93,12 +107,13 @@ class Hesse(Germany):
 class MecklenburgVorpommern(Germany):
     'Mecklenburg-Western Pomerania'
 
-    include_reformation_day = True
+    all_time_include_reformation_day = True
 
 
 @iso_register('DE-NI')
 class LowerSaxony(Germany):
     'Lower Saxony'
+    include_reformation_day_2018 = True
 
 
 @iso_register('DE-NW')
@@ -130,7 +145,7 @@ class Saarland(Germany):
 class Saxony(Germany):
     'Saxony'
 
-    include_reformation_day = True
+    all_time_include_reformation_day = True
 
     def get_repentance_day(self, year):
         "Wednesday before November 23"
@@ -150,16 +165,17 @@ class SaxonyAnhalt(Germany):
     'Saxony-Anhalt'
 
     include_epiphany = True
-    include_reformation_day = True
+    all_time_include_reformation_day = True
 
 
 @iso_register('DE-SH')
 class SchleswigHolstein(Germany):
     'Schleswig-Holstein'
+    include_reformation_day_2018 = True
 
 
 @iso_register('DE-TH')
 class Thuringia(Germany):
     'Thuringia'
 
-    include_reformation_day = True
+    all_time_include_reformation_day = True

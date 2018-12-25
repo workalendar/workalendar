@@ -4,11 +4,31 @@
 
 Nothing here yet.
 
-## v3.2.0 (2018-12-25)
+## v3.2.2 (2018-12-25)
 
 ### New Calendars
 
-- Added China, by @iamsk.
+- Added China, by @iamsk (#304).
+
+## v3.2.1 (2018-12-06)
+
+### Bugfixes
+
+- Added DEEPAVALI days for 2019 and 2020, thx @pvalenti (#282).
+- Fixed Germany Reformation Day miscalculation. Some German states include Reformation Day since the "beginning" ; in 2017, all states included Reformation Day as a holiday (500th anniversary of the Reformation) ; starting of 2018, 4 states added Reformation Day (#295).
+
+## v3.2.0 (2018-11-30)
+
+### Major changes
+
+- Removed dependency to `PyEphem`. This package was the "Python2-compatible" library to deal with the xephem system library. Now it's obsolete, so you don't need this dual-dependency handling, because `ephem` is compatible with Python 2 & Python 3 (#296).
+- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the [basic documentation](https://peopledoc.github.io/workalendar/basic.html#standard-datetime-types-only-please) for more details (#294).
+
+## v3.1.1 (2018-11-17)
+
+### Bugfix
+
+- Fixed ISO 3166-1 code for the `Slovenia` calendar (#291, thx @john-sandall).
 
 ## v3.1.0 (2018-10-25)
 
