@@ -2,12 +2,13 @@
 
 ## master (unreleased)
 
-* Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
+- Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
 
 ### New Calendars
 
-- Added New Zealand, by @johnguant (#306)
-* Added Paraguay calendar, following the work of @reichert (#268).
+- Added New Zealand, by @johnguant (#306).
+- Added Paraguay calendar, following the work of @reichert (#268).
+- Added China calendar, by @iamsk (#304).
 
 ## v3.2.1 (2018-12-06)
 
@@ -28,6 +29,12 @@
 ### Bugfix
 
 - Fixed ISO 3166-1 code for the `Slovenia` calendar (#291, thx @john-sandall).
+
+## v3.2.0 (2018-12-25)
+
+### New Calendars
+
+- Added China, by @iamsk.
 
 ## v3.1.0 (2018-10-25)
 

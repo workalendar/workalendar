@@ -2,6 +2,7 @@
 from unittest import TestCase
 
 from workalendar.asia import (
+    China,
     HongKong,
     Japan,
     Malaysia,
@@ -18,6 +19,7 @@ class RegistryAsia(TestCase):
     def test_asia(self):
         classes = (v for k, v in registry.region_registry.items())
         classes = list(classes)
+        self.assertIn(China, classes)
         self.assertIn(HongKong, classes)
         self.assertIn(Japan, classes)
         self.assertIn(Malaysia, classes)
