@@ -127,6 +127,7 @@ America
 Asia
 ----
 
+* China
 * Hong Kong
 * Japan
 * Malaysia

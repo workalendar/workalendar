@@ -2,7 +2,32 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 
 from workalendar.asia import HongKong, Japan, Qatar, Singapore
-from workalendar.asia import SouthKorea, Taiwan, Malaysia
+from workalendar.asia import SouthKorea, Taiwan, Malaysia, China
+
+
+class ChinaTest(GenericCalendarTest):
+
+    cal_class = China
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)    # New year
+        self.assertIn(date(2018, 2, 15), holidays)   # Spring Festival
+        self.assertIn(date(2018, 2, 21), holidays)   # Spring Festival
+        self.assertIn(date(2018, 10, 1), holidays)   # National Day
+        self.assertIn(date(2018, 10, 7), holidays)   # National Day
+
+        # Variable days
+        self.assertIn(date(2018, 4, 5), holidays)    # Ching Ming Festival
+        self.assertIn(date(2018, 4, 7), holidays)    # Ching Ming Festival
+        self.assertIn(date(2018, 4, 29), holidays)   # Labour Day Holiday
+        self.assertIn(date(2018, 5, 1), holidays)    # Labour Day Holiday
+        self.assertIn(date(2018, 6, 16), holidays)   # Dragon Boat Festival
+        self.assertIn(date(2018, 6, 18), holidays)   # Dragon Boat Festival
+        self.assertIn(date(2018, 9, 22), holidays)   # Mid-Autumn Festival
+        self.assertIn(date(2018, 9, 24), holidays)   # Mid-Autumn Festival
+        self.assertIn(date(2018, 12, 30), holidays)  # New year
+        self.assertIn(date(2018, 12, 31), holidays)  # New year
 
 
 class HongKongTest(GenericCalendarTest):
