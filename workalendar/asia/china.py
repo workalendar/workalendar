@@ -73,25 +73,18 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                 days.append((date(year, v[0], v[1]), holiday_name))
         return days
 
-    def is_working_day(self, day):
-        return super(China, self).is_working_day(day, self.extra_working_days)
+    def is_working_day(self, day,
+                       extra_working_days=None, extra_holidays=None):
+        return super(China, self).is_working_day(day, extra_working_days or self.extra_working_days, extra_holidays)
 
-    def add_working_days(self, day, delta):
-        return super(China, self).add_working_days(day, delta, self.extra_working_days)
+    def add_working_days(self, day, delta,
+                         extra_working_days=None, extra_holidays=None,
+                         keep_datetime=False):
+        return super(China, self).add_working_days(day, delta, extra_working_days or self.extra_working_days,
+                                                   extra_holidays, keep_datetime)
 
-    def sub_working_days(self, day, delta):
-        return super(China, self).sub_working_days(day, delta, self.extra_working_days)
-
-
-if __name__ == '__main__':
-    from datetime import timedelta
-
-    print(len(China().holidays(2019)))
-    c = China()
-    count = 0
-    s = date(2019, 1, 1)
-    for i in range(365):
-        t = s + timedelta(days=i)
-        if c.is_working_day(t):
-            count += 1
-    print(count)
+    def sub_working_days(self, day, delta,
+                         extra_working_days=None, extra_holidays=None,
+                         keep_datetime=False):
+        return super(China, self).sub_working_days(day, delta, extra_working_days or self.extra_working_days,
+                                                   extra_holidays, keep_datetime)
