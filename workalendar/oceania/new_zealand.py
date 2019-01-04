@@ -2,7 +2,7 @@
 from datetime import date, timedelta
 
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON
+from workalendar.core import MON, SAT, SUN
 from workalendar.registry import iso_register
 
 
@@ -53,23 +53,35 @@ class NewZealand(WesternCalendar, ChristianMixin):
 
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
-        if christmas.weekday() in self.get_weekend_days():
+        if christmas.weekday() is SAT:
             shift = self.find_following_working_day(christmas)
             days.append((shift, "Christmas Shift"))
-            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
-        elif boxing_day.weekday() in self.get_weekend_days():
+        elif christmas.weekday() is SUN:
+            shift = self.find_following_working_day(christmas)
+            days.append((shift + timedelta(days=1), "Christmas Shift"))
+
+        if boxing_day.weekday() is SAT:
             shift = self.find_following_working_day(boxing_day)
             days.append((shift, "Boxing Day Shift"))
+        elif boxing_day.weekday() is SUN:
+            shift = self.find_following_working_day(boxing_day)
+            days.append((shift + timedelta(days=1), "Boxing Day Shift"))
 
         new_year = date(year, 1, 1)
         day_after_new_year = date(year, 1, 2)
-        if new_year.weekday() in self.get_weekend_days():
+        if new_year.weekday() is SAT:
             shift = self.find_following_working_day(new_year)
             days.append((shift, "New Year Shift"))
-            days.append((shift + timedelta(days=1),
-                         "Day after New Year's Day Shift"))
-        elif day_after_new_year.weekday() in self.get_weekend_days():
+        elif new_year.weekday() is SUN:
+            shift = self.find_following_working_day(new_year)
+            days.append((shift + timedelta(days=1), "New Year Shift"))
+
+        if day_after_new_year.weekday() is SAT:
             shift = self.find_following_working_day(day_after_new_year)
             days.append((shift, "Day after New Year's Day Shift"))
+        elif day_after_new_year.weekday() is SUN:
+            shift = self.find_following_working_day(day_after_new_year)
+            days.append((shift + timedelta(days=1),
+                         "Day after New Year's Day Shift"))
 
         return days

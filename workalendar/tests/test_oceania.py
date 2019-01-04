@@ -260,9 +260,9 @@ class NewZealandTest(GenericCalendarTest):
     def test_new_year_shift(self):
         holidays = self.cal.holidays_set(2012)
         # New Years was on a sunday
-        # New Years Shift is on the 2nd
-        # Day After New Years Shift is on the 3rd
+        # Day After New Years is on the 2nd
         self.assertIn(date(2012, 1, 2), holidays)
+        # New Years Shift is on the 3rd
         self.assertIn(date(2012, 1, 3), holidays)
 
     def test_anzac_shift(self):
@@ -286,7 +286,7 @@ class NewZealandTest(GenericCalendarTest):
         # Christmas day is on sunday in 2016
         # Boxing day is on 26th
         self.assertIn(date(2016, 12, 26), holidays)
-        # Boxing day shift on 27th
+        # Christmas day shift on 27th
         self.assertIn(date(2016, 12, 27), holidays)
 
     def test_oceania_shift_2009(self):
