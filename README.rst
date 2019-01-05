@@ -6,6 +6,9 @@
 .. image:: https://img.shields.io/travis/jaraco/calendra/master.svg
    :target: https://travis-ci.org/jaraco/calendra
 
+.. .. image:: https://img.shields.io/appveyor/ci/jaraco/calendra/master.svg
+..    :target: https://ci.appveyor.com/project/jaraco/calendra/branch/master
+
 .. image:: https://readthedocs.org/projects/calendra/badge/?version=latest
    :target: https://calendra.readthedocs.io/en/latest/?badge=latest
 

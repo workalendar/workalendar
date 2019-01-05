@@ -1,10 +1,11 @@
-dist: trusty
+dist: xenial
 sudo: false
 language: python
 
 python:
 - 2.7
-- &latest_py3 3.6
+- 3.6
+- &latest_py3 3.7
 
 jobs:
   fast_finish: true
@@ -12,23 +13,22 @@ jobs:
   - stage: deploy
     if: tag IS present
     python: *latest_py3
-    install: skip
-    script: skip
-    deploy:
-      provider: pypi
-      on:
-        tags: true
-        all_branches: true
-      user: jaraco
-      password:
-        secure: lq5T3nLudhmOP8mKbAh7QsyXjhRUi+zbACi6M8lPCj1+XPj+6uUdMaq3A/fg0+EivGffw8PKceXeMlHboQI0hD9Bt4ISmeixlDi7wNcOSP/TWks2VFr9Gq+nI85LjLwZ9jyLh9CZ1C8gedWy0DfarnDSZ9/5k6Ts39zK0yKcQLg=
-      distributions: dists
-      skip_cleanup: true
-      skip_upload_docs: true
+    before_script: skip
+    env:
+    - TWINE_USERNAME=jaraco
+    # TWINE_PASSWORD
+    - secure: T4acLIP2KK71sdClWJ379PIuHn2KQdpqvDLWYL89CTWWZAhp8w/gI3xODQTqt7z2SPUXbb5u66NfYAkHIQMdf3bsqtZYfYbxcSdhfi2BPko9R0BgSH95XSfBMinDAK86a7bDTGZCbsr3Lfxl/9kClkJm62FhlswgEgKhFqXSFSQ=
+    - TOX_TESTENV_PASSENV="TWINE_USERNAME TWINE_PASSWORD"
+    script: tox -e release
 
 cache: pip
 
 install:
-- pip install tox
+- pip install tox tox-venv
 
+before_script:
+  # Disable IPv6. Ref travis-ci/travis-ci#8361
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+      sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6';
+    fi
 script: tox
