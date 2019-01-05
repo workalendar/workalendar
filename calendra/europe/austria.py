@@ -6,7 +6,7 @@ from ..registry import iso_register
 
 @iso_register('AT')
 class Austria(WesternCalendar, ChristianMixin):
-    name = 'Austria'
+    'Austria'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "National Holiday"),  # Staatsfeiertag

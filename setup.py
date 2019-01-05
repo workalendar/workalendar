@@ -48,6 +48,7 @@ params = dict(
 			'pygments',
 			'pytest-cov',
 			'pytest-pep8',
+			'pandas',
 		],
 		'docs': [
 			'sphinx',

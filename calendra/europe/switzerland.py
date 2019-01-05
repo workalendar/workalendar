@@ -7,7 +7,7 @@ from ..registry import iso_register
 
 @iso_register('CH')
 class Switzerland(WesternCalendar, ChristianMixin):
-    name = 'Switzerland'
+    'Switzerland'
 
     include_good_friday = True
     include_easter_sunday = True
@@ -27,7 +27,7 @@ class Switzerland(WesternCalendar, ChristianMixin):
 
 @iso_register('CH-VD')
 class Vaud(Switzerland):
-    name = 'Vaud'
+    'Vaud'
 
     include_boxing_day = False
     include_federal_thanksgiving_monday = True

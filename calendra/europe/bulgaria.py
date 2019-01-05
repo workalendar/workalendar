@@ -6,7 +6,7 @@ from ..registry import iso_register
 
 @iso_register('BG')
 class Bulgaria(WesternCalendar, ChristianMixin):
-    name = 'Bulgaria'
+    'Bulgaria'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Liberation Day"),  # Ден на Освобождението на Б

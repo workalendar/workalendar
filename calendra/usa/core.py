@@ -9,10 +9,13 @@ from dateutil import relativedelta as rd
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
+from ..registry import iso_register
 
 
+@iso_register('US')
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         Holiday(
             date(2000, 7, 4),

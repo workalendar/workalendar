@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from . import GenericCalendarTest
-from ..canada import Canada, Ontario, Quebec, BritishColumbia
-from ..canada import Alberta, Saskatchewan, Manitoba, NewBrunswick
-from ..canada import NovaScotia, PrinceEdwardIsland, Newfoundland
-from ..canada import Yukon, NorthwestTerritories, Nunavut
+from ..america.canada import (
+    Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
+    NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
+    NorthwestTerritories, Nunavut
+)
 
 
 class CanadaTest(GenericCalendarTest):

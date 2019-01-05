@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 from datetime import date
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..core import IslamicMixin
+from ..registry import iso_register
 
 
+@iso_register('MY')
 class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
     "Malaysia"
     include_nuzul_al_quran = True

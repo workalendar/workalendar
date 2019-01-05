@@ -7,7 +7,7 @@ from ..registry import iso_register
 
 @iso_register('CY')
 class Cyprus(WesternCalendar, ChristianMixin):
-    name = 'Cyprus'
+    'Cyprus'
 
     include_epiphany = True
     include_clean_monday = True

@@ -2,9 +2,11 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-OK')
 class Oklahoma(UnitedStates):
     """Oklahoma"""
     include_thanksgiving_friday = True

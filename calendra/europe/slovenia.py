@@ -5,9 +5,9 @@ from ..core import WesternCalendar, ChristianMixin
 from ..registry import iso_register
 
 
-@iso_register('SL')
+@iso_register('SI')
 class Slovenia(WesternCalendar, ChristianMixin):
-    name = 'Slovenia'
+    'Slovenia'
 
     include_easter_sunday = True
     include_easter_monday = True

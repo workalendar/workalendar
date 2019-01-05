@@ -7,7 +7,7 @@ from ..registry import iso_register
 
 @iso_register('DK')
 class Denmark(WesternCalendar, ChristianMixin):
-    name = 'Denmark'
+    'Denmark'
 
     include_palm_sunday = True
     include_holy_thursday = True

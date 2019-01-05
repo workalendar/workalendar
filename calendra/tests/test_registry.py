@@ -6,7 +6,7 @@ from ..core import Calendar
 
 
 class RegionCalendar(Calendar):
-    name = 'Region'
+    'Region'
 
     def holidays(self, year=None):
         return tuple((
@@ -19,7 +19,7 @@ class RegionCalendar(Calendar):
 
 
 class SubRegionCalendar(Calendar):
-    name = 'Sub Region'
+    'Sub Region'
 
     def holidays(self, year=None):
         return tuple((

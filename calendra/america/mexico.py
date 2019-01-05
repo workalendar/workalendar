@@ -6,8 +6,10 @@ from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, SAT
+from ..registry import iso_register
 
 
+@iso_register('MX')
 class Mexico(WesternCalendar, ChristianMixin):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

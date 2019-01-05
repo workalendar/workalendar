@@ -9,7 +9,7 @@ from ..registry import iso_register
 
 @iso_register('AO')
 class Angola(WesternCalendar, ChristianMixin):
-    name = 'Angola'
+    """Angola"""
 
     include_good_friday = True
     include_easter_sunday = True

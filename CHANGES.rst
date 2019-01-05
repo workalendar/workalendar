@@ -1,8 +1,69 @@
-2.1
+3.0
 ---
 
-Incorporate `changes from workalendar 2.6.0
-<https://github.com/peopledoc/workalendar/blob/2.6.0/Changelog.md>`_.
+Incorporate changes from workalendar 3.2.1:
+
+- Added DEEPAVALI days for 2019 and 2020, thx @pvalenti (#282).
+- Fixed Germany Reformation Day miscalculation. Some German states include Reformation Day since the "beginning" ; in 2017, all states included Reformation Day as a holiday (500th anniversary of the Reformation) ; starting of 2018, 4 states added Reformation Day (#295).
+
+Incorporate changes from workalendar 3.2.0:
+
+- Removed dependency to `PyEphem`. This package was the "Python2-compatible" library to deal with the xephem system library. Now it's obsolete, so you don't need this dual-dependency handling, because `ephem` is compatible with Python 2 & Python 3 (#296).
+- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the `basic documentation <https://peopledoc.github.io/workalendar/basic.html#standard-datetime-types-only-please>`_ for more details (#294).
+
+Incorporate changes from workalendar 3.1.1:
+
+- Fixed ISO 3166-1 code for the `Slovenia` calendar (#291, thx @john-sandall).
+
+Incorporate changes from workalendar 3.1.0:
+
+- Added support for Python 3.7 (#283).
+- Fixed the `SouthAfrica` holidays calendar, taking into account the specs of holidays that vary over the periods. As a consequence, it cleaned up erroneous holidays that were duplicated in some years (#285). Thx to @surfer190 for his review & suggestions.
+- Bugfix for South Africa: disabled the possibility to compute holidays prior to the year 1910.
+- Renamed Madagascar test class name into `MadagascarTest` (#286).
+- Separated the coverage jobs from the pure tests. Their report output was disturbing in development mode, you had to scroll your way up to find eventual failing tests (#289).
+
+Incorporate changes from workalendar 3.0.0:
+
+Large work on global registry: refs (#13), (#96), (#257) & (#284).
+
+- Added Tests for Europe registry.
+- Revamped and cleaned up Europe countries.
+- Added the United States of America + States, American countries & sub-regions, African countries, Asian countries, Oceanian countries.
+- The global registry usage is documented.
+- Changed Canada namespace to `workalendar.america.canada`.
+- You don't have to declare a `name` properties for Calendar classes. It will be deducted from the docstring.
+- Changed the `registry.items()` mandatory argument name to `region_codes` for more readability.
+
+Incorporate changes from workalendar 2.6.0:
+
+- Added Angola, by @dvdmgl (#276)
+- Portugal - removed carnival from Portuguese holidays, restored missing holidays (#275)
+- Added All Souls Day to common (#274)
+- Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
+- Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
+- Fixed usage examples of ``get_first_weekday_after()`` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
+- Turned Changelog into a Markdown file (#272).
+- Added basic usage documentation, hosted by Github pages.
+- Added advanced usage documentation.
+
+Incorporate changes from workalendar 2.5.0:
+
+- Bugfix: deduplicate South Africa holidays that were emitted as duplicates (#265).
+- Add the `get_working_days_delta` method to the core calendar class (#260).
+
+Incorporate changes from workalendar 2.4.0:
+
+- Added Lithuania, by @landler (#254).
+- Added Russia, by @vanadium23 (#259).
+- Fixed shifting ANZAC day for Australia states (#249).
+- Renamed Australian state classes to actual state names(eg. AustraliaNewSouthWales to NewSouthWales).
+- Update ACT holidays (#251).
+- Fixing Federal Christmas Shift ; added a `include_veterans_day` flag to enable/disable Veteran's day on specific calendar - e.g. Mozilla's dedicated calendar (#242).
+- **Deprecation:** Dropped support for Python 3.3 (#245).
+- Fixed Travis-ci configuration for Python 3.5 and al (#252).
+- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalendar.registry`` module. Please use with care at the moment (#248).
+- Refactored Australia family and community day calculation (#244).
 
 2.0
 ---

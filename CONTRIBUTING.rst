@@ -79,15 +79,23 @@ Test-driven start
 #################
 
 
-Let's prepare the Zhraa class. Edit the ``calendra/europe/zhraa.py`` file and add a class like this::
+Let's prepare the Zhraa class. Edit the ``calendra/europe/zhraa.py`` file and
+add a class like this::
 
     from calendra.core import WesternCalendar
 
     class Zhraa(WesternCalendar):
-        pass
+        "Kingdom of Zhraa"
 
+.. note::
 
-Meanwhile, in the ``calendra/europe/__init__.py`` file, add these snippets where needed:
+    The docstring is not mandatory, but if you omit it, the ``name`` property of
+    your class will be the name of your class. For example, using upper
+    CamelCase, ``KingdomOfZhraa``. For a more human-readable label, use your
+    docstring.
+
+Meanwhile, in the ``calendra/europe/__init__.py`` file, add these snippets
+where needed:
 
 .. code-block:: python
 
@@ -193,6 +201,26 @@ days computation. It's very easy to add days like the "Birthday of the Founder":
     item being a date object (in the Python ``datetime.date`` sense) and the
     second one is the label string.
 
+Add you calendar to the global registry
+#######################################
+
+If you're adding a Country calendar that has an ISO code, you may want to add
+it to our global registry.
+
+Workalendar is providing a registry that you can use to query and fetch calendar
+based on their ISO code. For the current example, let's pretend that the Zhraa
+Kingdom ISO code is ``ZK``.
+
+To register, add the following::
+
+    from workalendar.registry import iso_register
+
+    @iso_register('ZK')
+    class Zhraa(WesternCalendar, ChristianMixin):
+        # The rest of your code...
+
+You're done for the code!
+#########################
 
 There you are. Commit with a nice commit message, test, make sure it works for
 the other years as well and you're almost there.

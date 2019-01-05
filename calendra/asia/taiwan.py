@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
+
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..core import EphemMixin
+from ..registry import iso_register
 
 
+@iso_register('TW')
 class Taiwan(EphemMixin, ChineseNewYearCalendar, WesternCalendar):
     "Taiwan (Republic of China)"
     FIXED_HOLIDAYS = (

@@ -5,9 +5,12 @@ from __future__ import (absolute_import, division, print_function,
 import datetime
 
 from .core import UnitedStates
-from ..core import MON, Holiday
+from ..core import MON
+from ..core import Holiday
+from ..registry import iso_register
 
 
+@iso_register('US-AK')
 class Alaska(UnitedStates):
     """Alaska"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (

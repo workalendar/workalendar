@@ -8,7 +8,7 @@ from ..registry import iso_register
 
 @iso_register('IE')
 class Ireland(WesternCalendar, ChristianMixin):
-    name = 'Ireland'
+    'Ireland'
 
     include_easter_monday = True
     include_boxing_day = True

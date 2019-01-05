@@ -6,7 +6,7 @@ from ..registry import iso_register
 
 @iso_register('NO')
 class Norway(WesternCalendar, ChristianMixin):
-    name = 'Norway'
+    'Norway'
 
     include_holy_thursday = True
     include_good_friday = True

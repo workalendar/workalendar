@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 from ..core import Calendar
 from ..core import FRI, SAT, IslamicMixin
+from ..registry import iso_register
 
 
+@iso_register('QA')
 class Qatar(IslamicMixin, Calendar):
     "Qatar"
     WEEKEND_DAYS = (FRI, SAT)

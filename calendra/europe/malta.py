@@ -6,7 +6,7 @@ from ..registry import iso_register
 
 @iso_register('MT')
 class Malta(WesternCalendar, ChristianMixin):
-    name = 'Malta'
+    'Malta'
 
     include_good_friday = True
     include_assumption = True

@@ -6,7 +6,7 @@ from ..registry import iso_register
 
 @iso_register('FR')
 class France(WesternCalendar, ChristianMixin):
-    name = 'France'
+    'France'
 
     include_easter_monday = True
     include_ascension = True

@@ -2,9 +2,11 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from ..registry import iso_register
 from .core import UnitedStates
 
 
+@iso_register('US-SC')
 class SouthCarolina(UnitedStates):
     """South Carolina"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (

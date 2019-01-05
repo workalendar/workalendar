@@ -1,8 +1,14 @@
-from .core import WesternCalendar, ChristianMixin
-from .core import MON, TUE, FRI, SAT, SUN
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from datetime import date, timedelta
 
+from ..core import WesternCalendar, ChristianMixin
+from ..core import MON, TUE, SAT, SUN
+from ..registry import iso_register
 
+
+@iso_register('AU')
 class Australia(WesternCalendar, ChristianMixin):
     "Australia"
     include_good_friday = True
@@ -83,6 +89,7 @@ class Australia(WesternCalendar, ChristianMixin):
         return days
 
 
+@iso_register('AU-ACT')
 class AustralianCapitalTerritory(Australia):
     "Australian Capital Territory"
     include_easter_saturday = True
@@ -142,6 +149,7 @@ class AustralianCapitalTerritory(Australia):
         return days
 
 
+@iso_register('AU-NSW')
 class NewSouthWales(Australia):
     "New South Wales"
     include_queens_birthday = True
@@ -153,6 +161,7 @@ class NewSouthWales(Australia):
     ANZAC_SHIFT_DAYS = (SUN,)
 
 
+@iso_register('AU-NT')
 class NorthernTerritory(Australia):
     "Northern Territory"
     include_easter_saturday = True
@@ -182,6 +191,7 @@ class NorthernTerritory(Australia):
         return days
 
 
+@iso_register('AU-QLD')
 class Queensland(Australia):
     "Queensland"
     include_easter_saturday = True
@@ -202,6 +212,7 @@ class Queensland(Australia):
         return days
 
 
+@iso_register('AU-SA')
 class SouthAustralia(Australia):
     "South Australia"
     include_easter_saturday = True
@@ -228,6 +239,7 @@ class SouthAustralia(Australia):
         return days
 
 
+@iso_register('AU-TAS')
 class Tasmania(Australia):
     "Tasmania"
     include_queens_birthday = True
@@ -276,6 +288,7 @@ class Hobart(Tasmania):
         return days
 
 
+@iso_register('AU-VIC')
 class Victoria(Australia):
     "Victoria"
     include_easter_saturday = True
@@ -302,6 +315,7 @@ class Victoria(Australia):
         return days
 
 
+@iso_register('AU-WA')
 class WesternAustralia(Australia):
     "Western Australia"
     include_boxing_day = True
@@ -326,35 +340,4 @@ class WesternAustralia(Australia):
         days = super(WesternAustralia, self).get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_western_australia_day(year))
-        return days
-
-
-class MarshallIslands(WesternCalendar, ChristianMixin):
-    "Marshall Islands"
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 3, "Remembrance Day"),
-        (5, 1, "Constitution Day"),
-        (11, 17, "Presidents' Day"),
-        (12, 31, "New Year's Eve"),
-    )
-    include_good_friday = True
-
-    def get_variable_days(self, year):
-        days = super(MarshallIslands, self).get_variable_days(year)
-        days.append((
-            MarshallIslands.get_nth_weekday_in_month(year, 7, FRI),
-            "Fishermen's Holiday"
-        ))
-        days.append((
-            MarshallIslands.get_nth_weekday_in_month(year, 9, FRI),
-            "Labour Day"
-        ))
-        days.append((
-            MarshallIslands.get_last_weekday_in_month(year, 9, FRI),
-            "Manit Day"
-        ))
-        days.append((
-            MarshallIslands.get_nth_weekday_in_month(year, 12, FRI),
-            "Gospel Day"
-        ))
         return days

@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 from datetime import date
 
 from ..core import MON, EphemMixin
 from ..core import WesternCalendar
+from ..registry import iso_register
 
 
+@iso_register('JP')
 class Japan(WesternCalendar, EphemMixin):
     "Japan"
 

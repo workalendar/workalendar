@@ -7,7 +7,7 @@ from ..registry import iso_register
 
 @iso_register('ES')
 class Spain(WesternCalendar, ChristianMixin):
-    name = 'Spain'
+    'Spain'
 
     include_epiphany = True
     include_immaculate_conception = True

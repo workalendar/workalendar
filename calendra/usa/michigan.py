@@ -4,9 +4,12 @@ from __future__ import (absolute_import, division, print_function,
 
 from datetime import date
 from ..core import SUN
+from ..registry import iso_register
+
 from .core import UnitedStates
 
 
+@iso_register('US-MI')
 class Michigan(UnitedStates):
     """Michigan"""
     include_christmas_eve = True
