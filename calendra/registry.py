@@ -52,7 +52,7 @@ class IsoRegistry(object):
 
         >>> registry = IsoRegistry()
         >>> # assuming calendars registered are: DE, DE-HH, DE-BE
-        >>> registry.get_subregions('DE')
+        >>> registry.get_subregions('DE')  # doctest: +SKIP
         {'DE-HH': <class 'calendra.europe.germany.Hamburg'>,
         'DE-BE': <class 'calendra.europe.germany.Berlin'>}
         :rtype dict
@@ -99,8 +99,8 @@ def iso_register(iso_code):
 
     >>> from calendra.core import Calendar
     >>> @iso_register('MC-MR')
-    >>> class MyRegion(Calendar):
-    >>>     'My Region'
+    ... class MyRegion(Calendar):
+    ...     'My Region'
 
     Region calendar is then retrievable from registry:
 

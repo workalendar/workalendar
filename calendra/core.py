@@ -461,6 +461,7 @@ class Calendar(object):
 
         In France, April 1st 2018 is a holiday because it's Easter monday:
 
+        >>> from calendra.europe import France
         >>> cal = France()
         >>> cal.get_working_days_delta(day1, day2)
         4
