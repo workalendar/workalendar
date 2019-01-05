@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import timedelta
 from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('DK')
 class Denmark(WesternCalendar, ChristianMixin):
-    "Denmark"
+    name = 'Denmark'
+
     include_palm_sunday = True
     include_holy_thursday = True
     include_good_friday = True

@@ -69,6 +69,8 @@ Usage sample
     >>> cal.add_working_days(date(2012, 12, 23), 5)  # 5 working days after Xmas
     datetime.date(2012, 12, 31)
 
+For a more complete documentation and advanced usage, go to
+`the official workalendar documentation <https://peopledoc.github.io/workalendar>`_.
 
 External dependencies
 =====================
@@ -117,6 +119,7 @@ Europe
 * Ireland
 * Italy
 * Latvia
+* Lithuania
 * Luxembourg
 * Malta
 * Netherlands
@@ -124,6 +127,7 @@ Europe
 * Poland
 * Portugal
 * Romania
+* Russia
 * Slovakia
 * Sweden
 * United Kingdom (incl. Northern Ireland)
@@ -164,6 +168,7 @@ Africa
 ------
 
 * Algeria
+* Angola
 * Benin
 * Ivory Coast
 * Madagascar

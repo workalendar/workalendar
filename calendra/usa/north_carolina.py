@@ -36,7 +36,7 @@ class NorthCarolina(UnitedStates):
             warnings.warn(
                 "We didn't find any documentation about this configuration for"
                 " the Christmas shift. Please use with care or help us build"
-                " a better Workalendar"
+                " a better Calendra"
             )
             return [
                 (date(year, 12, 27), "Christmas Day shift"),

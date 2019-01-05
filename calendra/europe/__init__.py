@@ -16,6 +16,7 @@ from .iceland import Iceland
 from .ireland import Ireland
 from .italy import Italy
 from .latvia import Latvia
+from .lithuania import Lithuania
 from .luxembourg import Luxembourg
 from .malta import Malta
 from .netherlands import Netherlands
@@ -23,6 +24,7 @@ from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
 from .romania import Romania
+from .russia import Russia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
@@ -40,44 +42,46 @@ from .germany import (
 
 
 __all__ = (
-    Austria,
-    Belgium,
-    Bulgaria,
-    Catalonia,
-    Croatia,
-    Cyprus,
-    CzechRepublic,
-    Denmark,
-    Estonia,
-    EuropeanCentralBank,
-    Finland,
-    France,
-    FranceAlsaceMoselle,
-    Greece,
-    Hungary,
-    Iceland,
-    Ireland,
-    Italy,
-    Latvia,
-    Luxembourg,
-    Malta,
-    Netherlands,
-    Norway,
-    Poland,
-    Portugal,
-    Romania,
-    Slovakia,
-    Slovenia,
-    Spain,
-    Sweden,
-    Switzerland,
-    Vaud,
-    UnitedKingdom,
-    UnitedKingdomNorthernIreland,
+    'Austria',
+    'Belgium',
+    'Bulgaria',
+    'Catalonia',
+    'Croatia',
+    'Cyprus',
+    'CzechRepublic',
+    'Denmark',
+    'Estonia',
+    'EuropeanCentralBank',
+    'Finland',
+    'France',
+    'FranceAlsaceMoselle',
+    'Greece',
+    'Hungary',
+    'Iceland',
+    'Ireland',
+    'Italy',
+    'Latvia',
+    'Lithuania',
+    'Luxembourg',
+    'Malta',
+    'Netherlands',
+    'Norway',
+    'Poland',
+    'Portugal',
+    'Romania',
+    'Russia',
+    'Slovakia',
+    'Slovenia',
+    'Spain',
+    'Sweden',
+    'Switzerland',
+    'Vaud',
+    'UnitedKingdom',
+    'UnitedKingdomNorthernIreland',
 
     # Germany
-    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
-    Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
-    NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
-    SaxonyAnhalt, SchleswigHolstein, Thuringia,
+    'Germany', 'BadenWurttemberg', 'Bavaria', 'Berlin', 'Brandenburg',
+    'Bremen', 'Hamburg', 'Hesse', 'MecklenburgVorpommern', 'LowerSaxony',
+    'NorthRhineWestphalia', 'RhinelandPalatinate', 'Saarland', 'Saxony',
+    'SaxonyAnhalt', 'SchleswigHolstein', 'Thuringia',
 )

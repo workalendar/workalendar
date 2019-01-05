@@ -259,8 +259,13 @@ class Calendar(object):
         return day in observed
 
     def add_working_days(self, day, delta,
-                         extra_working_days=None, extra_holidays=None):
+                         extra_working_days=None, extra_holidays=None,
+                         keep_datetime=False):
         """Add `delta` working days to the date.
+
+        You can provide either a date or a datetime to this function that will
+        output a ``date`` result. You can alter this behaviour using the
+        ``keep_datetime`` option set to ``True``.
 
         the ``delta`` parameter might be positive or negative. If it's
         negative, you may want to use the ``sub_working_days()`` method with
@@ -277,6 +282,8 @@ class Calendar(object):
         """
         days = 0
         temp_day = day
+        if type(temp_day) is datetime and not keep_datetime:
+            temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)
         while days < delta:
@@ -288,7 +295,8 @@ class Calendar(object):
         return temp_day
 
     def sub_working_days(self, day, delta,
-                         extra_working_days=None, extra_holidays=None):
+                         extra_working_days=None, extra_holidays=None,
+                         keep_datetime=False):
         """
         Substract `delta` working days to the date.
 
@@ -306,13 +314,23 @@ class Calendar(object):
             cal.sub_working_days(my_date, -7)
             cal.sub_working_days(my_date, 7)
 
+        As in ``add_working_days()`` you can set the parameter
+        ``keep_datetime`` to ``True`` to make sure that if your ``day``
+        argument is a ``datetime``, the returned date will also be a
+        ``datetime`` object.
+
         """
         delta = abs(delta)
         return self.add_working_days(
-            day, -delta, extra_working_days, extra_holidays)
+            day, -delta,
+            extra_working_days, extra_holidays, keep_datetime=keep_datetime)
 
     def find_following_working_day(self, day):
-        "Looks for the following working day"
+        """Looks for the following working day, if not already a working day.
+
+        **WARNING**: this function doesn't take into account the calendar
+        holidays, only the days of the week and the weekend days parameters.
+        """
         while day.weekday() in self.get_weekend_days():
             day = day + timedelta(days=1)
         return day
@@ -364,16 +382,57 @@ class Calendar(object):
         weekday, the same day will be returned.
 
         >>> # the first monday after Apr 1 2015
-        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), 0)
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 1), MON)
         datetime.date(2015, 4, 6)
 
         >>> # the first tuesday after Apr 14 2015
-        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), 1)
+        >>> Calendar.get_first_weekday_after(date(2015, 4, 14), TUE)
         datetime.date(2015, 4, 14)
         """
         day_delta = (weekday - day.weekday()) % 7
         day = day + timedelta(days=day_delta)
         return day
+
+    def get_working_days_delta(self, start, end):
+        """
+        Return the number of working day between two given dates.
+        The order of the dates provided doesn't matter.
+
+        In the following example, there are 5 days, because of the week-end:
+
+        >>> cal = WesternCalendar()  # does not include easter monday
+        >>> day1 = date(2018, 3, 29)
+        >>> day2 = date(2018, 4, 5)
+        >>> cal.get_working_days_delta(day1, day2)
+        5
+
+        In France, April 1st 2018 is a holiday because it's Easter monday:
+
+        >>> cal = France()
+        >>> cal.get_working_days_delta(day1, day2)
+        4
+
+        This method should even work if your ``start`` and ``end`` arguments
+        are datetimes.
+        """
+        # Sanitize date types first.
+        if type(start) is datetime:
+            start = start.date()
+        if type(end) is datetime:
+            end = end.date()
+
+        if start == end:
+            return 0
+
+        if start > end:
+            start, end = end, start
+        # Starting count here
+        count = 0
+        while start < end:
+            start += timedelta(days=1)
+            if self.is_working_day(start):
+                count += 1
+        return count
 
 
 class ChristianMixin(Calendar):
@@ -403,6 +462,7 @@ class ChristianMixin(Calendar):
     include_corpus_christi = False
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
+    include_all_souls = False
 
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
@@ -485,6 +545,8 @@ class ChristianMixin(Calendar):
             days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
         if self.include_all_saints:
             days.append((date(year, 11, 1), "All Saints Day"))
+        if self.include_all_souls:
+            days.append((date(year, 11, 2), "All Souls Day"))
         if self.include_immaculate_conception:
             days.append((date(year, 12, 8), "Immaculate Conception"))
         christmas = None

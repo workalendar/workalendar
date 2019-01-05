@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 
 from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
+from ..registry import iso_register
 
 
+@iso_register('GB')
 class UnitedKingdom(WesternCalendar, ChristianMixin):
-    "United Kingdom"
+    name = 'United Kingdom'
 
     include_good_friday = True
     include_easter_sunday = True
@@ -38,8 +41,9 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         return days
 
 
+@iso_register('GB-NIR')
 class UnitedKingdomNorthernIreland(UnitedKingdom):
-    "Northern Ireland (UK)"
+    name = 'Northern Ireland'
 
     def get_variable_days(self, year):
         days = super(UnitedKingdomNorthernIreland, self) \

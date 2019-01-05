@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from ..core import WesternCalendar, ChristianMixin
 from ..core import THU, MON
+from ..registry import iso_register
 
 
+@iso_register('IS')
 class Iceland(WesternCalendar, ChristianMixin):
-    "Iceland"
+    name = 'Iceland'
+
     include_holy_thursday = True
     include_good_friday = True
     include_easter_monday = True

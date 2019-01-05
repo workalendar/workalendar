@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('SL')
 class Slovenia(WesternCalendar, ChristianMixin):
-    "Slovenia"
+    name = 'Slovenia'
+
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True

@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from . import GenericCalendarTest
-from ..africa import Benin, Algeria
-from ..africa import SouthAfrica, IvoryCoast
-from ..africa import SaoTomeAndPrincipe, Madagascar
+from ..africa import (
+    Algeria,
+    Angola,
+    Benin,
+    IvoryCoast,
+    Madagascar,
+    SaoTomeAndPrincipe,
+    SouthAfrica,
+)
 from ..core import MON
 
 
@@ -80,12 +86,6 @@ class SouthAfricaTest(GenericCalendarTest):
         observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2014, 4, 28), observed)
         self.assertFalse(self.cal.is_working_day(date(2014, 4, 28)))
-
-#    def test_pre_1994(self):
-#        pass
-#
-#    def test_pre_1995(self):
-#        pass
 
     def test_special_1999(self):
         # National and provincial government elections – 2 June 1999[8]
@@ -165,6 +165,11 @@ class SouthAfricaTest(GenericCalendarTest):
         observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(1960, 5, 2), observed)
 
+    def test_remove_duplicates(self):
+        holidays = self.cal.holidays(2014)
+        dates = ["{} {}".format(x, y) for x, y in holidays]
+        self.assertEqual(len(dates), len(set(dates)))
+
 
 class Madagascar(GenericCalendarTest):
     cal_class = Madagascar
@@ -220,3 +225,33 @@ class SaoTomeAndPrincipeTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 1), holidays)  # All saints
         self.assertIn(date(2013, 12, 21), holidays)  # São Tomé Day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
+
+
+class AngolaTest(GenericCalendarTest):
+    cal_class = Angola
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        # Dia de Ano Novo – 1 de Janeiro
+        self.assertIn(date(2018, 1, 1), holidays)  # Ano Novo
+        # Dia do Inicio da Luta Armada – 4 de Fevereiro
+        self.assertIn(date(2018, 2, 4), holidays)
+        # Dia do Carnaval – 13 de Fevereiro
+        self.assertIn(date(2018, 2, 13), holidays)  # Entrudo
+        # Dia Internacional da Mulher – 8 de Março
+        self.assertIn(date(2018, 3, 8), holidays)
+        # Dia da Paz – 4 de Abril
+        self.assertIn(date(2018, 4, 4), holidays)  # Dia da Paz
+        # Sexta Feira Santa – 30 de Março
+        self.assertIn(date(2018, 3, 30), holidays)  # Sexta-Feira Santa
+        # Páscoa – 01 de Abril
+        self.assertIn(date(2018, 4, 1), holidays)  # Domingo de Páscoa
+        # Dia Internacional do Trabalhador – 1 de Maio
+        self.assertIn(date(2018, 5, 1), holidays)  # Dia do Trabalhador
+        # Dia do Fundador da Nação e do Herói Nacional – 17 de Setembro
+        self.assertIn(date(2018, 9, 17), holidays)
+        # Dia dos Finados – 2 de Novembro
+        # Dia da Independência Nacional – 11 de Novembro
+        self.assertIn(date(2018, 11, 11), holidays)
+        # Dia do Natal – 25 de Dezembro
+        self.assertIn(date(2018, 12, 25), holidays)  # Natal

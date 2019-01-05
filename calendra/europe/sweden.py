@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date
 from ..core import WesternCalendar, ChristianMixin
 from ..core import FRI, SAT
+from ..registry import iso_register
 
 
+@iso_register('SE')
 class Sweden(WesternCalendar, ChristianMixin):
-    "Sweden"
+    name = 'Sweden'
+
     include_epiphany = True
     include_good_friday = True
     include_easter_sunday = True

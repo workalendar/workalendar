@@ -1,5 +1,6 @@
 from datetime import date
 from datetime import datetime
+from unittest import TestCase
 
 import dateutil.relativedelta as rd
 
@@ -91,13 +92,13 @@ class CalendarTest(GenericCalendarTest):
     def test_get_next_weekday_after(self):
         # the first monday after Apr 1 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 1), 0),
+            Calendar.get_first_weekday_after(date(2015, 4, 1), MON),
             date(2015, 4, 6)
         )
 
         # the first tuesday after Apr 14 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 14), 1),
+            Calendar.get_first_weekday_after(date(2015, 4, 14), TUE),
             date(2015, 4, 14)
         )
 
@@ -212,6 +213,60 @@ class MockCalendarTest(GenericCalendarTest):
                                     extra_holidays=extra_holidays))
         # test is_holiday
         self.assertTrue(self.cal.is_holiday(christmas))
+
+    def test_add_working_days_datetime(self):
+        # datetime inside, date outside
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56), 0),
+            date(self.year, 12, 20)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56), 1),
+            date(self.year, 12, 21)
+        )
+
+        # Use the `keep_datetime` option
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                0, keep_datetime=True),
+            datetime(self.year, 12, 20, 12, 34, 56)
+        )
+        self.assertEquals(
+            self.cal.add_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                1, keep_datetime=True),
+            datetime(self.year, 12, 21, 12, 34, 56)
+        )
+
+    def test_sub_working_days_datetime(self):
+        # datetime inside, date outside
+        self.assertEquals(
+            self.cal.sub_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56), 0),
+            date(self.year, 12, 20)
+        )
+        self.assertEquals(
+            self.cal.sub_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56), 1),
+            date(self.year, 12, 19)
+        )
+
+        # Use the `keep_datetime` option
+        self.assertEquals(
+            self.cal.sub_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                0, keep_datetime=True),
+            datetime(self.year, 12, 20, 12, 34, 56)
+        )
+        self.assertEquals(
+            self.cal.sub_working_days(
+                datetime(self.year, 12, 20, 12, 34, 56),
+                1, keep_datetime=True),
+            datetime(self.year, 12, 19, 12, 34, 56)
+        )
 
     def test_datetime(self):
         self.assertFalse(
@@ -437,3 +492,82 @@ class OverwriteGetWeekendDaysCalendarTest(GenericCalendarTest):
         self.assertTrue(self.cal.is_working_day(day))
         day = date(2017, 5, 17)  # This is a Wednesday
         self.assertFalse(self.cal.is_working_day(day))
+
+
+class NoHolidayCalendar(Calendar):
+    WEEKEND_DAYS = (SAT, SUN)
+
+
+class WorkingDaysDeltatest(TestCase):
+
+    def test_zero(self):
+        days = (
+            date(2018, 12, 21),  # a Thursday
+            date(2018, 12, 23),  # a Sunday
+            date(2018, 12, 25),  # a holiday in Christian calendars
+        )
+        for day in days:
+            cal = NoHolidayCalendar()
+            self.assertEqual(cal.get_working_days_delta(day, day), 0)
+            cal = MockChristianCalendar()
+            self.assertEqual(cal.get_working_days_delta(day, day), 0)
+
+    def test_no_holidays_simple(self):
+        cal = NoHolidayCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 3 days, because of the week-ends
+        self.assertEqual(delta, 3)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 3)
+
+    def test_no_holidays_over_2_years(self):
+        cal = NoHolidayCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2019, 1, 4)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 10 days, because of the week-ends
+        self.assertEqual(delta, 10)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 10)
+
+    def test_christian_simple(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 2 days, because of the week-end + Christmas Day
+        self.assertEqual(delta, 2)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 2)
+
+    def test_christian_over_2_years(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2019, 1, 4)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 8 days, because of the week-ends + Xmas day + New Year
+        self.assertEqual(delta, 8)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 8)
+
+    def test_with_datetimes(self):
+        cal = MockChristianCalendar()
+        day1 = datetime(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(day1, day2)
+        # there are 2 days, because of the week-end + Christmas Day
+        self.assertEqual(delta, 2)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(day2, day1)
+        self.assertEqual(delta, 2)

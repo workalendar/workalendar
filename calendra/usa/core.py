@@ -26,6 +26,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return Holiday.nearest_weekday
 
     # Veterans day label
+    include_veterans_day = True
     veterans_day_label = 'Veterans Day'
 
     # MLK
@@ -289,3 +290,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             self.veterans_day_label,
             indication='Nov 11',
         )
+
+    def get_fixed_holidays(self, year):
+        days = super(UnitedStates, self).get_fixed_holidays(year)
+        if self.include_veterans_day:
+            days.append(self.get_veterans_day(year))
+        return days

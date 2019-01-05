@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from datetime import date, timedelta
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON
+from ..registry import iso_register
 
 
+@iso_register('IE')
 class Ireland(WesternCalendar, ChristianMixin):
-    "Republic of Ireland"
+    name = 'Ireland'
 
     include_easter_monday = True
     include_boxing_day = True

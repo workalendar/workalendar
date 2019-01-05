@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('PL')
 class Poland(WesternCalendar, ChristianMixin):
-    "Poland"
+    name = 'Poland'
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 6, 'Trzech Kroli'),
         (5, 1, 'Labour Day'),

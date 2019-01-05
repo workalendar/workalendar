@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from ..core import WesternCalendar, ChristianMixin
+from ..registry import iso_register
 
 
+@iso_register('MT')
 class Malta(WesternCalendar, ChristianMixin):
-    "Malta"
+    name = 'Malta'
 
     include_good_friday = True
     include_assumption = True

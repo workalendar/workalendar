@@ -1,3 +1,9 @@
+2.1
+---
+
+Incorporate `changes from workalendar 2.6.0
+<https://github.com/peopledoc/workalendar/blob/2.6.0/Changelog.md>`_.
+
 2.0
 ---
 

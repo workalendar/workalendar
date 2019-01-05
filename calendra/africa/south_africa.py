@@ -58,7 +58,10 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super(SouthAfrica, self).get_variable_days(year)
         days.append(self.get_family_day(year))
-        days += self.get_fixed_holidays(year)
+        return days
+
+    def get_calendar_holidays(self, year):
+        days = super(SouthAfrica, self).get_calendar_holidays(year)
 
         # Other one-offs. Don't shift these
         if year == 1999:
