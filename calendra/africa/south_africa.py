@@ -2,10 +2,10 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-from datetime import timedelta, date
+from datetime import date
 
 from ..core import WesternCalendar
-from ..core import SUN, MON, FRI
+from ..core import MON, FRI
 from ..core import ChristianMixin
 from ..exceptions import CalendarError
 from ..registry import iso_register

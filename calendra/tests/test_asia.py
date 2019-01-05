@@ -5,6 +5,7 @@ from . import GenericCalendarTest
 from ..asia import HongKong, Japan, Qatar, Singapore
 from ..asia import SouthKorea, Taiwan, Malaysia
 
+
 class HongKongTest(GenericCalendarTest):
 
     cal_class = HongKong
