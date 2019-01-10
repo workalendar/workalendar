@@ -2,7 +2,7 @@
 from datetime import date
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import Colombia
-from workalendar.america import Mexico, Chile, Panama
+from workalendar.america import Mexico, Chile, Panama, Paraguay
 
 
 class ChileTest(GenericCalendarTest):
@@ -119,3 +119,33 @@ class PanamaTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 2), holidays)  # Independence from spain
         self.assertIn(date(2013, 12, 8), holidays)  # mother day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
+
+
+class ParaguayTest(GenericCalendarTest):
+    cal_class = Paraguay
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)
+        self.assertIn(date(2019, 3, 1), holidays)  # Heroes day
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy thursday
+        self.assertIn(date(2019, 4, 19), holidays)  # Good friday
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2019, 5, 14), holidays)  # Independance day
+        self.assertIn(date(2019, 6, 12), holidays)  # Chaco Armistice Day
+        self.assertIn(date(2019, 8, 15), holidays)  # Founding of Asunción
+        self.assertIn(date(2019, 9, 29), holidays)  # Boqueron Battle Victory
+        self.assertIn(date(2019, 12, 8), holidays)  # Virgin of Caacupe
+        self.assertIn(date(2019, 12, 25), holidays)  # XMas
+
+    def test_holidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # In 2017, Heroes day has been moved to February 27th
+        self.assertNotIn(date(2017, 3, 1), holidays)
+        self.assertIn(date(2017, 2, 27), holidays)
+        # Fundation of Asunción day: moved to August 14 for 2017
+        self.assertNotIn(date(2017, 8, 15), holidays)
+        self.assertIn(date(2017, 8, 14), holidays)
+        # Boqueron Battle Victory Day: moved to October 2nd for 2017
+        self.assertNotIn(date(2017, 9, 29), holidays)
+        self.assertIn(date(2017, 10, 2), holidays)

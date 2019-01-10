@@ -121,6 +121,7 @@ America
 * Colombia
 * Mexico
 * Panama
+* Paraguay
 * United States of America (including state holidays)
 * Canada (including provincial and territory holidays)
 

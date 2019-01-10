@@ -27,7 +27,7 @@ from workalendar.america import (
     Nunavut,
 
 )
-from workalendar.america import Chile, Colombia, Mexico, Panama
+from workalendar.america import Chile, Colombia, Mexico, Panama, Paraguay
 
 from workalendar.registry import registry
 
@@ -89,6 +89,7 @@ class RegistryAmerica(TestCase):
         self.assertIn(Colombia, classes)
         self.assertIn(Mexico, classes)
         self.assertIn(Panama, classes)
+        self.assertIn(Paraguay, classes)
 
     def test_brazil_subregion(self):
         classes = (v for k, v in registry.get_subregions('BR').items())

@@ -7,6 +7,7 @@
 ### New Calendars
 
 - Added New Zealand, by @johnguant (#306)
+* Added Paraguay calendar, following the work of @reichert (#268).
 
 ## v3.2.1 (2018-12-06)
 
