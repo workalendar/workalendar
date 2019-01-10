@@ -1,4 +1,5 @@
 sudo: false
+dist: xenial
 language: python
 install:
     - pip install tox
@@ -24,8 +25,6 @@ matrix:
 
     - python: 3.7
       env: TOXENV=py37
-      # As of September 2018, Python 3.7.0 is not available on "vanilla" travis builds.
-      dist: xenial
       sudo: true
 
     # Lints and others
