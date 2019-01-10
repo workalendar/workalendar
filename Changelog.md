@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
+- Added instructions about the usage of the `iso_register` decorator in the pull-request template (#309).
 
 ### New Calendars
 
