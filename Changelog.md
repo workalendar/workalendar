@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+* Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
 
 ## v3.2.1 (2018-12-06)
 
