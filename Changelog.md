@@ -4,11 +4,6 @@
 
 Nothing here yet.
 
-## v3.2.2 (2018-12-25)
-
-### New Calendars
-
-- Added China, by @iamsk (#304).
 
 ## v3.2.1 (2018-12-06)
 
