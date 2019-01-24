@@ -24,6 +24,7 @@ REQUIREMENTS = [
     'lunardate',
     'pytz',
     'pyCalverter',
+    'pyluach',
     'setuptools>=1.0',
 ]
 version = '3.3.0.dev0'
