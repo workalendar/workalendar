@@ -12,6 +12,7 @@ from .australia import (
     WesternAustralia
 )
 from .marshall_islands import MarshallIslands
+from .new_zealand import NewZealand
 
 
 __all__ = (
@@ -28,4 +29,5 @@ __all__ = (
     'WesternAustralia',
     # Other oceanian countries
     'MarshallIslands',
+    'NewZealand',
 )

@@ -4,6 +4,10 @@
 
 * Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
 
+### New Calendars
+
+- Added New Zealand, by @johnguant (#306)
+
 ## v3.2.1 (2018-12-06)
 
 ### Bugfixes
