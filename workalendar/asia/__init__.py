@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .china import China
 from .hong_kong import HongKong
 from .japan import Japan
 from .malaysia import Malaysia
@@ -9,6 +10,7 @@ from .taiwan import Taiwan
 
 
 __all__ = (
+    'China',
     'HongKong',
     'Japan',
     'Malaysia',
