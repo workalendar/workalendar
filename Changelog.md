@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## 4.0.0 (2019-01-24)
 
 - Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
 - Added instructions about the usage of the `iso_register` decorator in the pull-request template (#309).
@@ -10,7 +10,7 @@
 - Added New Zealand, by @johnguant (#306).
 - Added Paraguay calendar, following the work of @reichert (#268).
 - Added China calendar, by @iamsk (#304).
-- Added Israel, by @armona, @tsehori (#281)
+- Added Israel, by @armona, @tsehori (#281).
 
 ## v3.2.1 (2018-12-06)
 
