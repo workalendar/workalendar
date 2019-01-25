@@ -2,7 +2,10 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+### Bugfixes
+
+- Fixed United Kingdom bank holiday for 2002 and 2012.
+
 
 ## 4.0.0 (2019-01-24)
 
