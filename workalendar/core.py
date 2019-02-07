@@ -760,12 +760,12 @@ class CalverterMixin(Calendar):
         conversion_method = getattr(
             self.calverter, '%s_to_jd' % self.conversion_method)
         for month, day, label in self.get_islamic_holidays():
-                for y in years:
-                    jd = conversion_method(y, month, day)
-                    g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
-                    if g_year == year:
-                        holiday = date(g_year, g_month, g_day)
-                        days.append((holiday, label))
+            for y in years:
+                jd = conversion_method(y, month, day)
+                g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                if g_year == year:
+                    holiday = date(g_year, g_month, g_day)
+                    days.append((holiday, label))
         return days
 
 
