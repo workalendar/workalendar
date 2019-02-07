@@ -107,11 +107,11 @@ Europe
 * Russia
 * Slovakia
 * Sweden
-* United Kingdom (incl. Northern Ireland)
 * Spain (incl. Catalonia)
 * Slovenia
 * Switzerland
   * Vaud
+* United Kingdom (incl. Northern Ireland, Scotland and all its territories)
 
 America
 -------
