@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v4.1.0 (2019-02-07)
 
 ### New calendars
 
@@ -10,11 +10,11 @@
 
 ### Bugfixes
 
-- Fixed United Kingdom bank holiday for 2002 and 2012 (#315).
+- Fixed United Kingdom bank holiday for 2002 and 2012, thx @ludsoft (#315).
 - Fix a small flake8 issue with wrong indentation (#319).
 - Fix Russia "Day of Unity" date, set to November 4th, thx @alexitkes for the bug report (#317).
 
-## 4.0.0 (2019-01-24)
+## v4.0.0 (2019-01-24)
 
 - Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
 - Added instructions about the usage of the `iso_register` decorator in the pull-request template (#309).
