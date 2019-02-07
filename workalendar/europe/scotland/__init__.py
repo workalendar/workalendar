@@ -23,6 +23,7 @@ FIXME:
 # Since Scotland territories have a lot of different variations, it has become
 # necessary to split this module and associated tests
 from datetime import date, timedelta
+import warnings
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import MON, THU, FRI
 from .mixins import (
@@ -63,6 +64,20 @@ class Scotland(WesternCalendar, ChristianMixin):
     include_autumn_holiday = False
     include_saint_andrew = False
     include_victoria_day = False
+
+    def __init__(self, *args, **kwargs):
+        super(Scotland, self).__init__(*args, **kwargs)
+        warnings.warn(
+            """
+Please bear in mind that every Scotland (sub)calendar is highly experimental.
+
+It appeared throughout out searches that Scottish calendars have many
+exceptions and somes sources of information contradicts with each other.
+
+As a consequence, we advise our user to treat this Scotland submodule with
+as much care as possible.
+"""
+        )
 
     def get_may_day(self, year):
         """
