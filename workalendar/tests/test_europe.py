@@ -707,6 +707,33 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # Christmas
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
+    def test_year_2002(self):
+        holidays = self.cal.holidays_set(2002)
+        self.assertIn(date(2002, 1, 1), holidays)  # new year day
+        self.assertIn(date(2002, 3, 29), holidays)  # good friday
+        self.assertIn(date(2002, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2002, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2002, 5, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2002, 6, 3), holidays)  # queen's golden jubilee
+        self.assertIn(date(2002, 6, 4), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2002, 8, 26), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2002, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2002, 12, 26), holidays)  # Boxing Day
+
+    def test_year_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)  # new year day
+        self.assertIn(date(2012, 1, 2), holidays)  # new year shift
+        self.assertIn(date(2012, 4, 6), holidays)  # good friday
+        self.assertIn(date(2012, 4, 8), holidays)  # easter sunday
+        self.assertIn(date(2012, 4, 9), holidays)  # easter monday
+        self.assertIn(date(2012, 5, 7), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2012, 6, 4), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2012, 6, 5), holidays)  # queen's diamond jubilee
+        self.assertIn(date(2012, 8, 27), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2012, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2012, 12, 26), holidays)  # Boxing Day
+
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)  # new year day

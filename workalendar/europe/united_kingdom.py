@@ -15,6 +15,10 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_boxing_day = True
     shift_new_years_day = True
+    non_computable_holiday_dict = {
+        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
+        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+    }
 
     def get_early_may_bank_holiday(self, year):
         return (
@@ -23,8 +27,15 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         )
 
     def get_spring_bank_holiday(self, year):
+        if year == 2012:
+            spring_bank_holiday = date(2012, 6, 4)
+        elif year == 2002:
+            spring_bank_holiday = date(2002, 6, 4)
+        else:
+            spring_bank_holiday = UnitedKingdom \
+                .get_last_weekday_in_month(year, 5, MON)
         return (
-            UnitedKingdom.get_last_weekday_in_month(year, 5, MON),
+            spring_bank_holiday,
             "Spring Bank Holiday"
         )
 
@@ -34,6 +45,10 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
             "Late Summer Bank Holiday"
         )
 
+    def non_computable_holiday(self, year):
+        non_computable = self.non_computable_holiday_dict.get(year, None)
+        return non_computable
+
     def get_variable_days(self, year):
         days = super(UnitedKingdom, self).get_variable_days(year)
         days.append(self.get_early_may_bank_holiday(year))
@@ -42,6 +57,9 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         # Boxing day & XMas shift
         shifts = self.shift_christmas_boxing_days(year=year)
         days.extend(shifts)
+        non_computable = self.non_computable_holiday(year)
+        if non_computable:
+            days.extend(non_computable)
         return days
 
 
