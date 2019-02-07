@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v4.1.0 (2019-02-07)
 
 ### New calendars
