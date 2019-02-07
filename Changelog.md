@@ -4,8 +4,8 @@
 
 ### Bugfixes
 
-- Fixed United Kingdom bank holiday for 2002 and 2012.
-
+- Fixed United Kingdom bank holiday for 2002 and 2012 (#315).
+- Fix a small flake8 issue with wrong indentation (#319).
 
 ## 4.0.0 (2019-01-24)
 
