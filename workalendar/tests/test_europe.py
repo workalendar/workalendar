@@ -689,7 +689,7 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
-        self.assertIn(date(2018, 11, 5), holidays)  # Day of Unity
+        self.assertIn(date(2018, 11, 4), holidays)  # Day of Unity
 
 
 class UnitedKingdomTest(GenericCalendarTest):

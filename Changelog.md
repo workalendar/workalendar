@@ -12,6 +12,7 @@
 
 - Fixed United Kingdom bank holiday for 2002 and 2012 (#315).
 - Fix a small flake8 issue with wrong indentation (#319).
+- Fix Russia "Day of Unity" date, set to November 4th, thx @alexitkes for the bug report (#317).
 
 ## 4.0.0 (2019-01-24)
 

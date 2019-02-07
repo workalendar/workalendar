@@ -18,5 +18,5 @@ class Russia(WesternCalendar):
         (5, 1, "Labour Day"),
         (5, 9, "Victory Day"),
         (6, 12, "National Day"),
-        (11, 5, "Day of Unity"),
+        (11, 4, "Day of Unity"),
     )
