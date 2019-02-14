@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added the American Samoa territory to the USA calendars (#218).
+- Added Chicago, Illinois calendar (#220).
 
 ## v4.1.0 (2019-02-07)
 

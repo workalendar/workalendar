@@ -122,7 +122,10 @@ America
 * Mexico
 * Panama
 * Paraguay
-* United States of America (including State holidays for all the 50 States, and American Samoa)
+* United States of America
+  * State holidays for all the 50 States
+  * American Samoa
+  * Chicago, Illinois
 * Canada (including provincial and territory holidays)
 
 Asia

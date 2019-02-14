@@ -13,8 +13,8 @@ from workalendar.usa import (
     NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
     RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
     Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
-    # Not a state, but an American territory
-    AmericanSamoa,
+    # Other territories, cities...
+    AmericanSamoa, ChicagoIllinois,
 )
 
 
@@ -607,6 +607,34 @@ class IllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+
+class ChicagoIllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
+    cal_class = ChicagoIllinois
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 2, 12), holidays)  # Lincoln's Birthday
+        # Thanksgiving Friday is NOT a holiday in Chicago.
+        self.assertNotIn(date(2014, 11, 28), holidays)
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
+        # Thanksgiving Friday is NOT a holiday in Chicago.
+        self.assertNotIn(date(2015, 11, 27), holidays)
+
+    def test_pulaski_day(self):
+        # Pulaski day is on the first MON in March.
+        # Source: https://en.wikipedia.org/wiki/Casimir_Pulaski_Day
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 5), holidays)
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 4), holidays)
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 2), holidays)
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 3, 1), holidays)
 
 
 class IndianaTest(ElectionDayEvenYears, NoPresidentialDay, UnitedStatesTest):

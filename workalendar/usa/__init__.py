@@ -17,7 +17,7 @@ from .florida import Florida
 from .georgia import Georgia
 from .hawaii import Hawaii
 from .idaho import Idaho
-from .illinois import Illinois
+from .illinois import Illinois, ChicagoIllinois
 from .indiana import Indiana
 from .iowa import Iowa
 from .kansas import Kansas
@@ -75,7 +75,7 @@ __all__ = [
     'Georgia',
     'Hawaii',
     'Idaho',
-    'Illinois',
+    'Illinois', 'ChicagoIllinois',
     'Indiana',
     'Iowa',
     'Kansas',
