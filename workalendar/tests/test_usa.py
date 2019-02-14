@@ -14,7 +14,7 @@ from workalendar.usa import (
     RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
     Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
     # Other territories, cities...
-    AmericanSamoa, ChicagoIllinois,
+    AmericanSamoa, ChicagoIllinois, Guam,
 )
 
 
@@ -1381,3 +1381,31 @@ class AmericanSamoaTest(UnitedStatesTest):
         holidays = self.cal.holidays(2019)
         holidays_dict = dict(holidays)
         self.assertEqual(holidays_dict[date(2019, 12, 26)], "Family Day")
+
+
+class Guam(UnitedStatesTest):
+    cal_class = Guam
+
+    def test_state_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        # Guam History and Chamorro Heritage Day
+        self.assertIn(date(2019, 3, 7), holidays)
+        self.assertIn(date(2019, 7, 21), holidays)  # Liberation Day
+        self.assertIn(date(2019, 11, 2), holidays)  # All Souls Day
+        self.assertIn(date(2019, 12, 8), holidays)  # Lady of Camarin Day
+
+    def test_state_year_2018(self):
+        holidays = self.cal.holidays_set(2020)
+        # Guam History and Chamorro Heritage Day
+        self.assertIn(date(2020, 3, 7), holidays)
+        self.assertIn(date(2020, 7, 21), holidays)  # Liberation Day
+        self.assertIn(date(2020, 11, 2), holidays)  # All Souls Day
+        self.assertIn(date(2020, 12, 8), holidays)  # Lady of Camarin Day
+
+    def test_lady_of_camarin_label(self):
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(
+            holidays_dict[date(2019, 12, 8)],
+            "Lady of Camarin Day"
+        )

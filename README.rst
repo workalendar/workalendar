@@ -126,6 +126,7 @@ America
   * State holidays for all the 50 States
   * American Samoa
   * Chicago, Illinois
+  * Guam
 * Canada (including provincial and territory holidays)
 
 Asia

@@ -55,8 +55,9 @@ from .washington import Washington
 from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
-# American Territory
+# Non-states territories and areas
 from .american_samoa import AmericanSamoa
+from .guam import Guam
 
 
 __all__ = [
@@ -114,6 +115,7 @@ __all__ = [
     'WestVirginia',
     'Wisconsin',
     'Wyoming',
-    # American territory
+    # Non-State territories
     'AmericanSamoa',
+    'Guam',
 ]
