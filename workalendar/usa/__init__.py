@@ -55,8 +55,9 @@ from .washington import Washington
 from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
+# American Territory
+from .american_samoa import AmericanSamoa
 
-NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
 __all__ = [
     'UnitedStates',  # Generic federal calendar
@@ -113,4 +114,6 @@ __all__ = [
     'WestVirginia',
     'Wisconsin',
     'Wyoming',
+    # American territory
+    'AmericanSamoa',
 ]

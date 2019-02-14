@@ -12,7 +12,9 @@ from workalendar.usa import (
     Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork,
     NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
     RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
-    Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
+    Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
+    # Not a state, but an American territory
+    AmericanSamoa,
 )
 
 
@@ -1334,3 +1336,20 @@ class WyomingTest(UnitedStatesTest):
             label,
             "Martin Luther King, Jr. / Wyoming Equality Day"
         )
+
+
+class AmericanSamoaTest(UnitedStatesTest):
+    cal_class = AmericanSamoa
+
+    def test_family_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 12, 26), holidays)  # Family Day
+
+    def test_flag_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 4, 17), holidays)  # Flag Day
+
+    def test_family_day_label(self):
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2019, 12, 26)], "Family Day")

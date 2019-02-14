@@ -122,7 +122,7 @@ America
 * Mexico
 * Panama
 * Paraguay
-* United States of America (including state holidays)
+* United States of America (including State holidays for all the 50 States, and American Samoa)
 * Canada (including provincial and territory holidays)
 
 Asia
