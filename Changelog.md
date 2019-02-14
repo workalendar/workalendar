@@ -2,8 +2,10 @@
 
 ## master (unreleased)
 
-- Added the American Samoa territory to the USA calendars (#218).
-- Added Chicago, Illinois calendar (#220).
+- Added several US territories and other specific calendars:
+  - American Samoa territory (#218).
+  - Chicago, Illinois (#220).
+  - Guam territory (#219).
 
 ## v4.1.0 (2019-02-07)
 

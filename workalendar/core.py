@@ -372,6 +372,7 @@ class ChristianMixin(Calendar):
     include_easter_sunday = False
     include_all_saints = False
     include_immaculate_conception = False
+    immaculate_conception_label = "Immaculate Conception"
     include_christmas = True
     include_christmas_eve = False
     include_ascension = False
@@ -486,7 +487,7 @@ class ChristianMixin(Calendar):
         if self.include_all_souls:
             days.append((date(year, 11, 2), "All Souls Day"))
         if self.include_immaculate_conception:
-            days.append((date(year, 12, 8), "Immaculate Conception"))
+            days.append((date(year, 12, 8), self.immaculate_conception_label))
         if self.include_christmas:
             days.append((date(year, 12, 25), "Christmas Day"))
         if self.include_christmas_eve:
