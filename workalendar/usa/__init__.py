@@ -25,7 +25,7 @@ from .kentucky import Kentucky
 from .louisiana import Louisiana
 from .maine import Maine
 from .maryland import Maryland
-from .massachusetts import Massachusetts
+from .massachusetts import Massachusetts, SuffolkCountyMassachusetts
 from .michigan import Michigan
 from .minnesota import Minnesota
 from .mississippi import Mississippi
@@ -84,7 +84,7 @@ __all__ = [
     'Louisiana',
     'Maine',
     'Maryland',
-    'Massachusetts',
+    'Massachusetts', 'SuffolkCountyMassachusetts',
     'Michigan',
     'Minnesota',
     'Mississippi',

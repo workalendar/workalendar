@@ -14,7 +14,7 @@ from workalendar.usa import (
     RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
     Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
     # Other territories, cities...
-    AmericanSamoa, ChicagoIllinois, Guam,
+    AmericanSamoa, ChicagoIllinois, Guam, SuffolkCountyMassachusetts,
 )
 
 
@@ -802,6 +802,20 @@ class MassachusettsTest(UnitedStatesTest):
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 20), holidays)  # Patriot's day
+
+
+class SuffolkCountyMassachusettsTest(MassachusettsTest):
+    cal_class = SuffolkCountyMassachusetts
+
+    def test_county_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 17), holidays)  # Evacuation Day
+        self.assertIn(date(2018, 6, 17), holidays)  # Bunker Hill Day
+
+    def test_county_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 17), holidays)  # Evacuation Day
+        self.assertIn(date(2019, 6, 17), holidays)  # Bunker Hill Day
 
 
 class MichiganTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):

@@ -6,6 +6,7 @@
   - American Samoa territory (#218).
   - Chicago, Illinois (#220).
   - Guam territory (#219).
+  - Suffolk County, Massachusetts (#222).
 
 ## v4.1.0 (2019-02-07)
 

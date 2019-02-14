@@ -127,6 +127,7 @@ America
   * American Samoa
   * Chicago, Illinois
   * Guam
+  * Suffolk County, Massachusetts
 * Canada (including provincial and territory holidays)
 
 Asia
