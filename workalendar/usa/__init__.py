@@ -56,7 +56,6 @@ from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
 
-NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
 __all__ = [
     'UnitedStates',  # Generic federal calendar
