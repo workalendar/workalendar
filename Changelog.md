@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added the American Samoa territory to the USA calendars (#218).
 
 ## v4.1.0 (2019-02-07)
 

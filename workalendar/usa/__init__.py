@@ -55,6 +55,8 @@ from .washington import Washington
 from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
+# American Territory
+from .american_samoa import AmericanSamoa
 
 
 __all__ = [
@@ -112,4 +114,6 @@ __all__ = [
     'WestVirginia',
     'Wisconsin',
     'Wyoming',
+    # American territory
+    'AmericanSamoa',
 ]
