@@ -80,6 +80,7 @@ Europe
 * Austria
 * Belgium
 * Bulgaria
+* Cayman Islands
 * Croatia
 * Cyprus
 * Czech Republic

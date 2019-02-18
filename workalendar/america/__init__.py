@@ -15,7 +15,6 @@ from .canada import (
     NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
     NorthwestTerritories, Nunavut
 )
-
 from .chile import Chile
 from .colombia import Colombia
 from .mexico import Mexico
