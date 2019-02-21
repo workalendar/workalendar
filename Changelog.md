@@ -1,13 +1,15 @@
 # CHANGELOG
 
-## master (unreleased)
+## v4.2.0 (2019-02-21)
+
+### New calendars
 
 - Added several US territories and other specific calendars:
   - American Samoa territory (#218).
   - Chicago, Illinois (#220).
   - Guam territory (#219).
   - Suffolk County, Massachusetts (#222).
-  - Cayman Islands, British Overseas Territory (#328)
+- Added Cayman Islands, British Overseas Territory (#328)
 
 ## v4.1.0 (2019-02-07)
 
