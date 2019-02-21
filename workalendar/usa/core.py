@@ -103,10 +103,18 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if christmas_eve in holiday_lookup:
             # You are observing the THU before, as an extra XMas Eve
             if christmas.weekday() == SAT:
+                # Remove the "fake" XMAS Day shift, the one done before.
+                new_holidays.remove(
+                    (christmas_eve, "Christmas Day (Observed)")
+                )
                 new_holidays.append((date(year, 12, 23),
                                      "Christmas Eve (Observed)"))
-            # You are observing the 26th (TUE) and 27th (WED)
+            # You are observing the 26th (TUE)
             elif christmas.weekday() == MON:
+                # Remove the "fake" XMAS Eve shift, done before
+                new_holidays.remove(
+                    (christmas, "Christmas Eve (Observed)")
+                )
                 new_holidays.append((date(year, 12, 26),
                                      "Christmas Day (Observed)"))
         return holidays + new_holidays
