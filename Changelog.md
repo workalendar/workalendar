@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added isolated tests for shifting mechanics in USA calendars - previously untested (#335).
+- Added Barbados by @ludsoft.
 
 ## v4.2.0 (2019-02-21)
 
