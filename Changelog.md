@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Barbados by @ludsoft.
 
 ## v4.2.0 (2019-02-21)
 

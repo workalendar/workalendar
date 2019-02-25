@@ -130,6 +130,7 @@ America
   * Guam
   * Suffolk County, Massachusetts
 * Canada (including provincial and territory holidays)
+* Barbados
 
 Asia
 ----
