@@ -1,6 +1,5 @@
 from __future__ import absolute_import, division, print_function
 from datetime import date, timedelta
-from dateutil import easter
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON
@@ -43,9 +42,9 @@ class Barbados(WesternCalendar, ChristianMixin):
         return days
 
     def get_variable_days(self, year):
-        christian_days = super(Barbados, self).get_variable_days(year)
+        western_days = super(Barbados, self).get_variable_days(year)
         almost_fixed = self.get_almost_fixed_holidays(year)
-        all_days = christian_days + almost_fixed
+        all_days = western_days + almost_fixed
         all_days.append(self.get_kadooment_day(year))
         days = []
         for day in all_days:
