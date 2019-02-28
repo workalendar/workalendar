@@ -1,14 +1,14 @@
 from __future__ import absolute_import, division, print_function
-from datetime import date
+from datetime import date, timedelta
 from dateutil import easter
 
 from ..core import WesternCalendar, ChristianMixin
-from ..core import Calendar, SUN, MON
+from ..core import SUN, MON
 from ..registry import iso_register
 
 
 @iso_register("BB")
-class Barbados(ChristianMixin, WesternCalendar):
+class Barbados(WesternCalendar, ChristianMixin):
     "Barbados"
 
     include_good_friday = True
@@ -16,8 +16,6 @@ class Barbados(ChristianMixin, WesternCalendar):
     include_easter_monday = True
     include_whit_monday = True
     include_boxing_day = True
-    shift_sunday_holidays = True
-    EASTER_METHOD = easter.EASTER_WESTERN
 
     # All holiday are shifted if on a Sunday
     almost_fixed_holidays = WesternCalendar.FIXED_HOLIDAYS + (
@@ -45,16 +43,16 @@ class Barbados(ChristianMixin, WesternCalendar):
         return days
 
     def get_variable_days(self, year):
-        ch_days = super(Barbados, self).get_variable_days(year)
+        christian_days = super(Barbados, self).get_variable_days(year)
         almost_fixed = self.get_almost_fixed_holidays(year)
-        all_days = ch_days + almost_fixed
+        all_days = christian_days + almost_fixed
         all_days.append(self.get_kadooment_day(year))
         days = []
         for day in all_days:
             if day[0].weekday() == SUN:
                 days.append(
-                    (Calendar.get_first_weekday_after(day[0], MON), day[1])
+                    (day[0] + timedelta(days=1),
+                     "%s %s" % (day[1], "(shifted)"))
                 )
-            else:
-                days.append(day)
+            days.append(day)
         return days
