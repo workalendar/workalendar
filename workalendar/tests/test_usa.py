@@ -1423,3 +1423,117 @@ class Guam(UnitedStatesTest):
             holidays_dict[date(2019, 12, 8)],
             "Lady of Camarin Day"
         )
+
+
+class NormalShiftTestCase(UnitedStatesTest):
+    # Using a fake calendar here
+    class NormalShiftUnitedStates(UnitedStates):
+        "Normal Shift Fake United State calendar"
+        include_christmas_eve = True
+
+    cal_class = NormalShiftUnitedStates
+
+    def test_shift_2015(self):
+        # Test a normal shift on 4th of July.
+        # 2015: Happens on a Saturday, observed on FRI
+        holidays = self.cal.holidays(2015)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2015, 7, 4)
+        observed = date(2015, 7, 3)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertIn(observed, holiday_dict)
+        self.assertEqual(holiday_dict[observed], "Independence Day (Observed)")
+
+    def test_shift_2010(self):
+        # Test a normal shift on 4th of July.
+        # 2010: Happens on a SUN, observed on MON
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2010, 7, 4)
+        observed = date(2010, 7, 5)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertIn(observed, holiday_dict)
+        self.assertEqual(holiday_dict[observed], "Independence Day (Observed)")
+
+    def test_new_years_shift(self):
+        # If January, 1st *of the year after* happens on SAT, add New Years Eve
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        new_years_eve = date(2010, 12, 31)
+        self.assertIn(new_years_eve, holiday_dict)
+        self.assertEqual(
+            holiday_dict[new_years_eve],
+            "New Years Day (Observed)"
+        )
+        # The year after, it's not shifted
+        holidays = self.cal.holidays_set(2011)
+        new_years_eve = date(2011, 12, 31)
+        self.assertNotIn(new_years_eve, holidays)
+
+    def test_christmas_extra_shift_2010(self):
+        # XMAs Eve is included. *and* XMas falls on SAT.
+        # So you have the following holidays:
+        # * 24th & 25th (XMas Eve and XMas day)
+        # * 27th (XMas Shift)
+        # * 23rd (XMas Eve shifted on THU)
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        dec_23rd = date(2010, 12, 23)
+        dec_24th = date(2010, 12, 24)
+        dec_25th = date(2010, 12, 25)
+        for day in (dec_23rd, dec_24th, dec_25th):
+            self.assertIn(day, holiday_dict)
+        self.assertEqual(holiday_dict[dec_23rd], "Christmas Eve (Observed)")
+        self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
+        self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
+
+    def test_christmas_extra_shift_2006(self):
+        # XMAs Eve is included. *and* XMas falls on MON.
+        # So you have the following holidays:
+        # * 24th & 25th (XMas Eve and XMas day)
+        # * 26th (XMas Shift)
+        holidays = self.cal.holidays(2006)
+        holiday_dict = dict(holidays)
+        dec_24th = date(2006, 12, 24)
+        dec_25th = date(2006, 12, 25)
+        dec_26th = date(2006, 12, 26)
+        for day in (dec_24th, dec_25th, dec_26th):
+            self.assertIn(day, holiday_dict)
+        self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
+        self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
+        self.assertEqual(holiday_dict[dec_26th], "Christmas Day (Observed)")
+
+
+class NormalShiftTestCaseExceptions(UnitedStatesTest):
+    # Using a fake calendar here
+    class NormalShiftUnitedStatesExceptions(UnitedStates):
+        "Normal Shift Fake United State calendar"
+        shift_exceptions = (
+            (7, 4),  # Month/Day == Fourth of July.
+        )
+
+    cal_class = NormalShiftUnitedStatesExceptions
+
+    def test_shift_2015(self):
+        # Test a normal shift on 4th of July.
+        # 2015: Happens on a Saturday, not shifted
+        holidays = self.cal.holidays(2015)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2015, 7, 4)
+        observed = date(2015, 7, 3)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)
+
+    def test_shift_2010(self):
+        # Test a normal shift on 4th of July.
+        # 2010: Happens on a SUN, not shifted
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2010, 7, 4)
+        observed = date(2010, 7, 5)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)
