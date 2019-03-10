@@ -815,17 +815,22 @@ class Russia(GenericCalendarTest):
 class UnitedKingdomTest(GenericCalendarTest):
     cal_class = UnitedKingdom
 
-    def test_year_2013(self):
-        holidays = self.cal.holidays_set(2013)
-        self.assertIn(date(2013, 1, 1), holidays)  # new year day
-        self.assertIn(date(2013, 3, 29), holidays)  # good friday
-        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
-        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
-        self.assertIn(date(2013, 5, 6), holidays)  # Early May Bank Holiday
-        self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
-        self.assertIn(date(2013, 8, 26), holidays)  # Late Summer Bank Holiday
-        self.assertIn(date(2013, 12, 25), holidays)  # Christmas
-        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
+    def test_year_1973(self):
+        holidays = self.cal.holidays_set(1973)
+        self.assertIn(date(1973, 11, 14), holidays)  # royal wedding
+
+    def test_year_1977(self):
+        holidays = self.cal.holidays_set(1977)
+        self.assertIn(date(1977, 6, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(1977, 6, 7), holidays)  # queen's silver jubilee
+
+    def test_year_1981(self):
+        holidays = self.cal.holidays_set(1981)
+        self.assertIn(date(1981, 7, 29), holidays)  # royal wedding
+
+    def test_year_1999(self):
+        holidays = self.cal.holidays_set(1999)
+        self.assertIn(date(1999, 12, 31), holidays)  # new year's eve
 
     def test_year_2002(self):
         holidays = self.cal.holidays_set(2002)
@@ -840,6 +845,10 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2002, 12, 25), holidays)  # Christmas
         self.assertIn(date(2002, 12, 26), holidays)  # Boxing Day
 
+    def test_year_2011(self):
+        holidays = self.cal.holidays_set(2011)
+        self.assertIn(date(2011, 4, 29), holidays)  # royal wedding
+
     def test_year_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)  # new year day
@@ -853,6 +862,18 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2012, 8, 27), holidays)  # Late Summer Bank Holiday
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas
         self.assertIn(date(2012, 12, 26), holidays)  # Boxing Day
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)  # new year day
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2013, 5, 27), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2013, 8, 26), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2013, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
     def test_shift_2012(self):
         holidays = self.cal.holidays_set(2012)
