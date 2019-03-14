@@ -117,6 +117,7 @@ Europe
 America
 -------
 
+* Barbados
 * Brazil (all states, cities and for bank transactions, except the city of Viana)
 * Chile
 * Colombia

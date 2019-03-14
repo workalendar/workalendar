@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .barbados import Barbados
 from .brazil import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
     BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
@@ -23,6 +24,7 @@ from .paraguay import Paraguay
 
 
 __all__ = (
+    # Brazil & its states.
     'Brazil',
     'BrazilAcre',
     'BrazilAlagoas',
@@ -72,6 +74,7 @@ __all__ = (
     'NorthwestTerritories',
     'Nunavut',
     # Other american countries
+    'Barbados',
     'Chile',
     'Colombia',
     'Mexico',
