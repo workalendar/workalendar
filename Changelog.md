@@ -14,7 +14,7 @@ Nothing here yet.
 
 - Added isolated tests for shifting mechanics in USA calendars - previously untested (#335).
 - Added Berlin specific holidays (#340).
-- Added several one-off public holidays to UK calendar (#366).
+- Added several one-off public holidays to UK calendar (#336).
 
 ## v4.2.0 (2019-02-21)
 
