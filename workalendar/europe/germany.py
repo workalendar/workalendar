@@ -76,6 +76,22 @@ class Bavaria(Germany):
 class Berlin(Germany):
     'Berlin'
 
+    def get_international_womens_day(self, year):
+        day = date(year, 3, 8)
+        return (day, "International Women's Day")
+
+    def get_liberation_day(self, year):
+        day = date(year, 5, 8)
+        return (day, "Liberation Day")
+
+    def get_variable_days(self, year):
+        days = super(Berlin, self).get_variable_days(year)
+        if year >= 2019:
+            days.append(self.get_international_womens_day(year))
+        if year == 2020:
+            days.append(self.get_liberation_day(year))
+        return days
+
 
 @iso_register('DE-BB')
 class Brandenburg(Germany):

@@ -130,6 +130,26 @@ class BavariaTest(GenericCalendarTest):
 class BerlinTest(GermanyTest):
     cal_class = Berlin
 
+    def test_extra_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 3, 8), holidays)
+        self.assertNotIn(date(2018, 5, 8), holidays)
+
+    def test_extra_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 8), holidays)
+        self.assertNotIn(date(2019, 5, 8), holidays)
+
+    def test_extra_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 8), holidays)
+        self.assertIn(date(2020, 5, 8), holidays)
+
+    def test_extra_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 3, 8), holidays)
+        self.assertNotIn(date(2021, 5, 8), holidays)
+
 
 class BrandenburgTest(GenericCalendarTest):
     cal_class = Brandenburg
