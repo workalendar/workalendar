@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## master (unreleased)
+## v4.3.0 (2019-03-15)
+
+### New Calendar
+
+- Added Barbados by @ludsoft.
+
+### Fixes
 
 - Added isolated tests for shifting mechanics in USA calendars - previously untested (#335).
-- Added Barbados by @ludsoft.
 - Added Berlin specific holidays (#340).
 - Added several one-off public holidays to UK calendar (#366).
 
