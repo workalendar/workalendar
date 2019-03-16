@@ -753,6 +753,14 @@ class CalverterMixin(Calendar):
     def get_islamic_holidays(self):
         return self.ISLAMIC_HOLIDAYS
 
+    def get_delta_islamic_holidays(self, year):
+        """
+        Return the delta to add/substract according to the year or customs.
+
+        By default, to return None or timedelta(days=0)
+        """
+        return None
+
     def get_variable_days(self, year):
         warnings.warn('Please take note that, due to arbitrary decisions, '
                       'this Islamic calendar computation may be wrong.')
@@ -764,8 +772,14 @@ class CalverterMixin(Calendar):
             for y in years:
                 jd = conversion_method(y, month, day)
                 g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
-                if g_year == year:
-                    holiday = date(g_year, g_month, g_day)
+                holiday = date(g_year, g_month, g_day)
+
+                # Only add a delta if necessary
+                delta = self.get_delta_islamic_holidays(year)
+                if delta:
+                    holiday += delta
+
+                if holiday.year == year:
                     days.append((holiday, label))
         return days
 
