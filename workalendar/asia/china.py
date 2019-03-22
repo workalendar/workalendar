@@ -20,7 +20,7 @@ holidays = {
     2019:
         {
             'Ching Ming Festival': [(4, 5)],
-            'Labour Day Holiday': [(5, 1)],
+            'Labour Day Holiday': [(5, 1), (5, 2), (5, 3)],
             'Dragon Boat Festival': [(6, 7)],
             'Mid-Autumn Festival': [(9, 13)]
         },
@@ -31,7 +31,7 @@ workdays = {
         {
             'Spring Festival Shift': [(2, 11), (2, 24)],
             'Ching Ming Festival Shift': [(4, 8)],
-            'Labour Day Holiday Shift': [(4, 28)],
+            'Labour Day Holiday Shift': [(4, 28), (5, 5)],
             'National Day Shift': [(9, 29), (9, 30)],
             'New year Shift': [(12, 29)]
         },
