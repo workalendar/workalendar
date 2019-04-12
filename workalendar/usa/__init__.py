@@ -16,7 +16,9 @@ from .colorado import Colorado
 from .connecticut import Connecticut
 from .delaware import Delaware
 from .district_columbia import DistrictOfColumbia
-from .florida import Florida
+from .florida import (
+    Florida, FloridaLegal, FloridaCircuitCourts, FloridaMiamiDade
+)
 from .georgia import Georgia
 from .hawaii import Hawaii
 from .idaho import Idaho
@@ -77,7 +79,7 @@ __all__ = [
     'Connecticut',
     'Delaware',
     'DistrictOfColumbia',
-    'Florida',
+    'Florida', 'FloridaLegal', 'FloridaCircuitCourts', 'FloridaMiamiDade',
     'Georgia',
     'Hawaii',
     'Idaho',

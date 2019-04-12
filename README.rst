@@ -130,6 +130,8 @@ America
   * Chicago, Illinois
   * Guam
   * Suffolk County, Massachusetts
+  * California Education, Berkeley, San Francisco, West Hollywood
+  * Florida Legal and Florida Circuit Courts, Miami-Dade
 * Canada (including provincial and territory holidays)
 
 Asia

@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Drop Python 3.4 support (#352).
+- Added Florida specific calendars: Florida Legal, Florida Circuit Courts, Miami-Dade (#216).
 
 ## v4.4.0 (2019-05-17)
 
