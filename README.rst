@@ -111,9 +111,9 @@ Europe
 * Spain (incl. Catalonia)
 * Slovenia
 * Switzerland
-* Turkey
   * Vaud
 * United Kingdom (incl. Northern Ireland, Scotland and all its territories)
+* Turkey
 
 America
 -------

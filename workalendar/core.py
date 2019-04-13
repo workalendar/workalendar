@@ -765,7 +765,7 @@ class CalverterMixin(Calendar):
                 jd = conversion_method(y, month, day)
                 g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
                 if g_year == year:
-                    holiday = date(g_year, g_month, g_day)
+                    holiday = date(g_year, g_month, g_day) - timedelta(days=1)
                     days.append((holiday, label))
         return days
 

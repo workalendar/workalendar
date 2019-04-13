@@ -16,6 +16,9 @@ class Turkey(WesternCalendar, IslamicMixin):
     include_eid_al_adha = True
     length_eid_al_adha = 4
 
+    
+
+
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 23, "National Sovereignty and Children's Day"),
         (5, 1, "Labor and Solidarity Day"),

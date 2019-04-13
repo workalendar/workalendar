@@ -2,10 +2,6 @@
 
 ## master (unreleased)
 
-Nothing here yet.
-
-## v4.3.1 (2019-03-16)
-
 ### New Calendar
 
 - Added Turkey by @tayyipgoren.

@@ -2,7 +2,7 @@ from datetime import date
 from unittest import TestCase
 
 from workalendar.tests import GenericCalendarTest
-from workalendar.europe.turkey import (Turkey)
+from workalendar.europe.turkey import Turkey
 
 
 class TurkeyTest(GenericCalendarTest):
