@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Update 2019 Labour Day Holidays for China as changed by government recently(2019-03-22).
 
 ## v4.3.0 (2019-03-15)
 
