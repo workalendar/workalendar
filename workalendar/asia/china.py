@@ -39,7 +39,7 @@ workdays = {
         {
             'Spring Festival Shift': [(2, 2), (2, 3)],
             'National Day Shift': [(9, 29), (10, 12)],
-            'Labour Day Holiday Shift': [(5, 5)]
+            'Labour Day Holiday Shift': [(4, 28), (5, 5)]
         },
 }
 
