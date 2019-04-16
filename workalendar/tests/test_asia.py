@@ -34,7 +34,7 @@ class ChinaTest(GenericCalendarTest):
         self.assertIn(date(2019, 5, 1), holidays)   # Labour Day Holiday
         self.assertIn(date(2019, 5, 2), holidays)   # Labour Day Holiday
         self.assertIn(date(2019, 5, 3), holidays)   # Labour Day Holiday
-        
+
         # Labour Day Holiday Shift
         self.assertTrue(self.cal.is_working_day(date(2019, 5, 5)))
 
