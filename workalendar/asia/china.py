@@ -31,7 +31,7 @@ workdays = {
         {
             'Spring Festival Shift': [(2, 11), (2, 24)],
             'Ching Ming Festival Shift': [(4, 8)],
-            'Labour Day Holiday Shift': [(4, 28), (5, 5)],
+            'Labour Day Holiday Shift': [(4, 28)],
             'National Day Shift': [(9, 29), (9, 30)],
             'New year Shift': [(12, 29)]
         },
@@ -39,6 +39,7 @@ workdays = {
         {
             'Spring Festival Shift': [(2, 2), (2, 3)],
             'National Day Shift': [(9, 29), (10, 12)],
+            'Labour Day Holiday Shift': [(5, 5)]
         },
 }
 

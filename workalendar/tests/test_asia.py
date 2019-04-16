@@ -29,6 +29,13 @@ class ChinaTest(GenericCalendarTest):
         self.assertIn(date(2018, 12, 30), holidays)  # New year
         self.assertIn(date(2018, 12, 31), holidays)  # New year
 
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)      # Labour Day Holiday
+        self.assertIn(date(2019, 5, 1), holidays)   # Labour Day Holiday
+        self.assertIn(date(2019, 5, 2), holidays)   # Labour Day Holiday
+        self.assertIn(date(2019, 5, 3), holidays)   # Labour Day Holiday
+        self.assertTrue(self.cal.is_working_day(date(2019, 5, 5)))  # Labour Day Holiday Shift
+
 
 class HongKongTest(GenericCalendarTest):
 
