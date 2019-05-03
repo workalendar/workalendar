@@ -3,6 +3,7 @@
 ## master
 
 - Added California specific calendars: California Education, Berkeley, San Francisco, West Hollywood (#215).
+- Added a few refactors and tests for Australia Capital Territory holiday named "Family & Community Day", that lasted from 2007 to 2017 (#25).
 
 ## v4.3.1 (2019-05-03)
 

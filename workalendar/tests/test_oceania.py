@@ -63,9 +63,37 @@ class AustraliaCapitalTerritoryTest(AustraliaTest):
         self.assertIn(date(2013, 3, 30), holidays)  # Easter Saturday
         self.assertIn(date(2013, 4, 1), holidays)  # Easter Monday
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
-        self.assertIn(date(2013, 9, 30), holidays)
+        self.assertIn(date(2013, 9, 30), holidays)  # Family & Community day
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_family_community_day_before_2007(self):
+        # There were no Family and Community day before 2007
+        for year in range(1970, 2007):
+            self.assertIsNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            self.assertNotIn(self.cal._family_community_label, labels)
+
+    def test_family_community_day_2007_2017_presence(self):
+        # Family & Community day was included [2007 -> 2017]
+        for year in range(2007, 2018):
+            self.assertIsNotNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            self.assertIn(self.cal._family_community_label, labels)
+
+    def test_family_community_day_after_2017(self):
+        # Starting of 2018 this day would no longer exist
+        for year in range(2018, date.today().year + 1):
+            self.assertIsNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            print(labels)
+            self.assertNotIn(self.cal._family_community_label, labels)
 
     def test_reconciliation_day(self):
         reconciliation_day = self.cal.get_reconciliation_day(2017)
