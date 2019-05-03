@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v4.3.1 (2019-05-03)
 
-- Update 2019 Labour Day Holidays for China as changed by government recently(2019-03-22).
+- Bugfix: Update 2019 Labour Day Holidays for China as changed by government recently (2019-03-22), by @iamsk, and thanks to @ltyely for their patch (#345 & #347).
 
 ## v4.3.0 (2019-03-15)
 
