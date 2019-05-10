@@ -159,5 +159,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
             days.append((date(year, 5, 7), "National Elections"))
         if year == 2016:
             days.append((date(year, 8, 3), "Local Elections"))
+        if year == 2019:
+            days.append((date(year, 5, 8), "National Elections"))
 
         return days
