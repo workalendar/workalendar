@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
+from datetime import date
+from workalendar.tests import GenericCalendarTest
 
 from workalendar.africa import (
     Algeria,
@@ -23,3 +25,13 @@ class RegistryAfrica(TestCase):
         self.assertIn(Madagascar, classes)
         self.assertIn(SaoTomeAndPrincipe, classes)
         self.assertIn(SouthAfrica, classes)
+
+
+class SouthAfricaTest(GenericCalendarTest):
+    cal_class = SouthAfrica
+
+    def test_south_africa_2019(self):
+        holidays = self.cal.holidays_set(2019)
+
+        # variable days
+        self.assertIn(date(2019, 5, 8), holidays)
