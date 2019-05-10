@@ -34,4 +34,5 @@ class SouthAfricaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2019)
 
         # variable days
-        self.assertIn(date(2019, 5, 8), holidays)
+        self.assertIn(date(2019, 5, 8), holidays)  # 2019 National Elections
+        self.assertNotIn(date(2017, 5, 8), holidays)
