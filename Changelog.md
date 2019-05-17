@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v4.4.0 (2019-05-17)
 
 **WARNING**: This release will be the last one to support Python 3.4, which has [reached its End of Life and has been retired](https://www.python.org/dev/peps/pep-0429/#release-schedule). Please upgrade.
