@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Drop Python 3.4 support (#352).
 
 ## v4.4.0 (2019-05-17)
 
