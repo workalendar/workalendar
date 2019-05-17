@@ -1,8 +1,15 @@
 # CHANGELOG
 
-## master
+## v4.4.0 (2019-05-17)
+
+**WARNING**: This release will be the last one to support Python 3.4, which has [reached its End of Life and has been retired](https://www.python.org/dev/peps/pep-0429/#release-schedule). Please upgrade.
+
+### Added calendar
 
 - Added California specific calendars: California Education, Berkeley, San Francisco, West Hollywood (#215).
+
+### Fixes
+
 - Added a few refactors and tests for Australia Capital Territory holiday named "Family & Community Day", that lasted from 2007 to 2017 (#25).
 - Added South African 2019 National Elections as holiday (#350), by @RichardOB.
 
