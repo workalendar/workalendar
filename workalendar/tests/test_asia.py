@@ -224,6 +224,21 @@ class MalaysiaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 6, 1), holidays)
 
+    def test_fix_deepavali_2018(self):
+        holidays = self.cal.holidays(2018)
+        holidays = dict(holidays)
+        deepavali = date(2018, 11, 6)
+        self.assertIn(deepavali, holidays)
+        self.assertEqual(holidays[deepavali], "Deepavali")
+
+    def test_msia_thaipusam(self):
+        years = self.cal.MSIA_THAIPUSAM.keys()
+        # we only have them for years 2010-2020
+        self.assertEqual(
+            set(years),
+            set(range(2010, 2021))
+        )
+
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar
