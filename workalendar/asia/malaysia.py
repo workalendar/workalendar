@@ -52,6 +52,8 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         2016: date(2016, 1, 25),
         2017: date(2017, 2, 9),
         2018: date(2018, 1, 31),   # This might change
+        2019: date(2019, 1, 21),
+        2020: date(2020, 2, 8),
     }
     chinese_new_year_label = "First Day of Lunar New Year"
     include_chinese_second_day = True
