@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v5.0.0 (2019-05-24)
 
 ### Major Changes & fixes
