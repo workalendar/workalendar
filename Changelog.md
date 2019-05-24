@@ -1,11 +1,17 @@
 # CHANGELOG
 
-## master (unreleased)
+## v5.0.0 (2019-05-24)
 
-- Drop Python 3.4 support (#352).
-- Added Florida specific calendars: Florida Legal, Florida Circuit Courts, Miami-Dade (#216).
+### Major Changes & fixes
+
+- Dropped Python 3.4 support (#352).
 - Added Malaysia Thaipusam days for the year 2019 & 2020 - thx @burlak for the bug report (#354).
 - Fixed Deepavali dates for the year 2018 ; confirmed fixed dates that were set in the past.
+
+### Added calendars
+
+- Added Florida specific calendars: Florida Legal, Florida Circuit Courts, Miami-Dade (#216).
+
 
 ## v4.4.0 (2019-05-17)
 
