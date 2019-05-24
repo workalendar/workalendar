@@ -5,7 +5,7 @@ from __future__ import (absolute_import, division, print_function,
 from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin, MON, SAT
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 QUEENS_BIRTHDAY_EXCEPTIONS = {

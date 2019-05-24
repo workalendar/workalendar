@@ -4,7 +4,7 @@ from copy import copy
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register("BB")

@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import FRI
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('MH')

@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 import warnings
 
 from .core import UnitedStates
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US-MT')

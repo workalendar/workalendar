@@ -5,7 +5,7 @@ from datetime import date, timedelta
 from pyluach.dates import GregorianDate, HebrewDate
 
 from ..core import Calendar, FRI, SAT
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register("IL")

@@ -38,20 +38,20 @@ class MockCalendarTest(TestCase):
         self.subregion = SubRegionCalendar
 
     def test_register(self):
-        registry = IsoRegistry()
+        registry = IsoRegistry(load_standard_modules=False)
         self.assertEqual(0, len(registry.region_registry.items()))
         registry.register('RE', self.region)
         self.assertEqual(1, len(registry.region_registry.items()))
         self.assertEqual(RegionCalendar, registry.region_registry['RE'])
 
     def test_get_calendar_class(self):
-        registry = IsoRegistry()
+        registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         calendar_class = registry.get_calendar_class('RE')
         self.assertEqual(calendar_class, RegionCalendar)
 
     def test_get_subregions(self):
-        registry = IsoRegistry()
+        registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
         registry.register('OR-SR', self.subregion)
@@ -60,7 +60,7 @@ class MockCalendarTest(TestCase):
         self.assertEqual(1, len(subregions))
 
     def test_get_items(self):
-        registry = IsoRegistry()
+        registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
         registry.register('OR-SR', self.subregion)

@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import MON, SAT, SUN
-from workalendar.registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register("NZ")

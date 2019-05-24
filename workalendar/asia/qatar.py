@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from ..core import Calendar
 from ..core import FRI, SAT, IslamicMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('QA')
