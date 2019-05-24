@@ -36,6 +36,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     columbus_day_label = "Columbus Day"
     # Confederation day
     include_confederation_day = False
+    # Jefferson Davis Birthday.
+    include_jefferson_davis_birthday = False
 
     # Include Cesar Chavez day(s)
     include_cesar_chavez_day = False
@@ -154,6 +156,15 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")
+
+    def get_jefferson_davis_birthday(self, year):
+        """
+        The first MON of June is Jefferson Davis Birthday
+        """
+        return (
+            self.get_nth_weekday_in_month(year, 6, MON, 1),
+            "Jefferson Davis Birthday"
+        )
 
     def get_martin_luther_king_date(self, year):
         """
@@ -307,6 +318,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
+
+        if self.include_jefferson_davis_birthday:
+            days.append(self.get_jefferson_davis_birthday(year))
 
         if self.include_inauguration_day:
             # Is it a "Inauguration year"?

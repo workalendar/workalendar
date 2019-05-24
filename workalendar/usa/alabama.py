@@ -15,20 +15,7 @@ class Alabama(UnitedStates):
     presidents_day_label = "George Washington/Thomas Jefferson Birthday"
     columbus_day_label = ("Columbus Day / Fraternal Day /"
                           " American Indian Heritage Day")
-
-    def get_jefferson_davis_birthday(self, year):
-        """
-        The first MON of June is Jefferson Davis Birthday
-        """
-        return (
-            self.get_nth_weekday_in_month(year, 6, MON, 1),
-            "Jefferson Davis Birthday"
-        )
-
-    def get_variable_days(self, year):
-        days = super(Alabama, self).get_variable_days(year)
-        days.append(self.get_jefferson_davis_birthday(year))
-        return days
+    include_jefferson_davis_birthday = True
 
 
 class AlabamaBaldwinCounty(Alabama):
