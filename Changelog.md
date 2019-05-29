@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years
 
 ## v5.0.0 (2019-05-24)
 

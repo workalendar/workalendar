@@ -383,7 +383,7 @@ class IsraelTest(GenericCalendarTest):
 
     cal_class = Israel
 
-    def test_holeidays_2017(self):
+    def test_holidays_2017(self):
         holidays = self.cal.holidays_set(2017)
 
         self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
@@ -421,4 +421,30 @@ class IsraelTest(GenericCalendarTest):
         )  # Jewish New Year (Rosh Ha-Shana)
         self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
         self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
-        self.assertIn(date(2018, 10, 1), holidays)  # Sukkot
+        self.assertIn(date(2018, 9, 30), holidays)  # Sukkot
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+
+        self.assertIn(date(2019, 4, 20), holidays)  # Passover (Pesach)
+        self.assertIn(date(2019, 4, 26), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2019, 5, 9), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2019
+        self.assertIn(date(2019, 6, 9), holidays)  # Shavuot
+        self.assertIn(
+            date(2019, 9, 30), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2019, 10, 1), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2019, 10, 2), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(date(2019, 10, 9), holidays)  # Yom Kippur
+        self.assertIn(date(2019, 10, 14), holidays)  # Sukkot
+        self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
+
+        # Leap year Purim
+        self.assertIn(date(2019, 3, 21), holidays)
+        self.assertIn(date(2019, 3, 22), holidays)
