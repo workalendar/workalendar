@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v5.0.1 (2019-06-03)
 
 - Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years, thx @orzarchi.
