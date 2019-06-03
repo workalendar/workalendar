@@ -2,9 +2,11 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years, thx @orzarchi. This fix cancels the last (5.0.1) version, that will be deleted from PyPI.
 
 ## v5.0.1 (2019-06-03)
+
+**WARNING** This version contains known bugs on Israel calendar. Please do not use it in production.
 
 - Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years, thx @orzarchi.
 
