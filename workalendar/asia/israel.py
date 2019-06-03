@@ -44,17 +44,11 @@ class Israel(Calendar):
                 if day == 14:
                     days.append((current_date, "Purim"))
                 if day == 15:
-                    days.append((current_date, "Purim"))
-                    days.append((current_date, "Shushan Purim"))
-                elif day == 16:
                     days.append((current_date, "Shushan Purim"))
             elif month == 13:
                 if day == 14:
                     days.append((current_date, "Purim"))
                 elif day == 15:
-                    days.append((current_date, "Purim"))
-                    days.append((current_date, "Shushan Purim"))
-                elif day == 16:
                     days.append((current_date, "Shushan Purim"))
             elif month == 1 and day in {15, 21}:
                 days.append((current_date, "Pesach"))

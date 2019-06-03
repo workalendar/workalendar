@@ -446,5 +446,5 @@ class IsraelTest(GenericCalendarTest):
         self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
 
         # Leap year Purim
-        self.assertIn(date(2019, 3, 21), holidays)
-        self.assertIn(date(2019, 3, 22), holidays)
+        self.assertIn(date(2019, 3, 21), holidays)  # purim
+        self.assertIn(date(2019, 3, 22), holidays)  # shushan purim
