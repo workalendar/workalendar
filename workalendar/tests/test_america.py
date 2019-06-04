@@ -116,7 +116,7 @@ class PanamaTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 5), holidays)  # colon day
         # Shout in Villa de los Santos
         self.assertIn(date(2013, 11, 10), holidays)
-        self.assertIn(date(2013, 12, 2), holidays)  # Independence from spain
+        self.assertIn(date(2013, 11, 28), holidays)  # Independence from spain
         self.assertIn(date(2013, 12, 8), holidays)  # mother day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
 
