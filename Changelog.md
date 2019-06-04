@@ -3,6 +3,9 @@
 ## master (unreleased)
 
 Nothing here yet.
+## v5.0.3 (2019-06-03)
+
+- Bugfix: Panama - Fixed incorrect day of independence from Spain to November the 28th, official since 1821.
 
 ## v5.0.2 (2019-06-03)
 
