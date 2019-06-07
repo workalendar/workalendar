@@ -7,6 +7,7 @@
 - Change registry mechanism to avoid circular imports (#288).
 - Internal: Added a "Release" section to the Pull Request template.
 - Internal: Added advices on the Changelog entry in the Contributing document.
+- Bugfix: Fixing North Carolina shift rules when Christmas Day happens on Saturday (#232).
 
 ## v5.0.3 (2019-06-07)
 
