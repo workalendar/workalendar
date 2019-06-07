@@ -2,7 +2,6 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
-import warnings
 from datetime import date
 
 from ..core import MON, TUE, WED, THU, FRI, SAT, SUN
@@ -36,14 +35,9 @@ class NorthCarolina(UnitedStates):
                 (date(year, 12, 28), "Boxing day shift"),
             ]
         elif xmas.weekday() == SAT:
-            warnings.warn(
-                "We didn't find any documentation about this configuration for"
-                " the Christmas shift. Please use with care or help us build"
-                " a better Workalendar"
-            )
             return [
-                (date(year, 12, 27), "Christmas Day shift"),
-                (date(year, 12, 28), "Boxing Day shift"),
+                (date(year, 12, 23), "Christmas Eve shift"),
+                (date(year, 12, 27), "Boxing Day shift"),
             ]
         elif xmas.weekday() == SUN:
             return [
