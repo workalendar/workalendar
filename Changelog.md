@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-Nothing to see here yet.
+- Internal: Added a "Release" section to the Pull Request template.
+- Internal: Added advices on the Changelog entry in the Contributing document.
 
 ## v5.0.3 (2019-06-07)
 
