@@ -6,7 +6,7 @@ import warnings
 from datetime import date
 
 from ..core import MON, TUE, WED, THU, FRI, SAT, SUN
-from ..registry import iso_register
+from ..registry_tools import iso_register
 from .core import UnitedStates
 
 

@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import FRI, SAT
-from workalendar.registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('FI')

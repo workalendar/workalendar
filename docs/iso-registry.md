@@ -25,6 +25,8 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 
 The `registry.region_registry` is an `OrderedDict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
 
+**Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
+
 ## Retrieve a collection of regions
 
 Let's say you'd need only a subset of the ISO registry. For example, France, Switzerland and Canada calendars. You can use the method `items()` to filter only the calendars you want.

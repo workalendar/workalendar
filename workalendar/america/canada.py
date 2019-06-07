@@ -6,7 +6,7 @@ from datetime import date
 
 from ..core import WesternCalendar, ChristianMixin, Calendar
 from ..core import SUN, MON, SAT
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('CA')

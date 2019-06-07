@@ -8,7 +8,7 @@ from ..core import WesternCalendar
 from ..core import SUN, MON, FRI
 from ..core import ChristianMixin
 from ..exceptions import CalendarError
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('ZA')

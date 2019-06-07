@@ -6,7 +6,7 @@ from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, SAT
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('MX')

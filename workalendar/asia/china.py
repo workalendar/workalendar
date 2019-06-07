@@ -5,7 +5,7 @@ from datetime import date
 import warnings
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
-from ..registry import iso_register
+from ..registry_tools import iso_register
 from ..exceptions import CalendarError
 
 holidays = {

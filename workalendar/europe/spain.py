@@ -2,7 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('ES')

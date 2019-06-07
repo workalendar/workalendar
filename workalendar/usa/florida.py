@@ -6,7 +6,7 @@ import warnings
 from pyluach.dates import GregorianDate
 
 from .core import UnitedStates
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 class HebrewHolidays(object):

@@ -102,10 +102,10 @@ where needed:
     from .zhraa import Zhraa
     # ...
     __all__ = (
-        Belgium,
-        CzechRepublic,
+        'Belgium',
+        'CzechRepublic',
         # ...
-        Zhraa,
+        'Zhraa',
     )
 
 Now, we're building a test class. Edit the ``workalendar/tests/test_europe.py``
@@ -213,7 +213,7 @@ Kingdom ISO code is ``ZK``.
 
 To register, add the following::
 
-    from workalendar.registry import iso_register
+    from ..registry_tools import iso_register
 
     @iso_register('ZK')
     class Zhraa(WesternCalendar, ChristianMixin):
