@@ -14,3 +14,25 @@ For information, read and make sure you're okay with the [CONTRIBUTING document]
 
 - [ ] Tests with a significant number of years to be tested for your calendar.
 - [ ] Changelog amended with a mention describing your changes.
+
+<!-- Release management
+
+- Commit for the tag:
+    - [ ] Edit version in setup.py
+    - [ ] Add version in Changelog.md ; trim things
+    - [ ] Push & wait for the tests to be green
+    - [ ] tag me.
+    - [ ] build sdist package
+- Back to dev commit:
+    - [ ] Edit version in setup.py
+    - [ ] Add the "master / nothing to see here" in Changelog.md
+    - [ ] Push & wait for the tests to be green
+- [ ] Merge --ff
+- Github stuff
+    - [ ] Push tag in Github
+    - [ ] Edit release on Github using the changelog.
+    - [ ] Delete branch
+- [ ] upload release on PyPI
+- [ ] (*optional*) Make feeback on the various PR or issues.
+
+ -->
