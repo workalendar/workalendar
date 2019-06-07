@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing to see here yet.
+
 ## v5.0.3 (2019-06-07)
 
 - Bugfix: Panama - Fixed incorrect independence from Spain date, thanks to @chopanpma (#361).
