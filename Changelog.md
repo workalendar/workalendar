@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Bugfix: Panama - Fixed incorrect independence from Spain date.
+
 
 ## v5.0.2 (2019-06-03)
 

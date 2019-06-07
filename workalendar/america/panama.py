@@ -21,7 +21,7 @@ class Panama(WesternCalendar, ChristianMixin):
         (11, 3, "Independence Day"),
         (11, 5, "Colon Day"),
         (11, 10, "Shout in Villa de los Santos"),
-        (12, 2, "Independence from Spain"),
+        (11, 28, "Independence from Spain"),
         (12, 8, "Mothers' Day"),
     )
 
