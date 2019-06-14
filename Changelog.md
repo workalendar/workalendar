@@ -8,6 +8,7 @@
 - Internal: Added a "Release" section to the Pull Request template.
 - Internal: Added advices on the Changelog entry in the Contributing document.
 - Bugfix: Fixing North Carolina shift rules when Christmas Day happens on Saturday (#232).
+- Documentation: rearrange country list in ``README.rst`` (sorting and fixing nested lists).
 
 ## v5.0.3 (2019-06-07)
 

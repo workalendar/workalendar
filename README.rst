@@ -107,11 +107,13 @@ Europe
 * Romania
 * Russia
 * Slovakia
-* Sweden
-* Spain (incl. Catalonia)
 * Slovenia
+* Spain (incl. Catalonia)
+* Sweden
 * Switzerland
+
   * Vaud
+
 * United Kingdom (incl. Northern Ireland, Scotland and all its territories)
 
 America
@@ -119,12 +121,14 @@ America
 
 * Barbados
 * Brazil (all states, cities and for bank transactions, except the city of Viana)
+* Canada (including provincial and territory holidays)
 * Chile
 * Colombia
 * Mexico
 * Panama
 * Paraguay
 * United States of America
+
   * State holidays for all the 50 States
   * American Samoa
   * Chicago, Illinois
@@ -132,20 +136,19 @@ America
   * Suffolk County, Massachusetts
   * California Education, Berkeley, San Francisco, West Hollywood
   * Florida Legal and Florida Circuit Courts, Miami-Dade
-* Canada (including provincial and territory holidays)
 
 Asia
 ----
 
 * China
 * Hong Kong
+* Israel
 * Japan
 * Malaysia
 * Qatar
 * Singapore
 * South Korea
 * Taiwan
-* Israel
 
 Oceania
 -------
