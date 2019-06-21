@@ -10,6 +10,7 @@
 - Bugfix: Fixing North Carolina shift rules when Christmas Day happens on Saturday (#232).
 - Documentation: rearrange country list in ``README.rst`` (sorting and fixing nested lists).
 - Documentation: Renamed and changed format of the "Contributing guidelines" document, now in Markdown (GFM variant), with a few fixes (#368).
+- Internal: remove coverage targets ; now coverage reports are displayed for each tox job, but they won't output classes with 100% coverage.
 
 ## v5.0.3 (2019-06-07)
 
