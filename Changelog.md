@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Display missing lines in coverage report.
 
 ## 5.1.0 (2019-06-24)
 
