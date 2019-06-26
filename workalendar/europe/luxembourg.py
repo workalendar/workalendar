@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -17,6 +18,12 @@ class Luxembourg(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
-        (5, 9, "Europe Day"),
         (6, 23, "Luxembourg National Holiday"),
     )
+
+    def get_fixed_holidays(self, year):
+        days = super(Luxembourg, self).get_fixed_holidays(year)
+        if year > 2018:
+            days.append((date(year, 5, 9), "Europe Day"))
+
+        return days
