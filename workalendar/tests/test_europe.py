@@ -738,12 +738,12 @@ class LuxembourgTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen´s Day
 
-        self.assertNotIn(date(2016, 5, 9), holidays)  # Europe Day, holiday since 2019
+        self.assertNotIn(date(2016, 5, 9), holidays)  # Europe Day (>=2019)
 
     def test_year_2019(self):
         holidays = self.cal.holidays_set(2019)
 
-        self.assertIn(date(2019, 5, 9), holidays)   # Europe Day, holiday since 2019
+        self.assertIn(date(2019, 5, 9), holidays)   # Europe Day (>=2019)
 
 
 class NetherlandsTest(GenericCalendarTest):
