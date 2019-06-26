@@ -730,6 +730,7 @@ class LuxembourgTest(GenericCalendarTest):
         self.assertIn(date(2016, 1, 1), holidays)   # new year
         self.assertIn(date(2016, 3, 28), holidays)   # easter
         self.assertIn(date(2016, 5, 1), holidays)   # labour day
+        self.assertIn(date(2016, 5, 9), holidays)   # europe day
         self.assertIn(date(2016, 5, 5), holidays)   # Ascension
         self.assertIn(date(2016, 5, 16), holidays)  # Pentecote
         self.assertIn(date(2016, 6, 23), holidays)  # Luxembourg National Day

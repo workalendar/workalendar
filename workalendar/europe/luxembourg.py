@@ -17,5 +17,6 @@ class Luxembourg(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
+        (5, 9, "Europe Day"),
         (6, 23, "Luxembourg National Holiday"),
     )
