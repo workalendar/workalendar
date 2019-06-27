@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing to see here yet.
+
 ## v5.1.1 (2019-06-27)
 
 - Display missing lines in coverage report (#376).
