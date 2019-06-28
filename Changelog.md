@@ -4,6 +4,14 @@
 
 Nothing to see here yet.
 
+## v6.0.0 (...)
+
+- Added adjustments to 2019-2020 Japan calendar due to the coronation of a new emperor.
+
+### New Calendar
+
+- Added JapanBank by @raybuhr (#379)
+
 ## v5.1.1 (2019-06-27)
 
 - Display missing lines in coverage report (#376).

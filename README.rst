@@ -145,6 +145,7 @@ Asia
 * Hong Kong
 * Israel
 * Japan
+* JapanBank
 * Malaysia
 * Qatar
 * Singapore
