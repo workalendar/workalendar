@@ -192,6 +192,8 @@ Do not forget to:
 2. add your calendar in the `README.rst` file, included in the appropriate continent.
 3. add your calendar to the `Changelog.md` file.
 
+**Note** *Please, do NOT change the version number in the changelog or in the ``setup.py`` file. It's the project maintainers' duty to decide when to release and how to increment the version number, according to the impact of the changes.*
+
 We're planning to build a complete documentation for the other cases (special holiday rules, other calendar types, other religions, etc). But with this tutorial you're sorted for a lot of other calendars.
 
 ## Other code contributions
