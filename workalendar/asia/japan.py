@@ -37,6 +37,26 @@ class Japan(WesternCalendar, EphemMixin):
             days.append((date(year, 12, 23), "The Emperor's Birthday"))
         if year > 2019:
             days.append((date(year, 2, 23), "The Emperor's Birthday"))
+        # Lots of adjustments for new emperor
+        if year == 2019:
+            days.extend([
+                (date(year, 4, 30), "Coronation Day"),
+                (date(year, 5, 1), "Coronation Day"),
+                (date(year, 5, 2), "Coronation Day"),
+                (date(year, 5, 6), "Children's Day Observed"),
+                (date(year, 8, 12), "Mountain Day Observed"),
+                (date(year, 10, 22), "Enthronement Ceremony Day"),
+                (date(year, 11, 4), "Culture Day Observed"),
+            ])
+        if year == 2020:
+            days.extend([
+                (date(year, 2, 24), "The Emperor's Birthday Observed"),
+                (date(year, 5, 6), "Constitution Memorial Day Observed"),
+                (date(year, 8, 10), "Mountain Day"),
+            ])
+            # Mountain Day is 8/10 this year for some reason
+            # The next year that will be different is 2024
+            days.remove((date(year, 8, 11), "Mountain Day"))
         return days
 
     def get_variable_days(self, year):
@@ -80,41 +100,3 @@ class JapanBank(Japan):
         (1, 3, "New Year Bank Holiday"),
         (12, 31, "New Year Bank Holiday"),
     )
-
-    def get_fixed_holidays(self, year):
-        """
-        Fixed holidays for Japan.
-
-        As of 2016, the "Mountain Day" is being added
-        As of 2019, a new Emperor was coronated.
-        """
-        days = super(JapanBank, self).get_fixed_holidays(year)
-        # Change in Emperor
-        if year < 2019:
-            days.append((date(year, 12, 23), "The Emperor's Birthday"))
-        if year > 2019:
-            days.append((date(year, 2, 23), "The Emperor's Birthday"))
-        # Adding holidays adjusted for this specific year
-        if year == 2019:
-            days.extend([
-                (date(year, 4, 30), "Coronation Day"),
-                (date(year, 5, 1), "Coronation Day"),
-                (date(year, 5, 2), "Coronation Day"),
-                (date(year, 5, 6), "Children's Day Observed"),
-                (date(year, 8, 12), "Mountain Day Observed"),
-                (date(year, 10, 22), "Enthronement Ceremony Day"),
-                (date(year, 11, 4), "Culture Day Observed"),
-            ])
-        if year == 2020:
-            days.extend([
-                (date(year, 2, 24), "The Emperor's Birthday Observed"),
-                (date(year, 5, 6), "Constitution Memorial Day Observed"),
-                (date(year, 8, 10), "Mountain Day"),
-            ])
-            # Mountain Day is 8/10 this year for some reason
-            # The next year that will be different is 2024
-            days.remove((date(year, 8, 11), "Mountain Day"))
-            # Sports Day is usually in October, but not this year
-            # https://www.timeanddate.com/holidays/japan/sports-day
-        return days
-
