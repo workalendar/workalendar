@@ -30,7 +30,7 @@ link_files = {
             ),
             dict(
                 pattern=r'(?P<wk_ver>[Ww]orkalendar \d+\.\d+(\.\d+)?)',
-                url='{workalendar}blob/master/CHANGELOG',
+                url='{workalendar}blob/master/Changelog.md',
             ),
         ],
     )
