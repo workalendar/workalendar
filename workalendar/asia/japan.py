@@ -25,9 +25,6 @@ class Japan(WesternCalendar, EphemMixin):
     def get_fixed_holidays(self, year):
         """
         Fixed holidays for Japan.
-
-        As of 2016, the "Mountain Day" is being added
-        As of 2019, a new Emperor was coronated.
         """
         days = super(Japan, self).get_fixed_holidays(year)
         if year >= 2016:
