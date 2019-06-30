@@ -197,7 +197,6 @@ class JapanTest(GenericCalendarTest):
         self.assertNotIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
 
 
-
 class JapanBankTest(GenericCalendarTest):
     cal_class = JapanBank
 
@@ -219,6 +218,7 @@ class JapanBankTest(GenericCalendarTest):
         self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
         self.assertIn(date(2020, 7, 23), holidays)  # Marine Day
         self.assertIn(date(2020, 7, 24), holidays)  # Sports Day
+
 
 class MalaysiaTest(GenericCalendarTest):
     cal_class = Malaysia
