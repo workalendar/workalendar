@@ -2,11 +2,14 @@
 
 ## master (unreleased)
 
-- Added adjustments to 2019-2020 Japan calendar due to the coronation of a new emperor.
-
 ### New Calendar
 
 - Added JapanBank by @raybuhr (#379)
+
+### Other changes
+
+- Added adjustments to 2019-2020 Japan calendar due to the coronation of a new emperor.
+- Add a note about the fact that contributors should not change the version number in the changelog and/or the ``setup.py`` file.
 
 ## v5.1.1 (2019-06-27)
 
