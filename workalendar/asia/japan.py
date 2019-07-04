@@ -20,18 +20,40 @@ class Japan(WesternCalendar, EphemMixin):
         (5, 5, "Children's Day"),
         (11, 3, "Culture Day"),
         (11, 23, "Labour Thanksgiving Day"),
-        (12, 23, "The Emperor's Birthday"),
     )
 
     def get_fixed_holidays(self, year):
         """
         Fixed holidays for Japan.
-
-        As of 2016, the "Mountain Day is being added"
         """
         days = super(Japan, self).get_fixed_holidays(year)
         if year >= 2016:
             days.append((date(year, 8, 11), "Mountain Day"))
+        # Change in Emperor
+        if year < 2019:
+            days.append((date(year, 12, 23), "The Emperor's Birthday"))
+        if year > 2019:
+            days.append((date(year, 2, 23), "The Emperor's Birthday"))
+        # Lots of adjustments for new emperor
+        if year == 2019:
+            days.extend([
+                (date(year, 4, 30), "Coronation Day"),
+                (date(year, 5, 1), "Coronation Day"),
+                (date(year, 5, 2), "Coronation Day"),
+                (date(year, 5, 6), "Children's Day Observed"),
+                (date(year, 8, 12), "Mountain Day Observed"),
+                (date(year, 10, 22), "Enthronement Ceremony Day"),
+                (date(year, 11, 4), "Culture Day Observed"),
+            ])
+        if year == 2020:
+            days.extend([
+                (date(year, 2, 24), "The Emperor's Birthday Observed"),
+                (date(year, 5, 6), "Constitution Memorial Day Observed"),
+                (date(year, 8, 10), "Mountain Day"),
+            ])
+            # Mountain Day is 8/10 this year for some reason
+            # The next year that will be different is 2024
+            days.remove((date(year, 8, 11), "Mountain Day"))
         return days
 
     def get_variable_days(self, year):
@@ -50,4 +72,28 @@ class Japan(WesternCalendar, EphemMixin):
             (equinoxes[1], "Autumnal Equinox Day"),
             (health_and_sport, "Health and Sports Day"),
         ])
+
+        # Marine Day is on a Thursday in 2020 for some year
+        # https://www.timeanddate.com/holidays/japan/sea-day
+        # Health and Sports Day will continue on the 2nd monday
+        # of October, except in 2020 when it will happen in July
+        # https://www.timeanddate.com/holidays/japan/sports-day
+        if year == 2020:
+            days.remove((marine_day, "Marine Day"))
+            days.append((date(2020, 7, 23), "Marine Day"))
+            days.remove((health_and_sport, "Health and Sports Day"))
+            days.append((date(2020, 7, 24), "Health and Sports Day"))
         return days
+
+
+class JapanBank(Japan):
+    """The Bank of Japan is closed additional days other than
+    national holidays.
+    https://www.boj.or.jp/en/about/outline/holi.htm/
+    """
+
+    FIXED_HOLIDAYS = Japan.FIXED_HOLIDAYS + (
+        (1, 2, "New Year Bank Holiday"),
+        (1, 3, "New Year Bank Holiday"),
+        (12, 31, "New Year Bank Holiday"),
+    )

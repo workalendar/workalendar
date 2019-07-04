@@ -2,7 +2,7 @@ from datetime import date
 from workalendar.tests import GenericCalendarTest
 
 from workalendar.asia import (
-    HongKong, Japan, Qatar, Singapore,
+    HongKong, Japan, JapanBank, Qatar, Singapore,
     SouthKorea, Taiwan, Malaysia, China, Israel
 )
 
@@ -179,6 +179,45 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2016, 8, 11), holidays)   # Mountain Day
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 8, 11), holidays)   # Mountain Day
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 14), holidays)  # Coming of Age Day
+        self.assertIn(date(2019, 5, 1), holidays)  # Coronation Day
+        self.assertIn(date(2019, 5, 6), holidays)  # Children's Day
+        self.assertIn(date(2019, 8, 12), holidays)  # Mountain Day Observed
+        self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 7, 23), holidays)  # Marine Day
+        self.assertIn(date(2020, 7, 24), holidays)  # Sports Day
+        self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
+        self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
+        self.assertNotIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+
+
+class JapanBankTest(GenericCalendarTest):
+    cal_class = JapanBank
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 2), holidays)  # New Year's Bank Day
+        self.assertIn(date(2019, 1, 3), holidays)  # New Year's Bank Day
+        self.assertIn(date(2019, 1, 14), holidays)  # Coming of Age Day
+        self.assertIn(date(2019, 5, 3), holidays)  # Constitution Memorial Day
+        self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+        self.assertIn(date(2019, 12, 31), holidays)  # New Year's Bank Day
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 2), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 1, 3), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
+        self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
+        self.assertIn(date(2020, 7, 23), holidays)  # Marine Day
+        self.assertIn(date(2020, 7, 24), holidays)  # Sports Day
 
 
 class MalaysiaTest(GenericCalendarTest):
