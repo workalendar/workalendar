@@ -22,7 +22,7 @@ For information, read and make sure you're okay with the [Contributing guideline
     - [ ] Add version in Changelog.md ; trim things
     - [ ] Push & wait for the tests to be green
     - [ ] tag me.
-    - [ ] build sdist package
+    - [ ] build sdist + wheel packages (``make package``)
 - Back to dev commit:
     - [ ] Edit version in setup.py
     - [ ] Add the "master / nothing to see here" in Changelog.md
@@ -32,7 +32,7 @@ For information, read and make sure you're okay with the [Contributing guideline
     - [ ] Push tag in Github
     - [ ] Edit release on Github using the changelog.
     - [ ] Delete branch
-- [ ] upload release on PyPI
+- [ ] upload release on PyPI using ``twine``
 - [ ] (*optional*) Make feeback on the various PR or issues.
 
  -->

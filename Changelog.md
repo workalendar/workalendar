@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Refactored the package building procedure, now linked to `make package` ; added a note about this target in the PR template (#366).
 
 ## v5.2.0 (2019-07-04)
 

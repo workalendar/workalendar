@@ -37,11 +37,8 @@ else
 	${TOX_COMMAND}  -- ${TEST_ARGS}
 endif
 
-# target: wheel_install - install wheel in your current environment
-wheel_install:
-	pip install wheel
-
-# target: pypi - upload current version on PYPI
-.PHONY: pypi
-pypi: wheel_install
-	python setup.py sdist bdist_wheel upload
+# target: package - build packages for further upload
+.PHONY: package
+package:
+	rm -Rf build/
+	python setup.py sdist bdist_wheel
