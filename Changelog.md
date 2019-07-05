@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v5.2.1 (2019-07-05)
 
 - Refactored the package building procedure, now linked to `make package` ; added a note about this target in the PR template (#366).
