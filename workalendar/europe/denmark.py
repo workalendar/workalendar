@@ -9,7 +9,6 @@ from ..registry_tools import iso_register
 class Denmark(WesternCalendar, ChristianMixin):
     'Denmark'
 
-    include_palm_sunday = True
     include_holy_thursday = True
     include_good_friday = True
     include_easter_sunday = True
@@ -21,12 +20,6 @@ class Denmark(WesternCalendar, ChristianMixin):
     whit_monday_label = "Pentecost Monday"
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
-    include_christmas_eve = True
-
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (6, 5, "Constitution Day"),
-        (12, 31, "New Year's Eve")
-    )
 
     def get_store_bededag(self, year):  # 'great prayer day'
         easter_sunday = self.get_easter_sunday(year)
