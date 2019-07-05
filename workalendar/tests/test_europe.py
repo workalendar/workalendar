@@ -798,6 +798,24 @@ class Romania(GenericCalendarTest):
         self.assertIn(date(2017, 12, 25), holidays)  # Crăciunul Christmas
         self.assertIn(date(2017, 12, 26), holidays)  # Crăciunul Christmas
 
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # Anul Nou New Year's Day
+        self.assertIn(date(2019, 1, 2), holidays)  # Anul Nou Day after New Yr
+        self.assertIn(date(2019, 1, 24), holidays)  # Unirea Principatelor Rom
+        self.assertIn(date(2019, 4, 26), holidays)  # Orthodox Good Fri
+        self.assertIn(date(2019, 4, 28), holidays)  # Orthodox Easter Sun
+        self.assertIn(date(2019, 4, 29), holidays)  # Orthodox Easter Mon
+        self.assertIn(date(2019, 5, 1), holidays)  # Ziua Muncii Labour Day
+        self.assertIn(date(2019, 6, 1), holidays)  # Ziua Copilului Children's
+        self.assertIn(date(2019, 6, 16), holidays)  # Pentecost
+        self.assertIn(date(2019, 6, 17), holidays)  # Whit Monday
+        self.assertIn(date(2019, 8, 15), holidays)  # Adormirea Maicii Domnului
+        self.assertIn(date(2019, 11, 30), holidays)  # Sfântul Andrei St. Andre
+        self.assertIn(date(2019, 12, 1), holidays)  # Ziua Națională/Marea Unir
+        self.assertIn(date(2019, 12, 25), holidays)  # Crăciunul Christmas
+        self.assertIn(date(2019, 12, 26), holidays)  # Crăciunul Christmas
+
 
 class Russia(GenericCalendarTest):
     cal_class = Russia
