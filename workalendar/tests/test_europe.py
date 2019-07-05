@@ -905,6 +905,30 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)  # Boxing day - Monday
         self.assertIn(date(2016, 12, 27), holidays)  # Christmas - shift to Tue
 
+    def test_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        # This is where the year 2020 becomes special:
+        # The Early May Bank Holiday has been moved to May 8th
+        # to commemorate the 75th anniversary of the end of WWII
+        self.assertNotIn(date(2020, 5, 4), holidays)
+        self.assertIn(date(2020, 5, 25), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2020, 8, 31), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # 'Boxing Day
+        self.assertIn(date(2020, 12, 28), holidays)  # Boxing Day Shift
+
+        # May the 8th is VE day
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertIn(date(2020, 5, 8), holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 8)], "Early May bank holiday (VE day)"
+        )
+
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
     cal_class = UnitedKingdomNorthernIreland

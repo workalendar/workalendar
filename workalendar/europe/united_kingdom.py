@@ -26,6 +26,16 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     }
 
     def get_early_may_bank_holiday(self, year):
+        """
+        Return Early May bank holiday
+        """
+        # Special case in 2020, for the 75th anniversary of the end of WWII.
+        if year == 2020:
+            return (
+                date(year, 5, 8),
+                "Early May bank holiday (VE day)"
+            )
+
         return (
             UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
             "Early May Bank Holiday"
