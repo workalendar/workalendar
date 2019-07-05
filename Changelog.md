@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v5.2.1 (2019-07-05)
 
 - Refactored the package building procedure, now linked to `make package` ; added a note about this target in the PR template (#366).
 - Fixed United Kingom's 2020 holidays ; The Early May Bank Holiday has been moved to May 8th to commemorate the 75th anniversary of the end of WWII (#381).
