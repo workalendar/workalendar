@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v5.2.2. (2019-07-07)
 
 - Fix Denmark, remove observances (remove Palm Sunday, Constitution Day, Christmas Eve and New Year's Eve) (#387, #386)
 
