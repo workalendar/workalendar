@@ -2,6 +2,7 @@
 from .austria import Austria
 from .belgium import Belgium
 from .bulgaria import Bulgaria
+from .cayman_islands import CaymanIslands
 from .croatia import Croatia
 from .cyprus import Cyprus
 from .czech_republic import CzechRepublic
@@ -31,6 +32,7 @@ from .spain import Spain, Catalonia
 from .sweden import Sweden
 from .switzerland import Switzerland, Vaud
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
+from .turkey import Turkey
 
 # Germany
 from .germany import (
@@ -40,12 +42,21 @@ from .germany import (
     SaxonyAnhalt, SchleswigHolstein, Thuringia
 )
 
+# Scotland
+from .scotland import (
+    Scotland, Aberdeen, Angus, Arbroath, Ayr, CarnoustieMonifieth, Clydebank,
+    DumfriesGalloway, Dundee, EastDunbartonshire, Edinburgh, Elgin, Falkirk,
+    Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,
+    Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
+    ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire
+)
 
 __all__ = (
     'Austria',
     'Belgium',
     'Bulgaria',
     'Catalonia',
+    'CaymanIslands',
     'Croatia',
     'Cyprus',
     'CzechRepublic',
@@ -78,10 +89,19 @@ __all__ = (
     'Vaud',
     'UnitedKingdom',
     'UnitedKingdomNorthernIreland',
+    'Turkey',
 
     # Germany
     'Germany', 'BadenWurttemberg', 'Bavaria', 'Berlin', 'Brandenburg',
     'Bremen', 'Hamburg', 'Hesse', 'MecklenburgVorpommern', 'LowerSaxony',
     'NorthRhineWestphalia', 'RhinelandPalatinate', 'Saarland', 'Saxony',
     'SaxonyAnhalt', 'SchleswigHolstein', 'Thuringia',
+    # Scotland
+    'Scotland',
+    'Aberdeen', 'Angus', 'Arbroath', 'Ayr', 'CarnoustieMonifieth',
+    'Clydebank', 'DumfriesGalloway', 'Dundee', 'EastDunbartonshire',
+    'Edinburgh', 'Elgin', 'Falkirk', 'Fife', 'Galashiels', 'Glasgow',
+    'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
+    'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
+    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire'
 )

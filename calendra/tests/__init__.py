@@ -9,6 +9,7 @@ class GenericCalendarTest(TestCase):
     cal_class = Calendar
 
     def setUp(self):
-        warnings.simplefilter("ignore")
+        super(GenericCalendarTest, self).setUp()
+        warnings.simplefilter('ignore')
         self.year = date.today().year
         self.cal = self.cal_class()

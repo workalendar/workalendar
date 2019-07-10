@@ -43,6 +43,8 @@ Status
 The project is stable and in production use. Calendra follows the principles
 of `semver <https://semver.org>`_ for released verisons.
 
+If you spot any bug or wish to add a calendar, please refer to the `Contributing doc <CONTRIBUTING.rst>`_.
+
 Usage sample
 ============
 
@@ -81,7 +83,7 @@ External dependencies
 You may want to install ``python-dev`` and/or ``python3-dev`` on your machine to
 either run the installation or run tests via tox.
 
-Workalendar has been tested on Python 2.7, 3.4, 3.5, 3.6, 3.7.
+Workalendar has been tested on Python 2.7, 3.5, 3.6, 3.7.
 
 Tests
 =====
@@ -107,6 +109,7 @@ Europe
 * Austria
 * Belgium
 * Bulgaria
+* Cayman Islands
 * Croatia
 * Cyprus
 * Czech Republic
@@ -133,29 +136,45 @@ Europe
 * Romania
 * Russia
 * Slovakia
-* Sweden
-* United Kingdom (incl. Northern Ireland)
-* Spain (incl. Catalonia)
 * Slovenia
+* Spain (incl. Catalonia)
+* Sweden
 * Switzerland
+
   * Vaud
+
+* Turkey
+* United Kingdom (incl. Northern Ireland, Scotland and all its territories)
 
 America
 -------
 
+* Barbados
 * Brazil (all states, cities and for bank transactions, except the city of Viana)
+* Canada (including provincial and territory holidays)
 * Chile
 * Colombia
 * Mexico
 * Panama
-* United States of America (including state holidays)
-* Canada (including provincial and territory holidays)
+* Paraguay
+* United States of America
+
+  * State holidays for all the 50 States
+  * American Samoa
+  * Chicago, Illinois
+  * Guam
+  * Suffolk County, Massachusetts
+  * California Education, Berkeley, San Francisco, West Hollywood
+  * Florida Legal and Florida Circuit Courts, Miami-Dade
 
 Asia
 ----
 
+* China
 * Hong Kong
+* Israel
 * Japan
+* JapanBank
 * Malaysia
 * Qatar
 * Singapore
@@ -167,6 +186,7 @@ Oceania
 
 * Australia (incl. its different states)
 * Marshall Islands
+* New Zealand
 
 Africa
 ------

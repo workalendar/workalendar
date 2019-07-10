@@ -1,3 +1,144 @@
+
+4.0
+---
+
+Incorporate changes from workalendar v5.2.2. (2019-07-07)
+
+- Fix Denmark, remove observances (remove Palm Sunday, Constitution Day, Christmas Eve and New Year's Eve) (#387, #386)
+
+Incorporate changes from workalendar v5.2.1 (2019-07-05)
+    
+- Refactored the package building procedure, now linked to `make package` ; added a note about this target in the PR template (#366).
+- Fixed United Kingom's 2020 holidays ; The Early May Bank Holiday has been moved to May 8th to commemorate the 75th anniversary of the end of WWII (#381).
+
+Incorporate changes from workalendar v5.2.0 (2019-07-04)
+
+- New Calendar
+
+    - Added JapanBank by @raybuhr (#379, #369).
+
+- Other changes
+
+    - Added adjustments to 2019-2020 Japan calendar due to the coronation of a new emperor (#379).
+    - Add a note about the fact that contributors should not change the version number in the changelog and/or the ``setup.py`` file (#380).
+
+Incorporate changes from workalendar v5.1.1 (2019-06-27)
+
+- Display missing lines in coverage report (#376).
+- Add "Europe Day" for Luxembourg (#377).
+
+Incorporate changes from workalendar v5.1.0 (2019-06-24)
+
+- **Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
+
+- New Calendar
+
+    - Added Turkey by @tayyipgoren (#371).
+
+- Other changes
+
+    - Change registry mechanism to avoid circular imports (#288).
+    - Internal: Added a "Release" section to the Pull Request template.
+    - Internal: Added advices on the Changelog entry in the Contributing document.
+    - Bugfix: Fixing North Carolina shift rules when Christmas Day happens on Saturday (#232).
+    - Documentation: rearrange country list in ``README.rst`` (sorting and fixing nested lists).
+    - Documentation: Renamed and changed format of the "Contributing guidelines" document, now in Markdown (GFM variant), with a few fixes (#368).
+    - Internal: remove coverage targets ; now coverage reports are displayed for each tox job, but they won't output classes with 100% coverage.
+
+Incorporate changes from workalendar v5.0.3 (2019-06-07)
+
+- Bugfix: Panama - Fixed incorrect independence from Spain date, thanks to @chopanpma (#361).
+
+Incorporate changes from workalendar v5.0.2 (2019-06-03)
+
+- Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years, thx @orzarchi. This fix cancels the last (5.0.1) version, that will be deleted from PyPI.
+
+Incorporate changes from workalendar v5.0.1 (2019-06-03)
+
+- **WARNING** This version contains known bugs on Israel calendar. Please do not use it in production.
+
+- Bugfix: Israel - Fixed incorrect Purim/Shushan Purim dates in jewish leap years, thx @orzarchi.
+
+Incorporate changes from workalendar v5.0.0 (2019-05-24)
+
+- Major Changes & fixes
+
+    - Dropped Python 3.4 support (#352).
+    - Added Malaysia Thaipusam days for the year 2019 & 2020 - thx @burlak for the bug report (#354).
+    - Fixed Deepavali dates for the year 2018 ; confirmed fixed dates that were set in the past.
+
+- Added calendars
+
+    - Added Florida specific calendars: Florida Legal, Florida Circuit Courts, Miami-Dade (#216).
+
+Incorporate changes from workalendar v4.4.0 (2019-05-17)
+
+- **WARNING**: This release will be the last one to support Python 3.4, which has [reached its End of Life and has been retired](https://www.python.org/dev/peps/pep-0429/#release-schedule). Please upgrade.
+
+- Added calendar
+
+    - Added California specific calendars: California Education, Berkeley, San Francisco, West Hollywood (#215).
+
+- Fixes
+
+    - Added a few refactors and tests for Australia Capital Territory holiday named "Family & Community Day", that lasted from 2007 to 2017 (#25).
+    - Added South African 2019 National Elections as holiday (#350), by @RichardOB.
+
+Incorporate changes from workalendar v4.3.1 (2019-05-03)
+
+- Bugfix: Update 2019 Labour Day Holidays for China as changed by government recently (2019-03-22), by @iamsk, and thanks to @ltyely for their patch (#345 & #347).
+
+Incorporate changes from workalendar v4.3.0 (2019-03-15)
+
+- New Calendar
+
+    - Added Barbados by @ludsoft.
+
+- Fixes
+
+    - Added isolated tests for shifting mechanics in USA calendars - previously untested (#335).
+    - Added Berlin specific holidays (#340).
+    - Added several one-off public holidays to UK calendar (#336).
+
+Incorporate changes from workalendar v4.2.0 (2019-02-21)
+
+- New calendars
+
+    - Added several US territories and other specific calendars:
+
+        - American Samoa territory (#218).
+        - Chicago, Illinois (#220).
+        - Guam territory (#219).
+        - Suffolk County, Massachusetts (#222).
+
+    - Added Cayman Islands, British Overseas Territory (#328)
+
+Incorporate changes from workalendar v4.1.0 (2019-02-07)
+
+- New calendars
+
+- **WARNING** Scotland (sub)calendars are highly experimental and because of their very puzzling rules, may be false. Please use them with care.
+
+    - Added Scotland calendars, i.e. Scotland, Aberdeen, Angus, Arbroath, Ayr, Carnoustie & Monifieth, Clydebank, Dumfries & Galloway, Dundee, East Dunbartonshire, Edinburgh, Elgin, Falkirk, Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock, Lochaber, Monifieth, North Lanarkshire, Paisley, Perth, Scottish Borders, South Lanarkshire, Stirling, and West Dunbartonshire (#31).
+
+- Bugfixes
+
+    - Fixed United Kingdom bank holiday for 2002 and 2012, thx @ludsoft (#315).
+    - Fix a small flake8 issue with wrong indentation (#319).
+    - Fix Russia "Day of Unity" date, set to November 4th, thx @alexitkes for the bug report (#317).
+
+Incorporate changes from workalendar v4.0.0 (2019-01-24)
+
+- Solved the incompatibility between `pandas` latest version and Python 3.4. Upgraded travis distro to Xenial/16.04 LTS (#307).
+- Added instructions about the usage of the `iso_register` decorator in the pull-request template (#309).
+
+- New Calendars
+
+    - Added New Zealand, by @johnguant (#306).
+    - Added Paraguay calendar, following the work of @reichert (#268).
+    - Added China calendar, by @iamsk (#304).
+    - Added Israel, by @armona, @tsehori (#281).
+
 3.0
 ---
 

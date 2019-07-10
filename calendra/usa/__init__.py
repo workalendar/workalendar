@@ -8,16 +8,21 @@ from .alabama import (
 from .alaska import Alaska
 from .arizona import Arizona
 from .arkansas import Arkansas
-from .california import California
+from .california import (
+    California, CaliforniaEducation, CaliforniaBerkeley,
+    CaliforniaSanFrancisco, CaliforniaWestHollywood,
+)
 from .colorado import Colorado
 from .connecticut import Connecticut
 from .delaware import Delaware
 from .district_columbia import DistrictOfColumbia
-from .florida import Florida
+from .florida import (
+    Florida, FloridaLegal, FloridaCircuitCourts, FloridaMiamiDade
+)
 from .georgia import Georgia
 from .hawaii import Hawaii
 from .idaho import Idaho
-from .illinois import Illinois
+from .illinois import Illinois, ChicagoIllinois
 from .indiana import Indiana
 from .iowa import Iowa
 from .kansas import Kansas
@@ -25,7 +30,7 @@ from .kentucky import Kentucky
 from .louisiana import Louisiana
 from .maine import Maine
 from .maryland import Maryland
-from .massachusetts import Massachusetts
+from .massachusetts import Massachusetts, SuffolkCountyMassachusetts
 from .michigan import Michigan
 from .minnesota import Minnesota
 from .mississippi import Mississippi
@@ -55,8 +60,10 @@ from .washington import Washington
 from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
+# Non-states territories and areas
+from .american_samoa import AmericanSamoa
+from .guam import Guam
 
-NONE, NEAREST_WEEKDAY, MONDAY = range(3)
 
 __all__ = [
     'UnitedStates',  # Generic federal calendar
@@ -66,15 +73,17 @@ __all__ = [
     'Arizona',
     'Arkansas',
     'California',
+    'CaliforniaEducation', 'CaliforniaBerkeley', 'CaliforniaSanFrancisco',
+    'CaliforniaWestHollywood',
     'Colorado',
     'Connecticut',
     'Delaware',
     'DistrictOfColumbia',
-    'Florida',
+    'Florida', 'FloridaLegal', 'FloridaCircuitCourts', 'FloridaMiamiDade',
     'Georgia',
     'Hawaii',
     'Idaho',
-    'Illinois',
+    'Illinois', 'ChicagoIllinois',
     'Indiana',
     'Iowa',
     'Kansas',
@@ -82,7 +91,7 @@ __all__ = [
     'Louisiana',
     'Maine',
     'Maryland',
-    'Massachusetts',
+    'Massachusetts', 'SuffolkCountyMassachusetts',
     'Michigan',
     'Minnesota',
     'Mississippi',
@@ -113,4 +122,7 @@ __all__ = [
     'WestVirginia',
     'Wisconsin',
     'Wyoming',
+    # Non-State territories
+    'AmericanSamoa',
+    'Guam',
 ]

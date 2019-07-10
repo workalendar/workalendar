@@ -7,7 +7,7 @@ import datetime
 from .core import UnitedStates
 from ..core import MON
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US-AK')

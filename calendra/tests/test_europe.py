@@ -6,6 +6,7 @@ from ..tests import GenericCalendarTest
 from ..europe import Austria
 from ..europe import Bulgaria
 from ..europe import Belgium
+from ..europe import CaymanIslands
 from ..europe import Croatia
 from ..europe import Cyprus
 from ..europe import CzechRepublic
@@ -77,6 +78,125 @@ class BulgariaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
         # Non-attendance day for schools, otherwise a working day.
         self.assertNotIn(date(2016, 11, 1), holidays)   # National Awakening
+
+
+class CaymanIslandsTest(GenericCalendarTest):
+    cal_class = CaymanIslands
+
+    def test_holidays_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 1, 1), holidays)
+        self.assertIn(date(2013, 1, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2013, 2, 13), holidays)   # Ash Wednesday
+        self.assertIn(date(2013, 3, 29), holidays)  # good friday
+        self.assertIn(date(2013, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2013, 5, 20), holidays)  # Discovery Day
+        self.assertIn(date(2013, 6, 17), holidays)  # Queen's Birthday
+        self.assertIn(date(2013, 7, 1), holidays)   # Constitution Day
+        self.assertIn(date(2013, 11, 11), holidays)  # Remembrance Day
+        self.assertIn(date(2013, 12, 25), holidays)  # XMas
+        self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 1, 1), holidays)
+        self.assertIn(date(2014, 1, 27), holidays)  # National Heroes Day
+        self.assertIn(date(2014, 3, 5), holidays)   # Ash Wednesday
+        self.assertIn(date(2014, 4, 18), holidays)  # good friday
+        self.assertIn(date(2014, 4, 21), holidays)  # easter monday
+        self.assertIn(date(2014, 5, 19), holidays)  # Discovery Day
+        self.assertIn(date(2014, 6, 16), holidays)  # Queen's Birthday
+        self.assertIn(date(2014, 7, 7), holidays)   # Constitution Day
+        self.assertIn(date(2014, 11, 10), holidays)  # Remembrance Day
+        self.assertIn(date(2014, 12, 25), holidays)  # XMas
+        self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day (on week-end)
+
+    def test_holidays_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 26), holidays)  # National Heroes Day
+        self.assertIn(date(2015, 2, 18), holidays)   # Ash Wednesday
+        self.assertIn(date(2015, 4, 3), holidays)  # good friday
+        self.assertIn(date(2015, 4, 6), holidays)  # easter monday
+        self.assertIn(date(2015, 5, 18), holidays)  # Discovery Day
+        self.assertIn(date(2015, 6, 15), holidays)  # Queen's Birthday
+        self.assertIn(date(2015, 7, 6), holidays)   # Constitution Day
+        self.assertIn(date(2015, 11, 9), holidays)  # Remembrance Day
+        self.assertIn(date(2015, 12, 25), holidays)  # XMas
+        self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day (on week-end)
+        self.assertIn(date(2015, 12, 28), holidays)  # Boxing Day observed
+
+    def test_holidays_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 25), holidays)  # National Heroes Day
+        self.assertIn(date(2016, 2, 10), holidays)   # Ash Wednesday
+        self.assertIn(date(2016, 3, 25), holidays)  # good friday
+        self.assertIn(date(2016, 3, 28), holidays)  # easter monday
+        self.assertIn(date(2016, 5, 16), holidays)  # Discovery Day
+        self.assertIn(date(2016, 6, 13), holidays)  # Queen's Birthday
+        self.assertIn(date(2016, 7, 4), holidays)   # Constitution Day
+        self.assertIn(date(2016, 11, 14), holidays)  # Remembrance Day
+        self.assertIn(date(2016, 12, 26), holidays)  # XMas (in lieu)
+        self.assertIn(date(2016, 12, 27), holidays)  # Boxing Day (in lieu)
+
+    def test_holidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)
+        self.assertIn(date(2017, 1, 2), holidays)  # New Year boxing
+        self.assertIn(date(2017, 1, 23), holidays)  # National Heroes Day
+        self.assertIn(date(2017, 3, 1), holidays)   # Ash Wednesday
+        self.assertIn(date(2017, 4, 14), holidays)  # good friday
+        self.assertIn(date(2017, 4, 17), holidays)  # easter monday
+        self.assertIn(date(2017, 5, 15), holidays)  # Discovery Day
+        self.assertIn(date(2017, 5, 24), holidays)  # Election Day
+        self.assertIn(date(2017, 6, 19), holidays)  # Queen's Birthday
+        self.assertIn(date(2017, 7, 3), holidays)   # Constitution Day
+        self.assertIn(date(2017, 11, 13), holidays)  # Remembrance Day
+        self.assertIn(date(2017, 12, 25), holidays)  # XMas
+        self.assertIn(date(2017, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)
+        self.assertIn(date(2018, 1, 22), holidays)  # National Heroes Day
+        self.assertIn(date(2018, 2, 14), holidays)   # Ash Wednesday
+        self.assertIn(date(2018, 3, 30), holidays)  # good friday
+        self.assertIn(date(2018, 4, 2), holidays)  # easter monday
+        self.assertIn(date(2018, 5, 21), holidays)  # Discovery Day
+        self.assertIn(date(2018, 6, 11), holidays)  # Queen's Birthday
+        self.assertIn(date(2018, 7, 2), holidays)   # Constitution Day
+        self.assertIn(date(2018, 11, 12), holidays)  # Remembrance Day
+        self.assertIn(date(2018, 12, 25), holidays)  # XMas
+        self.assertIn(date(2018, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)
+        self.assertIn(date(2019, 1, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2019, 3, 6), holidays)   # Ash Wednesday
+        self.assertIn(date(2019, 4, 19), holidays)  # good friday
+        self.assertIn(date(2019, 4, 22), holidays)  # easter monday
+        self.assertIn(date(2019, 5, 20), holidays)  # Discovery Day
+        self.assertIn(date(2019, 6, 10), holidays)  # Queen's Birthday
+        self.assertIn(date(2019, 7, 1), holidays)   # Constitution Day
+        self.assertIn(date(2019, 11, 11), holidays)  # Remembrance Day
+        self.assertIn(date(2019, 12, 25), holidays)  # XMas
+        self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)
+        self.assertIn(date(2020, 1, 27), holidays)  # National Heroes Day
+        self.assertIn(date(2020, 2, 26), holidays)   # Ash Wednesday
+        self.assertIn(date(2020, 4, 10), holidays)  # good friday
+        self.assertIn(date(2020, 4, 13), holidays)  # easter monday
+        self.assertIn(date(2020, 5, 18), holidays)  # Discovery Day
+        self.assertIn(date(2020, 6, 15), holidays)  # Queen's Birthday
+        self.assertIn(date(2020, 7, 6), holidays)   # Constitution Day
+        self.assertIn(date(2020, 11, 9), holidays)  # Remembrance Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertIn(date(2020, 12, 26), holidays)  # Boxing Day
 
 
 class CroatiaTest(GenericCalendarTest):
@@ -155,7 +275,6 @@ class DenmarkTest(GenericCalendarTest):
     def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)    # nytaarsdag
-        self.assertIn(date(2015, 3, 29), holidays)   # palmesoendag
         self.assertIn(date(2015, 4, 2), holidays)    # skaertaarsdag
         self.assertIn(date(2015, 4, 3), holidays)    # langfredag
         self.assertIn(date(2015, 4, 5), holidays)    # paaskedag
@@ -164,11 +283,8 @@ class DenmarkTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 14), holidays)   # kristi himmelfart
         self.assertIn(date(2015, 5, 24), holidays)   # pinsedag
         self.assertIn(date(2015, 5, 25), holidays)   # 2. pinsedag
-        self.assertIn(date(2015, 6, 5), holidays)    # grundlovsdag
-        self.assertIn(date(2015, 12, 24), holidays)  # juleaftensdag
         self.assertIn(date(2015, 12, 25), holidays)  # juledag
         self.assertIn(date(2015, 12, 26), holidays)  # 2. juledag
-        self.assertIn(date(2015, 12, 31), holidays)  # nytaarsaften
 
 
 class SlovakiaTest(GenericCalendarTest):
@@ -633,6 +749,13 @@ class LuxembourgTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen´s Day
 
+        self.assertNotIn(date(2016, 5, 9), holidays)  # Europe Day (>=2019)
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+
+        self.assertIn(date(2019, 5, 9), holidays)   # Europe Day (>=2019)
+
 
 class NetherlandsTest(GenericCalendarTest):
 
@@ -704,11 +827,59 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
-        self.assertIn(date(2018, 11, 5), holidays)  # Day of Unity
+        self.assertIn(date(2018, 11, 4), holidays)  # Day of Unity
 
 
 class UnitedKingdomTest(GenericCalendarTest):
     cal_class = UnitedKingdom
+
+    def test_year_1973(self):
+        holidays = self.cal.holidays_set(1973)
+        self.assertIn(date(1973, 11, 14), holidays)  # royal wedding
+
+    def test_year_1977(self):
+        holidays = self.cal.holidays_set(1977)
+        self.assertIn(date(1977, 6, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(1977, 6, 7), holidays)  # queen's silver jubilee
+
+    def test_year_1981(self):
+        holidays = self.cal.holidays_set(1981)
+        self.assertIn(date(1981, 7, 29), holidays)  # royal wedding
+
+    def test_year_1999(self):
+        holidays = self.cal.holidays_set(1999)
+        self.assertIn(date(1999, 12, 31), holidays)  # new year's eve
+
+    def test_year_2002(self):
+        holidays = self.cal.holidays_set(2002)
+        self.assertIn(date(2002, 1, 1), holidays)  # new year day
+        self.assertIn(date(2002, 3, 29), holidays)  # good friday
+        self.assertIn(date(2002, 3, 31), holidays)  # easter sunday
+        self.assertIn(date(2002, 4, 1), holidays)  # easter monday
+        self.assertIn(date(2002, 5, 6), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2002, 6, 3), holidays)  # queen's golden jubilee
+        self.assertIn(date(2002, 6, 4), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2002, 8, 26), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2002, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2002, 12, 26), holidays)  # Boxing Day
+
+    def test_year_2011(self):
+        holidays = self.cal.holidays_set(2011)
+        self.assertIn(date(2011, 4, 29), holidays)  # royal wedding
+
+    def test_year_2012(self):
+        holidays = self.cal.holidays_set(2012)
+        self.assertIn(date(2012, 1, 1), holidays)  # new year day
+        self.assertIn(date(2012, 1, 2), holidays)  # new year shift
+        self.assertIn(date(2012, 4, 6), holidays)  # good friday
+        self.assertIn(date(2012, 4, 8), holidays)  # easter sunday
+        self.assertIn(date(2012, 4, 9), holidays)  # easter monday
+        self.assertIn(date(2012, 5, 7), holidays)  # Early May Bank Holiday
+        self.assertIn(date(2012, 6, 4), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2012, 6, 5), holidays)  # queen's diamond jubilee
+        self.assertIn(date(2012, 8, 27), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2012, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2012, 12, 26), holidays)  # Boxing Day
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -751,6 +922,30 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas - Sunday
         self.assertIn(date(2016, 12, 26), observed)  # Christmas - observed
         self.assertIn(date(2016, 12, 27), observed)  # Boxing day - observed
+
+    def test_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        # This is where the year 2020 becomes special:
+        # The Early May Bank Holiday has been moved to May 8th
+        # to commemorate the 75th anniversary of the end of WWII
+        self.assertNotIn(date(2020, 5, 4), holidays)
+        self.assertIn(date(2020, 5, 25), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2020, 8, 31), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # 'Boxing Day
+        self.assertIn(date(2020, 12, 28), holidays)  # Boxing Day Shift
+
+        # May the 8th is VE day
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertIn(date(2020, 5, 8), holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 8)], "Early May bank holiday (VE day)"
+        )
 
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):

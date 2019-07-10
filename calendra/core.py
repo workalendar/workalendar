@@ -502,6 +502,7 @@ class ChristianMixin(Calendar):
     include_easter_sunday = False
     include_all_saints = False
     include_immaculate_conception = False
+    immaculate_conception_label = "Immaculate Conception"
     include_christmas = True
     include_christmas_eve = False
     include_ascension = False
@@ -567,6 +568,23 @@ class ChristianMixin(Calendar):
     def get_corpus_christi(self, year):
         return self.get_easter_sunday(year) + timedelta(days=60)
 
+    def shift_christmas_boxing_days(self, year):
+        """ When Christmas and/or Boxing Day falls on a weekend, it is rolled
+            forward to the next weekday.
+        """
+        christmas = date(year, 12, 25)
+        boxing_day = date(year, 12, 26)
+        boxing_day_label = "{} Shift".format(self.boxing_day_label)
+        results = []
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            results.append((shift, "Christmas Shift"))
+            results.append((shift + timedelta(days=1), boxing_day_label))
+        elif boxing_day.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(boxing_day)
+            results.append((shift, boxing_day_label))
+        return results
+
     def get_variable_days(self, year):  # noqa
         "Return the christian holidays list according to the mixin"
         days = super(ChristianMixin, self).get_variable_days(year)
@@ -599,7 +617,7 @@ class ChristianMixin(Calendar):
         if self.include_all_souls:
             days.append((date(year, 11, 2), "All Souls Day"))
         if self.include_immaculate_conception:
-            days.append((date(year, 12, 8), "Immaculate Conception"))
+            days.append((date(year, 12, 8), self.immaculate_conception_label))
         christmas = None
         if self.include_christmas:
             christmas = Holiday(date(year, 12, 25), "Christmas Day")
@@ -869,6 +887,14 @@ class CalverterMixin(Calendar):
     def get_islamic_holidays(self):
         return self.ISLAMIC_HOLIDAYS
 
+    def get_delta_islamic_holidays(self, year):
+        """
+        Return the delta to add/substract according to the year or customs.
+
+        By default, to return None or timedelta(days=0)
+        """
+        return None
+
     def get_variable_days(self, year):
         warnings.warn('Please take note that, due to arbitrary decisions, '
                       'this Islamic calendar computation may be wrong.')
@@ -877,12 +903,18 @@ class CalverterMixin(Calendar):
         conversion_method = getattr(
             self.calverter, '%s_to_jd' % self.conversion_method)
         for month, day, label in self.get_islamic_holidays():
-                for y in years:  # noqa: E117
-                    jd = conversion_method(y, month, day)
-                    g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
-                    if g_year == year:
-                        holiday = date(g_year, g_month, g_day)
-                        days.append((holiday, label))
+            for y in years:
+                jd = conversion_method(y, month, day)
+                g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                holiday = date(g_year, g_month, g_day)
+
+                # Only add a delta if necessary
+                delta = self.get_delta_islamic_holidays(year)
+                if delta:
+                    holiday += delta
+
+                if holiday.year == year:
+                    days.append((holiday, label))
         return days
 
 

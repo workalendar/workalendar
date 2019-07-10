@@ -8,7 +8,7 @@ from ..core import WesternCalendar
 from ..core import MON, FRI
 from ..core import ChristianMixin
 from ..exceptions import CalendarError
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('ZA')
@@ -152,5 +152,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
             days.append((date(year, 5, 7), "National Elections"))
         if year == 2016:
             days.append((date(year, 8, 3), "Local Elections"))
+        if year == 2019:
+            days.append((date(year, 5, 8), "National Elections"))
 
         return days

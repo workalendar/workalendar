@@ -466,6 +466,14 @@ class SouthAfricaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 8, 3), holidays)
 
+    def test_special_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 5, 8), holidays)  # 2019 National Elections
+
+        # Only in 2019
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 5, 8), holidays)
+
 
 class MadagascarTest(GenericCalendarTest):
     cal_class = Madagascar

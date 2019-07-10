@@ -9,7 +9,7 @@ from dateutil import relativedelta as rd
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US')
@@ -48,6 +48,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     columbus_day_label = "Columbus Day"
     # Confederation day
     include_confederation_day = False
+    # Jefferson Davis Birthday.
+    include_jefferson_davis_birthday = False
 
     # Include Cesar Chavez day(s)
     include_cesar_chavez_day = False
@@ -74,6 +76,62 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     # Some regional variants
     include_mardi_gras = False
+
+    # Shift day mechanism
+    # These days won't be shifted to next MON or previous FRI
+    shift_exceptions = (
+        # Exemple:
+        # (11, 11),  # Veterans day won't be shifted
+    )
+
+    def shift(self, holidays, year):
+        new_holidays = []
+        holiday_lookup = [x[0] for x in holidays]
+        exceptions = [
+            date(year, month, day) for month, day in self.shift_exceptions
+        ]
+
+        # For each holiday available:
+        # * if it falls on SUN, add the observed on MON
+        # * if it falls on SAT, add the observed on FRI
+        for day, label in holidays:
+            # ... except if it's been explicitely excepted.
+            if day in exceptions:
+                continue
+            if day.weekday() == SAT:
+                new_holidays.append((day - timedelta(days=1),
+                                     label + " (Observed)"))
+            elif day.weekday() == SUN:
+                new_holidays.append((day + timedelta(days=1),
+                                     label + " (Observed)"))
+
+        # If year+1 January the 1st is on SAT, add the FRI before to observed
+        if date(year + 1, 1, 1).weekday() == SAT:
+            new_holidays.append((date(year, 12, 31,),
+                                 "New Years Day (Observed)"))
+
+        # Special rules for XMas and XMas Eve
+        christmas = date(year, 12, 25)
+        christmas_eve = date(year, 12, 24)
+        # Is XMas eve in your calendar?
+        if christmas_eve in holiday_lookup:
+            # You are observing the THU before, as an extra XMas Eve
+            if christmas.weekday() == SAT:
+                # Remove the "fake" XMAS Day shift, the one done before.
+                new_holidays.remove(
+                    (christmas_eve, "Christmas Day (Observed)")
+                )
+                new_holidays.append((date(year, 12, 23),
+                                     "Christmas Eve (Observed)"))
+            # You are observing the 26th (TUE)
+            elif christmas.weekday() == MON:
+                # Remove the "fake" XMAS Eve shift, done before
+                new_holidays.remove(
+                    (christmas, "Christmas Eve (Observed)")
+                )
+                new_holidays.append((date(year, 12, 26),
+                                     "Christmas Day (Observed)"))
+        return holidays + new_holidays
 
     @staticmethod
     def is_presidential_year(year):
@@ -110,6 +168,15 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")
+
+    def get_jefferson_davis_birthday(self, year):
+        """
+        The first MON of June is Jefferson Davis Birthday
+        """
+        return (
+            self.get_nth_weekday_in_month(year, 6, MON, 1),
+            "Jefferson Davis Birthday"
+        )
 
     def get_martin_luther_king_date(self, year):
         if year < 1985:
@@ -261,6 +328,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
+
+        if self.include_jefferson_davis_birthday:
+            days.append(self.get_jefferson_davis_birthday(year))
 
         ind = "January 20 (or 21st if Sunday) following an election year"
         if self.include_inauguration_day:
