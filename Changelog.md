@@ -2,13 +2,15 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+**Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
+
+- Global registry now returns plain built-in dicts (#375).
 
 ## v5.2.3 (2019-07-11)
 
 **Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
 
-- - Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar, thx to @KidkArolis (#389).
+- Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar, thx to @KidkArolis (#389).
 
 ## v5.2.2. (2019-07-07)
 
