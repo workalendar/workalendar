@@ -11,7 +11,7 @@ class TurkeyTest(GenericCalendarTest):
     def test_year_new_year_shift(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)
-        self.assertIn(date(2012, 1, 2), holidays)
+        self.assertNotIn(date(2012, 1, 2), holidays)
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)
         self.assertNotIn(date(2013, 1, 2), holidays)

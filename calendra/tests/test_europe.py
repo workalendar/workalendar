@@ -143,7 +143,7 @@ class CaymanIslandsTest(GenericCalendarTest):
     def test_holidays_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 1, 1), holidays)
-        self.assertIn(date(2017, 1, 2), holidays)  # New Year boxing
+        self.assertNotIn(date(2017, 1, 2), holidays)  # New Year boxing
         self.assertIn(date(2017, 1, 23), holidays)  # National Heroes Day
         self.assertIn(date(2017, 3, 1), holidays)   # Ash Wednesday
         self.assertIn(date(2017, 4, 14), holidays)  # good friday
@@ -870,7 +870,7 @@ class UnitedKingdomTest(GenericCalendarTest):
     def test_year_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 1), holidays)  # new year day
-        self.assertIn(date(2012, 1, 2), holidays)  # new year shift
+        self.assertNotIn(date(2012, 1, 2), holidays)  # new year shift
         self.assertIn(date(2012, 4, 6), holidays)  # good friday
         self.assertIn(date(2012, 4, 8), holidays)  # easter sunday
         self.assertIn(date(2012, 4, 9), holidays)  # easter monday

@@ -1740,8 +1740,7 @@ class NormalShiftTestCase(UnitedStatesTest):
         observed = date(2015, 7, 3)
         self.assertIn(fourth_july, holiday_dict)
         self.assertEqual(holiday_dict[fourth_july], "Independence Day")
-        self.assertIn(observed, holiday_dict)
-        self.assertEqual(holiday_dict[observed], "Independence Day (Observed)")
+        self.assertNotIn(observed, holiday_dict)
 
     def test_shift_2010(self):
         # Test a normal shift on 4th of July.
@@ -1752,19 +1751,14 @@ class NormalShiftTestCase(UnitedStatesTest):
         observed = date(2010, 7, 5)
         self.assertIn(fourth_july, holiday_dict)
         self.assertEqual(holiday_dict[fourth_july], "Independence Day")
-        self.assertIn(observed, holiday_dict)
-        self.assertEqual(holiday_dict[observed], "Independence Day (Observed)")
+        self.assertNotIn(observed, holiday_dict)
 
     def test_new_years_shift(self):
         # If January, 1st *of the year after* happens on SAT, add New Years Eve
         holidays = self.cal.holidays(2010)
         holiday_dict = dict(holidays)
         new_years_eve = date(2010, 12, 31)
-        self.assertIn(new_years_eve, holiday_dict)
-        self.assertEqual(
-            holiday_dict[new_years_eve],
-            "New Years Day (Observed)"
-        )
+        self.assertNotIn(new_years_eve, holiday_dict)
         # The year after, it's not shifted
         holidays = self.cal.holidays_set(2011)
         new_years_eve = date(2011, 12, 31)
@@ -1778,12 +1772,10 @@ class NormalShiftTestCase(UnitedStatesTest):
         # * 23rd (XMas Eve shifted on THU)
         holidays = self.cal.holidays(2010)
         holiday_dict = dict(holidays)
-        dec_23rd = date(2010, 12, 23)
         dec_24th = date(2010, 12, 24)
         dec_25th = date(2010, 12, 25)
-        for day in (dec_23rd, dec_24th, dec_25th):
+        for day in (dec_24th, dec_25th):
             self.assertIn(day, holiday_dict)
-        self.assertEqual(holiday_dict[dec_23rd], "Christmas Eve (Observed)")
         self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
         self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
 
@@ -1796,12 +1788,10 @@ class NormalShiftTestCase(UnitedStatesTest):
         holiday_dict = dict(holidays)
         dec_24th = date(2006, 12, 24)
         dec_25th = date(2006, 12, 25)
-        dec_26th = date(2006, 12, 26)
-        for day in (dec_24th, dec_25th, dec_26th):
+        for day in (dec_24th, dec_25th):
             self.assertIn(day, holiday_dict)
         self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
         self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
-        self.assertEqual(holiday_dict[dec_26th], "Christmas Day (Observed)")
 
 
 class NormalShiftTestCaseExceptions(UnitedStatesTest):
