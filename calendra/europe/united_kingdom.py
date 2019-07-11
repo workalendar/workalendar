@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from datetime import date
-from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
@@ -54,7 +53,8 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         elif year == 2002:
             spring_bank_holiday = date(2002, 6, 4)
         else:
-            spring_bank_holiday = UnitedKingdom.get_last_weekday_in_month(year, 5, MON)
+            spring_bank_holiday = UnitedKingdom. \
+                get_last_weekday_in_month(year, 5, MON)
         return Holiday(
             spring_bank_holiday,
             "Spring Bank Holiday",
