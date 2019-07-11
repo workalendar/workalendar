@@ -18,7 +18,7 @@ from ..oceania import (
     WesternAustralia
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 AUSTRALIAN_TERRITORIES = (
     AustralianCapitalTerritory,

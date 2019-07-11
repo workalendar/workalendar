@@ -10,7 +10,7 @@ from ..africa import (
     SouthAfrica,
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 
 class RegistryAfrica(TestCase):

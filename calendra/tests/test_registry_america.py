@@ -29,7 +29,7 @@ from ..america import (
 )
 from ..america import Chile, Colombia, Mexico, Panama, Paraguay
 
-from ..registry import registry
+from ..registry_tools import registry
 
 
 class RegistryAmerica(TestCase):

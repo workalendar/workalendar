@@ -55,7 +55,7 @@ from ..usa import (
     Wyoming
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 
 class RegistryUsa(TestCase):

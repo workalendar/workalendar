@@ -1,7 +1,7 @@
 from datetime import date
 from unittest import TestCase
 
-from ..registry import IsoRegistry
+from ..registry_tools import IsoRegistry
 from ..core import Calendar
 
 

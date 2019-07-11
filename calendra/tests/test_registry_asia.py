@@ -12,7 +12,7 @@ from ..asia import (
     Taiwan,
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 
 class RegistryAsia(TestCase):
