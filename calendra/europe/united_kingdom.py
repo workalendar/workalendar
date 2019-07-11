@@ -36,7 +36,7 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         if year == 2020:
             return Holiday(
                 date(year, 5, 8),
-                "Early May Bank Holiday (VE day)",
+                "Early May bank holiday (VE day)",
                 indication="VE day",
             )
         else:
