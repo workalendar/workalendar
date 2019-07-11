@@ -6,11 +6,11 @@ setuptools.setup(
     requires=[
         'pyluach',
     ],
-    # install_requires=[
-    #    'pandas',
-    #    'pytest-cov',
-    #    'pytest-flake8',
-    # ],
+    tests_require=[
+        'pandas',
+        'pytest-cov',
+        'pytest-flake8',
+    ],
 )
 
 if __name__ == "__main__":
