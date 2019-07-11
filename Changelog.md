@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar
 
 ## v5.2.2. (2019-07-07)
 
