@@ -18,13 +18,13 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     shift_new_years_day = True
     non_computable_holiday_dict = {
-        1973: [(date(1973, 11, 14), "Royal wedding")],
-        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee")],
-        1981: [(date(1981, 7, 29), "Royal wedding")],
-        1999: [(date(1999, 12, 31), "New Year's Eve")],
-        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee")],
-        2011: [(date(2011, 4, 29), "Royal Wedding")],
-        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee")],
+        1973: [(date(1973, 11, 14), "Royal wedding"), ],
+        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee"), ],
+        1981: [(date(1981, 7, 29), "Royal wedding"), ],
+        1999: [(date(1999, 12, 31), "New Year's Eve"), ],
+        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
+        2011: [(date(2011, 4, 29), "Royal Wedding"), ],
+        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
     }
 
     def get_early_may_bank_holiday(self, year):
