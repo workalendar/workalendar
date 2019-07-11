@@ -1,14 +1,14 @@
 # CHANGELOG
 
-## master (unreleased)
-
-- Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar
-
-## v5.2.2. (2019-07-07)
+## v5.2.3 (2019-07-11)
 
 **Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
 
-- Fix Denmark, remove observances (remove Palm Sunday, Constitution Day, Christmas Eve and New Year's Eve) (#387, #386)
+- - Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar, thx to @KidkArolis (#389).
+
+## v5.2.2. (2019-07-07)
+
+- Fix Denmark, remove observances (remove Palm Sunday, Constitution Day, Christmas Eve and New Year's Eve), thx to @KidkArolis (#387, #386).
 
 ## v5.2.1 (2019-07-05)
 
