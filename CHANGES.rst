@@ -4,10 +4,11 @@
 
 Incorporate changes from workalendar v5.2.2. (2019-07-07)
 
+- **Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
 - Fix Denmark, remove observances (remove Palm Sunday, Constitution Day, Christmas Eve and New Year's Eve) (#387, #386)
 
 Incorporate changes from workalendar v5.2.1 (2019-07-05)
-    
+
 - Refactored the package building procedure, now linked to `make package` ; added a note about this target in the PR template (#366).
 - Fixed United Kingom's 2020 holidays ; The Early May Bank Holiday has been moved to May 8th to commemorate the 75th anniversary of the end of WWII (#381).
 
