@@ -27,7 +27,7 @@ REQUIREMENTS = [
     'pyluach',
     'setuptools>=1.0',
 ]
-version = '5.2.3'
+version = '6.0.0.dev5'
 __VERSION__ = version
 
 params = dict(
