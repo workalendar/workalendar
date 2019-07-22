@@ -3,13 +3,14 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
 
-from ..core import MON, EphemMixin
+from ..core import MON
 from ..core import WesternCalendar
+from ..astronomy import calculate_equinoxes
 from ..registry_tools import iso_register
 
 
 @iso_register('JP')
-class Japan(WesternCalendar, EphemMixin):
+class Japan(WesternCalendar):
     "Japan"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -59,7 +60,7 @@ class Japan(WesternCalendar, EphemMixin):
     def get_variable_days(self, year):
         # usual variable days
         days = super(Japan, self).get_variable_days(year)
-        equinoxes = self.calculate_equinoxes(year, 'Asia/Tokyo')
+        equinoxes = calculate_equinoxes(year, 'Asia/Tokyo')
         coming_of_age_day = Japan.get_nth_weekday_in_month(year, 1, MON, 2)
         marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)
         respect_for_the_aged = Japan.get_nth_weekday_in_month(year, 9, MON, 3)

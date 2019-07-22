@@ -5,6 +5,7 @@
 **Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
 
 - Global registry now returns plain built-in dicts (#375).
+- Removed `EphemMixin` in favor of astronomical functions (#302).
 
 ## v5.2.3 (2019-07-11)
 
