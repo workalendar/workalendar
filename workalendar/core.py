@@ -314,7 +314,7 @@ class Calendar(object):
         day = day + timedelta(days=day_delta)
         return day
 
-    def get_working_days_delta(self, start, end):
+    def get_working_days_delta(self, start, end, include_start=False):
         """
         Return the number of working day between two given dates.
         The order of the dates provided doesn't matter.
@@ -344,8 +344,10 @@ class Calendar(object):
 
         if start > end:
             start, end = end, start
+
         # Starting count here
-        count = 0
+        
+        count = 1 if include_start and self.is_working_day(start) else 0
         while start < end:
             start += timedelta(days=1)
             if self.is_working_day(start):
