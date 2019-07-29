@@ -346,7 +346,6 @@ class Calendar(object):
             start, end = end, start
 
         # Starting count here
-        
         count = 1 if include_start and self.is_working_day(start) else 0
         while start < end:
             start += timedelta(days=1)

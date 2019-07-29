@@ -426,8 +426,8 @@ class WorkingDaysDeltatest(TestCase):
     def test_with_including_first_day(self):
         # linked to #393
         cal = MockChristianCalendar()
-        day1 = date(2018, 12, 24) # December 24th: not holiday so working day
-        day2 = date(2018, 12, 25) # December 25th: Christmas
+        day1 = date(2018, 12, 24)  # December 24th: not holiday so working day
+        day2 = date(2018, 12, 25)  # December 25th: Christmas
 
         # not including the first day, should return 0
         delta = cal.get_working_days_delta(day1, day2)
