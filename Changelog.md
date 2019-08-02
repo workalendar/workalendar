@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v6.0.0 (2019-08-02)
 
 **Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
