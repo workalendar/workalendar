@@ -335,6 +335,19 @@ class Calendar(object):
 
         This method should even work if your ``start`` and ``end`` arguments
         are datetimes.
+
+        By default, if the day after you start is not a working day, the count will start at 0.
+        If include_start is set to true, this day will be taken into account.
+        Example:
+
+        >>> cal = France()
+        >>> day1 = parse('09/05/2018 00:01', dayfirst=True)
+        >>> day2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
+        >>> cal.get_working_days_delta(day_1, day_2)
+        0
+
+        >>> cal.get_working_days_delta(day_1, day_2, include_start=True)
+        1
         """
         start = cleaned_date(start)
         end = cleaned_date(end)

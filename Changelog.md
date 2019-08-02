@@ -6,6 +6,7 @@
 
 - Global registry now returns plain built-in dicts (#375).
 - Removed `EphemMixin` in favor of astronomical functions (#302).
+- Added first day counting when computing working_days delta (#393)
 
 ## v5.2.3 (2019-07-11)
 
