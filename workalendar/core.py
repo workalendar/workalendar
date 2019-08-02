@@ -336,8 +336,10 @@ class Calendar(object):
         This method should even work if your ``start`` and ``end`` arguments
         are datetimes.
 
-        By default, if the day after you start is not a working day, the count will start at 0.
-        If include_start is set to true, this day will be taken into account.
+        By default, if the day after you start is not a working day, 
+        the count will start at 0. If include_start is set to true, 
+        this day will be taken into account.
+        
         Example:
 
         >>> cal = France()
