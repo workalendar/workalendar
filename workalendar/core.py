@@ -314,7 +314,7 @@ class Calendar(object):
         day = day + timedelta(days=day_delta)
         return day
 
-    def get_working_days_delta(self, start, end):
+    def get_working_days_delta(self, start, end, include_start=False):
         """
         Return the number of working day between two given dates.
         The order of the dates provided doesn't matter.
@@ -335,6 +335,21 @@ class Calendar(object):
 
         This method should even work if your ``start`` and ``end`` arguments
         are datetimes.
+
+        By default, if the day after you start is not a working day,
+        the count will start at 0. If include_start is set to true,
+        this day will be taken into account.
+
+        Example:
+
+        >>> cal = France()
+        >>> day1 = parse('09/05/2018 00:01', dayfirst=True)
+        >>> day2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
+        >>> cal.get_working_days_delta(day_1, day_2)
+        0
+
+        >>> cal.get_working_days_delta(day_1, day_2, include_start=True)
+        1
         """
         start = cleaned_date(start)
         end = cleaned_date(end)
@@ -344,8 +359,9 @@ class Calendar(object):
 
         if start > end:
             start, end = end, start
+
         # Starting count here
-        count = 0
+        count = 1 if include_start and self.is_working_day(start) else 0
         while start < end:
             start += timedelta(days=1)
             if self.is_working_day(start):

@@ -423,6 +423,20 @@ class WorkingDaysDeltatest(TestCase):
         delta = cal.get_working_days_delta(day2, day1)
         self.assertEqual(delta, 2)
 
+    def test_with_including_first_day(self):
+        # linked to #393
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 24)  # December 24th: not holiday so working day
+        day2 = date(2018, 12, 25)  # December 25th: Christmas
+
+        # not including the first day, should return 0
+        delta = cal.get_working_days_delta(day1, day2)
+        self.assertEqual(delta, 0)
+
+        # including the first day, should return 1
+        delta = cal.get_working_days_delta(day1, day2, include_start=True)
+        self.assertEqual(delta, 1)
+
 
 class NoDocstring(Calendar):
     pass
