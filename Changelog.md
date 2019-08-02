@@ -1,12 +1,12 @@
 # CHANGELOG
 
-## master (unreleased)
+## v6.0.0 (2019-08-02)
 
 **Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
 
 - Global registry now returns plain built-in dicts (#375).
 - Removed `EphemMixin` in favor of astronomical functions (#302).
-- Added first day counting when computing working_days delta (#393)
+- Added first day counting when computing working_days delta (#393), thx @Querdos.
 
 ## v5.2.3 (2019-07-11)
 
