@@ -38,12 +38,11 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
                 "Early May bank holiday (VE day)",
                 indication="VE day",
             )
-        else:
-            return Holiday(
-                UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
-                "Early May Bank Holiday",
-                indication="1st Monday in May",
-            )
+        return Holiday(
+            UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
+            "Early May Bank Holiday",
+            indication="1st Monday in May",
+        )
 
     def get_spring_bank_holiday(self, year):
         if year == 2012:

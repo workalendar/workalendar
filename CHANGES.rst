@@ -30,8 +30,6 @@ Incorporate changes from workalendar v5.1.1 (2019-06-27)
 
 Incorporate changes from workalendar v5.1.0 (2019-06-24)
 
-- **Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
-
 - New Calendar
 
     - Added Turkey by @tayyipgoren (#371).

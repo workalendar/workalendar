@@ -274,8 +274,11 @@ Syncing from upstream Workalendar
 
     git diff 5.2.2..HEAD
 
-6. Proceed with care, and test as needed::
+6. Merge, based on the diff command above, and a careful review/tweaking
+   of the results.
+
+7. Proceed with care, and test as needed::
 
     tox
 
-7. Generate a PR when ready!
+8. Generate a PR when ready!
