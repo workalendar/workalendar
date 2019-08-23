@@ -19,7 +19,8 @@ def read_relative_file(filename):
 NAME = 'workalendar'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
-    'ephem',
+    'skyfield',
+    'skyfield-data',
     'python-dateutil',
     'lunardate',
     'pytz',
