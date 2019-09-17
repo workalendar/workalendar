@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+Nothing here yet.
+
 ## v6.0.1 (2019-09-17)
 
 - Fix Turkey Republic Day (#399, thx to @mhmtozc & @Natim).
