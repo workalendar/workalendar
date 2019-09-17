@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fix Turkey Republic Day.
 
 ## v6.0.0 (2019-08-02)
 
