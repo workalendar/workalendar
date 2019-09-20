@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## v7.0.0 (2019-09-20)
 
 - Drop `ephem` astronomical calculation library, in favor of `skyfield` and `skyfield-data` for providing minimal data files to enable computation (#302, #348). Many thanks to @GammaSagittarii for the tremendous help on finding the right way to compute Chinese Solar Terms. Also thanks to @antvig and @DainDwarf for testing the beta version (#398).
 
