@@ -61,13 +61,6 @@ class IsoRegistry(object):
                 if iso_code and cls.__name__ == class_name:
                     self.register(iso_code, cls)
 
-    def _code_elements(self, iso_code):
-        code_elements = iso_code.split('-')
-        is_subregion = False
-        if len(code_elements) > 1:
-            is_subregion = True
-        return code_elements, is_subregion
-
     def get_calendar_class(self, iso_code):
         """
         Retrieve calendar class associated with given ``iso_code``.
@@ -96,8 +89,7 @@ class IsoRegistry(object):
         """
         items = dict()
         for key, value in self.region_registry.items():
-            code_elements, is_subregion = self._code_elements(key)
-            if is_subregion and code_elements[0] == iso_code:
+            if key.startswith("{}-".format(iso_code)):
                 items[key] = value
         return items
 

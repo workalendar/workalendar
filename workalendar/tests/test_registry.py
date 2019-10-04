@@ -48,8 +48,9 @@ class MockCalendarTest(TestCase):
         registry.register('RE-SR', self.subregion)
         registry.register('OR-SR', self.subregion)
         subregions = registry.get_subregions('RE')
-        self.assertIn('RE-SR', subregions)
+        # Only one sub-region here
         self.assertEqual(1, len(subregions))
+        self.assertIn('RE-SR', subregions)
 
     def test_get_items(self):
         registry = IsoRegistry(load_standard_modules=False)
