@@ -33,8 +33,14 @@ class MockCalendarTest(TestCase):
     def test_get_calendar_class(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
+        registry.register('RE-SR', self.subregion)
         calendar_class = registry.get_calendar_class('RE')
         self.assertEqual(calendar_class, RegionCalendar)
+        # Subregion
+        calendar_class = registry.get_calendar_class('RE-SR')
+        self.assertEqual(calendar_class, SubRegionCalendar)
+        # Unknown code/region
+        self.assertIsNone(registry.get_calendar_class('XX'))
 
     def test_get_subregions(self):
         registry = IsoRegistry(load_standard_modules=False)

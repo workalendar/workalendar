@@ -79,14 +79,7 @@ class IsoRegistry(object):
 
         :rtype: Calendar
         """
-        code_elements, is_subregion = self._code_elements(iso_code)
-        if is_subregion and iso_code not in self.region_registry:
-            # subregion code not in region_registry
-            code = code_elements[0]
-        else:
-            # subregion code in region_registry or is not a subregion
-            code = iso_code
-        return self.region_registry.get(code)
+        return self.region_registry.get(iso_code)
 
     def get_subregions(self, iso_code):
         """
