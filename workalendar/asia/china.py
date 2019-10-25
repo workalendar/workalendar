@@ -54,11 +54,13 @@ class China(ChineseNewYearCalendar, WesternCalendar):
 
     include_chinese_new_year_eve = True
 
-    extra_working_days = []
-    for year, data in workdays.items():
-        for holiday_name, day_list in data.items():
-            for v in day_list:
-                extra_working_days.append(date(year, v[0], v[1]))
+    def __init__(self, *args, **kwargs):
+        super(China, self).__init__(*args, **kwargs)
+        self.extra_working_days = []
+        for year, data in workdays.items():
+            for holiday_name, day_list in data.items():
+                for v in day_list:
+                    self.extra_working_days.append(date(year, v[0], v[1]))
 
     def get_calendar_holidays(self, year):
         warnings.warn("Support 2018, 2019 currently, need update every year.")

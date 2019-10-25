@@ -5,6 +5,8 @@ from workalendar.asia import (
     HongKong, Japan, JapanBank, Qatar, Singapore,
     SouthKorea, Taiwan, Malaysia, China, Israel
 )
+from workalendar.asia.china import holidays as china_holidays
+from workalendar.exceptions import CalendarError
 
 
 class ChinaTest(GenericCalendarTest):
@@ -36,6 +38,35 @@ class ChinaTest(GenericCalendarTest):
         self.assertIn(date(2019, 5, 2), holidays)  # Labour Day Holiday
         self.assertIn(date(2019, 5, 3), holidays)  # Labour Day Holiday
         self.assertNotIn(date(2019, 5, 5), holidays)  # Labour Day Shift
+
+    def test_missing_holiday_year(self):
+        save_2018 = china_holidays[2018]
+        del china_holidays[2018]
+        with self.assertRaises(CalendarError):
+            self.cal.holidays_set(2018)
+        china_holidays[2018] = save_2018
+
+    def test_is_working_day(self):
+        # It's a SAT, but it's a working day this year
+        self.assertTrue(self.cal.is_working_day(date(2019, 2, 2)))
+        # It's a SUN, but it's a working day this year
+        self.assertTrue(self.cal.is_working_day(date(2019, 2, 3)))
+
+    def test_add_working_days(self):
+        # Normally, February 1st + 1 working day would be on February 4th
+        # Because 2nd and 3rd are on SAT and SUN.
+        self.assertEqual(
+            self.cal.add_working_days(date(2019, 2, 1), 1),
+            date(2019, 2, 2)
+        )
+
+    def test_sub_working_days(self):
+        # Normally, February 4th - 1 working day would be on February 1st
+        # Because 2nd and 3rd are on SAT and SUN.
+        self.assertEqual(
+            self.cal.sub_working_days(date(2019, 2, 4), 1),
+            date(2019, 2, 3)
+        )
 
 
 class HongKongTest(GenericCalendarTest):
