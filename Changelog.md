@@ -2,7 +2,7 @@
 
 ## master
 
-Nothing here yet.
+- Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam
 
 ## v7.0.0 (2019-09-20)
 
