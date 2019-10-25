@@ -278,6 +278,22 @@ class MalaysiaTest(GenericCalendarTest):
             set(range(2010, 2021))
         )
 
+    def test_missing_deepavali(self):
+        save_2020 = self.cal.MSIA_DEEPAVALI[2020]
+        del self.cal.MSIA_DEEPAVALI[2020]
+        with self.assertRaises(KeyError):
+            self.cal.holidays(2020)
+        # Back to normal, to avoid breaking further tests
+        self.cal.MSIA_DEEPAVALI[2020] = save_2020
+
+    def test_missing_thaipusam(self):
+        save_2020 = self.cal.MSIA_THAIPUSAM[2020]
+        del self.cal.MSIA_THAIPUSAM[2020]
+        with self.assertRaises(KeyError):
+            self.cal.holidays(2020)
+        # Back to normal, to avoid breaking further tests
+        self.cal.MSIA_THAIPUSAM[2020] = save_2020
+
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar
