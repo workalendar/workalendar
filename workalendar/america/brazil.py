@@ -74,6 +74,7 @@ class BrazilAcre(Brazil):
         (6, 15, "Aniversário do Acre"),
         (9, 5, "Dia da Amazônia"),
         (11, 17, "Assinatura do Tratado de Petrópolis"),
+        (8, 6, "Início da Revolução Acreana"),
     )
 
 
@@ -94,6 +95,7 @@ class BrazilAmapa(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 25, "São Tiago"),
         (10, 5, "Criação do estado"),
+        (9, 13, "Aniversário da Amapá"),
     )
     include_sao_jose = True
     sao_jose_label = "Dia de São José"
@@ -123,6 +125,7 @@ class BrazilCeara(Brazil):
     "Brazil Ceará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (3, 23, "Data Manga do Ceará"),
+        (3, 25, "Aniversário do Ceará"),
     )
     include_sao_jose = True
 
@@ -157,6 +160,15 @@ class BrazilMaranhao(Brazil):
     include_nossa_senhora_conceicao = True
 
 
+@iso_register('BR-IBGE-31')
+@iso_register('BR-MG')
+class BrazilMinasGerais(Brazil):
+    "Brasil Minas Gerais State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 21, "Aniversário de Minas Gerais"),
+    )
+
+
 @iso_register('BR-MT')
 class BrazilMatoGrosso(Brazil):
     "Brazil Mato Grosso State"
@@ -178,6 +190,7 @@ class BrazilPara(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
     )
+    include_nossa_senhora_conceicao = True
 
 
 @iso_register('BR-PB')
@@ -185,12 +198,16 @@ class BrazilParaiba(Brazil):
     "Brazil Paraíba State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 5, "Fundação do Estado"),
+        (7, 26, "Homenagem à memória do ex-presidente João Pessoa"),
     )
 
 
 @iso_register('BR-PE')
 class BrazilPernambuco(Brazil):
     "Brazil Pernambuco State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 3, "Revolução Pernambucana de 1817"),
+    )
     include_sao_joao = True
 
 
@@ -200,6 +217,14 @@ class BrazilPiaui(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (3, 13, "Dia da Batalha do Jenipapo"),
         (10, 19, "Dia do Piauí"),
+    )
+
+
+@iso_register('BR-PR')
+class BrazilParana(Brazil):
+    "Brazil Paraná State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (12, 19, "Aniversário do Paraná"),
     )
 
 
@@ -270,6 +295,7 @@ class BrazilSantaCatarina(Brazil):
     "Brazil Santa Catarina State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 11, "Criação da capitania, separando-se de SP"),
+        (11, 25, "Dia de Santa Catarina de Alexandria"),
     )
 
 
@@ -314,6 +340,7 @@ class BrazilTocantins(Brazil):
         (1, 1, "Instalação de Tocantins"),
         (9, 8, "Nossa Senhora da Natividade"),
         (10, 5, "Criação de Tocantins"),
+        (3, 18, "Autonomia do estado de Tocantins"),
     )
 
 
