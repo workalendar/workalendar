@@ -290,37 +290,38 @@ class NewZealandTest(GenericCalendarTest):
         # New Years was on a sunday
         # Day After New Years is on the 2nd
         self.assertIn(date(2012, 1, 2), holidays)
-        # New Years Shift is on the 3rd
-        self.assertIn(date(2012, 1, 3), holidays)
+        # New Years observed on the 3rd
+        assert self.cal.is_observed_holiday(date(2012, 1, 3))
 
     def test_anzac_shift(self):
         holidays = self.cal.holidays_set(2010)
         # 25th was a sunday
         # ANZAC Day is on 25th
         self.assertIn(date(2010, 4, 25), holidays)
-        # ANZAC Day Shift is on 26th
-        self.assertIn(date(2010, 4, 26), holidays)
+        # ANZAC Day observed on 26th
+        assert self.cal.is_observed_holiday(date(2010, 4, 26))
 
     def test_waitangi_shift(self):
         holidays = self.cal.holidays_set(2016)
         # 6th was a saturday
         # Waitangi Day is on 6th
         self.assertIn(date(2016, 2, 6), holidays)
-        # Waitangi Day Shift is on 7th
-        self.assertIn(date(2016, 2, 8), holidays)
+        # Waitangi Day observed on 8th
+        assert self.cal.is_observed_holiday(date(2016, 2, 8))
 
     def test_oceania_shift_2016(self):
         holidays = self.cal.holidays_set(2016)
         # Christmas day is on sunday in 2016
         # Boxing day is on 26th
         self.assertIn(date(2016, 12, 26), holidays)
-        # Christmas day shift on 27th
-        self.assertIn(date(2016, 12, 27), holidays)
+        # Christmas day observed on 26th and boxing day on 27th
+        assert self.cal.is_observed_holiday(date(2016, 12, 26))
+        assert self.cal.is_observed_holiday(date(2016, 12, 27))
 
     def test_oceania_shift_2009(self):
         holidays = self.cal.holidays_set(2009)
         # Boxing day is on saturday in 2009
         # Boxing day is on 26th
         self.assertIn(date(2009, 12, 26), holidays)
-        # Boxing day shift on 28th
-        self.assertIn(date(2009, 12, 28), holidays)
+        # Boxing day is observed on 28th
+        assert self.cal.is_observed_holiday(date(2009, 12, 28))
