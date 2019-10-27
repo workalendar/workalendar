@@ -936,15 +936,17 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2020, 5, 25), holidays)  # Spring Bank Holiday
         self.assertIn(date(2020, 8, 31), holidays)  # Late Summer Bank Holiday
         self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
-        self.assertIn(date(2020, 12, 26), holidays)  # 'Boxing Day
-        self.assertIn(date(2020, 12, 28), holidays)  # Boxing Day Shift
+        self.assertIn(date(2020, 12, 26), holidays)  # Boxing Day
+
+        # Boxing observed
+        assert self.cal.is_observed_holiday(date(2020, 12, 28))
 
         # May the 8th is VE day
         holidays = self.cal.holidays(2020)
         holidays = dict(holidays)
         self.assertIn(date(2020, 5, 8), holidays)
         self.assertEqual(
-            holidays[date(2020, 5, 8)], "Early May bank holiday (VE day)"
+            holidays[date(2020, 5, 8)], "Early May Bank Holiday (VE day)"
         )
 
 

@@ -2,9 +2,10 @@
 from __future__ import unicode_literals
 from datetime import date
 
+from dateutil import relativedelta as rd
+
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
-from ..core import MON
 from ..registry_tools import iso_register
 
 
@@ -31,38 +32,32 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         """
         Return Early May bank holiday
         """
+        day = date(year, 5, 1) + rd.relativedelta(weekday=rd.MO(1))
+        desc = "Early May Bank Holiday"
+        indication = "1st Monday in May"
+
         # Special case in 2020, for the 75th anniversary of the end of WWII.
         if year == 2020:
-            return Holiday(
-                date(year, 5, 8),
-                "Early May bank holiday (VE day)",
-                indication="VE day",
-            )
-        return Holiday(
-            UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
-            "Early May Bank Holiday",
-            indication="1st Monday in May",
-        )
+            day = date(year, 5, 8)
+            desc += " (VE day)"
+            indication = "VE day"
+        return Holiday(day, desc, indication=indication)
 
     def get_spring_bank_holiday(self, year):
-        if year == 2012:
-            spring_bank_holiday = date(2012, 6, 4)
-        elif year == 1977:
-            spring_bank_holiday = date(1977, 6, 6)
-        elif year == 2002:
-            spring_bank_holiday = date(2002, 6, 4)
-        else:
-            spring_bank_holiday = UnitedKingdom. \
-                get_last_weekday_in_month(year, 5, MON)
+        day = date(year, 5, 30) + rd.relativedelta(weekday=rd.MO(-1))
+        if year in (2012, 2002):
+            day = date(year, 6, 4)
+        if year in (1977,):
+            day = date(year, 6, 6)
         return Holiday(
-            spring_bank_holiday,
+            day,
             "Spring Bank Holiday",
-            indication="Last Monday in May"
-        )
+            indication="Last Monday in May",
+        ),
 
     def get_late_summer_bank_holiday(self, year):
         return Holiday(
-            UnitedKingdom.get_last_weekday_in_month(year, 8, MON),
+            date(year, 8, 31) + rd.relativedelta(weekday=rd.MO(-1)),
             "Late Summer Bank Holiday",
             indication="Last Monday in August",
         )
@@ -76,9 +71,6 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         days.append(self.get_early_may_bank_holiday(year))
         days.append(self.get_spring_bank_holiday(year))
         days.append(self.get_late_summer_bank_holiday(year))
-        # Boxing day & XMas shift
-        shifts = self.shift_christmas_boxing_days(year=year)
-        days.extend(shifts)
         non_computable = self.non_computable_holiday(year)
         if non_computable:
             days.extend(non_computable)
