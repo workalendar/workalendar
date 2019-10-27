@@ -27,9 +27,9 @@ from ..america import (
     Nunavut,
 
 )
-from ..america import Chile, Colombia, Mexico, Panama
+from ..america import Chile, Colombia, Mexico, Panama, Paraguay
 
-from ..registry import registry
+from ..registry_tools import registry
 
 
 class RegistryAmerica(TestCase):
@@ -89,6 +89,7 @@ class RegistryAmerica(TestCase):
         self.assertIn(Colombia, classes)
         self.assertIn(Mexico, classes)
         self.assertIn(Panama, classes)
+        self.assertIn(Paraguay, classes)
 
     def test_brazil_subregion(self):
         classes = (v for k, v in registry.get_subregions('BR').items())

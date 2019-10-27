@@ -2,8 +2,39 @@ from datetime import date
 
 from . import GenericCalendarTest
 
-from ..asia import HongKong, Japan, Qatar, Singapore
-from ..asia import SouthKorea, Taiwan, Malaysia
+from ..asia import HongKong, Japan, JapanBank, Qatar, Singapore
+from ..asia import SouthKorea, Taiwan, Malaysia, China, Israel
+
+
+class ChinaTest(GenericCalendarTest):
+
+    cal_class = China
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)    # New year
+        self.assertIn(date(2018, 2, 15), holidays)   # Spring Festival
+        self.assertIn(date(2018, 2, 21), holidays)   # Spring Festival
+        self.assertIn(date(2018, 10, 1), holidays)   # National Day
+        self.assertIn(date(2018, 10, 7), holidays)   # National Day
+
+        # Variable days
+        self.assertIn(date(2018, 4, 5), holidays)    # Ching Ming Festival
+        self.assertIn(date(2018, 4, 7), holidays)    # Ching Ming Festival
+        self.assertIn(date(2018, 4, 29), holidays)   # Labour Day Holiday
+        self.assertIn(date(2018, 5, 1), holidays)    # Labour Day Holiday
+        self.assertIn(date(2018, 6, 18), holidays)   # Dragon Boat Festival
+        self.assertIn(date(2018, 9, 24), holidays)   # Mid-Autumn Festival
+        self.assertIn(date(2018, 12, 30), holidays)  # New year
+        self.assertIn(date(2018, 12, 31), holidays)  # New year
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 4, 28), holidays)  # Labour Day Shift
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour Day Holiday
+        self.assertIn(date(2019, 5, 2), holidays)  # Labour Day Holiday
+        self.assertIn(date(2019, 5, 3), holidays)  # Labour Day Holiday
+        self.assertNotIn(date(2019, 5, 5), holidays)  # Labour Day Shift
 
 
 class HongKongTest(GenericCalendarTest):
@@ -149,6 +180,45 @@ class JapanTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 8, 11), holidays)   # Mountain Day
 
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 14), holidays)  # Coming of Age Day
+        self.assertIn(date(2019, 5, 1), holidays)  # Coronation Day
+        self.assertIn(date(2019, 5, 6), holidays)  # Children's Day
+        self.assertIn(date(2019, 8, 12), holidays)  # Mountain Day Observed
+        self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 7, 23), holidays)  # Marine Day
+        self.assertIn(date(2020, 7, 24), holidays)  # Sports Day
+        self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
+        self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
+        self.assertNotIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+
+
+class JapanBankTest(GenericCalendarTest):
+    cal_class = JapanBank
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 2), holidays)  # New Year's Bank Day
+        self.assertIn(date(2019, 1, 3), holidays)  # New Year's Bank Day
+        self.assertIn(date(2019, 1, 14), holidays)  # Coming of Age Day
+        self.assertIn(date(2019, 5, 3), holidays)  # Constitution Memorial Day
+        self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+        self.assertIn(date(2019, 12, 31), holidays)  # New Year's Bank Day
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 2), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 1, 3), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+        self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
+        self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
+        self.assertIn(date(2020, 7, 23), holidays)  # Marine Day
+        self.assertIn(date(2020, 7, 24), holidays)  # Sports Day
+
 
 class MalaysiaTest(GenericCalendarTest):
     cal_class = Malaysia
@@ -192,6 +262,21 @@ class MalaysiaTest(GenericCalendarTest):
         self.assertIn(date(2017, 6, 12), holidays)
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 6, 1), holidays)
+
+    def test_fix_deepavali_2018(self):
+        holidays = self.cal.holidays(2018)
+        holidays = dict(holidays)
+        deepavali = date(2018, 11, 6)
+        self.assertIn(deepavali, holidays)
+        self.assertEqual(holidays[deepavali], "Deepavali")
+
+    def test_msia_thaipusam(self):
+        years = self.cal.MSIA_THAIPUSAM.keys()
+        # we only have them for years 2010-2020
+        self.assertEqual(
+            set(years),
+            set(range(2010, 2021))
+        )
 
 
 class QatarTest(GenericCalendarTest):
@@ -331,3 +416,74 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
+
+
+class IsraelTest(GenericCalendarTest):
+
+    cal_class = Israel
+
+    def test_holidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+
+        self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
+        self.assertIn(date(2017, 4, 17), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2017, 5, 2), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was early in 2017
+        self.assertIn(date(2017, 5, 31), holidays)  # Shavuot
+        self.assertIn(
+            date(2017, 9, 21), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 22), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2017, 9, 30), holidays
+        )  # Yom Kippur (already a Saturday - Shabbat, weekend day)
+        self.assertIn(date(2017, 10, 5), holidays)  # Sukkot
+        self.assertIn(date(2017, 10, 12), holidays)  # Sukkot
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+
+        self.assertIn(date(2018, 3, 31), holidays)  # Passover (Pesach)
+        self.assertIn(date(2018, 4, 6), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2018, 4, 19), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2018
+        self.assertIn(date(2018, 5, 20), holidays)  # Shavuot
+        self.assertIn(
+            date(2018, 9, 10), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2018, 9, 11), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
+        self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
+        self.assertIn(date(2018, 9, 30), holidays)  # Sukkot
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+
+        self.assertIn(date(2019, 4, 20), holidays)  # Passover (Pesach)
+        self.assertIn(date(2019, 4, 26), holidays)  # Passover (Pesach)
+        self.assertIn(
+            date(2019, 5, 9), holidays
+        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2019
+        self.assertIn(date(2019, 6, 9), holidays)  # Shavuot
+        self.assertIn(
+            date(2019, 9, 30), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2019, 10, 1), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
+            date(2019, 10, 2), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(date(2019, 10, 9), holidays)  # Yom Kippur
+        self.assertIn(date(2019, 10, 14), holidays)  # Sukkot
+        self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
+
+        # Leap year Purim
+        self.assertIn(date(2019, 3, 21), holidays)  # purim
+        self.assertIn(date(2019, 3, 22), holidays)  # shushan purim

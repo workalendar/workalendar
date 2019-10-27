@@ -6,7 +6,7 @@ from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('GB')
@@ -18,26 +18,62 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_boxing_day = True
     shift_new_years_day = True
+    non_computable_holiday_dict = {
+        1973: [(date(1973, 11, 14), "Royal wedding"), ],
+        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee"), ],
+        1981: [(date(1981, 7, 29), "Royal wedding"), ],
+        1999: [(date(1999, 12, 31), "New Year's Eve"), ],
+        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
+        2011: [(date(2011, 4, 29), "Royal Wedding"), ],
+        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+    }
+
+    def get_early_may_bank_holiday(self, year):
+        """
+        Return Early May bank holiday
+        """
+        day = date(year, 5, 1) + rd.relativedelta(weekday=rd.MO(1))
+        desc = "Early May Bank Holiday"
+        indication = "1st Monday in May"
+
+        # Special case in 2020, for the 75th anniversary of the end of WWII.
+        if year == 2020:
+            day = date(year, 5, 8)
+            desc += " (VE day)"
+            indication = "VE day"
+        return Holiday(day, desc, indication=indication)
+
+    def get_spring_bank_holiday(self, year):
+        day = date(year, 5, 30) + rd.relativedelta(weekday=rd.MO(-1))
+        if year in (2012, 2002):
+            day = date(year, 6, 4)
+        if year in (1977,):
+            day = date(year, 6, 6)
+        return Holiday(
+            day,
+            "Spring Bank Holiday",
+            indication="Last Monday in May",
+        ),
+
+    def get_late_summer_bank_holiday(self, year):
+        return Holiday(
+            date(year, 8, 31) + rd.relativedelta(weekday=rd.MO(-1)),
+            "Late Summer Bank Holiday",
+            indication="Last Monday in August",
+        )
+
+    def non_computable_holiday(self, year):
+        non_computable = self.non_computable_holiday_dict.get(year, None)
+        return non_computable
 
     def get_variable_days(self, year):
         days = super(UnitedKingdom, self).get_variable_days(year)
-        days += [
-            Holiday(
-                date(year, 5, 1) + rd.relativedelta(weekday=rd.MO(1)),
-                "Early May Bank Holiday",
-                indication="1st Monday in May",
-            ),
-            Holiday(
-                date(year, 5, 30) + rd.relativedelta(weekday=rd.MO(-1)),
-                "Spring Bank Holiday",
-                indication="Last Monday in May",
-            ),
-            Holiday(
-                date(year, 8, 31) + rd.relativedelta(weekday=rd.MO(-1)),
-                "Late Summer Bank Holiday",
-                indication="Last Monday in August",
-            ),
-        ]
+        days.append(self.get_early_may_bank_holiday(year))
+        days.append(self.get_spring_bank_holiday(year))
+        days.append(self.get_late_summer_bank_holiday(year))
+        non_computable = self.non_computable_holiday(year)
+        if non_computable:
+            days.extend(non_computable)
         return days
 
 

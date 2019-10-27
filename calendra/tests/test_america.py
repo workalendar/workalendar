@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from . import GenericCalendarTest
-from ..america import Colombia
-from ..america import Mexico, Chile, Panama
+from ..america import Colombia, Barbados
+from ..america import Mexico, Chile, Panama, Paraguay
 
 
 class ChileTest(GenericCalendarTest):
@@ -116,6 +116,93 @@ class PanamaTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 5), holidays)  # colon day
         # Shout in Villa de los Santos
         self.assertIn(date(2013, 11, 10), holidays)
-        self.assertIn(date(2013, 12, 2), holidays)  # Independence from spain
+        self.assertIn(date(2013, 11, 28), holidays)  # Independence from spain
         self.assertIn(date(2013, 12, 8), holidays)  # mother day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
+
+
+class ParaguayTest(GenericCalendarTest):
+    cal_class = Paraguay
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)
+        self.assertIn(date(2019, 3, 1), holidays)  # Heroes day
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy thursday
+        self.assertIn(date(2019, 4, 19), holidays)  # Good friday
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2019, 5, 14), holidays)  # Independance day
+        self.assertIn(date(2019, 6, 12), holidays)  # Chaco Armistice Day
+        self.assertIn(date(2019, 8, 15), holidays)  # Founding of Asunción
+        self.assertIn(date(2019, 9, 29), holidays)  # Boqueron Battle Victory
+        self.assertIn(date(2019, 12, 8), holidays)  # Virgin of Caacupe
+        self.assertIn(date(2019, 12, 25), holidays)  # XMas
+
+    def test_holidays_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # In 2017, Heroes day has been moved to February 27th
+        self.assertNotIn(date(2017, 3, 1), holidays)
+        self.assertIn(date(2017, 2, 27), holidays)
+        # Fundation of Asunción day: moved to August 14 for 2017
+        self.assertNotIn(date(2017, 8, 15), holidays)
+        self.assertIn(date(2017, 8, 14), holidays)
+        # Boqueron Battle Victory Day: moved to October 2nd for 2017
+        self.assertNotIn(date(2017, 9, 29), holidays)
+        self.assertIn(date(2017, 10, 2), holidays)
+
+
+class BarbadosTest(GenericCalendarTest):
+    cal_class = Barbados
+
+    def test_holidays_2009(self):
+        holidays = self.cal.holidays_set(2009)
+        self.assertIn(date(2009, 1, 1), holidays)
+        self.assertIn(date(2009, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2009, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2009, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2009, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2009, 4, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2009, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2009, 6, 1), holidays)  # Whit Monday
+        self.assertIn(date(2009, 8, 1), holidays)  # Emancipation Day
+        self.assertIn(date(2009, 8, 3), holidays)  # Kabooment Day
+        self.assertIn(date(2009, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2009, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2009, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)
+        self.assertIn(date(2018, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2018, 1, 22), holidays)  # Errol Barrow Day (shift)
+        self.assertIn(date(2018, 3, 30), holidays)  # Good Friday
+        self.assertIn(date(2018, 4, 1), holidays)  # Easter Sunday
+        self.assertIn(date(2018, 4, 2), holidays)  # Easter Monday
+        self.assertIn(date(2018, 4, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2018, 5, 21), holidays)  # Whit Monday
+        self.assertIn(date(2018, 8, 1), holidays)  # Emancipation Day
+        self.assertIn(date(2018, 8, 6), holidays)  # Kabooment Day
+        self.assertIn(date(2018, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2018, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2018, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)
+        self.assertIn(date(2019, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2019, 4, 19), holidays)  # Good Friday
+        self.assertIn(date(2019, 4, 21), holidays)  # Easter Sunday
+        self.assertIn(date(2019, 4, 22), holidays)  # Easter Monday
+
+        # National Heroes Day & shift
+        self.assertIn(date(2019, 4, 28), holidays)
+        self.assertIn(date(2019, 4, 29), holidays)  # shft'd
+
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2019, 6, 10), holidays)  # Whit Monday
+        self.assertIn(date(2019, 8, 1), holidays)  # Emancipation Day
+        self.assertIn(date(2019, 8, 5), holidays)  # Kabooment Day
+        self.assertIn(date(2019, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day

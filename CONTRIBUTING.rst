@@ -249,3 +249,36 @@ contribute to the core of the library by adding some new Mixins or Calendars.
 
 Bear in mind that the code you'd provide **must** be tested using unittests
 before you submit your pull-request.
+
+Syncing from upstream Workalendar
+=================================
+
+1. Create a fork, and clone it::
+
+    git clone git@github.com:ShaheedHaque/calendra.git
+
+2. Add a remote pointing to upstream Workalendar::
+
+    cd calendra
+    git remote add workalendar git@github.com:peopledoc/workalendar.git
+
+3. Pull the remote, including its tags::
+
+    git remote update
+
+4. Make a branch to work on::
+
+    git checkout -b srh_sync_workalendar_5_2_2
+
+5. Review the changes to be brought in::
+
+    git diff 5.2.2..HEAD
+
+6. Merge, based on the diff command above, and a careful review/tweaking
+   of the results.
+
+7. Proceed with care, and test as needed::
+
+    tox
+
+8. Generate a PR when ready!

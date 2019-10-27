@@ -9,7 +9,7 @@ from dateutil import relativedelta as rd
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US')
@@ -48,6 +48,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     columbus_day_label = "Columbus Day"
     # Confederation day
     include_confederation_day = False
+    # Jefferson Davis Birthday.
+    include_jefferson_davis_birthday = False
 
     # Include Cesar Chavez day(s)
     include_cesar_chavez_day = False
@@ -74,6 +76,13 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     # Some regional variants
     include_mardi_gras = False
+
+    # Shift day mechanism
+    # These days won't be shifted to next MON or previous FRI
+    shift_exceptions = (
+        # Exemple:
+        # (11, 11),  # Veterans day won't be shifted
+    )
 
     @staticmethod
     def is_presidential_year(year):
@@ -110,6 +119,15 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")
+
+    def get_jefferson_davis_birthday(self, year):
+        """
+        The first MON of June is Jefferson Davis Birthday
+        """
+        return (
+            self.get_nth_weekday_in_month(year, 6, MON, 1),
+            "Jefferson Davis Birthday"
+        )
 
     def get_martin_luther_king_date(self, year):
         if year < 1985:
@@ -261,6 +279,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         if self.include_confederation_day:
             days.append(self.get_confederate_day(year))
+
+        if self.include_jefferson_davis_birthday:
+            days.append(self.get_jefferson_davis_birthday(year))
 
         ind = "January 20 (or 21st if Sunday) following an election year"
         if self.include_inauguration_day:

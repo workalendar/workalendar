@@ -4,6 +4,7 @@ from unittest import TestCase
 from ..oceania import (
     Australia,
     MarshallIslands,
+    NewZealand,
     # Australian territories
     AustralianCapitalTerritory,
     NewSouthWales,
@@ -17,7 +18,7 @@ from ..oceania import (
     WesternAustralia
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 AUSTRALIAN_TERRITORIES = (
     AustralianCapitalTerritory,
@@ -37,6 +38,7 @@ class RegistryOceania(TestCase):
         classes = list(classes)
         self.assertIn(Australia, classes)
         self.assertIn(MarshallIslands, classes)
+        self.assertIn(NewZealand, classes)
         for klass in AUSTRALIAN_TERRITORIES:
             self.assertIn(klass, classes)
 

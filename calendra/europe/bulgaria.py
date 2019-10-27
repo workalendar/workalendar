@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('BG')

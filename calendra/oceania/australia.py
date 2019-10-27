@@ -5,7 +5,7 @@ from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON, TUE, SAT, SUN
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('AU')
@@ -97,16 +97,27 @@ class AustralianCapitalTerritory(Australia):
     include_labour_day_october = True
     include_boxing_day = True
 
+    _family_community_label = "Family & Community Day"
+
     def get_family_community_day(self, year):
+        """
+        Return Family & Community Day.
+
+        see: https://en.wikipedia.org/wiki/Family_Day#Australia
+        """
         # Since this day is picked unsing the school year calendar, there's no
-        # mathematical way yet to provide it surely
+        # mathematical way yet to compute it.
+
+        # This public holiday was declared in 2007. [..]
+        # Per Holidays (Reconciliation Day) Amendment Bill 2017, 2017 is the
+        # last year that ACT will celebrate family and community day. It is
+        # being replaced by Reconciliaton day.
+        if year < 2007 or year > 2018:
+            # This would be interpreted as "this holiday must not be added"
+            return None
 
         # Family & Community Day was celebrated on the first Tuesday of
         # November in 2007, 2008 and 2009
-
-        # Per Holidays (Reconciliation Day) Amendment Bill 2017, 2017 is the
-        # last year that ACT will celebrate family and community day. It is
-        # being replaced by Reconciliaton day
         if year in (2007, 2008, 2009):
             day = AustralianCapitalTerritory.get_nth_weekday_in_month(
                 year, 11, TUE)
@@ -121,18 +132,28 @@ class AustralianCapitalTerritory(Australia):
             day = AustralianCapitalTerritory.get_nth_weekday_in_month(
                 year, 10, MON, 2)
         else:
+            # If for some reason the year is not correctly provided
+            # (not and int, or whatever)
             return None
-        return (day, "Family & Community Day")
+
+        return (day, self._family_community_label)
 
     def get_reconciliation_day(self, year):
-        if year >= 2018:
-            reconciliation_day = date(year, 5, 27)
-            if reconciliation_day.weekday() == MON:
-                return (reconciliation_day, "Reconciliation Day")
-            else:
-                shift = AustralianCapitalTerritory.get_first_weekday_after(
-                    reconciliation_day, MON)
-                return shift, "Reconciliation Day Shift"
+        """
+        Return Reconciliaton Day.
+
+        As of 2018, it replaces Family & Community Day.
+        """
+        if year < 2018:
+            return None
+
+        reconciliation_day = date(year, 5, 27)
+        if reconciliation_day.weekday() == MON:
+            return (reconciliation_day, "Reconciliation Day")
+        else:
+            shift = AustralianCapitalTerritory.get_first_weekday_after(
+                reconciliation_day, MON)
+            return shift, "Reconciliation Day Shift"
 
     def get_variable_days(self, year):
         days = super(AustralianCapitalTerritory, self).get_variable_days(year)

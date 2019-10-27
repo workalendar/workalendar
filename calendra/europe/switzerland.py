@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from datetime import date, timedelta
 from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('CH')

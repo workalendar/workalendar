@@ -19,7 +19,7 @@ from ..europe import (
     SaxonyAnhalt, SchleswigHolstein, Thuringia
 )
 
-from ..registry import registry
+from ..registry_tools import registry
 
 classes = (v for k, v in registry.region_registry.items())
 classes = list(classes)

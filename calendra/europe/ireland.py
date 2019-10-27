@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from datetime import date, timedelta
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('IE')

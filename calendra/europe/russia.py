@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from ..core import WesternCalendar
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('RU')
@@ -18,5 +18,5 @@ class Russia(WesternCalendar):
         (5, 1, "Labour Day"),
         (5, 9, "Victory Day"),
         (6, 12, "National Day"),
-        (11, 5, "Day of Unity"),
+        (11, 4, "Day of Unity"),
     )

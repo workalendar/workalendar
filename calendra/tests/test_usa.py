@@ -1,20 +1,32 @@
 # -*- coding: utf-8 -*-
-from unittest import skip
+from unittest import skip, skipIf
 from datetime import date
+import sys
+import warnings
 
 from . import GenericCalendarTest
 from ..usa import (
-    UnitedStates, Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty,
-    AlabamaPerryCounty, Florida, Arkansas, Alaska, Arizona, California,
+    UnitedStates,
+    Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty,
+    Arkansas, Alaska, Arizona,
+    # California and others
+    California, CaliforniaEducation, CaliforniaBerkeley,
+    CaliforniaSanFrancisco, CaliforniaWestHollywood,
+    # Florida and others
+    Florida, FloridaLegal, FloridaCircuitCourts, FloridaMiamiDade,
     Colorado, Connecticut, Delaware, DistrictOfColumbia, Georgia, Hawaii,
-    Indiana, Illinois, Idaho, Iowa,
-    Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota,
-    Michigan, Mississippi, Missouri, Montana, Nebraska, Nevada, NewHampshire,
-    NewJersey, NewMexico, NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma,
-    Oregon, Pennsylvania, RhodeIsland, SouthCarolina, SouthDakota, Tennessee,
-    Texas, TexasBase, Utah, Vermont, Virginia, Washington, WestVirginia,
-    Wisconsin, Wyoming,
+    Indiana, Illinois, Idaho, Iowa, Kansas, Kentucky, Louisiana, Maine,
+    Maryland, Massachusetts, Minnesota, Michigan, Mississippi, Missouri,
+    Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, NewYork,
+    NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania,
+    RhodeIsland, SouthCarolina, SouthDakota, Tennessee, TexasBase, Texas,
+    Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
+    # Other territories, cities...
+    AmericanSamoa, ChicagoIllinois, Guam, SuffolkCountyMassachusetts,
 )
+
+
+PY2 = sys.version_info[0] == 2
 
 
 class UnitedStatesTest(GenericCalendarTest):
@@ -458,6 +470,110 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
 
+class CaliforniaEducationTest(CaliforniaTest):
+    cal_class = CaliforniaEducation
+
+    def test_specific_lincoln_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 2, 12), holidays)  # Lincoln's Birthday
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 12), holidays)  # Lincoln's Birthday
+
+        # Lincoln's Birthday wasn't included in 2009
+        holidays = self.cal.holidays_set(2009)
+        self.assertNotIn(date(2009, 2, 12), holidays)
+
+    def test_specific_native_american_day(self):
+        # Native American Day occurs on the 4th MON of September
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 24), holidays)  # Native American Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 9, 23), holidays)  # Native American Day
+
+
+# Like California, except that it has:
+# * No Chavez Day,
+# * Includes Columbus day, but relabels it.
+# * Adds Lincoln's Birthday.
+class CaliforniaBerkeleyTest(UnitedStatesTest):
+    cal_class = CaliforniaBerkeley
+
+    def test_state_year_2014(self):
+        # Overwriting CaliforniaTest, there's no Chavez Day for Berkeley
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        # Overwriting CaliforniaTest, there's no Chavez Day for Berkeley
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_specific_lincoln_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 2, 12), holidays)  # Lincoln's Birthday
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 12), holidays)  # Lincoln's Birthday
+
+    def test_specific_malcomx_birthday(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 5, 19), holidays)  # Malcom X Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 5, 19), holidays)  # Malcom X Day
+
+    def test_columbus_day_label(self):
+        # Overwrite UnitedStatesTest.test_columbus_day_label
+        _, label = self.cal.get_columbus_day(2019)
+        self.assertEqual(label, "Indigenous People's Day")
+
+
+# Like California, except:
+# * No Chavez Day,
+# * Added Columbus Day
+class CaliforniaSanFranciscoTest(UnitedStatesTest):
+    cal_class = CaliforniaSanFrancisco
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+
+# Like California, except:
+# * No Chavez Day,
+# * No Thanksgiving Friday
+# * Added Harvey Milk Day
+class CaliforniaWestHollywoodTest(NoColumbus, UnitedStatesTest):
+    cal_class = CaliforniaWestHollywood
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(date(2014, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertNotIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 3, 31), holidays)  # NO Cesar Chavez Day
+        self.assertNotIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_harvey_milk_day(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 5, 22), holidays)  # Harvey Milk Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 5, 22), holidays)  # Harvey Milk Day
+
+
 class ColoradoTest(UnitedStatesTest):
     cal_class = Colorado
     # Colorado has only federal state holidays.
@@ -509,9 +625,13 @@ class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
         self.assertIn(date(2016, 4, 16), holidays)  # Emancipation Day
 
 
-class FloridaTest(NoColumbus, NoPresidentialDay, UnitedStatesTest):
-    cal_class = Florida
+class FloridaBasicTest(object):
+    """
+    Core Florida tests.
 
+    The difference is that it includes the Thanksgiving Friday *and* its label
+    is renamed.
+    """
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
@@ -526,6 +646,136 @@ class FloridaTest(NoColumbus, NoPresidentialDay, UnitedStatesTest):
         # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Friday after Thanksgiving")
+
+
+class FloridaTest(NoColumbus, NoPresidentialDay, FloridaBasicTest,
+                  UnitedStatesTest):
+    """
+    Florida includes all federal holidays except
+    Washington's Birthday & Columbus day
+    """
+    cal_class = Florida
+
+
+class FloridaLegalTest(IncludeMardiGras, ElectionDayEveryYear,
+                       FloridaBasicTest, UnitedStatesTest):
+    """
+    Florida Legal Holidays include:
+
+    * All Florida State Holidays,
+    * Mardi Gras,
+    * Lincoln's Birthday,
+    * Susan B. Anthony Day,
+    * Washington's Birthday,
+    * Good Friday,
+    * Pascua Florida Day,
+    * Confederate Memorial Day,
+    * Jefferson Davies Birthday,
+    * Flag Day
+    * Columbus Day renamed as "Columbus and Farmers' Day"
+    * Election Day
+    """
+    cal_class = FloridaLegal
+
+    @skipIf(PY2, "Python 2 warnings unsupported")
+    def test_init_warning(self):
+        warnings.simplefilter("always")
+        with warnings.catch_warnings(record=True) as w:
+            # Cause all warnings to always be triggered.
+            # Trigger a warning.
+            self.cal_class()
+            # Verify some things
+            assert len(w) == 1
+            assert issubclass(w[-1].category, UserWarning)
+            assert "Florida's laws separate the definitions between paid versus legal holidays." in str(w[-1].message)  # noqa
+        warnings.simplefilter("ignore")
+
+    def test_specific_lincoln_birthday(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 2, 12), holidays)  # Lincoln's Birthday
+
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
+
+    def test_susan_b_anthony_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 15), holidays)  # Susan B. Anthony Day
+
+    def test_good_friday(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
+
+    def test_pascua_florida_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 4, 2), holidays)  # Pascua Florida Day
+
+    def test_confederate_holidays(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 4, 26), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2014, 6, 3), holidays)  # Jefferson Davis' birthday
+
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 26), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2015, 6, 3), holidays)  # Jefferson Davis' birthday
+
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 4, 26), holidays)  # Confederate Memorial Day
+        self.assertIn(date(2018, 6, 3), holidays)  # Jefferson Davis' birthday
+
+    def test_flag_day(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 6, 14), holidays)  # Flag Day
+
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 6, 14), holidays)  # Flag Day
+
+    def test_columbus_day_label(self):
+        _, label = self.cal.get_columbus_day(2017)
+        self.assertEqual(label, "Columbus Day and Farmers' Day")
+
+
+class FloridaCircuitCourtsTest(NoColumbus, FloridaBasicTest, UnitedStatesTest):
+    cal_class = FloridaCircuitCourts
+
+    def test_good_friday(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
+
+    def test_rosh_hashanah_2018(self):
+        # src: https://www.firstjudicialcircuit.org/about-court/court-holidays
+        rosh_hashanah = self.cal.get_rosh_hashanah(2018)
+        self.assertEqual(rosh_hashanah, date(2018, 9, 10))
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(rosh_hashanah, holidays)
+
+    def test_rosh_hashanah_2019(self):
+        # src: https://www.firstjudicialcircuit.org/about-court/court-holidays
+        rosh_hashanah = self.cal.get_rosh_hashanah(2019)
+        self.assertEqual(rosh_hashanah, date(2019, 9, 30))
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(rosh_hashanah, holidays)
+
+    def test_yom_kippur_2018(self):
+        # src: https://www.firstjudicialcircuit.org/about-court/court-holidays
+        yom_kippur = self.cal.get_yom_kippur(2018)
+        self.assertEqual(yom_kippur, date(2018, 9, 19))
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(yom_kippur, holidays)
+
+    def test_yom_kippur_2019(self):
+        # src: https://www.firstjudicialcircuit.org/about-court/court-holidays
+        yom_kippur = self.cal.get_yom_kippur(2019)
+        self.assertEqual(yom_kippur, date(2019, 10, 9))
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(yom_kippur, holidays)
+
+
+class FloridaMiamiDadeTests(FloridaBasicTest, UnitedStatesTest):
+    cal_class = FloridaMiamiDade
 
 
 class GeorgiaTest(NoPresidentialDay, UnitedStatesTest):
@@ -628,6 +878,34 @@ class IllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+
+class ChicagoIllinoisTest(ElectionDayEvenYears, UnitedStatesTest):
+    cal_class = ChicagoIllinois
+
+    def test_state_year_2014(self):
+        holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 2, 12), holidays)  # Lincoln's Birthday
+        # Thanksgiving Friday is NOT a holiday in Chicago.
+        self.assertNotIn(date(2014, 11, 28), holidays)
+
+    def test_state_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 2, 12), holidays)  # Lincoln's Birthday
+        # Thanksgiving Friday is NOT a holiday in Chicago.
+        self.assertNotIn(date(2015, 11, 27), holidays)
+
+    def test_pulaski_day(self):
+        # Pulaski day is on the first MON in March.
+        # Source: https://en.wikipedia.org/wiki/Casimir_Pulaski_Day
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 5), holidays)
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 4), holidays)
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 2), holidays)
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 3, 1), holidays)
 
 
 class IndianaTest(ElectionDayEvenYears, NoPresidentialDay, UnitedStatesTest):
@@ -796,6 +1074,20 @@ class MassachusettsTest(UnitedStatesTest):
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 20), holidays)  # Patriot's day
+
+
+class SuffolkCountyMassachusettsTest(MassachusettsTest):
+    cal_class = SuffolkCountyMassachusetts
+
+    def test_county_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 17), holidays)  # Evacuation Day
+        self.assertIn(date(2018, 6, 17), holidays)  # Bunker Hill Day
+
+    def test_county_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 17), holidays)  # Evacuation Day
+        self.assertIn(date(2019, 6, 17), holidays)  # Bunker Hill Day
 
 
 class MichiganTest(NoColumbus, ElectionDayEvenYears, UnitedStatesTest):
@@ -993,6 +1285,7 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 18), holidays)  # Good Friday
+        self.assertIn(date(2014, 11, 27), holidays)  # Thanksgiving Thursday
         self.assertIn(date(2014, 11, 28), holidays)  # Thanksgiving Friday
         self.assertIn(date(2014, 12, 24), holidays)  # XMas Eve
         self.assertIn(date(2014, 12, 26), holidays)  # Boxing Day
@@ -1000,6 +1293,7 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 3), holidays)  # Good Friday
+        self.assertIn(date(2015, 11, 26), holidays)  # Thanksgiving Thursday
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
         self.assertIn(date(2015, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2015, 12, 26), holidays)  # Boxing Day
@@ -1008,6 +1302,7 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         # It is different from other federal days.
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 4, 14), holidays)  # Good Friday
+        self.assertIn(date(2017, 11, 23), holidays)  # Thanksgiving Thursday
         self.assertIn(date(2017, 11, 24), holidays)  # Thanksgiving Friday
         self.assertIn(date(2017, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2017, 12, 25), holidays)  # Xmas Day
@@ -1045,15 +1340,35 @@ class NorthCarolinaTest(NoPresidentialDay, NoColumbus, UnitedStatesTest):
         self.assertNotIn(date(2018, 12, 23), holidays)
         self.assertNotIn(date(2018, 12, 27), holidays)
 
+    def test_state_year_2019_xmas(self):
+        # XMAS falls on WED
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 12, 24), holidays)  # Day 1 - TUE
+        self.assertIn(date(2019, 12, 25), holidays)  # Day 2 - WED
+        self.assertIn(date(2019, 12, 26), holidays)  # Day 3 - THU
+        # No shift:
+        self.assertNotIn(date(2019, 12, 23), holidays)
+        self.assertNotIn(date(2019, 12, 27), holidays)
+
     def test_state_year_2020_xmas(self):
         # XMAS falls on FRI
         holidays = self.cal.holidays_set(2020)
         self.assertIn(date(2020, 12, 24), holidays)  # Day 1 - THU
         self.assertIn(date(2020, 12, 25), holidays)  # Day 2 - FRI
         self.assertIn(date(2020, 12, 28), holidays)  # Day 3 - MON
-        # 23rd adn 29th are not included
+        # 23rd and 29th are not included
         self.assertNotIn(date(2020, 12, 23), holidays)
         self.assertNotIn(date(2020, 12, 29), holidays)
+
+    def test_state_year_2021_xmas(self):
+        # XMAS falls on SAT
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 12, 23), holidays)  # Day 1 - THU
+        self.assertIn(date(2021, 12, 24), holidays)  # Day 2 - FRI
+        self.assertIn(date(2021, 12, 27), holidays)  # Day 3 - MON
+        # 23rd and 29th are not included
+        self.assertNotIn(date(2021, 12, 22), holidays)
+        self.assertNotIn(date(2021, 12, 28), holidays)
 
 
 class NorthDakotaTest(NoColumbus, UnitedStatesTest):
@@ -1361,3 +1676,152 @@ class WyomingTest(UnitedStatesTest):
             label,
             "Martin Luther King, Jr. / Wyoming Equality Day"
         )
+
+
+class AmericanSamoaTest(UnitedStatesTest):
+    cal_class = AmericanSamoa
+
+    def test_family_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 12, 26), holidays)  # Family Day
+
+    def test_flag_day(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 4, 17), holidays)  # Flag Day
+
+    def test_family_day_label(self):
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2019, 12, 26)], "Family Day")
+
+
+class Guam(UnitedStatesTest):
+    cal_class = Guam
+
+    def test_state_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        # Guam History and Chamorro Heritage Day
+        self.assertIn(date(2019, 3, 7), holidays)
+        self.assertIn(date(2019, 7, 21), holidays)  # Liberation Day
+        self.assertIn(date(2019, 11, 2), holidays)  # All Souls Day
+        self.assertIn(date(2019, 12, 8), holidays)  # Lady of Camarin Day
+
+    def test_state_year_2018(self):
+        holidays = self.cal.holidays_set(2020)
+        # Guam History and Chamorro Heritage Day
+        self.assertIn(date(2020, 3, 7), holidays)
+        self.assertIn(date(2020, 7, 21), holidays)  # Liberation Day
+        self.assertIn(date(2020, 11, 2), holidays)  # All Souls Day
+        self.assertIn(date(2020, 12, 8), holidays)  # Lady of Camarin Day
+
+    def test_lady_of_camarin_label(self):
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(
+            holidays_dict[date(2019, 12, 8)],
+            "Lady of Camarin Day"
+        )
+
+
+class NormalShiftTestCase(UnitedStatesTest):
+    # Using a fake calendar here
+    class NormalShiftUnitedStates(UnitedStates):
+        "Normal Shift Fake United State calendar"
+        include_christmas_eve = True
+
+    cal_class = NormalShiftUnitedStates
+
+    def test_shift_2015(self):
+        # Test a normal shift on 4th of July.
+        # 2015: Happens on a Saturday, observed on FRI
+        holidays = self.cal.holidays(2015)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2015, 7, 4)
+        observed = date(2015, 7, 3)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)
+
+    def test_shift_2010(self):
+        # Test a normal shift on 4th of July.
+        # 2010: Happens on a SUN, observed on MON
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2010, 7, 4)
+        observed = date(2010, 7, 5)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)
+
+    def test_new_years_shift(self):
+        # If January, 1st *of the year after* happens on SAT, add New Years Eve
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        new_years_eve = date(2010, 12, 31)
+        self.assertNotIn(new_years_eve, holiday_dict)
+        # The year after, it's not shifted
+        holidays = self.cal.holidays_set(2011)
+        new_years_eve = date(2011, 12, 31)
+        self.assertNotIn(new_years_eve, holidays)
+
+    def test_christmas_extra_shift_2010(self):
+        # XMAs Eve is included. *and* XMas falls on SAT.
+        # So you have the following holidays:
+        # * 24th & 25th (XMas Eve and XMas day)
+        # * 27th (XMas Shift)
+        # * 23rd (XMas Eve shifted on THU)
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        dec_24th = date(2010, 12, 24)
+        dec_25th = date(2010, 12, 25)
+        for day in (dec_24th, dec_25th):
+            self.assertIn(day, holiday_dict)
+        self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
+        self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
+
+    def test_christmas_extra_shift_2006(self):
+        # XMAs Eve is included. *and* XMas falls on MON.
+        # So you have the following holidays:
+        # * 24th & 25th (XMas Eve and XMas day)
+        # * 26th (XMas Shift)
+        holidays = self.cal.holidays(2006)
+        holiday_dict = dict(holidays)
+        dec_24th = date(2006, 12, 24)
+        dec_25th = date(2006, 12, 25)
+        for day in (dec_24th, dec_25th):
+            self.assertIn(day, holiday_dict)
+        self.assertEqual(holiday_dict[dec_24th], "Christmas Eve")
+        self.assertEqual(holiday_dict[dec_25th], "Christmas Day")
+
+
+class NormalShiftTestCaseExceptions(UnitedStatesTest):
+    # Using a fake calendar here
+    class NormalShiftUnitedStatesExceptions(UnitedStates):
+        "Normal Shift Fake United State calendar"
+        shift_exceptions = (
+            (7, 4),  # Month/Day == Fourth of July.
+        )
+
+    cal_class = NormalShiftUnitedStatesExceptions
+
+    def test_shift_2015(self):
+        # Test a normal shift on 4th of July.
+        # 2015: Happens on a Saturday, not shifted
+        holidays = self.cal.holidays(2015)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2015, 7, 4)
+        observed = date(2015, 7, 3)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)
+
+    def test_shift_2010(self):
+        # Test a normal shift on 4th of July.
+        # 2010: Happens on a SUN, not shifted
+        holidays = self.cal.holidays(2010)
+        holiday_dict = dict(holidays)
+        fourth_july = date(2010, 7, 4)
+        observed = date(2010, 7, 5)
+        self.assertIn(fourth_july, holiday_dict)
+        self.assertEqual(holiday_dict[fourth_july], "Independence Day")
+        self.assertNotIn(observed, holiday_dict)

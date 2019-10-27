@@ -13,6 +13,7 @@ from ..oceania import (
     Victoria,
     WesternAustralia,
     MarshallIslands,
+    NewZealand
 )
 
 
@@ -62,9 +63,37 @@ class AustraliaCapitalTerritoryTest(AustraliaTest):
         self.assertIn(date(2013, 3, 30), holidays)  # Easter Saturday
         self.assertIn(date(2013, 4, 1), holidays)  # Easter Monday
         self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
-        self.assertIn(date(2013, 9, 30), holidays)
+        self.assertIn(date(2013, 9, 30), holidays)  # Family & Community day
         self.assertIn(date(2013, 10, 7), holidays)  # Labour day october
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
+
+    def test_family_community_day_before_2007(self):
+        # There were no Family and Community day before 2007
+        for year in range(1970, 2007):
+            self.assertIsNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            self.assertNotIn(self.cal._family_community_label, labels)
+
+    def test_family_community_day_2007_2017_presence(self):
+        # Family & Community day was included [2007 -> 2017]
+        for year in range(2007, 2018):
+            self.assertIsNotNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            self.assertIn(self.cal._family_community_label, labels)
+
+    def test_family_community_day_after_2017(self):
+        # Starting of 2018 this day would no longer exist
+        for year in range(2018, date.today().year + 1):
+            self.assertIsNone(self.cal.get_family_community_day(year))
+            holidays = self.cal.holidays(year)
+            holidays = dict(holidays)
+            labels = holidays.values()
+            print(labels)
+            self.assertNotIn(self.cal._family_community_label, labels)
 
     def test_reconciliation_day(self):
         reconciliation_day = self.cal.get_reconciliation_day(2017)
@@ -238,3 +267,61 @@ class MarshallIslandsTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 6), holidays)  # gospel day
         self.assertIn(date(2013, 12, 25), holidays)  # Xmas
         self.assertIn(date(2013, 12, 31), holidays)  # new year's eve
+
+
+class NewZealandTest(GenericCalendarTest):
+    cal_class = NewZealand
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2018, 1, 2), holidays)  # Day after New Year's Day
+        self.assertIn(date(2018, 2, 6), holidays)  # Waitangi Day
+        self.assertIn(date(2018, 3, 30), holidays)  # Good Friday
+        self.assertIn(date(2018, 4, 2), holidays)  # Easter Monday
+        self.assertIn(date(2018, 4, 25), holidays)  # ANZAC Day
+        self.assertIn(date(2018, 6, 4), holidays)  # Queen's Birthday
+        self.assertIn(date(2018, 10, 22), holidays)  # Labour Day
+        self.assertIn(date(2018, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2018, 12, 26), holidays)  # Boxing Day
+
+    def test_new_year_shift(self):
+        holidays = self.cal.holidays_set(2012)
+        # New Years was on a sunday
+        # Day After New Years is on the 2nd
+        self.assertIn(date(2012, 1, 2), holidays)
+        # New Years observed on the 3rd
+        assert self.cal.is_observed_holiday(date(2012, 1, 3))
+
+    def test_anzac_shift(self):
+        holidays = self.cal.holidays_set(2010)
+        # 25th was a sunday
+        # ANZAC Day is on 25th
+        self.assertIn(date(2010, 4, 25), holidays)
+        # ANZAC Day observed on 26th
+        assert self.cal.is_observed_holiday(date(2010, 4, 26))
+
+    def test_waitangi_shift(self):
+        holidays = self.cal.holidays_set(2016)
+        # 6th was a saturday
+        # Waitangi Day is on 6th
+        self.assertIn(date(2016, 2, 6), holidays)
+        # Waitangi Day observed on 8th
+        assert self.cal.is_observed_holiday(date(2016, 2, 8))
+
+    def test_oceania_shift_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        # Christmas day is on sunday in 2016
+        # Boxing day is on 26th
+        self.assertIn(date(2016, 12, 26), holidays)
+        # Christmas day observed on 26th and boxing day on 27th
+        assert self.cal.is_observed_holiday(date(2016, 12, 26))
+        assert self.cal.is_observed_holiday(date(2016, 12, 27))
+
+    def test_oceania_shift_2009(self):
+        holidays = self.cal.holidays_set(2009)
+        # Boxing day is on saturday in 2009
+        # Boxing day is on 26th
+        self.assertIn(date(2009, 12, 26), holidays)
+        # Boxing day is observed on 28th
+        assert self.cal.is_observed_holiday(date(2009, 12, 28))
