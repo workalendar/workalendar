@@ -1,5 +1,4 @@
 dist: xenial
-sudo: false
 language: python
 
 python:
@@ -14,11 +13,6 @@ jobs:
     if: tag IS present
     python: *latest_py3
     before_script: skip
-    env:
-    - TWINE_USERNAME=jaraco
-    # TWINE_PASSWORD
-    - secure: T4acLIP2KK71sdClWJ379PIuHn2KQdpqvDLWYL89CTWWZAhp8w/gI3xODQTqt7z2SPUXbb5u66NfYAkHIQMdf3bsqtZYfYbxcSdhfi2BPko9R0BgSH95XSfBMinDAK86a7bDTGZCbsr3Lfxl/9kClkJm62FhlswgEgKhFqXSFSQ=
-    - TOX_TESTENV_PASSENV="TWINE_USERNAME TWINE_PASSWORD"
     script: tox -e release
 
 cache: pip
