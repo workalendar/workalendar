@@ -40,7 +40,11 @@ class IsoRegistry(object):
         """
         Store the ``cls`` in the region_registry.
         """
-        self.region_registry[iso_code] = cls
+        if type(iso_code) == tuple:
+            for code in iso_code:
+                self.region_registry[code] = cls
+        else:
+            self.region_registry[iso_code] = cls
 
     def load_module_from_items(self, module_name, items):
         """
