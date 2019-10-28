@@ -58,7 +58,6 @@ class BrazilAcreTest(BrazilTest):
         self.assertIn(date(2017, 8, 6), holidays)
 
 
-
 class BrazilAlagoasTest(BrazilTest):
     cal_class = BrazilAlagoas
 
@@ -299,6 +298,7 @@ class BrazilSantaCatarinaTest(BrazilTest):
         self.assertIn(date(2017, 8, 11), holidays)
         # Dia de Santa Catarina de Alexandria
         self.assertIn(date(2017, 11, 25), holidays)
+
 
 class SaoPauloStateTest(BrazilTest):
     cal_class = BrazilSaoPauloState
@@ -572,6 +572,7 @@ class BrazilGoianiaCityTest(BrazilGoiasTest):
         # Fixed days
         # Aniversário de Goiânia
         self.assertIn(date(2017, 10, 24), holidays)
+
 
 class BrazilBeloHorizonteCityTest(BrazilMinasGeraisTest):
     """
