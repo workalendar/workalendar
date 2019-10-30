@@ -834,12 +834,12 @@ class BrazilBankCalendarTest(BrazilTest):
     def test_year_2017_find_next_working_day_for_monday_carnaval(self):
         monday_carnaval = date(2017, 2, 27)
         working_day = self.cal.find_following_working_day(monday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 1))
+        self.assertEquals(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_tuesday_carnaval(self):
         tuesday_carnaval = date(2017, 2, 28)
         working_day = self.cal.find_following_working_day(tuesday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 1))
+        self.assertEquals(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_good_friday(self):
         good_friday = date(2017, 4, 14)

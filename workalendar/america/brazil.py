@@ -29,12 +29,13 @@ class Brazil(WesternCalendar, ChristianMixin):
     include_servidor_publico = False
     servidor_publico_label = "Dia do Servidor Público"
     # Consciência Negra day
-    include_consciencia_negra = False
+    include_consciencia_negra = True
     # There are two dates for the Consciência Negra day
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
     consciencia_negra_label = "Consciência Negra"
     include_nossa_senhora_conceicao = False
+    include_easter_sunday = True
 
     def get_carnaval(self, year):
         """
@@ -645,12 +646,14 @@ class BrazilBankCalendar(Brazil):
         monday_carnaval = tuesday_carnaval - timedelta(days=1)
         good_friday = self.get_good_friday(year)
         corpus_christi = self.get_corpus_christi(year)
+        ash_wednesday = self.get_ash_wednesday(year)
 
         non_fixed_holidays = [
             (monday_carnaval, "Monday carnaval"),
             (tuesday_carnaval, "Tuesday carnaval"),
             (good_friday, "Good friday"),
-            (corpus_christi, "Corpus Christi")
+            (corpus_christi, "Corpus Christi"),
+            (ash_wednesday, "Ash Wednesday"),
         ]
 
         non_working_days = [
