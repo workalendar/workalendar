@@ -8,6 +8,7 @@
 - Added 27 Brazil calendars -- thanks a lot to @luismalta & @mileo, (#409 & #415),
 - Fixes and additions to some calendars -- again, thanks to @luismalta & @mileo, (#409 & #415)
 - Added an IBGE_REGISTER to reference IBGE (brazilian) calendars with related tests (#415).
+- Improve ISO registry tests by raising an error when trying to register a non-Calendar class (#412).
 
 ## v7.0.0 (2019-09-20)
 
