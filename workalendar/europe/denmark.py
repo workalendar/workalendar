@@ -20,6 +20,7 @@ class Denmark(WesternCalendar, ChristianMixin):
     whit_monday_label = "Pentecost Monday"
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
+    include_christmas_eve = True
 
     def get_store_bededag(self, year):  # 'great prayer day'
         easter_sunday = self.get_easter_sunday(year)
