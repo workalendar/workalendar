@@ -283,6 +283,7 @@ class DenmarkTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 14), holidays)   # kristi himmelfart
         self.assertIn(date(2015, 5, 24), holidays)   # pinsedag
         self.assertIn(date(2015, 5, 25), holidays)   # 2. pinsedag
+        self.assertIn(date(2015, 12, 24), holidays)  # juleaftensdag
         self.assertIn(date(2015, 12, 25), holidays)  # juledag
         self.assertIn(date(2015, 12, 26), holidays)  # 2. juledag
 
