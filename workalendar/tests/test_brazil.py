@@ -3,6 +3,8 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
+from unittest import TestCase
+
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
     Brazil, BrazilSaoPauloState,
@@ -25,8 +27,9 @@ from workalendar.america import (
     BrazilChapecoCity, BrazilFlorianopolisCity, BrazilJoinvilleCity,
     BrazilAracajuCity, BrazilSorocabaCity, BrazilPalmasCity,
     # Banks
-    BrazilBankCalendar
+    BrazilBankCalendar,
 )
+from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 
 class BrazilTest(GenericCalendarTest):
@@ -896,3 +899,20 @@ class BrazilBankCalendarTest(BrazilTest):
         already_working_day = date(2017, 7, 25)
         working_day = self.cal.find_following_working_day(already_working_day)
         self.assertEquals(working_day, date(2017, 7, 25))
+
+
+class TestIBGERegister(TestCase):
+
+    def test_register_length(self):
+        # Each time another calendar will be added, this length should increase
+        # This also fails when a key appears twice (typo mistake?)
+        self.assertEqual(len(IBGE_REGISTER), len(IBGE_TUPLE))
+
+    def test_no_duplicate(self):
+        # Check if a class doesn't appear twice with different keys
+        values = set(IBGE_REGISTER.values())
+        self.assertEqual(len(IBGE_REGISTER.values()), len(values))
+
+    def test_all_are_brazilian_classes(self):
+        for key, value in IBGE_TUPLE:
+            self.assertTrue(issubclass(value, Brazil))
