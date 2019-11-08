@@ -1,4 +1,4 @@
-v7.0.0
+v5.0.0
 ------
 
 Incorporate changes from workalendar v7.0.0 (2019-09-20)
