@@ -3,7 +3,7 @@ Tools to update the ISO registry.
 """
 
 
-def iso_register(*iso_code):
+def iso_register(iso_code):
     """
     Registers Calendar class as country or region in IsoRegistry.
 

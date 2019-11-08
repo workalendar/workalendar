@@ -2,7 +2,6 @@
 from __future__ import absolute_import, unicode_literals
 
 from importlib import import_module
-import re
 
 
 class IsoRegistry(object):
@@ -29,36 +28,6 @@ class IsoRegistry(object):
         'oceania',
     )
 
-    IBGE_LIST = {
-        'AC': 'BR-IBGE-12',  # Brazil Acre state
-        'AL': 'BR-IBGE-27',  # Brazil Alagoas state
-        'AP': 'BR-IBGE-16',  # Brazil Amapa state
-        'AM': 'BR-IBGE-13',  # Brazil Amazonas state
-        'BA': 'BR-IBGE-29',  # Brazil Bahia state
-        'CE': 'BR-IBGE-23',  # Brazil Ceará state
-        'DF': 'BR-IBGE-53',  # Brazil Distrito Federal state
-        'ES': 'BR-IBGE-32',  # Brazil Espirito Santo state
-        'GO': 'BR-IBGE-52',  # Brazil Goiás state
-        'MA': 'BR-IBGE-21',  # Brazil Maranhão state
-        'MG': 'BR-IBGE-31',  # Brazil Minas Gerais state
-        'MT': 'BR-IBGE-51',  # Brazil Mato Grosso state
-        'MS': 'BR-IBGE-50',  # Brazil Mato Grosso do Sul state
-        'PA': 'BR-IBGE-15',  # Brazil Pará state
-        'PB': 'BR-IBGE-25',  # Brazil Paraíba state
-        'PE': 'BR-IBGE-26',  # Brazil Pernambuco state
-        'PI': 'BR-IBGE-22',  # Brazil Piauí state
-        'PR': 'BR-IBGE-41',  # Brazil Paraná state
-        'RJ': 'BR-IBGE-33',  # Brazil Rio de Janeiro state
-        'RN': 'BR-IBGE-24',  # Brazil Rio Grande do Norte state
-        'RS': 'BR-IBGE-43',  # Brazil Rio Grande do Sul state
-        'RO': 'BR-IBGE-11',  # Brazil Rondônia state
-        'RR': 'BR-IBGE-14',  # Brazil Roraima state
-        'SC': 'BR-IBGE-42',  # Brazil Santa Catarina state
-        'SP': 'BR-IBGE-35',  # Brazil São Paulo state
-        'SE': 'BR-IBGE-28',  # Brazil Sergipe state
-        'TO': 'BR-IBGE-17',  # Brazil Tocantins state
-    }
-
     def __init__(self, load_standard_modules=True):
         self.region_registry = dict()
         if load_standard_modules:
@@ -71,11 +40,7 @@ class IsoRegistry(object):
         """
         Store the ``cls`` in the region_registry.
         """
-        if type(iso_code) == tuple:
-            for code in iso_code:
-                self.region_registry[code] = cls
-        else:
-            self.region_registry[iso_code] = cls
+        self.region_registry[iso_code] = cls
 
     def load_module_from_items(self, module_name, items):
         """
@@ -109,12 +74,8 @@ class IsoRegistry(object):
         """
         code_elements, is_subregion = self._code_elements(iso_code)
         if is_subregion and iso_code not in self.region_registry:
-            if code_elements[1] == 'IBGE':
-                if iso_code[:10] in self.region_registry:
-                    code = iso_code[:10]
-                else:
-                    # subregion code not in region_registry
-                    code = code_elements[0]
+            # subregion code not in region_registry
+            code = code_elements[0]
         else:
             # subregion code in region_registry or is not a subregion
             code = iso_code
@@ -134,22 +95,10 @@ class IsoRegistry(object):
         and values are calendar classes
         """
         items = dict()
-        code_elements, is_subregion = self._code_elements(iso_code)
-        # iso_code is a brazilian state
-        if is_subregion and code_elements[1] in self.IBGE_LIST:
-            iso_code = self.IBGE_LIST[code_elements[1]]
-
-        # iso_code is a IBGE code brazilian state
-        if re.search('BR-IBGE-..', iso_code):
-            for key, value in self.region_registry.items():
-                if re.search(iso_code + '.+', key):
-                    items[key] = value
-        else:
-            for key, value in self.region_registry.items():
-                code_elements, is_subregion = self._code_elements(key)
-                if is_subregion and code_elements[0] == iso_code\
-                        and code_elements[1] != 'IBGE':
-                    items[key] = value
+        for key, value in self.region_registry.items():
+            code_elements, is_subregion = self._code_elements(key)
+            if is_subregion and code_elements[0] == iso_code:
+                items[key] = value
         return items
 
     def items(self, region_codes, include_subregions=False):
