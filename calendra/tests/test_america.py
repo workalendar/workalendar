@@ -80,24 +80,26 @@ class MexicoTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
 
     def test_shift_to_monday(self):
-        holidays = self.cal.holidays_set(2017)
+        observed = set(map(self.cal.get_observed_date, self.cal.holidays_set(2017)))
         # New year on Sunday -> shift
-        self.assertIn(date(2017, 1, 2), holidays)
-        holidays = self.cal.holidays_set(2016)
+        assert date(2017, 1, 2) in observed
+        observed = set(map(self.cal.get_observed_date, self.cal.holidays_set(2016)))
         # XMas on sunday -> shift to monday
-        self.assertIn(date(2016, 12, 26), holidays)
+        assert date(2016, 12, 26) in observed
         # Same for Labour day
-        self.assertIn(date(2016, 5, 2), holidays)
+        assert date(2016, 5, 2) in observed
 
     def test_shift_to_friday(self):
-        holidays = self.cal.holidays_set(2021)
+        holidays = self.cal.holidays_set(2021) | self.cal.holidays_set(2022)
+        observed = set(map(self.cal.get_observed_date, holidays))
         # January 1st 2022 is a saturday, so we shift to friday
-        self.assertIn(date(2021, 12, 31), holidays)
+        assert date(2021, 12, 31) in observed
         # Same for Labour day
-        self.assertIn(date(2021, 4, 30), holidays)
+        assert date(2021, 4, 30) in observed
         holidays = self.cal.holidays_set(2021)
+        observed = set(map(self.cal.get_observed_date, holidays))
         # December 25th, 2022 is a saturday, so we shift to friday
-        self.assertIn(date(2021, 12, 24), holidays)
+        assert date(2021, 12, 24) in observed
 
 
 class PanamaTest(GenericCalendarTest):
