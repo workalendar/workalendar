@@ -472,9 +472,10 @@ class Calendar(object):
 
         Example:
 
+        >>> from dateutil.parser import parse
         >>> cal = France()
-        >>> day1 = parse('09/05/2018 00:01', dayfirst=True)
-        >>> day2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
+        >>> day_1 = parse('09/05/2018 00:01', dayfirst=True)
+        >>> day_2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
         >>> cal.get_working_days_delta(day_1, day_2)
         0
 
