@@ -1,6 +1,10 @@
 v5.0.0
 ------
 
+#11: Add support for ``__add__`` and ``__sub__`` for
+``Holiday`` instances on Python 3.8 and later. Now adding
+a timedelta to a ``Holiday`` returns another ``Holiday``.
+
 Incorporate changes from workalendar v7.0.0 (2019-09-20)
 
 - Drop `ephem` astronomical calculation library, in favor of `skyfield` and `skyfield-data` for providing minimal data files to enable computation (#302, #348). Many thanks to @GammaSagittarii for the tremendous help on finding the right way to compute Chinese Solar Terms. Also thanks to @antvig and @DainDwarf for testing the beta version (#398).

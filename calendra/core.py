@@ -95,6 +95,14 @@ class Holiday(date):
         vars(replaced).update(vars(self))
         return replaced
 
+    def __add__(self, other):
+        orig = date(self.year, self.month, self.day)
+        return Holiday(orig + other, **vars(self))
+
+    def __sub__(self, other):
+        orig = date(self.year, self.month, self.day)
+        return Holiday(orig - other, **vars(self))
+
     def nearest_weekday(self, calendar):
         """
         Return the nearest weekday to self.
