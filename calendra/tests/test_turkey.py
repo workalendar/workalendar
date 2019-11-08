@@ -32,7 +32,7 @@ class TurkeyTest(GenericCalendarTest):
         # 6. Victory Day
         self.assertIn(date(2014, 8, 30), holidays)
         # 7. Republic Day
-        self.assertIn(date(2014, 9, 29), holidays)
+        self.assertIn(date(2014, 10, 29), holidays)
 
     def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
@@ -50,7 +50,7 @@ class TurkeyTest(GenericCalendarTest):
         # 6. Victory Day
         self.assertIn(date(2015, 8, 30), holidays)
         # 7. Republic Day
-        self.assertIn(date(2015, 9, 29), holidays)
+        self.assertIn(date(2015, 10, 29), holidays)
 
     def test_year_2019(self):
         holidays = self.cal.holidays_set(2019)
@@ -68,7 +68,7 @@ class TurkeyTest(GenericCalendarTest):
         # 6. Victory Day
         self.assertIn(date(2019, 8, 30), holidays)
         # 7. Republic Day
-        self.assertIn(date(2019, 9, 29), holidays)
+        self.assertIn(date(2019, 10, 29), holidays)
 
         # Religious days
         # Ramadan Feast - 3 days

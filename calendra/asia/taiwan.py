@@ -3,12 +3,12 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
-from ..core import EphemMixin
+from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
 
 @iso_register('TW')
-class Taiwan(EphemMixin, ChineseNewYearCalendar, WesternCalendar):
+class Taiwan(ChineseNewYearCalendar, WesternCalendar):
     "Taiwan (Republic of China)"
     FIXED_HOLIDAYS = (
         WesternCalendar.FIXED_HOLIDAYS +
@@ -25,7 +25,7 @@ class Taiwan(EphemMixin, ChineseNewYearCalendar, WesternCalendar):
         days = super(Taiwan, self).get_variable_days(year)
         # Qingming begins when the sun reaches the celestial
         # longitude of 15° (usually around April 4th or 5th)
-        qingming = EphemMixin.solar_term(self, year, 15, 'Asia/Taipei')
+        qingming = solar_term(year, 15, 'Asia/Taipei')
 
         days.extend([
             (

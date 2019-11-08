@@ -23,7 +23,7 @@ class Turkey(WesternCalendar, IslamicMixin):
         (5, 19, "Commemoration of Atatürk, Youth and Sports Day"),
         (7, 15, "Democracy and National Unity Day"),
         (8, 30, "Victory Day"),
-        (9, 29, "Republic Day"),
+        (10, 29, "Republic Day"),
     )
 
     def get_delta_islamic_holidays(self, year):

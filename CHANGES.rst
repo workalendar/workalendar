@@ -1,3 +1,24 @@
+v7.0.0
+------
+
+Incorporate changes from workalendar v7.0.0 (2019-09-20)
+
+- Drop `ephem` astronomical calculation library, in favor of `skyfield` and `skyfield-data` for providing minimal data files to enable computation (#302, #348). Many thanks to @GammaSagittarii for the tremendous help on finding the right way to compute Chinese Solar Terms. Also thanks to @antvig and @DainDwarf for testing the beta version (#398).
+
+Incorporate changes from workalendar v6.0.1 (2019-09-17)
+
+- Fix Turkey Republic Day (#399, thx to @mhmtozc & @Natim).
+
+Incorporate changes from workalendar v6.0.0 (2019-08-02)
+
+- **Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
+- Global registry now returns plain built-in dicts (#375).
+- Removed `EphemMixin` in favor of astronomical functions (#302).
+- Added first day counting when computing working_days delta (#393), thx @Querdos.
+
+Incorporate changes from workalendar v5.2.3 (2019-07-11)
+- Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar, thx to @KidkArolis (#389).
+
 
 v4.0.0
 ------

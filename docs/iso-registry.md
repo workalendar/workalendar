@@ -9,7 +9,7 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 ```python
 >>> from workalendar.registry import registry
 >>> for code, calendar_class in registry.region_registry.items():
-...     print(u"`{}` is code for '{}'".format(code, calendar_class.name))
+...     print("`{}` is code for '{}'".format(code, calendar_class.name))
 `AT` is code for 'Austria'
 `BE` is code for 'Belgium'
 `BG` is code for 'Bulgaria'
@@ -23,9 +23,7 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 ... continued
 ```
 
-The `registry.region_registry` is an `OrderedDict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
-
-**Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
+The `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
 
 ## Retrieve a collection of regions
 
@@ -33,32 +31,32 @@ Let's say you'd need only a subset of the ISO registry. For example, France, Swi
 
 ```python
 >>> registry.items(['FR', 'CH', 'CA'])
-OrderedDict([('FR', workalendar.europe.france.France),
-             ('CH', workalendar.europe.switzerland.Switzerland),
-             ('CA', workalendar.america.canada.Canada)])
+{'FR': <class 'workalendar.europe.france.France'>,
+ 'CH': <class 'workalendar.europe.switzerland.Switzerland'>,
+ 'CA': <class 'workalendar.america.canada.Canada'>}
 ```
 
 Also, if you want those regions **and** their subregions, you can use the `include_subregions` flag:
 
 ```python
 >>> registry.items(['FR', 'CH', 'CA'], include_subregions=True)
-OrderedDict([('FR', workalendar.europe.france.France),
-             ('CH', workalendar.europe.switzerland.Switzerland),
-             (u'CH-VD', workalendar.europe.switzerland.Vaud),
-             ('CA', workalendar.america.canada.Canada),
-             (u'CA-ON', workalendar.america.canada.Ontario),
-             (u'CA-QC', workalendar.america.canada.Quebec),
-             (u'CA-BC', workalendar.america.canada.BritishColumbia),
-             (u'CA-AB', workalendar.america.canada.Alberta),
-             (u'CA-SK', workalendar.america.canada.Saskatchewan),
-             (u'CA-MB', workalendar.america.canada.Manitoba),
-             (u'CA-NB', workalendar.america.canada.NewBrunswick),
-             (u'CA-NS', workalendar.america.canada.NovaScotia),
-             (u'CA-PE', workalendar.america.canada.PrinceEdwardIsland),
-             (u'CA-NL', workalendar.america.canada.Newfoundland),
-             (u'CA-YT', workalendar.america.canada.Yukon),
-             (u'CA-NT', workalendar.america.canada.NorthwestTerritories),
-             (u'CA-NU', workalendar.america.canada.Nunavut)])
+{'CA': <class 'workalendar.america.canada.Canada'>,
+ 'CA-AB': <class 'workalendar.america.canada.Alberta'>,
+ 'CA-BC': <class 'workalendar.america.canada.BritishColumbia'>,
+ 'CA-MB': <class 'workalendar.america.canada.Manitoba'>,
+ 'CA-NB': <class 'workalendar.america.canada.NewBrunswick'>,
+ 'CA-NL': <class 'workalendar.america.canada.Newfoundland'>,
+ 'CA-NS': <class 'workalendar.america.canada.NovaScotia'>,
+ 'CA-NT': <class 'workalendar.america.canada.NorthwestTerritories'>,
+ 'CA-NU': <class 'workalendar.america.canada.Nunavut'>,
+ 'CA-ON': <class 'workalendar.america.canada.Ontario'>,
+ 'CA-PE': <class 'workalendar.america.canada.PrinceEdwardIsland'>,
+ 'CA-QC': <class 'workalendar.america.canada.Quebec'>,
+ 'CA-SK': <class 'workalendar.america.canada.Saskatchewan'>,
+ 'CA-YT': <class 'workalendar.america.canada.Yukon'>,
+ 'CH': <class 'workalendar.europe.switzerland.Switzerland'>,
+ 'CH-VD': <class 'workalendar.europe.switzerland.Vaud'>,
+ 'FR': <class 'workalendar.europe.france.France'>}
 ```
 
 *Note*: if any of the codes is unknown, this function won't raise an error.
@@ -73,15 +71,15 @@ Let's say that we only know the ISO code for Switzerland (`CH`). If we want to c
 >>> calendar = CalendarClass()
 >>> calendar.holidays(2018)
 [(datetime.date(2018, 1, 1), 'New year'),
- (datetime.date(2018, 1, 2), u"Berchtold's Day"),
+ (datetime.date(2018, 1, 2), "Berchtold's Day"),
  (datetime.date(2018, 3, 30), 'Good Friday'),
  (datetime.date(2018, 4, 1), 'Easter Sunday'),
  (datetime.date(2018, 4, 2), 'Easter Monday'),
- (datetime.date(2018, 5, 1), u'Labour Day'),
+ (datetime.date(2018, 5, 1), 'Labour Day'),
  (datetime.date(2018, 5, 10), 'Ascension Thursday'),
  (datetime.date(2018, 5, 20), 'Whit Sunday'),
  (datetime.date(2018, 5, 21), 'Whit Monday'),
- (datetime.date(2018, 8, 1), u'National Holiday'),
+ (datetime.date(2018, 8, 1), 'National Holiday'),
  (datetime.date(2018, 12, 25), 'Christmas Day'),
  (datetime.date(2018, 12, 26), 'Boxing Day')]
 ```
@@ -95,17 +93,16 @@ As an example, the United States of America, or Australia and others are divided
 
 ```python
 >>> registry.get_subregions('AU')
-OrderedDict([(u'AU-ACT',
-              workalendar.oceania.australia.AustralianCapitalTerritory),
-             (u'AU-NSW', workalendar.oceania.australia.NewSouthWales),
-             (u'AU-NT', workalendar.oceania.australia.NorthernTerritory),
-             (u'AU-QLD', workalendar.oceania.australia.Queensland),
-             (u'AU-SA', workalendar.oceania.australia.SouthAustralia),
-             (u'AU-TAS', workalendar.oceania.australia.Tasmania),
-             (u'AU-VIC', workalendar.oceania.australia.Victoria),
-             (u'AU-WA', workalendar.oceania.australia.WesternAustralia)])
+{'AU-ACT': <class 'workalendar.oceania.australia.AustralianCapitalTerritory'>,
+ 'AU-NSW': <class 'workalendar.oceania.australia.NewSouthWales'>,
+ 'AU-NT': <class 'workalendar.oceania.australia.NorthernTerritory'>,
+ 'AU-QLD': <class 'workalendar.oceania.australia.Queensland'>,
+ 'AU-SA': <class 'workalendar.oceania.australia.SouthAustralia'>,
+ 'AU-TAS': <class 'workalendar.oceania.australia.Tasmania'>,
+ 'AU-VIC': <class 'workalendar.oceania.australia.Victoria'>,
+ 'AU-WA': <class 'workalendar.oceania.australia.WesternAustralia'>}
 ```
 
-*Note*: this function will return an empty `OrderedDict` if the code is unknown.
+*Note*: this function will return an empty `dict` if the code is unknown.
 
 [Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md)
