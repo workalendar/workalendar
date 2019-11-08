@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-import warnings
-from collections import OrderedDict
 from importlib import import_module
 
 
@@ -31,12 +29,7 @@ class IsoRegistry(object):
     )
 
     def __init__(self, load_standard_modules=False):
-        warnings.warn(
-            "The use of ``OrderedDict`` objects in the registry feature is "
-            "about to be deprecated, in favor of plain ``dict`` objects",
-            DeprecationWarning
-        )
-        self.region_registry = OrderedDict()
+        self.region_registry = dict()
         if load_standard_modules:
             for module_name in self.STANDARD_MODULES:
                 module = 'calendra.{}'.format(module_name)
@@ -101,7 +94,7 @@ class IsoRegistry(object):
         :return dict where keys are ISO codes strings
         and values are calendar classes
         """
-        items = OrderedDict()
+        items = dict()
         for key, value in self.region_registry.items():
             code_elements, is_subregion = self._code_elements(key)
             if is_subregion and code_elements[0] == iso_code:
@@ -119,7 +112,7 @@ class IsoRegistry(object):
         :return dict where keys are ISO codes strings
         and values are calendar classes
         """
-        items = OrderedDict()
+        items = dict()
         for code in region_codes:
             try:
                 items[code] = self.region_registry[code]

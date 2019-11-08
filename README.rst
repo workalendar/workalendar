@@ -84,10 +84,9 @@ For a more complete documentation and advanced usage, go to
 External dependencies
 =====================
 
-You may want to install ``python-dev`` and/or ``python3-dev`` on your machine to
-either run the installation or run tests via tox.
+Calendra has been tested on Python 2.7, 3.5, 3.6, 3.7.
 
-Workalendar has been tested on Python 2.7, 3.5, 3.6, 3.7.
+If you're using wheels, you should be fine without having to install extra system packages. As of ``v7.0.0``, we have dropped ``ephem`` as a dependency for computing astronomical ephemeris in favor of ``skyfield``. So if you had any trouble because of this new dependency, during the installation or at runtime, `do not hesitate to file an issue <https://github.com/peopledoc/workalendar/issues/>`_.
 
 Tests
 =====

@@ -7,10 +7,7 @@ import warnings
 import itertools
 from calendar import monthrange
 from datetime import date, timedelta, datetime
-from math import pi
 
-import ephem
-import pytz
 from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
@@ -446,7 +443,7 @@ class Calendar(object):
         day = day + timedelta(days=day_delta)
         return day
 
-    def get_working_days_delta(self, start, end):
+    def get_working_days_delta(self, start, end, include_start=False):
         """
         Return the number of working day between two given dates.
         The order of the dates provided doesn't matter.
@@ -468,6 +465,22 @@ class Calendar(object):
 
         This method should even work if your ``start`` and ``end`` arguments
         are datetimes.
+
+        By default, if the day after you start is not a working day,
+        the count will start at 0. If include_start is set to true,
+        this day will be taken into account.
+
+        Example:
+
+        >>> from dateutil.parser import parse
+        >>> cal = France()
+        >>> day_1 = parse('09/05/2018 00:01', dayfirst=True)
+        >>> day_2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
+        >>> cal.get_working_days_delta(day_1, day_2)
+        0
+
+        >>> cal.get_working_days_delta(day_1, day_2, include_start=True)
+        1
         """
         start = cleaned_date(start)
         end = cleaned_date(end)
@@ -477,8 +490,9 @@ class Calendar(object):
 
         if start > end:
             start, end = end, start
+
         # Starting count here
-        count = 0
+        count = 1 if include_start and self.is_working_day(start) else 0
         while start < end:
             start += timedelta(days=1)
             if self.is_working_day(start):
@@ -795,64 +809,6 @@ class ChineseNewYearCalendar(LunarCalendar):
             for day_shifted in self.get_shifted_holidays(days_to_inspect):
                 days.append(day_shifted)
         return days
-
-
-class EphemMixin(LunarCalendar):
-    def calculate_equinoxes(self, year, timezone='UTC'):
-        """ calculate equinox with time zone """
-
-        tz = pytz.timezone(timezone)
-
-        d1 = ephem.next_equinox(str(year))
-        d = ephem.Date(str(d1))
-        equinox1 = d.datetime() + tz.utcoffset(d.datetime())
-
-        d2 = ephem.next_equinox(d1)
-        d = ephem.Date(str(d2))
-        equinox2 = d.datetime() + tz.utcoffset(d.datetime())
-
-        return (equinox1.date(), equinox2.date())
-
-    def solar_term(self, year, degrees, timezone='UTC'):
-        """
-        Returns the date of the solar term for the given longitude
-        and the given year.
-
-        Solar terms are used for Chinese and Taiwanese holidays
-        (e.g. Qingming Festival in Taiwan).
-
-        More information:
-        - https://en.wikipedia.org/wiki/Solar_term
-        - https://en.wikipedia.org/wiki/Qingming
-
-        This function is adapted from the following topic:
-        https://answers.launchpad.net/pyephem/+question/110832
-        """
-        twopi = 2 * pi
-        tz = pytz.timezone(timezone)
-
-        # Find out the sun's current longitude.
-
-        sun = ephem.Sun(ephem.Date(str(year)))
-        current_longitude = sun.hlong - pi
-
-        # Find approximately the right time of year.
-
-        target_longitude = degrees * ephem.degree
-        difference = (target_longitude - current_longitude) % twopi
-        t0 = ephem.Date(str(year)) + 365.25 * difference / twopi
-
-        # Zero in on the exact moment.
-
-        def f(t):
-            sun.compute(t)
-            longitude = sun.hlong - pi
-            return ephem.degrees(target_longitude - longitude).znorm
-
-        d = ephem.Date(ephem.newton(f, t0, t0 + ephem.minute))
-        solar_term = d.datetime() + tz.utcoffset(d.datetime())
-
-        return solar_term.date()
 
 
 class CalverterMixin(Calendar):

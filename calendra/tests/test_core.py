@@ -6,11 +6,10 @@ import dateutil.relativedelta as rd
 import pandas
 
 from . import GenericCalendarTest
-from ..core import MON, TUE, THU, FRI, WED, SAT, SUN
 from ..core import Calendar, LunarCalendar, WesternCalendar
-from ..core import IslamicMixin, JalaliMixin, ChristianMixin
-from ..core import EphemMixin
 from ..core import Holiday
+from ..core import IslamicMixin, JalaliMixin, ChristianMixin
+from ..core import MON, TUE, THU, FRI, WED, SAT, SUN
 from ..exceptions import UnsupportedDateType
 
 
@@ -294,50 +293,6 @@ class JalaliMixinTest(GenericCalendarTest):
         self.assertEquals(len(days), 365)
 
 
-class EphemMixinTest(GenericCalendarTest):
-    cal_class = EphemMixin
-
-    def test_calculate_some_equinoxes(self):
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2010),
-            (date(2010, 3, 20), date(2010, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2010, 'Asia/Taipei'),
-            (date(2010, 3, 21), date(2010, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2013),
-            (date(2013, 3, 20), date(2013, 9, 22))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2014),
-            (date(2014, 3, 20), date(2014, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2020),
-            (date(2020, 3, 20), date(2020, 9, 22))
-        )
-
-    def test_qingming_festivals(self):
-        self.assertEquals(
-            self.cal.solar_term(2001, 15),
-            date(2001, 4, 4)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2001, 15, 'Asia/Taipei'),
-            date(2001, 4, 5)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2011, 15),
-            date(2011, 4, 5)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2014, 15),
-            date(2014, 4, 4)
-        )
-
-
 class MockChristianCalendar(WesternCalendar, ChristianMixin):
     pass
 
@@ -507,6 +462,20 @@ class WorkingDaysDeltatest(TestCase):
         # No difference if you swap the two dates
         delta = cal.get_working_days_delta(day2, day1)
         self.assertEqual(delta, 2)
+
+    def test_with_including_first_day(self):
+        # linked to #393
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 24)  # December 24th: not holiday so working day
+        day2 = date(2018, 12, 25)  # December 25th: Christmas
+
+        # not including the first day, should return 0
+        delta = cal.get_working_days_delta(day1, day2)
+        self.assertEqual(delta, 0)
+
+        # including the first day, should return 1
+        delta = cal.get_working_days_delta(day1, day2, include_start=True)
+        self.assertEqual(delta, 1)
 
 
 class NoDocstring(Calendar):

@@ -6,7 +6,7 @@ from ..registry_tools import iso_register
 
 
 @iso_register('RO')
-class Romania(WesternCalendar, OrthodoxMixin):
+class Romania(OrthodoxMixin, WesternCalendar):
     'Romania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
