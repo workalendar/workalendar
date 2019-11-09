@@ -1,6 +1,5 @@
 from datetime import date
-from unittest import TestCase, skipIf
-import sys
+from unittest import TestCase
 
 import pytest
 
@@ -12,9 +11,6 @@ from ..europe import (
     Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
     ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire,
 )
-
-
-PY2 = sys.version_info[0] == 2
 
 
 pytestmark = pytest.mark.filterwarnings('ignore:::calendra.europe.scotland')
@@ -279,9 +275,6 @@ class ScotlandTest(GenericCalendarTest):
     """
     cal_class = Scotland
 
-    # For some reason, the Python 2 warnings module doesn't trigger a warning
-    # at each call of constructor ; skipping if we're in a Python2 env.
-    @skipIf(PY2, "Python 2 warnings unsupported")
     def test_init_warning(self):
         with pytest.warns(UserWarning, match="experimental"):
             self.cal_class()
