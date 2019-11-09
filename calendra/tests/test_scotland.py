@@ -1,7 +1,8 @@
 from datetime import date
 from unittest import TestCase, skipIf
 import sys
-import warnings
+
+import pytest
 
 from ..tests import GenericCalendarTest
 from ..europe import (
@@ -14,6 +15,9 @@ from ..europe import (
 
 
 PY2 = sys.version_info[0] == 2
+
+
+pytestmark = pytest.mark.filterwarnings('ignore:::calendra.europe.scotland')
 
 
 class GoodFridayTestMixin(object):
@@ -279,17 +283,8 @@ class ScotlandTest(GenericCalendarTest):
     # at each call of constructor ; skipping if we're in a Python2 env.
     @skipIf(PY2, "Python 2 warnings unsupported")
     def test_init_warning(self):
-        warnings.simplefilter("always")
-        with warnings.catch_warnings(record=True) as w:
-            # Cause all warnings to always be triggered.
-            # Trigger a warning.
+        with pytest.warns(UserWarning, match="experimental"):
             self.cal_class()
-            # Verify some things
-            assert len(w) == 1
-            assert issubclass(w[-1].category, UserWarning)
-            assert "experimental" in str(w[-1].message)
-            # Back to normal filtering
-        warnings.simplefilter("ignore")
 
     def test_year_2018(self):
         holidays = self.cal.holidays_set(2018)
