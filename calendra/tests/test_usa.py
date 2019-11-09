@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from unittest import skip, skipIf
+from unittest import skip
 from datetime import date
-import sys
 
 import pytest
 
@@ -25,9 +24,6 @@ from ..usa import (
     # Other territories, cities...
     AmericanSamoa, ChicagoIllinois, Guam, SuffolkCountyMassachusetts,
 )
-
-
-PY2 = sys.version_info[0] == 2
 
 
 class UnitedStatesTest(GenericCalendarTest):
@@ -678,7 +674,6 @@ class FloridaLegalTest(IncludeMardiGras, ElectionDayEveryYear,
     """
     cal_class = FloridaLegal
 
-    @skipIf(PY2, "Python 2 warnings unsupported")
     def test_init_warning(self):
         msg = (
             "Florida's laws separate the definitions between "
