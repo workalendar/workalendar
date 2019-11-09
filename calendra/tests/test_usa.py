@@ -2,7 +2,8 @@
 from unittest import skip, skipIf
 from datetime import date
 import sys
-import warnings
+
+import pytest
 
 from . import GenericCalendarTest
 from ..usa import (
@@ -679,16 +680,12 @@ class FloridaLegalTest(IncludeMardiGras, ElectionDayEveryYear,
 
     @skipIf(PY2, "Python 2 warnings unsupported")
     def test_init_warning(self):
-        warnings.simplefilter("always")
-        with warnings.catch_warnings(record=True) as w:
-            # Cause all warnings to always be triggered.
-            # Trigger a warning.
+        msg = (
+            "Florida's laws separate the definitions between "
+            "paid versus legal holidays."
+        )
+        with pytest.warns(UserWarning, match=msg):
             self.cal_class()
-            # Verify some things
-            assert len(w) == 1
-            assert issubclass(w[-1].category, UserWarning)
-            assert "Florida's laws separate the definitions between paid versus legal holidays." in str(w[-1].message)  # noqa
-        warnings.simplefilter("ignore")
 
     def test_specific_lincoln_birthday(self):
         holidays = self.cal.holidays_set(2014)
