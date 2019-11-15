@@ -17,18 +17,23 @@ class NotACalendarClass(object):
     "Not a Calendar"
 
 
-class MockCalendarTest(TestCase):
+class NonStandardRegistryTest(TestCase):
 
     def setUp(self):
         self.region = RegionCalendar
         self.subregion = SubRegionCalendar
 
-    def test_register(self):
+    def test_region_registry(self):
         registry = IsoRegistry(load_standard_modules=False)
         self.assertEqual(0, len(registry.region_registry.items()))
         registry.register('RE', self.region)
         self.assertEqual(1, len(registry.region_registry.items()))
         self.assertEqual(RegionCalendar, registry.region_registry['RE'])
+
+    def test_register_non_calendar(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        with self.assertRaises(ISORegistryError):
+            registry.register("NAC", NotACalendarClass)
 
     def test_get_calendar_class(self):
         registry = IsoRegistry(load_standard_modules=False)
@@ -52,7 +57,7 @@ class MockCalendarTest(TestCase):
         self.assertEqual(1, len(subregions))
         self.assertIn('RE-SR', subregions)
 
-    def test_get_items(self):
+    def test_items(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
@@ -65,13 +70,8 @@ class MockCalendarTest(TestCase):
         self.assertEqual(1, len(items))
         self.assertIn('RE', items)
 
-    def test_get_items_unknown(self):
+    def test_items_unknown(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         items = registry.items(['XX'])
         self.assertEqual(items, {})
-
-    def test_register_non_calendar(self):
-        registry = IsoRegistry(load_standard_modules=False)
-        with self.assertRaises(ISORegistryError):
-            registry.register("NAC", NotACalendarClass)
