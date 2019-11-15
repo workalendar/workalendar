@@ -3,6 +3,9 @@ from __future__ import absolute_import, unicode_literals
 
 from importlib import import_module
 
+from .core import Calendar
+from .exceptions import ISORegistryError
+
 
 class IsoRegistry(object):
     """
@@ -40,6 +43,10 @@ class IsoRegistry(object):
         """
         Store the ``cls`` in the region_registry.
         """
+        if not issubclass(cls, Calendar):
+            raise ISORegistryError(
+                "Class `{}` is not a Calendar class".format(cls)
+            )
         self.region_registry[iso_code] = cls
 
     def load_module_from_items(self, module_name, items):
