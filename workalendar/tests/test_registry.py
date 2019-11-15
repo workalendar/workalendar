@@ -75,3 +75,54 @@ class NonStandardRegistryTest(TestCase):
         registry.register('RE', self.region)
         items = registry.items(['XX'])
         self.assertEqual(items, {})
+
+    def test_items_with_subregions(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE-SR', self.subregion)
+        items = registry.items(['RE2', "RE-SR"], include_subregions=True)
+        self.assertEqual(2, len(items))
+        self.assertIn('RE2', items)
+        self.assertIn('RE-SR', items)
+        items = registry.items(['RE2', "RE-SR"], include_subregions=False)
+        self.assertEqual(2, len(items))
+        self.assertIn('RE2', items)
+        self.assertIn('RE-SR', items)
+
+        # Only a subregion
+        items = registry.items(["RE-SR"], include_subregions=True)
+        self.assertEqual(1, len(items))
+        self.assertIn('RE-SR', items)
+
+    def test_items_empty_arg(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        # 3 regions, one sub-region
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE3', self.region)
+        registry.register('RE-SR', self.subregion)
+        items = registry.items([], include_subregions=False)
+        self.assertEqual(len(items), 3)
+        self.assertEqual(set({"RE", "RE2", "RE3"}), set(items.keys()))
+        items = registry.items([], include_subregions=True)
+        self.assertEqual(len(items), 4)
+        self.assertEqual(set({"RE", "RE2", "RE3", "RE-SR"}), set(items.keys()))
+
+    def test_items_no_arg(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        # 3 regions, one sub-region
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE3', self.region)
+        registry.register('RE-SR', self.subregion)
+
+        # Should be equivalent to [] + no subregions
+        items_no_arg = registry.items()
+        self.assertEqual(len(items_no_arg), 3)
+        self.assertEqual(set({"RE", "RE2", "RE3"}), set(items_no_arg.keys()))
+
+        # Should be equivalent to [] + include subregions
+        items = registry.items(include_subregions=True)
+        self.assertEqual(len(items), 4)
+        self.assertEqual(set({"RE", "RE2", "RE3", "RE-SR"}), set(items.keys()))

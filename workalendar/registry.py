@@ -93,17 +93,27 @@ class IsoRegistry(object):
                 items[key] = value
         return items
 
-    def items(self, region_codes, include_subregions=False):
+    def items(self, region_codes=None, include_subregions=False):
         """
         Returns calendar classes for regions
 
-        :param region_codes list of ISO codes for selected regions
+        :param region_codes list of ISO codes for selected regions. If empty,
+                            the function will return all items from the
+                            registry.
         :param include_subregions boolean if subregions
         of selected regions should be included in result
         :rtype dict
         :return dict where keys are ISO codes strings
         and values are calendar classes
         """
+        if not region_codes:
+            # Here it contains all subregions
+            if include_subregions:
+                return self.region_registry.copy()
+            items = {k: v for k, v in self.region_registry.items()
+                     if '-' not in k}
+            return items
+
         items = dict()
         for code in region_codes:
             try:

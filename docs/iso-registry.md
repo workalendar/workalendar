@@ -8,7 +8,8 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 
 ```python
 >>> from workalendar.registry import registry
->>> for code, calendar_class in registry.region_registry.items():
+>>> calendars = registry.items()
+>>> for code, calendar_class in calendars.items():
 ...     print("`{}` is code for '{}'".format(code, calendar_class.name))
 `AT` is code for 'Austria'
 `BE` is code for 'Belgium'
@@ -23,9 +24,21 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 ... continued
 ```
 
-The `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
+The "private property" `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
 
 ## Retrieve a collection of regions
+
+If you want the full registry dictionary of **countries**, you can use the ``items()`` method.
+
+```python
+>>> registry.items()
+{'AT': <class 'workalendar.europe.austria.Austria'>,
+ 'BE': <class 'workalendar.europe.belgium.Belgium'>,
+ 'BG': <class 'workalendar.europe.bulgaria.Bulgaria'>,
+ 'KY': <class 'workalendar.europe.cayman_islands.CaymanIslands'>,
+  # ... continued
+}
+```
 
 Let's say you'd need only a subset of the ISO registry. For example, France, Switzerland and Canada calendars. You can use the method `items()` to filter only the calendars you want.
 
@@ -61,6 +74,12 @@ Also, if you want those regions **and** their subregions, you can use the `inclu
 ```
 
 *Note*: if any of the codes is unknown, this function won't raise an error.
+
+You can also get the full dict of all calendars registered in the ISO Registry with all the subregions using the following function call:
+
+```python
+>>> registry.items(include_subregions=True)
+```
 
 ## Select only one calendar
 

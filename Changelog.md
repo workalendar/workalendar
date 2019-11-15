@@ -2,7 +2,9 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+### ISO Registry API Change
+
+- Changes in the ``registry.items()`` method API. This method now accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://peopledoc.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
 
 ## v7.2.0 (2019-12-06)
 
