@@ -29,12 +29,13 @@ class Brazil(WesternCalendar, ChristianMixin):
     include_servidor_publico = False
     servidor_publico_label = "Dia do Servidor Público"
     # Consciência Negra day
-    include_consciencia_negra = False
+    include_consciencia_negra = True
     # There are two dates for the Consciência Negra day
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
     consciencia_negra_label = "Consciência Negra"
     include_nossa_senhora_conceicao = False
+    include_easter_sunday = True
 
     def get_carnaval(self, year):
         """
@@ -74,6 +75,7 @@ class BrazilAcre(Brazil):
         (6, 15, "Aniversário do Acre"),
         (9, 5, "Dia da Amazônia"),
         (11, 17, "Assinatura do Tratado de Petrópolis"),
+        (8, 6, "Início da Revolução Acreana"),
     )
 
 
@@ -94,6 +96,7 @@ class BrazilAmapa(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 25, "São Tiago"),
         (10, 5, "Criação do estado"),
+        (9, 13, "Aniversário da Amapá"),
     )
     include_sao_jose = True
     sao_jose_label = "Dia de São José"
@@ -123,6 +126,7 @@ class BrazilCeara(Brazil):
     "Brazil Ceará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (3, 23, "Data Manga do Ceará"),
+        (3, 25, "Aniversário do Ceará"),
     )
     include_sao_jose = True
 
@@ -157,6 +161,14 @@ class BrazilMaranhao(Brazil):
     include_nossa_senhora_conceicao = True
 
 
+@iso_register('BR-MG')
+class BrazilMinasGerais(Brazil):
+    "Brasil Minas Gerais State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (4, 21, "Aniversário de Minas Gerais"),
+    )
+
+
 @iso_register('BR-MT')
 class BrazilMatoGrosso(Brazil):
     "Brazil Mato Grosso State"
@@ -178,6 +190,7 @@ class BrazilPara(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
     )
+    include_nossa_senhora_conceicao = True
 
 
 @iso_register('BR-PB')
@@ -185,12 +198,16 @@ class BrazilParaiba(Brazil):
     "Brazil Paraíba State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 5, "Fundação do Estado"),
+        (7, 26, "Homenagem à memória do ex-presidente João Pessoa"),
     )
 
 
 @iso_register('BR-PE')
 class BrazilPernambuco(Brazil):
     "Brazil Pernambuco State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (6, 3, "Revolução Pernambucana de 1817"),
+    )
     include_sao_joao = True
 
 
@@ -203,11 +220,20 @@ class BrazilPiaui(Brazil):
     )
 
 
+@iso_register('BR-PR')
+class BrazilParana(Brazil):
+    "Brazil Paraná State"
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
+        (12, 19, "Aniversário do Paraná"),
+    )
+
+
 @iso_register('BR-RJ')
 class BrazilRioDeJaneiro(Brazil):
     "Brazil Rio de Janeiro State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (4, 23, "Dia de São Jorge"),
+        (3, 1, "Aniversário da Cidade do Rio de Janeiro"),
     )
     include_servidor_publico = True
     servidor_publico_label = "Dia do Funcionário Público"
@@ -270,6 +296,7 @@ class BrazilSantaCatarina(Brazil):
     "Brazil Santa Catarina State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 11, "Criação da capitania, separando-se de SP"),
+        (11, 25, "Dia de Santa Catarina de Alexandria"),
     )
 
 
@@ -314,6 +341,7 @@ class BrazilTocantins(Brazil):
         (1, 1, "Instalação de Tocantins"),
         (9, 8, "Nossa Senhora da Natividade"),
         (10, 5, "Criação de Tocantins"),
+        (3, 18, "Autonomia do estado de Tocantins"),
     )
 
 
@@ -322,6 +350,7 @@ class BrazilVitoriaCity(BrazilEspiritoSanto):
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (4, 24, "Nossa Senhora da Penha"),  # Our Lady of Pain?
         (9, 8, "Nossa Senhora da Vitória"),  # Our Lady of Vitória
+        (9, 8, "Aniversário de Vitória"),
     )
     include_corpus_christi = True
     include_good_friday = True
@@ -378,6 +407,181 @@ class BrazilSerraCity(BrazilEspiritoSanto):
         return days
 
 
+class BrazilRioBrancoCity(BrazilAcre):
+    "Brazil Rio Branco City"
+    FIXED_HOLIDAYS = BrazilAcre.FIXED_HOLIDAYS + (
+        (12, 28, "Aniversário de Rio Branco"),
+    )
+
+
+class BrazilMaceioCity(BrazilAlagoas):
+    "Brazil Maceió City"
+    FIXED_HOLIDAYS = BrazilAlagoas.FIXED_HOLIDAYS + (
+        (12, 5, "Aniversário de Maceió"),
+    )
+
+
+class BrazilManausCity(BrazilAmazonas):
+    "Brazil Manaus City"
+    FIXED_HOLIDAYS = BrazilAmazonas.FIXED_HOLIDAYS + (
+        (10, 24, "Aniversário de Manaus"),
+    )
+
+
+class BrazilMacapaCity(BrazilAmapa):
+    "Brazil Macapá City"
+    FIXED_HOLIDAYS = BrazilAmapa.FIXED_HOLIDAYS + (
+        (2, 4, "Aniversário de Macapá"),
+    )
+
+
+class BrazilSalvadorCity(BrazilBahia):
+    "Brazil Salvador City"
+    FIXED_HOLIDAYS = BrazilBahia.FIXED_HOLIDAYS + (
+        (3, 29, "Aniversário de Salvador"),
+    )
+
+
+class BrazilFortalezaCity(BrazilCeara):
+    "Brazil Fortaleza City"
+    FIXED_HOLIDAYS = BrazilCeara.FIXED_HOLIDAYS + (
+        (4, 13, "Aniversário de Fortaleza"),
+    )
+
+
+class BrazilGoianiaCity(BrazilGoias):
+    "Brazil Goiânia City"
+    FIXED_HOLIDAYS = BrazilGoias.FIXED_HOLIDAYS + (
+        (10, 24, "Aniversário de Goiânia"),
+    )
+
+
+class BrazilBeloHorizonteCity(BrazilMinasGerais):
+    "Brazil Belo Horizonte City"
+    FIXED_HOLIDAYS = BrazilMinasGerais.FIXED_HOLIDAYS + (
+        (12, 12, "Aniversário de Belo Horizonte"),
+    )
+
+
+class BrazilCampoGrandeCity(BrazilMatoGrossoDoSul):
+    "Brazil Campo Grande City"
+    FIXED_HOLIDAYS = BrazilMatoGrossoDoSul.FIXED_HOLIDAYS + (
+        (8, 26, "Aniversário de Campo Grande"),
+    )
+
+
+class BrazilCuiabaCity(BrazilMatoGrosso):
+    "Brazil Cuiabá City"
+    FIXED_HOLIDAYS = BrazilMatoGrosso.FIXED_HOLIDAYS + (
+        (4, 8, "Aniversário de Cuiabá"),
+    )
+
+
+class BrazilBelemCity(BrazilPara):
+    "Brazil Belém City"
+    FIXED_HOLIDAYS = BrazilPara.FIXED_HOLIDAYS + (
+        (1, 12, "Aniversário de Belém"),
+    )
+
+
+class BrazilJoaoPessoaCity(BrazilParaiba):
+    "Brazil João Pessoa City"
+    FIXED_HOLIDAYS = BrazilParaiba.FIXED_HOLIDAYS + (
+        (8, 5, "Aniversário de João Pessoa"),
+    )
+
+
+class BrazilRecifeCity(BrazilPernambuco):
+    "Brazil Recife City"
+    FIXED_HOLIDAYS = BrazilPernambuco.FIXED_HOLIDAYS + (
+        (3, 12, "Aniversário de Recife"),
+    )
+
+
+class BrazilTeresinaCity(BrazilPiaui):
+    "Brazil Teresina City"
+    FIXED_HOLIDAYS = BrazilPiaui.FIXED_HOLIDAYS + (
+        (8, 16, "Aniversário de Teresina"),
+    )
+
+
+class BrazilCuritibaCity(BrazilParana):
+    "Brazil Curitiba City"
+    FIXED_HOLIDAYS = BrazilParana.FIXED_HOLIDAYS + (
+        (3, 29, "Aniversário de Curitiba"),
+    )
+
+
+class BrazilNatalCity(BrazilRioGrandeDoNorte):
+    "Brazil Natal City"
+    FIXED_HOLIDAYS = BrazilRioGrandeDoNorte.FIXED_HOLIDAYS + (
+        (12, 25, "Aniversário de Natal"),
+    )
+
+
+class BrazilPortoVelhoCity(BrazilRondonia):
+    "Brazil Porto Velho City"
+    FIXED_HOLIDAYS = BrazilRondonia.FIXED_HOLIDAYS + (
+        (10, 2, "Aniversário de Porto Velho"),
+    )
+
+
+class BrazilBoaVistaCity(BrazilRoraima):
+    "Brazil Boa Vista City"
+    FIXED_HOLIDAYS = BrazilRoraima.FIXED_HOLIDAYS + (
+        (6, 9, "Aniversário de Boa Vista"),
+    )
+
+
+class BrazilPortoAlegreCity(BrazilRioGrandeDoSul):
+    "Brazil Porto Alegre City"
+    FIXED_HOLIDAYS = BrazilRioGrandeDoSul.FIXED_HOLIDAYS + (
+        (3, 26, "Aniversário de Porto Alegre"),
+    )
+
+
+class BrazilChapecoCity(BrazilSantaCatarina):
+    "Brazil Chapecó City"
+    FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
+        (8, 25, "Aniversário de Chapecó"),
+    )
+
+
+class BrazilFlorianopolisCity(BrazilSantaCatarina):
+    "Brazil Florianópolis City"
+    FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
+        (3, 23, "Aniversário de Florianópolis"),
+    )
+
+
+class BrazilJoinvilleCity(BrazilSantaCatarina):
+    "Brazil Joinville City"
+    FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
+        (3, 9, "Aniversário de Joinville"),
+    )
+
+
+class BrazilAracajuCity(BrazilSergipe):
+    "Brazil Aracaju City"
+    FIXED_HOLIDAYS = BrazilSergipe.FIXED_HOLIDAYS + (
+        (3, 17, "Aniversário de Aracaju"),
+    )
+
+
+class BrazilSorocabaCity(BrazilSaoPauloState):
+    "Brazil Sorocaba City"
+    FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
+        (8, 15, "Aniversário de Sorocaba"),
+    )
+
+
+class BrazilPalmasCity(BrazilTocantins):
+    "Brazil Palmas City"
+    FIXED_HOLIDAYS = BrazilTocantins.FIXED_HOLIDAYS + (
+        (5, 20, "Aniversário de Palmas"),
+    )
+
+
 class BrazilBankCalendar(Brazil):
     """
     Calendar that considers only working days for bank transactions
@@ -411,12 +615,14 @@ class BrazilBankCalendar(Brazil):
         monday_carnaval = tuesday_carnaval - timedelta(days=1)
         good_friday = self.get_good_friday(year)
         corpus_christi = self.get_corpus_christi(year)
+        ash_wednesday = self.get_ash_wednesday(year)
 
         non_fixed_holidays = [
             (monday_carnaval, "Monday carnaval"),
             (tuesday_carnaval, "Tuesday carnaval"),
             (good_friday, "Good friday"),
-            (corpus_christi, "Corpus Christi")
+            (corpus_christi, "Corpus Christi"),
+            (ash_wednesday, "Ash Wednesday"),
         ]
 
         non_working_days = [
@@ -437,3 +643,66 @@ class BrazilBankCalendar(Brazil):
         while not self.is_working_day(day):
             day = day + timedelta(days=1)
         return day
+
+
+IBGE_TUPLE = (
+    ('BR-IBGE-12', BrazilAcre),
+    ('BR-IBGE-27', BrazilAlagoas),
+    ('BR-IBGE-16', BrazilAmapa),
+    ('BR-IBGE-13', BrazilAmazonas),
+    ('BR-IBGE-29', BrazilBahia),
+    ('BR-IBGE-23', BrazilCeara),
+    ('BR-IBGE-53', BrazilDistritoFederal),
+    ('BR-IBGE-32', BrazilEspiritoSanto),
+    ('BR-IBGE-52', BrazilGoias),
+    ('BR-IBGE-21', BrazilMaranhao),
+    ('BR-IBGE-31', BrazilMinasGerais),
+    ('BR-IBGE-51', BrazilMatoGrosso),
+    ('BR-IBGE-50', BrazilMatoGrossoDoSul),
+    ('BR-IBGE-15', BrazilPara),
+    ('BR-IBGE-25', BrazilParaiba),
+    ('BR-IBGE-26', BrazilPernambuco),
+    ('BR-IBGE-22', BrazilPiaui),
+    ('BR-IBGE-41', BrazilParana),
+    ('BR-IBGE-33', BrazilRioDeJaneiro),
+    ('BR-IBGE-24', BrazilRioGrandeDoNorte),
+    ('BR-IBGE-43', BrazilRioGrandeDoSul),
+    ('BR-IBGE-11', BrazilRondonia),
+    ('BR-IBGE-14', BrazilRoraima),
+    ('BR-IBGE-42', BrazilSantaCatarina),
+    ('BR-IBGE-35', BrazilSaoPauloState),
+    ('BR-IBGE-3550308', BrazilSaoPauloCity),
+    ('BR-IBGE-28', BrazilSergipe),
+    ('BR-IBGE-17', BrazilTocantins),
+    ('BR-IBGE-3205309', BrazilVitoriaCity),
+    ('BR-IBGE-3205200', BrazilVilaVelhaCity),
+    ('BR-IBGE-3201308', BrazilCariacicaCity),
+    ('BR-IBGE-3202405', BrazilGuarapariCity),
+    ('BR-IBGE-3205002', BrazilSerraCity),
+    ('BR-IBGE-1200401', BrazilRioBrancoCity),
+    ('BR-IBGE-2704302', BrazilMaceioCity),
+    ('BR-IBGE-1302603', BrazilManausCity),
+    ('BR-IBGE-1600303', BrazilMacapaCity),
+    ('BR-IBGE-2927408', BrazilSalvadorCity),
+    ('BR-IBGE-2304400', BrazilFortalezaCity),
+    ('BR-IBGE-5208707', BrazilGoianiaCity),
+    ('BR-IBGE-3106200', BrazilBeloHorizonteCity),
+    ('BR-IBGE-5002704', BrazilCampoGrandeCity),
+    ('BR-IBGE-5103403', BrazilCuiabaCity),
+    ('BR-IBGE-1501402', BrazilBelemCity),
+    ('BR-IBGE-2507507', BrazilJoaoPessoaCity),
+    ('BR-IBGE-2611606', BrazilRecifeCity),
+    ('BR-IBGE-2211001', BrazilTeresinaCity),
+    ('BR-IBGE-4106902', BrazilCuritibaCity),
+    ('BR-IBGE-2408102', BrazilNatalCity),
+    ('BR-IBGE-1100205', BrazilPortoVelhoCity),
+    ('BR-IBGE-1400100', BrazilBoaVistaCity),
+    ('BR-IBGE-4314902', BrazilPortoAlegreCity),
+    ('BR-IBGE-4204202', BrazilChapecoCity),
+    ('BR-IBGE-4205407', BrazilFlorianopolisCity),
+    ('BR-IBGE-4209102', BrazilJoinvilleCity),
+    ('BR-IBGE-2800308', BrazilAracajuCity),
+    ('BR-IBGE-3552205', BrazilSorocabaCity),
+    ('BR-IBGE-1721000', BrazilPalmasCity),
+)
+IBGE_REGISTER = dict(IBGE_TUPLE)

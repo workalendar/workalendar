@@ -3,21 +3,33 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
+from unittest import TestCase
+
 from workalendar.tests import GenericCalendarTest
 from workalendar.america import (
     Brazil, BrazilSaoPauloState,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
-    BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul, BrazilPara,
-    BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilRioDeJaneiro,
-    BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul, BrazilRondonia,
-    BrazilRoraima, BrazilSantaCatarina, BrazilSergipe, BrazilTocantins,
+    BrazilMaranhao, BrazilMinasGerais, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
+    BrazilPara, BrazilParaiba, BrazilPernambuco, BrazilPiaui, BrazilParana,
+    BrazilRioDeJaneiro, BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
+    BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSergipe,
+    BrazilTocantins,
     # Cities
     BrazilSaoPauloCity, BrazilVitoriaCity, BrazilVilaVelhaCity,
     BrazilCariacicaCity, BrazilGuarapariCity, BrazilSerraCity,
+    BrazilRioBrancoCity, BrazilMaceioCity, BrazilManausCity, BrazilMacapaCity,
+    BrazilSalvadorCity, BrazilFortalezaCity, BrazilGoianiaCity,
+    BrazilBeloHorizonteCity, BrazilCampoGrandeCity, BrazilCuiabaCity,
+    BrazilBelemCity, BrazilJoaoPessoaCity, BrazilRecifeCity,
+    BrazilTeresinaCity, BrazilCuritibaCity, BrazilNatalCity,
+    BrazilPortoVelhoCity, BrazilBoaVistaCity, BrazilPortoAlegreCity,
+    BrazilChapecoCity, BrazilFlorianopolisCity, BrazilJoinvilleCity,
+    BrazilAracajuCity, BrazilSorocabaCity, BrazilPalmasCity,
     # Banks
-    BrazilBankCalendar
+    BrazilBankCalendar,
 )
+from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 
 class BrazilTest(GenericCalendarTest):
@@ -45,6 +57,8 @@ class BrazilAcreTest(BrazilTest):
         self.assertIn(date(2017, 9, 5), holidays)  # Dia da Amazônia
         # Assinatura do Tratado de Petrópolis
         self.assertIn(date(2017, 11, 17), holidays)
+        # Início da Revolução Acreana
+        self.assertIn(date(2017, 8, 6), holidays)
 
 
 class BrazilAlagoasTest(BrazilTest):
@@ -74,6 +88,7 @@ class BrazilAmapaTest(BrazilTest):
         self.assertIn(date(2017, 7, 25), holidays)  # São Tiago
         self.assertIn(date(2017, 10, 5), holidays)  # Criação do estado
         self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
+        self.assertIn(date(2017, 9, 13), holidays)  # Aniversário da Amapá
 
 
 class BrazilAmazonasTest(BrazilTest):
@@ -103,6 +118,7 @@ class BrazilCearaTest(BrazilTest):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 3, 19), holidays)  # São José
         self.assertIn(date(2017, 3, 23), holidays)  # Data Manga do Ceará
+        self.assertIn(date(2017, 3, 25), holidays)  # Aniversário do Ceará
 
 
 class BrazilDistritoFederalTest(BrazilTest):
@@ -141,6 +157,15 @@ class BrazilMaranhaoTest(BrazilTest):
         self.assertIn(date(2017, 12, 8), holidays)
 
 
+class BrazilMinasGeraisTest(BrazilTest):
+    cal_class = BrazilMinasGerais
+
+    def test_year_2017_state(self):
+        holidays = self.cal.holidays_set(2017)
+        # Aniversário de Minas Geraisl
+        self.assertIn(date(2017, 4, 21), holidays)
+
+
 class BrazilMatoGrossoTest(BrazilTest):
     cal_class = BrazilMatoGrosso
 
@@ -172,6 +197,8 @@ class BrazilParaibaTest(BrazilTest):
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 8, 5), holidays)  # Fundação do Estado
+        # Homenagem à memória do ex-presidente João Pessoa
+        self.assertIn(date(2017, 7, 26), holidays)
 
 
 class BrazilPernambucoTest(BrazilTest):
@@ -190,6 +217,15 @@ class BrazilPiauiTest(BrazilTest):
         # Dia da Batalha do Jenipapo
         self.assertIn(date(2017, 3, 13), holidays)
         self.assertIn(date(2017, 10, 19), holidays)  # Dia do Piauí
+
+
+class BrazilParanaTest(BrazilTest):
+    cal_class = BrazilParana
+
+    def test_year_2017_state(self):
+        holidays = self.cal.holidays_set(2017)
+        # Aniversário do Paraná
+        self.assertIn(date(2017, 12, 19), holidays)
 
 
 class BrazilRioDeJaneiroTest(BrazilTest):
@@ -263,6 +299,8 @@ class BrazilSantaCatarinaTest(BrazilTest):
         holidays = self.cal.holidays_set(2017)
         # Criação da capitania, separando-se de SP
         self.assertIn(date(2017, 8, 11), holidays)
+        # Dia de Santa Catarina de Alexandria
+        self.assertIn(date(2017, 11, 25), holidays)
 
 
 class SaoPauloStateTest(BrazilTest):
@@ -270,6 +308,8 @@ class SaoPauloStateTest(BrazilTest):
 
     def test_year_2013_state(self):
         holidays = self.cal.holidays_set(2013)
+        # Revolução Constitucionalista de 1932
+        self.assertIn(date(2013, 7, 9), holidays)
         # Revolução Constitucionalista de 1932
         self.assertIn(date(2013, 7, 9), holidays)
 
@@ -321,6 +361,8 @@ class BrazilTocantinsTest(BrazilTest):
         # Nossa Senhora da Natividade
         self.assertIn(date(2017, 9, 8), holidays)
         self.assertIn(date(2017, 10, 5), holidays)  # Criação de Tocantins
+        # Autonomia do estado de Tocantins
+        self.assertIn(date(2017, 3, 18), holidays)
 
 
 class BrazilVitoriaCityTest(BrazilEspiritoSantoTest):
@@ -444,6 +486,331 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
         )
 
 
+class BrazilRioBrancoCityTest(BrazilAcreTest):
+    """
+    Rio Branco is in the Acre state
+    """
+    cal_class = BrazilRioBrancoCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Rio Branco
+        self.assertIn(date(2017, 12, 28), holidays)
+
+
+class BrazilMaceioCityTest(BrazilAlagoasTest):
+    """
+    Maceió is in the Alagoas state
+    """
+    cal_class = BrazilMaceioCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Maceió
+        self.assertIn(date(2017, 12, 5), holidays)
+
+
+class BrazilManausCityTest(BrazilAmazonasTest):
+    """
+    Manaus is in the Amazonas state
+    """
+    cal_class = BrazilManausCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Manaus
+        self.assertIn(date(2017, 10, 24), holidays)
+
+
+class BrazilMacapaCityTest(BrazilAmapaTest):
+    """
+    Macapá is in the Amapá state
+    """
+    cal_class = BrazilMacapaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Macapá
+        self.assertIn(date(2017, 2, 4), holidays)
+
+
+class BrazilSalvadorCityTest(BrazilBahiaTest):
+    """
+    Salvador is in the Bahia state
+    """
+    cal_class = BrazilSalvadorCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Salvador
+        self.assertIn(date(2017, 3, 29), holidays)
+
+
+class BrazilFortalezaCityTest(BrazilCearaTest):
+    """
+    Fortaleza is in the Ceará state
+    """
+    cal_class = BrazilFortalezaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Fortaleza
+        self.assertIn(date(2017, 4, 13), holidays)
+
+
+class BrazilGoianiaCityTest(BrazilGoiasTest):
+    """
+    Goiânia is in the Goiás state
+    """
+    cal_class = BrazilGoianiaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Goiânia
+        self.assertIn(date(2017, 10, 24), holidays)
+
+
+class BrazilBeloHorizonteCityTest(BrazilMinasGeraisTest):
+    """
+    Belo Horizonte is in the Minas Gerais state
+    """
+    cal_class = BrazilBeloHorizonteCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Belo Horizonte
+        self.assertIn(date(2017, 12, 12), holidays)
+
+
+class BrazilCampoGrandeCityTest(BrazilMatoGrossoDoSulTest):
+    """
+    Campo Grande is in the Mato Grosso do Sul state
+    """
+    cal_class = BrazilCampoGrandeCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Campo Grande
+        self.assertIn(date(2017, 8, 26), holidays)
+
+
+class BrazilCuiabaCityTest(BrazilMatoGrossoTest):
+    """
+    Cuiabá is in the Mato Grosso state
+    """
+    cal_class = BrazilCuiabaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Cuiabá
+        self.assertIn(date(2017, 4, 8), holidays)
+
+
+class BrazilBelemCityTest(BrazilParaTest):
+    """
+    Belém is in the Pará state
+    """
+    cal_class = BrazilBelemCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Belém
+        self.assertIn(date(2017, 1, 12), holidays)
+
+
+class BrazilJoaoPessoaCityTest(BrazilParaibaTest):
+    """
+    João Pessoa is in the Paraíba state
+    """
+    cal_class = BrazilJoaoPessoaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de João Pessoa
+        self.assertIn(date(2017, 8, 5), holidays)
+
+
+class BrazilRecifeCityTest(BrazilPernambucoTest):
+    """
+    Recife is in the Pernambuco state
+    """
+    cal_class = BrazilRecifeCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Recife
+        self.assertIn(date(2017, 3, 12), holidays)
+
+
+class BrazilTeresinaCityTest(BrazilPiauiTest):
+    """
+    Teresina is in the Piauí state
+    """
+    cal_class = BrazilTeresinaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Teresina
+        self.assertIn(date(2017, 8, 16), holidays)
+
+
+class BrazilCuritibaCityTest(BrazilParanaTest):
+    """
+    Curitiba is in the Paraná state
+    """
+    cal_class = BrazilCuritibaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Curitiba
+        self.assertIn(date(2017, 3, 29), holidays)
+
+
+class BrazilNatalCityTest(BrazilRioGrandeDoNorteTest):
+    """
+    Natal is in the Rio Grande do Norte state
+    """
+    cal_class = BrazilNatalCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Natal
+        self.assertIn(date(2017, 12, 25), holidays)
+
+
+class BrazilPortoVelhoCityTest(BrazilRondoniaTest):
+    """
+    Porto Velho is in the Rio Grande do Norte state
+    """
+    cal_class = BrazilPortoVelhoCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Porto Velho
+        self.assertIn(date(2017, 10, 2), holidays)
+
+
+class BrazilBoaVistaCityTest(BrazilRoraimaTest):
+    """
+    Boa Vista is in the Roraima state
+    """
+    cal_class = BrazilBoaVistaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Boa Vista
+        self.assertIn(date(2017, 6, 9), holidays)
+
+
+class BrazilPortoAlegreCityTest(BrazilRioGrandeDoSulTest):
+    """
+    Porto Alegre is in the Rio Grande do Sul state
+    """
+    cal_class = BrazilPortoAlegreCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Porto Alegre
+        self.assertIn(date(2017, 3, 26), holidays)
+
+
+class BrazilChapecoCityTest(BrazilSantaCatarinaTest):
+    """
+    Chapecó is in the Santa Catarina state
+    """
+    cal_class = BrazilChapecoCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Chapecó
+        self.assertIn(date(2017, 8, 25), holidays)
+
+
+class BrazilFlorianopolisCityTest(BrazilSantaCatarinaTest):
+    """
+    Florianópolis is in the Santa Catarina state
+    """
+    cal_class = BrazilFlorianopolisCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Florianópolis
+        self.assertIn(date(2017, 3, 23), holidays)
+
+
+class BrazilJoinvilleCityTest(BrazilSantaCatarinaTest):
+    """
+    Joinville is in the Santa Catarina state
+    """
+    cal_class = BrazilJoinvilleCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Joinville
+        self.assertIn(date(2017, 3, 9), holidays)
+
+
+class BrazilAracajuCityTest(BrazilSergipeTest):
+    """
+    Aracajú is in the Sergipe state
+    """
+    cal_class = BrazilAracajuCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Aracajú
+        self.assertIn(date(2017, 3, 17), holidays)
+
+
+class BrazilSorocabaCityTest(SaoPauloStateTest):
+    """
+    Sorocaba is in the São Paulo state
+    """
+    cal_class = BrazilSorocabaCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Sorocaba
+        self.assertIn(date(2017, 8, 15), holidays)
+
+
+class BrazilPalmasCityTest(BrazilTocantinsTest):
+    """
+    Palmas is in the Tocantins state
+    """
+    cal_class = BrazilPalmasCity
+
+    def test_year_2017_city(self):
+        holidays = self.cal.holidays_set(2017)
+        # Fixed days
+        # Aniversário de Palmas
+        self.assertIn(date(2017, 5, 20), holidays)
+
+
 class BrazilBankCalendarTest(BrazilTest):
     cal_class = BrazilBankCalendar
 
@@ -470,12 +837,12 @@ class BrazilBankCalendarTest(BrazilTest):
     def test_year_2017_find_next_working_day_for_monday_carnaval(self):
         monday_carnaval = date(2017, 2, 27)
         working_day = self.cal.find_following_working_day(monday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 1))
+        self.assertEquals(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_tuesday_carnaval(self):
         tuesday_carnaval = date(2017, 2, 28)
         working_day = self.cal.find_following_working_day(tuesday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 1))
+        self.assertEquals(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_good_friday(self):
         good_friday = date(2017, 4, 14)
@@ -532,3 +899,20 @@ class BrazilBankCalendarTest(BrazilTest):
         already_working_day = date(2017, 7, 25)
         working_day = self.cal.find_following_working_day(already_working_day)
         self.assertEquals(working_day, date(2017, 7, 25))
+
+
+class TestIBGERegister(TestCase):
+
+    def test_register_length(self):
+        # Each time another calendar will be added, this length should increase
+        # This also fails when a key appears twice (typo mistake?)
+        self.assertEqual(len(IBGE_REGISTER), len(IBGE_TUPLE))
+
+    def test_no_duplicate(self):
+        # Check if a class doesn't appear twice with different keys
+        values = set(IBGE_REGISTER.values())
+        self.assertEqual(len(IBGE_REGISTER.values()), len(values))
+
+    def test_all_are_brazilian_classes(self):
+        for key, value in IBGE_TUPLE:
+            self.assertTrue(issubclass(value, Brazil))

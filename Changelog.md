@@ -5,6 +5,9 @@
 - Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam.
 - Increase China coverage by adding tests for special extra-holidays & extra-working days cases.
 - Added compatibility with Python 3.8 (#406).
+- Added 27 Brazil calendars -- thanks a lot to @luismalta & @mileo, (#409 & #415),
+- Fixes and additions to some calendars -- again, thanks to @luismalta & @mileo, (#409 & #415)
+- Added an IBGE_REGISTER to reference IBGE (brazilian) calendars with related tests (#415).
 
 ## v7.0.0 (2019-09-20)
 
