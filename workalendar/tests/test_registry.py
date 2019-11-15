@@ -65,6 +65,12 @@ class MockCalendarTest(TestCase):
         self.assertEqual(1, len(items))
         self.assertIn('RE', items)
 
+    def test_get_items_unknown(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        registry.register('RE', self.region)
+        items = registry.items(['XX'])
+        self.assertEqual(items, {})
+
     def test_register_non_calendar(self):
         registry = IsoRegistry(load_standard_modules=False)
         with self.assertRaises(ISORegistryError):
