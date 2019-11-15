@@ -1,15 +1,24 @@
 # CHANGELOG
 
-## master
+## v7.1.0 (2019-11-15)
 
+### New calendars
+
+- Added 27 Brazil calendars -- thanks a lot to @luismalta & @mileo, (#409 & #415)
+
+### Enhancements
+
+- Added compatibility with Python 3.8 (#406).
+- Added an IBGE_REGISTER to reference IBGE (brazilian) calendars with related tests (#415).
+- Improve ISO registry interface by raising an error when trying to register a non-Calendar class (#412).
+
+### Other changes
+
+- Fixes and additions to some Brazil calendars ; again, thanks to @luismalta & @mileo, (#409 & #415)
+- Fix Denmark, re-add Christmas Eve, which is widely treated as public holiday ; thx to @KidkArolis, (#414).
 - Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam.
 - Increase China coverage by adding tests for special extra-holidays & extra-working days cases.
-- Added compatibility with Python 3.8 (#406).
-- Added 27 Brazil calendars -- thanks a lot to @luismalta & @mileo, (#409 & #415),
-- Fixes and additions to some calendars -- again, thanks to @luismalta & @mileo, (#409 & #415)
-- Added an IBGE_REGISTER to reference IBGE (brazilian) calendars with related tests (#415).
-- Improve ISO registry tests by raising an error when trying to register a non-Calendar class (#412).
-- Fix Denmark, re-add Christmas Eve, which is widely treated as public holiday -- thx to @KidkArolis, (#414).
+
 
 ## v7.0.0 (2019-09-20)
 
