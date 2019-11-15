@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from importlib import import_module
+import warnings
 
 from .core import Calendar
 from .exceptions import ISORegistryError
@@ -94,6 +95,24 @@ class IsoRegistry(object):
         return items
 
     def items(self, region_codes=None, include_subregions=False):
+        """
+        Returns calendar classes for regions
+
+        :param region_codes list of ISO codes for selected regions. If empty,
+                            the function will return all items from the
+                            registry.
+        :param include_subregions boolean if subregions
+        of selected regions should be included in result
+        :rtype dict
+        :return dict where keys are ISO codes strings
+        and values are calendar classes
+        """
+        warnings.warn("The ``items()`` method will soon be deprecated."
+                      " Please use ``get_calendars()`` instead.",
+                      DeprecationWarning)
+        return self.get_calendars(region_codes, include_subregions)
+
+    def get_calendars(self, region_codes=None, include_subregions=False):
         """
         Returns calendar classes for regions
 
