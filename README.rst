@@ -119,6 +119,7 @@ Europe
 America
 -------
 
+* Argentina
 * Barbados
 * Brazil (all states, cities and for bank transactions, except the city of Viana)
 * Canada (including provincial and territory holidays)
