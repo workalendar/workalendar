@@ -8,7 +8,8 @@ from workalendar.europe import (
     Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
     Slovenia, Spain,
     # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom, UnitedKingdomNorthernIreland,
+    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
+    UnitedKingdomNorthernIreland,
 )
 
 # Germany
