@@ -56,6 +56,7 @@ Also, if you want those regions **and** their subregions, you can use the `inclu
  'CA-YT': <class 'workalendar.america.canada.Yukon'>,
  'CH': <class 'workalendar.europe.switzerland.Switzerland'>,
  'CH-VD': <class 'workalendar.europe.switzerland.Vaud'>,
+ 'CH-GE': <class 'workalendar.europe.switzerland.Geneva'>,
  'FR': <class 'workalendar.europe.france.France'>}
 ```
 

@@ -87,6 +87,7 @@ __all__ = (
     'Sweden',
     'Switzerland',
     'Vaud',
+    'Geneva',
     'UnitedKingdom',
     'UnitedKingdomNorthernIreland',
     'Turkey',
