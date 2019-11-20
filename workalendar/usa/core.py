@@ -147,10 +147,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         Thanksgiving friday is on the day following Thanksgiving Day
         """
+        thanksgiving = UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4)
         return (
-            self.get_nth_weekday_in_month(year, 11, THU, 4) + timedelta(days=1),
-            self.thanksgiving_friday_label
-        )
+            thanksgiving + timedelta(days=1), self.thanksgiving_friday_label)
 
     def get_confederate_day(self, year):
         """
