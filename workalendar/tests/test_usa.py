@@ -448,6 +448,12 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
+    def test_state_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 31), holidays)  # Cesar Chavez Day
+        self.assertIn(date(2019, 11, 29), holidays)  # Thanksgiving Friday
+        self.assertNotIn(date(2019, 11, 22), holidays)  # Incorrect Thanksgiving Friday
+
 
 class CaliforniaEducationTest(CaliforniaTest):
     cal_class = CaliforniaEducation

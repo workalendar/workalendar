@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Bugfix for USA: Fixed incorrect implementation for Thanksgiving Friday.
 
 ## v7.1.0 (2019-11-15)
 

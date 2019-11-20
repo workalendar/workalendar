@@ -144,9 +144,11 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return (self.get_election_date(year), self.election_day_label)
 
     def get_thanksgiving_friday(self, year):
-        "Thanksgiving friday is on the 4th Friday in November"
+        """
+        Thanksgiving friday is on the day following Thanksgiving Day
+        """
         return (
-            self.get_nth_weekday_in_month(year, 11, FRI, 4),
+            self.get_nth_weekday_in_month(year, 11, THU, 4) + timedelta(days=1),
             self.thanksgiving_friday_label
         )
 
