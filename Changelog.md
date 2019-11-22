@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master (unreleased)
+## v7.1.1 (2019-11-22)
 
-- Added Geneva calendar by @cw-intellineers (#420)
-- Bugfix for USA: Fixed incorrect implementation for Thanksgiving Friday, thx @deveshvar (#422).
-- Fix Advanced usage documentation about Thanksgiving Day.
+- **Bugfix** for USA: Fixed incorrect implementation for Thanksgiving Friday, thx @deveshvar (#422).
+- Fix Advanced usage documentation about Thanksgiving Day (#426).
+- Added Geneva calendar by @cw-intellineers (#420).
 
 ## v7.1.0 (2019-11-15)
 
