@@ -4,6 +4,7 @@
 
 - Added Geneva calendar by @cw-intellineers (#420)
 - Bugfix for USA: Fixed incorrect implementation for Thanksgiving Friday, thx @deveshvar (#422).
+- Fix Advanced usage documentation about Thanksgiving Day.
 
 ## v7.1.0 (2019-11-15)
 

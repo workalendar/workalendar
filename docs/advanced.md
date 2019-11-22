@@ -22,9 +22,9 @@ datetime.date(2018, 7, 9)
 
 **WARNING**: this function doesn't take into account the existing holidays in the calendar. If you need this, use the ``add_working_days()`` function as described in the [Basic usage document](basic.md).
 
-## Find the 4th Friday in November
+## Find the 4th Thursday in November
 
-That's a puzzling question that we needed to address when we had to implement United States of America holidays calendars. Thanksgiving day, for example, which is on the 4th Friday in November... and many others, are defined as:
+That's a puzzling question that we needed to address when we had to implement United States of America holidays calendars. Thanksgiving day, for example, which is on the 4th Thursday in November (Thanksgiving Friday is the day after this thursday)... and many others, are defined as:
 
 > the ``nth`` ``Weekday name`` of the month of ``Month name``
 
@@ -35,10 +35,10 @@ Or even better for Election day, which is:
 We've got you covered with static methods in the core ``Calendar`` class.
 
 ```python
->>> from workalendar.core import Calendar, FRI
->>> Calendar.get_nth_weekday_in_month(2018, 11, FRI)  # by default, find the first
+>>> from workalendar.core import Calendar, THU
+>>> Calendar.get_nth_weekday_in_month(2018, 11, THU)  # by default, find the first
 datetime.date(2018, 11, 2)
->>> Calendar.get_nth_weekday_in_month(2018, 11, FRI, 4)  # Thanksgiving
+>>> Calendar.get_nth_weekday_in_month(2018, 11, THU, 4)  # Thanksgiving
 datetime.date(2018, 11, 23)
 ```
 
