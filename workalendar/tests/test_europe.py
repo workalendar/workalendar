@@ -33,7 +33,7 @@ from workalendar.europe import Romania
 from workalendar.europe import Russia
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
-from workalendar.europe import Switzerland, Vaud
+from workalendar.europe import Switzerland, Vaud, Geneva
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
@@ -1216,6 +1216,31 @@ class VaudTest(GenericCalendarTest):
         self.assertIn(date(2017, 9, 18), holidays)
         self.assertNotIn(date(2017, 5, 1), holidays)
         self.assertNotIn(date(2017, 12, 26), holidays)
+
+
+class GenevaTest(GenericCalendarTest):
+    cal_class = Geneva
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 6), holidays)
+        self.assertIn(date(2018, 12, 31), holidays)
+        self.assertNotIn(date(2018, 5, 1), holidays)
+        self.assertNotIn(date(2018, 12, 26), holidays)
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 9, 5), holidays)
+        self.assertIn(date(2019, 12, 31), holidays)
+        self.assertNotIn(date(2019, 5, 1), holidays)
+        self.assertNotIn(date(2019, 12, 26), holidays)
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 9, 10), holidays)
+        self.assertIn(date(2020, 12, 31), holidays)
+        self.assertNotIn(date(2020, 5, 1), holidays)
+        self.assertNotIn(date(2020, 12, 26), holidays)
 
 
 class EstoniaTest(GenericCalendarTest):

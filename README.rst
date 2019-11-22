@@ -112,6 +112,7 @@ Europe
 * Switzerland
 
   * Vaud
+  * Geneva
 
 * Turkey
 * United Kingdom (incl. Northern Ireland, Scotland and all its territories)

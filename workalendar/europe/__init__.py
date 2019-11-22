@@ -30,7 +30,7 @@ from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
 from .sweden import Sweden
-from .switzerland import Switzerland, Vaud
+from .switzerland import Switzerland, Vaud, Geneva
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
 from .turkey import Turkey
 
@@ -87,6 +87,7 @@ __all__ = (
     'Sweden',
     'Switzerland',
     'Vaud',
+    'Geneva',
     'UnitedKingdom',
     'UnitedKingdomNorthernIreland',
     'Turkey',

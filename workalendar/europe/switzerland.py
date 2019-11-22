@@ -52,3 +52,32 @@ class Vaud(Switzerland):
             days.append((self.get_federal_thanksgiving_monday(year),
                          "Federal Thanksgiving Monday"))
         return days
+
+
+@iso_register('CH-GE')
+class Geneva(Switzerland):
+    'Geneva'
+
+    include_boxing_day = False
+    include_genevan_fast = True
+
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+        (8, 1, "National Holiday"),
+        (12, 31, "Creation of Geneva Republic"),
+    )
+
+    def get_genevan_fast(self, year):
+        "Thursday following the first Sunday of September"
+        september_1st = date(year, 9, 1)
+        return (
+            september_1st +
+            (6 - september_1st.weekday()) * timedelta(days=1) +  # 1st sunday
+            timedelta(days=4)  # Thursday following the 1st Sunday
+        )
+
+    def get_variable_days(self, year):
+        days = super(Geneva, self).get_variable_days(year)
+        if self.include_genevan_fast:
+            days.append((self.get_genevan_fast(year),
+                         "Genevan Fast"))
+        return days

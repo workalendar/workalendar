@@ -8,7 +8,8 @@ from workalendar.europe import (
     Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
     Slovenia, Spain,
     # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, UnitedKingdom, UnitedKingdomNorthernIreland,
+    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
+    UnitedKingdomNorthernIreland,
 )
 
 # Germany
@@ -65,6 +66,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Sweden, classes)
         self.assertIn(Switzerland, classes)
         self.assertIn(Vaud, classes)
+        self.assertIn(Geneva, classes)
         self.assertIn(UnitedKingdom, classes)
         self.assertIn(UnitedKingdomNorthernIreland, classes)
         # Germany & Länders

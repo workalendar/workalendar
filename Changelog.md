@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Geneva calendar by @cw-intellineers (#420) 
 
 ## v7.1.0 (2019-11-15)
 
