@@ -3,7 +3,7 @@
 ## master (unreleased)
 
 - Added Geneva calendar by @cw-intellineers (#420)
-- Bugfix for USA: Fixed incorrect implementation for Thanksgiving Friday.
+- Bugfix for USA: Fixed incorrect implementation for Thanksgiving Friday, thx @deveshvar (#422).
 
 ## v7.1.0 (2019-11-15)
 
