@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin, SUN
 from ..registry_tools import iso_register
 
 
@@ -59,7 +59,6 @@ class Geneva(Switzerland):
     'Geneva'
 
     include_boxing_day = False
-    include_genevan_fast = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (8, 1, "National Holiday"),
@@ -68,16 +67,14 @@ class Geneva(Switzerland):
 
     def get_genevan_fast(self, year):
         "Thursday following the first Sunday of September"
-        september_1st = date(year, 9, 1)
+        first_sunday = self.get_nth_weekday_in_month(year, 9, SUN)
+        # The following thursday is 4 days after
         return (
-            september_1st +
-            (6 - september_1st.weekday()) * timedelta(days=1) +  # 1st sunday
-            timedelta(days=4)  # Thursday following the 1st Sunday
+            first_sunday + timedelta(days=4),
+            "Genevan Fast"
         )
 
     def get_variable_days(self, year):
         days = super(Geneva, self).get_variable_days(year)
-        if self.include_genevan_fast:
-            days.append((self.get_genevan_fast(year),
-                         "Genevan Fast"))
+        days.append(self.get_genevan_fast(year))
         return days
