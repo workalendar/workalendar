@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v7.1.1 (2019-11-22)
 
 - **Bugfix** for USA: Fixed incorrect implementation for Thanksgiving Friday, thx @deveshvar (#422).
