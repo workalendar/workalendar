@@ -189,6 +189,14 @@ class UnitedStatesTest(GenericCalendarTest):
             holidays = self.cal.holidays_set(year)
             self.assertNotIn(self.cal.get_election_date(year), holidays)
 
+    def test_thanksgiving_friday(self):
+        day, _ = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(day, date(2017, 11, 24))
+        day, _ = self.cal.get_thanksgiving_friday(2018)
+        self.assertEqual(day, date(2018, 11, 23))
+        day, _ = self.cal.get_thanksgiving_friday(2019)
+        self.assertEqual(day, date(2019, 11, 29))
+
     def test_thanksgiving_friday_label(self):
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Thanksgiving Friday")
@@ -447,6 +455,11 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 31), holidays)  # Cesar Chavez Day
+        self.assertIn(date(2019, 11, 29), holidays)  # Thanksgiving Friday
 
 
 class CaliforniaEducationTest(CaliforniaTest):
