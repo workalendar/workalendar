@@ -4,68 +4,85 @@ from workalendar.tests import GenericCalendarTest
 from workalendar.america import Colombia, Barbados
 from workalendar.america import Mexico, Chile, Panama, Paraguay, Argentina
 
+
 class ArgentinaTest(GenericCalendarTest):
     cal_class = Argentina
 
     def test_holidays_2018(self):
         holidays = self.cal.holidays_set(2018)
-        self.assertIn(date(2018, 1, 1), holidays)       # 1. Año Nuevo
-        self.assertIn(date(2018, 2, 12), holidays)      # 2. Carnaval
-        self.assertIn(date(2018, 2, 13), holidays)      # 3. Carnaval
-        self.assertIn(date(2018, 3, 24), holidays)      # 4. Día de la Memoria
-        self.assertIn(date(2018, 4, 2), holidays)       # 5. Día del Veterano y de los Caídos en la Guerra de Malvinas
-        self.assertIn(date(2018, 3, 30), holidays)      # 6. Viernes Santo
-        self.assertIn(date(2018, 5, 1), holidays)       # 7. Día del Trabajador
-        self.assertIn(date(2018, 5, 25), holidays)      # 8. Día de la Revolución de Mayo
-        self.assertIn(date(2018, 6, 20), holidays)      # 9. Día Paso a la Inmortalidad del General Manuel Belgrano
-        self.assertIn(date(2018, 7, 9), holidays)       # 10. Día de la Independencia
-        self.assertIn(date(2018, 12, 8), holidays)      # 11. Inmaculada Concepción de María.
-        self.assertIn(date(2018, 12, 25), holidays)     # 12. Navidad
+        # 1. Año Nuevo
+        self.assertIn(date(2018, 1, 1), holidays)
+        # 2. Carnaval
+        self.assertIn(date(2018, 2, 12), holidays)
+        # 3. Carnaval
+        self.assertIn(date(2018, 2, 13), holidays)
+        # 4. Día de la Memoria
+        self.assertIn(date(2018, 3, 24), holidays)
+        # 5. Día del Veterano y de los Caídos en la Guerra de Malvinas
+        self.assertIn(date(2018, 4, 2), holidays)
+        # 6. Viernes Santo
+        self.assertIn(date(2018, 3, 30), holidays)
+        # 7. Día del Trabajador
+        self.assertIn(date(2018, 5, 1), holidays)
+        # 8. Día de la Revolución de Mayo
+        self.assertIn(date(2018, 5, 25), holidays)
+        # 9. Día Paso a la Inmortalidad del General Manuel Belgrano
+        self.assertIn(date(2018, 6, 20), holidays)
+        # 10. Día de la Independencia
+        self.assertIn(date(2018, 7, 9), holidays)
+        # 11. Inmaculada Concepción de María
+        self.assertIn(date(2018, 12, 8), holidays)
+        # 12. Navidad
+        self.assertIn(date(2018, 12, 25), holidays)
         # variable days
-        self.assertIn(date(2018, 6, 17), holidays)      # 13. Día Paso a la Inmortalidad del General Martín Miguel de Güemes
-        self.assertIn(date(2018, 8, 20), holidays)      # 14. Paso a la Inmortalidad del General José de San Martín
-        self.assertIn(date(2018, 10, 15), holidays)     # 15. Día del Respeto a la Diversidad Cultural
-        self.assertIn(date(2018, 11, 19), holidays)     # 16. Día de la Soberanía Nacional
+        # 13. Día Paso a la Inmortalidad del General Martín Miguel de Güemes
+        self.assertIn(date(2018, 6, 17), holidays)
+        # 14. Paso a la Inmortalidad del General José de San Martín
+        self.assertIn(date(2018, 8, 20), holidays)
+        # 15. Día del Respeto a la Diversidad Cultural
+        self.assertIn(date(2018, 10, 15), holidays)
+        # 16. Día de la Soberanía Nacional
+        self.assertIn(date(2018, 11, 19), holidays)
 
     def test_holidays_2019(self):
         holidays = self.cal.holidays_set(2019)
-        self.assertIn(date(2019, 1, 1), holidays)       # 1. Año Nuevo
-        self.assertIn(date(2019, 3, 4), holidays)       # 2. Carnaval
-        self.assertIn(date(2019, 3, 5), holidays)       # 3. Carnaval
-        self.assertIn(date(2019, 3, 24), holidays)      # 4. Día de la Memoria
-        self.assertIn(date(2019, 4, 2), holidays)       # 5. Día del Veterano y de los Caídos en la Guerra de Malvinas
-        self.assertIn(date(2019, 4, 19), holidays)      # 6. Viernes Santo
-        self.assertIn(date(2019, 5, 1), holidays)       # 7. Día del Trabajador
-        self.assertIn(date(2019, 5, 25), holidays)      # 8. Día de la Revolución de Mayo
-        self.assertIn(date(2019, 6, 20), holidays)      # 9. Día Paso a la Inmortalidad del General Manuel Belgrano
-        self.assertIn(date(2019, 7, 9), holidays)       # 10. Día de la Independencia
-        self.assertIn(date(2019, 12, 8), holidays)      # 11. Inmaculada Concepción de María.
-        self.assertIn(date(2019, 12, 25), holidays)     # 12. Navidad
+        self.assertIn(date(2019, 1, 1), holidays)
+        self.assertIn(date(2019, 3, 4), holidays)
+        self.assertIn(date(2019, 3, 5), holidays)
+        self.assertIn(date(2019, 3, 24), holidays)
+        self.assertIn(date(2019, 4, 2), holidays)
+        self.assertIn(date(2019, 4, 19), holidays)
+        self.assertIn(date(2019, 5, 1), holidays)
+        self.assertIn(date(2019, 5, 25), holidays)
+        self.assertIn(date(2019, 6, 20), holidays)
+        self.assertIn(date(2019, 7, 9), holidays)
+        self.assertIn(date(2019, 12, 8), holidays)
+        self.assertIn(date(2019, 12, 25), holidays)
         # variable days
-        self.assertIn(date(2019, 6, 17), holidays)      # 13. Día Paso a la Inmortalidad del General Martín Miguel de Güemes
-        self.assertIn(date(2019, 8, 19), holidays)      # 14. Paso a la Inmortalidad del General José de San Martín
-        self.assertIn(date(2019, 10, 14), holidays)     # 15. Día del Respeto a la Diversidad Cultural
-        self.assertIn(date(2019, 11, 18), holidays)     # 16. Día de la Soberanía Nacional
+        self.assertIn(date(2019, 6, 17), holidays)
+        self.assertIn(date(2019, 8, 19), holidays)
+        self.assertIn(date(2019, 10, 14), holidays)
+        self.assertIn(date(2019, 11, 18), holidays)
 
     def test_holidays_2020(self):
         holidays = self.cal.holidays_set(2020)
-        self.assertIn(date(2020, 1, 1), holidays)       # 1. Año Nuevo
-        self.assertIn(date(2020, 2, 24), holidays)      # 2. Carnaval
-        self.assertIn(date(2020, 2, 25), holidays)      # 3. Carnaval
-        self.assertIn(date(2020, 3, 24), holidays)      # 4. Día de la Memoria
-        self.assertIn(date(2020, 4, 2), holidays)       # 5. Día del Veterano y de los Caídos en la Guerra de Malvinas
-        self.assertIn(date(2020, 4, 10), holidays)      # 6. Viernes Santo
-        self.assertIn(date(2020, 5, 1), holidays)       # 7. Día del Trabajador
-        self.assertIn(date(2020, 5, 25), holidays)      # 8. Día de la Revolución de Mayo
-        self.assertIn(date(2020, 6, 20), holidays)      # 9. Día Paso a la Inmortalidad del General Manuel Belgrano
-        self.assertIn(date(2020, 7, 9), holidays)       # 10. Día de la Independencia
-        self.assertIn(date(2020, 12, 8), holidays)      # 11. Inmaculada Concepción de María.
-        self.assertIn(date(2020, 12, 25), holidays)     # 12. Navidad
+        self.assertIn(date(2020, 1, 1), holidays)
+        self.assertIn(date(2020, 2, 24), holidays)
+        self.assertIn(date(2020, 2, 25), holidays)
+        self.assertIn(date(2020, 3, 24), holidays)
+        self.assertIn(date(2020, 4, 2), holidays)
+        self.assertIn(date(2020, 4, 10), holidays)
+        self.assertIn(date(2020, 5, 1), holidays)
+        self.assertIn(date(2020, 5, 25), holidays)
+        self.assertIn(date(2020, 6, 20), holidays)
+        self.assertIn(date(2020, 7, 9), holidays)
+        self.assertIn(date(2020, 12, 8), holidays)
+        self.assertIn(date(2020, 12, 25), holidays)
         # variable days
-        self.assertIn(date(2020, 6, 15), holidays)      # 13. Día Paso a la Inmortalidad del General Martín Miguel de Güemes
-        self.assertIn(date(2020, 8, 17), holidays)      # 14. Paso a la Inmortalidad del General José de San Martín
-        self.assertIn(date(2020, 10, 12), holidays)     # 15. Día del Respeto a la Diversidad Cultural
-        self.assertIn(date(2020, 11, 23), holidays)     # 16. Día de la Soberanía Nacional
+        self.assertIn(date(2020, 6, 15), holidays)
+        self.assertIn(date(2020, 8, 17), holidays)
+        self.assertIn(date(2020, 10, 12), holidays)
+        self.assertIn(date(2020, 11, 23), holidays)
 
 
 class ChileTest(GenericCalendarTest):

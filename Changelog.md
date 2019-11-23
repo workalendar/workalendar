@@ -4,6 +4,7 @@
 
 - Small refactorings on the Gevena (Switzerland) holiday class.
 - Update China's public holidays for 2020.
+- Added Argentina
 
 ## v7.1.1 (2019-11-22)
 
@@ -30,10 +31,6 @@
 - Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam.
 - Increase China coverage by adding tests for special extra-holidays & extra-working days cases.
 
-
-## 7.1.0 (2019-11-15)
-
-- Added Argentina
 
 ## v7.0.0 (2019-09-20)
 
