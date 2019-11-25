@@ -117,6 +117,8 @@ class Hesse(Germany):
     'Hesse'
 
     include_corpus_christi = True
+    include_easter_sunday = True
+    include_whit_sunday = True
 
 
 @iso_register('DE-MV')

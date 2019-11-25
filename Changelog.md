@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Small refactorings on the Gevena (Switzerland) holiday class.
+- Update Germany Hesse holidays
 
 ## v7.1.1 (2019-11-22)
 

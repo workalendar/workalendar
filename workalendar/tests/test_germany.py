@@ -196,10 +196,14 @@ class HesseTest(GermanyTest):
 
     def test_extra_2014(self):
         holidays = self.cal.holidays_set(2014)
+        self.assertIn(date(2014, 4, 20), holidays)
+        self.assertIn(date(2014, 6, 8), holidays)
         self.assertIn(date(2014, 6, 19), holidays)
 
     def test_extra_2015(self):
         holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 4, 5), holidays)
+        self.assertIn(date(2015, 5, 24), holidays)
         self.assertIn(date(2015, 6, 4), holidays)
 
 
