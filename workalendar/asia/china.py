@@ -24,6 +24,13 @@ holidays = {
             'Dragon Boat Festival': [(6, 7)],
             'Mid-Autumn Festival': [(9, 13)]
         },
+    2020:
+        {
+            'Ching Ming Festival': [(4, 4), (4, 5), (4, 6)],
+            'Labour Day Holiday': [(5, 1), (5, 2), (5, 3), (5, 4), (5, 5)],
+            'Dragon Boat Festival': [(6, 25), (6, 26), (6, 27)],
+            'National Day': [(10, 8)]
+        },
 }
 
 workdays = {
@@ -40,6 +47,13 @@ workdays = {
             'Spring Festival Shift': [(2, 2), (2, 3)],
             'Labour Day Holiday Shift': [(4, 28), (5, 5)],
             'National Day Shift': [(9, 29), (10, 12)],
+        },
+    2020:
+        {
+            'Spring Festival Shift': [(1, 19), (2, 1)],
+            'Labour Day Holiday Shift': [(4, 26), (5, 9)],
+            'Dragon Boat Festival Shift': [(6, 28)],
+            'National Day Shift': [(9, 27), (10, 10)]
         },
 }
 
