@@ -51,15 +51,22 @@ class Argentina(WesternCalendar, ChristianMixin):
         return days
 
     def get_general_guemes_day(self, year):
+        """
+        Día Paso a la Inmortalidad del General Martín Miguel de Güemes.
+
+        Happens on June 17th, except:
+
+        * if it happens on a THU, it's shifted to the next MON.
+        * if it happens on a WED, it's shifted to the MON before this date.
+        """
         general_guemes_day = date(year, 6, 17)
 
         if general_guemes_day.weekday() == THU:
             general_guemes_day = Argentina.get_first_weekday_after(
                 date(year, 6, 17), MON)
         elif general_guemes_day.weekday() == WED:
-            # monday of the same week
-            general_guemes_day = (general_guemes_day
-                                  - timedelta(days=2))
+            # Monday of the same week
+            general_guemes_day = general_guemes_day - timedelta(days=2)
         else:
             general_guemes_day
 
@@ -68,6 +75,11 @@ class Argentina(WesternCalendar, ChristianMixin):
                 "General Martín Miguel de Güemes")
 
     def get_general_martin_day(self, year):
+        """
+        Día Paso a la Inmortalidad del Gral. José de San Martín
+
+        Third MON of August.
+        """
         general_martin_day = Argentina.get_nth_weekday_in_month(
             year, 8, MON, 3
         )
@@ -77,6 +89,11 @@ class Argentina(WesternCalendar, ChristianMixin):
                 "Gral. José de San Martín")
 
     def get_soberania_day(self, year):
+        """
+        Día de la Soberanía Nacional
+
+        Happens on the 3rd MON of November after the first Friday.
+        """
         first_friday_november = Argentina.get_nth_weekday_in_month(
             year, 11, FRI, 1
         )
@@ -88,6 +105,16 @@ class Argentina(WesternCalendar, ChristianMixin):
         return (soberania_day, "Día de la Soberanía Nacional")
 
     def get_diversidad_day(self, year):
+        """
+        Día del Respeto a la Diversidad Cultural
+
+        The pivot date is the 12th of October.
+
+        * If it happens on a TUE, it's shifter on the 11th of Oct.
+        * If it happens on a WED, THU, FRI or SAT, it's shifted on the first
+          MON after this date.
+        * Else, it's on the 12th of October.
+        """
         diversidad_day = date(year, 10, 12)
 
         if (diversidad_day.weekday() == WED or

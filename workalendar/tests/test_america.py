@@ -84,6 +84,19 @@ class ArgentinaTest(GenericCalendarTest):
         self.assertIn(date(2020, 10, 12), holidays)
         self.assertIn(date(2020, 11, 23), holidays)
 
+    def test_holidays_2021(self):
+        # Testing it because June 17th happens on THU (general_guemes_day).
+        holidays = self.cal.holidays_set(2021)
+        # Not happening on June 17
+        self.assertNotIn(date(2021, 6, 17), holidays)
+        # Happens on the 1st MON after this date.
+        self.assertIn(date(2021, 6, 20), holidays)
+
+        # Also, Día del Respeto a la Diversidad Cultural is shifted
+        self.assertNotIn(date(2021, 10, 12), holidays)
+        # The day before
+        self.assertIn(date(2021, 10, 11), holidays)
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile
