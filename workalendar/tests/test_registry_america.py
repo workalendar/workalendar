@@ -27,7 +27,9 @@ from workalendar.america import (
     Nunavut,
 
 )
-from workalendar.america import Chile, Colombia, Mexico, Panama, Paraguay
+from workalendar.america import (
+    Argentina, Chile, Colombia, Mexico, Panama, Paraguay
+)
 
 from workalendar.registry import registry
 
@@ -85,6 +87,7 @@ class RegistryAmerica(TestCase):
         self.assertIn(Canada, classes)
         self._check_canada_provinces(classes)
 
+        self.assertIn(Argentina, classes)
         self.assertIn(Chile, classes)
         self.assertIn(Colombia, classes)
         self.assertIn(Mexico, classes)
