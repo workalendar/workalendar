@@ -4,7 +4,7 @@
 
 - Small refactorings on the Gevena (Switzerland) holiday class.
 - Update China's public holidays for 2020.
-- Added Argentina
+- Added Argentina calendar, by @ftatarli (#419).
 
 ## v7.1.1 (2019-11-22)
 
