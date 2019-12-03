@@ -5,6 +5,7 @@
 - Small refactorings on the Gevena (Switzerland) holiday class.
 - Update China's public holidays for 2020.
 - Added Argentina calendar, by @ftatarli (#419).
+- Update Malaysia and Singapore for 2021 (Deepavali + Thaipusam) by @jack-pace
 
 ## v7.1.1 (2019-11-22)
 
