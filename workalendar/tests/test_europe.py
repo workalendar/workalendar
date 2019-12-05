@@ -1109,7 +1109,6 @@ class CataloniaTest(GenericCalendarTest):
 class SerbiaTest(GenericCalendarTest):
     cal_class = Serbia
 
-
     def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)
@@ -1124,19 +1123,17 @@ class SerbiaTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 2), holidays)
         self.assertIn(date(2015, 11, 11), holidays)
 
-
     def test_year_2016(self):
-            holidays = self.cal.holidays_set(2016)
-            self.assertIn(date(2016, 1, 1), holidays)
-            self.assertIn(date(2016, 1, 2), holidays)
-            self.assertIn(date(2016, 1, 7), holidays)
-            self.assertIn(date(2016, 2, 15), holidays)
-            self.assertIn(date(2016, 2, 16), holidays)
-            self.assertIn(date(2016, 4, 29), holidays)
-            self.assertIn(date(2016, 5, 1), holidays)
-            self.assertIn(date(2016, 5, 2), holidays)
-            self.assertIn(date(2016, 11, 11), holidays)
-
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 2), holidays)
+        self.assertIn(date(2016, 1, 7), holidays)
+        self.assertIn(date(2016, 2, 15), holidays)
+        self.assertIn(date(2016, 2, 16), holidays)
+        self.assertIn(date(2016, 4, 29), holidays)
+        self.assertIn(date(2016, 5, 1), holidays)
+        self.assertIn(date(2016, 5, 2), holidays)
+        self.assertIn(date(2016, 11, 11), holidays)
 
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
