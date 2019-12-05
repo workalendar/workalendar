@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## master (unreleased)
-
+- Added Serbia to the list
 - Small refactorings on the Gevena (Switzerland) holiday class.
 - Update China's public holidays for 2020.
 - Added Argentina calendar, by @ftatarli (#419).
