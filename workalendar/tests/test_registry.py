@@ -1,4 +1,5 @@
 from unittest import TestCase
+import warnings
 
 from workalendar.registry import IsoRegistry
 from workalendar.core import Calendar
@@ -17,24 +18,48 @@ class NotACalendarClass(object):
     "Not a Calendar"
 
 
-class MockCalendarTest(TestCase):
+class NonStandardRegistryTest(TestCase):
 
     def setUp(self):
         self.region = RegionCalendar
         self.subregion = SubRegionCalendar
 
-    def test_register(self):
+    def test_region_registry(self):
         registry = IsoRegistry(load_standard_modules=False)
         self.assertEqual(0, len(registry.region_registry.items()))
         registry.register('RE', self.region)
         self.assertEqual(1, len(registry.region_registry.items()))
         self.assertEqual(RegionCalendar, registry.region_registry['RE'])
 
+    def test_register_non_calendar(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        with self.assertRaises(ISORegistryError):
+            registry.register("NAC", NotACalendarClass)
+
     def test_get_calendar_class(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
+        registry.register('RE-SR', self.subregion)
         calendar_class = registry.get_calendar_class('RE')
         self.assertEqual(calendar_class, RegionCalendar)
+        # Subregion
+        calendar_class = registry.get_calendar_class('RE-SR')
+        self.assertEqual(calendar_class, SubRegionCalendar)
+        # Unknown code/region
+        self.assertIsNone(registry.get_calendar_class('XX'))
+
+    def test_items_deprecation(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        with warnings.catch_warnings(record=True) as w:
+            # Cause all warnings to always be triggered.
+            warnings.simplefilter("always")
+            # Trigger a warning.
+            registry.items()
+            # Verify some things
+            self.assertEqual(len(w), 1)
+            warning = w[0]
+            self.assertTrue(issubclass(warning.category, DeprecationWarning))
+            self.assertIn("deprecated", str(warning.message))
 
     def test_get_subregions(self):
         registry = IsoRegistry(load_standard_modules=False)
@@ -42,23 +67,85 @@ class MockCalendarTest(TestCase):
         registry.register('RE-SR', self.subregion)
         registry.register('OR-SR', self.subregion)
         subregions = registry.get_subregions('RE')
-        self.assertIn('RE-SR', subregions)
+        # Only one sub-region here
         self.assertEqual(1, len(subregions))
+        self.assertIn('RE-SR', subregions)
 
-    def test_get_items(self):
+    def test_get_calendars(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
         registry.register('OR-SR', self.subregion)
-        items = registry.items(['RE'], include_subregions=True)
-        self.assertEqual(2, len(items))
-        self.assertIn('RE', items)
-        self.assertIn('RE-SR', items)
-        items = registry.items(['RE'], include_subregions=False)
-        self.assertEqual(1, len(items))
-        self.assertIn('RE', items)
+        calendars = registry.get_calendars(['RE'], include_subregions=True)
+        self.assertEqual(2, len(calendars))
+        self.assertIn('RE', calendars)
+        self.assertIn('RE-SR', calendars)
+        calendars = registry.get_calendars(['RE'], include_subregions=False)
+        self.assertEqual(1, len(calendars))
+        self.assertIn('RE', calendars)
 
-    def test_register_non_calendar(self):
+    def test_get_calendars_unknown(self):
         registry = IsoRegistry(load_standard_modules=False)
-        with self.assertRaises(ISORegistryError):
-            registry.register("NAC", NotACalendarClass)
+        registry.register('RE', self.region)
+        calendars = registry.get_calendars(['XX'])
+        self.assertEqual(calendars, {})
+
+    def test_get_calendars_with_subregions(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE-SR', self.subregion)
+        calendars = registry.get_calendars(
+            ['RE2', "RE-SR"], include_subregions=True)
+        self.assertEqual(2, len(calendars))
+        self.assertIn('RE2', calendars)
+        self.assertIn('RE-SR', calendars)
+        calendars = registry.get_calendars(
+            ['RE2', "RE-SR"], include_subregions=False)
+        self.assertEqual(2, len(calendars))
+        self.assertIn('RE2', calendars)
+        self.assertIn('RE-SR', calendars)
+
+        # Only a subregion
+        calendars = registry.get_calendars(["RE-SR"], include_subregions=True)
+        self.assertEqual(1, len(calendars))
+        self.assertIn('RE-SR', calendars)
+
+    def test_get_calendars_empty_arg(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        # 3 regions, one sub-region
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE3', self.region)
+        registry.register('RE-SR', self.subregion)
+        # Empty arg, no subregions
+        calendars = registry.get_calendars([], include_subregions=False)
+        self.assertEqual(len(calendars), 3)
+        self.assertEqual(set({"RE", "RE2", "RE3"}), set(calendars.keys()))
+        # Empty arg, with subregions
+        calendars = registry.get_calendars([], include_subregions=True)
+        self.assertEqual(len(calendars), 4)
+        self.assertEqual(
+            set({"RE", "RE2", "RE3", "RE-SR"}),
+            set(calendars.keys())
+        )
+
+    def test_get_calendars_no_arg(self):
+        registry = IsoRegistry(load_standard_modules=False)
+        # 3 regions, one sub-region
+        registry.register('RE', self.region)
+        registry.register('RE2', self.region)
+        registry.register('RE3', self.region)
+        registry.register('RE-SR', self.subregion)
+
+        # Should be equivalent to [] + no subregions
+        calendars = registry.get_calendars()
+        self.assertEqual(len(calendars), 3)
+        self.assertEqual(set({"RE", "RE2", "RE3"}), set(calendars.keys()))
+
+        # Should be equivalent to [] + include subregions
+        calendars = registry.items(include_subregions=True)
+        self.assertEqual(len(calendars), 4)
+        self.assertEqual(
+            set({"RE", "RE2", "RE3", "RE-SR"}),
+            set(calendars.keys()))
