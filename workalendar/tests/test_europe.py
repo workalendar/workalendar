@@ -34,6 +34,7 @@ from workalendar.europe import Russia
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
 from workalendar.europe import Switzerland, Vaud, Geneva
+from workalendar.europe import Ukraine
 from workalendar.europe import UnitedKingdom
 from workalendar.europe import UnitedKingdomNorthernIreland
 from workalendar.europe import EuropeanCentralBank
@@ -832,6 +833,29 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
         self.assertIn(date(2018, 11, 4), holidays)  # Day of Unity
+
+
+class UkraineTest(GenericCalendarTest):
+    cal_class = Ukraine
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2016, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2016, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2016, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2016, 5, 2), holidays)
+        self.assertIn(date(2016, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2016, 6, 20), holidays)
+        self.assertIn(date(2016, 6, 28), holidays)  # Constitution Day
+        self.assertIn(date(2016, 8, 24), holidays)  # Day of Unity
+        self.assertIn(date(2016, 10, 14), holidays)  # Defender of Fatherland
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 2), holidays)  # New Year's Day (postponed)
+        self.assertIn(date(2017, 1, 8), holidays)  # Christmas (Orthodox) (postponed)
 
 
 class UnitedKingdomTest(GenericCalendarTest):
