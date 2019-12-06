@@ -1,11 +1,17 @@
 # CHANGELOG
 
-## master (unreleased)
-- Added Serbia to the list
-- Small refactorings on the Gevena (Switzerland) holiday class.
-- Update China's public holidays for 2020.
+## v7.2.0 (2019-12-06)
+
+### New calendars
+
+- Added Serbia calendar, by @apelloni (#435).
 - Added Argentina calendar, by @ftatarli (#419).
-- Update Malaysia and Singapore for 2021 (Deepavali + Thaipusam) by @jack-pace
+
+### Other changes
+
+- Update China's public holidays for 2020, thx @nut-free (#429).
+- Update Malaysia and Singapore for 2021 (Deepavali + Thaipusam) by @jack-pace (#432).
+- Small refactorings on the Gevena (Switzerland) holiday class, thx to @cw-intellineers (#420).
 
 ## v7.1.1 (2019-11-22)
 
