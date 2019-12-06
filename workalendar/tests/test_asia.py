@@ -324,10 +324,10 @@ class MalaysiaTest(GenericCalendarTest):
 
     def test_msia_thaipusam(self):
         years = self.cal.MSIA_THAIPUSAM.keys()
-        # we only have them for years 2010-2020
+        # we only have them for years 2010-2021
         self.assertEqual(
             set(years),
-            set(range(2010, 2021))
+            set(range(2010, 2022))
         )
 
     def test_missing_deepavali(self):
@@ -419,8 +419,8 @@ class SingaporeTest(GenericCalendarTest):
         self.assertIn(date(2016, 5, 2), holidays)
 
     def test_deepavali(self):
-        # At the moment, we have values for deepavali only until year 2020
-        for year in range(2000, 2021):
+        # At the moment, we have values for deepavali only until year 2021
+        for year in range(2000, 2022):
             self.assertIn(year, self.cal.DEEPAVALI)
 
     def test_deepavali_current_year(self):
