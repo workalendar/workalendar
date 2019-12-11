@@ -40,6 +40,7 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
         2020: date(2020, 11, 14),  # This might change
+        2021: date(2021, 11, 4),
     }
 
     MSIA_THAIPUSAM = {
@@ -54,6 +55,7 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         2018: date(2018, 1, 31),
         2019: date(2019, 1, 21),
         2020: date(2020, 2, 8),  # This might change
+        2021: date(2021, 1, 28),
     }
     chinese_new_year_label = "First Day of Lunar New Year"
     include_chinese_second_day = True

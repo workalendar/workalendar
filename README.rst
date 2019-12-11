@@ -105,6 +105,7 @@ Europe
 * Portugal
 * Romania
 * Russia
+* Serbia
 * Slovakia
 * Slovenia
 * Spain (incl. Catalonia)
