@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from importlib import import_module
+import warnings
 
 from .core import Calendar
 from .exceptions import ISORegistryError
@@ -61,13 +62,6 @@ class IsoRegistry(object):
                 if iso_code and cls.__name__ == class_name:
                     self.register(iso_code, cls)
 
-    def _code_elements(self, iso_code):
-        code_elements = iso_code.split('-')
-        is_subregion = False
-        if len(code_elements) > 1:
-            is_subregion = True
-        return code_elements, is_subregion
-
     def get_calendar_class(self, iso_code):
         """
         Retrieve calendar class associated with given ``iso_code``.
@@ -79,14 +73,7 @@ class IsoRegistry(object):
 
         :rtype: Calendar
         """
-        code_elements, is_subregion = self._code_elements(iso_code)
-        if is_subregion and iso_code not in self.region_registry:
-            # subregion code not in region_registry
-            code = code_elements[0]
-        else:
-            # subregion code in region_registry or is not a subregion
-            code = iso_code
-        return self.region_registry.get(code)
+        return self.region_registry.get(iso_code)
 
     def get_subregions(self, iso_code):
         """
@@ -103,22 +90,49 @@ class IsoRegistry(object):
         """
         items = dict()
         for key, value in self.region_registry.items():
-            code_elements, is_subregion = self._code_elements(key)
-            if is_subregion and code_elements[0] == iso_code:
+            if key.startswith("{}-".format(iso_code)):
                 items[key] = value
         return items
 
-    def items(self, region_codes, include_subregions=False):
+    def items(self, region_codes=None, include_subregions=False):
         """
         Returns calendar classes for regions
 
-        :param region_codes list of ISO codes for selected regions
+        :param region_codes list of ISO codes for selected regions. If empty,
+                            the function will return all items from the
+                            registry.
         :param include_subregions boolean if subregions
         of selected regions should be included in result
         :rtype dict
         :return dict where keys are ISO codes strings
         and values are calendar classes
         """
+        warnings.warn("The ``items()`` method will soon be deprecated."
+                      " Please use ``get_calendars()`` instead.",
+                      DeprecationWarning)
+        return self.get_calendars(region_codes, include_subregions)
+
+    def get_calendars(self, region_codes=None, include_subregions=False):
+        """
+        Returns calendar classes for regions
+
+        :param region_codes list of ISO codes for selected regions. If empty,
+                            the function will return all items from the
+                            registry.
+        :param include_subregions boolean if subregions
+        of selected regions should be included in result
+        :rtype dict
+        :return dict where keys are ISO codes strings
+        and values are calendar classes
+        """
+        if not region_codes:
+            # Here it contains all subregions
+            if include_subregions:
+                return self.region_registry.copy()
+            items = {k: v for k, v in self.region_registry.items()
+                     if '-' not in k}
+            return items
+
         items = dict()
         for code in region_codes:
             try:

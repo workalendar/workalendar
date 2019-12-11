@@ -31,6 +31,7 @@ from workalendar.europe import Poland
 from workalendar.europe import Portugal
 from workalendar.europe import Romania
 from workalendar.europe import Russia
+from workalendar.europe import Serbia
 from workalendar.europe import Spain, Catalonia
 from workalendar.europe import Slovenia
 from workalendar.europe import Switzerland, Vaud, Geneva
@@ -1103,6 +1104,50 @@ class CataloniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 8), holidays)
         self.assertIn(date(2016, 12, 25), holidays)
         self.assertIn(date(2016, 12, 26), holidays)
+
+
+class SerbiaTest(GenericCalendarTest):
+    cal_class = Serbia
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 2), holidays)
+        self.assertIn(date(2015, 1, 7), holidays)
+        self.assertIn(date(2015, 2, 15), holidays)
+        self.assertIn(date(2015, 2, 16), holidays)
+        self.assertIn(date(2015, 4, 10), holidays)
+        self.assertIn(date(2015, 4, 12), holidays)
+        self.assertIn(date(2015, 4, 13), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 2), holidays)
+        self.assertIn(date(2015, 11, 11), holidays)
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 2), holidays)
+        self.assertIn(date(2016, 1, 7), holidays)
+        self.assertIn(date(2016, 2, 15), holidays)
+        self.assertIn(date(2016, 2, 16), holidays)
+        self.assertIn(date(2016, 4, 29), holidays)
+        self.assertIn(date(2016, 5, 1), holidays)
+        self.assertIn(date(2016, 5, 2), holidays)
+        self.assertIn(date(2016, 11, 11), holidays)
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)
+        self.assertIn(date(2017, 1, 2), holidays)
+        self.assertIn(date(2017, 1, 7), holidays)
+        self.assertIn(date(2017, 2, 15), holidays)
+        self.assertIn(date(2017, 2, 16), holidays)
+        self.assertIn(date(2017, 4, 14), holidays)
+        self.assertIn(date(2017, 4, 16), holidays)
+        self.assertIn(date(2017, 4, 17), holidays)
+        self.assertIn(date(2017, 5, 1), holidays)
+        self.assertIn(date(2017, 5, 2), holidays)
+        self.assertIn(date(2017, 11, 11), holidays)
 
 
 class SloveniaTest(GenericCalendarTest):

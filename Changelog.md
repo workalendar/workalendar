@@ -2,9 +2,24 @@
 
 ## master (unreleased)
 
-- Small refactorings on the Gevena (Switzerland) holiday class.
-- Update China's public holidays for 2020.
+### ISO Registry API Change
+
+- Changes in the ``registry.items()`` method API.
+  - This method is aliased to ``get_calendars()``. In a near release, the ``items()`` method will change its purpose.
+  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://peopledoc.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
+
+## v7.2.0 (2019-12-06)
+
+### New calendars
+
+- Added Serbia calendar, by @apelloni (#435).
 - Added Argentina calendar, by @ftatarli (#419).
+
+### Other changes
+
+- Update China's public holidays for 2020, thx @nut-free (#429).
+- Update Malaysia and Singapore for 2021 (Deepavali + Thaipusam) by @jack-pace (#432).
+- Small refactorings on the Gevena (Switzerland) holiday class, thx to @cw-intellineers (#420).
 
 ## v7.1.1 (2019-11-22)
 
