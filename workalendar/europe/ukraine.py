@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from datetime import date, timedelta
+from datetime import date
 from workalendar.core import WesternCalendar, OrthodoxMixin
 from ..registry_tools import iso_register
 
@@ -15,14 +15,13 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 8, "International Women’s Day"),
         (5, 1, "Labour Day"),
-        (5, 2, "Labour Day"),
+        #  (5, 2, "Labour Day"),  # Conflicting Sources
         (5, 9, "Victory Day"),
     )
 
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
-    #include_assumption = True
     include_whit_monday = True
 
     def get_variable_days(self, year):
@@ -36,10 +35,6 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
                 "Orthodox Christmas (postponed)"))
         else:
             days.append((orthodox_christmas, "Orthodox Christmas"))
-
-        # Green Sunday: 50 days after Christmas
-        #days.append((self.get_easter_monday(year) + timedelta(days=50), "Green Sunday"))
-
 
         # Constitution Day was celebrated for the first time in 1996
         if year >= 1996:
@@ -63,8 +58,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
                     self.find_following_working_day(independence_day),
                     "Independence Day (postponed)"))
             else:
-                days.append((independence_day,"Independence Day"))
-
+                days.append((independence_day, "Independence Day"))
 
         # Defender of the Fatherland
         # https://en.wikipedia.org/wiki/Defender_of_the_Fatherland_Day
@@ -76,4 +70,3 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
             days.append((date(year, 10, 14), "Defender of the Fatherland"))
 
         return days
-
