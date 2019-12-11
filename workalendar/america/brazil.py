@@ -13,12 +13,12 @@ from ..registry_tools import iso_register
 class Brazil(WesternCalendar, ChristianMixin):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (4, 21, "Tiradentes' Day"),
-        (5, 1, "Labour Day"),
-        (9, 7, "Independence Day"),
-        (10, 12, "Our Lady of Aparecida"),
-        (11, 2, "All Souls' Day"),
-        (11, 15, "Republic Day"),
+        (4, 21, "Dia de Tiradentes"),
+        (5, 1, "Dia do Trabalhador"),
+        (9, 7, "Dia da Independência"),
+        (10, 12, "Dia de Nossa Senhora Aparecida"),
+        (11, 2, "Dia de Finados"),
+        (11, 15, "Proclamação da República"),
     )
     include_sao_jose = False
     sao_jose_label = "São José"
@@ -304,14 +304,14 @@ class BrazilSantaCatarina(Brazil):
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 9, "Constitutional Revolution of 1932"),
+        (7, 9, "Revolução Constitucional de 1932"),
     )
 
 
 class BrazilSaoPauloCity(BrazilSaoPauloState):
     "Brazil São Paulo City"
     FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
-        (1, 25, "Anniversary of the city of São Paulo"),
+        (1, 25, "Aniversário da cidade de São Paulo"),
     )
     include_easter_sunday = True
     include_corpus_christi = True
@@ -588,7 +588,7 @@ class BrazilBankCalendar(Brazil):
     for companies and the general public
     """
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 25, "Christmas Day"),
+        (12, 25, "Dia de Natal"),
     )
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
@@ -618,17 +618,17 @@ class BrazilBankCalendar(Brazil):
         ash_wednesday = self.get_ash_wednesday(year)
 
         non_fixed_holidays = [
-            (monday_carnaval, "Monday carnaval"),
-            (tuesday_carnaval, "Tuesday carnaval"),
-            (good_friday, "Good friday"),
+            (monday_carnaval, "Segunda-feira de carnaval"),
+            (tuesday_carnaval, "Terça-feira de carnaval"),
+            (good_friday, "Sexta-feira da Paixão"),
             (corpus_christi, "Corpus Christi"),
-            (ash_wednesday, "Ash Wednesday"),
+            (ash_wednesday, "Quarta-feira de cinzas"),
         ]
 
         non_working_days = [
             (
                 self.get_last_day_of_year_for_only_internal_bank_trans(year),
-                "Last day of year for only internal bank transactions"
+                "Último dia do ano apenas para transações bancárias internas"
             )
         ]
 
