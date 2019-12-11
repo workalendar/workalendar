@@ -48,10 +48,10 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
 
         # Independence Day was first celebrated in 1991 on the 16th of June
         # After the official independence has been moved to the 24th of August
-        if year >= 1991:
-            independence_day = date(year, 6, 16)
-            if year >= 1992:
-                independence_day = date(year, 8, 24)
+        if year == 1991:
+            days.append((date(year, 6, 16), "Independence Day"))
+        if year >= 1992:
+            independence_day = date(year, 8, 24)
 
             if independence_day.weekday() in self.get_weekend_days():
                 days.append((
