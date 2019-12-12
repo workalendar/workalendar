@@ -71,6 +71,6 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
 
         # Workers Solidarity Day was celebrated also on the 2nd till 2017
         if year <= 2017:
-            days.append((date(year, 5, 1), "Workers Solidarity Day"))
+            days.append((date(year, 5, 2), "Workers Solidarity Day"))
 
         return days
