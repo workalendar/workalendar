@@ -60,7 +60,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
             else:
                 days.append((independence_day, "Independence Day"))
 
-        # Then changed to Defender of Ukraine
+        # Defender of Ukraine from 2015
         # https://en.wikipedia.org/wiki/Defender_of_Ukraine_Day
         if year >= 2015:
             days.append((date(year, 10, 14), "Day of Defender of Ukraine"))
