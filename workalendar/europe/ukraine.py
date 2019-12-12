@@ -63,7 +63,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
                     self.find_following_working_day(independence_day),
                     "Independence Day (postponed)"))
             else:
-                days.append((independence_day, "Independence Day")) 
+                days.append((independence_day, "Independence Day"))
 
         # Then changed to Defender of Ukraine
         # https://en.wikipedia.org/wiki/Defender_of_Ukraine_Day
