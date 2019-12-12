@@ -833,7 +833,7 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
-        self.assertIn(date(2018, 11, 4), holidays)  # Day of Unity
+        self.assertIn(date(2018, 11, 4), holidays)  # Independence Day
 
 
 class UkraineTest(GenericCalendarTest):
@@ -848,12 +848,12 @@ class UkraineTest(GenericCalendarTest):
         self.assertIn(date(2010, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2010, 5, 24), holidays)  # Whit Monday
         self.assertIn(date(2010, 6, 28), holidays)  # Constitution Day
-        self.assertIn(date(2010, 8, 24), holidays)  # Day of Unity
-        self.assertIn(date(2010, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2010, 8, 24), holidays)  # Independence Day
 
     def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 6, 29), holidays)  # Constitution Day (moved)
+        self.assertIn(date(2015, 10, 14), holidays)  # Defender of Ukraine
 
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
@@ -866,13 +866,14 @@ class UkraineTest(GenericCalendarTest):
         self.assertIn(date(2016, 6, 20), holidays)
         self.assertIn(date(2016, 6, 28), holidays)  # Constitution Day
         self.assertIn(date(2016, 8, 24), holidays)  # Day of Unity
-        self.assertIn(date(2016, 10, 14), holidays)  # Defender of Fatherland
-        self.assertIn(date(2016, 12, 25), holidays)  # Christmas
+        self.assertIn(date(2016, 10, 14), holidays)  # Defender of Ukraine
+        self.assertNotIn(date(2016, 12, 25), holidays)  # Christmas Day
 
     def test_year_2017(self):
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 1, 2), holidays)  # New Year's Day (postponed)
         self.assertIn(date(2017, 1, 9), holidays)  # Christmas Orthodox (moved)
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
 
 
 class UnitedKingdomTest(GenericCalendarTest):

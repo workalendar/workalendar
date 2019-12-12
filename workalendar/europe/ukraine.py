@@ -19,6 +19,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
         (5, 9, "Victory Day"),
     )
 
+    include_christmas = False
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
@@ -26,6 +27,10 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
 
     def get_variable_days(self, year):
         days = super(Ukraine, self).get_variable_days(year)
+
+        # Catholic Christmas has become an holiday only starting from 2017
+        if year >= 2017:
+            days.append((date(year, 12, 25), "Christmas Day"))
 
         # Orthodox Christmas holiday is moved when it falls over the week
         orthodox_christmas = date(year, 1, 7)
@@ -58,15 +63,11 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
                     self.find_following_working_day(independence_day),
                     "Independence Day (postponed)"))
             else:
-                days.append((independence_day, "Independence Day"))
+                days.append((independence_day, "Independence Day")) 
 
-        # Defender of the Fatherland
-        # https://en.wikipedia.org/wiki/Defender_of_the_Fatherland_Day
-        if 2013 >= year >= 1999:
-            days.append((date(year, 2, 23), "Defender of the Fatherland"))
         # Then changed to Defender of Ukraine
         # https://en.wikipedia.org/wiki/Defender_of_Ukraine_Day
         if year >= 2015:
-            days.append((date(year, 10, 14), "Defender of the Fatherland"))
+            days.append((date(year, 10, 14), "Day of Defender of Ukraine"))
 
         return days
