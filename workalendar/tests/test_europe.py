@@ -844,7 +844,7 @@ class UkraineTest(GenericCalendarTest):
         self.assertIn(date(2010, 1, 1), holidays)  # New Year's Day
         self.assertIn(date(2010, 1, 7), holidays)  # Christmas (Orthodox)
         self.assertIn(date(2010, 3, 8), holidays)  # International Women's Day
-        self.assertIn(date(2010, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2010, 5, 1), holidays)  # Workers Solidarity Day
         self.assertIn(date(2010, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2010, 5, 24), holidays)  # Whit Monday
         self.assertIn(date(2010, 6, 28), holidays)  # Constitution Day
@@ -860,7 +860,8 @@ class UkraineTest(GenericCalendarTest):
         self.assertIn(date(2016, 1, 1), holidays)  # New Year's Day
         self.assertIn(date(2016, 1, 7), holidays)  # Christmas (Orthodox)
         self.assertIn(date(2016, 3, 8), holidays)  # International Women's Day
-        self.assertIn(date(2016, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2016, 5, 1), holidays)  # Workers Solidarity Day
+        self.assertIn(date(2016, 5, 2), holidays)  # Workers Solidarity Day
         self.assertIn(date(2016, 5, 2), holidays)
         self.assertIn(date(2016, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2016, 6, 20), holidays)
@@ -874,6 +875,10 @@ class UkraineTest(GenericCalendarTest):
         self.assertIn(date(2017, 1, 2), holidays)  # New Year's Day (postponed)
         self.assertIn(date(2017, 1, 9), holidays)  # Christmas Orthodox (moved)
         self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 5, 2), holidays)  # Workers Solidarity Day
 
 
 class UnitedKingdomTest(GenericCalendarTest):

@@ -14,8 +14,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 8, "International Women’s Day"),
-        (5, 1, "Labour Day"),
-        #  (5, 2, "Labour Day"),  # Conflicting Sources
+        (5, 1, "Workers Solidarity Day"),
         (5, 9, "Victory Day"),
     )
 
@@ -27,10 +26,6 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
 
     def get_variable_days(self, year):
         days = super(Ukraine, self).get_variable_days(year)
-
-        # Catholic Christmas has become an holiday only starting from 2017
-        if year >= 2017:
-            days.append((date(year, 12, 25), "Christmas Day"))
 
         # Orthodox Christmas holiday is moved when it falls over the week
         orthodox_christmas = date(year, 1, 7)
@@ -69,5 +64,13 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
         # https://en.wikipedia.org/wiki/Defender_of_Ukraine_Day
         if year >= 2015:
             days.append((date(year, 10, 14), "Day of Defender of Ukraine"))
+
+        # Catholic Christmas has become an holiday only starting from 2017
+        if year >= 2017:
+            days.append((date(year, 12, 25), "Christmas Day"))
+
+        # Workers Solidarity Day was celebrated also on the 2nd till 2017
+        if year <= 2017:
+            days.append((date(year, 5, 1), "Workers Solidarity Day"))
 
         return days
