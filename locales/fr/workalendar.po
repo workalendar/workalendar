@@ -1,0 +1,31 @@
+# This file is distributed under the same license as the Workalendar package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: workalendar\n"
+"POT-Creation-Date: 2019-12-13 15:49+CET\n"
+"PO-Revision-Date: 2019-12-13 16:03+0100\n"
+"Last-Translator: Rémy Hubscher <hubscher.remy@gmail.com>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: workalendar/europe/france.py:19
+msgid "Labour Day"
+msgstr "Fête du travail"
+
+#: workalendar/europe/france.py:20
+msgid "Victory in Europe Day"
+msgstr "Armistice 1945"
+
+#: workalendar/europe/france.py:21
+msgid "Bastille Day"
+msgstr "Fête Nationale"
+
+#: workalendar/europe/france.py:22
+msgid "Armistice Day"
+msgstr "Armistice 1918"
