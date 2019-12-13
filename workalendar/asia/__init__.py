@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .china import China
 from .hong_kong import HongKong
 from .japan import Japan, JapanBank

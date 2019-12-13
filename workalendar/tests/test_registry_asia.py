@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
 from workalendar.asia import (

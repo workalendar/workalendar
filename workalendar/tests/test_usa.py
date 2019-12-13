@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import skip, skipIf
 from datetime import date
 import sys
