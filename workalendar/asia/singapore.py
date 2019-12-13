@@ -66,7 +66,7 @@ class Singapore(WesternCalendar,
         # Add in Deepavali (hardcoded dates, so no need to shift)
         deepavali = self.DEEPAVALI.get(year)
         if not deepavali:
-            msg = 'Missing date for Singapore Deepavali for year: %s' % year
+            msg = f'Missing date for Singapore Deepavali for year: {year}'
             raise KeyError(msg)
         days.append((deepavali, 'Deepavali'))
         return days

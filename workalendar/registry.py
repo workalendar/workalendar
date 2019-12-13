@@ -33,7 +33,7 @@ class IsoRegistry(object):
         self.region_registry = dict()
         if load_standard_modules:
             for module_name in self.STANDARD_MODULES:
-                module = 'workalendar.{}'.format(module_name)
+                module = f'workalendar.{module_name}'
                 all_classes = getattr(import_module(module), '__all__')
                 self.load_module_from_items(module, all_classes)
 
@@ -43,7 +43,7 @@ class IsoRegistry(object):
         """
         if not issubclass(cls, Calendar):
             raise ISORegistryError(
-                "Class `{}` is not a Calendar class".format(cls)
+                f"Class `{cls}` is not a Calendar class"
             )
         self.region_registry[iso_code] = cls
 
@@ -87,7 +87,7 @@ class IsoRegistry(object):
         """
         items = dict()
         for key, value in self.region_registry.items():
-            if key.startswith("{}-".format(iso_code)):
+            if key.startswith(f"{iso_code}-"):
                 items[key] = value
         return items
 

@@ -35,7 +35,7 @@ def cleaned_date(day, keep_datetime=False):
     """
     if not isinstance(day, (date, datetime)):
         raise UnsupportedDateType(
-            "`{}` is of unsupported type ({})".format(day, type(day)))
+            f"`{day}` is of unsupported type ({type(day)})")
     if not keep_datetime:
         if hasattr(day, 'date') and callable(day.date):
             day = day.date()
@@ -456,7 +456,7 @@ class ChristianMixin(Calendar):
         """
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
-        boxing_day_label = "{} Shift".format(self.boxing_day_label)
+        boxing_day_label = f"{self.boxing_day_label} Shift"
         results = []
         if christmas.weekday() in self.get_weekend_days():
             shift = self.find_following_working_day(christmas)
@@ -687,7 +687,7 @@ class CalverterMixin(Calendar):
 
     def converted(self, year):
         conversion_method = getattr(
-            self.calverter, 'jd_to_%s' % self.conversion_method)
+            self.calverter, f'jd_to_{self.conversion_method}')
         current = date(year, 1, 1)
         days = []
         while current.year == year:
@@ -721,7 +721,7 @@ class CalverterMixin(Calendar):
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
-            self.calverter, '%s_to_jd' % self.conversion_method)
+            self.calverter, f'{self.conversion_method}_to_jd')
         for month, day, label in self.get_islamic_holidays():
             for y in years:
                 jd = conversion_method(y, month, day)

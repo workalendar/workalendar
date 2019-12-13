@@ -76,8 +76,7 @@ class China(ChineseNewYearCalendar, WesternCalendar):
     def get_calendar_holidays(self, year):
         warnings.warn("Support 2018, 2019 currently, need update every year.")
         if year not in holidays.keys():
-            msg = "Need configure {} for China.".format(year)
-            raise CalendarError(msg)
+            raise CalendarError(f"Need configure {year} for China.")
         return super(China, self).get_calendar_holidays(year)
 
     def get_variable_days(self, year):
