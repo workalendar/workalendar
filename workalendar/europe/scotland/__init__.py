@@ -23,8 +23,11 @@ FIXME:
 # Since Scotland territories have a lot of different variations, it has become
 # necessary to split this module and associated tests
 from datetime import date, timedelta
+from gettext import gettext as _
 import warnings
-from ...core import WesternCalendar, ChristianMixin, MON, THU, FRI
+
+from ...core import WesternCalendar, ChristianMixin
+from ...core import MON, THU, FRI
 from .mixins import (
     SpringHolidayFirstMondayApril,
     SpringHolidaySecondMondayApril,
@@ -54,11 +57,11 @@ from .mixins import (
 class Scotland(WesternCalendar, ChristianMixin):
     "Scotland"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 2, "New Year Holiday"),
-        (12, 26, "Boxing Day"),
+        (1, 2, _("New Year Holiday")),
+        (12, 26, _("Boxing Day")),
     )
     include_spring_holiday = False
-    spring_holiday_label = "Spring Holiday"
+    spring_holiday_label = _("Spring Holiday")
     include_fair_holiday = False
     include_autumn_holiday = False
     include_saint_andrew = False
@@ -84,7 +87,7 @@ as much care as possible.
         """
         return (
             Scotland.get_nth_weekday_in_month(year, 5, MON),
-            "May Day"
+            _("May Day")
         )
 
     def get_spring_holiday(self, year):
@@ -151,7 +154,7 @@ as much care as possible.
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)
         if self.include_saint_andrew:
-            days.append((date(year, 11, 30), "Saint Andrew's Day"))
+            days.append((date(year, 11, 30), _("Saint Andrew's Day")))
         return days
 
 
@@ -253,7 +256,7 @@ class Edinburgh(Scotland):
         # current weekday (starting at 0), or 7 days before the May 24th
         shift = may_24th.weekday() or 7
         victoria_day = may_24th - timedelta(days=shift)
-        return (victoria_day, "Victoria Day")
+        return (victoria_day, _("Victoria Day"))
 
     def get_autumn_holiday(self, year):
         """
@@ -264,7 +267,7 @@ class Edinburgh(Scotland):
         """
         return (
             self.get_nth_weekday_in_month(year, 9, MON, 3),
-            "Autumn Holiday"
+            _("Autumn Holiday")
         )
 
 
@@ -297,12 +300,12 @@ class Fife(
         # 1. First Monday in April
         days.append((
             self.get_nth_weekday_in_month(year, 4, MON),
-            "Spring Holiday"
+            _("Spring Holiday")
         ))
         # 2. First Monday in June
         days.append((
             self.get_nth_weekday_in_month(year, 6, MON),
-            "Spring Holiday"
+            _("Spring Holiday")
         ))
         return days
 
@@ -315,7 +318,7 @@ class Galashiels(SpringHolidayFirstMondayJune, Scotland):
         # Adding Braw Lads Gathering, 1st Friday in July
         days.append((
             self.get_nth_weekday_in_month(year, 7, FRI),
-            "Braw Lads Gathering"
+            _("Braw Lads Gathering")
         ))
         return days
 
@@ -340,8 +343,8 @@ class Hawick(Scotland):
         # And on the saturday. Adding this one, even if SAT is already a
         # non-working day.
         saturday = first_monday + timedelta(days=5)
-        days.append((friday, "Common Riding Day 1"))
-        days.append((saturday, "Common Riding Day 2"))
+        days.append((friday, _("Common Riding Day 1")))
+        days.append((saturday, _("Common Riding Day 2")))
         return days
 
 
@@ -356,12 +359,12 @@ class Inverclyde(LateSummer, Scotland):
         # 1. First Monday in April
         days.append((
             self.get_last_weekday_in_month(year, 4, MON),
-            "Spring Holiday"
+            _("Spring Holiday")
         ))
         # 2. First Monday in June
         days.append((
             self.get_nth_weekday_in_month(year, 6, MON),
-            "Spring Holiday"
+            _("Spring Holiday")
         ))
         return days
 
@@ -377,15 +380,15 @@ class Inverness(
         days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 2, MON),
-            "Winter Holiday (February)"
+            _("Winter Holiday (February)")
         ))
         days.append((
             self.get_nth_weekday_in_month(year, 3, MON),
-            "Winter Holiday (March)"
+            _("Winter Holiday (March)")
         ))
         days.append((
             self.get_nth_weekday_in_month(year, 11, MON),
-            "Samhain Holiday"
+            _("Samhain Holiday")
         ))
         return days
 
@@ -404,7 +407,7 @@ class Lanark(Scotland):
         # Lanimer is 2nd THU in June
         days.append((
             self.get_nth_weekday_in_month(year, 6, THU, 2),
-            "Lanimer Day"
+            _("Lanimer Day")
         ))
         return days
 
@@ -418,7 +421,7 @@ class Linlithgow(Scotland):
         marches_day = second_thursday + timedelta(days=5)
         days.append((
             marches_day,
-            "Linlithgow Marches"
+            _("Linlithgow Marches")
         ))
         return days
 
@@ -430,7 +433,7 @@ class Lochaber(Scotland):
         # Winter holiday is on the last MON of march
         days.append((
             self.get_last_weekday_in_month(year, 3, MON),
-            "Winter holiday"
+            _("Winter holiday")
         ))
         return days
 

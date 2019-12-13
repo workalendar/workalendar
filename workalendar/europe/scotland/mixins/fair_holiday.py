@@ -1,12 +1,14 @@
 """
 Fair Holiday mixins
 """
+from gettext import gettext as _
+
 from ....core import MON, FRI
 
 
 class FairHoliday:
     include_fair_holiday = True
-    fair_holiday_label = "Fair Holiday"
+    fair_holiday_label = _("Fair Holiday")
 
 
 class FairHolidayLastMondayJune(FairHoliday):
