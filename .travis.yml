@@ -1,7 +1,7 @@
 dist: bionic
 language: python
 cache: pip
-install: pip install tox
+install: pip install tox tox-travis
 script: tox -v
 python:
 - 3.6
@@ -11,4 +11,4 @@ matrix:
   fast_finish: true
   include:
   - python: 3.8
-    env: TOXENV=quality
+    env: TOXENV=flake8
