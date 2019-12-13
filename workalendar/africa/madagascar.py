@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -6,9 +8,9 @@ from ..registry_tools import iso_register
 class Madagascar(WesternCalendar, ChristianMixin):
     "Madagascar"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 29, "Martyrs' Day"),
-        (5, 1, "Labour Day"),
-        (6, 26, "Independence Day"),
+        (3, 29, _("Martyrs' Day")),
+        (5, 1, _("Labour Day")),
+        (6, 26, _("Independence Day")),
     )
     include_easter_monday = True
     include_ascension = True
