@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -13,10 +15,10 @@ class France(WesternCalendar, ChristianMixin):
     include_assumption = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (5, 8, "Victory in Europe Day"),
-        (7, 14, "Bastille Day"),
-        (11, 11, "Armistice Day"),
+        (5, 1, _("Labour Day")),
+        (5, 8, _("Victory in Europe Day")),
+        (7, 14, _("Bastille Day")),
+        (11, 11, _("Armistice Day")),
     )
 
 
