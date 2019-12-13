@@ -839,7 +839,17 @@ class Russia(GenericCalendarTest):
 class UkraineTest(GenericCalendarTest):
     cal_class = Ukraine
 
-    def test_year(self):
+    def test_year_1991(self):
+        holidays = self.cal.holidays_set(1991)
+        self.assertIn(date(1991, 6, 16), holidays)  # Independence Day
+        self.assertNotIn(date(1991, 8, 24), holidays)
+
+    def test_year_1992(self):
+        holidays = self.cal.holidays_set(1992)
+        self.assertNotIn(date(1992, 6, 16), holidays)
+        self.assertIn(date(1992, 8, 24), holidays)  # Independence Day
+
+    def test_year_2010(self):
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 1, 1), holidays)  # New Year's Day
         self.assertIn(date(2010, 1, 7), holidays)  # Christmas (Orthodox)
