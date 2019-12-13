@@ -12,13 +12,16 @@ help:
 # target: install - Install workalendar in your current env
 .PHONY: install
 install:
-	pip install -e ./
+	pip install -Ue ./
+
+install-dev: install
+	pip install -U isort black
 
 
 # target: tox_install - Install tox in your current env
 .PHONY: tox_install
 tox_install:
-	pip install tox --upgrade
+	pip install -U tox
 
 # target: test - run tox tests.
 # target:        Use TEST_ENVS and TEST_ARGS to target your tests more precisely.
@@ -46,3 +49,7 @@ package:
 .PHONY: isort
 isort:
 	isort -m 3 --line-width=99 --use-parentheses --trailing-comma --recursive --virtual-env=.venv workalendar
+
+.PHONY: black
+black:
+	black workalendar
