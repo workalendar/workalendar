@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, unicode_literals)
 from datetime import date, timedelta
+from gettext import gettext as _
 
 from pyluach.dates import GregorianDate, HebrewDate
 
@@ -33,52 +34,52 @@ class Israel(Calendar):
 
             if month == 7:
                 if day in {1, 2, 3}:
-                    days.append((current_date, "Rosh Hashana"))
+                    days.append((current_date, _("Rosh Hashana")))
                 elif day == 10:
-                    days.append((current_date, "Yom Kippur"))
+                    days.append((current_date, _("Yom Kippur")))
                 elif day in range(15, 22):
-                    days.append((current_date, "Sukkot"))
+                    days.append((current_date, _("Sukkot")))
                 elif day == 22:
-                    days.append((current_date, "Shmini Atzeres"))
+                    days.append((current_date, _("Shmini Atzeres")))
             elif month == 12 and not HebrewDate._is_leap(jewish_year):
                 if day == 14:
-                    days.append((current_date, "Purim"))
+                    days.append((current_date, _("Purim")))
                 if day == 15:
-                    days.append((current_date, "Shushan Purim"))
+                    days.append((current_date, _("Shushan Purim")))
             elif month == 13:
                 if day == 14:
-                    days.append((current_date, "Purim"))
+                    days.append((current_date, _("Purim")))
                 elif day == 15:
-                    days.append((current_date, "Shushan Purim"))
+                    days.append((current_date, _("Shushan Purim")))
             elif month == 1 and day in {15, 21}:
-                days.append((current_date, "Pesach"))
+                days.append((current_date, _("Pesach")))
             elif month == 2:
                 if day == 5:
                     if hebrew_date.weekday() == 6:
                         days.append(
                             (
                                 HebrewDate(jewish_year, month, 4).to_pydate(),
-                                "Independence Day",
+                                _("Independence Day"),
                             )
                         )
                     elif hebrew_date.weekday() == 7:
                         days.append(
                             (
                                 HebrewDate(jewish_year, month, 3).to_pydate(),
-                                "Independence Day",
+                                _("Independence Day"),
                             )
                         )
                     elif hebrew_date.weekday() == 2:
                         days.append(
                             (
                                 HebrewDate(jewish_year, month, 6).to_pydate(),
-                                "Independence Day",
+                                _("Independence Day"),
                             )
                         )
                     else:
-                        days.append((current_date, "Independence Day"))
+                        days.append((current_date, _("Independence Day")))
             elif month == 3 and day == 6:
-                days.append((current_date, "Shavout"))
+                days.append((current_date, _("Shavout")))
 
             current_date += delta
 

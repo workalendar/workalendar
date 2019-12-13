@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from gettext import gettext as _
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
@@ -13,9 +14,9 @@ class Taiwan(ChineseNewYearCalendar, WesternCalendar):
     FIXED_HOLIDAYS = (
         WesternCalendar.FIXED_HOLIDAYS +
         (
-            (2, 28, "228 Peace Memorial Day"),
-            (4, 4, "Combination of Women's Day and Children's Day"),
-            (10, 10, "National Day/Double Tenth Day"),
+            (2, 28, _("228 Peace Memorial Day")),
+            (4, 4, _("Combination of Women's Day and Children's Day")),
+            (10, 10, _("National Day/Double Tenth Day")),
         )
     )
     include_chinese_new_year_eve = True
@@ -30,10 +31,12 @@ class Taiwan(ChineseNewYearCalendar, WesternCalendar):
         days.extend([
             (
                 ChineseNewYearCalendar.lunar(year, 1, 3),
-                "Chinese New Year (3rd day)"
+                _("Chinese New Year (3rd day)")
             ),
-            (qingming, "Qingming Festival"),
-            (ChineseNewYearCalendar.lunar(year, 5, 5), "Dragon Boat Festival"),
-            (ChineseNewYearCalendar.lunar(year, 8, 15), "Mid-Autumn Festival"),
+            (qingming, _("Qingming Festival")),
+            (ChineseNewYearCalendar.lunar(year, 5, 5),
+             _("Dragon Boat Festival")),
+            (ChineseNewYearCalendar.lunar(year, 8, 15),
+             _("Mid-Autumn Festival")),
         ])
         return days

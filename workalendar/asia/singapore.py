@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
+from gettext import gettext as _
 
 from ..core import (
     ChineseNewYearCalendar, WesternCalendar, ChristianMixin, IslamicMixin
@@ -15,13 +16,13 @@ class Singapore(WesternCalendar,
     "Singapore"
     include_good_friday = True
     include_eid_al_fitr = True
-    eid_al_fitr_label = "Hari Raya Puasa"
+    eid_al_fitr_label = _("Hari Raya Puasa")
     include_day_of_sacrifice = True
-    day_of_sacrifice_label = "Hari Raya Haji"
+    day_of_sacrifice_label = _("Hari Raya Haji")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (8, 9, "National Day"),
+        (5, 1, _("Labour Day")),
+        (8, 9, _("National Day")),
     )
 
     # Diwali/Deepavali is sometimes celebrated on a different day to India
@@ -50,9 +51,9 @@ class Singapore(WesternCalendar,
         2020: date(2020, 11, 14),   # This might change
         2021: date(2021, 11, 4),
     }
-    chinese_new_year_label = "Chinese Lunar New Year's Day"
+    chinese_new_year_label = _("Chinese Lunar New Year's Day")
     include_chinese_second_day = True
-    chinese_second_day_label = "Second day of Chinese Lunar New Year"
+    chinese_second_day_label = _("Second day of Chinese Lunar New Year")
     shift_sunday_holidays = True
 
     def get_variable_days(self, year):
@@ -63,7 +64,7 @@ class Singapore(WesternCalendar,
 
         # Vesak Day
         days.append(
-            (ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"),
+            (ChineseNewYearCalendar.lunar(year, 4, 15), _("Vesak Day")),
         )
 
         # Add in Deepavali (hardcoded dates, so no need to shift)
@@ -71,5 +72,5 @@ class Singapore(WesternCalendar,
         if not deepavali:
             msg = 'Missing date for Singapore Deepavali for year: %s' % year
             raise KeyError(msg)
-        days.append((deepavali, 'Deepavali'))
+        days.append((deepavali, _('Deepavali')))
         return days

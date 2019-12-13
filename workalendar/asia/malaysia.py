@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
+from gettext import gettext as _
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..core import IslamicMixin
@@ -14,18 +15,18 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
     include_nuzul_al_quran = True
     include_eid_al_fitr = True
     length_eid_al_fitr = 2
-    eid_al_fitr_label = "Hari Raya Puasa"
+    eid_al_fitr_label = _("Hari Raya Puasa")
     include_day_of_sacrifice = True
-    day_of_sacrifice_label = "Hari Raya Haji"
+    day_of_sacrifice_label = _("Hari Raya Haji")
     include_islamic_new_year = True
     include_prophet_birthday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 1, "Federal Territory Day"),
-        (5, 1, "Workers' Day"),
-        (8, 31, "National Day"),
-        (9, 16, "Malaysia Day"),
-        (12, 25, "Christmas Day"),
+        (2, 1, _("Federal Territory Day")),
+        (5, 1, _("Workers' Day")),
+        (8, 31, _("National Day")),
+        (9, 16, _("Malaysia Day")),
+        (12, 25, _("Christmas Day")),
     )
 
     MSIA_DEEPAVALI = {
@@ -57,9 +58,9 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         2020: date(2020, 2, 8),  # This might change
         2021: date(2021, 1, 28),
     }
-    chinese_new_year_label = "First Day of Lunar New Year"
+    chinese_new_year_label = _("First Day of Lunar New Year")
     include_chinese_second_day = True
-    chinese_second_day_label = "Second Day of Lunar New Year"
+    chinese_second_day_label = _("Second Day of Lunar New Year")
     shift_sunday_holidays = True
 
     def get_variable_days(self, year):
@@ -70,7 +71,7 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
 
         # Vesak Day
         days.append(
-            (ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"),
+            (ChineseNewYearCalendar.lunar(year, 4, 15), _("Vesak Day")),
         )
 
         # Add in Deepavali and Thaipusam (hardcoded dates, so no need to shift)
@@ -78,11 +79,11 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         if not msia_deepavali:
             mdmsg = 'Missing date for Malaysia Deepavali for year: %s' % year
             raise KeyError(mdmsg)
-        days.append((msia_deepavali, 'Deepavali'))
+        days.append((msia_deepavali, _('Deepavali')))
 
         msia_thaipusam = self.MSIA_THAIPUSAM.get(year)
         if not msia_thaipusam:
             mtmsg = 'Missing date for Malaysia Thaipusam for year: %s' % year
             raise KeyError(mtmsg)
-        days.append((msia_thaipusam, 'Thaipusam'))
+        days.append((msia_thaipusam, _('Thaipusam')))
         return days
