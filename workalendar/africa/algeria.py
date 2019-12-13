@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
+from gettext import gettext as _
 from ..core import WesternCalendar, IslamicMixin
 from ..registry_tools import iso_register
 
@@ -15,11 +16,11 @@ class Algeria(WesternCalendar, IslamicMixin):
     include_islamic_new_year = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (7, 5, "Independence Day"),
-        (11, 1, "Anniversary of the revolution"),
+        (5, 1, _("Labour Day")),
+        (7, 5, _("Independence Day")),
+        (11, 1, _("Anniversary of the revolution")),
     )
 
     ISLAMIC_HOLIDAYS = IslamicMixin.ISLAMIC_HOLIDAYS + (
-        (1, 10, "Ashura"),
+        (1, 10, _("Ashura")),
     )

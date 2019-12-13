@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import timedelta
+from gettext import gettext as _
 from workalendar.core import WesternCalendar
 from workalendar.core import ChristianMixin
 from ..registry_tools import iso_register
@@ -17,12 +18,12 @@ class Angola(WesternCalendar, ChristianMixin):
     include_all_souls = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 4, "Dia do Inicio da Luta Armada"),
-        (3, 8, "Dia Internacional da Mulher"),
-        (4, 4, "Dia da Paz"),
-        (5, 1, "Dia Internacional do Trabalhador"),
-        (9, 17, "Dia do Fundador da Nação e do Herói Nacional"),
-        (11, 11, "Dia da Independência Nacional"),
+        (2, 4, _("Dia do Inicio da Luta Armada")),
+        (3, 8, _("Dia Internacional da Mulher")),
+        (4, 4, _("Dia da Paz")),
+        (5, 1, _("Dia Internacional do Trabalhador")),
+        (9, 17, _("Dia do Fundador da Nação e do Herói Nacional")),
+        (11, 11, _("Dia da Independência Nacional")),
     )
 
     def get_variable_entrudo(self, year):
@@ -31,5 +32,5 @@ class Angola(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Angola, self).get_variable_days(year)
-        days.append((self.get_variable_entrudo(year), "Dia de Carnaval"))
+        days.append((self.get_variable_entrudo(year), _("Dia de Carnaval")))
         return days
