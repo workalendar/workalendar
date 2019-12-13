@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..core import FRI
 from ..registry_tools import iso_register
@@ -7,10 +9,10 @@ from ..registry_tools import iso_register
 class MarshallIslands(WesternCalendar, ChristianMixin):
     "Marshall Islands"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 3, "Remembrance Day"),
-        (5, 1, "Constitution Day"),
-        (11, 17, "Presidents' Day"),
-        (12, 31, "New Year's Eve"),
+        (3, 3, _("Remembrance Day")),
+        (5, 1, _("Constitution Day")),
+        (11, 17, _("Presidents' Day")),
+        (12, 31, _("New Year's Eve")),
     )
     include_good_friday = True
 
@@ -18,18 +20,18 @@ class MarshallIslands(WesternCalendar, ChristianMixin):
         days = super().get_variable_days(year)
         days.append((
             MarshallIslands.get_nth_weekday_in_month(year, 7, FRI),
-            "Fishermen's Holiday"
+            _("Fishermen's Holiday")
         ))
         days.append((
             MarshallIslands.get_nth_weekday_in_month(year, 9, FRI),
-            "Labour Day"
+            _("Labour Day")
         ))
         days.append((
             MarshallIslands.get_last_weekday_in_month(year, 9, FRI),
-            "Manit Day"
+            _("Manit Day")
         ))
         days.append((
             MarshallIslands.get_nth_weekday_in_month(year, 12, FRI),
-            "Gospel Day"
+            _("Gospel Day")
         ))
         return days
