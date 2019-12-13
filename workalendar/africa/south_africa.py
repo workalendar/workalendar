@@ -97,11 +97,13 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         # Workers day was first friday of may 1987-1989
         if 1987 <= year <= 1989:
             days.append(
-                (self.get_nth_weekday_in_month(year, 5, FRI), _("Workers' Day"))
+                (self.get_nth_weekday_in_month(year, 5, FRI),
+                 _("Workers' Day"))
             )
 
         if year <= 1993:
-            days.append((self.get_ascension_thursday(year), _("Ascension Day")))
+            days.append((self.get_ascension_thursday(year),
+                         _("Ascension Day")))
 
         # Queen's Birthday on the 2nd Monday of july 1952-1960
         if 1952 <= year <= 1960:

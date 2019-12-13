@@ -208,7 +208,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_patriots_day(self, year):
         """3rd Monday of April"""
-        return (self.get_nth_weekday_in_month(year, 4, MON, 3), _("Patriots Day"))
+        return (self.get_nth_weekday_in_month(year, 4, MON, 3),
+                _("Patriots Day"))
 
     def get_washington_birthday_december(self, year):
         """

@@ -290,7 +290,8 @@ class Yukon(Canada, VictoriaDayMixin, ThanksgivingMixin):
     def get_variable_days(self, year):
         days = super(Yukon, self).get_variable_days(year)
         days.extend([
-            (self.get_nth_weekday_in_month(year, 8, MON, 3), _("Discovery Day")),
+            (self.get_nth_weekday_in_month(year, 8, MON, 3),
+             _("Discovery Day")),
             (self.get_victoria_day(year)),
             (self.get_thanksgiving(year)),
         ])

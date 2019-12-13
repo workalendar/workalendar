@@ -458,7 +458,8 @@ class ChristianMixin(Calendar):
         """
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
-        boxing_day_label = "{} Shift".format(self.boxing_day_label)  # TODO: gettext fixme
+        # TODO: gettext fixme
+        boxing_day_label = "{} Shift".format(self.boxing_day_label)
         results = []
         if christmas.weekday() in self.get_weekend_days():
             shift = self.find_following_working_day(christmas)
@@ -781,9 +782,10 @@ class IslamicMixin(CalverterMixin):
         if self.include_day_of_sacrifice:
             days.append((12, 10, self.day_of_sacrifice_label))
         if self.include_laylat_al_qadr:
-            warnings.warn(_("The Islamic holiday named Laylat al-Qadr is decided"
-                            " by the religious authorities. It is not possible"
-                            " to compute it. You'll have to add it manually."))
+            warnings.warn(_(
+                "The Islamic holiday named Laylat al-Qadr is decided"
+                " by the religious authorities. It is not possible"
+                " to compute it. You'll have to add it manually."))
         return tuple(days)
 
 
