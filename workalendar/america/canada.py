@@ -3,7 +3,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
-from gettext import gettext as _, gettext_lazy as __
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, Calendar
 from ..core import SUN, MON, SAT
@@ -14,7 +14,7 @@ from ..registry_tools import iso_register
 class Canada(WesternCalendar, ChristianMixin):
     "Canada"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 1, __("Canada Day")),
+        (7, 1, _("Canada Day")),
     )
     shift_new_years_day = True
 
@@ -39,14 +39,14 @@ class Canada(WesternCalendar, ChristianMixin):
 class EarlyFamilyDayMixin(Calendar):
     "2nd Monday of February"
 
-    def get_family_day(self, year, label=__("Family Day")):
+    def get_family_day(self, year, label=_("Family Day")):
         return (self.get_nth_weekday_in_month(year, 2, MON, 2), label)
 
 
 class LateFamilyDayMixin(Calendar):
     "3rd Monday of February"
 
-    def get_family_day(self, year, label=__("Family Day")):
+    def get_family_day(self, year, label=_("Family Day")):
         return (self.get_nth_weekday_in_month(year, 2, MON, 3), label)
 
 
@@ -62,7 +62,7 @@ class VictoriaDayMixin(Calendar):
 class AugustCivicHolidayMixin(Calendar):
     "1st Monday of August; different names depending on location"
 
-    def get_civic_holiday(self, year, label=__("Civic Holiday")):
+    def get_civic_holiday(self, year, label=_("Civic Holiday")):
         return (self.get_nth_weekday_in_month(year, 8, MON), label)
 
 
@@ -159,7 +159,7 @@ class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
     include_good_friday = True
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
-        (11, 11, __("Remembrance Day")),
+        (11, 11, _("Remembrance Day")),
     )
 
     def get_variable_days(self, year):
@@ -179,7 +179,7 @@ class Alberta(Canada, LateFamilyDayMixin, VictoriaDayMixin, ThanksgivingMixin):
     include_good_friday = True
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
-        (11, 11, __("Remembrance Day")),
+        (11, 11, _("Remembrance Day")),
     )
 
     def get_variable_days(self, year):
@@ -233,7 +233,7 @@ class NewBrunswick(Canada, AugustCivicHolidayMixin):
     "New Brunswick"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
-        (11, 11, __("Remembrance Day")),
+        (11, 11, _("Remembrance Day")),
     )
 
     include_good_friday = True
@@ -282,7 +282,7 @@ class Yukon(Canada, VictoriaDayMixin, ThanksgivingMixin):
     "Yukon"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
-        (11, 11, __("Remembrance Day")),
+        (11, 11, _("Remembrance Day")),
     )
 
     include_good_friday = True
@@ -303,7 +303,7 @@ class NorthwestTerritories(Canada, RemembranceDayShiftMixin, VictoriaDayMixin,
     "Northwest Territories"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
-        (6, 21, __("National Aboriginal Day")),
+        (6, 21, _("National Aboriginal Day")),
     )
 
     include_good_friday = True

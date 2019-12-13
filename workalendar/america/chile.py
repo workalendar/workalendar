@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date
-from gettext import gettext_lazy as __, gettext as _
+from gettext import gettext as _
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON, TUE, WED, FRI
 from ..registry_tools import iso_register
@@ -13,14 +13,14 @@ from ..registry_tools import iso_register
 class Chile(WesternCalendar, ChristianMixin):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, __("Labour Day")),
-        (5, 21, __("Navy Day")),
-        (6, 29, __("Saint Peter and Saint Paul")),
-        (7, 16, __("Our Lady of Mount Carmel")),
-        (9, 18, __("National holiday")),
-        (9, 19, __("Army holiday")),
-        (10, 12, __("Columbus Day")),
-        (12, 31, __("Banking Holiday")),
+        (5, 1, _("Labour Day")),
+        (5, 21, _("Navy Day")),
+        (6, 29, _("Saint Peter and Saint Paul")),
+        (7, 16, _("Our Lady of Mount Carmel")),
+        (9, 18, _("National holiday")),
+        (9, 19, _("Army holiday")),
+        (10, 12, _("Columbus Day")),
+        (12, 31, _("Banking Holiday")),
     )
     include_good_friday = True
     include_easter_saturday = True

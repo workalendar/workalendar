@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import timedelta, date
-from gettext import gettext as _, gettext_lazy as __
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register
@@ -13,9 +13,9 @@ from ..registry_tools import iso_register
 class Colombia(WesternCalendar, ChristianMixin):
     "Colombia"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, __("Labour Day")),
-        (7, 20, __("Independence Day")),
-        (8, 7, __("Boyacá Battle")),
+        (5, 1, _("Labour Day")),
+        (7, 20, _("Independence Day")),
+        (8, 7, _("Boyacá Battle")),
     )
     include_palm_sunday = True
     include_holy_thursday = True

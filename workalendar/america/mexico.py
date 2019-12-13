@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import date, timedelta
-from gettext import gettext_lazy as __, gettext as _
+from gettext import gettext as _
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, SAT
 from ..registry_tools import iso_register
@@ -13,8 +13,8 @@ from ..registry_tools import iso_register
 class Mexico(WesternCalendar, ChristianMixin):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, __("Labour Day")),
-        (9, 16, __("Independence Day")),
+        (5, 1, _("Labour Day")),
+        (9, 16, _("Independence Day")),
     )
 
     def get_variable_days(self, year):
