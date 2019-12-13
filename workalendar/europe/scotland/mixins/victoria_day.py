@@ -4,7 +4,7 @@ Victoria Day mixins
 from workalendar.core import MON
 
 
-class VictoriaDayMixin(object):
+class VictoriaDayMixin:
     include_victoria_day = True
     victoria_day_label = "Victoria Day"
 

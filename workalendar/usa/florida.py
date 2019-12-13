@@ -6,7 +6,7 @@ from .core import UnitedStates
 from ..registry_tools import iso_register
 
 
-class HebrewHolidays(object):
+class HebrewHolidays:
 
     hebrew_calendars = {}
 

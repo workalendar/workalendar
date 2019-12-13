@@ -15,7 +15,7 @@ from .exceptions import UnsupportedDateType
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
-class classproperty(object):
+class classproperty:
 
     def __init__(self, getter):
         self.getter = getter
@@ -42,7 +42,7 @@ def cleaned_date(day, keep_datetime=False):
     return day
 
 
-class Calendar(object):
+class Calendar:
 
     FIXED_HOLIDAYS = ()
     WEEKEND_DAYS = ()
