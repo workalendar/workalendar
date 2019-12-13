@@ -1,5 +1,5 @@
 from datetime import date
-
+from gettext import gettext_lazy as __, gettext as _
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON, TUE, WED, FRI
 from ..registry_tools import iso_register
@@ -9,14 +9,14 @@ from ..registry_tools import iso_register
 class Chile(WesternCalendar, ChristianMixin):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (5, 21, "Navy Day"),
-        (6, 29, "Saint Peter and Saint Paul"),
-        (7, 16, "Our Lady of Mount Carmel"),
-        (9, 18, "National holiday"),
-        (9, 19, "Army holiday"),
-        (10, 12, "Columbus Day"),
-        (12, 31, "Banking Holiday"),
+        (5, 1, __("Labour Day")),
+        (5, 21, __("Navy Day")),
+        (6, 29, __("Saint Peter and Saint Paul")),
+        (7, 16, __("Our Lady of Mount Carmel")),
+        (9, 18, __("National holiday")),
+        (9, 19, __("Army holiday")),
+        (10, 12, __("Columbus Day")),
+        (12, 31, __("Banking Holiday")),
     )
     include_good_friday = True
     include_easter_saturday = True
@@ -28,10 +28,10 @@ class Chile(WesternCalendar, ChristianMixin):
         days = super().get_variable_days(year)
         september_17 = date(year, 9, 17)
         if september_17.weekday() == MON:
-            days.append((september_17, '"Bridge" holiday'))
+            days.append((september_17, _('"Bridge" holiday')))
         september_20 = date(year, 9, 20)
         if september_20.weekday() == FRI:
-            days.append((september_20, '"Bridge" holiday'))
+            days.append((september_20, _('"Bridge" holiday')))
 
         reformation_day = date(year, 10, 31)
         if reformation_day.weekday() == WED:
@@ -39,6 +39,6 @@ class Chile(WesternCalendar, ChristianMixin):
         elif reformation_day.weekday() == TUE:
             reformation_day = date(year, 10, 27)
 
-        days.append((reformation_day, "Reformation Day"))
+        days.append((reformation_day, _("Reformation Day")))
 
         return days

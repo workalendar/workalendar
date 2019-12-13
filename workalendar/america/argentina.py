@@ -1,4 +1,6 @@
 from datetime import timedelta, date
+from gettext import gettext as _
+
 from ..core import (
     WesternCalendar, ChristianMixin,
     MON, TUE, WED, THU, FRI, SAT
@@ -16,13 +18,13 @@ class Argentina(WesternCalendar, ChristianMixin):
     include_christmas = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 24, "Día de la Memoria"),
-        (4, 2, "Día de las Malvinas"),
-        (5, 1, "Día del Trabajador"),
-        (5, 25, "Día de la Revolución de Mayo"),
-        (6, 20, "Día Paso a la Inmortalidad del General Manuel Belgrano"),
-        (7, 9, "Día de la Independencia"),
-        (12, 8, "Día de la Inmaculada Concepción de María"),
+        (3, 24, _("Día de la Memoria")),
+        (4, 2, _("Día de las Malvinas")),
+        (5, 1, _("Día del Trabajador")),
+        (5, 25, _("Día de la Revolución de Mayo")),
+        (6, 20, _("Día Paso a la Inmortalidad del General Manuel Belgrano")),
+        (7, 9, _("Día de la Independencia")),
+        (12, 8, _("Día de la Inmaculada Concepción de María")),
     )
 
     def get_variable_days(self, year):
@@ -30,11 +32,11 @@ class Argentina(WesternCalendar, ChristianMixin):
         days = super().get_variable_days(year)
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
-                "Carnival Lunes"))
+                _("Carnival Lunes")))
 
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
+                _("Carnival")))
 
         days.append(
             (self.get_general_guemes_day(year)))
@@ -71,8 +73,8 @@ class Argentina(WesternCalendar, ChristianMixin):
             general_guemes_day
 
         return (general_guemes_day,
-                "Día Paso a la Inmortalidad del " +
-                "General Martín Miguel de Güemes")
+                _("Día Paso a la Inmortalidad del "
+                  "General Martín Miguel de Güemes"))
 
     def get_general_martin_day(self, year):
         """
@@ -85,8 +87,8 @@ class Argentina(WesternCalendar, ChristianMixin):
         )
 
         return (general_martin_day,
-                "Día Paso a la Inmortalidad del " +
-                "Gral. José de San Martín")
+                _("Día Paso a la Inmortalidad del "
+                  "Gral. José de San Martín"))
 
     def get_soberania_day(self, year):
         """
@@ -102,7 +104,7 @@ class Argentina(WesternCalendar, ChristianMixin):
             year, 11, MON, n=3, start=first_friday_november
         )
 
-        return (soberania_day, "Día de la Soberanía Nacional")
+        return (soberania_day, _("Día de la Soberanía Nacional"))
 
     def get_diversidad_day(self, year):
         """
@@ -130,4 +132,4 @@ class Argentina(WesternCalendar, ChristianMixin):
             diversidad_day
 
         return (diversidad_day,
-                "Día del Respeto a la Diversidad Cultural")
+                _("Día del Respeto a la Diversidad Cultural"))

@@ -1,5 +1,6 @@
 from datetime import timedelta
 from copy import copy
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON
@@ -18,11 +19,11 @@ class Barbados(WesternCalendar, ChristianMixin):
 
     # All holiday are shifted if on a Sunday
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 21, "Errol Barrow Day"),
-        (4, 28, "National Heroes Day"),
-        (5, 1, "Labour Day"),
-        (8, 1, "Emancipation Day"),
-        (11, 30, "Independance Day"),
+        (1, 21, _("Errol Barrow Day")),
+        (4, 28, _("National Heroes Day")),
+        (5, 1, _("Labour Day")),
+        (8, 1, _("Emancipation Day")),
+        (11, 30, _("Independance Day")),
     )
 
     def get_kadooment_day(self, year):
@@ -30,7 +31,7 @@ class Barbados(WesternCalendar, ChristianMixin):
         First Monday of August.
         """
         return (Barbados.get_nth_weekday_in_month(year, 8, MON),
-                "Kadooment Day")
+                _("Kadooment Day"))
 
     def get_variable_days(self, year):
         """
@@ -51,6 +52,6 @@ class Barbados(WesternCalendar, ChristianMixin):
         for day, label in days_to_shift:
             if day.weekday() == SUN:
                 days.append(
-                    (day + timedelta(days=1), "%s %s" % (label, "(shifted)"))
+                    (day + timedelta(days=1), "%s %s" % (label, "(shifted)"))  # TODO: gettext fixme
                 )
         return days
