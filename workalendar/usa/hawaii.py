@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import FRI
 from ..registry_tools import iso_register
 
@@ -12,8 +14,8 @@ class Hawaii(UnitedStates):
     include_election_day_even = True
 
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (3, 26, "Prince Jonah Kuhio Kalanianaole Day"),
-        (6, 11, "King Kamehameha Day"),
+        (3, 26, _("Prince Jonah Kuhio Kalanianaole Day")),
+        (6, 11, _("King Kamehameha Day")),
     )
 
     def get_statehood_day(self, year):
@@ -22,7 +24,7 @@ class Hawaii(UnitedStates):
         """
         return (
             self.get_nth_weekday_in_month(year, 8, FRI, 3),
-            "Statehood Day"
+            _("Statehood Day")
         )
 
     def get_variable_days(self, year):

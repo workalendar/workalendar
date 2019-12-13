@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from .core import UnitedStates
 from ..core import MON
 from ..registry_tools import iso_register
@@ -28,7 +30,7 @@ class CaliforniaEducation(California):
 
         days.append((
             self.get_nth_weekday_in_month(year, 9, MON, 4),
-            'Native American Day'
+            _('Native American Day')
         ))
 
         return days
@@ -39,12 +41,12 @@ class CaliforniaBerkeley(California):
     Berkeley, California
     """
     FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + (
-        (5, 19, 'Malcolm X Day'),
+        (5, 19, _('Malcolm X Day')),
     )
     include_cesar_chavez_day = False
     include_lincoln_birthday = True
     include_columbus_day = True
-    columbus_day_label = "Indigenous People's Day"
+    columbus_day_label = _("Indigenous People's Day")
 
 
 class CaliforniaSanFrancisco(California):
@@ -60,7 +62,7 @@ class CaliforniaWestHollywood(California):
     West Hollywood, California
     """
     FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + (
-        (5, 22, 'Harvey Milk Day'),
+        (5, 22, _('Harvey Milk Day')),
     )
     include_cesar_chavez_day = False
     include_thanksgiving_friday = False

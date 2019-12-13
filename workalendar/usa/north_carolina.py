@@ -1,4 +1,5 @@
 from datetime import date
+from gettext import gettext as _
 
 from ..core import MON, TUE, WED, THU, FRI, SAT, SUN
 from ..registry_tools import iso_register
@@ -28,21 +29,21 @@ class NorthCarolina(UnitedStates):
             return []
         if xmas.weekday() == FRI:
             return [
-                (date(year, 12, 28), "Boxing day shift"),
+                (date(year, 12, 28), _("Boxing day shift")),
             ]
         elif xmas.weekday() == SAT:
             return [
-                (date(year, 12, 23), "Christmas Eve shift"),
-                (date(year, 12, 27), "Boxing Day shift"),
+                (date(year, 12, 23), _("Christmas Eve shift")),
+                (date(year, 12, 27), _("Boxing Day shift")),
             ]
         elif xmas.weekday() == SUN:
             return [
-                (date(year, 12, 23), "Christmas Eve shift"),
-                (date(year, 12, 27), "Boxing Day shift"),
+                (date(year, 12, 23), _("Christmas Eve shift")),
+                (date(year, 12, 27), _("Boxing Day shift")),
             ]
         elif xmas.weekday() == MON:
             return [
-                (date(year, 12, 27), "Christmas Eve shift"),
+                (date(year, 12, 27), _("Christmas Eve shift")),
             ]
 
     def get_variable_days(self, year):

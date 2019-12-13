@@ -42,6 +42,7 @@ Example:
 
 """
 from datetime import date
+from gettext import gettext as _
 
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -64,27 +65,27 @@ class TexasBase(UnitedStates):
         days = super().get_fixed_holidays(year)
         if self.texas_include_confederate_heroes:
             days.append(
-                (date(year, 1, 19), "Confederate Heroes Day")
+                (date(year, 1, 19), _("Confederate Heroes Day"))
             )
 
         if self.texas_include_independance_day:
             days.append(
-                (date(year, 3, 2), "Texas Independence Day")
+                (date(year, 3, 2), _("Texas Independence Day"))
             )
 
         if self.texas_san_jacinto_day:
             days.append(
-                (date(year, 4, 21), "San Jacinto Day")
+                (date(year, 4, 21), _("San Jacinto Day"))
             )
 
         if self.texas_emancipation_day:
             days.append(
-                (date(year, 6, 19), "Emancipation Day in Texas"),
+                (date(year, 6, 19), _("Emancipation Day in Texas")),
             )
 
         if self.texas_lyndon_johnson_day:
             days.append(
-                (date(year, 8, 27), "Lyndon B. Jonhson Day"),
+                (date(year, 8, 27), _("Lyndon B. Jonhson Day")),
             )
         return days
 

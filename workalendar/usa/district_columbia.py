@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from .core import UnitedStates
 from ..registry_tools import iso_register
 
@@ -7,5 +9,5 @@ class DistrictOfColumbia(UnitedStates):
     "District of Columbia"
     include_inauguration_day = True
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (4, 16, "Emancipation Day"),
+        (4, 16, _("Emancipation Day")),
     )

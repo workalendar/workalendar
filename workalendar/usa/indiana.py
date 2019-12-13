@@ -1,5 +1,6 @@
 import warnings
 from datetime import date
+from gettext import gettext as _
 from ..core import MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 
@@ -11,11 +12,11 @@ class Indiana(UnitedStates):
     """Indiana"""
     include_good_friday = True
     include_thanksgiving_friday = True
-    thanksgiving_friday_label = "Lincoln's Birthday"
+    thanksgiving_friday_label = _("Lincoln's Birthday")
     include_federal_presidents_day = False
-    label_washington_birthday_december = "Washington's Birthday (Observed)"
+    label_washington_birthday_december = _("Washington's Birthday (Observed)")
     include_election_day_even = True
-    election_day_label = "General Election Day"
+    election_day_label = _("General Election Day")
 
     def get_washington_birthday_december(self, year):
         """
@@ -56,7 +57,7 @@ class Indiana(UnitedStates):
             year, 5, TUE, start=first_monday_may)
         return (
             tuesday_after,
-            "Primary Election Day"
+            _("Primary Election Day")
         )
 
     def get_variable_days(self, year):

@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from .core import UnitedStates
 from ..core import MON
 from ..registry_tools import iso_register
@@ -7,10 +9,10 @@ from ..registry_tools import iso_register
 class Alabama(UnitedStates):
     "Alabama"
     include_confederation_day = True
-    martin_luther_king_label = "Robert E. Lee/Martin Luther King Birthday"
-    presidents_day_label = "George Washington/Thomas Jefferson Birthday"
-    columbus_day_label = ("Columbus Day / Fraternal Day /"
-                          " American Indian Heritage Day")
+    martin_luther_king_label = _("Robert E. Lee/Martin Luther King Birthday")
+    presidents_day_label = _("George Washington/Thomas Jefferson Birthday")
+    columbus_day_label = _("Columbus Day / Fraternal Day /"
+                           " American Indian Heritage Day")
     include_jefferson_davis_birthday = True
 
 
@@ -33,7 +35,7 @@ class AlabamaPerryCounty(Alabama):
         """
         return (
             self.get_nth_weekday_in_month(year, 11, MON, 2),
-            "Obama Day"
+            _("Obama Day")
         )
 
     def get_variable_days(self, year):

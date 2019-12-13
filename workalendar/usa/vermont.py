@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import TUE
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -7,7 +9,7 @@ from .core import UnitedStates
 class Vermont(UnitedStates):
     """Vermont"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (8, 16, "Bennington Battle Day"),
+        (8, 16, _("Bennington Battle Day")),
     )
     include_columbus_day = False
 
@@ -15,6 +17,6 @@ class Vermont(UnitedStates):
         days = super().get_variable_days(year)
         days.append(
             (self.get_nth_weekday_in_month(year, 3, TUE, 1),
-             "Town Meeting Day")
+             _("Town Meeting Day"))
         )
         return days

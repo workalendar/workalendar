@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..registry_tools import iso_register
 from .core import UnitedStates
 
@@ -6,7 +8,7 @@ from .core import UnitedStates
 class SouthCarolina(UnitedStates):
     """South Carolina"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (5, 10, "Confederate Memorial Day"),
+        (5, 10, _("Confederate Memorial Day")),
     )
     include_thanksgiving_friday = True
     include_christmas_eve = True

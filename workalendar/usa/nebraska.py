@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import FRI
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -11,6 +13,6 @@ class Nebraska(UnitedStates):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days.append(
-            (self.get_last_weekday_in_month(year, 4, FRI), "Arbor Day")
+            (self.get_last_weekday_in_month(year, 4, FRI), _("Arbor Day"))
         )
         return days
