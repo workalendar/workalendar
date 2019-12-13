@@ -95,22 +95,22 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                        extra_working_days=None, extra_holidays=None):
         extra_working_days = extra_working_days or self.extra_working_days
         return super().is_working_day(day, extra_working_days,
-                                                 extra_holidays)
+                                      extra_holidays)
 
     def add_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None,
                          keep_datetime=False):
         extra_working_days = extra_working_days or self.extra_working_days
         return super().add_working_days(day, delta,
-                                                   extra_working_days,
-                                                   extra_holidays,
-                                                   keep_datetime)
+                                        extra_working_days,
+                                        extra_holidays,
+                                        keep_datetime)
 
     def sub_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None,
                          keep_datetime=False):
         extra_working_days = extra_working_days or self.extra_working_days
         return super().sub_working_days(day, delta,
-                                                   extra_working_days,
-                                                   extra_holidays,
-                                                   keep_datetime)
+                                        extra_working_days,
+                                        extra_holidays,
+                                        keep_datetime)
