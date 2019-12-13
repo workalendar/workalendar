@@ -7,4 +7,6 @@ from ..registry_tools import iso_register
 @iso_register('US-WY')
 class Wyoming(UnitedStates):
     """Wyoming"""
-    martin_luther_king_label = _("Martin Luther King, Jr. / Wyoming Equality Day")
+    martin_luther_king_label = _(
+        "Martin Luther King, Jr. / Wyoming Equality Day"
+    )

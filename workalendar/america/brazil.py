@@ -399,7 +399,8 @@ class BrazilSerraCity(BrazilEspiritoSanto):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         carnaval_tuesday = self.get_carnaval(year)
-        days.append((carnaval_tuesday - timedelta(days=1), _("Carnaval Monday")))
+        days.append((carnaval_tuesday - timedelta(days=1),
+                     _("Carnaval Monday")))
         days.append((carnaval_tuesday, _("Carnaval")))
         return days
 
