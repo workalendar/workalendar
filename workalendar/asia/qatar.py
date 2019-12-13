@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import Calendar
 from ..core import FRI, SAT, IslamicMixin
 from ..registry_tools import iso_register
@@ -9,7 +11,7 @@ class Qatar(IslamicMixin, Calendar):
     WEEKEND_DAYS = (FRI, SAT)
 
     FIXED_HOLIDAYS = (
-        (12, 18, "National Day"),
+        (12, 18, _("National Day")),
     )
     include_start_ramadan = True
     include_eid_al_fitr = True
