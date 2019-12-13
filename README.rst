@@ -60,7 +60,10 @@ Tests
 
 Travis status:
 
-.. image:: https://api.travis-ci.org/peopledoc/workalendar.png
+|travis|
+
+.. |travis| image:: https://travis-ci.org/peopledoc/workalendar.svg?branch=master
+    :target: https://travis-ci.org/peopledoc/workalendar
 
 
 To run test, just install tox with ``pip install tox`` and run::
