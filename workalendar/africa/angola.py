@@ -4,7 +4,7 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('AO')
+@iso_register("AO")
 class Angola(WesternCalendar, ChristianMixin):
     """Angola"""
 

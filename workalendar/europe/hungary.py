@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('HU')
+@iso_register("HU")
 class Hungary(WesternCalendar, ChristianMixin):
-    'Hungary'
+    "Hungary"
 
     include_easter_sunday = True
     include_easter_monday = True
@@ -25,6 +25,6 @@ class Hungary(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # As of 2017, Good Friday became a holiday
-        self.include_good_friday = (year >= 2017)
+        self.include_good_friday = year >= 2017
         days = super(Hungary, self).get_variable_days(year)
         return days

@@ -26,10 +26,22 @@ from workalendar.tests import GenericCalendarTest
 class ReformationFlagTest(TestCase):
     def test_flags_reformation_day(self):
         klasses = (
-            BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen, Hamburg,
-            Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
-            RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt,
-            SchleswigHolstein, Thuringia
+            BadenWurttemberg,
+            Bavaria,
+            Berlin,
+            Brandenburg,
+            Bremen,
+            Hamburg,
+            Hesse,
+            MecklenburgVorpommern,
+            LowerSaxony,
+            NorthRhineWestphalia,
+            RhinelandPalatinate,
+            Saarland,
+            Saxony,
+            SaxonyAnhalt,
+            SchleswigHolstein,
+            Thuringia,
         )
         for klass in klasses:
             if klass in (Bremen, Hamburg, LowerSaxony, SchleswigHolstein):

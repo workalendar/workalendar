@@ -2,7 +2,7 @@ from ..core import ChristianMixin, IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('BJ')
+@iso_register("BJ")
 class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
     "Benin"
     include_easter_monday = True

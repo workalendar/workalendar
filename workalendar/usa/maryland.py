@@ -2,9 +2,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-MD')
+@iso_register("US-MD")
 class Maryland(UnitedStates):
     """Maryland"""
+
     thanksgiving_friday_label = "Native American Heritage Day"
     include_thanksgiving_friday = True
 

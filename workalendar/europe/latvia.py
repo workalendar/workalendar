@@ -4,9 +4,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('LV')
+@iso_register("LV")
 class Latvia(WesternCalendar, ChristianMixin):
-    'Latvia'
+    "Latvia"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -30,8 +30,12 @@ class Latvia(WesternCalendar, ChristianMixin):
             actual_date = date(year, 5, 4)
             days = [(actual_date, "Restoration of Independence Day")]
             if actual_date.weekday() in self.get_weekend_days():
-                days += [(self.find_following_working_day(actual_date),
-                          "Restoration of Independence Observed")]
+                days += [
+                    (
+                        self.find_following_working_day(actual_date),
+                        "Restoration of Independence Observed",
+                    )
+                ]
         return days
 
     def get_republic_days(self, year):
@@ -41,8 +45,12 @@ class Latvia(WesternCalendar, ChristianMixin):
             actual_date = date(year, 11, 18)
             days = [(actual_date, "Proclamation of Republic Day")]
             if actual_date.weekday() in self.get_weekend_days():
-                days += [(self.find_following_working_day(actual_date),
-                          "Proclamation of Republic Observed")]
+                days += [
+                    (
+                        self.find_following_working_day(actual_date),
+                        "Proclamation of Republic Observed",
+                    )
+                ]
         return days
 
     def get_variable_days(self, year):

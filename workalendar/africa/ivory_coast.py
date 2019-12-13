@@ -2,7 +2,7 @@ from ..core import ChristianMixin, IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('CI')
+@iso_register("CI")
 class IvoryCoast(WesternCalendar, ChristianMixin, IslamicMixin):
     "Ivory Coast"
     include_easter_monday = True

@@ -6,9 +6,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-IN')
+@iso_register("US-IN")
 class Indiana(UnitedStates):
     """Indiana"""
+
     include_good_friday = True
     include_thanksgiving_friday = True
     thanksgiving_friday_label = "Lincoln's Birthday"
@@ -25,7 +26,8 @@ class Indiana(UnitedStates):
         """
         warnings.warn(
             "Washington birthday rules for Indiana State are confusing. "
-            "Use this calendar with care")
+            "Use this calendar with care"
+        )
         christmas_day = date(year, 12, 25).weekday()
         if christmas_day == MON:
             day = date(year, 12, 26)  # TUE
@@ -53,17 +55,13 @@ class Indiana(UnitedStates):
         """
         first_monday_may = self.get_nth_weekday_in_month(year, 5, MON)
         tuesday_after = self.get_nth_weekday_in_month(
-            year, 5, TUE, start=first_monday_may)
-        return (
-            tuesday_after,
-            "Primary Election Day"
+            year, 5, TUE, start=first_monday_may
         )
+        return (tuesday_after, "Primary Election Day")
 
     def get_variable_days(self, year):
         days = super(Indiana, self).get_variable_days(year)
-        days.extend([
-            self.get_washington_birthday_december(year),
-        ])
+        days.extend([self.get_washington_birthday_december(year)])
         if (year % 2) == 0:
             days.append(self.get_primary_election_day(year))
         return days

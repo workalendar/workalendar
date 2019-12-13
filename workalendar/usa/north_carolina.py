@@ -5,9 +5,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-NC')
+@iso_register("US-NC")
 class NorthCarolina(UnitedStates):
     """North Carolina"""
+
     include_good_friday = True
     include_christmas_eve = True
     include_thanksgiving_friday = True
@@ -27,9 +28,7 @@ class NorthCarolina(UnitedStates):
             # No shift, move along
             return []
         if xmas.weekday() == FRI:
-            return [
-                (date(year, 12, 28), "Boxing day shift"),
-            ]
+            return [(date(year, 12, 28), "Boxing day shift")]
         elif xmas.weekday() == SAT:
             return [
                 (date(year, 12, 23), "Christmas Eve shift"),
@@ -41,9 +40,7 @@ class NorthCarolina(UnitedStates):
                 (date(year, 12, 27), "Boxing Day shift"),
             ]
         elif xmas.weekday() == MON:
-            return [
-                (date(year, 12, 27), "Christmas Eve shift"),
-            ]
+            return [(date(year, 12, 27), "Christmas Eve shift")]
 
     def get_variable_days(self, year):
         days = super(NorthCarolina, self).get_variable_days(year)

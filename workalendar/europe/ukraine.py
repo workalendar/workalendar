@@ -4,9 +4,9 @@ from ..core import OrthodoxMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('UA')
+@iso_register("UA")
 class Ukraine(OrthodoxMixin, WesternCalendar):
-    'Ukraine'
+    "Ukraine"
 
     shift_sunday_holidays = True
     shift_new_years_day = True
@@ -29,9 +29,12 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
         # Orthodox Christmas holiday is moved when it falls over the week
         orthodox_christmas = date(year, 1, 7)
         if orthodox_christmas.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(orthodox_christmas),
-                "Orthodox Christmas (postponed)"))
+            days.append(
+                (
+                    self.find_following_working_day(orthodox_christmas),
+                    "Orthodox Christmas (postponed)",
+                )
+            )
         else:
             days.append((orthodox_christmas, "Orthodox Christmas"))
 
@@ -39,9 +42,12 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
         if year >= 1996:
             constitution_day = date(year, 6, 28)
             if constitution_day.weekday() in self.get_weekend_days():
-                days.append((
-                    self.find_following_working_day(constitution_day),
-                    "Constitution Day (postponed)"))
+                days.append(
+                    (
+                        self.find_following_working_day(constitution_day),
+                        "Constitution Day (postponed)",
+                    )
+                )
             else:
                 days.append((constitution_day, "Constitution Day"))
 
@@ -53,9 +59,12 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
             independence_day = date(year, 8, 24)
 
             if independence_day.weekday() in self.get_weekend_days():
-                days.append((
-                    self.find_following_working_day(independence_day),
-                    "Independence Day (postponed)"))
+                days.append(
+                    (
+                        self.find_following_working_day(independence_day),
+                        "Independence Day (postponed)",
+                    )
+                )
             else:
                 days.append((independence_day, "Independence Day"))
 

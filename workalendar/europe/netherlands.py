@@ -4,9 +4,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('NL')
+@iso_register("NL")
 class Netherlands(WesternCalendar, ChristianMixin):
-    'Netherlands'
+    "Netherlands"
 
     include_good_friday = True
     include_easter_sunday = True
@@ -16,9 +16,7 @@ class Netherlands(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_boxing_day = True
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 5, "Liberation Day"),
-    )
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + ((5, 5, "Liberation Day"),)
 
     def get_king_queen_day(self, year):
         """27 April unless this is a Sunday in which case it is the 26th

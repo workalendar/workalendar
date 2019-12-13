@@ -5,7 +5,7 @@ from ..exceptions import CalendarError
 from ..registry_tools import iso_register
 
 
-@iso_register('ZA')
+@iso_register("ZA")
 class SouthAfrica(WesternCalendar, ChristianMixin):
     "South Africa"
     include_good_friday = True
@@ -13,8 +13,10 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
 
     def holidays(self, year=None):
         if year < 1910:
-            raise CalendarError("It's not possible to compute holidays prior"
-                                " to 1910 for South Africa.")
+            raise CalendarError(
+                "It's not possible to compute holidays prior"
+                " to 1910 for South Africa."
+            )
         return super(SouthAfrica, self).holidays(year)
 
     def get_easter_monday_or_family_day(self, year):
@@ -27,7 +29,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
     def get_fixed_holidays(self, year):
         days = super(SouthAfrica, self).get_fixed_holidays(year)
         if year >= 1990:
-            days.append((date(year, 3, 21), 'Human Rights Day'))
+            days.append((date(year, 3, 21), "Human Rights Day"))
 
         # Van Riebeeck's day & Founder's day
         if year >= 1952 and year <= 1973:
@@ -89,30 +91,25 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
 
         # Workers day was first friday of may 1987-1989
         if 1987 <= year <= 1989:
-            days.append(
-                (self.get_nth_weekday_in_month(year, 5, FRI), "Workers' Day")
-            )
+            days.append((self.get_nth_weekday_in_month(year, 5, FRI), "Workers' Day"))
 
         if year <= 1993:
             days.append((self.get_ascension_thursday(year), "Ascension Day"))
 
         # Queen's Birthday on the 2nd Monday of july 1952-1960
         if 1952 <= year <= 1960:
-            days.append((
-                self.get_nth_weekday_in_month(year, 7, MON, 2),
-                "Queen's Birthday"
-            ))
+            days.append(
+                (self.get_nth_weekday_in_month(year, 7, MON, 2), "Queen's Birthday")
+            )
 
         # King's Birthday on the first Monday of August 1910-1951
         if 1910 <= year <= 1951:
-            days.append((
-                self.get_nth_weekday_in_month(year, 8, MON),
-                "King's Birthday"
-            ))
+            days.append(
+                (self.get_nth_weekday_in_month(year, 8, MON), "King's Birthday")
+            )
 
         if year >= 1952 and year <= 1979:
-            days.append((self.get_nth_weekday_in_month(year, 9, MON),
-                         "Settlers' Day"))
+            days.append((self.get_nth_weekday_in_month(year, 9, MON), "Settlers' Day"))
         return days
 
     def get_calendar_holidays(self, year):
@@ -120,10 +117,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         # compute shifting days
         for holiday, label in days:
             if holiday.weekday() == SUN:
-                days.append((
-                    holiday + timedelta(days=1),
-                    f"{label} substitute"
-                ))
+                days.append((holiday + timedelta(days=1), f"{label} substitute"))
 
         # Other one-offs. Don't shift these
         if year == 1999:

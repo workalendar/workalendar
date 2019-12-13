@@ -58,7 +58,6 @@ from workalendar.usa import (
 
 
 class RegistryUsa(TestCase):
-
     def _check_all_states(self, classes):
         self.assertIn(Alabama, classes)
         self.assertIn(Alaska, classes)
@@ -121,6 +120,6 @@ class RegistryUsa(TestCase):
 
     def test_usa_subregion(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('US').items())
+        classes = (v for k, v in registry.get_subregions("US").items())
         classes = list(classes)
         self._check_all_states(classes)

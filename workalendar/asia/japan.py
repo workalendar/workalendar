@@ -5,7 +5,7 @@ from ..core import MON, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('JP')
+@iso_register("JP")
 class Japan(WesternCalendar):
     "Japan"
 
@@ -33,21 +33,25 @@ class Japan(WesternCalendar):
             days.append((date(year, 2, 23), "The Emperor's Birthday"))
         # Lots of adjustments for new emperor
         if year == 2019:
-            days.extend([
-                (date(year, 4, 30), "Coronation Day"),
-                (date(year, 5, 1), "Coronation Day"),
-                (date(year, 5, 2), "Coronation Day"),
-                (date(year, 5, 6), "Children's Day Observed"),
-                (date(year, 8, 12), "Mountain Day Observed"),
-                (date(year, 10, 22), "Enthronement Ceremony Day"),
-                (date(year, 11, 4), "Culture Day Observed"),
-            ])
+            days.extend(
+                [
+                    (date(year, 4, 30), "Coronation Day"),
+                    (date(year, 5, 1), "Coronation Day"),
+                    (date(year, 5, 2), "Coronation Day"),
+                    (date(year, 5, 6), "Children's Day Observed"),
+                    (date(year, 8, 12), "Mountain Day Observed"),
+                    (date(year, 10, 22), "Enthronement Ceremony Day"),
+                    (date(year, 11, 4), "Culture Day Observed"),
+                ]
+            )
         if year == 2020:
-            days.extend([
-                (date(year, 2, 24), "The Emperor's Birthday Observed"),
-                (date(year, 5, 6), "Constitution Memorial Day Observed"),
-                (date(year, 8, 10), "Mountain Day"),
-            ])
+            days.extend(
+                [
+                    (date(year, 2, 24), "The Emperor's Birthday Observed"),
+                    (date(year, 5, 6), "Constitution Memorial Day Observed"),
+                    (date(year, 8, 10), "Mountain Day"),
+                ]
+            )
             # Mountain Day is 8/10 this year for some reason
             # The next year that will be different is 2024
             days.remove((date(year, 8, 11), "Mountain Day"))
@@ -56,19 +60,21 @@ class Japan(WesternCalendar):
     def get_variable_days(self, year):
         # usual variable days
         days = super(Japan, self).get_variable_days(year)
-        equinoxes = calculate_equinoxes(year, 'Asia/Tokyo')
+        equinoxes = calculate_equinoxes(year, "Asia/Tokyo")
         coming_of_age_day = Japan.get_nth_weekday_in_month(year, 1, MON, 2)
         marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)
         respect_for_the_aged = Japan.get_nth_weekday_in_month(year, 9, MON, 3)
         health_and_sport = Japan.get_nth_weekday_in_month(year, 10, MON, 2)
-        days.extend([
-            (coming_of_age_day, 'Coming of Age Day'),
-            (marine_day, "Marine Day"),
-            (equinoxes[0], "Vernal Equinox Day"),
-            (respect_for_the_aged, "Respect-for-the-Aged Day"),
-            (equinoxes[1], "Autumnal Equinox Day"),
-            (health_and_sport, "Health and Sports Day"),
-        ])
+        days.extend(
+            [
+                (coming_of_age_day, "Coming of Age Day"),
+                (marine_day, "Marine Day"),
+                (equinoxes[0], "Vernal Equinox Day"),
+                (respect_for_the_aged, "Respect-for-the-Aged Day"),
+                (equinoxes[1], "Autumnal Equinox Day"),
+                (health_and_sport, "Health and Sports Day"),
+            ]
+        )
 
         # Marine Day is on a Thursday in 2020 for some year
         # https://www.timeanddate.com/holidays/japan/sea-day

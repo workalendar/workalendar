@@ -4,9 +4,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-MT')
+@iso_register("US-MT")
 class Montana(UnitedStates):
     """Montana"""
+
     include_election_day_even = True
 
     def get_variable_days(self, year):

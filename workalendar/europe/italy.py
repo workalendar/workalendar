@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('IT')
+@iso_register("IT")
 class Italy(WesternCalendar, ChristianMixin):
-    'Italy'
+    "Italy"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Liberation Day"),

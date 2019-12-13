@@ -15,8 +15,9 @@ from .core import UnitedStates
 # * https://publicholidays.us/kansas/2018-dates/
 
 
-@iso_register('US-KS')
+@iso_register("US-KS")
 class Kansas(UnitedStates):
     """Kansas"""
+
     include_federal_presidents_day = False
     include_columbus_day = False

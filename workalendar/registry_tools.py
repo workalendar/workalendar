@@ -18,7 +18,9 @@ def iso_register(iso_code):
 
     >>> calendar = registry.get_calendar_class('MC-MR')
     """
+
     def wrapper(cls):
         cls.__iso_code = (iso_code, cls.__name__)
         return cls
+
     return wrapper

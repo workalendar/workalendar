@@ -2,7 +2,7 @@ from ..core import IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('DZ')
+@iso_register("DZ")
 class Algeria(WesternCalendar, IslamicMixin):
     "Algeria"
     # Islamic holidays
@@ -17,6 +17,4 @@ class Algeria(WesternCalendar, IslamicMixin):
         (11, 1, "Anniversary of the revolution"),
     )
 
-    ISLAMIC_HOLIDAYS = IslamicMixin.ISLAMIC_HOLIDAYS + (
-        (1, 10, "Ashura"),
-    )
+    ISLAMIC_HOLIDAYS = IslamicMixin.ISLAMIC_HOLIDAYS + ((1, 10, "Ashura"),)

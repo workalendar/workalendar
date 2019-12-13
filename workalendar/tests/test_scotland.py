@@ -189,6 +189,7 @@ class AyrGoldCupTestMixin(object):
     """
     Ayr Gold cup - two holidays for Ayr and Kilmarnock
     """
+
     def test_ayr_gold_cup(self):
         # Specific holidays in Ayr:
         # * 3rd Friday in September
@@ -207,7 +208,6 @@ class AyrGoldCupTestMixin(object):
 
 # -----------------------------------------------------------------------------
 class SpringHolidayTestCase(TestCase):
-
     def test_not_implemented_error(self):
         class FakeCalendar(Scotland):
             include_spring_holiday = True
@@ -228,7 +228,6 @@ class SpringHolidayTestCase(TestCase):
 
 
 class VictoriaDayTestCase(TestCase):
-
     def test_not_implemented_error(self):
         class FakeCalendar(Scotland):
             include_victoria_day = True
@@ -249,7 +248,6 @@ class VictoriaDayTestCase(TestCase):
 
 
 class FairHolidayTestCase(TestCase):
-
     def test_not_implemented_error(self):
         class FakeCalendar(Scotland):
             include_fair_holiday = True
@@ -270,7 +268,6 @@ class FairHolidayTestCase(TestCase):
 
 
 class AutumnHolidayTestCase(TestCase):
-
     def test_not_implemented_error(self):
         class FakeCalendar(Scotland):
             include_autumn_holiday = True
@@ -297,6 +294,7 @@ class ScotlandTest(GenericCalendarTest):
     Scotland calendar includes the generic holidays + GoodFriday
     Some towns or cities don't necessarily observe it.
     """
+
     cal_class = Scotland
 
     # For some reason, the Python 2 warnings module doesn't trigger a warning
@@ -330,45 +328,48 @@ class ScotlandTest(GenericCalendarTest):
 
 
 class ScotlandAberdeenTest(
-        GoodFridayTestMixin,
-        FairHolidaySecondMondayJulyTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    FairHolidaySecondMondayJulyTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = Aberdeen
 
 
 class ScotlandAngusTest(
-        SpringHolidaySecondMondayAprilTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        SaintAndrewTestMixin,
-        ScotlandTest):
+    SpringHolidaySecondMondayAprilTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    SaintAndrewTestMixin,
+    ScotlandTest,
+):
     cal_class = Angus
 
 
-class ScotlandArbroathTest(
-        FairHolidayThirdMondayJulyTestMixin, ScotlandTest):
+class ScotlandArbroathTest(FairHolidayThirdMondayJulyTestMixin, ScotlandTest):
     cal_class = Arbroath
 
 
 class ScotlandAyrTest(
-        GoodFridayTestMixin,
-        EasterMondayTestMixin,
-        SpringHolidayLastMondayMayTestMixin,
-        AyrGoldCupTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    SpringHolidayLastMondayMayTestMixin,
+    AyrGoldCupTestMixin,
+    ScotlandTest,
+):
     cal_class = Ayr
 
 
 class ScotlandCarnoustieMonifiethTest(
-        SpringHolidayFirstMondayAprilTestMixin,
-        AutumnHolidayFirstMondayOctoberTestMixin,
-        ScotlandTest):
+    SpringHolidayFirstMondayAprilTestMixin,
+    AutumnHolidayFirstMondayOctoberTestMixin,
+    ScotlandTest,
+):
     cal_class = CarnoustieMonifieth
 
 
 class ScotlandClydebankTest(
-        SpringHolidayTuesdayAfterFirstMondayMayTestMixin,
-        ScotlandTest):
+    SpringHolidayTuesdayAfterFirstMondayMayTestMixin, ScotlandTest
+):
     cal_class = Clydebank
 
 
@@ -377,26 +378,27 @@ class ScotlandDumfriesGallowayTest(GoodFridayTestMixin, ScotlandTest):
 
 
 class ScotlandDundeeTest(
-        SpringHolidayFirstMondayAprilTestMixin,
-        VictoriaDayLastMondayMayTestMixin,
-        FairHolidayLastMondayJulyTestMixin,
-        AutumnHolidayFirstMondayOctoberTestMixin,
-        ScotlandTest):
+    SpringHolidayFirstMondayAprilTestMixin,
+    VictoriaDayLastMondayMayTestMixin,
+    FairHolidayLastMondayJulyTestMixin,
+    AutumnHolidayFirstMondayOctoberTestMixin,
+    ScotlandTest,
+):
     cal_class = Dundee
 
 
 class ScotlandEastDunbartonshireTest(
-        GoodFridayTestMixin, EasterMondayTestMixin,
-        SpringHolidayLastMondayMayTestMixin,
-        FairHolidayThirdMondayJulyTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    SpringHolidayLastMondayMayTestMixin,
+    FairHolidayThirdMondayJulyTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = EastDunbartonshire
 
 
-class ScotlandEdinburghTest(
-        GoodFridayTestMixin, EasterMondayTestMixin,
-        ScotlandTest):
+class ScotlandEdinburghTest(GoodFridayTestMixin, EasterMondayTestMixin, ScotlandTest):
     cal_class = Edinburgh
 
     def test_edinburgh_spring_holiday(self):
@@ -434,29 +436,32 @@ class ScotlandEdinburghTest(
 
 
 class ScotlandElginTest(
-        SpringHolidaySecondMondayAprilTestMixin,
-        FairHolidayLastMondayJuneTestMixin,
-        LateSummerTestMixin,
-        AutumnHolidayThirdMondayOctoberTestMixin,
-        ScotlandTest):
+    SpringHolidaySecondMondayAprilTestMixin,
+    FairHolidayLastMondayJuneTestMixin,
+    LateSummerTestMixin,
+    AutumnHolidayThirdMondayOctoberTestMixin,
+    ScotlandTest,
+):
     cal_class = Elgin
 
 
 class ScotlandFalkirkTest(
-        GoodFridayTestMixin,
-        EasterMondayTestMixin,
-        FairHolidayFirstMondayJulyTestMixin,
-        BattleStirlingBridgeTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    FairHolidayFirstMondayJulyTestMixin,
+    BattleStirlingBridgeTestMixin,
+    ScotlandTest,
+):
     cal_class = Falkirk
 
 
 class ScotlandFifeTest(
-        VictoriaDayFirstMondayJuneTestMixin,
-        FairHolidayThirdMondayJulyTestMixin,
-        AutumnHolidayThirdMondayOctoberTestMixin,
-        SaintAndrewTestMixin,
-        ScotlandTest):
+    VictoriaDayFirstMondayJuneTestMixin,
+    FairHolidayThirdMondayJulyTestMixin,
+    AutumnHolidayThirdMondayOctoberTestMixin,
+    SaintAndrewTestMixin,
+    ScotlandTest,
+):
     cal_class = Fife
 
     def test_spring_holiday(self):
@@ -479,11 +484,12 @@ class ScotlandGalashiels(VictoriaDayFirstMondayJuneTestMixin, ScotlandTest):
 
 
 class ScotlandGlasgowTest(
-        EasterMondayTestMixin,
-        SpringHolidayLastMondayMayTestMixin,
-        FairHolidayThirdMondayJulyTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    EasterMondayTestMixin,
+    SpringHolidayLastMondayMayTestMixin,
+    FairHolidayThirdMondayJulyTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = Glasgow
 
 
@@ -508,9 +514,8 @@ class ScotlandHawickTest(ScotlandTest):
 # ...
 # I think I'm becoming crazy
 class ScotlandInverclydeTest(
-        GoodFridayTestMixin, EasterMondayTestMixin,
-        LateSummerTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin, EasterMondayTestMixin, LateSummerTestMixin, ScotlandTest
+):
     cal_class = Inverclyde
 
     def test_spring_holiday(self):
@@ -523,10 +528,11 @@ class ScotlandInverclydeTest(
 
 
 class ScotlandInvernessTest(
-        SpringHolidayFirstMondayAprilTestMixin,
-        FairHolidayFirstMondayJulyTestMixin,
-        AutumnHolidayFirstMondayOctoberTestMixin,
-        ScotlandTest):
+    SpringHolidayFirstMondayAprilTestMixin,
+    FairHolidayFirstMondayJulyTestMixin,
+    AutumnHolidayFirstMondayOctoberTestMixin,
+    ScotlandTest,
+):
     cal_class = Inverness
 
     def test_winter_february(self):
@@ -549,9 +555,8 @@ class ScotlandInvernessTest(
 
 
 class ScotlandKilmarnockTest(
-        GoodFridayTestMixin, EasterMondayTestMixin,
-        AyrGoldCupTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin, EasterMondayTestMixin, AyrGoldCupTestMixin, ScotlandTest
+):
     cal_class = Kilmarnock
 
 
@@ -590,63 +595,71 @@ class ScotlandLochaberTest(ScotlandTest):
 
 
 class ScotlandNorthLanarkshireTest(
-        EasterMondayTestMixin,
-        SpringHolidayLastMondayMayTestMixin,
-        FairHolidayThirdMondayJulyTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    EasterMondayTestMixin,
+    SpringHolidayLastMondayMayTestMixin,
+    FairHolidayThirdMondayJulyTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = NorthLanarkshire
 
 
 class ScotlandPaisleyTest(
-        GoodFridayTestMixin, EasterMondayTestMixin,
-        VictoriaDayLastMondayMayTestMixin,
-        FairHolidayFirstMondayAugustTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    VictoriaDayLastMondayMayTestMixin,
+    FairHolidayFirstMondayAugustTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = Paisley
 
 
 class ScotlandPerthTest(
-        SpringHolidayFirstMondayAprilTestMixin,
-        VictoriaDayFourthMondayMayTestMixin,
-        BattleStirlingBridgeTestMixin,
-        AutumnHolidayFirstMondayOctoberTestMixin,
-        ScotlandTest):
+    SpringHolidayFirstMondayAprilTestMixin,
+    VictoriaDayFourthMondayMayTestMixin,
+    BattleStirlingBridgeTestMixin,
+    AutumnHolidayFirstMondayOctoberTestMixin,
+    ScotlandTest,
+):
     cal_class = Perth
 
 
 class ScotlandScottishBordersTest(
-        SpringHolidayFirstMondayAprilTestMixin,
-        FairHolidayFourthFridayJulyTestMixin,
-        AutumnHolidaySecondMondayOctoberTestMixin,
-        SaintAndrewTestMixin,
-        ScotlandTest):
+    SpringHolidayFirstMondayAprilTestMixin,
+    FairHolidayFourthFridayJulyTestMixin,
+    AutumnHolidaySecondMondayOctoberTestMixin,
+    SaintAndrewTestMixin,
+    ScotlandTest,
+):
     cal_class = ScottishBorders
 
 
 class ScotlandSouthLanarkshireTest(
-        GoodFridayTestMixin,
-        EasterMondayTestMixin,
-        SpringHolidayLastMondayMayTestMixin,
-        FairHolidayThirdMondayJulyTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    SpringHolidayLastMondayMayTestMixin,
+    FairHolidayThirdMondayJulyTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = SouthLanarkshire
 
 
 class ScotlandStirlingTest(
-        GoodFridayTestMixin,
-        EasterMondayTestMixin,
-        SpringHolidayTuesdayAfterFirstMondayMayTestMixin,
-        BattleStirlingBridgeTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    SpringHolidayTuesdayAfterFirstMondayMayTestMixin,
+    BattleStirlingBridgeTestMixin,
+    ScotlandTest,
+):
     cal_class = Stirling
 
 
 class ScotlandWestDunbartonshireTest(
-        GoodFridayTestMixin,
-        EasterMondayTestMixin,
-        AutumnHolidayLastMondaySeptemberTestMixin,
-        ScotlandTest):
+    GoodFridayTestMixin,
+    EasterMondayTestMixin,
+    AutumnHolidayLastMondaySeptemberTestMixin,
+    ScotlandTest,
+):
     cal_class = WestDunbartonshire

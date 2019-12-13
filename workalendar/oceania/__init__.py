@@ -15,17 +15,17 @@ from .new_zealand import NewZealand
 
 __all__ = (
     # Australia and al.
-    'Australia',
-    'AustralianCapitalTerritory',
-    'NewSouthWales',
-    'NorthernTerritory',
-    'Queensland',
-    'SouthAustralia',
-    'Tasmania',
-    'Hobart',
-    'Victoria',
-    'WesternAustralia',
+    "Australia",
+    "AustralianCapitalTerritory",
+    "NewSouthWales",
+    "NorthernTerritory",
+    "Queensland",
+    "SouthAustralia",
+    "Tasmania",
+    "Hobart",
+    "Victoria",
+    "WesternAustralia",
     # Other oceanian countries
-    'MarshallIslands',
-    'NewZealand',
+    "MarshallIslands",
+    "NewZealand",
 )

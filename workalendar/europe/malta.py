@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('MT')
+@iso_register("MT")
 class Malta(WesternCalendar, ChristianMixin):
-    'Malta'
+    "Malta"
 
     include_good_friday = True
     include_assumption = True
@@ -13,15 +13,15 @@ class Malta(WesternCalendar, ChristianMixin):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         # National Holidays
-        (3, 31, "Freedom Day"),            # (Jum il-Ħelsien)
+        (3, 31, "Freedom Day"),  # (Jum il-Ħelsien)
         (6, 7, "Sette Giugno"),
-        (9, 8, "Victory Day"),             # (Jum il-Vitorja)
-        (9, 21, "Independence Day"),       # (Jum l-Indipendenza)
-        (12, 13, "Republic Day"),          # (Jum ir-Repubblika)
+        (9, 8, "Victory Day"),  # (Jum il-Vitorja)
+        (9, 21, "Independence Day"),  # (Jum l-Indipendenza)
+        (12, 13, "Republic Day"),  # (Jum ir-Repubblika)
         # Public Holidays
-        (1, 1, "New Year's Day"),          # (L-Ewwel tas-Sena)
+        (1, 1, "New Year's Day"),  # (L-Ewwel tas-Sena)
         (2, 10, "Feast of Saint Paul's Shipwreck"),
         (3, 19, "Feast of Saint Joseph"),  # (San Ġużepp)
-        (5, 1, "Worker's Day"),            # (Jum il-Ħaddiem)
+        (5, 1, "Worker's Day"),  # (Jum il-Ħaddiem)
         (6, 29, "Feast of Saint Peter & Saint Paul"),  # (L-Imnarja)
     )

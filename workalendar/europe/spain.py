@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('ES')
+@iso_register("ES")
 class Spain(WesternCalendar, ChristianMixin):
-    'Spain'
+    "Spain"
 
     include_epiphany = True
     include_immaculate_conception = True
@@ -15,7 +15,7 @@ class Spain(WesternCalendar, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Día del trabajador"),
         (10, 12, "Fiesta nacional de España"),
-        (12, 6, "Día de la Constitución Española")
+        (12, 6, "Día de la Constitución Española"),
     )
 
 

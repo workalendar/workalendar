@@ -5,7 +5,7 @@ from ..core import ChineseNewYearCalendar, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('HK')
+@iso_register("HK")
 class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
     "Hong Kong"
     include_good_friday = True
@@ -40,19 +40,21 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
             self.shift_start_cny_sunday = True
 
         days = super(HongKong, self).get_variable_days(year)
-        chingming = solar_term(year, 15, 'Asia/Hong_Kong')
+        chingming = solar_term(year, 15, "Asia/Hong_Kong")
         dupe_holiday = [chingming for day in days if chingming == day[0]]
         if dupe_holiday:
             # Roll Chingming forward a day as it clashes with another holiday
             chingming = chingming + timedelta(days=1)
         mid_autumn_label = "Day After Mid-Autumn Festival"
-        days.extend([
-            (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
-            (chingming, "Ching Ming Festival"),
-            (ChineseNewYearCalendar.lunar(year, 5, 5), "Tuen Ng Festival"),
-            (ChineseNewYearCalendar.lunar(year, 8, 16), mid_autumn_label),
-            (ChineseNewYearCalendar.lunar(year, 9, 9), "Chung Yeung Festival"),
-        ])
+        days.extend(
+            [
+                (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
+                (chingming, "Ching Ming Festival"),
+                (ChineseNewYearCalendar.lunar(year, 5, 5), "Tuen Ng Festival"),
+                (ChineseNewYearCalendar.lunar(year, 8, 16), mid_autumn_label),
+                (ChineseNewYearCalendar.lunar(year, 9, 9), "Chung Yeung Festival"),
+            ]
+        )
 
         # Boxing day & XMas shift
         shifts = self.shift_christmas_boxing_days(year=year)

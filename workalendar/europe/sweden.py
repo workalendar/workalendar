@@ -4,9 +4,9 @@ from ..core import FRI, SAT, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('SE')
+@iso_register("SE")
 class Sweden(WesternCalendar, ChristianMixin):
-    'Sweden'
+    "Sweden"
 
     include_epiphany = True
     include_good_friday = True
@@ -24,25 +24,26 @@ class Sweden(WesternCalendar, ChristianMixin):
         (5, 1, "Labour Day"),
         (6, 6, "National Day"),
         # New Year's Eve is not a holiday but not a work day either
-        (12, 31, "New Year's Eve")
+        (12, 31, "New Year's Eve"),
     )
 
     # Midsummer Eve is not a holiday but not a work day either
     def get_midsummer_eve(self, year):
         date_eve = Sweden.get_nth_weekday_in_month(
-            year, 6, FRI, start=date(year, 6, 19))
+            year, 6, FRI, start=date(year, 6, 19)
+        )
         return date_eve
 
     def get_midsummer_day(self, year):
         date_eve = Sweden.get_nth_weekday_in_month(
-            year, 6, SAT, start=date(year, 6, 20))
+            year, 6, SAT, start=date(year, 6, 20)
+        )
         return date_eve
 
     def get_variable_all_saints(self, year):
         all_saints = date(year, 10, 31)
         if all_saints.weekday() != SAT:
-            all_saints = Sweden.get_nth_weekday_in_month(
-                year, 11, SAT)
+            all_saints = Sweden.get_nth_weekday_in_month(year, 11, SAT)
         return all_saints
 
     def get_variable_days(self, year):

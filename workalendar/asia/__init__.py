@@ -9,14 +9,14 @@ from .south_korea import SouthKorea
 from .taiwan import Taiwan
 
 __all__ = (
-    'China',
-    'HongKong',
-    'Japan',
-    'JapanBank',
-    'Malaysia',
-    'Qatar',
-    'Singapore',
-    'SouthKorea',
-    'Taiwan',
-    'Israel',
+    "China",
+    "HongKong",
+    "Japan",
+    "JapanBank",
+    "Malaysia",
+    "Qatar",
+    "Singapore",
+    "SouthKorea",
+    "Taiwan",
+    "Israel",
 )

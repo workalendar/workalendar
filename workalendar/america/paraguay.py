@@ -4,7 +4,7 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('PY')
+@iso_register("PY")
 class Paraguay(WesternCalendar, ChristianMixin):
     "Paraguay"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

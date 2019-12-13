@@ -21,6 +21,7 @@ FIXME:
 
 """
 import warnings
+
 # Since Scotland territories have a lot of different variations, it has become
 # necessary to split this module and associated tests
 from datetime import date, timedelta
@@ -84,10 +85,7 @@ as much care as possible.
         """
         May Day is the first Monday in May
         """
-        return (
-            Scotland.get_nth_weekday_in_month(year, 5, MON),
-            "May Day"
-        )
+        return (Scotland.get_nth_weekday_in_month(year, 5, MON), "May Day")
 
     def get_spring_holiday(self, year):
         """
@@ -98,7 +96,8 @@ as much care as possible.
         """
         raise NotImplementedError(
             "Tried to add spring holiday while "
-            "`get_spring_holiday` is not implemented.")
+            "`get_spring_holiday` is not implemented."
+        )
 
     def get_fair_holiday(self, year):
         """
@@ -108,8 +107,8 @@ as much care as possible.
         is True.
         """
         raise NotImplementedError(
-            "Tried to add fair holiday while "
-            "`get_fair_holiday` is not implemented.")
+            "Tried to add fair holiday while " "`get_fair_holiday` is not implemented."
+        )
 
     def get_autumn_holiday(self, year):
         """
@@ -120,7 +119,8 @@ as much care as possible.
         """
         raise NotImplementedError(
             "Tried to add autumn holiday while "
-            "`get_autumn_holiday` is not implemented.")
+            "`get_autumn_holiday` is not implemented."
+        )
 
     def get_victoria_day(self, year):
         """
@@ -131,7 +131,8 @@ as much care as possible.
         """
         raise NotImplementedError(
             "Tried to add autumn holiday while "
-            "`include_victoria_day` is not implemented.")
+            "`include_victoria_day` is not implemented."
+        )
 
     def get_variable_days(self, year):
         days = super(Scotland, self).get_variable_days(year)
@@ -157,18 +158,12 @@ as much care as possible.
         return days
 
 
-class Aberdeen(
-        FairHolidaySecondMondayJuly,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+class Aberdeen(FairHolidaySecondMondayJuly, AutumnHolidayLastMondaySeptember, Scotland):
     "Aberdeen"
     include_good_friday = True
 
 
-class Angus(
-        SpringHolidaySecondMondayApril,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+class Angus(SpringHolidaySecondMondayApril, AutumnHolidayLastMondaySeptember, Scotland):
     "Angus"
     include_saint_andrew = True
 
@@ -184,15 +179,12 @@ class Ayr(SpringHolidayLastMondayMay, AyrGoldCup, Scotland):
 
 
 class CarnoustieMonifieth(
-        SpringHolidayFirstMondayApril,
-        AutumnHolidayFirstMondayOctober,
-        Scotland):
+    SpringHolidayFirstMondayApril, AutumnHolidayFirstMondayOctober, Scotland
+):
     "Carnoustie & Monifieth"
 
 
-class Clydebank(
-        SpringHolidayTuesdayAfterFirstMondayMay,
-        Scotland):
+class Clydebank(SpringHolidayTuesdayAfterFirstMondayMay, Scotland):
     "Clydebank"
 
 
@@ -202,19 +194,21 @@ class DumfriesGalloway(Scotland):
 
 
 class Dundee(
-        SpringHolidayFirstMondayApril,
-        VictoriaDayLastMondayMay,
-        FairHolidayLastMondayJuly,
-        AutumnHolidayFirstMondayOctober,
-        Scotland):
+    SpringHolidayFirstMondayApril,
+    VictoriaDayLastMondayMay,
+    FairHolidayLastMondayJuly,
+    AutumnHolidayFirstMondayOctober,
+    Scotland,
+):
     "Dundee"
 
 
 class EastDunbartonshire(
-        SpringHolidayLastMondayMay,
-        FairHolidayThirdMondayJuly,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+    SpringHolidayLastMondayMay,
+    FairHolidayThirdMondayJuly,
+    AutumnHolidayLastMondaySeptember,
+    Scotland,
+):
     "East Dunbartonshire"
     include_good_friday = True
     include_easter_monday = True
@@ -238,8 +232,7 @@ class Edinburgh(Scotland):
         easter = self.get_easter_monday(year)
         spring_holiday = self.get_nth_weekday_in_month(year, 4, MON, 3)
         if easter == spring_holiday:
-            spring_holiday = self.get_nth_weekday_in_month(
-                year, 4, MON, 2)
+            spring_holiday = self.get_nth_weekday_in_month(year, 4, MON, 2)
 
         return (spring_holiday, self.spring_holiday_label)
 
@@ -264,18 +257,16 @@ class Edinburgh(Scotland):
         Set to the third Monday in September. Since it's the only region to
         follow this rule, we won't have a Mixin associated to it.
         """
-        return (
-            self.get_nth_weekday_in_month(year, 9, MON, 3),
-            "Autumn Holiday"
-        )
+        return (self.get_nth_weekday_in_month(year, 9, MON, 3), "Autumn Holiday")
 
 
 class Elgin(
-        SpringHolidaySecondMondayApril,
-        FairHolidayLastMondayJune,
-        LateSummer,
-        AutumnHolidayThirdMondayOctober,
-        Scotland):
+    SpringHolidaySecondMondayApril,
+    FairHolidayLastMondayJune,
+    LateSummer,
+    AutumnHolidayThirdMondayOctober,
+    Scotland,
+):
     "Elgin"
 
 
@@ -286,10 +277,11 @@ class Falkirk(FairHolidayFirstMondayJuly, BattleStirlingBridge, Scotland):
 
 
 class Fife(
-        VictoriaDayFirstMondayJune,
-        FairHolidayThirdMondayJuly,
-        AutumnHolidayThirdMondayOctober,
-        Scotland):
+    VictoriaDayFirstMondayJune,
+    FairHolidayThirdMondayJuly,
+    AutumnHolidayThirdMondayOctober,
+    Scotland,
+):
     "Fife"
     include_saint_andrew = True
 
@@ -297,15 +289,9 @@ class Fife(
         days = super(Fife, self).get_variable_days(year)
         # Special computation rule, Fife has TWO spring holidays
         # 1. First Monday in April
-        days.append((
-            self.get_nth_weekday_in_month(year, 4, MON),
-            "Spring Holiday"
-        ))
+        days.append((self.get_nth_weekday_in_month(year, 4, MON), "Spring Holiday"))
         # 2. First Monday in June
-        days.append((
-            self.get_nth_weekday_in_month(year, 6, MON),
-            "Spring Holiday"
-        ))
+        days.append((self.get_nth_weekday_in_month(year, 6, MON), "Spring Holiday"))
         return days
 
 
@@ -315,18 +301,18 @@ class Galashiels(SpringHolidayFirstMondayJune, Scotland):
     def get_variable_days(self, year):
         days = super(Galashiels, self).get_variable_days(year)
         # Adding Braw Lads Gathering, 1st Friday in July
-        days.append((
-            self.get_nth_weekday_in_month(year, 7, FRI),
-            "Braw Lads Gathering"
-        ))
+        days.append(
+            (self.get_nth_weekday_in_month(year, 7, FRI), "Braw Lads Gathering")
+        )
         return days
 
 
 class Glasgow(
-        SpringHolidayLastMondayMay,
-        FairHolidayThirdMondayJuly,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+    SpringHolidayLastMondayMay,
+    FairHolidayThirdMondayJuly,
+    AutumnHolidayLastMondaySeptember,
+    Scotland,
+):
     "Glasgow"
     include_easter_monday = True
 
@@ -356,39 +342,29 @@ class Inverclyde(LateSummer, Scotland):
         days = super(Inverclyde, self).get_variable_days(year)
         # Special computation rule, Inverclyde has TWO spring holidays
         # 1. First Monday in April
-        days.append((
-            self.get_last_weekday_in_month(year, 4, MON),
-            "Spring Holiday"
-        ))
+        days.append((self.get_last_weekday_in_month(year, 4, MON), "Spring Holiday"))
         # 2. First Monday in June
-        days.append((
-            self.get_nth_weekday_in_month(year, 6, MON),
-            "Spring Holiday"
-        ))
+        days.append((self.get_nth_weekday_in_month(year, 6, MON), "Spring Holiday"))
         return days
 
 
 class Inverness(
-        SpringHolidayFirstMondayApril,
-        FairHolidayFirstMondayJuly,
-        AutumnHolidayFirstMondayOctober,
-        Scotland):
+    SpringHolidayFirstMondayApril,
+    FairHolidayFirstMondayJuly,
+    AutumnHolidayFirstMondayOctober,
+    Scotland,
+):
     "Inverness"
 
     def get_variable_days(self, year):
         days = super(Inverness, self).get_variable_days(year)
-        days.append((
-            self.get_nth_weekday_in_month(year, 2, MON),
-            "Winter Holiday (February)"
-        ))
-        days.append((
-            self.get_nth_weekday_in_month(year, 3, MON),
-            "Winter Holiday (March)"
-        ))
-        days.append((
-            self.get_nth_weekday_in_month(year, 11, MON),
-            "Samhain Holiday"
-        ))
+        days.append(
+            (self.get_nth_weekday_in_month(year, 2, MON), "Winter Holiday (February)")
+        )
+        days.append(
+            (self.get_nth_weekday_in_month(year, 3, MON), "Winter Holiday (March)")
+        )
+        days.append((self.get_nth_weekday_in_month(year, 11, MON), "Samhain Holiday"))
         return days
 
 
@@ -404,98 +380,91 @@ class Lanark(Scotland):
     def get_variable_days(self, year):
         days = super(Lanark, self).get_variable_days(year)
         # Lanimer is 2nd THU in June
-        days.append((
-            self.get_nth_weekday_in_month(year, 6, THU, 2),
-            "Lanimer Day"
-        ))
+        days.append((self.get_nth_weekday_in_month(year, 6, THU, 2), "Lanimer Day"))
         return days
 
 
 class Linlithgow(Scotland):
     "Linlithgow"
+
     def get_variable_days(self, year):
         days = super(Linlithgow, self).get_variable_days(year)
         # Linlithgow Marches is on TUE after the 2nd THU in June
         second_thursday = self.get_nth_weekday_in_month(year, 6, THU, 2)
         marches_day = second_thursday + timedelta(days=5)
-        days.append((
-            marches_day,
-            "Linlithgow Marches"
-        ))
+        days.append((marches_day, "Linlithgow Marches"))
         return days
 
 
 class Lochaber(Scotland):
     "Lochaber"
+
     def get_variable_days(self, year):
         days = super(Lochaber, self).get_variable_days(year)
         # Winter holiday is on the last MON of march
-        days.append((
-            self.get_last_weekday_in_month(year, 3, MON),
-            "Winter holiday"
-        ))
+        days.append((self.get_last_weekday_in_month(year, 3, MON), "Winter holiday"))
         return days
 
 
 class NorthLanarkshire(
-        SpringHolidayLastMondayMay,
-        FairHolidayThirdMondayJuly,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+    SpringHolidayLastMondayMay,
+    FairHolidayThirdMondayJuly,
+    AutumnHolidayLastMondaySeptember,
+    Scotland,
+):
     "North Lanarkshire"
     include_easter_monday = True
 
 
 class Paisley(
-        VictoriaDayLastMondayMay,
-        FairHolidayFirstMondayAugust,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+    VictoriaDayLastMondayMay,
+    FairHolidayFirstMondayAugust,
+    AutumnHolidayLastMondaySeptember,
+    Scotland,
+):
     "Paisley"
     include_good_friday = True
     include_easter_monday = True
 
 
 class Perth(
-        SpringHolidayFirstMondayApril,
-        VictoriaDayFourthMondayMay,
-        BattleStirlingBridge,
-        AutumnHolidayFirstMondayOctober,
-        Scotland):
+    SpringHolidayFirstMondayApril,
+    VictoriaDayFourthMondayMay,
+    BattleStirlingBridge,
+    AutumnHolidayFirstMondayOctober,
+    Scotland,
+):
     "Perth"
 
 
 class ScottishBorders(
-        SpringHolidayFirstMondayApril,
-        FairHolidayFourthFridayJuly,
-        AutumnHolidaySecondMondayOctober,
-        Scotland):
+    SpringHolidayFirstMondayApril,
+    FairHolidayFourthFridayJuly,
+    AutumnHolidaySecondMondayOctober,
+    Scotland,
+):
     "Scottish Borders"
     include_saint_andrew = True
 
 
 class SouthLanarkshire(
-        SpringHolidayLastMondayMay,
-        FairHolidayThirdMondayJuly,
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+    SpringHolidayLastMondayMay,
+    FairHolidayThirdMondayJuly,
+    AutumnHolidayLastMondaySeptember,
+    Scotland,
+):
     "South Lanarkshire"
     include_good_friday = True
     include_easter_monday = True
 
 
-class Stirling(
-        SpringHolidayTuesdayAfterFirstMondayMay,
-        BattleStirlingBridge,
-        Scotland):
+class Stirling(SpringHolidayTuesdayAfterFirstMondayMay, BattleStirlingBridge, Scotland):
     "Stirling"
     include_good_friday = True
     include_easter_monday = True
 
 
-class WestDunbartonshire(
-        AutumnHolidayLastMondaySeptember,
-        Scotland):
+class WestDunbartonshire(AutumnHolidayLastMondaySeptember, Scotland):
     "West Dunbartonshire"
     include_good_friday = True
     include_easter_monday = True

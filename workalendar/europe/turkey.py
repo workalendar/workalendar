@@ -4,9 +4,9 @@ from ..core import IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('TR')
+@iso_register("TR")
 class Turkey(WesternCalendar, IslamicMixin):
-    'Turkey'
+    "Turkey"
 
     shift_new_years_day = True
 

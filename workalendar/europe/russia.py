@@ -2,9 +2,9 @@ from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('RU')
+@iso_register("RU")
 class Russia(WesternCalendar):
-    'Russia'
+    "Russia"
 
     shift_new_years_day = True
 

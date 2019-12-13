@@ -60,10 +60,22 @@ classes = (v for k, v in registry.region_registry.items())
 classes = list(classes)
 
 GERMANY_REGION_CLASSES = (
-    BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
-    Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
-    NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
-    SaxonyAnhalt, SchleswigHolstein, Thuringia
+    BadenWurttemberg,
+    Bavaria,
+    Berlin,
+    Brandenburg,
+    Bremen,
+    Hamburg,
+    Hesse,
+    MecklenburgVorpommern,
+    LowerSaxony,
+    NorthRhineWestphalia,
+    RhinelandPalatinate,
+    Saarland,
+    Saxony,
+    SaxonyAnhalt,
+    SchleswigHolstein,
+    Thuringia,
 )
 
 
@@ -78,7 +90,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Estonia, classes)
         self.assertIn(Denmark, classes)
         self.assertIn(Finland, classes)
-        self.assertIn(France,  classes)
+        self.assertIn(France, classes)
         self.assertIn(Greece, classes)
         self.assertIn(Hungary, classes)
         self.assertIn(Iceland, classes)
@@ -96,7 +108,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Russia, classes)
         self.assertIn(Slovakia, classes)
         self.assertIn(Slovenia, classes)
-        self.assertIn(Spain,  classes)
+        self.assertIn(Spain, classes)
         self.assertIn(Sweden, classes)
         self.assertIn(Switzerland, classes)
         self.assertIn(Vaud, classes)
@@ -110,11 +122,11 @@ class RegistryEurope(TestCase):
 
     def test_germany_subregion(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('DE').items())
+        classes = (v for k, v in registry.get_subregions("DE").items())
         classes = list(classes)
         for klass in GERMANY_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_slovenia_code(self):
         # Source: https://github.com/peopledoc/workalendar/pull/291
-        self.assertEqual(registry.region_registry['SI'], Slovenia)
+        self.assertEqual(registry.region_registry["SI"], Slovenia)

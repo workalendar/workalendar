@@ -23,7 +23,7 @@ AUSTRALIAN_TERRITORIES = (
     SouthAustralia,
     Tasmania,
     Victoria,
-    WesternAustralia
+    WesternAustralia,
 )
 
 
@@ -39,7 +39,7 @@ class RegistryOceania(TestCase):
 
     def test_australia_territories(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('AU').items())
+        classes = (v for k, v in registry.get_subregions("AU").items())
         classes = list(classes)
         for klass in AUSTRALIAN_TERRITORIES:
             self.assertIn(klass, classes)

@@ -4,9 +4,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('LU')
+@iso_register("LU")
 class Luxembourg(WesternCalendar, ChristianMixin):
-    'Luxembourg'
+    "Luxembourg"
 
     include_easter_monday = True
     include_ascension = True

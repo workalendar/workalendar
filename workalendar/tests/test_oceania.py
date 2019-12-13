@@ -100,12 +100,12 @@ class AustraliaCapitalTerritoryTest(AustraliaTest):
         self.assertIsNone(reconciliation_day)
 
         reconciliation_day = self.cal.get_reconciliation_day(2018)
-        self.assertEqual(reconciliation_day, (date(2018, 5, 28),
-                                              "Reconciliation Day Shift"))
+        self.assertEqual(
+            reconciliation_day, (date(2018, 5, 28), "Reconciliation Day Shift")
+        )
 
         reconciliation_day = self.cal.get_reconciliation_day(2019)
-        self.assertEqual(reconciliation_day, (date(2019, 5, 27),
-                                              "Reconciliation Day"))
+        self.assertEqual(reconciliation_day, (date(2019, 5, 27), "Reconciliation Day"))
 
 
 class NewSouthWalesTest(AustraliaTest):

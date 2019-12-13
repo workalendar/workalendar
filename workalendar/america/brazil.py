@@ -4,7 +4,7 @@ from ..core import MON, SAT, SUN, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('BR')
+@iso_register("BR")
 class Brazil(WesternCalendar, ChristianMixin):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -52,17 +52,13 @@ class Brazil(WesternCalendar, ChristianMixin):
             days.append((date(year, 10, 28), self.servidor_publico_label))
         if self.include_consciencia_negra:
             month, day = self.consciencia_negra_day
-            days.append(
-                (date(year, month, day), self.consciencia_negra_label)
-            )
+            days.append((date(year, month, day), self.consciencia_negra_label))
         if self.include_nossa_senhora_conceicao:
-            days.append(
-                (date(year, 12, 8), "Dia de Nossa Senhora da Conceição")
-            )
+            days.append((date(year, 12, 8), "Dia de Nossa Senhora da Conceição"))
         return days
 
 
-@iso_register('BR-AC')
+@iso_register("BR-AC")
 class BrazilAcre(Brazil):
     "Brazil Acre State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -74,7 +70,7 @@ class BrazilAcre(Brazil):
     )
 
 
-@iso_register('BR-AL')
+@iso_register("BR-AL")
 class BrazilAlagoas(Brazil):
     "Brazil Alagoas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -85,7 +81,7 @@ class BrazilAlagoas(Brazil):
     include_consciencia_negra = True
 
 
-@iso_register('BR-AP')
+@iso_register("BR-AP")
 class BrazilAmapa(Brazil):
     "Brazil Amapá State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -98,7 +94,7 @@ class BrazilAmapa(Brazil):
     include_consciencia_negra = True
 
 
-@iso_register('BR-AM')
+@iso_register("BR-AM")
 class BrazilAmazonas(Brazil):
     "Brazil Amazonas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -108,15 +104,13 @@ class BrazilAmazonas(Brazil):
     include_nossa_senhora_conceicao = True
 
 
-@iso_register('BR-BA')
+@iso_register("BR-BA")
 class BrazilBahia(Brazil):
     "Brazil Bahia State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 2, "Independência da Bahia"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((7, 2, "Independência da Bahia"),)
 
 
-@iso_register('BR-CE')
+@iso_register("BR-CE")
 class BrazilCeara(Brazil):
     "Brazil Ceará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -126,7 +120,7 @@ class BrazilCeara(Brazil):
     include_sao_jose = True
 
 
-@iso_register('BR-DF')
+@iso_register("BR-DF")
 class BrazilDistritoFederal(Brazil):
     "Brazil Distrito Federal State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -135,19 +129,19 @@ class BrazilDistritoFederal(Brazil):
     )
 
 
-@iso_register('BR-ES')
+@iso_register("BR-ES")
 class BrazilEspiritoSanto(Brazil):
     "Brazil Espírito Santo State"
     include_servidor_publico = True
 
 
-@iso_register('BR-GO')
+@iso_register("BR-GO")
 class BrazilGoias(Brazil):
     "Brazil Goiás State"
     include_servidor_publico = True
 
 
-@iso_register('BR-MA')
+@iso_register("BR-MA")
 class BrazilMaranhao(Brazil):
     "Brazil Maranhão State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -156,30 +150,26 @@ class BrazilMaranhao(Brazil):
     include_nossa_senhora_conceicao = True
 
 
-@iso_register('BR-MG')
+@iso_register("BR-MG")
 class BrazilMinasGerais(Brazil):
     "Brasil Minas Gerais State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (4, 21, "Aniversário de Minas Gerais"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((4, 21, "Aniversário de Minas Gerais"),)
 
 
-@iso_register('BR-MT')
+@iso_register("BR-MT")
 class BrazilMatoGrosso(Brazil):
     "Brazil Mato Grosso State"
     include_consciencia_negra = True
     consciencia_negra_day = (11, 29)
 
 
-@iso_register('BR-MS')
+@iso_register("BR-MS")
 class BrazilMatoGrossoDoSul(Brazil):
     "Brazil Mato Grosso do Sul State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 11, "Criação do estado"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((10, 11, "Criação do estado"),)
 
 
-@iso_register('BR-PA')
+@iso_register("BR-PA")
 class BrazilPara(Brazil):
     "Brazil Pará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -188,7 +178,7 @@ class BrazilPara(Brazil):
     include_nossa_senhora_conceicao = True
 
 
-@iso_register('BR-PB')
+@iso_register("BR-PB")
 class BrazilParaiba(Brazil):
     "Brazil Paraíba State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -197,16 +187,14 @@ class BrazilParaiba(Brazil):
     )
 
 
-@iso_register('BR-PE')
+@iso_register("BR-PE")
 class BrazilPernambuco(Brazil):
     "Brazil Pernambuco State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (6, 3, "Revolução Pernambucana de 1817"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((6, 3, "Revolução Pernambucana de 1817"),)
     include_sao_joao = True
 
 
-@iso_register('BR-PI')
+@iso_register("BR-PI")
 class BrazilPiaui(Brazil):
     "Brazil Piauí State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -215,15 +203,13 @@ class BrazilPiaui(Brazil):
     )
 
 
-@iso_register('BR-PR')
+@iso_register("BR-PR")
 class BrazilParana(Brazil):
     "Brazil Paraná State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 19, "Aniversário do Paraná"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((12, 19, "Aniversário do Paraná"),)
 
 
-@iso_register('BR-RJ')
+@iso_register("BR-RJ")
 class BrazilRioDeJaneiro(Brazil):
     "Brazil Rio de Janeiro State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -251,25 +237,21 @@ class BrazilRioDeJaneiro(Brazil):
         return days
 
 
-@iso_register('BR-RN')
+@iso_register("BR-RN")
 class BrazilRioGrandeDoNorte(Brazil):
     "Brazil Rio Grande do Norte State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 3, "Mártires de Cunhaú e Uruaçuu"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((10, 3, "Mártires de Cunhaú e Uruaçuu"),)
     include_sao_pedro = True
     sao_pedro_label = "Dua de São Pedro"
 
 
-@iso_register('BR-RS')
+@iso_register("BR-RS")
 class BrazilRioGrandeDoSul(Brazil):
     "Brazil Rio Grande do Sul State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (9, 20, "Revolução Farroupilha"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((9, 20, "Revolução Farroupilha"),)
 
 
-@iso_register('BR-RO')
+@iso_register("BR-RO")
 class BrazilRondonia(Brazil):
     "Brazil Rondônia State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -278,15 +260,13 @@ class BrazilRondonia(Brazil):
     )
 
 
-@iso_register('BR-RR')
+@iso_register("BR-RR")
 class BrazilRoraima(Brazil):
     "Brazil Roraima State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 5, "Criação de Roraima"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((10, 5, "Criação de Roraima"),)
 
 
-@iso_register('BR-SC')
+@iso_register("BR-SC")
 class BrazilSantaCatarina(Brazil):
     "Brazil Santa Catarina State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -295,7 +275,7 @@ class BrazilSantaCatarina(Brazil):
     )
 
 
-@iso_register('BR-SP')
+@iso_register("BR-SP")
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -321,15 +301,13 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
         return days
 
 
-@iso_register('BR-SE')
+@iso_register("BR-SE")
 class BrazilSergipe(Brazil):
     "Brazil Sergipe State"
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 8, "Autonomia política de Sergipe"),
-    )
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((7, 8, "Autonomia política de Sergipe"),)
 
 
-@iso_register('BR-TO')
+@iso_register("BR-TO")
 class BrazilTocantins(Brazil):
     "Brazil Tocantins State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
@@ -384,9 +362,7 @@ class BrazilGuarapariCity(BrazilEspiritoSanto):
 
 class BrazilSerraCity(BrazilEspiritoSanto):
     "Brazil Serra City"
-    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (12, 26, "Dia do Serrano"),
-    )
+    FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + ((12, 26, "Dia do Serrano"),)
     include_ash_wednesday = True
     ash_wednesday_label = "Quarta-feira de cinzas"
     include_good_friday = True
@@ -411,9 +387,7 @@ class BrazilRioBrancoCity(BrazilAcre):
 
 class BrazilMaceioCity(BrazilAlagoas):
     "Brazil Maceió City"
-    FIXED_HOLIDAYS = BrazilAlagoas.FIXED_HOLIDAYS + (
-        (12, 5, "Aniversário de Maceió"),
-    )
+    FIXED_HOLIDAYS = BrazilAlagoas.FIXED_HOLIDAYS + ((12, 5, "Aniversário de Maceió"),)
 
 
 class BrazilManausCity(BrazilAmazonas):
@@ -425,30 +399,22 @@ class BrazilManausCity(BrazilAmazonas):
 
 class BrazilMacapaCity(BrazilAmapa):
     "Brazil Macapá City"
-    FIXED_HOLIDAYS = BrazilAmapa.FIXED_HOLIDAYS + (
-        (2, 4, "Aniversário de Macapá"),
-    )
+    FIXED_HOLIDAYS = BrazilAmapa.FIXED_HOLIDAYS + ((2, 4, "Aniversário de Macapá"),)
 
 
 class BrazilSalvadorCity(BrazilBahia):
     "Brazil Salvador City"
-    FIXED_HOLIDAYS = BrazilBahia.FIXED_HOLIDAYS + (
-        (3, 29, "Aniversário de Salvador"),
-    )
+    FIXED_HOLIDAYS = BrazilBahia.FIXED_HOLIDAYS + ((3, 29, "Aniversário de Salvador"),)
 
 
 class BrazilFortalezaCity(BrazilCeara):
     "Brazil Fortaleza City"
-    FIXED_HOLIDAYS = BrazilCeara.FIXED_HOLIDAYS + (
-        (4, 13, "Aniversário de Fortaleza"),
-    )
+    FIXED_HOLIDAYS = BrazilCeara.FIXED_HOLIDAYS + ((4, 13, "Aniversário de Fortaleza"),)
 
 
 class BrazilGoianiaCity(BrazilGoias):
     "Brazil Goiânia City"
-    FIXED_HOLIDAYS = BrazilGoias.FIXED_HOLIDAYS + (
-        (10, 24, "Aniversário de Goiânia"),
-    )
+    FIXED_HOLIDAYS = BrazilGoias.FIXED_HOLIDAYS + ((10, 24, "Aniversário de Goiânia"),)
 
 
 class BrazilBeloHorizonteCity(BrazilMinasGerais):
@@ -474,9 +440,7 @@ class BrazilCuiabaCity(BrazilMatoGrosso):
 
 class BrazilBelemCity(BrazilPara):
     "Brazil Belém City"
-    FIXED_HOLIDAYS = BrazilPara.FIXED_HOLIDAYS + (
-        (1, 12, "Aniversário de Belém"),
-    )
+    FIXED_HOLIDAYS = BrazilPara.FIXED_HOLIDAYS + ((1, 12, "Aniversário de Belém"),)
 
 
 class BrazilJoaoPessoaCity(BrazilParaiba):
@@ -495,16 +459,12 @@ class BrazilRecifeCity(BrazilPernambuco):
 
 class BrazilTeresinaCity(BrazilPiaui):
     "Brazil Teresina City"
-    FIXED_HOLIDAYS = BrazilPiaui.FIXED_HOLIDAYS + (
-        (8, 16, "Aniversário de Teresina"),
-    )
+    FIXED_HOLIDAYS = BrazilPiaui.FIXED_HOLIDAYS + ((8, 16, "Aniversário de Teresina"),)
 
 
 class BrazilCuritibaCity(BrazilParana):
     "Brazil Curitiba City"
-    FIXED_HOLIDAYS = BrazilParana.FIXED_HOLIDAYS + (
-        (3, 29, "Aniversário de Curitiba"),
-    )
+    FIXED_HOLIDAYS = BrazilParana.FIXED_HOLIDAYS + ((3, 29, "Aniversário de Curitiba"),)
 
 
 class BrazilNatalCity(BrazilRioGrandeDoNorte):
@@ -558,9 +518,7 @@ class BrazilJoinvilleCity(BrazilSantaCatarina):
 
 class BrazilAracajuCity(BrazilSergipe):
     "Brazil Aracaju City"
-    FIXED_HOLIDAYS = BrazilSergipe.FIXED_HOLIDAYS + (
-        (3, 17, "Aniversário de Aracaju"),
-    )
+    FIXED_HOLIDAYS = BrazilSergipe.FIXED_HOLIDAYS + ((3, 17, "Aniversário de Aracaju"),)
 
 
 class BrazilSorocabaCity(BrazilSaoPauloState):
@@ -582,9 +540,8 @@ class BrazilBankCalendar(Brazil):
     Calendar that considers only working days for bank transactions
     for companies and the general public
     """
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 25, "Christmas Day"),
-    )
+
+    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + ((12, 25, "Christmas Day"),)
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
         """
@@ -623,7 +580,7 @@ class BrazilBankCalendar(Brazil):
         non_working_days = [
             (
                 self.get_last_day_of_year_for_only_internal_bank_trans(year),
-                "Last day of year for only internal bank transactions"
+                "Last day of year for only internal bank transactions",
             )
         ]
 
@@ -641,63 +598,63 @@ class BrazilBankCalendar(Brazil):
 
 
 IBGE_TUPLE = (
-    ('BR-IBGE-12', BrazilAcre),
-    ('BR-IBGE-27', BrazilAlagoas),
-    ('BR-IBGE-16', BrazilAmapa),
-    ('BR-IBGE-13', BrazilAmazonas),
-    ('BR-IBGE-29', BrazilBahia),
-    ('BR-IBGE-23', BrazilCeara),
-    ('BR-IBGE-53', BrazilDistritoFederal),
-    ('BR-IBGE-32', BrazilEspiritoSanto),
-    ('BR-IBGE-52', BrazilGoias),
-    ('BR-IBGE-21', BrazilMaranhao),
-    ('BR-IBGE-31', BrazilMinasGerais),
-    ('BR-IBGE-51', BrazilMatoGrosso),
-    ('BR-IBGE-50', BrazilMatoGrossoDoSul),
-    ('BR-IBGE-15', BrazilPara),
-    ('BR-IBGE-25', BrazilParaiba),
-    ('BR-IBGE-26', BrazilPernambuco),
-    ('BR-IBGE-22', BrazilPiaui),
-    ('BR-IBGE-41', BrazilParana),
-    ('BR-IBGE-33', BrazilRioDeJaneiro),
-    ('BR-IBGE-24', BrazilRioGrandeDoNorte),
-    ('BR-IBGE-43', BrazilRioGrandeDoSul),
-    ('BR-IBGE-11', BrazilRondonia),
-    ('BR-IBGE-14', BrazilRoraima),
-    ('BR-IBGE-42', BrazilSantaCatarina),
-    ('BR-IBGE-35', BrazilSaoPauloState),
-    ('BR-IBGE-3550308', BrazilSaoPauloCity),
-    ('BR-IBGE-28', BrazilSergipe),
-    ('BR-IBGE-17', BrazilTocantins),
-    ('BR-IBGE-3205309', BrazilVitoriaCity),
-    ('BR-IBGE-3205200', BrazilVilaVelhaCity),
-    ('BR-IBGE-3201308', BrazilCariacicaCity),
-    ('BR-IBGE-3202405', BrazilGuarapariCity),
-    ('BR-IBGE-3205002', BrazilSerraCity),
-    ('BR-IBGE-1200401', BrazilRioBrancoCity),
-    ('BR-IBGE-2704302', BrazilMaceioCity),
-    ('BR-IBGE-1302603', BrazilManausCity),
-    ('BR-IBGE-1600303', BrazilMacapaCity),
-    ('BR-IBGE-2927408', BrazilSalvadorCity),
-    ('BR-IBGE-2304400', BrazilFortalezaCity),
-    ('BR-IBGE-5208707', BrazilGoianiaCity),
-    ('BR-IBGE-3106200', BrazilBeloHorizonteCity),
-    ('BR-IBGE-5002704', BrazilCampoGrandeCity),
-    ('BR-IBGE-5103403', BrazilCuiabaCity),
-    ('BR-IBGE-1501402', BrazilBelemCity),
-    ('BR-IBGE-2507507', BrazilJoaoPessoaCity),
-    ('BR-IBGE-2611606', BrazilRecifeCity),
-    ('BR-IBGE-2211001', BrazilTeresinaCity),
-    ('BR-IBGE-4106902', BrazilCuritibaCity),
-    ('BR-IBGE-2408102', BrazilNatalCity),
-    ('BR-IBGE-1100205', BrazilPortoVelhoCity),
-    ('BR-IBGE-1400100', BrazilBoaVistaCity),
-    ('BR-IBGE-4314902', BrazilPortoAlegreCity),
-    ('BR-IBGE-4204202', BrazilChapecoCity),
-    ('BR-IBGE-4205407', BrazilFlorianopolisCity),
-    ('BR-IBGE-4209102', BrazilJoinvilleCity),
-    ('BR-IBGE-2800308', BrazilAracajuCity),
-    ('BR-IBGE-3552205', BrazilSorocabaCity),
-    ('BR-IBGE-1721000', BrazilPalmasCity),
+    ("BR-IBGE-12", BrazilAcre),
+    ("BR-IBGE-27", BrazilAlagoas),
+    ("BR-IBGE-16", BrazilAmapa),
+    ("BR-IBGE-13", BrazilAmazonas),
+    ("BR-IBGE-29", BrazilBahia),
+    ("BR-IBGE-23", BrazilCeara),
+    ("BR-IBGE-53", BrazilDistritoFederal),
+    ("BR-IBGE-32", BrazilEspiritoSanto),
+    ("BR-IBGE-52", BrazilGoias),
+    ("BR-IBGE-21", BrazilMaranhao),
+    ("BR-IBGE-31", BrazilMinasGerais),
+    ("BR-IBGE-51", BrazilMatoGrosso),
+    ("BR-IBGE-50", BrazilMatoGrossoDoSul),
+    ("BR-IBGE-15", BrazilPara),
+    ("BR-IBGE-25", BrazilParaiba),
+    ("BR-IBGE-26", BrazilPernambuco),
+    ("BR-IBGE-22", BrazilPiaui),
+    ("BR-IBGE-41", BrazilParana),
+    ("BR-IBGE-33", BrazilRioDeJaneiro),
+    ("BR-IBGE-24", BrazilRioGrandeDoNorte),
+    ("BR-IBGE-43", BrazilRioGrandeDoSul),
+    ("BR-IBGE-11", BrazilRondonia),
+    ("BR-IBGE-14", BrazilRoraima),
+    ("BR-IBGE-42", BrazilSantaCatarina),
+    ("BR-IBGE-35", BrazilSaoPauloState),
+    ("BR-IBGE-3550308", BrazilSaoPauloCity),
+    ("BR-IBGE-28", BrazilSergipe),
+    ("BR-IBGE-17", BrazilTocantins),
+    ("BR-IBGE-3205309", BrazilVitoriaCity),
+    ("BR-IBGE-3205200", BrazilVilaVelhaCity),
+    ("BR-IBGE-3201308", BrazilCariacicaCity),
+    ("BR-IBGE-3202405", BrazilGuarapariCity),
+    ("BR-IBGE-3205002", BrazilSerraCity),
+    ("BR-IBGE-1200401", BrazilRioBrancoCity),
+    ("BR-IBGE-2704302", BrazilMaceioCity),
+    ("BR-IBGE-1302603", BrazilManausCity),
+    ("BR-IBGE-1600303", BrazilMacapaCity),
+    ("BR-IBGE-2927408", BrazilSalvadorCity),
+    ("BR-IBGE-2304400", BrazilFortalezaCity),
+    ("BR-IBGE-5208707", BrazilGoianiaCity),
+    ("BR-IBGE-3106200", BrazilBeloHorizonteCity),
+    ("BR-IBGE-5002704", BrazilCampoGrandeCity),
+    ("BR-IBGE-5103403", BrazilCuiabaCity),
+    ("BR-IBGE-1501402", BrazilBelemCity),
+    ("BR-IBGE-2507507", BrazilJoaoPessoaCity),
+    ("BR-IBGE-2611606", BrazilRecifeCity),
+    ("BR-IBGE-2211001", BrazilTeresinaCity),
+    ("BR-IBGE-4106902", BrazilCuritibaCity),
+    ("BR-IBGE-2408102", BrazilNatalCity),
+    ("BR-IBGE-1100205", BrazilPortoVelhoCity),
+    ("BR-IBGE-1400100", BrazilBoaVistaCity),
+    ("BR-IBGE-4314902", BrazilPortoAlegreCity),
+    ("BR-IBGE-4204202", BrazilChapecoCity),
+    ("BR-IBGE-4205407", BrazilFlorianopolisCity),
+    ("BR-IBGE-4209102", BrazilJoinvilleCity),
+    ("BR-IBGE-2800308", BrazilAracajuCity),
+    ("BR-IBGE-3552205", BrazilSorocabaCity),
+    ("BR-IBGE-1721000", BrazilPalmasCity),
 )
 IBGE_REGISTER = dict(IBGE_TUPLE)

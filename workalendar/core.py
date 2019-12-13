@@ -16,7 +16,6 @@ MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
 class classproperty(object):
-
     def __init__(self, getter):
         self.getter = getter
         self.__doc__ = getter.__doc__
@@ -34,10 +33,9 @@ def cleaned_date(day, keep_datetime=False):
     * convert any "duck date" type into a date using its `date()` method.
     """
     if not isinstance(day, (date, datetime)):
-        raise UnsupportedDateType(
-            f"`{day}` is of unsupported type ({type(day)})")
+        raise UnsupportedDateType(f"`{day}` is of unsupported type ({type(day)})")
     if not keep_datetime:
-        if hasattr(day, 'date') and callable(day.date):
+        if hasattr(day, "date") and callable(day.date):
             day = day.date()
     return day
 
@@ -54,7 +52,7 @@ class Calendar(object):
     def name(cls):
         class_name = cls.__name__
         if cls.__doc__:
-            doc = cls.__doc__.split('\n')
+            doc = cls.__doc__.split("\n")
             doc = map(lambda s: s.strip(), doc)
             return next(s for s in doc if s)
         return class_name
@@ -95,8 +93,7 @@ class Calendar(object):
     def get_holiday_label(self, day):
         """Return the label of the holiday, if the date is a holiday"""
         day = cleaned_date(day)
-        return {day: label for day, label in self.holidays(day.year)
-                }.get(day)
+        return {day: label for day, label in self.holidays(day.year)}.get(day)
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
@@ -111,12 +108,13 @@ class Calendar(object):
         if self.WEEKEND_DAYS:
             return self.WEEKEND_DAYS
         else:
-            raise NotImplementedError("Your Calendar class must provide "
-                                      "WEEKEND_DAYS or implement the "
-                                      "`get_weekend_days` method")
+            raise NotImplementedError(
+                "Your Calendar class must provide "
+                "WEEKEND_DAYS or implement the "
+                "`get_weekend_days` method"
+            )
 
-    def is_working_day(self, day,
-                       extra_working_days=None, extra_holidays=None):
+    def is_working_day(self, day, extra_working_days=None, extra_holidays=None):
         """Return True if it's a working day.
         In addition to the regular holidays, you can add exceptions.
 
@@ -164,9 +162,14 @@ class Calendar(object):
 
         return day in self.holidays_set(day.year)
 
-    def add_working_days(self, day, delta,
-                         extra_working_days=None, extra_holidays=None,
-                         keep_datetime=False):
+    def add_working_days(
+        self,
+        day,
+        delta,
+        extra_working_days=None,
+        extra_holidays=None,
+        keep_datetime=False,
+    ):
         """Add `delta` working days to the date.
 
         You can provide either a date or a datetime to this function that will
@@ -202,15 +205,22 @@ class Calendar(object):
         delta = abs(delta)
         while days < delta:
             temp_day = temp_day + timedelta(days=day_added)
-            if self.is_working_day(temp_day,
-                                   extra_working_days=extra_working_days,
-                                   extra_holidays=extra_holidays):
+            if self.is_working_day(
+                temp_day,
+                extra_working_days=extra_working_days,
+                extra_holidays=extra_holidays,
+            ):
                 days += 1
         return temp_day
 
-    def sub_working_days(self, day, delta,
-                         extra_working_days=None, extra_holidays=None,
-                         keep_datetime=False):
+    def sub_working_days(
+        self,
+        day,
+        delta,
+        extra_working_days=None,
+        extra_holidays=None,
+        keep_datetime=False,
+    ):
         """
         Substract `delta` working days to the date.
 
@@ -236,8 +246,8 @@ class Calendar(object):
         """
         delta = abs(delta)
         return self.add_working_days(
-            day, -delta,
-            extra_working_days, extra_holidays, keep_datetime=keep_datetime)
+            day, -delta, extra_working_days, extra_holidays, keep_datetime=keep_datetime
+        )
 
     def find_following_working_day(self, day):
         """Looks for the following working day, if not already a working day.
@@ -390,9 +400,9 @@ class ChristianMixin(Calendar):
     include_ascension = False
     include_assumption = False
     include_whit_sunday = False
-    whit_sunday_label = 'Whit Sunday'
+    whit_sunday_label = "Whit Sunday"
     include_whit_monday = False
-    whit_monday_label = 'Whit Monday'
+    whit_monday_label = "Whit Monday"
     include_corpus_christi = False
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
@@ -477,9 +487,7 @@ class ChristianMixin(Calendar):
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
         if self.include_ash_wednesday:
-            days.append(
-                (self.get_ash_wednesday(year), self.ash_wednesday_label)
-            )
+            days.append((self.get_ash_wednesday(year), self.ash_wednesday_label))
         if self.include_palm_sunday:
             days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
@@ -507,8 +515,7 @@ class ChristianMixin(Calendar):
         if self.include_boxing_day:
             days.append((date(year, 12, 26), self.boxing_day_label))
         if self.include_ascension:
-            days.append((
-                self.get_ascension_thursday(year), "Ascension Thursday"))
+            days.append((self.get_ascension_thursday(year), "Ascension Thursday"))
         if self.include_whit_monday:
             days.append((self.get_whit_monday(year), self.whit_monday_label))
         if self.include_whit_sunday:
@@ -525,22 +532,21 @@ class WesternCalendar(Calendar):
     (chiefly Europe and Northern America)
 
     """
+
     EASTER_METHOD = easter.EASTER_WESTERN
     WEEKEND_DAYS = (SAT, SUN)
     shift_new_years_day = False
 
-    FIXED_HOLIDAYS = (
-        (1, 1, 'New year'),
-    )
+    FIXED_HOLIDAYS = ((1, 1, "New year"),)
 
     def get_variable_days(self, year):
         days = super(WesternCalendar, self).get_variable_days(year)
         new_year = date(year, 1, 1)
         if self.shift_new_years_day:
             if new_year.weekday() in self.get_weekend_days():
-                days.append((
-                    self.find_following_working_day(new_year),
-                    "New Year shift"))
+                days.append(
+                    (self.find_following_working_day(new_year), "New Year shift")
+                )
         return days
 
 
@@ -552,6 +558,7 @@ class LunarCalendar(Calendar):
     """
     Calendar ready to compute luncar calendar days
     """
+
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
@@ -561,11 +568,12 @@ class ChineseNewYearCalendar(LunarCalendar):
     """
     Calendar including toolsets to compute the Chinese New Year holidays.
     """
+
     include_chinese_new_year_eve = False
     chinese_new_year_eve_label = "Chinese New Year's eve"
     # Chinese New Year will be included by default
     include_chinese_new_year = True
-    chinese_new_year_label = 'Chinese New Year'
+    chinese_new_year_label = "Chinese New Year"
     # Some countries include the 2nd lunar day as a holiday
     include_chinese_second_day = False
     chinese_second_day_label = "Chinese New Year (2nd day)"
@@ -599,33 +607,28 @@ class ChineseNewYearCalendar(LunarCalendar):
         lunar_first_day = ChineseNewYearCalendar.lunar(year, 1, 1)
         # Chinese new year's eve
         if self.include_chinese_new_year_eve:
-            days.append((
-                lunar_first_day - timedelta(days=1),
-                self.chinese_new_year_eve_label
-            ))
+            days.append(
+                (lunar_first_day - timedelta(days=1), self.chinese_new_year_eve_label)
+            )
         # Chinese new year (is included by default)
         if self.include_chinese_new_year:
             days.append((lunar_first_day, self.chinese_new_year_label))
 
         if self.include_chinese_second_day:
             lunar_second_day = lunar_first_day + timedelta(days=1)
-            days.append((
-                lunar_second_day,
-                self.chinese_second_day_label
-            ))
+            days.append((lunar_second_day, self.chinese_second_day_label))
         if self.include_chinese_third_day:
             lunar_third_day = lunar_first_day + timedelta(days=2)
-            days.append((
-                lunar_third_day,
-                self.chinese_third_day_label
-            ))
+            days.append((lunar_third_day, self.chinese_third_day_label))
 
         if self.shift_sunday_holidays:
             if lunar_first_day.weekday() == SUN:
                 if self.shift_start_cny_sunday:
                     days.append(
-                        (lunar_first_day - timedelta(days=1),
-                         "Chinese Lunar New Year shift"),
+                        (
+                            lunar_first_day - timedelta(days=1),
+                            "Chinese Lunar New Year shift",
+                        )
                     )
                 else:
                     if self.include_chinese_third_day:
@@ -633,14 +636,14 @@ class ChineseNewYearCalendar(LunarCalendar):
                     else:
                         shift_day = lunar_second_day
                     days.append(
-                        (shift_day + timedelta(days=1),
-                         "Chinese Lunar New Year shift"),
+                        (shift_day + timedelta(days=1), "Chinese Lunar New Year shift")
                     )
-            if (lunar_second_day.weekday() == SUN
-                    and self.include_chinese_third_day):
+            if lunar_second_day.weekday() == SUN and self.include_chinese_third_day:
                 days.append(
-                    (lunar_third_day + timedelta(days=1),
-                     "Chinese Lunar New Year shift"),
+                    (
+                        lunar_third_day + timedelta(days=1),
+                        "Chinese Lunar New Year shift",
+                    )
                 )
         return days
 
@@ -656,10 +659,7 @@ class ChineseNewYearCalendar(LunarCalendar):
         """
         for holiday, label in dates:
             if holiday.weekday() == SUN:
-                yield (
-                    holiday + timedelta(days=1),
-                    label + ' shift'
-                )
+                yield (holiday + timedelta(days=1), label + " shift")
 
     def get_calendar_holidays(self, year):
         """
@@ -686,15 +686,13 @@ class CalverterMixin(Calendar):
             raise NotImplementedError
 
     def converted(self, year):
-        conversion_method = getattr(
-            self.calverter, f'jd_to_{self.conversion_method}')
+        conversion_method = getattr(self.calverter, f"jd_to_{self.conversion_method}")
         current = date(year, 1, 1)
         days = []
         while current.year == year:
             julian_day = self.calverter.gregorian_to_jd(
-                current.year,
-                current.month,
-                current.day)
+                current.year, current.month, current.day
+            )
             days.append(conversion_method(julian_day))
             current = current + timedelta(days=1)
         return days
@@ -716,12 +714,13 @@ class CalverterMixin(Calendar):
         return None
 
     def get_variable_days(self, year):
-        warnings.warn('Please take note that, due to arbitrary decisions, '
-                      'this Islamic calendar computation may be wrong.')
+        warnings.warn(
+            "Please take note that, due to arbitrary decisions, "
+            "this Islamic calendar computation may be wrong."
+        )
         days = super(CalverterMixin, self).get_variable_days(year)
         years = self.calverted_years(year)
-        conversion_method = getattr(
-            self.calverter, f'{self.conversion_method}_to_jd')
+        conversion_method = getattr(self.calverter, f"{self.conversion_method}_to_jd")
         for month, day, label in self.get_islamic_holidays():
             for y in years:
                 jd = conversion_method(y, month, day)
@@ -739,7 +738,7 @@ class CalverterMixin(Calendar):
 
 
 class IslamicMixin(CalverterMixin):
-    conversion_method = 'islamic'
+    conversion_method = "islamic"
     include_prophet_birthday = False
     include_day_after_prophet_birthday = False
     include_start_ramadan = False
@@ -779,11 +778,13 @@ class IslamicMixin(CalverterMixin):
         if self.include_day_of_sacrifice:
             days.append((12, 10, self.day_of_sacrifice_label))
         if self.include_laylat_al_qadr:
-            warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
-                          " by the religious authorities. It is not possible"
-                          " to compute it. You'll have to add it manually.")
+            warnings.warn(
+                "The Islamic holiday named Laylat al-Qadr is decided"
+                " by the religious authorities. It is not possible"
+                " to compute it. You'll have to add it manually."
+            )
         return tuple(days)
 
 
 class JalaliMixin(CalverterMixin):
-    conversion_method = 'jalali'
+    conversion_method = "jalali"

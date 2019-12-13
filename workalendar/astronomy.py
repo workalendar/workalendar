@@ -11,22 +11,22 @@ from skyfield_data import get_skyfield_data_path
 
 # Parameter for the newton method to converge towards the closest solution
 # to the function. By default it'll be an approximation of a 10th of a second.
-hour = 1. / 24.
-minute = hour / 60.
-second = minute / 60.
-newton_precision = second / 10.
+hour = 1.0 / 24.0
+minute = hour / 60.0
+second = minute / 60.0
+newton_precision = second / 10.0
 
 # ``math.tau`` appears only in Python 3.6+
 tau = 2 * pi
 
 
-def calculate_equinoxes(year, timezone='UTC'):
+def calculate_equinoxes(year, timezone="UTC"):
     """ calculate equinox with time zone """
     tz = pytz.timezone(timezone)
 
     load = Loader(get_skyfield_data_path())
     ts = load.timescale()
-    planets = load('de421.bsp')
+    planets = load("de421.bsp")
 
     t0 = ts.utc(year, 1, 1)
     t1 = ts.utc(year, 12, 31)
@@ -41,7 +41,7 @@ def get_current_longitude(current_date, earth, sun):
     Return the ecliptic longitude, in radians.
     """
     astrometric = earth.at(current_date).observe(sun)
-    latitude, longitude, _ = astrometric.ecliptic_latlon(epoch='date')
+    latitude, longitude, _ = astrometric.ecliptic_latlon(epoch="date")
     return longitude.radians
 
 
@@ -60,7 +60,7 @@ def newton(f, x0, x1, precision=newton_precision):
     return x1
 
 
-def solar_term(year, degrees, timezone='UTC'):
+def solar_term(year, degrees, timezone="UTC"):
     """
     Returns the date of the solar term for the given longitude
     and the given year.
@@ -79,9 +79,9 @@ def solar_term(year, degrees, timezone='UTC'):
     target_angle = radians(degrees)
 
     load = Loader(get_skyfield_data_path())
-    planets = load('de421.bsp')
-    earth = planets['earth']
-    sun = planets['sun']
+    planets = load("de421.bsp")
+    earth = planets["earth"]
+    sun = planets["sun"]
     ts = load.timescale()
     tz = pytz.timezone(timezone)
 

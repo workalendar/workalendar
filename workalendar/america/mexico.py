@@ -4,7 +4,7 @@ from ..core import MON, SAT, SUN, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('MX')
+@iso_register("MX")
 class Mexico(WesternCalendar, ChristianMixin):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -14,17 +14,18 @@ class Mexico(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Mexico, self).get_variable_days(year)
-        days.append(
-            (Mexico.get_nth_weekday_in_month(year, 2, MON),
-             "Constitution Day"))
+        days.append((Mexico.get_nth_weekday_in_month(year, 2, MON), "Constitution Day"))
 
         days.append(
-            (Mexico.get_nth_weekday_in_month(year, 3, MON, 3),
-             "Benito Juárez's birthday"))
+            (
+                Mexico.get_nth_weekday_in_month(year, 3, MON, 3),
+                "Benito Juárez's birthday",
+            )
+        )
 
         days.append(
-            (Mexico.get_nth_weekday_in_month(year, 11, MON, 3),
-             "Revolution Day"))
+            (Mexico.get_nth_weekday_in_month(year, 11, MON, 3), "Revolution Day")
+        )
 
         return days
 

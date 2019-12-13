@@ -20,7 +20,7 @@ class AlgeriaTest(GenericCalendarTest):
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)  # New year
-        self.assertIn(date(2013, 1, 24), holidays)   # Milad un Nabi
+        self.assertIn(date(2013, 1, 24), holidays)  # Milad un Nabi
         self.assertIn(date(2013, 5, 1), holidays)  # Labour day
         self.assertIn(date(2013, 7, 5), holidays)  # Independence day
         self.assertIn(date(2013, 8, 8), holidays)  # Eid ul-fitr
@@ -37,8 +37,8 @@ class BeninTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)  # new year
         self.assertIn(date(2013, 4, 1), holidays)  # easter monday
-        self.assertIn(date(2013, 5, 9), holidays)   # Ascension
-        self.assertIn(date(2013, 5, 20), holidays)   # Whit Monday
+        self.assertIn(date(2013, 5, 9), holidays)  # Ascension
+        self.assertIn(date(2013, 5, 20), holidays)  # Whit Monday
         self.assertIn(date(2013, 5, 1), holidays)  # Labour day
         self.assertIn(date(2013, 8, 1), holidays)  # Independence Day
         self.assertIn(date(2013, 8, 15), holidays)  # Assumption
@@ -94,8 +94,7 @@ class SouthAfricaTest(GenericCalendarTest):
         holidays = self.cal.holidays(1980)
         # Since the Founders' day is a Sunday, the same date appears twice
         # The second one is a substitute
-        holidays = [item for item in holidays
-                    if item[1] != "Founder's Day substitute"]
+        holidays = [item for item in holidays if item[1] != "Founder's Day substitute"]
         easter_monday_1980 = date(1980, 4, 7)
         holidays_dates = [item[0] for item in holidays]
         self.assertEqual(holidays_dates.count(easter_monday_1980), 1, holidays)
@@ -186,8 +185,7 @@ class SouthAfricaTest(GenericCalendarTest):
         may_24th_1951 = date(1951, 5, 24)
         self.assertIn(may_24th_1951, holidays_dates, holidays)
         holidays_dict = dict(holidays)
-        self.assertEqual(
-            holidays_dict[may_24th_1951], "Victoria Day / Empire Day")
+        self.assertEqual(holidays_dict[may_24th_1951], "Victoria Day / Empire Day")
 
         # 1952-present, no Victoria / Empire day
         holidays = self.cal.holidays(1952)
@@ -229,14 +227,10 @@ class SouthAfricaTest(GenericCalendarTest):
         for year in (1952, 1959, 1960):  # interval of the years
             holidays = self.cal.holidays(year)
             holidays_dates = [item[0] for item in holidays]
-            july_2nd_monday = self.cal.get_nth_weekday_in_month(
-                year, 7, MON, 2)
+            july_2nd_monday = self.cal.get_nth_weekday_in_month(year, 7, MON, 2)
             self.assertIn(july_2nd_monday, holidays_dates)
             holidays_dict = dict(holidays)
-            self.assertEqual(
-                holidays_dict[july_2nd_monday],
-                "Queen's Birthday"
-            )
+            self.assertEqual(holidays_dict[july_2nd_monday], "Queen's Birthday")
 
         # After 1961, no more Queen's Birthday
         for year in (1961, 1962, 2008, 2018):  # interval of the years
@@ -248,10 +242,7 @@ class SouthAfricaTest(GenericCalendarTest):
         holidays = self.cal.holidays(2018)
         womens_day = date(2018, 8, 9)
         holidays_dict = dict(holidays)
-        self.assertEqual(
-            holidays_dict[womens_day],
-            "National Women's Day"
-        )
+        self.assertEqual(holidays_dict[womens_day], "National Women's Day")
 
     def test_family_day_in_july(self):
         # Before 1961, no Family day in July
@@ -356,8 +347,7 @@ class SouthAfricaTest(GenericCalendarTest):
             december_16th = date(year, 12, 16)
             self.assertIn(december_16th, holidays_dates)
             holidays_dict = dict(holidays)
-            self.assertEqual(
-                holidays_dict[december_16th], "Day of the Covenant")
+            self.assertEqual(holidays_dict[december_16th], "Day of the Covenant")
 
         # from 1980 to 1994 it's the "Day of the Vow"
         # NOTE: wikipedia states it starts at year 1979, but that would mean
@@ -369,8 +359,7 @@ class SouthAfricaTest(GenericCalendarTest):
             december_16th = date(year, 12, 16)
             self.assertIn(december_16th, holidays_dates)
             holidays_dict = dict(holidays)
-            self.assertEqual(
-                holidays_dict[december_16th], "Day of the Vow")
+            self.assertEqual(holidays_dict[december_16th], "Day of the Vow")
 
         # As of 1995, it's the "Day of Reconciliation"
         for year in (1995, 2000, 2010, 2018):
@@ -379,8 +368,7 @@ class SouthAfricaTest(GenericCalendarTest):
             december_16th = date(year, 12, 16)
             self.assertIn(december_16th, holidays_dates)
             holidays_dict = dict(holidays)
-            self.assertEqual(
-                holidays_dict[december_16th], "Day of Reconciliation")
+            self.assertEqual(holidays_dict[december_16th], "Day of Reconciliation")
 
     def test_december_26th(self):
         # from 1910 to 1979, it's "Boxing Day"

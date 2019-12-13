@@ -2,9 +2,9 @@ from ..core import OrthodoxMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('GR')
+@iso_register("GR")
 class Greece(OrthodoxMixin, WesternCalendar):
-    'Greece'
+    "Greece"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Independence Day"),

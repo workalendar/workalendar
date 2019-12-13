@@ -4,9 +4,9 @@ from ..core import MON, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('GB')
+@iso_register("GB")
 class UnitedKingdom(WesternCalendar, ChristianMixin):
-    'United Kingdom'
+    "United Kingdom"
 
     include_good_friday = True
     include_easter_sunday = True
@@ -14,13 +14,13 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     shift_new_years_day = True
     non_computable_holiday_dict = {
-        1973: [(date(1973, 11, 14), "Royal wedding"), ],
-        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee"), ],
-        1981: [(date(1981, 7, 29), "Royal wedding"), ],
-        1999: [(date(1999, 12, 31), "New Year's Eve"), ],
-        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
-        2011: [(date(2011, 4, 29), "Royal Wedding"), ],
-        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+        1973: [(date(1973, 11, 14), "Royal wedding")],
+        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee")],
+        1981: [(date(1981, 7, 29), "Royal wedding")],
+        1999: [(date(1999, 12, 31), "New Year's Eve")],
+        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee")],
+        2011: [(date(2011, 4, 29), "Royal Wedding")],
+        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee")],
     }
 
     def get_early_may_bank_holiday(self, year):
@@ -29,14 +29,11 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         """
         # Special case in 2020, for the 75th anniversary of the end of WWII.
         if year == 2020:
-            return (
-                date(year, 5, 8),
-                "Early May bank holiday (VE day)"
-            )
+            return (date(year, 5, 8), "Early May bank holiday (VE day)")
 
         return (
             UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
-            "Early May Bank Holiday"
+            "Early May Bank Holiday",
         )
 
     def get_spring_bank_holiday(self, year):
@@ -47,17 +44,13 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         elif year == 2002:
             spring_bank_holiday = date(2002, 6, 4)
         else:
-            spring_bank_holiday = UnitedKingdom \
-                .get_last_weekday_in_month(year, 5, MON)
-        return (
-            spring_bank_holiday,
-            "Spring Bank Holiday"
-        )
+            spring_bank_holiday = UnitedKingdom.get_last_weekday_in_month(year, 5, MON)
+        return (spring_bank_holiday, "Spring Bank Holiday")
 
     def get_late_summer_bank_holiday(self, year):
         return (
             UnitedKingdom.get_last_weekday_in_month(year, 8, MON),
-            "Late Summer Bank Holiday"
+            "Late Summer Bank Holiday",
         )
 
     def non_computable_holiday(self, year):
@@ -78,26 +71,31 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         return days
 
 
-@iso_register('GB-NIR')
+@iso_register("GB-NIR")
 class UnitedKingdomNorthernIreland(UnitedKingdom):
-    'Northern Ireland'
+    "Northern Ireland"
 
     def get_variable_days(self, year):
-        days = super(UnitedKingdomNorthernIreland, self) \
-            .get_variable_days(year)
+        days = super(UnitedKingdomNorthernIreland, self).get_variable_days(year)
         # St Patrick's day
         st_patrick = date(year, 3, 17)
         days.append((st_patrick, "Saint Patrick's Day"))
         if st_patrick.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(st_patrick),
-                "Saint Patrick substitute"))
+            days.append(
+                (
+                    self.find_following_working_day(st_patrick),
+                    "Saint Patrick substitute",
+                )
+            )
 
         # Battle of boyne
         battle_of_boyne = date(year, 7, 12)
         days.append((battle_of_boyne, "Battle of the Boyne"))
         if battle_of_boyne.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(battle_of_boyne),
-                "Battle of the Boyne substitute"))
+            days.append(
+                (
+                    self.find_following_working_day(battle_of_boyne),
+                    "Battle of the Boyne substitute",
+                )
+            )
         return days

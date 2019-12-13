@@ -2,9 +2,9 @@ from ..core import SUN, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('LT')
+@iso_register("LT")
 class Lithuania(WesternCalendar, ChristianMixin):
-    'Lithuania'
+    "Lithuania"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 16, "Restoration of the State Day"),
@@ -24,16 +24,10 @@ class Lithuania(WesternCalendar, ChristianMixin):
     boxing_day_label = "Second day of Christmas"
 
     def get_mothers_day(self, year):
-        return (
-            Lithuania.get_nth_weekday_in_month(year, 5, SUN, 1),
-            "Mother's day"
-        )
+        return (Lithuania.get_nth_weekday_in_month(year, 5, SUN, 1), "Mother's day")
 
     def get_fathers_day(self, year):
-        return (
-            Lithuania.get_nth_weekday_in_month(year, 6, SUN, 1),
-            "Father's day"
-        )
+        return (Lithuania.get_nth_weekday_in_month(year, 6, SUN, 1), "Father's day")
 
     def get_variable_days(self, year):
         days = super(Lithuania, self).get_variable_days(year)

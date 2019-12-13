@@ -2,7 +2,7 @@ from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('KR')
+@iso_register("KR")
 class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
     "South Korea"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -22,11 +22,13 @@ class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
 
     def get_variable_days(self, year):
         days = super(SouthKorea, self).get_variable_days(year)
-        days.extend([
-            (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
-            # Midautumn Festival (3 days)
-            (ChineseNewYearCalendar.lunar(year, 8, 14), "Midautumn Festival"),
-            (ChineseNewYearCalendar.lunar(year, 8, 15), "Midautumn Festival"),
-            (ChineseNewYearCalendar.lunar(year, 8, 16), "Midautumn Festival"),
-        ])
+        days.extend(
+            [
+                (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
+                # Midautumn Festival (3 days)
+                (ChineseNewYearCalendar.lunar(year, 8, 14), "Midautumn Festival"),
+                (ChineseNewYearCalendar.lunar(year, 8, 15), "Midautumn Festival"),
+                (ChineseNewYearCalendar.lunar(year, 8, 16), "Midautumn Festival"),
+            ]
+        )
         return days

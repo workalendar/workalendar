@@ -4,7 +4,7 @@ from ..core import ChineseNewYearCalendar, IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('MY')
+@iso_register("MY")
 class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
     "Malaysia"
     include_nuzul_al_quran = True
@@ -65,20 +65,18 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         days = super(Malaysia, self).get_variable_days(year)
 
         # Vesak Day
-        days.append(
-            (ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"),
-        )
+        days.append((ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"))
 
         # Add in Deepavali and Thaipusam (hardcoded dates, so no need to shift)
         msia_deepavali = self.MSIA_DEEPAVALI.get(year)
         if not msia_deepavali:
-            mdmsg = f'Missing date for Malaysia Deepavali for year: {year}'
+            mdmsg = f"Missing date for Malaysia Deepavali for year: {year}"
             raise KeyError(mdmsg)
-        days.append((msia_deepavali, 'Deepavali'))
+        days.append((msia_deepavali, "Deepavali"))
 
         msia_thaipusam = self.MSIA_THAIPUSAM.get(year)
         if not msia_thaipusam:
-            mtmsg = f'Missing date for Malaysia Thaipusam for year: {year}'
+            mtmsg = f"Missing date for Malaysia Thaipusam for year: {year}"
             raise KeyError(mtmsg)
-        days.append((msia_thaipusam, 'Thaipusam'))
+        days.append((msia_thaipusam, "Thaipusam"))
         return days

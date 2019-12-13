@@ -2,14 +2,15 @@ from ..registry_tools import iso_register
 from .core import MON, UnitedStates
 
 
-@iso_register('US-AL')
+@iso_register("US-AL")
 class Alabama(UnitedStates):
     "Alabama"
     include_confederation_day = True
     martin_luther_king_label = "Robert E. Lee/Martin Luther King Birthday"
     presidents_day_label = "George Washington/Thomas Jefferson Birthday"
-    columbus_day_label = ("Columbus Day / Fraternal Day /"
-                          " American Indian Heritage Day")
+    columbus_day_label = (
+        "Columbus Day / Fraternal Day /" " American Indian Heritage Day"
+    )
     include_jefferson_davis_birthday = True
 
 
@@ -30,10 +31,7 @@ class AlabamaPerryCounty(Alabama):
         """
         Obama Day happens on the 2nd MON of November.
         """
-        return (
-            self.get_nth_weekday_in_month(year, 11, MON, 2),
-            "Obama Day"
-        )
+        return (self.get_nth_weekday_in_month(year, 11, MON, 2), "Obama Day")
 
     def get_variable_days(self, year):
         days = super(AlabamaPerryCounty, self).get_variable_days(year)

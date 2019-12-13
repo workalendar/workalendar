@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('BG')
+@iso_register("BG")
 class Bulgaria(WesternCalendar, ChristianMixin):
-    'Bulgaria'
+    "Bulgaria"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Liberation Day"),  # Ден на Освобождението на Б
@@ -15,7 +15,6 @@ class Bulgaria(WesternCalendar, ChristianMixin):
         (9, 22, "Independence Day"),  # Ден на независимостта на Б
         # wikipedia says Non-attendance day for schools, otherwise a working da
         # (11, 1, "National Awakening Day"),  # Ден на народните будители
-
     )
 
     include_easter_sunday = True

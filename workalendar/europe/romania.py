@@ -4,9 +4,9 @@ from ..core import OrthodoxMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('RO')
+@iso_register("RO")
 class Romania(OrthodoxMixin, WesternCalendar):
-    'Romania'
+    "Romania"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Years"),
@@ -21,12 +21,12 @@ class Romania(OrthodoxMixin, WesternCalendar):
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True
-    whit_sunday_label = 'Pentecost'
+    whit_sunday_label = "Pentecost"
     include_whit_monday = True
 
     include_christmas = True
     include_boxing_day = True
-    boxing_day_label = 'Christmas Day'
+    boxing_day_label = "Christmas Day"
 
     def get_childrens_day(self, year):
         """returns a possibly empty list of (date, holiday_name) tuples"""

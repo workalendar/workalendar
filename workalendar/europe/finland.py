@@ -4,9 +4,9 @@ from ..core import FRI, SAT, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('FI')
+@iso_register("FI")
 class Finland(WesternCalendar, ChristianMixin):
-    'Finland'
+    "Finland"
 
     include_epiphany = True
     include_good_friday = True
@@ -14,7 +14,7 @@ class Finland(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_ascension = True
     include_whit_sunday = True
-    whit_sunday_label = 'Pentecost'
+    whit_sunday_label = "Pentecost"
     include_christmas_eve = True
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day"
@@ -26,19 +26,20 @@ class Finland(WesternCalendar, ChristianMixin):
 
     def get_midsummer_eve(self, year):
         date_eve = Finland.get_nth_weekday_in_month(
-            year, 6, FRI, start=date(year, 6, 19))
+            year, 6, FRI, start=date(year, 6, 19)
+        )
         return date_eve
 
     def get_midsummer_day(self, year):
         date_eve = Finland.get_nth_weekday_in_month(
-            year, 6, SAT, start=date(year, 6, 20))
+            year, 6, SAT, start=date(year, 6, 20)
+        )
         return date_eve
 
     def get_variable_all_saints(self, year):
         all_saints = date(year, 10, 31)
         if all_saints.weekday() != SAT:
-            all_saints = Finland.get_nth_weekday_in_month(
-                year, 11, SAT)
+            all_saints = Finland.get_nth_weekday_in_month(year, 11, SAT)
         return all_saints
 
     def get_variable_days(self, year):

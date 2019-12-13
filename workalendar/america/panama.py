@@ -4,7 +4,7 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('PA')
+@iso_register("PA")
 class Panama(WesternCalendar, ChristianMixin):
     "Panama"
     include_good_friday = True
@@ -23,7 +23,5 @@ class Panama(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Panama, self).get_variable_days(year)
-        days.append(
-            (self.get_ash_wednesday(year) - timedelta(days=1), "Carnival")
-        )
+        days.append((self.get_ash_wednesday(year) - timedelta(days=1), "Carnival"))
         return days

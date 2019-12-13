@@ -52,7 +52,6 @@ from workalendar.registry import registry
 
 
 class RegistryAmerica(TestCase):
-
     def _check_brazil_states(self, classes):
         self.assertIn(BrazilAcre, classes)
         self.assertIn(BrazilAlagoas, classes)
@@ -112,11 +111,11 @@ class RegistryAmerica(TestCase):
         self.assertIn(Paraguay, classes)
 
     def test_brazil_subregion(self):
-        classes = (v for k, v in registry.get_subregions('BR').items())
+        classes = (v for k, v in registry.get_subregions("BR").items())
         classes = list(classes)
         self._check_brazil_states(classes)
 
     def test_canada_subregion(self):
-        classes = (v for k, v in registry.get_subregions('CA').items())
+        classes = (v for k, v in registry.get_subregions("CA").items())
         classes = list(classes)
         self._check_canada_provinces(classes)

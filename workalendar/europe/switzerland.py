@@ -4,9 +4,9 @@ from ..core import SUN, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('CH')
+@iso_register("CH")
 class Switzerland(WesternCalendar, ChristianMixin):
-    'Switzerland'
+    "Switzerland"
 
     include_good_friday = True
     include_easter_sunday = True
@@ -24,9 +24,9 @@ class Switzerland(WesternCalendar, ChristianMixin):
     )
 
 
-@iso_register('CH-VD')
+@iso_register("CH-VD")
 class Vaud(Switzerland):
-    'Vaud'
+    "Vaud"
 
     include_boxing_day = False
     include_federal_thanksgiving_monday = True
@@ -40,22 +40,26 @@ class Vaud(Switzerland):
         "Monday following the 3rd sunday of September"
         september_1st = date(year, 9, 1)
         return (
-            september_1st +
-            (6 - september_1st.weekday()) * timedelta(days=1) +  # 1st sunday
-            timedelta(days=15)  # Monday following 3rd sunday
+            september_1st
+            + (6 - september_1st.weekday()) * timedelta(days=1)
+            + timedelta(days=15)  # 1st sunday  # Monday following 3rd sunday
         )
 
     def get_variable_days(self, year):
         days = super(Vaud, self).get_variable_days(year)
         if self.include_federal_thanksgiving_monday:
-            days.append((self.get_federal_thanksgiving_monday(year),
-                         "Federal Thanksgiving Monday"))
+            days.append(
+                (
+                    self.get_federal_thanksgiving_monday(year),
+                    "Federal Thanksgiving Monday",
+                )
+            )
         return days
 
 
-@iso_register('CH-GE')
+@iso_register("CH-GE")
 class Geneva(Switzerland):
-    'Geneva'
+    "Geneva"
 
     include_boxing_day = False
 
@@ -68,10 +72,7 @@ class Geneva(Switzerland):
         "Thursday following the first Sunday of September"
         first_sunday = self.get_nth_weekday_in_month(year, 9, SUN)
         # The following thursday is 4 days after
-        return (
-            first_sunday + timedelta(days=4),
-            "Genevan Fast"
-        )
+        return (first_sunday + timedelta(days=4), "Genevan Fast")
 
     def get_variable_days(self, year):
         days = super(Geneva, self).get_variable_days(year)

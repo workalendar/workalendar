@@ -4,7 +4,7 @@ from ..core import MON, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('CO')
+@iso_register("CO")
 class Colombia(WesternCalendar, ChristianMixin):
     "Colombia"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -58,18 +58,21 @@ class Colombia(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Colombia, self).get_variable_days(year)
-        days.extend([
-            (self.get_epiphany(year), "Epiphany"),
-            (self.get_saint_joseph(year), "Saint Joseph"),
-            (self.get_ascension(year), "Ascension"),
-            (self.get_sacred_heart(year), "Sacred Heart"),
-            (self.get_saint_peter_and_saint_paul(year),
-                "Saint Peter and Saint Paul"),
-            (self.get_assumption(year), "Assumption of Mary to Heaven"),
-            (self.get_race_day(year), "Race Day"),
-            (self.get_all_saints(year), "All Saints"),
-            (self.get_cartagena_independence(year),
-                "Cartagena's Independence"),
-        ])
+        days.extend(
+            [
+                (self.get_epiphany(year), "Epiphany"),
+                (self.get_saint_joseph(year), "Saint Joseph"),
+                (self.get_ascension(year), "Ascension"),
+                (self.get_sacred_heart(year), "Sacred Heart"),
+                (
+                    self.get_saint_peter_and_saint_paul(year),
+                    "Saint Peter and Saint Paul",
+                ),
+                (self.get_assumption(year), "Assumption of Mary to Heaven"),
+                (self.get_race_day(year), "Race Day"),
+                (self.get_all_saints(year), "All Saints"),
+                (self.get_cartagena_independence(year), "Cartagena's Independence"),
+            ]
+        )
 
         return days

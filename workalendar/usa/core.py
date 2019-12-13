@@ -4,19 +4,17 @@ from ..core import FRI, MON, SAT, SUN, THU, TUE, WED, ChristianMixin, WesternCal
 from ..registry_tools import iso_register
 
 
-@iso_register('US')
+@iso_register("US")
 class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 4, 'Independence Day'),
-    )
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + ((7, 4, "Independence Day"),)
     # Veterans day label
     include_veterans_day = True
-    veterans_day_label = 'Veterans Day'
+    veterans_day_label = "Veterans Day"
 
     # MLK
-    martin_luther_king_label = 'Birthday of Martin Luther King, Jr.'
+    martin_luther_king_label = "Birthday of Martin Luther King, Jr."
 
     include_thanksgiving_friday = False
     thanksgiving_friday_label = "Thanksgiving Friday"
@@ -70,9 +68,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     def shift(self, holidays, year):
         new_holidays = []
         holiday_lookup = [x[0] for x in holidays]
-        exceptions = [
-            date(year, month, day) for month, day in self.shift_exceptions
-        ]
+        exceptions = [date(year, month, day) for month, day in self.shift_exceptions]
 
         # For each holiday available:
         # * if it falls on SUN, add the observed on MON
@@ -82,16 +78,13 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             if day in exceptions:
                 continue
             if day.weekday() == SAT:
-                new_holidays.append((day - timedelta(days=1),
-                                     label + " (Observed)"))
+                new_holidays.append((day - timedelta(days=1), label + " (Observed)"))
             elif day.weekday() == SUN:
-                new_holidays.append((day + timedelta(days=1),
-                                     label + " (Observed)"))
+                new_holidays.append((day + timedelta(days=1), label + " (Observed)"))
 
         # If year+1 January the 1st is on SAT, add the FRI before to observed
         if date(year + 1, 1, 1).weekday() == SAT:
-            new_holidays.append((date(year, 12, 31,),
-                                 "New Years Day (Observed)"))
+            new_holidays.append((date(year, 12, 31), "New Years Day (Observed)"))
 
         # Special rules for XMas and XMas Eve
         christmas = date(year, 12, 25)
@@ -101,19 +94,13 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             # You are observing the THU before, as an extra XMas Eve
             if christmas.weekday() == SAT:
                 # Remove the "fake" XMAS Day shift, the one done before.
-                new_holidays.remove(
-                    (christmas_eve, "Christmas Day (Observed)")
-                )
-                new_holidays.append((date(year, 12, 23),
-                                     "Christmas Eve (Observed)"))
+                new_holidays.remove((christmas_eve, "Christmas Day (Observed)"))
+                new_holidays.append((date(year, 12, 23), "Christmas Eve (Observed)"))
             # You are observing the 26th (TUE)
             elif christmas.weekday() == MON:
                 # Remove the "fake" XMAS Eve shift, done before
-                new_holidays.remove(
-                    (christmas, "Christmas Eve (Observed)")
-                )
-                new_holidays.append((date(year, 12, 26),
-                                     "Christmas Day (Observed)"))
+                new_holidays.remove((christmas, "Christmas Eve (Observed)"))
+                new_holidays.append((date(year, 12, 26), "Christmas Day (Observed)"))
         return holidays + new_holidays
 
     @staticmethod
@@ -128,9 +115,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         Monday in the month of November".
         """
         first_monday_november = self.get_nth_weekday_in_month(year, 11, MON)
-        return self.get_nth_weekday_in_month(
-            year, 11, TUE, start=first_monday_november
-        )
+        return self.get_nth_weekday_in_month(year, 11, TUE, start=first_monday_november)
 
     def get_election_day(self, year):
         """
@@ -159,7 +144,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         return (
             self.get_nth_weekday_in_month(year, 6, MON, 1),
-            "Jefferson Davis Birthday"
+            "Jefferson Davis Birthday",
         )
 
     def get_martin_luther_king_date(self, year):
@@ -168,9 +153,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         """
         if year < 1985:
-            raise ValueError(
-                "Martin Luther King Day became a holiday in 1985"
-            )
+            raise ValueError("Martin Luther King Day became a holiday in 1985")
         return UnitedStates.get_nth_weekday_in_month(year, 1, MON, 3)
 
     def get_martin_luther_king_day(self, year):
@@ -267,7 +250,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         return (
             UnitedStates.get_last_weekday_in_month(year, 5, MON),
-            self.national_memorial_day_label
+            self.national_memorial_day_label,
         )
 
     def get_mardi_gras(self, year):
@@ -285,13 +268,16 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if year >= 1985:
             days.append(self.get_martin_luther_king_day(year))
 
-        days.extend([
-            self.get_national_memorial_day(year),
-            (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
-                "Labor Day"),
-            (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
-                "Thanksgiving Day"),
-        ])
+        days.extend(
+            [
+                self.get_national_memorial_day(year),
+                (UnitedStates.get_nth_weekday_in_month(year, 9, MON), "Labor Day"),
+                (
+                    UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
+                    "Thanksgiving Day",
+                ),
+            ]
+        )
 
         if self.include_mardi_gras:
             days.append(self.get_mardi_gras(year))
@@ -320,9 +306,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         if self.include_inauguration_day:
             # Is it a "Inauguration year"?
             if UnitedStates.is_presidential_year(year - 1):
-                days.append(
-                    (self.get_inauguration_date(year), "Inauguration Day")
-                )
+                days.append((self.get_inauguration_date(year), "Inauguration Day"))
 
         if self.include_election_day_every_year:
             days.append(self.get_election_day(year))
@@ -331,9 +315,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
                 days.append(self.get_election_day(year))
 
         if self.include_thanksgiving_friday:
-            days.append(
-                self.get_thanksgiving_friday(year)
-            )
+            days.append(self.get_thanksgiving_friday(year))
 
         return days
 

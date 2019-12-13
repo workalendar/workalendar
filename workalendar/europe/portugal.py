@@ -4,9 +4,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('PT')
+@iso_register("PT")
 class Portugal(WesternCalendar, ChristianMixin):
-    'Portugal'
+    "Portugal"
 
     include_good_friday = True
     include_easter_sunday = True

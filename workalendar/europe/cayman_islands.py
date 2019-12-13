@@ -3,13 +3,10 @@ from datetime import date, timedelta
 from ..core import MON, SAT, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
-QUEENS_BIRTHDAY_EXCEPTIONS = {
-    2013: date(2013, 6, 17),
-    2017: date(2017, 6, 19),
-}
+QUEENS_BIRTHDAY_EXCEPTIONS = {2013: date(2013, 6, 17), 2017: date(2017, 6, 19)}
 
 
-@iso_register('KY')
+@iso_register("KY")
 class CaymanIslands(WesternCalendar, ChristianMixin):
     "Cayman Islands"
     include_ash_wednesday = True

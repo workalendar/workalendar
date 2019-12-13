@@ -2,9 +2,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-SC')
+@iso_register("US-SC")
 class SouthCarolina(UnitedStates):
     """South Carolina"""
+
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
         (5, 10, "Confederate Memorial Day"),
     )

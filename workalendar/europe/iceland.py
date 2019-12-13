@@ -4,9 +4,9 @@ from ..core import MON, THU, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('IS')
+@iso_register("IS")
 class Iceland(WesternCalendar, ChristianMixin):
-    'Iceland'
+    "Iceland"
 
     include_holy_thursday = True
     include_good_friday = True
@@ -27,17 +27,17 @@ class Iceland(WesternCalendar, ChristianMixin):
         """It's the first thursday *after* April, 18th.
         If April the 18th is a thursday, then it jumps to the 24th.
         """
-        return Iceland.get_nth_weekday_in_month(
-            year, 4, THU,
-            start=date(year, 4, 19))
+        return Iceland.get_nth_weekday_in_month(year, 4, THU, start=date(year, 4, 19))
 
     def get_commerce_day(self, year):
         return Iceland.get_nth_weekday_in_month(year, 8, MON)
 
     def get_variable_days(self, year):
         days = super(Iceland, self).get_variable_days(year)
-        days.extend([
-            (self.get_first_day_of_summer(year), "First day of summer"),
-            (self.get_commerce_day(year), "Commerce Day"),
-        ])
+        days.extend(
+            [
+                (self.get_first_day_of_summer(year), "First day of summer"),
+                (self.get_commerce_day(year), "Commerce Day"),
+            ]
+        )
         return days

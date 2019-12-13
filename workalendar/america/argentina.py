@@ -4,9 +4,9 @@ from ..core import FRI, MON, SAT, THU, TUE, WED, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('AR')
+@iso_register("AR")
 class Argentina(WesternCalendar, ChristianMixin):
-    'Argentina'
+    "Argentina"
 
     include_good_friday = True
     include_easter_saturday = True
@@ -27,24 +27,18 @@ class Argentina(WesternCalendar, ChristianMixin):
 
         days = super(Argentina, self).get_variable_days(year)
         days.append(
-            (self.get_easter_sunday(year) - timedelta(days=48),
-                "Carnival Lunes"))
+            (self.get_easter_sunday(year) - timedelta(days=48), "Carnival Lunes")
+        )
 
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
+        days.append((self.get_easter_sunday(year) - timedelta(days=47), "Carnival"))
 
-        days.append(
-            (self.get_general_guemes_day(year)))
+        days.append((self.get_general_guemes_day(year)))
 
-        days.append(
-            (self.get_general_martin_day(year)))
+        days.append((self.get_general_martin_day(year)))
 
-        days.append(
-            (self.get_soberania_day(year)))
+        days.append((self.get_soberania_day(year)))
 
-        days.append(
-            (self.get_diversidad_day(year)))
+        days.append((self.get_diversidad_day(year)))
 
         return days
 
@@ -61,16 +55,18 @@ class Argentina(WesternCalendar, ChristianMixin):
 
         if general_guemes_day.weekday() == THU:
             general_guemes_day = Argentina.get_first_weekday_after(
-                date(year, 6, 17), MON)
+                date(year, 6, 17), MON
+            )
         elif general_guemes_day.weekday() == WED:
             # Monday of the same week
             general_guemes_day = general_guemes_day - timedelta(days=2)
         else:
             general_guemes_day
 
-        return (general_guemes_day,
-                "Día Paso a la Inmortalidad del " +
-                "General Martín Miguel de Güemes")
+        return (
+            general_guemes_day,
+            "Día Paso a la Inmortalidad del " + "General Martín Miguel de Güemes",
+        )
 
     def get_general_martin_day(self, year):
         """
@@ -78,13 +74,12 @@ class Argentina(WesternCalendar, ChristianMixin):
 
         Third MON of August.
         """
-        general_martin_day = Argentina.get_nth_weekday_in_month(
-            year, 8, MON, 3
-        )
+        general_martin_day = Argentina.get_nth_weekday_in_month(year, 8, MON, 3)
 
-        return (general_martin_day,
-                "Día Paso a la Inmortalidad del " +
-                "Gral. José de San Martín")
+        return (
+            general_martin_day,
+            "Día Paso a la Inmortalidad del " + "Gral. José de San Martín",
+        )
 
     def get_soberania_day(self, year):
         """
@@ -92,9 +87,7 @@ class Argentina(WesternCalendar, ChristianMixin):
 
         Happens on the 3rd MON of November after the first Friday.
         """
-        first_friday_november = Argentina.get_nth_weekday_in_month(
-            year, 11, FRI, 1
-        )
+        first_friday_november = Argentina.get_nth_weekday_in_month(year, 11, FRI, 1)
 
         soberania_day = Argentina.get_nth_weekday_in_month(
             year, 11, MON, n=3, start=first_friday_november
@@ -115,17 +108,16 @@ class Argentina(WesternCalendar, ChristianMixin):
         """
         diversidad_day = date(year, 10, 12)
 
-        if (diversidad_day.weekday() == WED or
-                diversidad_day.weekday() == THU or
-                diversidad_day.weekday() == FRI or
-                diversidad_day.weekday() == SAT):
-            diversidad_day = Argentina.get_first_weekday_after(
-                date(year, 10, 12), MON
-            )
+        if (
+            diversidad_day.weekday() == WED
+            or diversidad_day.weekday() == THU
+            or diversidad_day.weekday() == FRI
+            or diversidad_day.weekday() == SAT
+        ):
+            diversidad_day = Argentina.get_first_weekday_after(date(year, 10, 12), MON)
         elif diversidad_day.weekday() == TUE:
             diversidad_day = diversidad_day - timedelta(days=1)
         else:
             diversidad_day
 
-        return (diversidad_day,
-                "Día del Respeto a la Diversidad Cultural")
+        return (diversidad_day, "Día del Respeto a la Diversidad Cultural")

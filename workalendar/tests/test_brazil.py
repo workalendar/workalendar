@@ -117,8 +117,7 @@ class BrazilAmapaTest(BrazilTest):
         sao_jose = date(2017, 3, 19)
         self.assertIn(sao_jose, holidays)
         # Check its label
-        self.assertEqual(
-            self.cal.get_holiday_label(sao_jose), "Dia de São José")
+        self.assertEqual(self.cal.get_holiday_label(sao_jose), "Dia de São José")
 
         self.assertIn(date(2017, 7, 25), holidays)  # São Tiago
         self.assertIn(date(2017, 10, 5), holidays)  # Criação do estado
@@ -278,8 +277,7 @@ class BrazilRioDeJaneiroTest(BrazilTest):
         self.assertIn(consciencia_negra, holidays)
         # check its label
         self.assertEqual(
-            self.cal.get_holiday_label(consciencia_negra),
-            "Dia da Consciência Negra",
+            self.cal.get_holiday_label(consciencia_negra), "Dia da Consciência Negra"
         )
 
         # Dia de Nossa Senhora da Conceição
@@ -295,9 +293,7 @@ class BrazilRioGrandeDoNorteTest(BrazilTest):
         sao_pedro = date(2017, 6, 29)
         self.assertIn(sao_pedro, holidays)
         # Check the label
-        self.assertEqual(
-            self.cal.get_holiday_label(sao_pedro), "Dua de São Pedro"
-        )
+        self.assertEqual(self.cal.get_holiday_label(sao_pedro), "Dua de São Pedro")
         # Mártires de Cunhaú e Uruaçuu
         self.assertIn(date(2017, 10, 3), holidays)
 
@@ -362,8 +358,7 @@ class SaoPauloCityTest(SaoPauloStateTest):
         self.assertIn(consciencia_negra, holidays)
         # check its label
         self.assertEqual(
-            self.cal.get_holiday_label(consciencia_negra),
-            "Dia da Consciência Negra",
+            self.cal.get_holiday_label(consciencia_negra), "Dia da Consciência Negra"
         )
         self.assertIn(date(2013, 3, 31), holidays)  # Páscoa
         self.assertIn(date(2013, 5, 30), holidays)  # Corpus Christi
@@ -373,8 +368,7 @@ class SaoPauloCityTest(SaoPauloStateTest):
         self.assertIn(good_friday, holidays)  # Sexta-feira da Paixão
         # Label test
         self.assertEqual(
-            self.cal.get_holiday_label(good_friday),
-            "Sexta-feira da Paixão",
+            self.cal.get_holiday_label(good_friday), "Sexta-feira da Paixão"
         )
 
 
@@ -404,6 +398,7 @@ class BrazilVitoriaCityTest(BrazilEspiritoSantoTest):
     """
     Vitória city is in the Espírito Santo state
     """
+
     cal_class = BrazilVitoriaCity
 
     def test_year_2017_city(self):
@@ -420,16 +415,14 @@ class BrazilVitoriaCityTest(BrazilEspiritoSantoTest):
         good_friday = date(2017, 4, 14)
         self.assertIn(good_friday, holidays)
         # Test label
-        self.assertEqual(
-            self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
-        )
+        self.assertEqual(self.cal.get_holiday_label(good_friday), "Paixão do Cristo")
 
 
 class BrazilVilaVelhaCityTest(BrazilEspiritoSantoTest):
     """
     Vila Velha city is in the Espírito Santo state
     """
+
     cal_class = BrazilVilaVelhaCity
 
     def test_year_2017_city(self):
@@ -442,6 +435,7 @@ class BrazilCariacicaCityTest(BrazilEspiritoSantoTest):
     """
     Cariacica city is in the Espírito Santo state
     """
+
     cal_class = BrazilCariacicaCity
 
     def test_year_2017_city(self):
@@ -454,7 +448,7 @@ class BrazilCariacicaCityTest(BrazilEspiritoSantoTest):
         # Check São João label
         self.assertEqual(
             self.cal.get_holiday_label(sao_joao),
-            "São João Batista / Aniversãrio de Cariacica"
+            "São João Batista / Aniversãrio de Cariacica",
         )
 
         # Variable days: Corpus Christie
@@ -465,16 +459,14 @@ class BrazilCariacicaCityTest(BrazilEspiritoSantoTest):
         good_friday = date(2017, 4, 14)
         self.assertIn(good_friday, holidays)
         # Test label
-        self.assertEqual(
-            self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
-        )
+        self.assertEqual(self.cal.get_holiday_label(good_friday), "Paixão do Cristo")
 
 
 class BrazilGuarapariCityTest(BrazilEspiritoSantoTest):
     """
     Guarapari city is in the Espírito Santo state
     """
+
     cal_class = BrazilGuarapariCity
 
     def test_year_2017_city(self):
@@ -489,6 +481,7 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
     """
     Serra city is in the Espírito Santo state
     """
+
     cal_class = BrazilSerraCity
 
     def test_year_2017_city(self):
@@ -507,24 +500,21 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
         self.assertIn(ash_wednesday, holidays)
         # Test label
         self.assertEqual(
-            self.cal.get_holiday_label(ash_wednesday),
-            "Quarta-feira de cinzas",
+            self.cal.get_holiday_label(ash_wednesday), "Quarta-feira de cinzas"
         )
 
         # Variable days: Good Friday (Paixão de Cristo)
         good_friday = date(2017, 4, 14)
         self.assertIn(good_friday, holidays)
         # Test label
-        self.assertEqual(
-            self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
-        )
+        self.assertEqual(self.cal.get_holiday_label(good_friday), "Paixão do Cristo")
 
 
 class BrazilRioBrancoCityTest(BrazilAcreTest):
     """
     Rio Branco is in the Acre state
     """
+
     cal_class = BrazilRioBrancoCity
 
     def test_year_2017_city(self):
@@ -538,6 +528,7 @@ class BrazilMaceioCityTest(BrazilAlagoasTest):
     """
     Maceió is in the Alagoas state
     """
+
     cal_class = BrazilMaceioCity
 
     def test_year_2017_city(self):
@@ -551,6 +542,7 @@ class BrazilManausCityTest(BrazilAmazonasTest):
     """
     Manaus is in the Amazonas state
     """
+
     cal_class = BrazilManausCity
 
     def test_year_2017_city(self):
@@ -564,6 +556,7 @@ class BrazilMacapaCityTest(BrazilAmapaTest):
     """
     Macapá is in the Amapá state
     """
+
     cal_class = BrazilMacapaCity
 
     def test_year_2017_city(self):
@@ -577,6 +570,7 @@ class BrazilSalvadorCityTest(BrazilBahiaTest):
     """
     Salvador is in the Bahia state
     """
+
     cal_class = BrazilSalvadorCity
 
     def test_year_2017_city(self):
@@ -590,6 +584,7 @@ class BrazilFortalezaCityTest(BrazilCearaTest):
     """
     Fortaleza is in the Ceará state
     """
+
     cal_class = BrazilFortalezaCity
 
     def test_year_2017_city(self):
@@ -603,6 +598,7 @@ class BrazilGoianiaCityTest(BrazilGoiasTest):
     """
     Goiânia is in the Goiás state
     """
+
     cal_class = BrazilGoianiaCity
 
     def test_year_2017_city(self):
@@ -616,6 +612,7 @@ class BrazilBeloHorizonteCityTest(BrazilMinasGeraisTest):
     """
     Belo Horizonte is in the Minas Gerais state
     """
+
     cal_class = BrazilBeloHorizonteCity
 
     def test_year_2017_city(self):
@@ -629,6 +626,7 @@ class BrazilCampoGrandeCityTest(BrazilMatoGrossoDoSulTest):
     """
     Campo Grande is in the Mato Grosso do Sul state
     """
+
     cal_class = BrazilCampoGrandeCity
 
     def test_year_2017_city(self):
@@ -642,6 +640,7 @@ class BrazilCuiabaCityTest(BrazilMatoGrossoTest):
     """
     Cuiabá is in the Mato Grosso state
     """
+
     cal_class = BrazilCuiabaCity
 
     def test_year_2017_city(self):
@@ -655,6 +654,7 @@ class BrazilBelemCityTest(BrazilParaTest):
     """
     Belém is in the Pará state
     """
+
     cal_class = BrazilBelemCity
 
     def test_year_2017_city(self):
@@ -668,6 +668,7 @@ class BrazilJoaoPessoaCityTest(BrazilParaibaTest):
     """
     João Pessoa is in the Paraíba state
     """
+
     cal_class = BrazilJoaoPessoaCity
 
     def test_year_2017_city(self):
@@ -681,6 +682,7 @@ class BrazilRecifeCityTest(BrazilPernambucoTest):
     """
     Recife is in the Pernambuco state
     """
+
     cal_class = BrazilRecifeCity
 
     def test_year_2017_city(self):
@@ -694,6 +696,7 @@ class BrazilTeresinaCityTest(BrazilPiauiTest):
     """
     Teresina is in the Piauí state
     """
+
     cal_class = BrazilTeresinaCity
 
     def test_year_2017_city(self):
@@ -707,6 +710,7 @@ class BrazilCuritibaCityTest(BrazilParanaTest):
     """
     Curitiba is in the Paraná state
     """
+
     cal_class = BrazilCuritibaCity
 
     def test_year_2017_city(self):
@@ -720,6 +724,7 @@ class BrazilNatalCityTest(BrazilRioGrandeDoNorteTest):
     """
     Natal is in the Rio Grande do Norte state
     """
+
     cal_class = BrazilNatalCity
 
     def test_year_2017_city(self):
@@ -733,6 +738,7 @@ class BrazilPortoVelhoCityTest(BrazilRondoniaTest):
     """
     Porto Velho is in the Rio Grande do Norte state
     """
+
     cal_class = BrazilPortoVelhoCity
 
     def test_year_2017_city(self):
@@ -746,6 +752,7 @@ class BrazilBoaVistaCityTest(BrazilRoraimaTest):
     """
     Boa Vista is in the Roraima state
     """
+
     cal_class = BrazilBoaVistaCity
 
     def test_year_2017_city(self):
@@ -759,6 +766,7 @@ class BrazilPortoAlegreCityTest(BrazilRioGrandeDoSulTest):
     """
     Porto Alegre is in the Rio Grande do Sul state
     """
+
     cal_class = BrazilPortoAlegreCity
 
     def test_year_2017_city(self):
@@ -772,6 +780,7 @@ class BrazilChapecoCityTest(BrazilSantaCatarinaTest):
     """
     Chapecó is in the Santa Catarina state
     """
+
     cal_class = BrazilChapecoCity
 
     def test_year_2017_city(self):
@@ -785,6 +794,7 @@ class BrazilFlorianopolisCityTest(BrazilSantaCatarinaTest):
     """
     Florianópolis is in the Santa Catarina state
     """
+
     cal_class = BrazilFlorianopolisCity
 
     def test_year_2017_city(self):
@@ -798,6 +808,7 @@ class BrazilJoinvilleCityTest(BrazilSantaCatarinaTest):
     """
     Joinville is in the Santa Catarina state
     """
+
     cal_class = BrazilJoinvilleCity
 
     def test_year_2017_city(self):
@@ -811,6 +822,7 @@ class BrazilAracajuCityTest(BrazilSergipeTest):
     """
     Aracajú is in the Sergipe state
     """
+
     cal_class = BrazilAracajuCity
 
     def test_year_2017_city(self):
@@ -824,6 +836,7 @@ class BrazilSorocabaCityTest(SaoPauloStateTest):
     """
     Sorocaba is in the São Paulo state
     """
+
     cal_class = BrazilSorocabaCity
 
     def test_year_2017_city(self):
@@ -837,6 +850,7 @@ class BrazilPalmasCityTest(BrazilTocantinsTest):
     """
     Palmas is in the Tocantins state
     """
+
     cal_class = BrazilPalmasCity
 
     def test_year_2017_city(self):
@@ -937,7 +951,6 @@ class BrazilBankCalendarTest(BrazilTest):
 
 
 class TestIBGERegister(TestCase):
-
     def test_register_length(self):
         # Each time another calendar will be added, this length should increase
         # This also fails when a key appears twice (typo mistake?)

@@ -20,9 +20,7 @@ class Israel(Calendar):
 
         while current_date.year == year:
             hebrew_date = GregorianDate(
-                year=current_date.year,
-                month=current_date.month,
-                day=current_date.day,
+                year=current_date.year, month=current_date.month, day=current_date.day
             ).to_heb()
 
             jewish_year = hebrew_date.year

@@ -3,9 +3,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-HI')
+@iso_register("US-HI")
 class Hawaii(UnitedStates):
     """Hawaii"""
+
     include_good_friday = True
     include_columbus_day = False
     include_election_day_even = True
@@ -19,10 +20,7 @@ class Hawaii(UnitedStates):
         """
         Statehood Day: 3rd Friday in August.
         """
-        return (
-            self.get_nth_weekday_in_month(year, 8, FRI, 3),
-            "Statehood Day"
-        )
+        return (self.get_nth_weekday_in_month(year, 8, FRI, 3), "Statehood Day")
 
     def get_variable_days(self, year):
         days = super(Hawaii, self).get_variable_days(year)

@@ -16,25 +16,25 @@ class IsoRegistry(object):
 
     STANDARD_MODULES = (
         # Europe Countries
-        'europe',
+        "europe",
         # United States of America
-        'usa',
+        "usa",
         # American continent outside of USA
-        'america',
+        "america",
         # African continent
-        'africa',
+        "africa",
         # Asia
-        'asia',
+        "asia",
         # Oceania
-        'oceania',
+        "oceania",
     )
 
     def __init__(self, load_standard_modules=True):
         self.region_registry = dict()
         if load_standard_modules:
             for module_name in self.STANDARD_MODULES:
-                module = f'workalendar.{module_name}'
-                all_classes = getattr(import_module(module), '__all__')
+                module = f"workalendar.{module_name}"
+                all_classes = getattr(import_module(module), "__all__")
                 self.load_module_from_items(module, all_classes)
 
     def register(self, iso_code, cls):
@@ -42,9 +42,7 @@ class IsoRegistry(object):
         Store the ``cls`` in the region_registry.
         """
         if not issubclass(cls, Calendar):
-            raise ISORegistryError(
-                f"Class `{cls}` is not a Calendar class"
-            )
+            raise ISORegistryError(f"Class `{cls}` is not a Calendar class")
         self.region_registry[iso_code] = cls
 
     def load_module_from_items(self, module_name, items):
@@ -53,7 +51,7 @@ class IsoRegistry(object):
         """
         for item in items:
             cls = getattr(import_module(module_name), item)
-            iso_stuff = getattr(cls, '__iso_code', None)
+            iso_stuff = getattr(cls, "__iso_code", None)
             if iso_stuff:
                 iso_code, class_name = iso_stuff
                 if iso_code and cls.__name__ == class_name:
@@ -104,9 +102,11 @@ class IsoRegistry(object):
         :return dict where keys are ISO codes strings
         and values are calendar classes
         """
-        warnings.warn("The ``items()`` method will soon be deprecated."
-                      " Please use ``get_calendars()`` instead.",
-                      DeprecationWarning)
+        warnings.warn(
+            "The ``items()`` method will soon be deprecated."
+            " Please use ``get_calendars()`` instead.",
+            DeprecationWarning,
+        )
         return self.get_calendars(region_codes, include_subregions)
 
     def get_calendars(self, region_codes=None, include_subregions=False):
@@ -126,8 +126,7 @@ class IsoRegistry(object):
             # Here it contains all subregions
             if include_subregions:
                 return self.region_registry.copy()
-            items = {k: v for k, v in self.region_registry.items()
-                     if '-' not in k}
+            items = {k: v for k, v in self.region_registry.items() if "-" not in k}
             return items
 
         items = dict()

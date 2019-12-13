@@ -3,9 +3,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-IL')
+@iso_register("US-IL")
 class Illinois(UnitedStates):
     """Illinois"""
+
     include_thanksgiving_friday = True
     include_lincoln_birthday = True
     include_election_day_even = True
@@ -23,10 +24,7 @@ class ChicagoIllinois(Illinois):
         ref: https://en.wikipedia.org/wiki/Casimir_Pulaski_Day
         """
         day = self.get_nth_weekday_in_month(year, 3, MON)
-        return (
-            day,
-            "Casimir Pulaski Day"
-        )
+        return (day, "Casimir Pulaski Day")
 
     def get_variable_days(self, year):
         days = super(ChicagoIllinois, self).get_variable_days(year)

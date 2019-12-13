@@ -1,6 +1,15 @@
 from unittest import TestCase
 
-from workalendar.asia import China, HongKong, Japan, Malaysia, Qatar, Singapore, SouthKorea, Taiwan
+from workalendar.asia import (
+    China,
+    HongKong,
+    Japan,
+    Malaysia,
+    Qatar,
+    Singapore,
+    SouthKorea,
+    Taiwan,
+)
 from workalendar.registry import registry
 
 

@@ -4,9 +4,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('CY')
+@iso_register("CY")
 class Cyprus(WesternCalendar, ChristianMixin):
-    'Cyprus'
+    "Cyprus"
 
     include_epiphany = True
     include_clean_monday = True
@@ -15,7 +15,7 @@ class Cyprus(WesternCalendar, ChristianMixin):
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_monday = True
-    whit_monday_label = 'Pentecost Monday'
+    whit_monday_label = "Pentecost Monday"
     include_christmas_eve = True
     include_christmas_day = True
     include_boxing_day = True
@@ -31,6 +31,7 @@ class Cyprus(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super(Cyprus, self).get_variable_days(year)
-        days.append((self.get_easter_monday(year) +
-                     timedelta(days=1), "Easter Tuesday"))
+        days.append(
+            (self.get_easter_monday(year) + timedelta(days=1), "Easter Tuesday")
+        )
         return days

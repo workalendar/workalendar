@@ -4,7 +4,7 @@ from ..core import FRI, MON, TUE, WED, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('CL')
+@iso_register("CL")
 class Chile(WesternCalendar, ChristianMixin):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

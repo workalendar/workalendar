@@ -27,9 +27,7 @@ class HebrewHolidays(object):
                     month=current_date.month,
                     day=current_date.day,
                 ).to_heb()
-                days.append(
-                    (hebrew_date, current_date)
-                )
+                days.append((hebrew_date, current_date))
                 current_date += timedelta(days=1)
             # Store it in the class property
             cls.hebrew_calendars[gregorian_year] = days
@@ -63,9 +61,10 @@ class HebrewHolidays(object):
         return cls.search_hebrew_calendar(year, 7, 10)
 
 
-@iso_register('US-FL')
+@iso_register("US-FL")
 class Florida(UnitedStates):
     """Florida"""
+
     include_thanksgiving_friday = True
     thanksgiving_friday_label = "Friday after Thanksgiving"
     include_columbus_day = False
@@ -74,10 +73,11 @@ class Florida(UnitedStates):
 
 class FloridaLegal(Florida):
     """Florida Legal Holidays"""
+
     FIXED_HOLIDAYS = Florida.FIXED_HOLIDAYS + (
-        (2, 15, 'Susan B. Anthony Day'),
-        (4, 2, 'Pascua Florida Day'),
-        (6, 14, 'Flag Day'),
+        (2, 15, "Susan B. Anthony Day"),
+        (4, 2, "Pascua Florida Day"),
+        (6, 14, "Flag Day"),
     )
     include_mardi_gras = True
     include_lincoln_birthday = True
@@ -112,26 +112,22 @@ class FloridaLegal(Florida):
 
 class FloridaCircuitCourts(HebrewHolidays, Florida):
     """Florida Circuits Courts"""
+
     include_federal_presidents_day = True
     include_good_friday = True
 
     def get_variable_days(self, year):
         days = super(FloridaCircuitCourts, self).get_variable_days(year)
 
-        days.append((
-            self.get_rosh_hashanah(year),
-            "Rosh Hashanah"
-        ))
+        days.append((self.get_rosh_hashanah(year), "Rosh Hashanah"))
 
-        days.append((
-            self.get_yom_kippur(year),
-            "Yom Kippur"
-        ))
+        days.append((self.get_yom_kippur(year), "Yom Kippur"))
 
         return days
 
 
 class FloridaMiamiDade(Florida):
     """Miami-Dade, Florida"""
+
     include_federal_presidents_day = True
     include_columbus_day = True

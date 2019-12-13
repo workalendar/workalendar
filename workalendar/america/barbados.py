@@ -28,8 +28,7 @@ class Barbados(WesternCalendar, ChristianMixin):
         """
         First Monday of August.
         """
-        return (Barbados.get_nth_weekday_in_month(year, 8, MON),
-                "Kadooment Day")
+        return (Barbados.get_nth_weekday_in_month(year, 8, MON), "Kadooment Day")
 
     def get_variable_days(self, year):
         """
@@ -49,7 +48,5 @@ class Barbados(WesternCalendar, ChristianMixin):
         days_to_shift = copy(days)
         for day, label in days_to_shift:
             if day.weekday() == SUN:
-                days.append(
-                    (day + timedelta(days=1), f"{label} (shifted)")
-                )
+                days.append((day + timedelta(days=1), f"{label} (shifted)"))
         return days

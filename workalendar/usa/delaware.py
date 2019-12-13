@@ -2,9 +2,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-DE')
+@iso_register("US-DE")
 class Delaware(UnitedStates):
     """Delaware"""
+
     include_good_friday = True
     include_thanksgiving_friday = True
     include_federal_presidents_day = False

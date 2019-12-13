@@ -14,20 +14,17 @@ class NewZealand(WesternCalendar, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day after New Year's Day"),
         (2, 6, "Waitangi Day"),
-        (4, 25, "ANZAC Day")
+        (4, 25, "ANZAC Day"),
     )
 
     def get_queens_birthday(self, year):
         return (
             NewZealand.get_nth_weekday_in_month(year, 6, MON, 1),
-            "Queen's Birthday"
+            "Queen's Birthday",
         )
 
     def get_labour_day(self, year):
-        return (
-            NewZealand.get_nth_weekday_in_month(year, 10, MON, 4),
-            "Labour Day"
-        )
+        return (NewZealand.get_nth_weekday_in_month(year, 10, MON, 4), "Labour Day")
 
     def get_variable_days(self, year):
         # usual variable days
@@ -37,17 +34,13 @@ class NewZealand(WesternCalendar, ChristianMixin):
 
         waitangi_day = date(year, 2, 6)
         if waitangi_day.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(waitangi_day),
-                "Waitangi Day Shift")
+            days.append(
+                (self.find_following_working_day(waitangi_day), "Waitangi Day Shift")
             )
 
         anzac_day = date(year, 4, 25)
         if anzac_day.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(anzac_day),
-                "ANZAC Day Shift")
-            )
+            days.append((self.find_following_working_day(anzac_day), "ANZAC Day Shift"))
 
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
@@ -79,7 +72,6 @@ class NewZealand(WesternCalendar, ChristianMixin):
             days.append((shift, "Day after New Year's Day Shift"))
         elif day_after_new_year.weekday() is SUN:
             shift = self.find_following_working_day(day_after_new_year)
-            days.append((shift + timedelta(days=1),
-                         "Day after New Year's Day Shift"))
+            days.append((shift + timedelta(days=1), "Day after New Year's Day Shift"))
 
         return days

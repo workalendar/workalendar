@@ -2,14 +2,14 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('EE')
+@iso_register("EE")
 class Estonia(WesternCalendar, ChristianMixin):
-    'Estonia'
+    "Estonia"
 
     include_good_friday = True
     include_easter_sunday = True
     include_whit_sunday = True
-    whit_sunday_label = 'Nelipühade 1. püha'
+    whit_sunday_label = "Nelipühade 1. püha"
     include_christmas_eve = True
     include_christmas = True
     include_boxing_day = True
@@ -20,5 +20,5 @@ class Estonia(WesternCalendar, ChristianMixin):
         (5, 1, "Kevadpüha"),
         (6, 23, "Võidupüha"),
         (6, 24, "Jaanipäev"),
-        (8, 20, "Taasiseseisvumispäev")
+        (8, 20, "Taasiseseisvumispäev"),
     )

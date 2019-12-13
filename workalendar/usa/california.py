@@ -3,9 +3,10 @@ from ..registry_tools import iso_register
 from .core import UnitedStates
 
 
-@iso_register('US-CA')
+@iso_register("US-CA")
 class California(UnitedStates):
     """California"""
+
     include_thanksgiving_friday = True
     include_cesar_chavez_day = True
     include_columbus_day = False
@@ -26,10 +27,9 @@ class CaliforniaEducation(California):
         if year != 2009:
             days.append(self.get_lincoln_birthday(year))
 
-        days.append((
-            self.get_nth_weekday_in_month(year, 9, MON, 4),
-            'Native American Day'
-        ))
+        days.append(
+            (self.get_nth_weekday_in_month(year, 9, MON, 4), "Native American Day")
+        )
 
         return days
 
@@ -38,9 +38,8 @@ class CaliforniaBerkeley(California):
     """
     Berkeley, California
     """
-    FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + (
-        (5, 19, 'Malcolm X Day'),
-    )
+
+    FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + ((5, 19, "Malcolm X Day"),)
     include_cesar_chavez_day = False
     include_lincoln_birthday = True
     include_columbus_day = True
@@ -51,6 +50,7 @@ class CaliforniaSanFrancisco(California):
     """
     San Francisco, California
     """
+
     include_cesar_chavez_day = False
     include_columbus_day = True
 
@@ -59,8 +59,7 @@ class CaliforniaWestHollywood(California):
     """
     West Hollywood, California
     """
-    FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + (
-        (5, 22, 'Harvey Milk Day'),
-    )
+
+    FIXED_HOLIDAYS = California.FIXED_HOLIDAYS + ((5, 22, "Harvey Milk Day"),)
     include_cesar_chavez_day = False
     include_thanksgiving_friday = False

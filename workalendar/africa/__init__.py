@@ -7,11 +7,11 @@ from .sao_tome import SaoTomeAndPrincipe
 from .south_africa import SouthAfrica
 
 __all__ = (
-    'Algeria',
-    'Benin',
-    'IvoryCoast',
-    'Madagascar',
-    'SaoTomeAndPrincipe',
-    'SouthAfrica',
-    'Angola',
+    "Algeria",
+    "Benin",
+    "IvoryCoast",
+    "Madagascar",
+    "SaoTomeAndPrincipe",
+    "SouthAfrica",
+    "Angola",
 )

@@ -2,7 +2,7 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('ST')
+@iso_register("ST")
 class SaoTomeAndPrincipe(WesternCalendar, ChristianMixin):
     "São Tomé and Príncipe"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

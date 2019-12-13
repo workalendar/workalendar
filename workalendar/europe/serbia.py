@@ -2,9 +2,9 @@ from ..core import OrthodoxMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('RS')
+@iso_register("RS")
 class Serbia(OrthodoxMixin, WesternCalendar):
-    'Serbia'
+    "Serbia"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Year"),

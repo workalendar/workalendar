@@ -4,7 +4,7 @@ from ..core import MON, SAT, SUN, TUE, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('AU')
+@iso_register("AU")
 class Australia(WesternCalendar, ChristianMixin):
     "Australia"
     include_good_friday = True
@@ -17,27 +17,16 @@ class Australia(WesternCalendar, ChristianMixin):
 
     ANZAC_SHIFT_DAYS = (SAT, SUN)
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 26, "Australia Day"),
-    )
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + ((1, 26, "Australia Day"),)
 
     def get_canberra_day(self, year):
-        return (
-            Australia.get_nth_weekday_in_month(year, 3, MON, 2),
-            "Canberra Day"
-        )
+        return (Australia.get_nth_weekday_in_month(year, 3, MON, 2), "Canberra Day")
 
     def get_queens_birthday(self, year):
-        return (
-            Australia.get_nth_weekday_in_month(year, 6, MON, 2),
-            "Queen's Birthday"
-        )
+        return (Australia.get_nth_weekday_in_month(year, 6, MON, 2), "Queen's Birthday")
 
     def get_labour_day_october(self, year):
-        return (
-            Australia.get_nth_weekday_in_month(year, 10, MON),
-            'Labour Day'
-        )
+        return (Australia.get_nth_weekday_in_month(year, 10, MON), "Labour Day")
 
     def get_anzac_day(self, year):
         anzac_day = date(year, 4, 25)
@@ -52,16 +41,14 @@ class Australia(WesternCalendar, ChristianMixin):
         days = super(Australia, self).get_variable_days(year)
         january_first = date(year, 1, 1)
         if january_first.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(january_first),
-                "New Year's Day shift")
+            days.append(
+                (self.find_following_working_day(january_first), "New Year's Day shift")
             )
 
         australia_day = date(year, 1, 26)
         if australia_day.weekday() in self.get_weekend_days():
-            days.append((
-                self.find_following_working_day(australia_day),
-                "Australia Day shift")
+            days.append(
+                (self.find_following_working_day(australia_day), "Australia Day shift")
             )
 
         # was fixed, but might be shifted
@@ -85,7 +72,7 @@ class Australia(WesternCalendar, ChristianMixin):
         return days
 
 
-@iso_register('AU-ACT')
+@iso_register("AU-ACT")
 class AustralianCapitalTerritory(Australia):
     "Australian Capital Territory"
     include_easter_saturday = True
@@ -115,18 +102,15 @@ class AustralianCapitalTerritory(Australia):
         # Family & Community Day was celebrated on the first Tuesday of
         # November in 2007, 2008 and 2009
         if year in (2007, 2008, 2009):
-            day = AustralianCapitalTerritory.get_nth_weekday_in_month(
-                year, 11, TUE)
+            day = AustralianCapitalTerritory.get_nth_weekday_in_month(year, 11, TUE)
         # Family & Community Day was celebrated on the last Monday of
         # November in 2010, 2013, 2014, 2015, 2016, 2017
         elif year in (2010, 2013, 2014, 2015, 2016, 2017):
-            day = AustralianCapitalTerritory.get_last_weekday_in_month(
-                year, 9, MON)
+            day = AustralianCapitalTerritory.get_last_weekday_in_month(year, 9, MON)
         # Family & Community Day was celebrated on the second Monday of
         # October in 2011 and 2012
         elif year in (2011, 2012):
-            day = AustralianCapitalTerritory.get_nth_weekday_in_month(
-                year, 10, MON, 2)
+            day = AustralianCapitalTerritory.get_nth_weekday_in_month(year, 10, MON, 2)
         else:
             # If for some reason the year is not correctly provided
             # (not and int, or whatever)
@@ -148,7 +132,8 @@ class AustralianCapitalTerritory(Australia):
             return (reconciliation_day, "Reconciliation Day")
         else:
             shift = AustralianCapitalTerritory.get_first_weekday_after(
-                reconciliation_day, MON)
+                reconciliation_day, MON
+            )
             return shift, "Reconciliation Day Shift"
 
     def get_variable_days(self, year):
@@ -166,7 +151,7 @@ class AustralianCapitalTerritory(Australia):
         return days
 
 
-@iso_register('AU-NSW')
+@iso_register("AU-NSW")
 class NewSouthWales(Australia):
     "New South Wales"
     include_queens_birthday = True
@@ -178,7 +163,7 @@ class NewSouthWales(Australia):
     ANZAC_SHIFT_DAYS = (SUN,)
 
 
-@iso_register('AU-NT')
+@iso_register("AU-NT")
 class NorthernTerritory(Australia):
     "Northern Territory"
     include_easter_saturday = True
@@ -188,27 +173,18 @@ class NorthernTerritory(Australia):
     ANZAC_SHIFT_DAYS = (SUN,)
 
     def get_may_day(self, year):
-        return (
-            NorthernTerritory.get_nth_weekday_in_month(year, 5, MON),
-            "May Day"
-        )
+        return (NorthernTerritory.get_nth_weekday_in_month(year, 5, MON), "May Day")
 
     def get_picnic_day(self, year):
-        return (
-            NorthernTerritory.get_nth_weekday_in_month(year, 8, MON),
-            "Picnic Day"
-        )
+        return (NorthernTerritory.get_nth_weekday_in_month(year, 8, MON), "Picnic Day")
 
     def get_variable_days(self, year):
         days = super(NorthernTerritory, self).get_variable_days(year)
-        days.extend([
-            self.get_may_day(year),
-            self.get_picnic_day(year),
-        ])
+        days.extend([self.get_may_day(year), self.get_picnic_day(year)])
         return days
 
 
-@iso_register('AU-QLD')
+@iso_register("AU-QLD")
 class Queensland(Australia):
     "Queensland"
     include_easter_saturday = True
@@ -218,10 +194,7 @@ class Queensland(Australia):
     ANZAC_SHIFT_DAYS = (SUN,)
 
     def get_labour_day_may(self, year):
-        return (
-            Queensland.get_nth_weekday_in_month(year, 5, MON),
-            "Labour Day"
-        )
+        return (Queensland.get_nth_weekday_in_month(year, 5, MON), "Labour Day")
 
     def get_variable_days(self, year):
         days = super(Queensland, self).get_variable_days(year)
@@ -229,7 +202,7 @@ class Queensland(Australia):
         return days
 
 
-@iso_register('AU-SA')
+@iso_register("AU-SA")
 class SouthAustralia(Australia):
     "South Australia"
     include_easter_saturday = True
@@ -241,7 +214,7 @@ class SouthAustralia(Australia):
     def get_adelaides_cup(self, year):
         return (
             SouthAustralia.get_nth_weekday_in_month(year, 3, MON, 2),
-            "Adelaide's cup"
+            "Adelaide's cup",
         )
 
     def get_proclamation_day(self, year):
@@ -249,14 +222,11 @@ class SouthAustralia(Australia):
 
     def get_variable_days(self, year):
         days = super(SouthAustralia, self).get_variable_days(year)
-        days.extend([
-            self.get_adelaides_cup(year),
-            self.get_proclamation_day(year),
-        ])
+        days.extend([self.get_adelaides_cup(year), self.get_proclamation_day(year)])
         return days
 
 
-@iso_register('AU-TAS')
+@iso_register("AU-TAS")
 class Tasmania(Australia):
     "Tasmania"
     include_queens_birthday = True
@@ -268,16 +238,10 @@ class Tasmania(Australia):
         return True
 
     def get_eight_hours_day(self, year):
-        return (
-            Tasmania.get_nth_weekday_in_month(year, 3, MON, 2),
-            "Eight hours Day"
-        )
+        return (Tasmania.get_nth_weekday_in_month(year, 3, MON, 2), "Eight hours Day")
 
     def get_recreation_day(self, year):
-        return (
-            Tasmania.get_nth_weekday_in_month(year, 11, MON),
-            "Recreation Day"
-        )
+        return (Tasmania.get_nth_weekday_in_month(year, 11, MON), "Recreation Day")
 
     def get_variable_days(self, year):
         days = super(Tasmania, self).get_variable_days(year)
@@ -289,6 +253,7 @@ class Tasmania(Australia):
 
 class Hobart(Tasmania):
     "Hobart"
+
     @property
     def has_recreation_day(self):
         return False
@@ -296,7 +261,7 @@ class Hobart(Tasmania):
     def get_hobart(self, year):
         return (
             Hobart.get_nth_weekday_in_month(year, 2, MON, 2),
-            "Royal Hobart Regatta"
+            "Royal Hobart Regatta",
         )
 
     def get_variable_days(self, year):
@@ -305,7 +270,7 @@ class Hobart(Tasmania):
         return days
 
 
-@iso_register('AU-VIC')
+@iso_register("AU-VIC")
 class Victoria(Australia):
     "Victoria"
     include_easter_saturday = True
@@ -314,16 +279,10 @@ class Victoria(Australia):
     shift_anzac_day = False
 
     def get_labours_day_in_march(self, year):
-        return (
-            Victoria.get_nth_weekday_in_month(year, 3, MON, 2),
-            "Labour Day"
-        )
+        return (Victoria.get_nth_weekday_in_month(year, 3, MON, 2), "Labour Day")
 
     def get_melbourne_cup(self, year):
-        return (
-            Victoria.get_nth_weekday_in_month(year, 11, TUE),
-            "Melbourne Cup"
-        )
+        return (Victoria.get_nth_weekday_in_month(year, 11, TUE), "Melbourne Cup")
 
     def get_variable_days(self, year):
         days = super(Victoria, self).get_variable_days(year)
@@ -332,21 +291,18 @@ class Victoria(Australia):
         return days
 
 
-@iso_register('AU-WA')
+@iso_register("AU-WA")
 class WesternAustralia(Australia):
     "Western Australia"
     include_boxing_day = True
 
     def get_labours_day_in_march(self, year):
-        return (
-            WesternAustralia.get_nth_weekday_in_month(year, 3, MON),
-            "Labour Day"
-        )
+        return (WesternAustralia.get_nth_weekday_in_month(year, 3, MON), "Labour Day")
 
     def get_western_australia_day(self, year):
         return (
             WesternAustralia.get_nth_weekday_in_month(year, 6, MON),
-            "Western Australia Day"
+            "Western Australia Day",
         )
 
     def get_variable_days(self, year):

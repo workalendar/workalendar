@@ -23,9 +23,8 @@ from workalendar.tests import GenericCalendarTest
 
 
 class CalendarTest(GenericCalendarTest):
-
     def test_private_variables(self):
-        self.assertTrue(hasattr(self.cal, '_holidays'))
+        self.assertTrue(hasattr(self.cal, "_holidays"))
         private_holidays = self.cal._holidays
         self.assertTrue(isinstance(private_holidays, dict))
         self.cal.holidays(2011)
@@ -47,69 +46,59 @@ class CalendarTest(GenericCalendarTest):
 
     def test_is_working_day(self):
         self.assertRaises(
-            NotImplementedError,
-            self.cal.is_working_day, date(2012, 1, 1))
+            NotImplementedError, self.cal.is_working_day, date(2012, 1, 1)
+        )
 
     def test_nth_weekday(self):
         # first monday in january 2013
         self.assertEquals(
-            Calendar.get_nth_weekday_in_month(2013, 1, MON),
-            date(2013, 1, 7)
+            Calendar.get_nth_weekday_in_month(2013, 1, MON), date(2013, 1, 7)
         )
         # second monday in january 2013
         self.assertEquals(
-            Calendar.get_nth_weekday_in_month(2013, 1, MON, 2),
-            date(2013, 1, 14)
+            Calendar.get_nth_weekday_in_month(2013, 1, MON, 2), date(2013, 1, 14)
         )
         # let's test the limits
         # Jan 1st is a TUE
         self.assertEquals(
-            Calendar.get_nth_weekday_in_month(2013, 1, TUE),
-            date(2013, 1, 1)
+            Calendar.get_nth_weekday_in_month(2013, 1, TUE), date(2013, 1, 1)
         )
         # There's no 6th MONday
-        self.assertEquals(
-            Calendar.get_nth_weekday_in_month(2013, 1, MON, 6),
-            None
-        )
+        self.assertEquals(Calendar.get_nth_weekday_in_month(2013, 1, MON, 6), None)
 
     def test_nth_weekday_start(self):
         # first thursday after 18th april
         start = date(2013, 4, 18)
         self.assertEquals(
             Calendar.get_nth_weekday_in_month(2013, 4, THU, start=start),
-            date(2013, 4, 18)
+            date(2013, 4, 18),
         )
         # first friday after 18th april
         start = date(2013, 4, 18)
         self.assertEquals(
             Calendar.get_nth_weekday_in_month(2013, 4, FRI, start=start),
-            date(2013, 4, 19)
+            date(2013, 4, 19),
         )
 
     def test_last_weekday(self):
         # last monday in january 2013
         self.assertEquals(
-            Calendar.get_last_weekday_in_month(2013, 1, MON),
-            date(2013, 1, 28)
+            Calendar.get_last_weekday_in_month(2013, 1, MON), date(2013, 1, 28)
         )
         # last thursday
         self.assertEquals(
-            Calendar.get_last_weekday_in_month(2013, 1, THU),
-            date(2013, 1, 31)
+            Calendar.get_last_weekday_in_month(2013, 1, THU), date(2013, 1, 31)
         )
 
     def test_get_next_weekday_after(self):
         # the first monday after Apr 1 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 1), MON),
-            date(2015, 4, 6)
+            Calendar.get_first_weekday_after(date(2015, 4, 1), MON), date(2015, 4, 6)
         )
 
         # the first tuesday after Apr 14 2015
         self.assertEquals(
-            Calendar.get_first_weekday_after(date(2015, 4, 14), TUE),
-            date(2015, 4, 14)
+            Calendar.get_first_weekday_after(date(2015, 4, 14), TUE), date(2015, 4, 14)
         )
 
 
@@ -117,19 +106,14 @@ class LunarCalendarTest(GenericCalendarTest):
     cal_class = LunarCalendar
 
     def test_new_year(self):
-        self.assertEquals(
-            self.cal.lunar(2014, 1, 1),
-            date(2014, 1, 31)
-        )
+        self.assertEquals(self.cal.lunar(2014, 1, 1), date(2014, 1, 31))
 
 
 class MockCalendar(Calendar):
-
     def holidays(self, year=None):
-        return tuple((
-            (date(year, 12, 25), 'Christmas'),
-            (date(year, 1, 1), 'New year'),
-        ))
+        return tuple(
+            ((date(year, 12, 25), "Christmas"), (date(year, 1, 1), "New year"))
+        )
 
     def get_weekend_days(self):
         return []  # no week-end, yes, it's sad
@@ -139,11 +123,9 @@ class MockCalendarTest(GenericCalendarTest):
     cal_class = MockCalendar
 
     def test_holidays_set(self):
-        self.assertIn(
-            date(self.year, 12, 25), self.cal.holidays_set(self.year))
+        self.assertIn(date(self.year, 12, 25), self.cal.holidays_set(self.year))
 
-        self.assertIn(
-            date(self.year, 1, 1), self.cal.holidays_set(self.year))
+        self.assertIn(date(self.year, 1, 1), self.cal.holidays_set(self.year))
 
     def test_sorted_dates(self):
         holidays = list(self.cal.holidays(self.year))
@@ -156,34 +138,33 @@ class MockCalendarTest(GenericCalendarTest):
         # day is out of non-working-day
         self.assertEquals(
             self.cal.add_working_days(date(self.year, 12, 20), 0),
-            date(self.year, 12, 20)
+            date(self.year, 12, 20),
         )
         self.assertEquals(
             self.cal.add_working_days(date(self.year, 12, 20), 1),
-            date(self.year, 12, 21)
+            date(self.year, 12, 21),
         )
 
     def test_add_workingdays_on_holiday(self):
         # day is in holidays
         self.assertEquals(
             self.cal.add_working_days(date(self.year, 12, 25), 0),
-            date(self.year, 12, 25)
+            date(self.year, 12, 25),
         )
         self.assertEquals(
             self.cal.add_working_days(date(self.year, 12, 24), 1),
-            date(self.year, 12, 26)
+            date(self.year, 12, 26),
         )
         self.assertEquals(
             self.cal.add_working_days(date(self.year, 12, 24), 2),
-            date(self.year, 12, 27)
+            date(self.year, 12, 27),
         )
 
     def test_add_workingdays_span(self):
         day = date(self.year, 12, 20)
         # since this calendar has no weekends, we'll just have a 2-day-shift
         self.assertEquals(
-            self.cal.add_working_days(day, 20),
-            date(self.year + 1, 1, 11)
+            self.cal.add_working_days(day, 20), date(self.year + 1, 1, 11)
         )
 
     def test_add_working_days_exceptions(self):
@@ -193,14 +174,14 @@ class MockCalendarTest(GenericCalendarTest):
         # exceptional workday
         self.assertEquals(
             self.cal.add_working_days(day, 20, extra_working_days=[christmas]),
-            date(self.year + 1, 1, 10)
+            date(self.year + 1, 1, 10),
         )
         # exceptional holiday + exceptional workday
         self.assertEquals(
-            self.cal.add_working_days(day, 20,
-                                      extra_working_days=[christmas],
-                                      extra_holidays=[boxing]),
-            date(self.year + 1, 1, 11)
+            self.cal.add_working_days(
+                day, 20, extra_working_days=[christmas], extra_holidays=[boxing]
+            ),
+            date(self.year + 1, 1, 11),
         )
 
     def test_add_exceptions(self):
@@ -214,37 +195,32 @@ class MockCalendarTest(GenericCalendarTest):
         extra_holidays = [target_working_day]
         self.assertFalse(self.cal.is_working_day(christmas))
         self.assertTrue(
-            self.cal.is_working_day(christmas,
-                                    extra_working_days=extra_working_days))
+            self.cal.is_working_day(christmas, extra_working_days=extra_working_days)
+        )
 
         self.assertTrue(self.cal.is_working_day(target_working_day))
         self.assertFalse(
-            self.cal.is_working_day(target_working_day,
-                                    extra_holidays=extra_holidays))
+            self.cal.is_working_day(target_working_day, extra_holidays=extra_holidays)
+        )
         # test is_holiday
         self.assertTrue(self.cal.is_holiday(christmas))
 
     def test_get_holiday_label(self):
-        self.assertEqual(
-            self.cal.get_holiday_label(date(2014, 1, 1)), 'New year')
-        self.assertIsNone(
-            self.cal.get_holiday_label(date(2014, 1, 2)))
+        self.assertEqual(self.cal.get_holiday_label(date(2014, 1, 1)), "New year")
+        self.assertIsNone(self.cal.get_holiday_label(date(2014, 1, 2)))
 
     def test_add_working_days_backwards(self):
         day = date(self.year, 1, 3)
         # since this calendar has no weekends, we'll just have a 1-day-shift
         self.assertEquals(
-            self.cal.add_working_days(day, -7),
-            date(self.year - 1, 12, 26)
+            self.cal.add_working_days(day, -7), date(self.year - 1, 12, 26)
         )
         self.assertEquals(
-            self.cal.sub_working_days(day, 7),
-            date(self.year - 1, 12, 26)
+            self.cal.sub_working_days(day, 7), date(self.year - 1, 12, 26)
         )
         # Negative argument to sub_working_days -> converted to positive.
         self.assertEquals(
-            self.cal.sub_working_days(day, -7),
-            date(self.year - 1, 12, 26)
+            self.cal.sub_working_days(day, -7), date(self.year - 1, 12, 26)
         )
 
 
@@ -283,8 +259,8 @@ class MockChristianCalendarTest(GenericCalendarTest):
         self.assertNotIn(date(2014, 4, 20), holidays)  # Easter Sun
         self.assertNotIn(date(2014, 4, 21), holidays)  # Easter Mon
         self.assertNotIn(date(2014, 5, 29), holidays)  # Ascension
-        self.assertNotIn(date(2014, 6, 8), holidays)   # Whit Sunday
-        self.assertNotIn(date(2014, 6, 9), holidays)   # Whit Monday
+        self.assertNotIn(date(2014, 6, 8), holidays)  # Whit Sunday
+        self.assertNotIn(date(2014, 6, 9), holidays)  # Whit Monday
         self.assertNotIn(date(2014, 6, 19), holidays)  # Corp. Christi
         self.assertNotIn(date(2014, 8, 15), holidays)  # Assumption
         self.assertNotIn(date(2014, 11, 1), holidays)  # All Saints
@@ -323,6 +299,7 @@ class WeekendOnWednesdayCalendar(Calendar):
     This calendar class weekend days is on Wednesday and we don't overwrite
     the `get_weekend_days()` method. It should be fine.
     """
+
     WEEKEND_DAYS = (WED,)
 
 
@@ -342,6 +319,7 @@ class OverwriteGetWeekendDaysCalendar(Calendar):
     its `get_weekend_days` method.
     Should work.
     """
+
     def get_weekend_days(self):
         return (WED,)
 
@@ -361,7 +339,6 @@ class NoHolidayCalendar(Calendar):
 
 
 class WorkingDaysDeltatest(TestCase):
-
     def test_zero(self):
         days = (
             date(2018, 12, 21),  # a Thursday
@@ -500,8 +477,9 @@ class TestAcceptableDateTypes(GenericCalendarTest):
     """
     Test cases about accepted date and datetime types.
     """
+
     cal_class = MockCalendar
-    unsupported = ('hello', 1)
+    unsupported = ("hello", 1)
 
     def test_unsupported_type_is_working_day(self):
         for arg in self.unsupported:
@@ -511,17 +489,11 @@ class TestAcceptableDateTypes(GenericCalendarTest):
         # Extra holidays optional argument
         for arg in self.unsupported:
             with self.assertRaises(UnsupportedDateType):
-                self.cal.is_working_day(
-                    date(2018, 1, 1),
-                    extra_holidays=[arg]
-                )
+                self.cal.is_working_day(date(2018, 1, 1), extra_holidays=[arg])
         # Extra working days optional argument
         for arg in self.unsupported:
             with self.assertRaises(UnsupportedDateType):
-                self.cal.is_working_day(
-                    date(2018, 1, 1),
-                    extra_working_days=[arg]
-                )
+                self.cal.is_working_day(date(2018, 1, 1), extra_working_days=[arg])
 
     def test_unsupported_type_is_holiday(self):
         for arg in self.unsupported:
@@ -531,10 +503,7 @@ class TestAcceptableDateTypes(GenericCalendarTest):
         # Extra holidays optional argument
         for arg in self.unsupported:
             with self.assertRaises(UnsupportedDateType):
-                self.cal.is_holiday(
-                    date(2018, 1, 1),
-                    extra_holidays=[arg]
-                )
+                self.cal.is_holiday(date(2018, 1, 1), extra_holidays=[arg])
 
     def test_unsupported_type_holiday_label(self):
         for arg in self.unsupported:
@@ -553,17 +522,11 @@ class TestAcceptableDateTypes(GenericCalendarTest):
         # Extra holidays optional argument
         for arg in self.unsupported:
             with self.assertRaises(UnsupportedDateType):
-                self.cal.add_working_days(
-                    date(2018, 1, 1), 1,
-                    extra_holidays=[arg]
-                )
+                self.cal.add_working_days(date(2018, 1, 1), 1, extra_holidays=[arg])
         # Extra working days optional argument
         for arg in self.unsupported:
             with self.assertRaises(UnsupportedDateType):
-                self.cal.add_working_days(
-                    date(2018, 1, 1), 1,
-                    extra_working_days=[arg]
-                )
+                self.cal.add_working_days(date(2018, 1, 1), 1, extra_working_days=[arg])
         # NOTE: no need to test "sub", they're calling each other.
 
     def test_unsupported_type_find_following_working_day(self):
@@ -585,92 +548,80 @@ class TestAcceptableDateTypes(GenericCalendarTest):
                 self.cal.get_working_days_delta(arg, date(2018, 1, 1))
 
     def test_datetime(self):
-        self.assertFalse(
-            self.cal.is_working_day(datetime(2014, 1, 1)))
-        self.assertTrue(
-            self.cal.is_holiday(datetime(2014, 1, 1)))
+        self.assertFalse(self.cal.is_working_day(datetime(2014, 1, 1)))
+        self.assertTrue(self.cal.is_holiday(datetime(2014, 1, 1)))
 
     def test_add_working_days_datetime(self):
         # datetime inside, date outside
         self.assertEquals(
-            self.cal.add_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56), 0),
-            date(self.year, 12, 20)
+            self.cal.add_working_days(datetime(self.year, 12, 20, 12, 34, 56), 0),
+            date(self.year, 12, 20),
         )
         self.assertEquals(
-            self.cal.add_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56), 1),
-            date(self.year, 12, 21)
+            self.cal.add_working_days(datetime(self.year, 12, 20, 12, 34, 56), 1),
+            date(self.year, 12, 21),
         )
 
         # Use the `keep_datetime` option
         self.assertEquals(
             self.cal.add_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56),
-                0, keep_datetime=True),
-            datetime(self.year, 12, 20, 12, 34, 56)
+                datetime(self.year, 12, 20, 12, 34, 56), 0, keep_datetime=True
+            ),
+            datetime(self.year, 12, 20, 12, 34, 56),
         )
         self.assertEquals(
             self.cal.add_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56),
-                1, keep_datetime=True),
-            datetime(self.year, 12, 21, 12, 34, 56)
+                datetime(self.year, 12, 20, 12, 34, 56), 1, keep_datetime=True
+            ),
+            datetime(self.year, 12, 21, 12, 34, 56),
         )
 
     def test_sub_working_days_datetime(self):
         # datetime inside, date outside
         self.assertEquals(
-            self.cal.sub_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56), 0),
-            date(self.year, 12, 20)
+            self.cal.sub_working_days(datetime(self.year, 12, 20, 12, 34, 56), 0),
+            date(self.year, 12, 20),
         )
         self.assertEquals(
-            self.cal.sub_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56), 1),
-            date(self.year, 12, 19)
+            self.cal.sub_working_days(datetime(self.year, 12, 20, 12, 34, 56), 1),
+            date(self.year, 12, 19),
         )
 
         # Use the `keep_datetime` option
         self.assertEquals(
             self.cal.sub_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56),
-                0, keep_datetime=True),
-            datetime(self.year, 12, 20, 12, 34, 56)
+                datetime(self.year, 12, 20, 12, 34, 56), 0, keep_datetime=True
+            ),
+            datetime(self.year, 12, 20, 12, 34, 56),
         )
         self.assertEquals(
             self.cal.sub_working_days(
-                datetime(self.year, 12, 20, 12, 34, 56),
-                1, keep_datetime=True),
-            datetime(self.year, 12, 19, 12, 34, 56)
+                datetime(self.year, 12, 20, 12, 34, 56), 1, keep_datetime=True
+            ),
+            datetime(self.year, 12, 19, 12, 34, 56),
         )
 
     def test_get_holiday_label_with_datetime(self):
-        self.assertEqual(
-            self.cal.get_holiday_label(datetime(2014, 1, 1)), 'New year')
-        self.assertIsNone(
-            self.cal.get_holiday_label(datetime(2014, 1, 2)))
+        self.assertEqual(self.cal.get_holiday_label(datetime(2014, 1, 1)), "New year")
+        self.assertIsNone(self.cal.get_holiday_label(datetime(2014, 1, 2)))
 
 
 class PandasTimestampTest(GenericCalendarTest):
     cal_class = MockCalendar
 
     def test_panda_type_is_working_day(self):
-        self.assertFalse(
-            self.cal.is_working_day(pandas.to_datetime("2018-1-1"))
-        )
+        self.assertFalse(self.cal.is_working_day(pandas.to_datetime("2018-1-1")))
 
         # Extra holidays optional argument
         self.assertFalse(
             self.cal.is_working_day(
-                date(2018, 1, 2),
-                extra_holidays=[pandas.to_datetime("2018-1-2")]
+                date(2018, 1, 2), extra_holidays=[pandas.to_datetime("2018-1-2")]
             )
         )
         # Extra working days optional argument
         self.assertTrue(
             self.cal.is_working_day(
-                date(2018, 1, 1),
-                extra_working_days=[pandas.to_datetime("2018-1-1")]
+                date(2018, 1, 1), extra_working_days=[pandas.to_datetime("2018-1-1")]
             )
         )
 
@@ -680,8 +631,7 @@ class PandasTimestampTest(GenericCalendarTest):
         # Extra holidays optional argument
         self.assertTrue(
             self.cal.is_holiday(
-                date(2018, 2, 1),
-                extra_holidays=[pandas.to_datetime("2018-2-1")]
+                date(2018, 2, 1), extra_holidays=[pandas.to_datetime("2018-2-1")]
             )
         )
 
@@ -698,14 +648,12 @@ class PandasTimestampTest(GenericCalendarTest):
         self.assertEqual(previous_day, date(2018, 12, 24))
 
         next_day = self.cal.add_working_days(
-            date(2018, 12, 24), 1,
-            extra_holidays=[pandas.to_datetime("2018-12-26")]
+            date(2018, 12, 24), 1, extra_holidays=[pandas.to_datetime("2018-12-26")]
         )
         self.assertEqual(next_day, date(2018, 12, 27))
 
         next_day = self.cal.add_working_days(
-            date(2018, 12, 24), 1,
-            extra_working_days=[pandas.to_datetime("2018-12-25")]
+            date(2018, 12, 24), 1, extra_working_days=[pandas.to_datetime("2018-12-25")]
         )
         self.assertEqual(next_day, date(2018, 12, 25))
 

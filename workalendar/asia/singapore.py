@@ -4,9 +4,8 @@ from ..core import ChineseNewYearCalendar, ChristianMixin, IslamicMixin, Western
 from ..registry_tools import iso_register
 
 
-@iso_register('SG')
-class Singapore(WesternCalendar,
-                ChineseNewYearCalendar, ChristianMixin, IslamicMixin):
+@iso_register("SG")
+class Singapore(WesternCalendar, ChineseNewYearCalendar, ChristianMixin, IslamicMixin):
     "Singapore"
     include_good_friday = True
     include_eid_al_fitr = True
@@ -42,7 +41,7 @@ class Singapore(WesternCalendar,
         2017: date(2017, 10, 18),
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
-        2020: date(2020, 11, 14),   # This might change
+        2020: date(2020, 11, 14),  # This might change
         2021: date(2021, 11, 4),
     }
     chinese_new_year_label = "Chinese Lunar New Year's Day"
@@ -57,14 +56,12 @@ class Singapore(WesternCalendar,
         days = super(Singapore, self).get_variable_days(year)
 
         # Vesak Day
-        days.append(
-            (ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"),
-        )
+        days.append((ChineseNewYearCalendar.lunar(year, 4, 15), "Vesak Day"))
 
         # Add in Deepavali (hardcoded dates, so no need to shift)
         deepavali = self.DEEPAVALI.get(year)
         if not deepavali:
-            msg = f'Missing date for Singapore Deepavali for year: {year}'
+            msg = f"Missing date for Singapore Deepavali for year: {year}"
             raise KeyError(msg)
-        days.append((deepavali, 'Deepavali'))
+        days.append((deepavali, "Deepavali"))
         return days

@@ -2,9 +2,9 @@ from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 
-@iso_register('NO')
+@iso_register("NO")
 class Norway(WesternCalendar, ChristianMixin):
-    'Norway'
+    "Norway"
 
     include_holy_thursday = True
     include_good_friday = True

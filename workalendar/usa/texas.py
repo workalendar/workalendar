@@ -49,6 +49,7 @@ from .core import UnitedStates
 
 class TexasBase(UnitedStates):
     """Texas Base (w/o State holidays)"""
+
     include_columbus_day = False
     texas_include_confederate_heroes = False
     texas_include_independance_day = False
@@ -63,35 +64,26 @@ class TexasBase(UnitedStates):
     def get_fixed_holidays(self, year):
         days = super(TexasBase, self).get_fixed_holidays(year)
         if self.texas_include_confederate_heroes:
-            days.append(
-                (date(year, 1, 19), "Confederate Heroes Day")
-            )
+            days.append((date(year, 1, 19), "Confederate Heroes Day"))
 
         if self.texas_include_independance_day:
-            days.append(
-                (date(year, 3, 2), "Texas Independence Day")
-            )
+            days.append((date(year, 3, 2), "Texas Independence Day"))
 
         if self.texas_san_jacinto_day:
-            days.append(
-                (date(year, 4, 21), "San Jacinto Day")
-            )
+            days.append((date(year, 4, 21), "San Jacinto Day"))
 
         if self.texas_emancipation_day:
-            days.append(
-                (date(year, 6, 19), "Emancipation Day in Texas"),
-            )
+            days.append((date(year, 6, 19), "Emancipation Day in Texas"))
 
         if self.texas_lyndon_johnson_day:
-            days.append(
-                (date(year, 8, 27), "Lyndon B. Jonhson Day"),
-            )
+            days.append((date(year, 8, 27), "Lyndon B. Jonhson Day"))
         return days
 
 
-@iso_register('US-TX')
+@iso_register("US-TX")
 class Texas(TexasBase):
     """Texas"""
+
     texas_include_confederate_heroes = True
     texas_include_independance_day = True
     texas_san_jacinto_day = True
