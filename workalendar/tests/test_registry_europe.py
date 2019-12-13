@@ -1,7 +1,9 @@
 from unittest import TestCase
 
-# Germany
-from workalendar.europe import (  # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?; Catalonia,  # TODO: Add it to registry
+from workalendar.registry import registry
+
+# FIXME: No ISO code for FranceAlsaceMoselle and Catalonia
+from workalendar.europe import (
     Austria,
     BadenWurttemberg,
     Bavaria,
@@ -54,7 +56,6 @@ from workalendar.europe import (  # FranceAlsaceMoselle,  # TODO: Should we add 
     UnitedKingdomNorthernIreland,
     Vaud,
 )
-from workalendar.registry import registry
 
 classes = (v for k, v in registry.region_registry.items())
 classes = list(classes)

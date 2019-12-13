@@ -10,7 +10,6 @@ from .estonia import Estonia
 from .european_central_bank import EuropeanCentralBank
 from .finland import Finland
 from .france import France, FranceAlsaceMoselle
-
 # Germany
 from .germany import (
     BadenWurttemberg,
@@ -46,7 +45,6 @@ from .poland import Poland
 from .portugal import Portugal
 from .romania import Romania
 from .russia import Russia
-
 # Scotland
 from .scotland import (
     Aberdeen,

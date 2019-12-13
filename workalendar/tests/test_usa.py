@@ -4,7 +4,8 @@ from datetime import date
 from unittest import skip, skipIf
 
 from workalendar.tests import GenericCalendarTest
-from workalendar.usa import (  # California and others; Florida and others; Other territories, cities...
+
+from workalendar.usa import (
     Alabama,
     AlabamaBaldwinCounty,
     AlabamaMobileCounty,

@@ -1,6 +1,9 @@
 from datetime import date
 from unittest import TestCase
 
+from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
+from workalendar.tests import GenericCalendarTest
+
 from workalendar.america import (  # Cities; Banks
     Brazil,
     BrazilAcre,
@@ -63,8 +66,6 @@ from workalendar.america import (  # Cities; Banks
     BrazilVilaVelhaCity,
     BrazilVitoriaCity,
 )
-from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
-from workalendar.tests import GenericCalendarTest
 
 
 class BrazilTest(GenericCalendarTest):

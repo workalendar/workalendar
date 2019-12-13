@@ -1,11 +1,5 @@
-from .alabama import (
-    Alabama,
-    AlabamaBaldwinCounty,
-    AlabamaMobileCounty,
-    AlabamaPerryCounty,
-)
+from .alabama import Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty
 from .alaska import Alaska
-
 # Non-states territories and areas
 from .american_samoa import AmericanSamoa
 from .arizona import Arizona

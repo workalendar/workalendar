@@ -21,7 +21,6 @@ FIXME:
 
 """
 import warnings
-
 # Since Scotland territories have a lot of different variations, it has become
 # necessary to split this module and associated tests
 from datetime import date, timedelta
