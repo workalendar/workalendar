@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .austria import Austria
 from .belgium import Belgium
 from .bulgaria import Bulgaria

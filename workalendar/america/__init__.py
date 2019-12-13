@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .barbados import Barbados
 from .brazil import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,

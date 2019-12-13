@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from workalendar.core import WesternCalendar, OrthodoxMixin
+from ..core import WesternCalendar, OrthodoxMixin
 from ..registry_tools import iso_register
 
 

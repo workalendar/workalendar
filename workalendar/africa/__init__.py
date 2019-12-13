@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .algeria import Algeria
 from .benin import Benin
 from .ivory_coast import IvoryCoast

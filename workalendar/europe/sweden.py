@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import FRI, SAT
+
+from ..core import WesternCalendar, ChristianMixin, FRI, SAT
 from ..registry_tools import iso_register
 
 

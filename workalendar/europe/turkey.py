@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import timedelta
+
 from ..core import WesternCalendar, IslamicMixin
 from ..registry_tools import iso_register
 

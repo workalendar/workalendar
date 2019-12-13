@@ -2,6 +2,7 @@
 
 ## master (unreleased)
 - Added Ukraine calendar, by @apelloni.
+- Remove Python 2.7 and Python 3.5 support.
 
 ### ISO Registry API Change
 

@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import MON, TUE, SAT, SUN
+from ..core import WesternCalendar, ChristianMixin, MON, TUE, SAT, SUN
 from ..registry_tools import iso_register
 
 

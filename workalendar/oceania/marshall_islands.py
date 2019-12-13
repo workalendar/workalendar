@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
-from ..core import WesternCalendar, ChristianMixin
-from ..core import FRI
+from ..core import WesternCalendar, ChristianMixin, FRI
 from ..registry_tools import iso_register
 
 

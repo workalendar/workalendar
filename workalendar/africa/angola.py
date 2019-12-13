@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import timedelta
-from workalendar.core import WesternCalendar
-from workalendar.core import ChristianMixin
+from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

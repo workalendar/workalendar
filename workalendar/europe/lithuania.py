@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin, SUN
 from ..registry_tools import iso_register
-from workalendar.core import SUN
 
 
 @iso_register('LT')
