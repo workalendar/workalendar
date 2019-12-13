@@ -6,7 +6,7 @@ from copy import copy
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
-from gettext import gettext as _
+from gettext import gettext as _, gettext_lazy as __
 
 from calverter import Calverter
 from dateutil import easter
@@ -532,7 +532,7 @@ class WesternCalendar(Calendar):
     shift_new_years_day = False
 
     FIXED_HOLIDAYS = (
-        (1, 1, _('New year')),
+        (1, 1, __('New year')),
     )
 
     def get_variable_days(self, year):
