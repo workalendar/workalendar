@@ -8,7 +8,6 @@ from workalendar.africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-
 from workalendar.registry import registry
 
 

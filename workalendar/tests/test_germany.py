@@ -1,13 +1,26 @@
 from datetime import date
 from unittest import TestCase
 
+from workalendar.europe import (
+    BadenWurttemberg,
+    Bavaria,
+    Berlin,
+    Brandenburg,
+    Bremen,
+    Germany,
+    Hamburg,
+    Hesse,
+    LowerSaxony,
+    MecklenburgVorpommern,
+    NorthRhineWestphalia,
+    RhinelandPalatinate,
+    Saarland,
+    Saxony,
+    SaxonyAnhalt,
+    SchleswigHolstein,
+    Thuringia,
+)
 from workalendar.tests import GenericCalendarTest
-from workalendar.europe import (Germany, BadenWurttemberg, Bavaria, Berlin,
-                                Brandenburg, Bremen, Hamburg, Hesse,
-                                MecklenburgVorpommern, LowerSaxony,
-                                NorthRhineWestphalia, RhinelandPalatinate,
-                                Saarland, Saxony, SaxonyAnhalt,
-                                SchleswigHolstein, Thuringia)
 
 
 class ReformationFlagTest(TestCase):

@@ -1,5 +1,4 @@
-from ..core import Calendar
-from ..core import FRI, SAT, IslamicMixin
+from ..core import FRI, SAT, Calendar, IslamicMixin
 from ..registry_tools import iso_register
 
 

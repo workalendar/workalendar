@@ -1,5 +1,5 @@
-from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..astronomy import solar_term
+from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..registry_tools import iso_register
 
 

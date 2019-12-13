@@ -1,5 +1,5 @@
-from importlib import import_module
 import warnings
+from importlib import import_module
 
 from .core import Calendar
 from .exceptions import ISORegistryError

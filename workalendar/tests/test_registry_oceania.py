@@ -1,22 +1,18 @@
 from unittest import TestCase
 
-from workalendar.oceania import (
+from workalendar.oceania import (  # Australian territories; FIXME: there's no ISO code for this city. Shall we add it?; Hobart,
     Australia,
-    MarshallIslands,
-    NewZealand,
-    # Australian territories
     AustralianCapitalTerritory,
+    MarshallIslands,
     NewSouthWales,
+    NewZealand,
     NorthernTerritory,
     Queensland,
     SouthAustralia,
     Tasmania,
-    # FIXME: there's no ISO code for this city. Shall we add it?
-    # Hobart,
     Victoria,
-    WesternAustralia
+    WesternAustralia,
 )
-
 from workalendar.registry import registry
 
 AUSTRALIAN_TERRITORIES = (

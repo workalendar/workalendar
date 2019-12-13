@@ -1,25 +1,27 @@
-from .core import UnitedStates
-
-from .alabama import (
-    Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty)
+from .alabama import Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty
 from .alaska import Alaska
+# Non-states territories and areas
+from .american_samoa import AmericanSamoa
 from .arizona import Arizona
 from .arkansas import Arkansas
 from .california import (
-    California, CaliforniaEducation, CaliforniaBerkeley,
-    CaliforniaSanFrancisco, CaliforniaWestHollywood,
+    California,
+    CaliforniaBerkeley,
+    CaliforniaEducation,
+    CaliforniaSanFrancisco,
+    CaliforniaWestHollywood,
 )
 from .colorado import Colorado
 from .connecticut import Connecticut
+from .core import UnitedStates
 from .delaware import Delaware
 from .district_columbia import DistrictOfColumbia
-from .florida import (
-    Florida, FloridaLegal, FloridaCircuitCourts, FloridaMiamiDade
-)
+from .florida import Florida, FloridaCircuitCourts, FloridaLegal, FloridaMiamiDade
 from .georgia import Georgia
+from .guam import Guam
 from .hawaii import Hawaii
 from .idaho import Idaho
-from .illinois import Illinois, ChicagoIllinois
+from .illinois import ChicagoIllinois, Illinois
 from .indiana import Indiana
 from .iowa import Iowa
 from .kansas import Kansas
@@ -49,7 +51,7 @@ from .rhode_island import RhodeIsland
 from .south_carolina import SouthCarolina
 from .south_dakota import SouthDakota
 from .tennessee import Tennessee
-from .texas import TexasBase, Texas
+from .texas import Texas, TexasBase
 from .utah import Utah
 from .vermont import Vermont
 from .virginia import Virginia
@@ -57,10 +59,6 @@ from .washington import Washington
 from .west_virginia import WestVirginia
 from .wisconsin import Wisconsin
 from .wyoming import Wyoming
-# Non-states territories and areas
-from .american_samoa import AmericanSamoa
-from .guam import Guam
-
 
 __all__ = [
     'UnitedStates',  # Generic federal calendar

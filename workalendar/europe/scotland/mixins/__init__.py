@@ -4,38 +4,36 @@ Scotland calendar mixins.
 There are so many of them that it became necessary to move them to a different
 module.
 """
-from workalendar.core import MON, FRI
 from datetime import timedelta
 
-from .spring_holiday import (
-    SpringHolidayFirstMondayApril,
-    SpringHolidaySecondMondayApril,
-    SpringHolidayTuesdayAfterFirstMondayMay,
-    SpringHolidayLastMondayMay,
-    SpringHolidayFirstMondayJune,
-)
-
-from .fair_holiday import (
-    FairHolidayLastMondayJune,
-    FairHolidayFirstMondayJuly,
-    FairHolidaySecondMondayJuly,
-    FairHolidayThirdMondayJuly,
-    FairHolidayLastMondayJuly,
-    FairHolidayFourthFridayJuly,
-    FairHolidayFirstMondayAugust,
-)
-
-from .victoria_day import (
-    VictoriaDayFourthMondayMay,
-    VictoriaDayLastMondayMay,
-    VictoriaDayFirstMondayJune,
-)
+from workalendar.core import FRI, MON
 
 from .autumn_holiday import (
-    AutumnHolidayLastMondaySeptember,
     AutumnHolidayFirstMondayOctober,
+    AutumnHolidayLastMondaySeptember,
     AutumnHolidaySecondMondayOctober,
     AutumnHolidayThirdMondayOctober,
+)
+from .fair_holiday import (
+    FairHolidayFirstMondayAugust,
+    FairHolidayFirstMondayJuly,
+    FairHolidayFourthFridayJuly,
+    FairHolidayLastMondayJuly,
+    FairHolidayLastMondayJune,
+    FairHolidaySecondMondayJuly,
+    FairHolidayThirdMondayJuly,
+)
+from .spring_holiday import (
+    SpringHolidayFirstMondayApril,
+    SpringHolidayFirstMondayJune,
+    SpringHolidayLastMondayMay,
+    SpringHolidaySecondMondayApril,
+    SpringHolidayTuesdayAfterFirstMondayMay,
+)
+from .victoria_day import (
+    VictoriaDayFirstMondayJune,
+    VictoriaDayFourthMondayMay,
+    VictoriaDayLastMondayMay,
 )
 
 

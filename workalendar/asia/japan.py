@@ -1,8 +1,7 @@
 from datetime import date
 
-from ..core import MON
-from ..core import WesternCalendar
 from ..astronomy import calculate_equinoxes
+from ..core import MON, WesternCalendar
 from ..registry_tools import iso_register
 
 

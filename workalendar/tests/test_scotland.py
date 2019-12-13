@@ -1,17 +1,41 @@
-from datetime import date
-from unittest import TestCase, skipIf
 import sys
 import warnings
+from datetime import date
+from unittest import TestCase, skipIf
 
-from workalendar.tests import GenericCalendarTest
 from workalendar.europe import (
-    Scotland, Aberdeen, Angus, Arbroath, Ayr, CarnoustieMonifieth, Clydebank,
-    DumfriesGalloway, Dundee, EastDunbartonshire, Edinburgh, Elgin, Falkirk,
-    Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,
-    Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
-    ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire,
+    Aberdeen,
+    Angus,
+    Arbroath,
+    Ayr,
+    CarnoustieMonifieth,
+    Clydebank,
+    DumfriesGalloway,
+    Dundee,
+    EastDunbartonshire,
+    Edinburgh,
+    Elgin,
+    Falkirk,
+    Fife,
+    Galashiels,
+    Glasgow,
+    Hawick,
+    Inverclyde,
+    Inverness,
+    Kilmarnock,
+    Lanark,
+    Linlithgow,
+    Lochaber,
+    NorthLanarkshire,
+    Paisley,
+    Perth,
+    Scotland,
+    ScottishBorders,
+    SouthLanarkshire,
+    Stirling,
+    WestDunbartonshire,
 )
-
+from workalendar.tests import GenericCalendarTest
 
 PY2 = sys.version_info[0] == 2
 

@@ -1,7 +1,6 @@
 from datetime import date
 
-from ..core import WesternCalendar, ChristianMixin, Calendar
-from ..core import SUN, MON, SAT
+from ..core import MON, SAT, SUN, Calendar, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

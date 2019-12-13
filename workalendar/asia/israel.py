@@ -2,7 +2,7 @@ from datetime import date, timedelta
 
 from pyluach.dates import GregorianDate, HebrewDate
 
-from ..core import Calendar, FRI, SAT
+from ..core import FRI, SAT, Calendar
 from ..registry_tools import iso_register
 
 

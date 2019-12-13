@@ -1,8 +1,7 @@
-from datetime import timedelta
 from copy import copy
+from datetime import timedelta
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import SUN, MON
+from ..core import MON, SUN, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

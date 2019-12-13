@@ -1,5 +1,5 @@
-from .core import UnitedStates, MON
 from ..registry_tools import iso_register
+from .core import MON, UnitedStates
 
 
 @iso_register('US-AK')

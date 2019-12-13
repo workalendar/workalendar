@@ -42,3 +42,7 @@ endif
 package:
 	rm -Rf build/
 	python setup.py sdist bdist_wheel
+
+.PHONY: isort
+isort:
+	isort -m 3 --line-width=99 --use-parentheses --trailing-comma --recursive --virtual-env=.venv workalendar

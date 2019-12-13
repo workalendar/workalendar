@@ -1,24 +1,59 @@
 from unittest import TestCase
-from workalendar.europe import (
-    Austria, Belgium, Bulgaria, Croatia, Cyprus, CzechRepublic, Estonia,
-    Denmark, Finland, France,
-    # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
-    Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg,
-    Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
-    Slovenia, Spain,
-    # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
-    UnitedKingdomNorthernIreland,
-)
 
 # Germany
-from workalendar.europe import (
-    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
-    Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
-    NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
-    SaxonyAnhalt, SchleswigHolstein, Thuringia
+from workalendar.europe import (  # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?; Catalonia,  # TODO: Add it to registry
+    Austria,
+    BadenWurttemberg,
+    Bavaria,
+    Belgium,
+    Berlin,
+    Brandenburg,
+    Bremen,
+    Bulgaria,
+    Croatia,
+    Cyprus,
+    CzechRepublic,
+    Denmark,
+    Estonia,
+    Finland,
+    France,
+    Geneva,
+    Germany,
+    Greece,
+    Hamburg,
+    Hesse,
+    Hungary,
+    Iceland,
+    Ireland,
+    Italy,
+    Latvia,
+    Lithuania,
+    LowerSaxony,
+    Luxembourg,
+    Malta,
+    MecklenburgVorpommern,
+    Netherlands,
+    NorthRhineWestphalia,
+    Norway,
+    Poland,
+    Portugal,
+    RhinelandPalatinate,
+    Romania,
+    Russia,
+    Saarland,
+    Saxony,
+    SaxonyAnhalt,
+    SchleswigHolstein,
+    Slovakia,
+    Slovenia,
+    Spain,
+    Sweden,
+    Switzerland,
+    Thuringia,
+    UnitedKingdom,
+    UnitedKingdomNorthernIreland,
+    Vaud,
 )
-
 from workalendar.registry import registry
 
 classes = (v for k, v in registry.region_registry.items())

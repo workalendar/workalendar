@@ -1,7 +1,7 @@
 from datetime import timedelta
 
-from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin
 from ..astronomy import solar_term
+from ..core import ChineseNewYearCalendar, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

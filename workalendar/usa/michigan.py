@@ -1,7 +1,7 @@
 from datetime import date
+
 from ..core import SUN
 from ..registry_tools import iso_register
-
 from .core import UnitedStates
 
 

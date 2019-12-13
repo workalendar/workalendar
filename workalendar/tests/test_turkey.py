@@ -1,7 +1,7 @@
 from datetime import date
 
-from workalendar.tests import GenericCalendarTest
 from workalendar.europe.turkey import Turkey
+from workalendar.tests import GenericCalendarTest
 
 
 class TurkeyTest(GenericCalendarTest):

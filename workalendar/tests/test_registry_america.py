@@ -1,35 +1,53 @@
 from unittest import TestCase
 
 from workalendar.america import (
-    Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
-    BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
-    BrazilGoias, BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
-    BrazilPara, BrazilParaiba, BrazilPernambuco, BrazilPiaui,
-    BrazilRioDeJaneiro, BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
-    BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
-    BrazilSergipe, BrazilTocantins,
-)
-from workalendar.america import (
-    Canada,
-    Ontario,
-    Quebec,
-    BritishColumbia,
     Alberta,
-    Saskatchewan,
+    Argentina,
+    Brazil,
+    BrazilAcre,
+    BrazilAlagoas,
+    BrazilAmapa,
+    BrazilAmazonas,
+    BrazilBahia,
+    BrazilCeara,
+    BrazilDistritoFederal,
+    BrazilEspiritoSanto,
+    BrazilGoias,
+    BrazilMaranhao,
+    BrazilMatoGrosso,
+    BrazilMatoGrossoDoSul,
+    BrazilPara,
+    BrazilParaiba,
+    BrazilPernambuco,
+    BrazilPiaui,
+    BrazilRioDeJaneiro,
+    BrazilRioGrandeDoNorte,
+    BrazilRioGrandeDoSul,
+    BrazilRondonia,
+    BrazilRoraima,
+    BrazilSantaCatarina,
+    BrazilSaoPauloState,
+    BrazilSergipe,
+    BrazilTocantins,
+    BritishColumbia,
+    Canada,
+    Chile,
+    Colombia,
     Manitoba,
+    Mexico,
     NewBrunswick,
-    NovaScotia,
-    PrinceEdwardIsland,
     Newfoundland,
-    Yukon,
     NorthwestTerritories,
+    NovaScotia,
     Nunavut,
-
+    Ontario,
+    Panama,
+    Paraguay,
+    PrinceEdwardIsland,
+    Quebec,
+    Saskatchewan,
+    Yukon,
 )
-from workalendar.america import (
-    Argentina, Chile, Colombia, Mexico, Panama, Paraguay
-)
-
 from workalendar.registry import registry
 
 

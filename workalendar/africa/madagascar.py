@@ -1,4 +1,4 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

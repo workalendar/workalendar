@@ -1,13 +1,13 @@
 """
 Astronomical functions
 """
-from math import pi, radians
-import pytz
-from skyfield.api import Loader
-from skyfield import almanac
-from skyfield_data import get_skyfield_data_path
 from datetime import date, timedelta
+from math import pi, radians
 
+import pytz
+from skyfield import almanac
+from skyfield.api import Loader
+from skyfield_data import get_skyfield_data_path
 
 # Parameter for the newton method to converge towards the closest solution
 # to the function. By default it'll be an approximation of a 10th of a second.

@@ -1,6 +1,6 @@
-from .core import UnitedStates
-from ..registry_tools import iso_register
 from ..core import MON
+from ..registry_tools import iso_register
+from .core import UnitedStates
 
 
 @iso_register('US-IL')

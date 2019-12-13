@@ -1,10 +1,22 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
+
 from workalendar.america.canada import (
-    Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
-    NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
-    NorthwestTerritories, Nunavut
+    Alberta,
+    BritishColumbia,
+    Canada,
+    Manitoba,
+    NewBrunswick,
+    Newfoundland,
+    NorthwestTerritories,
+    NovaScotia,
+    Nunavut,
+    Ontario,
+    PrinceEdwardIsland,
+    Quebec,
+    Saskatchewan,
+    Yukon,
 )
+from workalendar.tests import GenericCalendarTest
 
 
 class CanadaTest(GenericCalendarTest):

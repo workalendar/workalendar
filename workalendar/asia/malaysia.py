@@ -1,7 +1,6 @@
 from datetime import date
 
-from ..core import ChineseNewYearCalendar, WesternCalendar
-from ..core import IslamicMixin
+from ..core import ChineseNewYearCalendar, IslamicMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

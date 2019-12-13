@@ -1,4 +1,4 @@
-from ..core import WesternCalendar, OrthodoxMixin
+from ..core import OrthodoxMixin, WesternCalendar
 from ..registry_tools import iso_register
 
 

@@ -5,11 +5,31 @@ from .cayman_islands import CaymanIslands
 from .croatia import Croatia
 from .cyprus import Cyprus
 from .czech_republic import CzechRepublic
+from .denmark import Denmark
 from .estonia import Estonia
 from .european_central_bank import EuropeanCentralBank
-from .denmark import Denmark
 from .finland import Finland
 from .france import France, FranceAlsaceMoselle
+# Germany
+from .germany import (
+    BadenWurttemberg,
+    Bavaria,
+    Berlin,
+    Brandenburg,
+    Bremen,
+    Germany,
+    Hamburg,
+    Hesse,
+    LowerSaxony,
+    MecklenburgVorpommern,
+    NorthRhineWestphalia,
+    RhinelandPalatinate,
+    Saarland,
+    Saxony,
+    SaxonyAnhalt,
+    SchleswigHolstein,
+    Thuringia,
+)
 from .greece import Greece
 from .hungary import Hungary
 from .iceland import Iceland
@@ -25,32 +45,48 @@ from .poland import Poland
 from .portugal import Portugal
 from .romania import Romania
 from .russia import Russia
+# Scotland
+from .scotland import (
+    Aberdeen,
+    Angus,
+    Arbroath,
+    Ayr,
+    CarnoustieMonifieth,
+    Clydebank,
+    DumfriesGalloway,
+    Dundee,
+    EastDunbartonshire,
+    Edinburgh,
+    Elgin,
+    Falkirk,
+    Fife,
+    Galashiels,
+    Glasgow,
+    Hawick,
+    Inverclyde,
+    Inverness,
+    Kilmarnock,
+    Lanark,
+    Linlithgow,
+    Lochaber,
+    NorthLanarkshire,
+    Paisley,
+    Perth,
+    Scotland,
+    ScottishBorders,
+    SouthLanarkshire,
+    Stirling,
+    WestDunbartonshire,
+)
 from .serbia import Serbia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Spain, Catalonia
+from .spain import Catalonia, Spain
 from .sweden import Sweden
-from .switzerland import Switzerland, Vaud, Geneva
+from .switzerland import Geneva, Switzerland, Vaud
+from .turkey import Turkey
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
-from .turkey import Turkey
-
-# Germany
-from .germany import (
-    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
-    Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
-    NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
-    SaxonyAnhalt, SchleswigHolstein, Thuringia
-)
-
-# Scotland
-from .scotland import (
-    Scotland, Aberdeen, Angus, Arbroath, Ayr, CarnoustieMonifieth, Clydebank,
-    DumfriesGalloway, Dundee, EastDunbartonshire, Edinburgh, Elgin, Falkirk,
-    Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,
-    Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
-    ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire
-)
 
 __all__ = (
     'Austria',

@@ -20,34 +20,36 @@ FIXME:
 * ...
 
 """
+import warnings
 # Since Scotland territories have a lot of different variations, it has become
 # necessary to split this module and associated tests
 from datetime import date, timedelta
-import warnings
-from workalendar.core import WesternCalendar, ChristianMixin, MON, THU, FRI
+
+from workalendar.core import FRI, MON, THU, ChristianMixin, WesternCalendar
+
 from .mixins import (
-    SpringHolidayFirstMondayApril,
-    SpringHolidaySecondMondayApril,
-    SpringHolidayTuesdayAfterFirstMondayMay,
-    SpringHolidayLastMondayMay,
-    SpringHolidayFirstMondayJune,
-    VictoriaDayFourthMondayMay,
-    VictoriaDayLastMondayMay,
-    VictoriaDayFirstMondayJune,
-    FairHolidayLastMondayJune,
-    FairHolidayFirstMondayJuly,
-    FairHolidaySecondMondayJuly,
-    FairHolidayThirdMondayJuly,
-    FairHolidayLastMondayJuly,
-    FairHolidayFourthFridayJuly,
-    FairHolidayFirstMondayAugust,
-    LateSummer,
-    BattleStirlingBridge,
-    AutumnHolidayLastMondaySeptember,
     AutumnHolidayFirstMondayOctober,
+    AutumnHolidayLastMondaySeptember,
     AutumnHolidaySecondMondayOctober,
     AutumnHolidayThirdMondayOctober,
     AyrGoldCup,
+    BattleStirlingBridge,
+    FairHolidayFirstMondayAugust,
+    FairHolidayFirstMondayJuly,
+    FairHolidayFourthFridayJuly,
+    FairHolidayLastMondayJuly,
+    FairHolidayLastMondayJune,
+    FairHolidaySecondMondayJuly,
+    FairHolidayThirdMondayJuly,
+    LateSummer,
+    SpringHolidayFirstMondayApril,
+    SpringHolidayFirstMondayJune,
+    SpringHolidayLastMondayMay,
+    SpringHolidaySecondMondayApril,
+    SpringHolidayTuesdayAfterFirstMondayMay,
+    VictoriaDayFirstMondayJune,
+    VictoriaDayFourthMondayMay,
+    VictoriaDayLastMondayMay,
 )
 
 

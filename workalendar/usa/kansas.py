@@ -1,5 +1,5 @@
-from .core import UnitedStates
 from ..registry_tools import iso_register
+from .core import UnitedStates
 
 # FIXME: According to wikipedia, Kansas only has all federal holidays, except
 # the Columbus Day and Washington's Birthday.

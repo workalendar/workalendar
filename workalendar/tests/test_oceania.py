@@ -1,20 +1,20 @@
 from datetime import date
 
-from workalendar.tests import GenericCalendarTest
 from workalendar.oceania import (
     Australia,
     AustralianCapitalTerritory,
+    Hobart,
+    MarshallIslands,
     NewSouthWales,
+    NewZealand,
     NorthernTerritory,
     Queensland,
     SouthAustralia,
     Tasmania,
-    Hobart,
     Victoria,
     WesternAustralia,
-    MarshallIslands,
-    NewZealand
 )
+from workalendar.tests import GenericCalendarTest
 
 
 class AustraliaTest(GenericCalendarTest):

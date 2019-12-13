@@ -1,8 +1,7 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin, MON, SAT
+from ..core import MON, SAT, ChristianMixin, WesternCalendar
 from ..registry_tools import iso_register
-
 
 QUEENS_BIRTHDAY_EXCEPTIONS = {
     2013: date(2013, 6, 17),

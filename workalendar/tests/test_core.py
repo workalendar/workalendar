@@ -1,14 +1,25 @@
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
 from unittest import TestCase
 
 import pandas
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.core import MON, TUE, THU, FRI, WED, SAT, SUN
-from workalendar.core import Calendar, LunarCalendar, WesternCalendar
-from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
+from workalendar.core import (
+    FRI,
+    MON,
+    SAT,
+    SUN,
+    THU,
+    TUE,
+    WED,
+    Calendar,
+    ChristianMixin,
+    IslamicMixin,
+    JalaliMixin,
+    LunarCalendar,
+    WesternCalendar,
+)
 from workalendar.exceptions import UnsupportedDateType
+from workalendar.tests import GenericCalendarTest
 
 
 class CalendarTest(GenericCalendarTest):
