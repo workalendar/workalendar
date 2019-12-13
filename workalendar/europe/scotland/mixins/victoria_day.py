@@ -1,12 +1,13 @@
 """
 Victoria Day mixins
 """
+from gettext import gettext as _
 from workalendar.core import MON
 
 
 class VictoriaDayMixin(object):
     include_victoria_day = True
-    victoria_day_label = "Victoria Day"
+    victoria_day_label = _("Victoria Day")
 
 
 class VictoriaDayFourthMondayMay(VictoriaDayMixin):
