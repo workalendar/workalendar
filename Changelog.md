@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## master (unreleased)
+- Added Ukraine calendar, by @apelloni.
 
 ### ISO Registry API Change
 

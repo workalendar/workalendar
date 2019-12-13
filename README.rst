@@ -116,6 +116,7 @@ Europe
   * Geneva
 
 * Turkey
+* Ukraine
 * United Kingdom (incl. Northern Ireland, Scotland and all its territories)
 
 America
