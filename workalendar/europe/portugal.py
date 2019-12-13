@@ -21,7 +21,7 @@ class Portugal(WesternCalendar, ChristianMixin):
     )
 
     def get_fixed_holidays(self, year):
-        days = super(Portugal, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if year > 2015 or year < 2013:
 
             days.append((date(year, 10, 5), "Implantação da República"))
@@ -30,7 +30,7 @@ class Portugal(WesternCalendar, ChristianMixin):
         return days
 
     def get_variable_days(self, year):
-        days = super(Portugal, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if year > 2015 or year < 2013:
             days.append((self.get_corpus_christi(year), "Corpus Christi"))
         return days

@@ -46,6 +46,6 @@ class NorthCarolina(UnitedStates):
             ]
 
     def get_variable_days(self, year):
-        days = super(NorthCarolina, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend(self.get_christmas_shifts(year))
         return days

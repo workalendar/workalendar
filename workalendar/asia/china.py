@@ -66,7 +66,7 @@ class China(ChineseNewYearCalendar, WesternCalendar):
     include_chinese_new_year_eve = True
 
     def __init__(self, *args, **kwargs):
-        super(China, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.extra_working_days = []
         for year, data in workdays.items():
             for holiday_name, day_list in data.items():
@@ -77,10 +77,10 @@ class China(ChineseNewYearCalendar, WesternCalendar):
         warnings.warn("Support 2018, 2019 currently, need update every year.")
         if year not in holidays.keys():
             raise CalendarError(f"Need configure {year} for China.")
-        return super(China, self).get_calendar_holidays(year)
+        return super().get_calendar_holidays(year)
 
     def get_variable_days(self, year):
-        days = super(China, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Spring Festival, eve, 1.1, and 1.2 - 1.6 in lunar day
         for i in range(2, 7):
             days.append((ChineseNewYearCalendar.lunar(year, 1, i),
@@ -94,14 +94,14 @@ class China(ChineseNewYearCalendar, WesternCalendar):
     def is_working_day(self, day,
                        extra_working_days=None, extra_holidays=None):
         extra_working_days = extra_working_days or self.extra_working_days
-        return super(China, self).is_working_day(day, extra_working_days,
+        return super().is_working_day(day, extra_working_days,
                                                  extra_holidays)
 
     def add_working_days(self, day, delta,
                          extra_working_days=None, extra_holidays=None,
                          keep_datetime=False):
         extra_working_days = extra_working_days or self.extra_working_days
-        return super(China, self).add_working_days(day, delta,
+        return super().add_working_days(day, delta,
                                                    extra_working_days,
                                                    extra_holidays,
                                                    keep_datetime)
@@ -110,7 +110,7 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                          extra_working_days=None, extra_holidays=None,
                          keep_datetime=False):
         extra_working_days = extra_working_days or self.extra_working_days
-        return super(China, self).sub_working_days(day, delta,
+        return super().sub_working_days(day, delta,
                                                    extra_working_days,
                                                    extra_holidays,
                                                    keep_datetime)

@@ -12,7 +12,7 @@ class Vermont(UnitedStates):
     include_columbus_day = False
 
     def get_variable_days(self, year):
-        days = super(Vermont, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (self.get_nth_weekday_in_month(year, 3, TUE, 1),
              "Town Meeting Day")

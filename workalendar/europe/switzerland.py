@@ -46,7 +46,7 @@ class Vaud(Switzerland):
         )
 
     def get_variable_days(self, year):
-        days = super(Vaud, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if self.include_federal_thanksgiving_monday:
             days.append((self.get_federal_thanksgiving_monday(year),
                          "Federal Thanksgiving Monday"))
@@ -74,6 +74,6 @@ class Geneva(Switzerland):
         )
 
     def get_variable_days(self, year):
-        days = super(Geneva, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_genevan_fast(year))
         return days

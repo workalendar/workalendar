@@ -25,7 +25,7 @@ class Argentina(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
 
-        days = super(Argentina, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
                 "Carnival Lunes"))

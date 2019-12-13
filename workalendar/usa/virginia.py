@@ -29,7 +29,7 @@ class Virginia(UnitedStates):
     include_thanksgiving_wednesday = True
 
     def get_variable_days(self, year):
-        days = super(Virginia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (self.get_nth_weekday_in_month(year, 1, FRI, 3),
              "Lee-Jackson Day")

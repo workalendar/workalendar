@@ -42,7 +42,7 @@ class Brazil(WesternCalendar, ChristianMixin):
         return self.get_easter_sunday(year) - timedelta(days=47)
 
     def get_variable_days(self, year):
-        days = super(Brazil, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if self.include_sao_jose:
             days.append((date(year, 3, 19), self.sao_jose_label))
         if self.include_sao_pedro:
@@ -246,7 +246,7 @@ class BrazilRioDeJaneiro(Brazil):
         return BrazilRioDeJaneiro.get_nth_weekday_in_month(year, 10, MON, 3)
 
     def get_variable_days(self, year):
-        days = super(BrazilRioDeJaneiro, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_dia_do_comercio(year), "Dia do Comércio"))
         return days
@@ -317,7 +317,7 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
     consciencia_negra_label = "Dia da Consciência Negra"
 
     def get_variable_days(self, year):
-        days = super(BrazilSaoPauloCity, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_carnaval(year), "Carnaval"))
         return days
 
@@ -396,7 +396,7 @@ class BrazilSerraCity(BrazilEspiritoSanto):
     include_nossa_senhora_conceicao = True
 
     def get_variable_days(self, year):
-        days = super(BrazilSerraCity, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         carnaval_tuesday = self.get_carnaval(year)
         days.append((carnaval_tuesday - timedelta(days=1), "Carnaval Monday"))
         days.append((carnaval_tuesday, "Carnaval"))

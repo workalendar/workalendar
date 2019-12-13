@@ -29,6 +29,6 @@ class ChicagoIllinois(Illinois):
         )
 
     def get_variable_days(self, year):
-        days = super(ChicagoIllinois, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_pulaski_day(year))
         return days

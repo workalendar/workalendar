@@ -50,7 +50,7 @@ class Georgia(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(Georgia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_robert_lee_birthday(year),
             self.get_washington_birthday_december(year),

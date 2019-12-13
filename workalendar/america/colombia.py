@@ -57,7 +57,7 @@ class Colombia(WesternCalendar, ChristianMixin):
         return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_variable_days(self, year):
-        days = super(Colombia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             (self.get_epiphany(year), "Epiphany"),
             (self.get_saint_joseph(year), "Saint Joseph"),

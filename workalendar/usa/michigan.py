@@ -14,7 +14,7 @@ class Michigan(UnitedStates):
     include_columbus_day = False
 
     def get_fixed_holidays(self, year):
-        days = super(Michigan, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
 
         # New Year's Eve to be added
         new_years_eve = date(year, 12, 31)
