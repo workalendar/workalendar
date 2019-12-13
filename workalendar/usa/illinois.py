@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from gettext import gettext as _
 from .core import UnitedStates
 from ..registry_tools import iso_register
 from ..core import MON
@@ -29,7 +30,7 @@ class ChicagoIllinois(Illinois):
         day = self.get_nth_weekday_in_month(year, 3, MON)
         return (
             day,
-            "Casimir Pulaski Day"
+            _("Casimir Pulaski Day")
         )
 
     def get_variable_days(self, year):

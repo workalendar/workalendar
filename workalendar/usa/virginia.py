@@ -15,6 +15,7 @@ day by implementing the following class:
         include_thanksgiving_wednesday = False
 
 """
+from gettext import gettext as _
 from ..core import WED, FRI
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -35,12 +36,12 @@ class Virginia(UnitedStates):
         days = super(Virginia, self).get_variable_days(year)
         days.append(
             (self.get_nth_weekday_in_month(year, 1, FRI, 3),
-             "Lee-Jackson Day")
+             _("Lee-Jackson Day"))
         )
         if self.include_thanksgiving_wednesday:
             days.append(
                 (self.get_nth_weekday_in_month(year, 11, WED, 4),
-                 "Day before Thanksgiving (start at noon)")
+                 _("Day before Thanksgiving (start at noon)"))
             )
 
         return days

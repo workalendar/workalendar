@@ -1,6 +1,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 from datetime import date
+from gettext import gettext as _
 
 from .core import UnitedStates
 from ..registry_tools import iso_register
@@ -10,7 +11,7 @@ from ..registry_tools import iso_register
 class AmericanSamoa(UnitedStates):
     "American Samoa"
     include_boxing_day = True
-    boxing_day_label = "Family Day"
+    boxing_day_label = _("Family Day")
 
     def get_flag_day(self, year):
         """
@@ -18,7 +19,7 @@ class AmericanSamoa(UnitedStates):
         """
         return (
             date(year, 4, 17),
-            "Flag Day"
+            _("Flag Day")
         )
 
     def get_variable_days(self, year):

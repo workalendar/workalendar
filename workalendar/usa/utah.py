@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from gettext import gettext as _
 from ..registry_tools import iso_register
 from .core import UnitedStates
 
@@ -10,5 +11,5 @@ from .core import UnitedStates
 class Utah(UnitedStates):
     """Utah"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (7, 24, "Pioneer Day"),
+        (7, 24, _("Pioneer Day")),
     )
