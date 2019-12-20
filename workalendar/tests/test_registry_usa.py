@@ -1,5 +1,5 @@
 from unittest import TestCase
-from workalendar.usa import (
+from ..usa import (
     UnitedStates,
     Alabama,
     Alaska,
@@ -54,7 +54,7 @@ from workalendar.usa import (
     Wyoming
 )
 
-from workalendar.registry import registry
+from ..registry import registry
 
 
 class RegistryUsa(TestCase):

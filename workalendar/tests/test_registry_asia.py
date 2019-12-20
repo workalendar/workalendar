@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from workalendar.asia import (
+from ..asia import (
     China,
     HongKong,
     Japan,
@@ -11,7 +11,7 @@ from workalendar.asia import (
     Taiwan,
 )
 
-from workalendar.registry import registry
+from ..registry import registry
 
 
 class RegistryAsia(TestCase):

@@ -1,12 +1,12 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
+from . import GenericCalendarTest
 
-from workalendar.asia import (
+from ..asia import (
     HongKong, Japan, JapanBank, Qatar, Singapore,
     SouthKorea, Taiwan, Malaysia, China, Israel
 )
-from workalendar.asia.china import holidays as china_holidays
-from workalendar.exceptions import CalendarError
+from ..asia.china import holidays as china_holidays
+from ..exceptions import CalendarError
 
 
 class ChinaTest(GenericCalendarTest):

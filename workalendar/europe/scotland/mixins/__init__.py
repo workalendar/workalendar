@@ -4,7 +4,7 @@ Scotland calendar mixins.
 There are so many of them that it became necessary to move them to a different
 module.
 """
-from workalendar.core import MON, FRI
+from ....core import MON, FRI
 from datetime import timedelta
 
 from .spring_holiday import (

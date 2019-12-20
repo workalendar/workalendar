@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 

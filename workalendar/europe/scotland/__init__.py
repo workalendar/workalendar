@@ -24,8 +24,7 @@ FIXME:
 # necessary to split this module and associated tests
 from datetime import date, timedelta
 import warnings
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, THU, FRI
+from ...core import WesternCalendar, ChristianMixin, MON, THU, FRI
 from .mixins import (
     SpringHolidayFirstMondayApril,
     SpringHolidaySecondMondayApril,

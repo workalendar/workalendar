@@ -2,7 +2,7 @@ import warnings
 from datetime import date
 from unittest import TestCase
 
-from workalendar.core import Calendar
+from ..core import Calendar
 
 
 class GenericCalendarTest(TestCase):

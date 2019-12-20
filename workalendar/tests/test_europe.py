@@ -1,43 +1,45 @@
 from datetime import date
 from collections import Counter
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.europe import Austria
-from workalendar.europe import Bulgaria
-from workalendar.europe import Belgium
-from workalendar.europe import CaymanIslands
-from workalendar.europe import Croatia
-from workalendar.europe import Cyprus
-from workalendar.europe import CzechRepublic
-from workalendar.europe import Denmark
-from workalendar.europe import Slovakia
-from workalendar.europe import Finland
-from workalendar.europe import Estonia
-from workalendar.europe import Sweden
-from workalendar.europe import France, FranceAlsaceMoselle
-from workalendar.europe import Greece
-from workalendar.europe import Hungary
-from workalendar.europe import Iceland
-from workalendar.europe import Ireland
-from workalendar.europe import Italy
-from workalendar.europe import Latvia
-from workalendar.europe import Lithuania
-from workalendar.europe import Luxembourg
-from workalendar.europe import Malta
-from workalendar.europe import Netherlands
-from workalendar.europe import Norway
-from workalendar.europe import Poland
-from workalendar.europe import Portugal
-from workalendar.europe import Romania
-from workalendar.europe import Russia
-from workalendar.europe import Serbia
-from workalendar.europe import Spain, Catalonia
-from workalendar.europe import Slovenia
-from workalendar.europe import Switzerland, Vaud, Geneva
-from workalendar.europe import Ukraine
-from workalendar.europe import UnitedKingdom
-from workalendar.europe import UnitedKingdomNorthernIreland
-from workalendar.europe import EuropeanCentralBank
+from . import GenericCalendarTest
+from ..europe import (
+    Austria,
+    Bulgaria,
+    Belgium,
+    CaymanIslands,
+    Croatia,
+    Cyprus,
+    CzechRepublic,
+    Denmark,
+    Slovakia,
+    Finland,
+    Estonia,
+    Sweden,
+    France, FranceAlsaceMoselle,
+    Greece,
+    Hungary,
+    Iceland,
+    Ireland,
+    Italy,
+    Latvia,
+    Lithuania,
+    Luxembourg,
+    Malta,
+    Netherlands,
+    Norway,
+    Poland,
+    Portugal,
+    Romania,
+    Russia,
+    Serbia,
+    Spain, Catalonia,
+    Slovenia,
+    Switzerland, Vaud, Geneva,
+    Ukraine,
+    UnitedKingdom,
+    UnitedKingdomNorthernIreland,
+    EuropeanCentralBank,
+)
 
 
 class AustriaTest(GenericCalendarTest):

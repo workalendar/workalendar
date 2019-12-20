@@ -1,5 +1,5 @@
 from datetime import date
-from workalendar.core import WesternCalendar, OrthodoxMixin
+from ..core import WesternCalendar, OrthodoxMixin
 from ..registry_tools import iso_register
 
 

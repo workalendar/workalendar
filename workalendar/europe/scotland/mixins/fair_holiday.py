@@ -1,7 +1,7 @@
 """
 Fair Holiday mixins
 """
-from workalendar.core import MON, FRI
+from ....core import MON, FRI
 
 
 class FairHoliday(object):

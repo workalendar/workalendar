@@ -3,8 +3,8 @@ from unittest import TestCase, skipIf
 import sys
 import warnings
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.europe import (
+from . import GenericCalendarTest
+from ..europe import (
     Scotland, Aberdeen, Angus, Arbroath, Ayr, CarnoustieMonifieth, Clydebank,
     DumfriesGalloway, Dundee, EastDunbartonshire, Edinburgh, Elgin, Falkirk,
     Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,

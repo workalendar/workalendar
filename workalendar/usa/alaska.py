@@ -1,5 +1,5 @@
 from .core import UnitedStates
-from workalendar.core import MON
+from ..core import MON
 from ..registry_tools import iso_register
 
 

@@ -1,6 +1,7 @@
 from unittest import TestCase
 
-from workalendar.america import (
+# Brazil import
+from ..america import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
     BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
     BrazilGoias, BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
@@ -9,7 +10,8 @@ from workalendar.america import (
     BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
     BrazilSergipe, BrazilTocantins,
 )
-from workalendar.america import (
+# Canada territories
+from ..america import (
     Canada,
     Ontario,
     Quebec,
@@ -26,11 +28,12 @@ from workalendar.america import (
     Nunavut,
 
 )
-from workalendar.america import (
+# Other american countries
+from ..america import (
     Argentina, Chile, Colombia, Mexico, Panama, Paraguay
 )
 
-from workalendar.registry import registry
+from ..registry import registry
 
 
 class RegistryAmerica(TestCase):

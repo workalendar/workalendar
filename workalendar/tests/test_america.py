@@ -1,7 +1,8 @@
 from datetime import date
-from workalendar.tests import GenericCalendarTest
-from workalendar.america import Colombia, Barbados
-from workalendar.america import Mexico, Chile, Panama, Paraguay, Argentina
+from . import GenericCalendarTest
+from ..america import (
+    Argentina, Barbados, Chile, Colombia, Mexico, Panama, Paraguay
+)
 
 
 class ArgentinaTest(GenericCalendarTest):

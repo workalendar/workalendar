@@ -1,4 +1,4 @@
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 
 
 class EuropeanCentralBank(WesternCalendar, ChristianMixin):
