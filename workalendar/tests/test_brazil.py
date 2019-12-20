@@ -256,12 +256,12 @@ class BrazilRioGrandeDoNorteTest(BrazilTest):
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
-        # Dua de São Pedro
+        # Dia de São Pedro
         sao_pedro = date(2017, 6, 29)
         self.assertIn(sao_pedro, holidays)
         # Check the label
         self.assertEqual(
-            self.cal.get_holiday_label(sao_pedro), "Dua de São Pedro"
+            self.cal.get_holiday_label(sao_pedro), "Dia de São Pedro"
         )
         # Mártires de Cunhaú e Uruaçuu
         self.assertIn(date(2017, 10, 3), holidays)
@@ -387,7 +387,7 @@ class BrazilVitoriaCityTest(BrazilEspiritoSantoTest):
         # Test label
         self.assertEqual(
             self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
+            "Sexta-feira da Paixão",
         )
 
 
@@ -432,7 +432,7 @@ class BrazilCariacicaCityTest(BrazilEspiritoSantoTest):
         # Test label
         self.assertEqual(
             self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
+            "Sexta-feira da Paixão",
         )
 
 
@@ -482,7 +482,7 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
         # Test label
         self.assertEqual(
             self.cal.get_holiday_label(good_friday),
-            "Paixão do Cristo",
+            "Sexta-feira da Paixão",
         )
 
 
