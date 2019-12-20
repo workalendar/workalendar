@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from workalendar.core import WesternCalendar
 from ..registry_tools import iso_register
 

@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from datetime import timedelta, date
 from workalendar.core import WesternCalendar, ChristianMixin
 from ..core import MON, TUE, WED, THU, FRI, SAT

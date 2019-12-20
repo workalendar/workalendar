@@ -1,5 +1,3 @@
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from ..core import Calendar
 from ..core import FRI, SAT, IslamicMixin
 from ..registry_tools import iso_register

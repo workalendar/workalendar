@@ -1,4 +1,3 @@
-from __future__ import (absolute_import, unicode_literals)
 from datetime import date, timedelta
 
 from pyluach.dates import GregorianDate, HebrewDate

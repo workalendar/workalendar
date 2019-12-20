@@ -1,6 +1,3 @@
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import warnings
 from datetime import date
 from ..core import MON, TUE, WED, THU, FRI, SAT

@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from datetime import date
 from workalendar.core import WesternCalendar, ChristianMixin
 from workalendar.core import THU, MON

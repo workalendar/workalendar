@@ -1,6 +1,3 @@
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 from ..core import SUN
 from ..registry_tools import iso_register

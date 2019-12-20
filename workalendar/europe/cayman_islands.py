@@ -1,6 +1,3 @@
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin, MON, SAT
