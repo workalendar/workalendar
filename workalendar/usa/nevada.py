@@ -11,7 +11,7 @@ class Nevada(UnitedStates):
     include_columbus_day = False
 
     def get_variable_days(self, year):
-        days = super(Nevada, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (self.get_last_weekday_in_month(year, 10, FRI), "Nevada Day")
         )

@@ -20,7 +20,7 @@ class AmericanSamoa(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(AmericanSamoa, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_flag_day(year),
         ])

@@ -37,7 +37,7 @@ class WestVirginia(UnitedStates):
     )
 
     def get_fixed_holidays(self, year):
-        days = super(WestVirginia, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.west_virginia_include_christmas_eve:
             days.append(
                 (date(year, 12, 24), "Christmas Eve")

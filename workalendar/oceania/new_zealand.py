@@ -32,7 +32,7 @@ class NewZealand(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(NewZealand, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_queens_birthday(year))
         days.append(self.get_labour_day(year))
 

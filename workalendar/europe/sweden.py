@@ -46,7 +46,7 @@ class Sweden(WesternCalendar, ChristianMixin):
         return all_saints
 
     def get_variable_days(self, year):
-        days = super(Sweden, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_midsummer_day(year), "Midsummer's Day"))
         days.append((self.get_midsummer_eve(year), "Midsummer's Eve"))
         days.append((self.get_variable_all_saints(year), "All Saints"))

@@ -456,17 +456,16 @@ class FranceAlsaceMoselleTest(FranceTest):
     cal_class = FranceAlsaceMoselle
 
     def test_year_2013(self):
-        super(FranceAlsaceMoselleTest, self).test_year_2013()
+        super().test_year_2013()
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 29), holidays)  # Good friday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_working_days(self):
-        super(FranceAlsaceMoselleTest, self).test_working_days()
+        super().test_working_days()
 
     def test_business_days_computations(self):
-        super(FranceAlsaceMoselleTest, self) \
-            .test_business_days_computations()
+        super().test_business_days_computations()
 
 
 class GreeceTest(GenericCalendarTest):

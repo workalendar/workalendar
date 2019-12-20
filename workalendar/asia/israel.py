@@ -13,7 +13,7 @@ class Israel(Calendar):
     WEEKEND_DAYS = (SAT, FRI)
 
     def get_variable_days(self, year):
-        days = super(Israel, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         delta = timedelta(days=1)
         current_date = date(year, 1, 1)

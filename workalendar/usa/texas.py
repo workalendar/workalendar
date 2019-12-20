@@ -34,7 +34,7 @@ Example:
         )
 
         def get_variable_days(self, year):
-            days = super(TexasCustom, self).get_variable_days(year)
+            days = super().get_variable_days(year)
             days.append(
                 (self.get_nth_weekday_in_month(year, 1, 15), "Special Day")
             )
@@ -61,7 +61,7 @@ class TexasBase(UnitedStates):
     include_boxing_day = False
 
     def get_fixed_holidays(self, year):
-        days = super(TexasBase, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.texas_include_confederate_heroes:
             days.append(
                 (date(year, 1, 19), "Confederate Heroes Day")

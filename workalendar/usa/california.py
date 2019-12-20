@@ -21,7 +21,7 @@ class CaliforniaEducation(California):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(CaliforniaEducation, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         if year != 2009:
             days.append(self.get_lincoln_birthday(year))

@@ -23,7 +23,7 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
     include_whit_monday = True
 
     def get_variable_days(self, year):
-        days = super(Ukraine, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Orthodox Christmas holiday is moved when it falls over the week
         orthodox_christmas = date(year, 1, 7)

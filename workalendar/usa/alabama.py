@@ -37,6 +37,6 @@ class AlabamaPerryCounty(Alabama):
         )
 
     def get_variable_days(self, year):
-        days = super(AlabamaPerryCounty, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_obama_day(year))
         return days

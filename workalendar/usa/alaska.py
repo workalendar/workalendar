@@ -12,7 +12,7 @@ class Alaska(UnitedStates):
     include_columbus_day = False
 
     def get_variable_days(self, year):
-        days = super(Alaska, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (Alaska.get_last_weekday_in_month(year, 3, MON), "Seward's Day")
         )

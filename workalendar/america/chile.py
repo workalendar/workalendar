@@ -25,7 +25,7 @@ class Chile(WesternCalendar, ChristianMixin):
     include_immaculate_conception = True
 
     def get_variable_days(self, year):
-        days = super(Chile, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         september_17 = date(year, 9, 17)
         if september_17.weekday() == MON:
             days.append((september_17, '"Bridge" holiday'))

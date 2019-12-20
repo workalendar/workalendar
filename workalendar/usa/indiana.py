@@ -60,7 +60,7 @@ class Indiana(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(Indiana, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_washington_birthday_december(year),
         ])

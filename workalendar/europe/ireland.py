@@ -27,7 +27,7 @@ class Ireland(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         self.include_whit_monday = (year <= 1973)
-        days = super(Ireland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # St Patrick's day
         st_patrick = date(year, 3, 17)

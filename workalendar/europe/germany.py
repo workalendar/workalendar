@@ -45,7 +45,7 @@ class Germany(WesternCalendar, ChristianMixin):
         return (day, "Reformation Day")
 
     def get_variable_days(self, year):
-        days = super(Germany, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if self.include_reformation_day(year):
             days.append(self.get_reformation_day(year))
         return days
@@ -83,7 +83,7 @@ class Berlin(Germany):
         return (day, "Liberation Day")
 
     def get_variable_days(self, year):
-        days = super(Berlin, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if year >= 2019:
             days.append(self.get_international_womens_day(year))
         if year == 2020:
@@ -169,7 +169,7 @@ class Saxony(Germany):
         return (day, "Repentance Day")
 
     def get_variable_days(self, year):
-        days = super(Saxony, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_repentance_day(year))
         return days
 

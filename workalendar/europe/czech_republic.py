@@ -25,4 +25,4 @@ class CzechRepublic(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         # As of 2016, Good Friday became a holiday
         self.include_good_friday = (year >= 2016)
-        return super(CzechRepublic, self).get_variable_days(year)
+        return super().get_variable_days(year)

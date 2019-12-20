@@ -153,7 +153,7 @@ class Zhraa(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(Zhraa, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         days.append(
             (Zhraa.get_nth_weekday_in_month(year, 6, MON),

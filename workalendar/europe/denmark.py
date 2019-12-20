@@ -25,6 +25,6 @@ class Denmark(WesternCalendar, ChristianMixin):
         return easter_sunday + timedelta(days=26)
 
     def get_variable_days(self, year):
-        days = super(Denmark, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_store_bededag(year), "Store Bededag"))
         return days

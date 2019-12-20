@@ -50,7 +50,7 @@ class Australia(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(Australia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         january_first = date(year, 1, 1)
         if january_first.weekday() in self.get_weekend_days():
             days.append((
@@ -153,7 +153,7 @@ class AustralianCapitalTerritory(Australia):
             return shift, "Reconciliation Day Shift"
 
     def get_variable_days(self, year):
-        days = super(AustralianCapitalTerritory, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_canberra_day(year))
 
         family_community_day = self.get_family_community_day(year)
@@ -201,7 +201,7 @@ class NorthernTerritory(Australia):
         )
 
     def get_variable_days(self, year):
-        days = super(NorthernTerritory, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_may_day(year),
             self.get_picnic_day(year),
@@ -225,7 +225,7 @@ class Queensland(Australia):
         )
 
     def get_variable_days(self, year):
-        days = super(Queensland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_labour_day_may(year))
         return days
 
@@ -249,7 +249,7 @@ class SouthAustralia(Australia):
         return (date(year, 12, 26), "Proclamation Day")
 
     def get_variable_days(self, year):
-        days = super(SouthAustralia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_adelaides_cup(year),
             self.get_proclamation_day(year),
@@ -281,7 +281,7 @@ class Tasmania(Australia):
         )
 
     def get_variable_days(self, year):
-        days = super(Tasmania, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_eight_hours_day(year))
         if self.has_recreation_day:
             days.append(self.get_recreation_day(year))
@@ -301,7 +301,7 @@ class Hobart(Tasmania):
         )
 
     def get_variable_days(self, year):
-        days = super(Hobart, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_hobart(year))
         return days
 
@@ -327,7 +327,7 @@ class Victoria(Australia):
         )
 
     def get_variable_days(self, year):
-        days = super(Victoria, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_melbourne_cup(year))
         return days
@@ -355,7 +355,7 @@ class WesternAustralia(Australia):
         # The western Australia territory, since it's based on the Governor
         # Decision (it is typically the last Monday of September or the first
         # Monday of October)
-        days = super(WesternAustralia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_labours_day_in_march(year))
         days.append(self.get_western_australia_day(year))
         return days

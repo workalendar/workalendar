@@ -37,7 +37,7 @@ class Lithuania(WesternCalendar, ChristianMixin):
         )
 
     def get_variable_days(self, year):
-        days = super(Lithuania, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_mothers_day(year))
         days.append(self.get_fathers_day(year))
         return days

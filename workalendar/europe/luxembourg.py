@@ -20,7 +20,7 @@ class Luxembourg(WesternCalendar, ChristianMixin):
     )
 
     def get_fixed_holidays(self, year):
-        days = super(Luxembourg, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if year > 2018:
             days.append((date(year, 5, 9), "Europe Day"))
 

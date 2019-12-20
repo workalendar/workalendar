@@ -56,7 +56,7 @@ class Singapore(WesternCalendar,
         """
         Singapore variable days
         """
-        days = super(Singapore, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Vesak Day
         days.append(

@@ -46,7 +46,7 @@ class Romania(OrthodoxMixin, WesternCalendar):
         return days
 
     def get_variable_days(self, year):
-        days = super(Romania, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend(self.get_childrens_day(year))
         days.extend(self.get_liberation_day(year))
         return days

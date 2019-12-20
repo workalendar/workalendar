@@ -18,7 +18,7 @@ class Taiwan(ChineseNewYearCalendar, WesternCalendar):
     include_chinese_second_day = True
 
     def get_variable_days(self, year):
-        days = super(Taiwan, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Qingming begins when the sun reaches the celestial
         # longitude of 15° (usually around April 4th or 5th)
         qingming = solar_term(year, 15, 'Asia/Taipei')

@@ -26,6 +26,6 @@ class Hawaii(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(Hawaii, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_statehood_day(year))
         return days
