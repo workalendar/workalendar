@@ -1,6 +1,5 @@
-from unittest import skip, skipIf
+from unittest import skip
 from datetime import date
-import sys
 import warnings
 
 from . import GenericCalendarTest
@@ -23,8 +22,6 @@ from ..usa import (
     # Other territories, cities...
     AmericanSamoa, ChicagoIllinois, Guam, SuffolkCountyMassachusetts,
 )
-
-PY2 = sys.version_info[0] == 2
 
 
 class UnitedStatesTest(GenericCalendarTest):
@@ -667,7 +664,6 @@ class FloridaLegalTest(IncludeMardiGras, ElectionDayEveryYear,
     """
     cal_class = FloridaLegal
 
-    @skipIf(PY2, "Python 2 warnings unsupported")
     def test_init_warning(self):
         warnings.simplefilter("always")
         with warnings.catch_warnings(record=True) as w:
