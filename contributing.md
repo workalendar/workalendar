@@ -54,12 +54,20 @@ mkvirtualenv WORKALENDAR
 pip install -e ./
 ```
 
+#### Coding standards
+
+When you provide a patch for workalendar, whether it would be a new calendar or a fix to an existing one, or else, you will have to make sure that your contribution follows these basic requirements:
+
+* Your code should pass the `flake8` test ; that is to say that it follows the [PEP8](https://www.python.org/dev/peps/pep-0008/) guidelines. You can check using the `tox -e flake8` command. If you can't, our travis jobs will do it, and you'll be able to know where are your mistakes, if any.
+* Your code should be compatible with our supported Python version. Currently: Python 3.5, 3.6, 3.7 and 3.8. Again, the Travis CI will check your code against all those versions so you won't have to.
+
 #### Test-driven start
 
 Let's prepare the `Zhraa` class. Edit the `workalendar/europe/zhraa.py` file and add a class like this:
 
 ```python
-from workalendar.core import WesternCalendar
+from ..core import WesternCalendar
+# NOTE: You may use absolute imports if your code lives outside of our codebase.
 
 class Zhraa(WesternCalendar):
     "Kingdom of Zhraa"
@@ -83,7 +91,7 @@ __all__ = (
 Now, we're building a test class. Edit the `workalendar/tests/test_europe.py` file and add the following code:
 
 ```python
-from workalendar.europe import Zhraa
+from ..europe import Zhraa
 # snip...
 
 class ZhraaTest(GenericCalendarTest):
@@ -128,7 +136,7 @@ Now we've got 3 holidays out of 6.
 Using `ChristianMixin` as a base to our `Zhraa` class will instantly add Christmas Day as a holiday. Now we can add Easter monday just by switching the correct flag.
 
 ```python
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 
 class Zhraa(WesternCalendar, ChristianMixin):
     include_easter_monday = True
