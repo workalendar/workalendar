@@ -5,7 +5,7 @@ from .core import Calendar
 from .exceptions import ISORegistryError
 
 
-class IsoRegistry(object):
+class IsoRegistry:
     """
     Registry for all calendars retrievable
     by ISO 3166-2 codes associated with countries

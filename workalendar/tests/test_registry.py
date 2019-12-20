@@ -14,7 +14,7 @@ class SubRegionCalendar(Calendar):
     'Sub Region'
 
 
-class NotACalendarClass(object):
+class NotACalendarClass:
     "Not a Calendar"
 
 

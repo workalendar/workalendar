@@ -39,7 +39,7 @@ from .autumn_holiday import (
 )
 
 
-class LateSummer(object):
+class LateSummer:
     def get_variable_days(self, year):
         """
         Add Late Summer holiday (First Monday of September)
@@ -52,7 +52,7 @@ class LateSummer(object):
         return days
 
 
-class BattleStirlingBridge(object):
+class BattleStirlingBridge:
     def get_variable_days(self, year):
         """
         Add Battle of Stirling Bridge holiday (Second Monday of September)
@@ -65,7 +65,7 @@ class BattleStirlingBridge(object):
         return days
 
 
-class AyrGoldCup(object):
+class AyrGoldCup:
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         # Ayr Gold Cup

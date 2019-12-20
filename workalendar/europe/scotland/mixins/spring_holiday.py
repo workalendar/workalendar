@@ -6,7 +6,7 @@ from datetime import timedelta
 from ....core import MON
 
 
-class SpringHoliday(object):
+class SpringHoliday:
     include_spring_holiday = True
 
 

@@ -16,130 +16,130 @@ from ..europe import (
 PY2 = sys.version_info[0] == 2
 
 
-class GoodFridayTestMixin(object):
+class GoodFridayTestMixin:
     def test_good_friday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 3, 30), holidays)
 
 
-class EasterMondayTestMixin(object):
+class EasterMondayTestMixin:
     def test_easter_monday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 4, 2), holidays)
 
 
-class SpringHolidayFirstMondayAprilTestMixin(object):
+class SpringHolidayFirstMondayAprilTestMixin:
     def test_spring_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 4, 2), holidays)
 
 
-class SpringHolidaySecondMondayAprilTestMixin(object):
+class SpringHolidaySecondMondayAprilTestMixin:
     def test_spring_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 4, 9), holidays)
 
 
-class SpringHolidayLastMondayMayTestMixin(object):
+class SpringHolidayLastMondayMayTestMixin:
     def test_spring_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 5, 28), holidays)
 
 
-class FairHolidayLastMondayJuneTestMixin(object):
+class FairHolidayLastMondayJuneTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 6, 25), holidays)
 
 
-class FairHolidayFirstMondayJulyTestMixin(object):
+class FairHolidayFirstMondayJulyTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 7, 2), holidays)
 
 
-class FairHolidaySecondMondayJulyTestMixin(object):
+class FairHolidaySecondMondayJulyTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 7, 9), holidays)
 
 
-class FairHolidayThirdMondayJulyTestMixin(object):
+class FairHolidayThirdMondayJulyTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 7, 16), holidays)
 
 
-class FairHolidayLastMondayJulyTestMixin(object):
+class FairHolidayLastMondayJulyTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 7, 30), holidays)
 
 
-class FairHolidayFourthFridayJulyTestMixin(object):
+class FairHolidayFourthFridayJulyTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 7, 27), holidays)
 
 
-class FairHolidayFirstMondayAugustTestMixin(object):
+class FairHolidayFirstMondayAugustTestMixin:
     def test_fair_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 8, 6), holidays)
 
 
-class LateSummerTestMixin(object):
+class LateSummerTestMixin:
     def test_late_summer(self):
         # First monday of september
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 9, 3), holidays)
 
 
-class BattleStirlingBridgeTestMixin(object):
+class BattleStirlingBridgeTestMixin:
     def test_stirling(self):
         # Second monday of september
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 9, 10), holidays)
 
 
-class AutumnHolidayLastMondaySeptemberTestMixin(object):
+class AutumnHolidayLastMondaySeptemberTestMixin:
     def test_autumn_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 9, 24), holidays)
 
 
-class AutumnHolidayFirstMondayOctoberTestMixin(object):
+class AutumnHolidayFirstMondayOctoberTestMixin:
     def test_autumn_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 10, 1), holidays)
 
 
-class AutumnHolidaySecondMondayOctoberTestMixin(object):
+class AutumnHolidaySecondMondayOctoberTestMixin:
     def test_autumn_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 10, 8), holidays)
 
 
-class AutumnHolidayThirdMondayOctoberTestMixin(object):
+class AutumnHolidayThirdMondayOctoberTestMixin:
     def test_autumn_holiday(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 10, 15), holidays)
 
 
-class SaintAndrewTestMixin(object):
+class SaintAndrewTestMixin:
     def test_saint_andrew(self):
         # St. Andrew's day happens on November 30th
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 11, 30), holidays)
 
 
-class VictoriaDayLastMondayMayTestMixin(object):
+class VictoriaDayLastMondayMayTestMixin:
     def test_victoria_day(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 5, 28), holidays)
 
 
-class SpringHolidayTuesdayAfterFirstMondayMayTestMixin(object):
+class SpringHolidayTuesdayAfterFirstMondayMayTestMixin:
     def test_spring_holiday_2018(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 5, 8), holidays)
@@ -149,19 +149,19 @@ class SpringHolidayTuesdayAfterFirstMondayMayTestMixin(object):
         self.assertIn(date(2017, 5, 2), holidays)
 
 
-class VictoriaDayFirstMondayJuneTestMixin(object):
+class VictoriaDayFirstMondayJuneTestMixin:
     def test_victoria_day(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 6, 4), holidays)
 
 
-class VictoriaDayFourthMondayMayTestMixin(object):
+class VictoriaDayFourthMondayMayTestMixin:
     def test_victoria_day(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 5, 28), holidays)
 
 
-class AyrGoldCupTestMixin(object):
+class AyrGoldCupTestMixin:
     """
     Ayr Gold cup - two holidays for Ayr and Kilmarnock
     """
