@@ -4,6 +4,8 @@ from __future__ import (absolute_import, division, print_function,
 
 import warnings
 from datetime import date
+from gettext import gettext as _
+
 from ..core import MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -50,7 +52,7 @@ class Georgia(UnitedStates):
         """
         return (
             self.get_nth_weekday_in_month(year, 11, FRI, 4),
-            "Robert E. Lee's Birthday (Observed)"
+            _("Robert E. Lee's Birthday (Observed)")
         )
 
     def get_variable_days(self, year):

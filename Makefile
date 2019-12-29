@@ -42,3 +42,11 @@ endif
 package:
 	rm -Rf build/
 	python setup.py sdist bdist_wheel
+
+.PHONY: makemessages
+makemessages:
+	pygettext -d workalendar -o locales/templates/workalendar.pot workalendar
+
+.PHONY: compilemessages
+compilemessages:
+	for file in $$(find locales -name workalendar.po); do msgfmt -o $${file%.po}.mo $${file%.po}; done

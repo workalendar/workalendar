@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
+from gettext import gettext as _
 from ..core import WesternCalendar, IslamicMixin, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -17,12 +18,12 @@ class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
     include_prophet_birthday = True
     include_eid_al_fitr = True
     include_day_of_sacrifice = True
-    include_day_of_sacrifice_label = "Tabaski"
+    include_day_of_sacrifice_label = _("Tabaski")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 10, "Traditional Day"),
-        (5, 1, "Labour Day"),
-        (8, 1, "Independence Day"),
-        (10, 26, "Armed Forces Day"),
-        (11, 30, "National Day"),
+        (1, 10, _("Traditional Day")),
+        (5, 1, _("Labour Day")),
+        (8, 1, _("Independence Day")),
+        (10, 26, _("Armed Forces Day")),
+        (11, 30, _("National Day")),
     )

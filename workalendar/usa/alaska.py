@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+from gettext import gettext as _
 from .core import UnitedStates
 from workalendar.core import MON
 from ..registry_tools import iso_register
@@ -11,13 +12,13 @@ from ..registry_tools import iso_register
 class Alaska(UnitedStates):
     """Alaska"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (10, 18, 'Alaska Day'),
+        (10, 18, _('Alaska Day')),
     )
     include_columbus_day = False
 
     def get_variable_days(self, year):
         days = super(Alaska, self).get_variable_days(year)
         days.append(
-            (Alaska.get_last_weekday_in_month(year, 3, MON), "Seward's Day")
+            (Alaska.get_last_weekday_in_month(year, 3, MON), _("Seward's Day"))
         )
         return days

@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import timedelta
+from gettext import gettext as _
 
 from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin
 from ..astronomy import solar_term
@@ -18,16 +19,16 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
     include_boxing_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (7, 1, "SAR Establishment Day"),
-        (10, 1, "National Day"),
+        (5, 1, _("Labour Day")),
+        (7, 1, _("SAR Establishment Day")),
+        (10, 1, _("National Day")),
     )
 
-    chinese_new_year_label = "Chinese Lunar New Year's Day"
+    chinese_new_year_label = _("Chinese Lunar New Year's Day")
     include_chinese_second_day = True
-    chinese_second_day_label = "Second day of Chinese Lunar New Year"
+    chinese_second_day_label = _("Second day of Chinese Lunar New Year")
     include_chinese_third_day = True
-    chinese_third_day_label = "Third day of Chinese Lunar New Year"
+    chinese_third_day_label = _("Third day of Chinese Lunar New Year")
     shift_sunday_holidays = True  # Except CNY which rolls to Saturday
     shift_start_cny_sunday = False  # Prior to 2011 this was True
 
@@ -51,11 +52,12 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
             chingming = chingming + timedelta(days=1)
         mid_autumn_label = "Day After Mid-Autumn Festival"
         days.extend([
-            (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
-            (chingming, "Ching Ming Festival"),
-            (ChineseNewYearCalendar.lunar(year, 5, 5), "Tuen Ng Festival"),
+            (ChineseNewYearCalendar.lunar(year, 4, 8), _("Buddha's Birthday")),
+            (chingming, _("Ching Ming Festival")),
+            (ChineseNewYearCalendar.lunar(year, 5, 5), _("Tuen Ng Festival")),
             (ChineseNewYearCalendar.lunar(year, 8, 16), mid_autumn_label),
-            (ChineseNewYearCalendar.lunar(year, 9, 9), "Chung Yeung Festival"),
+            (ChineseNewYearCalendar.lunar(year, 9, 9),
+             _("Chung Yeung Festival")),
         ])
 
         # Boxing day & XMas shift

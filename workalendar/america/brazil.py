@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import timedelta, date
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON, SAT, SUN
@@ -13,27 +14,27 @@ from ..registry_tools import iso_register
 class Brazil(WesternCalendar, ChristianMixin):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (4, 21, "Tiradentes' Day"),
-        (5, 1, "Labour Day"),
-        (9, 7, "Independence Day"),
-        (10, 12, "Our Lady of Aparecida"),
-        (11, 2, "All Souls' Day"),
-        (11, 15, "Republic Day"),
+        (4, 21, _("Tiradentes' Day")),
+        (5, 1, _("Labour Day")),
+        (9, 7, _("Independence Day")),
+        (10, 12, _("Our Lady of Aparecida")),
+        (11, 2, _("All Souls' Day")),
+        (11, 15, _("Republic Day")),
     )
     include_sao_jose = False
-    sao_jose_label = "São José"
+    sao_jose_label = _("São José")
     include_sao_pedro = False
-    sao_pedro_label = "São Pedro"
+    sao_pedro_label = _("São Pedro")
     include_sao_joao = False
-    sao_joao_label = "São João"
+    sao_joao_label = _("São João")
     include_servidor_publico = False
-    servidor_publico_label = "Dia do Servidor Público"
+    servidor_publico_label = _("Dia do Servidor Público")
     # Consciência Negra day
     include_consciencia_negra = True
     # There are two dates for the Consciência Negra day
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
-    consciencia_negra_label = "Consciência Negra"
+    consciencia_negra_label = _("Consciência Negra")
     include_nossa_senhora_conceicao = False
     include_easter_sunday = True
 
@@ -62,7 +63,7 @@ class Brazil(WesternCalendar, ChristianMixin):
             )
         if self.include_nossa_senhora_conceicao:
             days.append(
-                (date(year, 12, 8), "Dia de Nossa Senhora da Conceição")
+                (date(year, 12, 8), _("Dia de Nossa Senhora da Conceição"))
             )
         return days
 
@@ -71,11 +72,11 @@ class Brazil(WesternCalendar, ChristianMixin):
 class BrazilAcre(Brazil):
     "Brazil Acre State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (1, 23, "Dia do evangélico"),
-        (6, 15, "Aniversário do Acre"),
-        (9, 5, "Dia da Amazônia"),
-        (11, 17, "Assinatura do Tratado de Petrópolis"),
-        (8, 6, "Início da Revolução Acreana"),
+        (1, 23, _("Dia do evangélico")),
+        (6, 15, _("Aniversário do Acre")),
+        (9, 5, _("Dia da Amazônia")),
+        (11, 17, _("Assinatura do Tratado de Petrópolis")),
+        (8, 6, _("Início da Revolução Acreana")),
     )
 
 
@@ -83,7 +84,7 @@ class BrazilAcre(Brazil):
 class BrazilAlagoas(Brazil):
     "Brazil Alagoas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (9, 16, "Emancipação política de Alagoas"),
+        (9, 16, _("Emancipação política de Alagoas")),
     )
     include_sao_pedro = True
     include_sao_joao = True
@@ -94,9 +95,9 @@ class BrazilAlagoas(Brazil):
 class BrazilAmapa(Brazil):
     "Brazil Amapá State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 25, "São Tiago"),
-        (10, 5, "Criação do estado"),
-        (9, 13, "Aniversário da Amapá"),
+        (7, 25, _("São Tiago")),
+        (10, 5, _("Criação do estado")),
+        (9, 13, _("Aniversário da Amapá")),
     )
     include_sao_jose = True
     sao_jose_label = "Dia de São José"
@@ -107,7 +108,7 @@ class BrazilAmapa(Brazil):
 class BrazilAmazonas(Brazil):
     "Brazil Amazonas State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (9, 5, "Elevação do Amazonas á categoria de província"),
+        (9, 5, _("Elevação do Amazonas á categoria de província")),
     )
     include_consciencia_negra = True
     include_nossa_senhora_conceicao = True
@@ -117,7 +118,7 @@ class BrazilAmazonas(Brazil):
 class BrazilBahia(Brazil):
     "Brazil Bahia State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 2, "Independência da Bahia"),
+        (7, 2, _("Independência da Bahia")),
     )
 
 
@@ -125,8 +126,8 @@ class BrazilBahia(Brazil):
 class BrazilCeara(Brazil):
     "Brazil Ceará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (3, 23, "Data Manga do Ceará"),
-        (3, 25, "Aniversário do Ceará"),
+        (3, 23, _("Data Manga do Ceará")),
+        (3, 25, _("Aniversário do Ceará")),
     )
     include_sao_jose = True
 
@@ -135,8 +136,8 @@ class BrazilCeara(Brazil):
 class BrazilDistritoFederal(Brazil):
     "Brazil Distrito Federal State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (4, 21, "Fundação de Brasília"),
-        (11, 30, "Dia do Evangélico"),
+        (4, 21, _("Fundação de Brasília")),
+        (11, 30, _("Dia do Evangélico")),
     )
 
 
@@ -156,7 +157,7 @@ class BrazilGoias(Brazil):
 class BrazilMaranhao(Brazil):
     "Brazil Maranhão State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 28, "Adesão do Maranhão á independência do Brasil"),
+        (7, 28, _("Adesão do Maranhão á independência do Brasil")),
     )
     include_nossa_senhora_conceicao = True
 
@@ -165,7 +166,7 @@ class BrazilMaranhao(Brazil):
 class BrazilMinasGerais(Brazil):
     "Brasil Minas Gerais State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (4, 21, "Aniversário de Minas Gerais"),
+        (4, 21, _("Aniversário de Minas Gerais")),
     )
 
 
@@ -180,7 +181,7 @@ class BrazilMatoGrosso(Brazil):
 class BrazilMatoGrossoDoSul(Brazil):
     "Brazil Mato Grosso do Sul State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 11, "Criação do estado"),
+        (10, 11, _("Criação do estado")),
     )
 
 
@@ -188,7 +189,7 @@ class BrazilMatoGrossoDoSul(Brazil):
 class BrazilPara(Brazil):
     "Brazil Pará State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
+        (8, 15, _("Adesão do Grão-Pará á independência do Brasil")),
     )
     include_nossa_senhora_conceicao = True
 
@@ -197,8 +198,8 @@ class BrazilPara(Brazil):
 class BrazilParaiba(Brazil):
     "Brazil Paraíba State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (8, 5, "Fundação do Estado"),
-        (7, 26, "Homenagem à memória do ex-presidente João Pessoa"),
+        (8, 5, _("Fundação do Estado")),
+        (7, 26, _("Homenagem à memória do ex-presidente João Pessoa")),
     )
 
 
@@ -206,7 +207,7 @@ class BrazilParaiba(Brazil):
 class BrazilPernambuco(Brazil):
     "Brazil Pernambuco State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (6, 3, "Revolução Pernambucana de 1817"),
+        (6, 3, _("Revolução Pernambucana de 1817")),
     )
     include_sao_joao = True
 
@@ -215,8 +216,8 @@ class BrazilPernambuco(Brazil):
 class BrazilPiaui(Brazil):
     "Brazil Piauí State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (3, 13, "Dia da Batalha do Jenipapo"),
-        (10, 19, "Dia do Piauí"),
+        (3, 13, _("Dia da Batalha do Jenipapo")),
+        (10, 19, _("Dia do Piauí")),
     )
 
 
@@ -224,7 +225,7 @@ class BrazilPiaui(Brazil):
 class BrazilParana(Brazil):
     "Brazil Paraná State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 19, "Aniversário do Paraná"),
+        (12, 19, _("Aniversário do Paraná")),
     )
 
 
@@ -232,13 +233,13 @@ class BrazilParana(Brazil):
 class BrazilRioDeJaneiro(Brazil):
     "Brazil Rio de Janeiro State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (4, 23, "Dia de São Jorge"),
-        (3, 1, "Aniversário da Cidade do Rio de Janeiro"),
+        (4, 23, _("Dia de São Jorge")),
+        (3, 1, _("Aniversário da Cidade do Rio de Janeiro")),
     )
     include_servidor_publico = True
-    servidor_publico_label = "Dia do Funcionário Público"
+    servidor_publico_label = _("Dia do Funcionário Público")
     include_consciencia_negra = True
-    consciencia_negra_label = "Dia da Consciência Negra"
+    consciencia_negra_label = _("Dia da Consciência Negra")
     include_nossa_senhora_conceicao = True
 
     def get_dia_do_comercio(self, year):
@@ -251,8 +252,8 @@ class BrazilRioDeJaneiro(Brazil):
 
     def get_variable_days(self, year):
         days = super(BrazilRioDeJaneiro, self).get_variable_days(year)
-        days.append((self.get_carnaval(year), "Carnaval"))
-        days.append((self.get_dia_do_comercio(year), "Dia do Comércio"))
+        days.append((self.get_carnaval(year), _("Carnaval")))
+        days.append((self.get_dia_do_comercio(year), _("Dia do Comércio")))
         return days
 
 
@@ -260,17 +261,17 @@ class BrazilRioDeJaneiro(Brazil):
 class BrazilRioGrandeDoNorte(Brazil):
     "Brazil Rio Grande do Norte State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 3, "Mártires de Cunhaú e Uruaçuu"),
+        (10, 3, _("Mártires de Cunhaú e Uruaçuu")),
     )
     include_sao_pedro = True
-    sao_pedro_label = "Dua de São Pedro"
+    sao_pedro_label = _("Dua de São Pedro")
 
 
 @iso_register('BR-RS')
 class BrazilRioGrandeDoSul(Brazil):
     "Brazil Rio Grande do Sul State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (9, 20, "Revolução Farroupilha"),
+        (9, 20, _("Revolução Farroupilha")),
     )
 
 
@@ -278,8 +279,8 @@ class BrazilRioGrandeDoSul(Brazil):
 class BrazilRondonia(Brazil):
     "Brazil Rondônia State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (1, 4, "Criação do estado"),
-        (6, 18, "Dia do Evangélico"),
+        (1, 4, _("Criação do estado")),
+        (6, 18, _("Dia do Evangélico")),
     )
 
 
@@ -287,7 +288,7 @@ class BrazilRondonia(Brazil):
 class BrazilRoraima(Brazil):
     "Brazil Roraima State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (10, 5, "Criação de Roraima"),
+        (10, 5, _("Criação de Roraima")),
     )
 
 
@@ -295,8 +296,8 @@ class BrazilRoraima(Brazil):
 class BrazilSantaCatarina(Brazil):
     "Brazil Santa Catarina State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (8, 11, "Criação da capitania, separando-se de SP"),
-        (11, 25, "Dia de Santa Catarina de Alexandria"),
+        (8, 11, _("Criação da capitania, separando-se de SP")),
+        (11, 25, _("Dia de Santa Catarina de Alexandria")),
     )
 
 
@@ -304,25 +305,25 @@ class BrazilSantaCatarina(Brazil):
 class BrazilSaoPauloState(Brazil):
     "Brazil São Paulo State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 9, "Constitutional Revolution of 1932"),
+        (7, 9, _("Constitutional Revolution of 1932")),
     )
 
 
 class BrazilSaoPauloCity(BrazilSaoPauloState):
     "Brazil São Paulo City"
     FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
-        (1, 25, "Anniversary of the city of São Paulo"),
+        (1, 25, _("Anniversary of the city of São Paulo")),
     )
     include_easter_sunday = True
     include_corpus_christi = True
     include_good_friday = True
-    good_friday_label = "Sexta-feira da Paixão"
+    good_friday_label = _("Sexta-feira da Paixão")
     include_consciencia_negra = True
-    consciencia_negra_label = "Dia da Consciência Negra"
+    consciencia_negra_label = _("Dia da Consciência Negra")
 
     def get_variable_days(self, year):
         days = super(BrazilSaoPauloCity, self).get_variable_days(year)
-        days.append((self.get_carnaval(year), "Carnaval"))
+        days.append((self.get_carnaval(year), _("Carnaval")))
         return days
 
 
@@ -330,7 +331,7 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
 class BrazilSergipe(Brazil):
     "Brazil Sergipe State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (7, 8, "Autonomia política de Sergipe"),
+        (7, 8, _("Autonomia política de Sergipe")),
     )
 
 
@@ -338,48 +339,48 @@ class BrazilSergipe(Brazil):
 class BrazilTocantins(Brazil):
     "Brazil Tocantins State"
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (1, 1, "Instalação de Tocantins"),
-        (9, 8, "Nossa Senhora da Natividade"),
-        (10, 5, "Criação de Tocantins"),
-        (3, 18, "Autonomia do estado de Tocantins"),
+        (1, 1, _("Instalação de Tocantins")),
+        (9, 8, _("Nossa Senhora da Natividade")),
+        (10, 5, _("Criação de Tocantins")),
+        (3, 18, _("Autonomia do estado de Tocantins")),
     )
 
 
 class BrazilVitoriaCity(BrazilEspiritoSanto):
     "Brazil Vitória City"
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (4, 24, "Nossa Senhora da Penha"),  # Our Lady of Pain?
-        (9, 8, "Nossa Senhora da Vitória"),  # Our Lady of Vitória
-        (9, 8, "Aniversário de Vitória"),
+        (4, 24, _("Nossa Senhora da Penha")),  # Our Lady of Pain?
+        (9, 8, _("Nossa Senhora da Vitória")),  # Our Lady of Vitória
+        (9, 8, _("Aniversário de Vitória")),
     )
     include_corpus_christi = True
     include_good_friday = True
-    good_friday_label = "Paixão do Cristo"
+    good_friday_label = _("Paixão do Cristo")
 
 
 class BrazilVilaVelhaCity(BrazilEspiritoSanto):
     "Brazil Vila Velha City"
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (5, 23, "Colonização do Solo Espírito-santense"),
+        (5, 23, _("Colonização do Solo Espírito-santense")),
     )
 
 
 class BrazilCariacicaCity(BrazilEspiritoSanto):
     "Brazil Cariacica City"
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (4, 13, "Nossa Senhora da Penha"),
+        (4, 13, _("Nossa Senhora da Penha")),
     )
     include_corpus_christi = True
     include_good_friday = True
-    good_friday_label = "Paixão do Cristo"
+    good_friday_label = _("Paixão do Cristo")
     include_sao_joao = True
-    sao_joao_label = "São João Batista / Aniversãrio de Cariacica"
+    sao_joao_label = _("São João Batista / Aniversãrio de Cariacica")
 
 
 class BrazilGuarapariCity(BrazilEspiritoSanto):
     "Brazil Guarapari City"
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (9, 19, "Emancipação de Guarapari"),
+        (9, 19, _("Emancipação de Guarapari")),
     )
     include_sao_pedro = True
     include_consciencia_negra = True
@@ -390,195 +391,196 @@ class BrazilGuarapariCity(BrazilEspiritoSanto):
 class BrazilSerraCity(BrazilEspiritoSanto):
     "Brazil Serra City"
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
-        (12, 26, "Dia do Serrano"),
+        (12, 26, _("Dia do Serrano")),
     )
     include_ash_wednesday = True
-    ash_wednesday_label = "Quarta-feira de cinzas"
+    ash_wednesday_label = _("Quarta-feira de cinzas")
     include_good_friday = True
-    good_friday_label = "Paixão do Cristo"
+    good_friday_label = _("Paixão do Cristo")
     include_sao_pedro = True
     include_nossa_senhora_conceicao = True
 
     def get_variable_days(self, year):
         days = super(BrazilSerraCity, self).get_variable_days(year)
         carnaval_tuesday = self.get_carnaval(year)
-        days.append((carnaval_tuesday - timedelta(days=1), "Carnaval Monday"))
-        days.append((carnaval_tuesday, "Carnaval"))
+        days.append((carnaval_tuesday - timedelta(days=1),
+                     _("Carnaval Monday")))
+        days.append((carnaval_tuesday, _("Carnaval")))
         return days
 
 
 class BrazilRioBrancoCity(BrazilAcre):
     "Brazil Rio Branco City"
     FIXED_HOLIDAYS = BrazilAcre.FIXED_HOLIDAYS + (
-        (12, 28, "Aniversário de Rio Branco"),
+        (12, 28, _("Aniversário de Rio Branco")),
     )
 
 
 class BrazilMaceioCity(BrazilAlagoas):
     "Brazil Maceió City"
     FIXED_HOLIDAYS = BrazilAlagoas.FIXED_HOLIDAYS + (
-        (12, 5, "Aniversário de Maceió"),
+        (12, 5, _("Aniversário de Maceió")),
     )
 
 
 class BrazilManausCity(BrazilAmazonas):
     "Brazil Manaus City"
     FIXED_HOLIDAYS = BrazilAmazonas.FIXED_HOLIDAYS + (
-        (10, 24, "Aniversário de Manaus"),
+        (10, 24, _("Aniversário de Manaus")),
     )
 
 
 class BrazilMacapaCity(BrazilAmapa):
     "Brazil Macapá City"
     FIXED_HOLIDAYS = BrazilAmapa.FIXED_HOLIDAYS + (
-        (2, 4, "Aniversário de Macapá"),
+        (2, 4, _("Aniversário de Macapá")),
     )
 
 
 class BrazilSalvadorCity(BrazilBahia):
     "Brazil Salvador City"
     FIXED_HOLIDAYS = BrazilBahia.FIXED_HOLIDAYS + (
-        (3, 29, "Aniversário de Salvador"),
+        (3, 29, _("Aniversário de Salvador")),
     )
 
 
 class BrazilFortalezaCity(BrazilCeara):
     "Brazil Fortaleza City"
     FIXED_HOLIDAYS = BrazilCeara.FIXED_HOLIDAYS + (
-        (4, 13, "Aniversário de Fortaleza"),
+        (4, 13, _("Aniversário de Fortaleza")),
     )
 
 
 class BrazilGoianiaCity(BrazilGoias):
     "Brazil Goiânia City"
     FIXED_HOLIDAYS = BrazilGoias.FIXED_HOLIDAYS + (
-        (10, 24, "Aniversário de Goiânia"),
+        (10, 24, _("Aniversário de Goiânia")),
     )
 
 
 class BrazilBeloHorizonteCity(BrazilMinasGerais):
     "Brazil Belo Horizonte City"
     FIXED_HOLIDAYS = BrazilMinasGerais.FIXED_HOLIDAYS + (
-        (12, 12, "Aniversário de Belo Horizonte"),
+        (12, 12, _("Aniversário de Belo Horizonte")),
     )
 
 
 class BrazilCampoGrandeCity(BrazilMatoGrossoDoSul):
     "Brazil Campo Grande City"
     FIXED_HOLIDAYS = BrazilMatoGrossoDoSul.FIXED_HOLIDAYS + (
-        (8, 26, "Aniversário de Campo Grande"),
+        (8, 26, _("Aniversário de Campo Grande")),
     )
 
 
 class BrazilCuiabaCity(BrazilMatoGrosso):
     "Brazil Cuiabá City"
     FIXED_HOLIDAYS = BrazilMatoGrosso.FIXED_HOLIDAYS + (
-        (4, 8, "Aniversário de Cuiabá"),
+        (4, 8, _("Aniversário de Cuiabá")),
     )
 
 
 class BrazilBelemCity(BrazilPara):
     "Brazil Belém City"
     FIXED_HOLIDAYS = BrazilPara.FIXED_HOLIDAYS + (
-        (1, 12, "Aniversário de Belém"),
+        (1, 12, _("Aniversário de Belém")),
     )
 
 
 class BrazilJoaoPessoaCity(BrazilParaiba):
     "Brazil João Pessoa City"
     FIXED_HOLIDAYS = BrazilParaiba.FIXED_HOLIDAYS + (
-        (8, 5, "Aniversário de João Pessoa"),
+        (8, 5, _("Aniversário de João Pessoa")),
     )
 
 
 class BrazilRecifeCity(BrazilPernambuco):
     "Brazil Recife City"
     FIXED_HOLIDAYS = BrazilPernambuco.FIXED_HOLIDAYS + (
-        (3, 12, "Aniversário de Recife"),
+        (3, 12, _("Aniversário de Recife")),
     )
 
 
 class BrazilTeresinaCity(BrazilPiaui):
     "Brazil Teresina City"
     FIXED_HOLIDAYS = BrazilPiaui.FIXED_HOLIDAYS + (
-        (8, 16, "Aniversário de Teresina"),
+        (8, 16, _("Aniversário de Teresina")),
     )
 
 
 class BrazilCuritibaCity(BrazilParana):
     "Brazil Curitiba City"
     FIXED_HOLIDAYS = BrazilParana.FIXED_HOLIDAYS + (
-        (3, 29, "Aniversário de Curitiba"),
+        (3, 29, _("Aniversário de Curitiba")),
     )
 
 
 class BrazilNatalCity(BrazilRioGrandeDoNorte):
     "Brazil Natal City"
     FIXED_HOLIDAYS = BrazilRioGrandeDoNorte.FIXED_HOLIDAYS + (
-        (12, 25, "Aniversário de Natal"),
+        (12, 25, _("Aniversário de Natal")),
     )
 
 
 class BrazilPortoVelhoCity(BrazilRondonia):
     "Brazil Porto Velho City"
     FIXED_HOLIDAYS = BrazilRondonia.FIXED_HOLIDAYS + (
-        (10, 2, "Aniversário de Porto Velho"),
+        (10, 2, _("Aniversário de Porto Velho")),
     )
 
 
 class BrazilBoaVistaCity(BrazilRoraima):
     "Brazil Boa Vista City"
     FIXED_HOLIDAYS = BrazilRoraima.FIXED_HOLIDAYS + (
-        (6, 9, "Aniversário de Boa Vista"),
+        (6, 9, _("Aniversário de Boa Vista")),
     )
 
 
 class BrazilPortoAlegreCity(BrazilRioGrandeDoSul):
     "Brazil Porto Alegre City"
     FIXED_HOLIDAYS = BrazilRioGrandeDoSul.FIXED_HOLIDAYS + (
-        (3, 26, "Aniversário de Porto Alegre"),
+        (3, 26, _("Aniversário de Porto Alegre")),
     )
 
 
 class BrazilChapecoCity(BrazilSantaCatarina):
     "Brazil Chapecó City"
     FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
-        (8, 25, "Aniversário de Chapecó"),
+        (8, 25, _("Aniversário de Chapecó")),
     )
 
 
 class BrazilFlorianopolisCity(BrazilSantaCatarina):
     "Brazil Florianópolis City"
     FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
-        (3, 23, "Aniversário de Florianópolis"),
+        (3, 23, _("Aniversário de Florianópolis")),
     )
 
 
 class BrazilJoinvilleCity(BrazilSantaCatarina):
     "Brazil Joinville City"
     FIXED_HOLIDAYS = BrazilSantaCatarina.FIXED_HOLIDAYS + (
-        (3, 9, "Aniversário de Joinville"),
+        (3, 9, _("Aniversário de Joinville")),
     )
 
 
 class BrazilAracajuCity(BrazilSergipe):
     "Brazil Aracaju City"
     FIXED_HOLIDAYS = BrazilSergipe.FIXED_HOLIDAYS + (
-        (3, 17, "Aniversário de Aracaju"),
+        (3, 17, _("Aniversário de Aracaju")),
     )
 
 
 class BrazilSorocabaCity(BrazilSaoPauloState):
     "Brazil Sorocaba City"
     FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
-        (8, 15, "Aniversário de Sorocaba"),
+        (8, 15, _("Aniversário de Sorocaba")),
     )
 
 
 class BrazilPalmasCity(BrazilTocantins):
     "Brazil Palmas City"
     FIXED_HOLIDAYS = BrazilTocantins.FIXED_HOLIDAYS + (
-        (5, 20, "Aniversário de Palmas"),
+        (5, 20, _("Aniversário de Palmas")),
     )
 
 
@@ -588,7 +590,7 @@ class BrazilBankCalendar(Brazil):
     for companies and the general public
     """
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 25, "Christmas Day"),
+        (12, 25, _("Christmas Day")),
     )
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
@@ -618,17 +620,17 @@ class BrazilBankCalendar(Brazil):
         ash_wednesday = self.get_ash_wednesday(year)
 
         non_fixed_holidays = [
-            (monday_carnaval, "Monday carnaval"),
-            (tuesday_carnaval, "Tuesday carnaval"),
-            (good_friday, "Good friday"),
-            (corpus_christi, "Corpus Christi"),
-            (ash_wednesday, "Ash Wednesday"),
+            (monday_carnaval, _("Monday carnaval")),
+            (tuesday_carnaval, _("Tuesday carnaval")),
+            (good_friday, _("Good friday")),
+            (corpus_christi, _("Corpus Christi")),
+            (ash_wednesday, _("Ash Wednesday")),
         ]
 
         non_working_days = [
             (
                 self.get_last_day_of_year_for_only_internal_bank_trans(year),
-                "Last day of year for only internal bank transactions"
+                _("Last day of year for only internal bank transactions")
             )
         ]
 

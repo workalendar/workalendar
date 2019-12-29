@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from datetime import date, timedelta
+from gettext import gettext as _
 import warnings
 from pyluach.dates import GregorianDate
 
@@ -69,7 +70,7 @@ class HebrewHolidays(object):
 class Florida(UnitedStates):
     """Florida"""
     include_thanksgiving_friday = True
-    thanksgiving_friday_label = "Friday after Thanksgiving"
+    thanksgiving_friday_label = _("Friday after Thanksgiving")
     include_columbus_day = False
     include_federal_presidents_day = False
 
@@ -77,9 +78,9 @@ class Florida(UnitedStates):
 class FloridaLegal(Florida):
     """Florida Legal Holidays"""
     FIXED_HOLIDAYS = Florida.FIXED_HOLIDAYS + (
-        (2, 15, 'Susan B. Anthony Day'),
-        (4, 2, 'Pascua Florida Day'),
-        (6, 14, 'Flag Day'),
+        (2, 15, _('Susan B. Anthony Day')),
+        (4, 2, _('Pascua Florida Day')),
+        (6, 14, _('Flag Day')),
     )
     include_mardi_gras = True
     include_lincoln_birthday = True
@@ -88,7 +89,7 @@ class FloridaLegal(Florida):
     include_confederation_day = True
     include_jefferson_davis_birthday = True
     include_columbus_day = True
-    columbus_day_label = "Columbus Day and Farmers' Day"
+    columbus_day_label = _("Columbus Day and Farmers' Day")
     include_election_day_every_year = True
 
     def __init__(self, *args, **kwargs):
@@ -103,13 +104,13 @@ class FloridaLegal(Florida):
         """
         Confederation memorial day is on the April 26th for Florida Legal.
         """
-        return (date(year, 4, 26), "Confederate Memorial Day")
+        return (date(year, 4, 26), _("Confederate Memorial Day"))
 
     def get_jefferson_davis_birthday(self, year):
         """
         Jefferson Davis Birthday appears to be a fixed holiday (June 3rd)
         """
-        return (date(year, 6, 3), "Jefferson Davis Birthday")
+        return (date(year, 6, 3), _("Jefferson Davis Birthday"))
 
 
 class FloridaCircuitCourts(HebrewHolidays, Florida):
@@ -122,12 +123,12 @@ class FloridaCircuitCourts(HebrewHolidays, Florida):
 
         days.append((
             self.get_rosh_hashanah(year),
-            "Rosh Hashanah"
+            _("Rosh Hashanah")
         ))
 
         days.append((
             self.get_yom_kippur(year),
-            "Yom Kippur"
+            _("Yom Kippur")
         ))
 
         return days

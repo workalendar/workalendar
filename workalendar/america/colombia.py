@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 from datetime import timedelta, date
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register
@@ -12,9 +13,9 @@ from ..registry_tools import iso_register
 class Colombia(WesternCalendar, ChristianMixin):
     "Colombia"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (7, 20, "Independence Day"),
-        (8, 7, "Boyacá Battle"),
+        (5, 1, _("Labour Day")),
+        (7, 20, _("Independence Day")),
+        (8, 7, _("Boyacá Battle")),
     )
     include_palm_sunday = True
     include_holy_thursday = True
@@ -63,17 +64,17 @@ class Colombia(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super(Colombia, self).get_variable_days(year)
         days.extend([
-            (self.get_epiphany(year), "Epiphany"),
-            (self.get_saint_joseph(year), "Saint Joseph"),
-            (self.get_ascension(year), "Ascension"),
-            (self.get_sacred_heart(year), "Sacred Heart"),
+            (self.get_epiphany(year), _("Epiphany")),
+            (self.get_saint_joseph(year), _("Saint Joseph")),
+            (self.get_ascension(year), _("Ascension")),
+            (self.get_sacred_heart(year), _("Sacred Heart")),
             (self.get_saint_peter_and_saint_paul(year),
-                "Saint Peter and Saint Paul"),
-            (self.get_assumption(year), "Assumption of Mary to Heaven"),
-            (self.get_race_day(year), "Race Day"),
-            (self.get_all_saints(year), "All Saints"),
+                _("Saint Peter and Saint Paul")),
+            (self.get_assumption(year), _("Assumption of Mary to Heaven")),
+            (self.get_race_day(year), _("Race Day")),
+            (self.get_all_saints(year), _("All Saints")),
             (self.get_cartagena_independence(year),
-                "Cartagena's Independence"),
+                _("Cartagena's Independence")),
         ])
 
         return days
