@@ -1,9 +1,9 @@
 # CHANGELOG
 
-## master (unreleased)
+## v8.0.0 (2020-01-10)
 
+- **BREAKING CHANGE** Drop Support for Python 2 - EOL January 1st 2020 (#442).
 - Added Ukraine calendar, by @apelloni.
-- Drop Support for Python 2 - EOL January 1st 2020 (#442).
 - Small cleanup in the ``.travis.yml`` file, thx to @Natim.
 
 ### ISO Registry API Change

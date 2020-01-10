@@ -5,9 +5,7 @@ Workalendar
 Overview
 ========
 
-Workalendar is a Python module that offers classes able to handle calendars,
-list legal / religious holidays and gives working-day-related computation
-functions.
+Workalendar is a Python module that offers classes able to handle calendars, list legal / religious holidays and gives working-day-related computation functions.
 
 Status
 ======
