@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import date
 
 from ..core import (
@@ -59,7 +56,7 @@ class Singapore(WesternCalendar,
         """
         Singapore variable days
         """
-        days = super(Singapore, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Vesak Day
         days.append(

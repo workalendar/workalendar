@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 from datetime import date, timedelta
 import warnings
 from pyluach.dates import GregorianDate
@@ -9,7 +6,7 @@ from .core import UnitedStates
 from ..registry_tools import iso_register
 
 
-class HebrewHolidays(object):
+class HebrewHolidays:
 
     hebrew_calendars = {}
 
@@ -92,7 +89,7 @@ class FloridaLegal(Florida):
     include_election_day_every_year = True
 
     def __init__(self, *args, **kwargs):
-        super(FloridaLegal, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         warnings.warn(
             "Florida's laws separate the definitions between paid versus legal"
             " holidays. Be warned that Florida Legal specific Holidays are not"
@@ -118,7 +115,7 @@ class FloridaCircuitCourts(HebrewHolidays, Florida):
     include_good_friday = True
 
     def get_variable_days(self, year):
-        days = super(FloridaCircuitCourts, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         days.append((
             self.get_rosh_hashanah(year),

@@ -11,9 +11,6 @@ matrix:
   fast_finish: true
   include:
     # Python version is just for the look on travis.
-    - python: 2.7
-      env: TOXENV=py27
-
     - python: 3.5
       env: TOXENV=py35
 

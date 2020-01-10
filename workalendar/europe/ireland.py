@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date, timedelta
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON
+from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register
 
 
@@ -29,7 +26,7 @@ class Ireland(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         self.include_whit_monday = (year <= 1973)
-        days = super(Ireland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # St Patrick's day
         st_patrick = date(year, 3, 17)

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 
@@ -39,6 +37,6 @@ class Netherlands(WesternCalendar, ChristianMixin):
                 return date(year, 4, 29), "Queen's day"
 
     def get_variable_days(self, year):
-        days = super(Netherlands, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_king_queen_day(year))
         return days

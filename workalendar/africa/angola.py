@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import timedelta
-from workalendar.core import WesternCalendar
-from workalendar.core import ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 
@@ -30,6 +26,6 @@ class Angola(WesternCalendar, ChristianMixin):
         return easter_sunday - timedelta(days=47)
 
     def get_variable_days(self, year):
-        days = super(Angola, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_variable_entrudo(year), "Dia de Carnaval"))
         return days

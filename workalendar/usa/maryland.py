@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from .core import UnitedStates
 from ..registry_tools import iso_register
 
@@ -13,7 +9,7 @@ class Maryland(UnitedStates):
     include_thanksgiving_friday = True
 
     def get_variable_days(self, year):
-        days = super(Maryland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if Maryland.is_presidential_year(year):
             days.append(self.get_election_day(year))
         return days

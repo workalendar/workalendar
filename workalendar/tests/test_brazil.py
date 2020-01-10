@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 from unittest import TestCase
 
-from workalendar.tests import GenericCalendarTest
-from workalendar.america import (
+from . import GenericCalendarTest
+from ..america import (
     Brazil, BrazilSaoPauloState,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
@@ -29,7 +25,7 @@ from workalendar.america import (
     # Banks
     BrazilBankCalendar,
 )
-from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
+from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 
 class BrazilTest(GenericCalendarTest):

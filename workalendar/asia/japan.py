@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import date
 
 from ..core import MON
@@ -27,7 +24,7 @@ class Japan(WesternCalendar):
         """
         Fixed holidays for Japan.
         """
-        days = super(Japan, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if year >= 2016:
             days.append((date(year, 8, 11), "Mountain Day"))
         # Change in Emperor
@@ -59,7 +56,7 @@ class Japan(WesternCalendar):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(Japan, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         equinoxes = calculate_equinoxes(year, 'Asia/Tokyo')
         coming_of_age_day = Japan.get_nth_weekday_in_month(year, 1, MON, 2)
         marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)

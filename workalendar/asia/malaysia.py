@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import date
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
@@ -66,7 +63,7 @@ class Malaysia(ChineseNewYearCalendar, WesternCalendar, IslamicMixin):
         """
         Malaysia variable days
         """
-        days = super(Malaysia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Vesak Day
         days.append(

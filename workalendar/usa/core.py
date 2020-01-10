@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
@@ -285,7 +281,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(UnitedStates, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Martin Luther King's Day started only in 1985
         if year >= 1985:
@@ -352,7 +348,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return (date(year, 11, 11), self.veterans_day_label)
 
     def get_fixed_holidays(self, year):
-        days = super(UnitedStates, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.include_veterans_day:
             days.append(self.get_veterans_day(year))
         return days
@@ -361,6 +357,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         Will return holidays and their shifted days
         """
-        days = super(UnitedStates, self).get_calendar_holidays(year)
+        days = super().get_calendar_holidays(year)
         days = self.shift(days, year)
         return days

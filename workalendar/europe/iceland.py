@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import THU, MON
+from ..core import WesternCalendar, ChristianMixin, THU, MON
 from ..registry_tools import iso_register
 
 
@@ -37,7 +34,7 @@ class Iceland(WesternCalendar, ChristianMixin):
         return Iceland.get_nth_weekday_in_month(year, 8, MON)
 
     def get_variable_days(self, year):
-        days = super(Iceland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             (self.get_first_day_of_summer(year), "First day of summer"),
             (self.get_commerce_day(year), "Commerce Day"),

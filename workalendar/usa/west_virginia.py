@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 """
 West Virginia
 
@@ -40,7 +37,7 @@ class WestVirginia(UnitedStates):
     )
 
     def get_fixed_holidays(self, year):
-        days = super(WestVirginia, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.west_virginia_include_christmas_eve:
             days.append(
                 (date(year, 12, 24), "Christmas Eve")

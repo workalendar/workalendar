@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import timedelta, date
-from workalendar.core import WesternCalendar, ChristianMixin
-from ..core import MON, TUE, WED, THU, FRI, SAT
+from ..core import (
+    WesternCalendar, ChristianMixin,
+    MON, TUE, WED, THU, FRI, SAT
+)
 from ..registry_tools import iso_register
 
 
@@ -27,7 +27,7 @@ class Argentina(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
 
-        days = super(Argentina, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
                 "Carnival Lunes"))

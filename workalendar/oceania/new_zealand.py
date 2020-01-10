@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 from datetime import date, timedelta
 
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, SAT, SUN
+from ..core import WesternCalendar, ChristianMixin, MON, SAT, SUN
 from ..registry_tools import iso_register
 
 
@@ -33,7 +31,7 @@ class NewZealand(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(NewZealand, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_queens_birthday(year))
         days.append(self.get_labour_day(year))
 

@@ -4,7 +4,7 @@ Scotland calendar mixins.
 There are so many of them that it became necessary to move them to a different
 module.
 """
-from workalendar.core import MON, FRI
+from ....core import MON, FRI
 from datetime import timedelta
 
 from .spring_holiday import (
@@ -39,12 +39,12 @@ from .autumn_holiday import (
 )
 
 
-class LateSummer(object):
+class LateSummer:
     def get_variable_days(self, year):
         """
         Add Late Summer holiday (First Monday of September)
         """
-        days = super(LateSummer, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 9, MON),
             "Late Summer Holiday"
@@ -52,12 +52,12 @@ class LateSummer(object):
         return days
 
 
-class BattleStirlingBridge(object):
+class BattleStirlingBridge:
     def get_variable_days(self, year):
         """
         Add Battle of Stirling Bridge holiday (Second Monday of September)
         """
-        days = super(BattleStirlingBridge, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 9, MON, 2),
             "Battle of Stirling Bridge Holiday"
@@ -65,9 +65,9 @@ class BattleStirlingBridge(object):
         return days
 
 
-class AyrGoldCup(object):
+class AyrGoldCup:
     def get_variable_days(self, year):
-        days = super(AyrGoldCup, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Ayr Gold Cup
         gold_cup_friday = self.get_nth_weekday_in_month(year, 9, FRI, 3)
         days.append(

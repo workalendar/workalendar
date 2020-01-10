@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from .core import UnitedStates
 from ..core import MON
 from ..registry_tools import iso_register
@@ -41,6 +37,6 @@ class AlabamaPerryCounty(Alabama):
         )
 
     def get_variable_days(self, year):
-        days = super(AlabamaPerryCounty, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_obama_day(year))
         return days

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date, timedelta
 from ..core import WesternCalendar, ChristianMixin, SUN
 from ..registry_tools import iso_register
@@ -47,7 +45,7 @@ class Vaud(Switzerland):
         )
 
     def get_variable_days(self, year):
-        days = super(Vaud, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if self.include_federal_thanksgiving_monday:
             days.append((self.get_federal_thanksgiving_monday(year),
                          "Federal Thanksgiving Monday"))
@@ -75,6 +73,6 @@ class Geneva(Switzerland):
         )
 
     def get_variable_days(self, year):
-        days = super(Geneva, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_genevan_fast(year))
         return days

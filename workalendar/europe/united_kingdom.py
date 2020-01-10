@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON
+from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register
 
 
@@ -67,7 +64,7 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         return non_computable
 
     def get_variable_days(self, year):
-        days = super(UnitedKingdom, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_early_may_bank_holiday(year))
         days.append(self.get_spring_bank_holiday(year))
         days.append(self.get_late_summer_bank_holiday(year))
@@ -85,8 +82,7 @@ class UnitedKingdomNorthernIreland(UnitedKingdom):
     'Northern Ireland'
 
     def get_variable_days(self, year):
-        days = super(UnitedKingdomNorthernIreland, self) \
-            .get_variable_days(year)
+        days = super().get_variable_days(year)
         # St Patrick's day
         st_patrick = date(year, 3, 17)
         days.append((st_patrick, "Saint Patrick's Day"))

@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 import warnings
 
 from .core import UnitedStates
@@ -18,4 +15,4 @@ class Montana(UnitedStates):
             "even years, but for some reason some sources are including it "
             "in 2019. Please use with care."
         )
-        return super(Montana, self).get_variable_days(year)
+        return super().get_variable_days(year)

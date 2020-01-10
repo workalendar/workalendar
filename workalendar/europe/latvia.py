@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 
@@ -47,7 +45,7 @@ class Latvia(WesternCalendar, ChristianMixin):
         return days
 
     def get_variable_days(self, year):
-        days = super(Latvia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend(self.get_independence_days(year))
         days.extend(self.get_republic_days(year))
         return days

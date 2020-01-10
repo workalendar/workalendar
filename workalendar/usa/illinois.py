@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from .core import UnitedStates
 from ..registry_tools import iso_register
 from ..core import MON
@@ -33,6 +29,6 @@ class ChicagoIllinois(Illinois):
         )
 
     def get_variable_days(self, year):
-        days = super(ChicagoIllinois, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_pulaski_day(year))
         return days

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 
@@ -27,7 +25,7 @@ class Slovenia(WesternCalendar, ChristianMixin):
     )
 
     def get_variable_days(self, year):
-        days = super(Slovenia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # From 1955 until May 2012, when the National Assembly of Slovenia
         # passed the Public Finance Balance Act, 2 January was a work-free day.

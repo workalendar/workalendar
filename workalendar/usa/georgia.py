@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import warnings
 from datetime import date
 from ..core import MON, TUE, WED, THU, FRI, SAT
@@ -54,7 +50,7 @@ class Georgia(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(Georgia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_robert_lee_birthday(year),
             self.get_washington_birthday_december(year),

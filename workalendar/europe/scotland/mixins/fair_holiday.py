@@ -1,10 +1,10 @@
 """
 Fair Holiday mixins
 """
-from workalendar.core import MON, FRI
+from ....core import MON, FRI
 
 
-class FairHoliday(object):
+class FairHoliday:
     include_fair_holiday = True
     fair_holiday_label = "Fair Holiday"
 

@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
@@ -18,7 +14,7 @@ class Mexico(WesternCalendar, ChristianMixin):
     )
 
     def get_variable_days(self, year):
-        days = super(Mexico, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(
             (Mexico.get_nth_weekday_in_month(year, 2, MON),
              "Constitution Day"))
@@ -34,7 +30,7 @@ class Mexico(WesternCalendar, ChristianMixin):
         return days
 
     def get_calendar_holidays(self, year):
-        days = super(Mexico, self).get_calendar_holidays(year)
+        days = super().get_calendar_holidays(year)
         # If any statutory day is on Sunday, the monday is off
         # If it's on a Saturday, the Friday is off
         for day, label in days:

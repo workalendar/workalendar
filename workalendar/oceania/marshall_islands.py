@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 from ..core import WesternCalendar, ChristianMixin
 from ..core import FRI
 from ..registry_tools import iso_register
@@ -18,7 +15,7 @@ class MarshallIslands(WesternCalendar, ChristianMixin):
     include_good_friday = True
 
     def get_variable_days(self, year):
-        days = super(MarshallIslands, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((
             MarshallIslands.get_nth_weekday_in_month(year, 7, FRI),
             "Fishermen's Holiday"

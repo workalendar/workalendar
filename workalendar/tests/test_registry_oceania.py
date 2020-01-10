@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
-from workalendar.oceania import (
+from ..oceania import (
     Australia,
     MarshallIslands,
     NewZealand,
@@ -18,7 +17,7 @@ from workalendar.oceania import (
     WesternAustralia
 )
 
-from workalendar.registry import registry
+from ..registry import registry
 
 AUSTRALIAN_TERRITORIES = (
     AustralianCapitalTerritory,

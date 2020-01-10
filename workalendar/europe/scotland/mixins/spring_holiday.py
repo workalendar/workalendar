@@ -3,10 +3,10 @@ Spring Holiday mixins
 """
 from datetime import timedelta
 
-from workalendar.core import MON
+from ....core import MON
 
 
-class SpringHoliday(object):
+class SpringHoliday:
     include_spring_holiday = True
 
 

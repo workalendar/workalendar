@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..registry_tools import iso_register
 
@@ -25,7 +21,7 @@ class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
     chinese_second_day_label = "Korean New Year's Day"
 
     def get_variable_days(self, year):
-        days = super(SouthKorea, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             (ChineseNewYearCalendar.lunar(year, 4, 8), "Buddha's Birthday"),
             # Midautumn Festival (3 days)

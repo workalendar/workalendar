@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
-from workalendar.africa import (
+from ..africa import (
     Algeria,
     Benin,
     IvoryCoast,
@@ -9,8 +8,7 @@ from workalendar.africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-
-from workalendar.registry import registry
+from ..registry import registry
 
 
 class RegistryAfrica(TestCase):

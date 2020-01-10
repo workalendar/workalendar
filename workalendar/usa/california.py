@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from .core import UnitedStates
 from ..core import MON
 from ..registry_tools import iso_register
@@ -25,7 +21,7 @@ class CaliforniaEducation(California):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(CaliforniaEducation, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         if year != 2009:
             days.append(self.get_lincoln_birthday(year))

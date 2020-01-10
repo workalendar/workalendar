@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## master (unreleased)
+
 - Added Ukraine calendar, by @apelloni.
+- Drop Support for Python 2 - EOL January 1st 2020 (#442).
 
 ### ISO Registry API Change
 

@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division, print_function
 from datetime import timedelta
 from copy import copy
 
@@ -37,7 +36,7 @@ class Barbados(WesternCalendar, ChristianMixin):
         """
         Return variable holidays of the Barbados calendar.
         """
-        days = super(Barbados, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_kadooment_day(year))
         return days
 
@@ -47,7 +46,7 @@ class Barbados(WesternCalendar, ChristianMixin):
 
         A shift day is appended if a fixed holiday happens on SUN.
         """
-        days = super(Barbados, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         days_to_shift = copy(days)
         for day, label in days_to_shift:
             if day.weekday() == SUN:

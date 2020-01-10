@@ -24,8 +24,7 @@ FIXME:
 # necessary to split this module and associated tests
 from datetime import date, timedelta
 import warnings
-from workalendar.core import WesternCalendar, ChristianMixin
-from workalendar.core import MON, THU, FRI
+from ...core import WesternCalendar, ChristianMixin, MON, THU, FRI
 from .mixins import (
     SpringHolidayFirstMondayApril,
     SpringHolidaySecondMondayApril,
@@ -66,7 +65,7 @@ class Scotland(WesternCalendar, ChristianMixin):
     include_victoria_day = False
 
     def __init__(self, *args, **kwargs):
-        super(Scotland, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         warnings.warn(
             """
 Please bear in mind that every Scotland (sub)calendar is highly experimental.
@@ -133,7 +132,7 @@ as much care as possible.
             "`include_victoria_day` is not implemented.")
 
     def get_variable_days(self, year):
-        days = super(Scotland, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_may_day(year))
         if self.include_spring_holiday:
             # This method is included in the spring_holiday mixins
@@ -150,7 +149,7 @@ as much care as possible.
         return days
 
     def get_fixed_holidays(self, year):
-        days = super(Scotland, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.include_saint_andrew:
             days.append((date(year, 11, 30), "Saint Andrew's Day"))
         return days
@@ -293,7 +292,7 @@ class Fife(
     include_saint_andrew = True
 
     def get_variable_days(self, year):
-        days = super(Fife, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Special computation rule, Fife has TWO spring holidays
         # 1. First Monday in April
         days.append((
@@ -312,7 +311,7 @@ class Galashiels(SpringHolidayFirstMondayJune, Scotland):
     "Galashiels"
 
     def get_variable_days(self, year):
-        days = super(Galashiels, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Adding Braw Lads Gathering, 1st Friday in July
         days.append((
             self.get_nth_weekday_in_month(year, 7, FRI),
@@ -334,7 +333,7 @@ class Hawick(Scotland):
     "Hawick"
 
     def get_variable_days(self, year):
-        days = super(Hawick, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Common Riding happens on the FRI after the first MON in June
         first_monday = self.get_nth_weekday_in_month(year, 6, MON)
         friday = first_monday + timedelta(days=4)
@@ -352,7 +351,7 @@ class Inverclyde(LateSummer, Scotland):
     include_easter_monday = True
 
     def get_variable_days(self, year):
-        days = super(Inverclyde, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Special computation rule, Inverclyde has TWO spring holidays
         # 1. First Monday in April
         days.append((
@@ -375,7 +374,7 @@ class Inverness(
     "Inverness"
 
     def get_variable_days(self, year):
-        days = super(Inverness, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 2, MON),
             "Winter Holiday (February)"
@@ -401,7 +400,7 @@ class Lanark(Scotland):
     "Lanark"
 
     def get_variable_days(self, year):
-        days = super(Lanark, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Lanimer is 2nd THU in June
         days.append((
             self.get_nth_weekday_in_month(year, 6, THU, 2),
@@ -413,7 +412,7 @@ class Lanark(Scotland):
 class Linlithgow(Scotland):
     "Linlithgow"
     def get_variable_days(self, year):
-        days = super(Linlithgow, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Linlithgow Marches is on TUE after the 2nd THU in June
         second_thursday = self.get_nth_weekday_in_month(year, 6, THU, 2)
         marches_day = second_thursday + timedelta(days=5)
@@ -427,7 +426,7 @@ class Linlithgow(Scotland):
 class Lochaber(Scotland):
     "Lochaber"
     def get_variable_days(self, year):
-        days = super(Lochaber, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         # Winter holiday is on the last MON of march
         days.append((
             self.get_last_weekday_in_month(year, 3, MON),

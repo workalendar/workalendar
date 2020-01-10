@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin, MON, SAT
@@ -24,7 +20,7 @@ class CaymanIslands(WesternCalendar, ChristianMixin):
     shift_new_years_day = True
 
     def get_variable_days(self, year):
-        days = super(CaymanIslands, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days += [
             (self.get_national_heroes_day(year), "National Heroes Day"),
             (self.get_discovery_day(year), "Discovery Day"),

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import timedelta
-from workalendar.core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
 
@@ -31,7 +29,7 @@ class Cyprus(WesternCalendar, ChristianMixin):
     )
 
     def get_variable_days(self, year):
-        days = super(Cyprus, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_easter_monday(year) +
                      timedelta(days=1), "Easter Tuesday"))
         return days
