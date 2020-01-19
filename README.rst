@@ -3,6 +3,9 @@
 
 .. image:: https://img.shields.io/pypi/pyversions/calendra.svg
 
+.. image:: https://dev.azure.com/jaraco/calendra/_apis/build/status/jaraco.calendra?branchName=master
+   :target: https://dev.azure.com/jaraco/calendra/_build/latest?definitionId=1&branchName=master
+
 .. image:: https://img.shields.io/travis/jaraco/calendra/master.svg
    :target: https://travis-ci.org/jaraco/calendra
 

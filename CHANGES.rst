@@ -1,3 +1,8 @@
+v6.0.0
+------
+
+Require Python 3.6 or later.
+
 v5.0.0
 ------
 
