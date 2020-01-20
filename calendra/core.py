@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Working day tools
 """
@@ -19,7 +18,7 @@ from .exceptions import UnsupportedDateType
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
 
-class classproperty(object):
+class classproperty:
 
     def __init__(self, getter):
         self.getter = getter
@@ -141,7 +140,7 @@ class Holiday(date):
         return item
 
 
-class Calendar(object):
+class Calendar:
 
     FIXED_HOLIDAYS = ()
     WEEKEND_DAYS = ()
@@ -609,7 +608,7 @@ class ChristianMixin(Calendar):
 
     def get_variable_days(self, year):  # noqa
         "Return the christian holidays list according to the mixin"
-        days = super(ChristianMixin, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         if self.include_epiphany:
             days.append((date(year, 1, 6), "Epiphany"))
         if self.include_clean_monday:
@@ -678,7 +677,7 @@ class WesternCalendar(Calendar):
     shift_new_years_day = False
 
     def get_variable_days(self, year):
-        days = super(WesternCalendar, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         new_years = Holiday(
             date(year, 1, 1), 'New year', indication='First day in January',
         )
@@ -789,7 +788,7 @@ class ChineseNewYearCalendar(LunarCalendar):
         return days
 
     def get_variable_days(self, year):
-        days = super(ChineseNewYearCalendar, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend(self.get_chinese_new_year(year))
         return days
 
@@ -811,7 +810,7 @@ class ChineseNewYearCalendar(LunarCalendar):
         falls on SUN.
         """
         # Unshifted days are here:
-        days = super(ChineseNewYearCalendar, self).get_calendar_holidays(year)
+        days = super().get_calendar_holidays(year)
         if self.shift_sunday_holidays:
             days_to_inspect = copy(days)
             for day_shifted in self.get_shifted_holidays(days_to_inspect):
@@ -824,7 +823,7 @@ class CalverterMixin(Calendar):
     ISLAMIC_HOLIDAYS = ()
 
     def __init__(self, *args, **kwargs):
-        super(CalverterMixin, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.calverter = Calverter()
         if self.conversion_method is None:
             raise NotImplementedError
@@ -862,7 +861,7 @@ class CalverterMixin(Calendar):
     def get_variable_days(self, year):
         warnings.warn('Please take note that, due to arbitrary decisions, '
                       'this Islamic calendar computation may be wrong.')
-        days = super(CalverterMixin, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
             self.calverter, '%s_to_jd' % self.conversion_method)
@@ -902,7 +901,7 @@ class IslamicMixin(CalverterMixin):
         """Return a list of Islamic (month, day, label) for islamic holidays.
         Please take note that these dates must be expressed using the Islamic
         Calendar"""
-        days = list(super(IslamicMixin, self).get_islamic_holidays())
+        days = list(super().get_islamic_holidays())
 
         if self.include_islamic_new_year:
             days.append((1, 1, "Islamic New Year"))

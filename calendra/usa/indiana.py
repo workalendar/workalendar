@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 import warnings
 from datetime import date
 from ..core import MON, TUE, WED, THU, FRI, SAT
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 from .core import UnitedStates
 
@@ -64,7 +60,7 @@ class Indiana(UnitedStates):
         )
 
     def get_variable_days(self, year):
-        days = super(Indiana, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             self.get_washington_birthday_december(year),
         ])

@@ -1,42 +1,45 @@
-# coding=utf-8
 from datetime import date
 from collections import Counter
 
-from ..tests import GenericCalendarTest
-from ..europe import Austria
-from ..europe import Bulgaria
-from ..europe import Belgium
-from ..europe import CaymanIslands
-from ..europe import Croatia
-from ..europe import Cyprus
-from ..europe import CzechRepublic
-from ..europe import Denmark
-from ..europe import Slovakia
-from ..europe import Finland
-from ..europe import Estonia
-from ..europe import Sweden
-from ..europe import France, FranceAlsaceMoselle
-from ..europe import Greece
-from ..europe import Hungary
-from ..europe import Iceland
-from ..europe import Ireland
-from ..europe import Italy
-from ..europe import Latvia
-from ..europe import Lithuania
-from ..europe import Luxembourg
-from ..europe import Malta
-from ..europe import Netherlands
-from ..europe import Norway
-from ..europe import Poland
-from ..europe import Portugal
-from ..europe import Romania
-from ..europe import Russia
-from ..europe import Spain, Catalonia
-from ..europe import Slovenia
-from ..europe import Switzerland, Vaud
-from ..europe import UnitedKingdom
-from ..europe import UnitedKingdomNorthernIreland
-from ..europe import EuropeanCentralBank
+from . import GenericCalendarTest
+from ..europe import (
+    Austria,
+    Bulgaria,
+    Belgium,
+    CaymanIslands,
+    Croatia,
+    Cyprus,
+    CzechRepublic,
+    Denmark,
+    Slovakia,
+    Finland,
+    Estonia,
+    Sweden,
+    France, FranceAlsaceMoselle,
+    Greece,
+    Hungary,
+    Iceland,
+    Ireland,
+    Italy,
+    Latvia,
+    Lithuania,
+    Luxembourg,
+    Malta,
+    Netherlands,
+    Norway,
+    Poland,
+    Portugal,
+    Romania,
+    Russia,
+    Serbia,
+    Spain, Catalonia,
+    Slovenia,
+    Switzerland, Vaud, Geneva,
+    Ukraine,
+    UnitedKingdom,
+    UnitedKingdomNorthernIreland,
+    EuropeanCentralBank,
+)
 
 
 class AustriaTest(GenericCalendarTest):
@@ -283,6 +286,7 @@ class DenmarkTest(GenericCalendarTest):
         self.assertIn(date(2015, 5, 14), holidays)   # kristi himmelfart
         self.assertIn(date(2015, 5, 24), holidays)   # pinsedag
         self.assertIn(date(2015, 5, 25), holidays)   # 2. pinsedag
+        self.assertIn(date(2015, 12, 24), holidays)  # juleaftensdag
         self.assertIn(date(2015, 12, 25), holidays)  # juledag
         self.assertIn(date(2015, 12, 26), holidays)  # 2. juledag
 
@@ -468,17 +472,16 @@ class FranceAlsaceMoselleTest(FranceTest):
     cal_class = FranceAlsaceMoselle
 
     def test_year_2013(self):
-        super(FranceAlsaceMoselleTest, self).test_year_2013()
+        super().test_year_2013()
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 29), holidays)  # Good friday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_working_days(self):
-        super(FranceAlsaceMoselleTest, self).test_working_days()
+        super().test_working_days()
 
     def test_business_days_computations(self):
-        super(FranceAlsaceMoselleTest, self) \
-            .test_business_days_computations()
+        super().test_business_days_computations()
 
 
 class GreeceTest(GenericCalendarTest):
@@ -845,7 +848,63 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
-        self.assertIn(date(2018, 11, 4), holidays)  # Day of Unity
+        self.assertIn(date(2018, 11, 4), holidays)  # Independence Day
+
+
+class UkraineTest(GenericCalendarTest):
+    cal_class = Ukraine
+
+    def test_year_1991(self):
+        holidays = self.cal.holidays_set(1991)
+        self.assertIn(date(1991, 6, 16), holidays)  # Independence Day
+        self.assertNotIn(date(1991, 8, 24), holidays)
+
+    def test_year_1992(self):
+        holidays = self.cal.holidays_set(1992)
+        self.assertNotIn(date(1992, 6, 16), holidays)
+        self.assertIn(date(1992, 8, 24), holidays)  # Independence Day
+
+    def test_year_2010(self):
+        holidays = self.cal.holidays_set(2010)
+        self.assertIn(date(2010, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2010, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2010, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2010, 5, 1), holidays)  # Workers Solidarity Day
+        self.assertIn(date(2010, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2010, 5, 24), holidays)  # Whit Monday
+        self.assertIn(date(2010, 6, 28), holidays)  # Constitution Day
+        self.assertIn(date(2010, 8, 24), holidays)  # Independence Day
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 6, 29), holidays)  # Constitution Day (moved)
+        self.assertIn(date(2015, 10, 14), holidays)  # Defender of Ukraine
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2016, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2016, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2016, 5, 1), holidays)  # Workers Solidarity Day
+        self.assertIn(date(2016, 5, 2), holidays)  # Workers Solidarity Day
+        self.assertIn(date(2016, 5, 2), holidays)
+        self.assertIn(date(2016, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2016, 6, 20), holidays)
+        self.assertIn(date(2016, 6, 28), holidays)  # Constitution Day
+        self.assertIn(date(2016, 8, 24), holidays)  # Day of Unity
+        self.assertIn(date(2016, 10, 14), holidays)  # Defender of Ukraine
+        self.assertNotIn(date(2016, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        # New Year's observed
+        assert self.cal.is_observed_holiday(date(2017, 1, 2))
+        self.assertIn(date(2017, 1, 9), holidays)  # Christmas Orthodox (moved)
+        self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 5, 2), holidays)  # Workers Solidarity Day
 
 
 class UnitedKingdomTest(GenericCalendarTest):
@@ -1128,6 +1187,50 @@ class CataloniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)
 
 
+class SerbiaTest(GenericCalendarTest):
+    cal_class = Serbia
+
+    def test_year_2015(self):
+        holidays = self.cal.holidays_set(2015)
+        self.assertIn(date(2015, 1, 1), holidays)
+        self.assertIn(date(2015, 1, 2), holidays)
+        self.assertIn(date(2015, 1, 7), holidays)
+        self.assertIn(date(2015, 2, 15), holidays)
+        self.assertIn(date(2015, 2, 16), holidays)
+        self.assertIn(date(2015, 4, 10), holidays)
+        self.assertIn(date(2015, 4, 12), holidays)
+        self.assertIn(date(2015, 4, 13), holidays)
+        self.assertIn(date(2015, 5, 1), holidays)
+        self.assertIn(date(2015, 5, 2), holidays)
+        self.assertIn(date(2015, 11, 11), holidays)
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 2), holidays)
+        self.assertIn(date(2016, 1, 7), holidays)
+        self.assertIn(date(2016, 2, 15), holidays)
+        self.assertIn(date(2016, 2, 16), holidays)
+        self.assertIn(date(2016, 4, 29), holidays)
+        self.assertIn(date(2016, 5, 1), holidays)
+        self.assertIn(date(2016, 5, 2), holidays)
+        self.assertIn(date(2016, 11, 11), holidays)
+
+    def test_year_2017(self):
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 1, 1), holidays)
+        self.assertIn(date(2017, 1, 2), holidays)
+        self.assertIn(date(2017, 1, 7), holidays)
+        self.assertIn(date(2017, 2, 15), holidays)
+        self.assertIn(date(2017, 2, 16), holidays)
+        self.assertIn(date(2017, 4, 14), holidays)
+        self.assertIn(date(2017, 4, 16), holidays)
+        self.assertIn(date(2017, 4, 17), holidays)
+        self.assertIn(date(2017, 5, 1), holidays)
+        self.assertIn(date(2017, 5, 2), holidays)
+        self.assertIn(date(2017, 11, 11), holidays)
+
+
 class SloveniaTest(GenericCalendarTest):
     cal_class = Slovenia
 
@@ -1239,6 +1342,31 @@ class VaudTest(GenericCalendarTest):
         self.assertIn(date(2017, 9, 18), holidays)
         self.assertNotIn(date(2017, 5, 1), holidays)
         self.assertNotIn(date(2017, 12, 26), holidays)
+
+
+class GenevaTest(GenericCalendarTest):
+    cal_class = Geneva
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 6), holidays)
+        self.assertIn(date(2018, 12, 31), holidays)
+        self.assertNotIn(date(2018, 5, 1), holidays)
+        self.assertNotIn(date(2018, 12, 26), holidays)
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 9, 5), holidays)
+        self.assertIn(date(2019, 12, 31), holidays)
+        self.assertNotIn(date(2019, 5, 1), holidays)
+        self.assertNotIn(date(2019, 12, 26), holidays)
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 9, 10), holidays)
+        self.assertIn(date(2020, 12, 31), holidays)
+        self.assertNotIn(date(2020, 5, 1), holidays)
+        self.assertNotIn(date(2020, 12, 26), holidays)
 
 
 class EstoniaTest(GenericCalendarTest):

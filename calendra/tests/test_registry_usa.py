@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 from ..usa import (
     UnitedStates,
@@ -55,7 +54,7 @@ from ..usa import (
     Wyoming
 )
 
-from ..registry_tools import registry
+from ..registry import registry
 
 
 class RegistryUsa(TestCase):

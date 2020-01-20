@@ -6,10 +6,12 @@ import dateutil.relativedelta as rd
 import pandas
 
 from . import GenericCalendarTest
-from ..core import Calendar, LunarCalendar, WesternCalendar
+from ..core import (
+    MON, TUE, THU, FRI, WED, SAT, SUN,
+    Calendar, LunarCalendar, WesternCalendar,
+    IslamicMixin, JalaliMixin, ChristianMixin
+)
 from ..core import Holiday
-from ..core import IslamicMixin, JalaliMixin, ChristianMixin
-from ..core import MON, TUE, THU, FRI, WED, SAT, SUN
 from ..exceptions import UnsupportedDateType
 
 

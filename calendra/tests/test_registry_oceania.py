@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
 from ..oceania import (
@@ -18,7 +17,7 @@ from ..oceania import (
     WesternAustralia
 )
 
-from ..registry_tools import registry
+from ..registry import registry
 
 AUSTRALIAN_TERRITORIES = (
     AustralianCapitalTerritory,

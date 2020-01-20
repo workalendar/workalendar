@@ -3,12 +3,11 @@ from unittest import TestCase
 
 from . import GenericCalendarTest
 from ..europe import (
-    Germany, BadenWurttemberg, Bavaria, Berlin,
-    Brandenburg, Bremen, Hamburg, Hesse,
-    MecklenburgVorpommern, LowerSaxony,
-    NorthRhineWestphalia, RhinelandPalatinate,
-    Saarland, Saxony, SaxonyAnhalt,
-    SchleswigHolstein, Thuringia)
+    Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
+    Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
+    RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt, SchleswigHolstein,
+    Thuringia
+)
 
 
 class ReformationFlagTest(TestCase):

@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import timedelta
 from ..core import WesternCalendar, ChristianMixin
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('DK')
@@ -20,12 +18,13 @@ class Denmark(WesternCalendar, ChristianMixin):
     whit_monday_label = "Pentecost Monday"
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
+    include_christmas_eve = True
 
     def get_store_bededag(self, year):  # 'great prayer day'
         easter_sunday = self.get_easter_sunday(year)
         return easter_sunday + timedelta(days=26)
 
     def get_variable_days(self, year):
-        days = super(Denmark, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_store_bededag(year), "Store Bededag"))
         return days

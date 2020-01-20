@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
+# Brazil import
 from ..america import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
     BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
@@ -10,6 +10,7 @@ from ..america import (
     BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
     BrazilSergipe, BrazilTocantins,
 )
+# Canada territories
 from ..america import (
     Canada,
     Ontario,
@@ -27,9 +28,12 @@ from ..america import (
     Nunavut,
 
 )
-from ..america import Chile, Colombia, Mexico, Panama, Paraguay
+# Other american countries
+from ..america import (
+    Argentina, Chile, Colombia, Mexico, Panama, Paraguay
+)
 
-from ..registry_tools import registry
+from ..registry import registry
 
 
 class RegistryAmerica(TestCase):
@@ -85,6 +89,7 @@ class RegistryAmerica(TestCase):
         self.assertIn(Canada, classes)
         self._check_canada_provinces(classes)
 
+        self.assertIn(Argentina, classes)
         self.assertIn(Chile, classes)
         self.assertIn(Colombia, classes)
         self.assertIn(Mexico, classes)

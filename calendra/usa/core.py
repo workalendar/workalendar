@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date, timedelta
 
 from dateutil import relativedelta as rd
@@ -9,7 +5,7 @@ from dateutil import relativedelta as rd
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('US')
@@ -107,11 +103,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return (self.get_election_date(year), self.election_day_label)
 
     def get_thanksgiving_friday(self, year):
-        "Thanksgiving friday is on the 4th Friday in November"
-        return (
-            self.get_nth_weekday_in_month(year, 11, FRI, 4),
-            self.thanksgiving_friday_label
-        )
+        """
+        Thanksgiving friday is on the day following Thanksgiving Day
+        """
+        thanksgiving = UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4)
+        thanksgiving_friday = thanksgiving + timedelta(days=1)
+        return (thanksgiving_friday, self.thanksgiving_friday_label)
 
     def get_confederate_day(self, year):
         """
@@ -237,7 +234,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(UnitedStates, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         days += [
             self.get_veterans_day(year),
@@ -316,7 +313,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         )
 
     def get_fixed_holidays(self, year):
-        days = super(UnitedStates, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.include_veterans_day:
             days.append(self.get_veterans_day(year))
         return days

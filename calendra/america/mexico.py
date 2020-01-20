@@ -1,14 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 
 from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('MX')
@@ -26,7 +22,7 @@ class Mexico(WesternCalendar, ChristianMixin):
         return Holiday.nearest_weekday
 
     def get_variable_days(self, year):
-        days = super(Mexico, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(Holiday(
             date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(1)),
             "Constitution Day",

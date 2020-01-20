@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import timedelta
 
 from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin
 from ..astronomy import solar_term
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('HK')
@@ -43,7 +39,7 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
         if year < 2011:
             self.shift_start_cny_sunday = True
 
-        days = super(HongKong, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         chingming = solar_term(year, 15, 'Asia/Hong_Kong')
         dupe_holiday = [chingming for day in days if chingming == day[0]]
         if dupe_holiday:

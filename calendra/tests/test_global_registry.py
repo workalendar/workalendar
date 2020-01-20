@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from ..registry_tools import registry
+from ..registry import registry
 
 
 class GlobalRegistry(TestCase):

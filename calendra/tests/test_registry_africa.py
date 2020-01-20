@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
 from ..africa import (
@@ -9,8 +8,7 @@ from ..africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-
-from ..registry_tools import registry
+from ..registry import registry
 
 
 class RegistryAfrica(TestCase):

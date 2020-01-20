@@ -8,7 +8,8 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 
 ```python
 >>> from workalendar.registry import registry
->>> for code, calendar_class in registry.region_registry.items():
+>>> calendars = registry.get_calendars()
+>>> for code, calendar_class in calendars.items():
 ...     print("`{}` is code for '{}'".format(code, calendar_class.name))
 `AT` is code for 'Austria'
 `BE` is code for 'Belgium'
@@ -23,14 +24,28 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 ... continued
 ```
 
-The `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
+The "private property" `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
+
+**DEPRECATION WARNING**: the ``get_calendars`` method used to be named ``items()``. In a future release, it'll be deprecated and re-purposed. Please switch to using ``get_calendars()`` for all your queries in the registry.
 
 ## Retrieve a collection of regions
 
-Let's say you'd need only a subset of the ISO registry. For example, France, Switzerland and Canada calendars. You can use the method `items()` to filter only the calendars you want.
+If you want the full dictionary of **countries**, you can use the ``get_calendars()`` method.
 
 ```python
->>> registry.items(['FR', 'CH', 'CA'])
+>>> registry.get_calendars()
+{'AT': <class 'workalendar.europe.austria.Austria'>,
+ 'BE': <class 'workalendar.europe.belgium.Belgium'>,
+ 'BG': <class 'workalendar.europe.bulgaria.Bulgaria'>,
+ 'KY': <class 'workalendar.europe.cayman_islands.CaymanIslands'>,
+  # ... continued
+}
+```
+
+Let's say you'd need only a subset of the ISO registry. For example, France, Switzerland and Canada calendars. You can use the method `get_calendars()` to filter only the calendars you want.
+
+```python
+>>> registry.get_calendars(['FR', 'CH', 'CA'])
 {'FR': <class 'workalendar.europe.france.France'>,
  'CH': <class 'workalendar.europe.switzerland.Switzerland'>,
  'CA': <class 'workalendar.america.canada.Canada'>}
@@ -39,7 +54,7 @@ Let's say you'd need only a subset of the ISO registry. For example, France, Swi
 Also, if you want those regions **and** their subregions, you can use the `include_subregions` flag:
 
 ```python
->>> registry.items(['FR', 'CH', 'CA'], include_subregions=True)
+>>> registry.get_calendars(['FR', 'CH', 'CA'], include_subregions=True)
 {'CA': <class 'workalendar.america.canada.Canada'>,
  'CA-AB': <class 'workalendar.america.canada.Alberta'>,
  'CA-BC': <class 'workalendar.america.canada.BritishColumbia'>,
@@ -56,10 +71,17 @@ Also, if you want those regions **and** their subregions, you can use the `inclu
  'CA-YT': <class 'workalendar.america.canada.Yukon'>,
  'CH': <class 'workalendar.europe.switzerland.Switzerland'>,
  'CH-VD': <class 'workalendar.europe.switzerland.Vaud'>,
+ 'CH-GE': <class 'workalendar.europe.switzerland.Geneva'>,
  'FR': <class 'workalendar.europe.france.France'>}
 ```
 
 *Note*: if any of the codes is unknown, this function won't raise an error.
+
+You can also get the full dict of all calendars registered in the ISO Registry with all the subregions using the following function call:
+
+```python
+>>> registry.get_calendars(include_subregions=True)
+```
 
 ## Select only one calendar
 

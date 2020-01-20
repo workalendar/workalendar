@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 """
 West Virginia
 
@@ -17,7 +14,7 @@ to include them, you may just have to create a class like this:
 """
 from datetime import date
 
-from ..registry_tools import iso_register
+from ..registry import iso_register
 from .core import UnitedStates
 
 
@@ -40,7 +37,7 @@ class WestVirginia(UnitedStates):
     )
 
     def get_fixed_holidays(self, year):
-        days = super(WestVirginia, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if self.west_virginia_include_christmas_eve:
             days.append(
                 (date(year, 12, 24), "Christmas Eve")

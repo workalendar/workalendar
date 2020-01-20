@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import timedelta, date
 
 from ..core import WesternCalendar, ChristianMixin, MON
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('CO')
@@ -61,7 +57,7 @@ class Colombia(WesternCalendar, ChristianMixin):
         return Colombia.get_first_weekday_after(base_day, MON)
 
     def get_variable_days(self, year):
-        days = super(Colombia, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend([
             (self.get_epiphany(year), "Epiphany"),
             (self.get_saint_joseph(year), "Saint Joseph"),

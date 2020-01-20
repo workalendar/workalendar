@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 from datetime import date
 
-from ..tests import GenericCalendarTest
-from ..europe.turkey import Turkey
+from . import GenericCalendarTest
+from ..europe import Turkey
 
 
 class TurkeyTest(GenericCalendarTest):

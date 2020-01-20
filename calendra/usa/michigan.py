@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 from ..core import SUN
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 from .core import UnitedStates
 
@@ -18,7 +14,7 @@ class Michigan(UnitedStates):
     include_columbus_day = False
 
     def get_fixed_holidays(self, year):
-        days = super(Michigan, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
 
         # New Year's Eve to be added
         new_years_eve = date(year, 12, 31)

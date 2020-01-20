@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date
 from . import GenericCalendarTest
 from ..africa import (
@@ -10,8 +9,8 @@ from ..africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-from calendra.core import MON, FRI
-from calendra.exceptions import CalendarError
+from ..core import MON, FRI
+from ..exceptions import CalendarError
 
 
 class AlgeriaTest(GenericCalendarTest):

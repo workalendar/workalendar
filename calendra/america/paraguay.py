@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 
 from ..core import WesternCalendar, ChristianMixin
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('PY')
@@ -70,7 +66,7 @@ class Paraguay(WesternCalendar, ChristianMixin):
         """
         Return fixed holidays for Paraguay.
         """
-        days = super(Paraguay, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         days.append(self.get_heroes_day(year))
         days.append(self.get_founding_of_asuncion(year))
         days.append(self.get_boqueron_battle_victory_day(year))

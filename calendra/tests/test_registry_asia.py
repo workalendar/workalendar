@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 
 from ..asia import (
@@ -12,7 +11,7 @@ from ..asia import (
     Taiwan,
 )
 
-from ..registry_tools import registry
+from ..registry import registry
 
 
 class RegistryAsia(TestCase):

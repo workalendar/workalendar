@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 from datetime import date
 
 from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 def _by_name(holidays):
@@ -41,7 +40,7 @@ class NewZealand(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         # usual variable days
-        days = super(NewZealand, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(Holiday(
             date(year, 1, 2),
             "Day after New Year's Day",

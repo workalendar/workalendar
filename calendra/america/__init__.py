@@ -1,15 +1,22 @@
-# -*- coding: utf-8 -*-
 from .barbados import Barbados
 from .brazil import (
     Brazil, BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas,
     BrazilBahia, BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto,
-    BrazilGoias, BrazilMaranhao, BrazilMatoGrosso, BrazilMatoGrossoDoSul,
-    BrazilPara, BrazilParaiba, BrazilPernambuco, BrazilPiaui,
-    BrazilRioDeJaneiro, BrazilRioGrandeDoNorte, BrazilRioGrandeDoSul,
-    BrazilRondonia, BrazilRoraima, BrazilSantaCatarina, BrazilSaoPauloState,
-    BrazilSaoPauloCity, BrazilSergipe, BrazilTocantins, BrazilVitoriaCity,
-    BrazilVilaVelhaCity, BrazilCariacicaCity, BrazilGuarapariCity,
-    BrazilSerraCity, BrazilBankCalendar
+    BrazilGoias, BrazilMaranhao, BrazilMinasGerais, BrazilMatoGrosso,
+    BrazilMatoGrossoDoSul, BrazilPara, BrazilParaiba, BrazilPernambuco,
+    BrazilPiaui, BrazilParana, BrazilRioDeJaneiro, BrazilRioGrandeDoNorte,
+    BrazilRioGrandeDoSul, BrazilRondonia, BrazilRoraima, BrazilSantaCatarina,
+    BrazilSaoPauloState, BrazilSaoPauloCity, BrazilSergipe, BrazilTocantins,
+    BrazilVitoriaCity, BrazilVilaVelhaCity, BrazilCariacicaCity,
+    BrazilGuarapariCity, BrazilSerraCity, BrazilRioBrancoCity,
+    BrazilMaceioCity, BrazilManausCity, BrazilMacapaCity, BrazilSalvadorCity,
+    BrazilFortalezaCity, BrazilGoianiaCity, BrazilBeloHorizonteCity,
+    BrazilCampoGrandeCity, BrazilCuiabaCity, BrazilBelemCity,
+    BrazilJoaoPessoaCity, BrazilRecifeCity, BrazilTeresinaCity,
+    BrazilCuritibaCity, BrazilNatalCity, BrazilPortoVelhoCity,
+    BrazilBoaVistaCity, BrazilPortoAlegreCity, BrazilChapecoCity,
+    BrazilFlorianopolisCity, BrazilJoinvilleCity, BrazilAracajuCity,
+    BrazilSorocabaCity, BrazilPalmasCity, BrazilBankCalendar
 )
 from .canada import (
     Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
@@ -21,6 +28,7 @@ from .colombia import Colombia
 from .mexico import Mexico
 from .panama import Panama
 from .paraguay import Paraguay
+from .argentina import Argentina
 
 
 __all__ = (
@@ -36,12 +44,14 @@ __all__ = (
     'BrazilEspiritoSanto',
     'BrazilGoias',
     'BrazilMaranhao',
+    'BrazilMinasGerais',
     'BrazilMatoGrosso',
     'BrazilMatoGrossoDoSul',
     'BrazilPara',
     'BrazilParaiba',
     'BrazilPernambuco',
     'BrazilPiaui',
+    'BrazilParana',
     'BrazilRioDeJaneiro',
     'BrazilRioGrandeDoNorte',
     'BrazilRioGrandeDoSul',
@@ -58,6 +68,31 @@ __all__ = (
     'BrazilGuarapariCity',
     'BrazilSerraCity',
     'BrazilBankCalendar',
+    'BrazilRioBrancoCity',
+    'BrazilMaceioCity',
+    'BrazilManausCity',
+    'BrazilMacapaCity',
+    'BrazilSalvadorCity',
+    'BrazilFortalezaCity',
+    'BrazilGoianiaCity',
+    'BrazilBeloHorizonteCity',
+    'BrazilCampoGrandeCity',
+    'BrazilCuiabaCity',
+    'BrazilBelemCity',
+    'BrazilJoaoPessoaCity',
+    'BrazilRecifeCity',
+    'BrazilTeresinaCity',
+    'BrazilCuritibaCity',
+    'BrazilNatalCity',
+    'BrazilPortoVelhoCity',
+    'BrazilBoaVistaCity',
+    'BrazilPortoAlegreCity',
+    'BrazilChapecoCity',
+    'BrazilFlorianopolisCity',
+    'BrazilJoinvilleCity',
+    'BrazilAracajuCity',
+    'BrazilSorocabaCity',
+    'BrazilPalmasCity',
     # Canada
     'Canada',
     'Ontario',
@@ -80,4 +115,5 @@ __all__ = (
     'Mexico',
     'Panama',
     'Paraguay',
+    'Argentina',
 )

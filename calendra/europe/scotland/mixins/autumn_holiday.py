@@ -4,7 +4,7 @@ Autumn Holiday mixins
 from ....core import MON
 
 
-class AutumHoliday(object):
+class AutumHoliday:
     include_autumn_holiday = True
     autumn_holiday_label = "Autumn Holiday"
 

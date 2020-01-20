@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
 from datetime import date
 
 from ..core import (
     ChineseNewYearCalendar, WesternCalendar, ChristianMixin, IslamicMixin
 )
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('SG')
@@ -48,6 +45,7 @@ class Singapore(WesternCalendar,
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
         2020: date(2020, 11, 14),   # This might change
+        2021: date(2021, 11, 4),
     }
     chinese_new_year_label = "Chinese Lunar New Year's Day"
     include_chinese_second_day = True
@@ -58,7 +56,7 @@ class Singapore(WesternCalendar,
         """
         Singapore variable days
         """
-        days = super(Singapore, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         # Vesak Day
         days.append(

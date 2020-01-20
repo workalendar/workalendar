@@ -1,9 +1,12 @@
 from datetime import date
-
 from . import GenericCalendarTest
 
-from ..asia import HongKong, Japan, JapanBank, Qatar, Singapore
-from ..asia import SouthKorea, Taiwan, Malaysia, China, Israel
+from ..asia import (
+    HongKong, Japan, JapanBank, Qatar, Singapore,
+    SouthKorea, Taiwan, Malaysia, China, Israel
+)
+from ..asia.china import holidays as china_holidays
+from ..exceptions import CalendarError
 
 
 class ChinaTest(GenericCalendarTest):
@@ -35,6 +38,56 @@ class ChinaTest(GenericCalendarTest):
         self.assertIn(date(2019, 5, 2), holidays)  # Labour Day Holiday
         self.assertIn(date(2019, 5, 3), holidays)  # Labour Day Holiday
         self.assertNotIn(date(2019, 5, 5), holidays)  # Labour Day Shift
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 1, 25), holidays)  # Spring Festival
+        self.assertIn(date(2020, 4, 4), holidays)  # Ching Ming Festival
+        self.assertIn(date(2020, 4, 6), holidays)  # Ching Ming Festival
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day Holiday
+        self.assertIn(date(2020, 5, 5), holidays)  # Labour Day Holiday
+        self.assertIn(date(2020, 6, 25), holidays)  # Dragon Boat Festival
+        self.assertIn(date(2020, 6, 27), holidays)  # Dragon Boat Festival
+        self.assertIn(date(2020, 10, 1), holidays)  # National Day
+        self.assertIn(date(2020, 10, 8), holidays)  # National Day
+
+        self.assertNotIn(date(2020, 1, 19), holidays)  # Spring Festival Shift
+        self.assertNotIn(date(2020, 2, 1), holidays)  # Spring Festival Shift
+        self.assertNotIn(date(2020, 4, 26), holidays)  # Labour Day Shift
+        self.assertNotIn(date(2020, 5, 9), holidays)  # Labour Day Shift
+        self.assertNotIn(date(2020, 6, 28), holidays)  # Dragon Boat Shift
+        self.assertNotIn(date(2020, 9, 27), holidays)  # National Day Shift
+        self.assertNotIn(date(2020, 10, 10), holidays)  # National Day Shift
+
+    def test_missing_holiday_year(self):
+        save_2018 = china_holidays[2018]
+        del china_holidays[2018]
+        with self.assertRaises(CalendarError):
+            self.cal.holidays_set(2018)
+        china_holidays[2018] = save_2018
+
+    def test_is_working_day(self):
+        # It's a SAT, but it's a working day this year
+        self.assertTrue(self.cal.is_working_day(date(2019, 2, 2)))
+        # It's a SUN, but it's a working day this year
+        self.assertTrue(self.cal.is_working_day(date(2019, 2, 3)))
+
+    def test_add_working_days(self):
+        # Normally, February 1st + 1 working day would be on February 4th
+        # Because 2nd and 3rd are on SAT and SUN.
+        self.assertEqual(
+            self.cal.add_working_days(date(2019, 2, 1), 1),
+            date(2019, 2, 2)
+        )
+
+    def test_sub_working_days(self):
+        # Normally, February 4th - 1 working day would be on February 1st
+        # Because 2nd and 3rd are on SAT and SUN.
+        self.assertEqual(
+            self.cal.sub_working_days(date(2019, 2, 4), 1),
+            date(2019, 2, 3)
+        )
 
 
 class HongKongTest(GenericCalendarTest):
@@ -272,11 +325,27 @@ class MalaysiaTest(GenericCalendarTest):
 
     def test_msia_thaipusam(self):
         years = self.cal.MSIA_THAIPUSAM.keys()
-        # we only have them for years 2010-2020
+        # we only have them for years 2010-2021
         self.assertEqual(
             set(years),
-            set(range(2010, 2021))
+            set(range(2010, 2022))
         )
+
+    def test_missing_deepavali(self):
+        save_2020 = self.cal.MSIA_DEEPAVALI[2020]
+        del self.cal.MSIA_DEEPAVALI[2020]
+        with self.assertRaises(KeyError):
+            self.cal.holidays(2020)
+        # Back to normal, to avoid breaking further tests
+        self.cal.MSIA_DEEPAVALI[2020] = save_2020
+
+    def test_missing_thaipusam(self):
+        save_2020 = self.cal.MSIA_THAIPUSAM[2020]
+        del self.cal.MSIA_THAIPUSAM[2020]
+        with self.assertRaises(KeyError):
+            self.cal.holidays(2020)
+        # Back to normal, to avoid breaking further tests
+        self.cal.MSIA_THAIPUSAM[2020] = save_2020
 
 
 class QatarTest(GenericCalendarTest):
@@ -351,8 +420,8 @@ class SingaporeTest(GenericCalendarTest):
         self.assertIn(date(2016, 5, 2), holidays)
 
     def test_deepavali(self):
-        # At the moment, we have values for deepavali only until year 2020
-        for year in range(2000, 2021):
+        # At the moment, we have values for deepavali only until year 2021
+        for year in range(2000, 2022):
             self.assertIn(year, self.cal.DEEPAVALI)
 
     def test_deepavali_current_year(self):

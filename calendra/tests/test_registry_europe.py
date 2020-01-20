@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import TestCase
 from ..europe import (
     Austria, Belgium, Bulgaria, Croatia, Cyprus, CzechRepublic, Estonia,
@@ -8,7 +7,8 @@ from ..europe import (
     Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
     Slovenia, Spain,
     # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, UnitedKingdom, UnitedKingdomNorthernIreland,
+    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
+    UnitedKingdomNorthernIreland,
 )
 
 # Germany
@@ -19,7 +19,7 @@ from ..europe import (
     SaxonyAnhalt, SchleswigHolstein, Thuringia
 )
 
-from ..registry_tools import registry
+from ..registry import registry
 
 classes = (v for k, v in registry.region_registry.items())
 classes = list(classes)
@@ -65,6 +65,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Sweden, classes)
         self.assertIn(Switzerland, classes)
         self.assertIn(Vaud, classes)
+        self.assertIn(Geneva, classes)
         self.assertIn(UnitedKingdom, classes)
         self.assertIn(UnitedKingdomNorthernIreland, classes)
         # Germany & Länders

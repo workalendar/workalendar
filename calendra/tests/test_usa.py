@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import skip
 from datetime import date
 
@@ -203,6 +202,14 @@ class UnitedStatesTest(GenericCalendarTest):
             holidays = self.cal.holidays_set(year)
             self.assertNotIn(self.cal.get_election_date(year), holidays)
 
+    def test_thanksgiving_friday(self):
+        day, _ = self.cal.get_thanksgiving_friday(2017)
+        self.assertEqual(day, date(2017, 11, 24))
+        day, _ = self.cal.get_thanksgiving_friday(2018)
+        self.assertEqual(day, date(2018, 11, 23))
+        day, _ = self.cal.get_thanksgiving_friday(2019)
+        self.assertEqual(day, date(2019, 11, 29))
+
     def test_thanksgiving_friday_label(self):
         _, label = self.cal.get_thanksgiving_friday(2017)
         self.assertEqual(label, "Thanksgiving Friday")
@@ -222,7 +229,7 @@ class UnitedStatesTest(GenericCalendarTest):
         self.assertNotIn(day, holidays)
 
 
-class NoColumbus(object):
+class NoColumbus:
     """
     Some States don't include Columbus Day:
 
@@ -238,7 +245,7 @@ class NoColumbus(object):
         self.assertNotIn(date(2017, 10, 9), holidays)
 
 
-class NoPresidentialDay(object):
+class NoPresidentialDay:
     """
     Washington's birthday is not included in Delaware calendar.
     """
@@ -250,7 +257,7 @@ class NoPresidentialDay(object):
         self.assertNotIn(day, holidays)
 
 
-class InaugurationDay(object):
+class InaugurationDay:
     """
     When Inauguration Day is a public holiday
     """
@@ -268,7 +275,7 @@ class InaugurationDay(object):
         # NOTE: 1985 is not relevant, it's the same as MLK Day
 
 
-class ElectionDayEvenYears(object):
+class ElectionDayEvenYears:
     """
     Some state include the election day on even years
     """
@@ -288,7 +295,7 @@ class ElectionDayEvenYears(object):
         self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
-class ElectionDayPresidentialYears(object):
+class ElectionDayPresidentialYears:
     """
     Some state include the election day on presidential years
     """
@@ -309,7 +316,7 @@ class ElectionDayPresidentialYears(object):
         self.assertNotIn(self.cal.get_election_date(2017), holidays)
 
 
-class ElectionDayEveryYear(object):
+class ElectionDayEveryYear:
     """
     Some State include election day on every year
     """
@@ -320,7 +327,7 @@ class ElectionDayEveryYear(object):
             self.assertIn(self.cal.get_election_date(year), holidays)
 
 
-class IncludeMardiGras(object):
+class IncludeMardiGras:
     """
     Louisiana and some areas (Alabama Counties) include Mardi Gras
     """
@@ -465,6 +472,11 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
+
+    def test_state_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 31), holidays)  # Cesar Chavez Day
+        self.assertIn(date(2019, 11, 29), holidays)  # Thanksgiving Friday
 
 
 class CaliforniaEducationTest(CaliforniaTest):
@@ -622,7 +634,7 @@ class DistrictOfColumbiaTest(InaugurationDay, UnitedStatesTest):
         self.assertIn(date(2016, 4, 16), holidays)  # Emancipation Day
 
 
-class FloridaBasicTest(object):
+class FloridaBasicTest:
     """
     Core Florida tests.
 

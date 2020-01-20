@@ -1,14 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 
 from ..core import WesternCalendar
 from ..core import MON, FRI
 from ..core import ChristianMixin
 from ..exceptions import CalendarError
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('ZA')
@@ -21,7 +17,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         if year < 1910:
             raise CalendarError("It's not possible to compute holidays prior"
                                 " to 1910 for South Africa.")
-        return super(SouthAfrica, self).holidays(year)
+        return super().holidays(year)
 
     def get_easter_monday_or_family_day(self, year):
         if year < 1980:
@@ -31,7 +27,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         return (self.get_easter_monday(year), label)
 
     def get_fixed_holidays(self, year):
-        days = super(SouthAfrica, self).get_fixed_holidays(year)
+        days = super().get_fixed_holidays(year)
         if year >= 1990:
             days.append((date(year, 3, 21), 'Human Rights Day'))
 
@@ -89,7 +85,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         return days
 
     def get_variable_days(self, year):
-        days = super(SouthAfrica, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         days.append(self.get_easter_monday_or_family_day(year))
 
@@ -122,7 +118,7 @@ class SouthAfrica(WesternCalendar, ChristianMixin):
         return days
 
     def get_calendar_holidays(self, year):
-        days = super(SouthAfrica, self).get_calendar_holidays(year)
+        days = super().get_calendar_holidays(year)
 
         # Other one-offs. Don't shift these
         if year == 1999:

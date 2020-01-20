@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
 from datetime import date
 
 from ..core import MON, TUE, WED, THU, FRI, SAT, SUN
-from ..registry_tools import iso_register
+from ..registry import iso_register
 from .core import UnitedStates
 
 
@@ -50,6 +46,6 @@ class NorthCarolina(UnitedStates):
             ]
 
     def get_variable_days(self, year):
-        days = super(NorthCarolina, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.extend(self.get_christmas_shifts(year))
         return days

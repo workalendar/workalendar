@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from ..core import WesternCalendar, ChristianMixin
-from ..registry_tools import iso_register
-from ..core import SUN
+from ..core import WesternCalendar, ChristianMixin, SUN
+from ..registry import iso_register
 
 
 @iso_register('LT')
@@ -39,7 +36,7 @@ class Lithuania(WesternCalendar, ChristianMixin):
         )
 
     def get_variable_days(self, year):
-        days = super(Lithuania, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append(self.get_mothers_day(year))
         days.append(self.get_fathers_day(year))
         return days

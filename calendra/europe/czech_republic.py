@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from ..core import WesternCalendar, ChristianMixin
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register('CZ')
@@ -27,4 +25,4 @@ class CzechRepublic(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         # As of 2016, Good Friday became a holiday
         self.include_good_friday = (year >= 2016)
-        return super(CzechRepublic, self).get_variable_days(year)
+        return super().get_variable_days(year)

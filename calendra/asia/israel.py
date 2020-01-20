@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import (absolute_import, unicode_literals)
 from datetime import date, timedelta
 
 from pyluach.dates import GregorianDate, HebrewDate
 
 from ..core import Calendar, FRI, SAT
-from ..registry_tools import iso_register
+from ..registry import iso_register
 
 
 @iso_register("IL")
@@ -15,7 +13,7 @@ class Israel(Calendar):
     WEEKEND_DAYS = (SAT, FRI)
 
     def get_variable_days(self, year):
-        days = super(Israel, self).get_variable_days(year)
+        days = super().get_variable_days(year)
 
         delta = timedelta(days=1)
         current_date = date(year, 1, 1)

@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
-from ..core import FRI, SAT
-from ..registry_tools import iso_register
+from ..core import WesternCalendar, ChristianMixin, FRI, SAT
+from ..registry import iso_register
 
 
 @iso_register('SE')
@@ -49,7 +46,7 @@ class Sweden(WesternCalendar, ChristianMixin):
         return all_saints
 
     def get_variable_days(self, year):
-        days = super(Sweden, self).get_variable_days(year)
+        days = super().get_variable_days(year)
         days.append((self.get_midsummer_day(year), "Midsummer's Day"))
         days.append((self.get_midsummer_eve(year), "Midsummer's Eve"))
         days.append((self.get_variable_all_saints(year), "All Saints"))

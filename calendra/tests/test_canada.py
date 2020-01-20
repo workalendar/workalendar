@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date
 from . import GenericCalendarTest
 from ..america.canada import (
