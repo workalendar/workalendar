@@ -68,7 +68,7 @@ class Holiday(date):
     """
 
     def __new__(cls, date, *args, **kwargs):
-        return super(Holiday, cls).__new__(
+        return super().__new__(
             cls, date.year, date.month, date.day)
 
     def __init__(self, date, name='Holiday', **kwargs):
@@ -90,7 +90,7 @@ class Holiday(date):
         return iter(tp)
 
     def replace(self, *args, **kwargs):
-        replaced = super(Holiday, self).replace(*args, **kwargs)
+        replaced = super().replace(*args, **kwargs)
         vars(replaced).update(vars(self))
         return replaced
 

@@ -630,7 +630,7 @@ class BrazilBankCalendar(Brazil):
         ]
 
         return (
-            super(Brazil, self).get_variable_days(year)
+            super().get_variable_days(year)
             + non_fixed_holidays + non_working_days
         )
 
