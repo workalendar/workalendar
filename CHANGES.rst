@@ -1,3 +1,8 @@
+v6.1.1
+------
+
+Fix version inference when installed from sdist.
+
 v6.1.0
 ------
 
