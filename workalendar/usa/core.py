@@ -149,7 +149,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_confederate_day(self, year):
         """
-        Confederation memorial day is on the 4th MON of April.
+        Confederate memorial day is on the 4th MON of April.
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")

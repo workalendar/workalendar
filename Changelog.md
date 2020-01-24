@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fix several miscalculations in Georgia (USA) calendar (#451).
 
 ## v8.0.1 (2020-01-24)
 
