@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v8.0.1 (2020-01-24)
 
 - Fix Family Day for British Columbia (Canada) which was switched from 2nd to 3rd Monday of February in 2019 - thx @jbroudou for the bug report (#454).
 
