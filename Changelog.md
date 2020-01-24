@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v8.0.2 (2020-01-24)
 
 - Fix several miscalculations in Georgia (USA) calendar (#451).
