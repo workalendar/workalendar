@@ -1,5 +1,6 @@
 from datetime import date
 from . import GenericCalendarTest
+from ..core import MON
 from ..america.canada import (
     Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
     NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
@@ -97,7 +98,9 @@ class BritishColumbiaTest(GenericCalendarTest):
     def test_holidays_2012(self):
         holidays = self.cal.holidays_set(2012)
         self.assertIn(date(2012, 1, 2), holidays)
-        self.assertIn(date(2012, 2, 13), holidays)  # Family Day BC
+        # Family Day BC was not set in 2012
+        self.assertNotIn(date(2012, 2, 13), holidays)
+
         self.assertIn(date(2012, 4, 6), holidays)  # Good Friday
         self.assertNotIn(date(2012, 4, 9), holidays)  # Easter Monday
         self.assertIn(date(2012, 5, 21), holidays)  # Victoria Day
@@ -107,6 +110,21 @@ class BritishColumbiaTest(GenericCalendarTest):
         self.assertIn(date(2012, 10, 8), holidays)  # Canadian Thanksgiving
         self.assertIn(date(2012, 11, 11), holidays)  # Remembrance Day
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas day
+
+    def test_family_day(self):
+        # From 2013 to 2018, Family Day was on 2nd MON of February
+        for year in range(2013, 2019):
+            holidays = dict(self.cal.holidays(year))
+            day = self.cal.get_nth_weekday_in_month(year, 2, MON, 2)
+            self.assertIn(day, holidays)
+            self.assertEqual(holidays[day], "Family Day")
+
+        # As of 2019, it happens on 3rd MON of February
+        for year in (2019, 2020, 2021):
+            holidays = dict(self.cal.holidays(year))
+            day = self.cal.get_nth_weekday_in_month(year, 2, MON, 3)
+            self.assertIn(day, holidays)
+            self.assertEqual(holidays[day], "Family Day")
 
 
 class AlbertaTest(GenericCalendarTest):

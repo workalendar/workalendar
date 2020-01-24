@@ -31,13 +31,6 @@ class Canada(WesternCalendar, ChristianMixin):
         return days
 
 
-class EarlyFamilyDayMixin(Calendar):
-    "2nd Monday of February"
-
-    def get_family_day(self, year, label="Family Day"):
-        return (self.get_nth_weekday_in_month(year, 2, MON, 2), label)
-
-
 class LateFamilyDayMixin(Calendar):
     "3rd Monday of February"
 
@@ -148,7 +141,7 @@ class Quebec(Canada, VictoriaDayMixin, StJeanBaptisteMixin, ThanksgivingMixin):
 
 @iso_register('CA-BC')
 class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
-                      ThanksgivingMixin, EarlyFamilyDayMixin):
+                      ThanksgivingMixin):
     "British Columbia"
 
     include_good_friday = True
@@ -157,10 +150,24 @@ class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
         (11, 11, "Remembrance Day"),
     )
 
+    def get_family_day(self, year):
+        """
+        Return Family Day for British Columbia.
+
+        From 2013 to 2018, Family Day was on 2nd MON of February
+        As of 2019, Family Day happens on 3rd MON of February
+        """
+        label = "Family Day"
+        if year >= 2019:
+            return (self.get_nth_weekday_in_month(year, 2, MON, 3), label)
+        return (self.get_nth_weekday_in_month(year, 2, MON, 2), label)
+
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
+        if year >= 2013:
+            days.append(self.get_family_day(year))
+
         days.extend([
-            (self.get_family_day(year)),
             (self.get_victoria_day(year)),
             (self.get_civic_holiday(year, "British Columbia Day")),
             (self.get_thanksgiving(year)),
