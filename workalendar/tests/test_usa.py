@@ -770,44 +770,115 @@ class GeorgiaTest(NoPresidentialDay, UnitedStatesTest):
     def test_state_year_2014(self):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 4, 28), holidays)  # Confederate Memorial
-        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2014, 12, 26), holidays)  # Washington bday
 
     def test_state_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 27), holidays)  # Confederate Memorial
-        # FIXME: this holiday rule is Confusing, probably false
         self.assertIn(date(2015, 12, 24), holidays)  # Washington bday
 
-    @skip("Confusing Rule, it's impossible to decide")
     def test_washington_birthday(self):
-        # Source: https://georgia.gov/popular-topic/observing-state-holidays
+        # Sources:
+        # * https://georgia.gov/popular-topic/observing-state-holidays
+        # * https://georgia.gov/popular-topic/state-holidays
+        day, _ = self.cal.get_washington_birthday_december(2020)
+        self.assertEqual(day, date(2020, 12, 24))
+
+        day, _ = self.cal.get_washington_birthday_december(2019)
+        self.assertEqual(day, date(2019, 12, 24))
+
+        day, _ = self.cal.get_washington_birthday_december(2018)
+        self.assertEqual(day, date(2018, 12, 24))
+
         day, _ = self.cal.get_washington_birthday_december(2017)
         self.assertEqual(day, date(2017, 12, 26))
 
         day, _ = self.cal.get_washington_birthday_december(2016)
-        self.assertEqual(
-            day,
-            date(2016, 12, 27),
-        )
+        self.assertEqual(day, date(2016, 12, 27))
 
         day, _ = self.cal.get_washington_birthday_december(2015)
-        self.assertEqual(
-            day,
-            date(2015, 12, 24),
-        )
+        self.assertEqual(day, date(2015, 12, 24))
 
         day, _ = self.cal.get_washington_birthday_december(2014)
-        self.assertEqual(
-            day,
-            date(2014, 12, 26),
-        )
+        self.assertEqual(day, date(2014, 12, 26))
 
         day, _ = self.cal.get_washington_birthday_december(2013)
-        self.assertEqual(
-            day,
-            date(2013, 12, 24),
-        )
+        self.assertEqual(day, date(2013, 12, 24))
+
+        day, _ = self.cal.get_washington_birthday_december(2012)
+        self.assertEqual(day, date(2012, 12, 24))
+
+        # Source:
+        # https://web.archive.org/web/20110927122533/http://www.georgia.gov/00/channel_modifieddate/0,2096,4802_64437763,00.html  # noqa
+        day, _ = self.cal.get_washington_birthday_december(2011)
+        self.assertEqual(day, date(2011, 12, 26))
+
+        # Source:
+        # https://web.archive.org/web/20100304032739/http://www.georgia.gov/00/channel_modifieddate/0,2096,4802_64437763,00.html  # noqa
+        day, _ = self.cal.get_washington_birthday_december(2010)
+        self.assertEqual(day, date(2010, 12, 23))
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)   # New Year
+        self.assertIn(date(2019, 1, 21), holidays)  # MLK
+        self.assertIn(date(2019, 4, 22), holidays)  # state holiday
+        self.assertIn(date(2019, 5, 27), holidays)  # memorial day
+        self.assertIn(date(2019, 7, 4), holidays)  # Independance day
+        self.assertIn(date(2019, 9, 2), holidays)  # Labor day
+        self.assertIn(date(2019, 10, 14), holidays)  # Columbus
+        self.assertIn(date(2019, 11, 11), holidays)  # Veterans
+        self.assertIn(date(2019, 11, 28), holidays)  # Thanksgiving
+        self.assertIn(date(2019, 11, 29), holidays)  # State Holiday
+        # Washington's Birthday switched to XMAS eve
+        self.assertIn(date(2019, 12, 24), holidays)
+        self.assertIn(date(2019, 12, 25), holidays)  # XMAS
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)   # New Year
+        self.assertIn(date(2020, 1, 20), holidays)  # MLK
+
+        # State holiday special case
+        # Confederate memorial day has been shifted to April 10th.
+        # Reason is unknown, so we're adding a single exception in the
+        # `get_confederate_day`
+        self.assertNotIn(date(2020, 4, 26), holidays)
+        self.assertIn(date(2020, 4, 10), holidays)
+
+        self.assertIn(date(2020, 5, 25), holidays)  # memorial day
+        self.assertIn(date(2020, 7, 3), holidays)  # Independance day (OBS)
+        self.assertIn(date(2020, 7, 4), holidays)  # Independance day
+        self.assertIn(date(2020, 9, 7), holidays)  # Labor day
+        self.assertIn(date(2020, 10, 12), holidays)  # Columbus
+        self.assertIn(date(2020, 11, 11), holidays)  # Veterans
+        self.assertIn(date(2020, 11, 26), holidays)  # Thanksgiving
+        self.assertIn(date(2020, 11, 27), holidays)  # State Holiday
+        self.assertIn(date(2020, 12, 24), holidays)  # Washington B'day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMAS
+
+    def test_thanksgiving_friday_label(self):
+        # Overwrite UnitedStatesTest.test_thanksgiving_friday_label
+
+        # Until 2016, the 4th FRI of november was labelled
+        # "Robert E. Lee's Birthday (Observed)"
+        for year in (2013, 2014, 2015,):
+            _, label = self.cal.get_robert_lee_birthday(year)
+            self.assertEqual(label, "Robert E. Lee's Birthday (Observed)")
+
+        for year in (2016, 2017, 2018, 2019, 2020):
+            _, label = self.cal.get_robert_lee_birthday(year)
+            self.assertEqual(label, "State Holiday")
+
+    def test_get_confederate_day_label(self):
+        # Until 2016, it was labelled "Confederate Memorial Day"
+        for year in (2013, 2014, 2015,):
+            _, label = self.cal.get_confederate_day(year)
+            self.assertEqual(label, "Confederate Memorial Day")
+
+        for year in (2016, 2017, 2018, 2019, 2020):
+            _, label = self.cal.get_confederate_day(year)
+            self.assertEqual(label, "State Holiday")
 
 
 class HawaiiTest(ElectionDayEvenYears, NoColumbus, UnitedStatesTest):
