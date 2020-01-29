@@ -74,7 +74,11 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                     self.extra_working_days.append(date(year, v[0], v[1]))
 
     def get_calendar_holidays(self, year):
-        warnings.warn("Support 2018, 2019 currently, need update every year.")
+        warnings.warn(
+            "Support {} currently, need update every year.".format(
+                ", ".join(map(str, holidays.keys()))
+            )
+        )
         if year not in holidays.keys():
             msg = "Need configure {} for China.".format(year)
             raise CalendarError(msg)

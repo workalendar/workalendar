@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
+- Fix warning in China's holidays to dynamically read supported years.
 
 ## v8.0.2 (2020-01-24)
 
