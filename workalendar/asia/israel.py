@@ -30,52 +30,47 @@ class Israel(Calendar):
             day = hebrew_date.day
 
             if month == 7:
-                if day in {1, 2, 3}:
+                if day == 1:
+                    days.append((current_date - delta, "Rosh Hashana Eve"))
                     days.append((current_date, "Rosh Hashana"))
+                    days.append((current_date + delta, "Rosh Hashana"))
                 elif day == 10:
+                    days.append((current_date - delta, "Yom Kippur Eve"))
                     days.append((current_date, "Yom Kippur"))
-                elif day in range(15, 22):
+                elif day == 15:
+                    days.append((current_date - delta, "Sukkot Eve"))
                     days.append((current_date, "Sukkot"))
                 elif day == 22:
+                    days.append((current_date - delta, "Shmini Atzeres Eve"))
                     days.append((current_date, "Shmini Atzeres"))
-            elif month == 12 and not HebrewDate._is_leap(jewish_year):
-                if day == 14:
-                    days.append((current_date, "Purim"))
+            elif month == 1:
                 if day == 15:
-                    days.append((current_date, "Shushan Purim"))
-            elif month == 13:
-                if day == 14:
-                    days.append((current_date, "Purim"))
-                elif day == 15:
-                    days.append((current_date, "Shushan Purim"))
-            elif month == 1 and day in {15, 21}:
-                days.append((current_date, "Pesach"))
+                    days.append((current_date - delta, "Pesach Eve"))
+                    days.append((current_date, "Pesach"))
+                elif day == 21:
+                    days.append((current_date - delta, "7th of Pesach Eve"))
+                    days.append((current_date, "7th of Pesach"))
             elif month == 2:
                 if day == 5:
+                    independence_date = current_date
                     if hebrew_date.weekday() == 6:
-                        days.append(
-                            (
-                                HebrewDate(jewish_year, month, 4).to_pydate(),
-                                "Independence Day",
-                            )
-                        )
+                        independence_date = HebrewDate(
+                            jewish_year, month, 4
+                        ).to_pydate()
                     elif hebrew_date.weekday() == 7:
-                        days.append(
-                            (
-                                HebrewDate(jewish_year, month, 3).to_pydate(),
-                                "Independence Day",
-                            )
-                        )
+                        independence_date = HebrewDate(
+                            jewish_year, month, 3
+                        ).to_pydate()
                     elif hebrew_date.weekday() == 2:
-                        days.append(
-                            (
-                                HebrewDate(jewish_year, month, 6).to_pydate(),
-                                "Independence Day",
-                            )
-                        )
-                    else:
-                        days.append((current_date, "Independence Day"))
+                        independence_date = HebrewDate(
+                            jewish_year, month, 6
+                        ).to_pydate()
+                    days.append(
+                        (independence_date - delta, "Independence Day Eve")
+                    )
+                    days.append((independence_date, "Independence Day"))
             elif month == 3 and day == 6:
+                days.append((current_date - delta, "Shavout Eve"))
                 days.append((current_date, "Shavout"))
 
             current_date += delta
