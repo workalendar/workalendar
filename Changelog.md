@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v8.1.0 (2020-02-07)
 
 - Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
 - Fix warning in China's holidays to dynamically read supported years, thx @fredrike (#459).
