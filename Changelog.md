@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v8.1.0 (2020-02-07)
 
 - Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
