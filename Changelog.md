@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
 
 ## v8.0.2 (2020-01-24)
 

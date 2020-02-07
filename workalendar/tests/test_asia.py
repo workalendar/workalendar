@@ -540,18 +540,37 @@ class IsraelTest(GenericCalendarTest):
         )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2019
         self.assertIn(date(2019, 6, 9), holidays)  # Shavuot
         self.assertIn(
+            date(2019, 9, 29), holidays
+        )  # Jewish New Year (Rosh Ha-Shana)
+        self.assertIn(
             date(2019, 9, 30), holidays
         )  # Jewish New Year (Rosh Ha-Shana)
         self.assertIn(
             date(2019, 10, 1), holidays
         )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2019, 10, 2), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
         self.assertIn(date(2019, 10, 9), holidays)  # Yom Kippur
         self.assertIn(date(2019, 10, 14), holidays)  # Sukkot
         self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
 
-        # Leap year Purim
-        self.assertIn(date(2019, 3, 21), holidays)  # purim
-        self.assertIn(date(2019, 3, 22), holidays)  # shushan purim
+    def test_holidays_2020(self):
+        calculated_holidays = self.cal.holidays_set(2020)
+        known_holidays = {
+            date(2020, 9, 18),  # Rosh Hashana Eve
+            date(2020, 9, 19),  # Rosh Hashana A
+            date(2020, 9, 20),  # Rosh Hashana B
+            date(2020, 9, 27),  # Kippur Eve
+            date(2020, 9, 28),  # Kippur
+            date(2020, 10, 2),  # Sukot A Eve
+            date(2020, 10, 3),  # Sukot A
+            date(2020, 10, 9),  # Sukot B Eve
+            date(2020, 10, 10),  # Sukot B
+            date(2020, 4, 8),  # Pesach A Eve
+            date(2020, 4, 9),  # Pesach A
+            date(2020, 4, 14),  # Pesach B Eve
+            date(2020, 4, 15),  # Pesach B
+            date(2020, 4, 28),  # Independence Day Eve
+            date(2020, 4, 29),  # Independence Day
+            date(2020, 5, 28),  # Shavuot Eve
+            date(2020, 5, 29),  # Shavuot
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
