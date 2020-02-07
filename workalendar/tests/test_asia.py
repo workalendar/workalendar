@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from datetime import date
 from . import GenericCalendarTest
 
@@ -66,6 +67,14 @@ class ChinaTest(GenericCalendarTest):
         with self.assertRaises(CalendarError):
             self.cal.holidays_set(2018)
         china_holidays[2018] = save_2018
+
+    def test_warning(self):
+        year = date.today().year
+        with patch('warnings.warn') as patched:
+            self.cal.get_calendar_holidays(year)
+        patched.assert_called_with(
+            'Support years 2018-2020 currently, need update every year.'
+        )
 
     def test_is_working_day(self):
         # It's a SAT, but it's a working day this year
