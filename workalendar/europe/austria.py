@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -7,8 +9,8 @@ class Austria(WesternCalendar, ChristianMixin):
     'Austria'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "National Holiday"),  # Staatsfeiertag
-        (10, 26, "National Holiday"),  # Nationalfeiertag
+        (5, 1, _("National Holiday (Staatsfeiertag)")),
+        (10, 26, _("National Holiday (Nationalfeiertag)")),
     )
 
     include_epiphany = True
@@ -21,4 +23,4 @@ class Austria(WesternCalendar, ChristianMixin):
     include_immaculate_conception = True
     include_christmas = True
     include_boxing_day = True
-    boxing_day_label = "St. Stephen's Day"  # Stefanitag
+    boxing_day_label = _("St. Stephen's Day")  # Stefanitag
