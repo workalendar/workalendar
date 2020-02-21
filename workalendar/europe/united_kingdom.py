@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register
 
@@ -13,13 +15,13 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     shift_new_years_day = True
     non_computable_holiday_dict = {
-        1973: [(date(1973, 11, 14), "Royal wedding"), ],
-        1977: [(date(1977, 6, 7), "Queen’s Silver Jubilee"), ],
-        1981: [(date(1981, 7, 29), "Royal wedding"), ],
-        1999: [(date(1999, 12, 31), "New Year's Eve"), ],
-        2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
-        2011: [(date(2011, 4, 29), "Royal Wedding"), ],
-        2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+        1973: [(date(1973, 11, 14), _("Royal wedding")), ],
+        1977: [(date(1977, 6, 7), _("Queen's Silver Jubilee")), ],
+        1981: [(date(1981, 7, 29), _("Royal wedding")), ],
+        1999: [(date(1999, 12, 31), _("New Year's Eve")), ],
+        2002: [(date(2002, 6, 3), _("Queen's Golden Jubilee")), ],
+        2011: [(date(2011, 4, 29), _("Royal Wedding")), ],
+        2012: [(date(2012, 6, 5), _("Queen's Diamond Jubilee")), ],
     }
 
     def get_early_may_bank_holiday(self, year):
@@ -30,12 +32,12 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
         if year == 2020:
             return (
                 date(year, 5, 8),
-                "Early May bank holiday (VE day)"
+                _("Early May bank holiday (VE day)")
             )
 
         return (
             UnitedKingdom.get_nth_weekday_in_month(year, 5, MON),
-            "Early May Bank Holiday"
+            _("Early May Bank Holiday")
         )
 
     def get_spring_bank_holiday(self, year):
@@ -50,13 +52,13 @@ class UnitedKingdom(WesternCalendar, ChristianMixin):
                 .get_last_weekday_in_month(year, 5, MON)
         return (
             spring_bank_holiday,
-            "Spring Bank Holiday"
+            _("Spring Bank Holiday")
         )
 
     def get_late_summer_bank_holiday(self, year):
         return (
             UnitedKingdom.get_last_weekday_in_month(year, 8, MON),
-            "Late Summer Bank Holiday"
+            _("Late Summer Bank Holiday")
         )
 
     def non_computable_holiday(self, year):
@@ -85,17 +87,17 @@ class UnitedKingdomNorthernIreland(UnitedKingdom):
         days = super().get_variable_days(year)
         # St Patrick's day
         st_patrick = date(year, 3, 17)
-        days.append((st_patrick, "Saint Patrick's Day"))
+        days.append((st_patrick, _("Saint Patrick's Day")))
         if st_patrick.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(st_patrick),
-                "Saint Patrick substitute"))
+                _("Saint Patrick substitute")))
 
         # Battle of boyne
         battle_of_boyne = date(year, 7, 12)
-        days.append((battle_of_boyne, "Battle of the Boyne"))
+        days.append((battle_of_boyne, _("Battle of the Boyne")))
         if battle_of_boyne.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(battle_of_boyne),
-                "Battle of the Boyne substitute"))
+                _("Battle of the Boyne substitute")))
         return days
