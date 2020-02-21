@@ -1,4 +1,6 @@
 from datetime import timedelta
+from gettext import gettext as _
+
 from ..core import WesternCalendar, IslamicMixin
 from ..registry_tools import iso_register
 
@@ -16,12 +18,12 @@ class Turkey(WesternCalendar, IslamicMixin):
     length_eid_al_adha = 4
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (4, 23, "National Sovereignty and Children's Day"),
-        (5, 1, "Labor and Solidarity Day"),
-        (5, 19, "Commemoration of Atatürk, Youth and Sports Day"),
-        (7, 15, "Democracy and National Unity Day"),
-        (8, 30, "Victory Day"),
-        (10, 29, "Republic Day"),
+        (4, 23, _("National Sovereignty and Children's Day")),
+        (5, 1, _("Labor and Solidarity Day")),
+        (5, 19, _("Commemoration of Atatürk, Youth and Sports Day")),
+        (7, 15, _("Democracy and National Unity Day")),
+        (8, 30, _("Victory Day")),
+        (10, 29, _("Republic Day")),
     )
 
     def get_delta_islamic_holidays(self, year):
