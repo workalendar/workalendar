@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -8,8 +10,8 @@ class Germany(WesternCalendar, ChristianMixin):
     'Germany'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (10, 3, "Day of German Unity"),
+        (5, 1, _("Labour Day")),
+        (10, 3, _("Day of German Unity")),
     )
 
     include_easter_monday = True
@@ -17,7 +19,7 @@ class Germany(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_good_friday = True
     include_boxing_day = True
-    boxing_day_label = "Second Christmas Day"
+    boxing_day_label = _("Second Christmas Day")
 
     # True if including reformation day for all years
     all_time_include_reformation_day = False
@@ -42,7 +44,7 @@ class Germany(WesternCalendar, ChristianMixin):
         depending on the Länder or the year (see #150).
         """
         day = date(year, 10, 31)
-        return (day, "Reformation Day")
+        return (day, _("Reformation Day"))
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -76,11 +78,11 @@ class Berlin(Germany):
 
     def get_international_womens_day(self, year):
         day = date(year, 3, 8)
-        return (day, "International Women's Day")
+        return (day, _("International Women's Day"))
 
     def get_liberation_day(self, year):
         day = date(year, 5, 8)
-        return (day, "Liberation Day")
+        return (day, _("Liberation Day"))
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -94,6 +96,7 @@ class Berlin(Germany):
 @iso_register('DE-BB')
 class Brandenburg(Germany):
     'Brandenburg'
+
     include_easter_sunday = True
     all_time_include_reformation_day = True
 
@@ -101,12 +104,14 @@ class Brandenburg(Germany):
 @iso_register('DE-HB')
 class Bremen(Germany):
     'Bremen'
+
     include_reformation_day_2018 = True
 
 
 @iso_register('DE-HH')
 class Hamburg(Germany):
     'Hamburg'
+
     include_reformation_day_2018 = True
 
 
@@ -127,6 +132,7 @@ class MecklenburgVorpommern(Germany):
 @iso_register('DE-NI')
 class LowerSaxony(Germany):
     'Lower Saxony'
+
     include_reformation_day_2018 = True
 
 
@@ -166,7 +172,7 @@ class Saxony(Germany):
         day = date(year, 11, 22)
         while day.weekday() != 2:  # 2=Wednesday
             day -= timedelta(days=1)
-        return (day, "Repentance Day")
+        return (day, _("Repentance Day"))
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -185,6 +191,7 @@ class SaxonyAnhalt(Germany):
 @iso_register('DE-SH')
 class SchleswigHolstein(Germany):
     'Schleswig-Holstein'
+
     include_reformation_day_2018 = True
 
 
