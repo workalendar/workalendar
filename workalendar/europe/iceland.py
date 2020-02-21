@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin, THU, MON
 from ..registry_tools import iso_register
 
@@ -14,12 +16,12 @@ class Iceland(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_christmas_eve = True
     include_boxing_day = True
-    boxing_day_label = "St Stephen's Day"
+    boxing_day_label = _("St Stephen's Day")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (6, 17, "Icelandic National Day"),
-        (12, 31, "New Year's Eve"),
+        (5, 1, _("Labour Day")),
+        (6, 17, _("Icelandic National Day")),
+        (12, 31, _("New Year's Eve")),
     )
 
     def get_first_day_of_summer(self, year):
@@ -36,7 +38,7 @@ class Iceland(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days.extend([
-            (self.get_first_day_of_summer(year), "First day of summer"),
-            (self.get_commerce_day(year), "Commerce Day"),
+            (self.get_first_day_of_summer(year), _("First day of summer")),
+            (self.get_commerce_day(year), _("Commerce Day")),
         ])
         return days
