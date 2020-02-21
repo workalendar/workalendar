@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, MON, SAT
 from ..registry_tools import iso_register
@@ -22,18 +23,18 @@ class CaymanIslands(WesternCalendar, ChristianMixin):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days += [
-            (self.get_national_heroes_day(year), "National Heroes Day"),
-            (self.get_discovery_day(year), "Discovery Day"),
-            (self.get_queens_birthday(year), "Queen's Birthday"),
-            (self.get_constitution_day(year), "Constitution Day"),
-            (self.get_remembrance_day(year), "Remembrance Day"),
+            (self.get_national_heroes_day(year), _("National Heroes Day")),
+            (self.get_discovery_day(year), _("Discovery Day")),
+            (self.get_queens_birthday(year), _("Queen's Birthday")),
+            (self.get_constitution_day(year), _("Constitution Day")),
+            (self.get_remembrance_day(year), _("Remembrance Day")),
         ]
 
         shifts = self.shift_christmas_boxing_days(year=year)
         days.extend(shifts)
 
         if year == 2017:
-            days += [(date(2017, 5, 24), "Election day")]
+            days += [(date(2017, 5, 24), _("Election day"))]
 
         return days
 
