@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -14,9 +16,9 @@ class Norway(WesternCalendar, ChristianMixin):
     include_whit_monday = True
     include_whit_sunday = True
     include_boxing_day = True
-    boxing_day_label = "St Stephen's Day"
+    boxing_day_label = _("St Stephen's Day")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (5, 17, "Constitution Day"),
+        (5, 1, _("Labour Day")),
+        (5, 17, _("Constitution Day")),
     )
