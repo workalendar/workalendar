@@ -1,3 +1,9 @@
+v6.1.2
+------
+
+#14: Replaced implicit dependency on setuptools with explicit
+dependency on importlib.metadata.
+
 v6.1.1
 ------
 
