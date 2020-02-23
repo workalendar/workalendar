@@ -1,7 +1,10 @@
 .. image:: https://img.shields.io/pypi/v/calendra.svg
-   :target: https://pypi.org/project/calendra
+   :target: `PyPI link`_
 
 .. image:: https://img.shields.io/pypi/pyversions/calendra.svg
+   :target: `PyPI link`_
+
+.. _PyPI link: https://pypi.org/project/calendra
 
 .. image:: https://dev.azure.com/jaraco/calendra/_apis/build/status/jaraco.calendra?branchName=master
    :target: https://dev.azure.com/jaraco/calendra/_build/latest?definitionId=1&branchName=master
