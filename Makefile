@@ -1,6 +1,7 @@
 TEST_ARGS ?=
 TEST_ENVS ?=
 TEST_REBUILD ?= yes
+WORKALENDAR_POT ?= workalendar/locales/workalendar.pot
 
 # target: help - Display callable targets.
 .PHONY: help
@@ -43,12 +44,27 @@ package:
 	rm -Rf build/
 	python setup.py sdist bdist_wheel
 
+# target: msginit - Create (missing) .po files
+msginit:
+	for directory in $$(find workalendar/locales/ -type d | grep -v locales/$$ | grep -v LC_MESSAGES); do \
+		mkdir -p $${directory}/LC_MESSAGES/; \
+		if [ ! -f $${directory}/LC_MESSAGES/workalendar.po ] ; then \
+			msginit -i ${WORKALENDAR_POT} -o $${directory}/LC_MESSAGES/workalendar.po; \
+		fi \
+	done
+
+# target: msgmerge - Merge messages with .po files and .pot template
+msgmerge:
+	for directory in $$(find workalendar/locales/ -type d | grep -v locales/$$ | grep -v LC_MESSAGES); do \
+		msgmerge $${directory}/LC_MESSAGES/workalendar.po ${WORKALENDAR_POT} -o $${directory}/workalendar.po; \
+	done
+
 # target: makemessages - build translation template file
 .PHONY: makemessages
 makemessages:
-	pygettext -d workalendar -o workalendar/locales/templates/workalendar.pot workalendar
+	pygettext -d workalendar -o ${WORKALENDAR_POT} workalendar
 
 # target: compilemessages - compile translation strings
 .PHONY: compilemessages
 compilemessages:
-	for file in $$(find locales -name workalendar.po); do msgfmt -o $${file%.po}.mo $${file%.po}; done
+	for file in $$(find workalendar/locales -name workalendar.po); do msgfmt -o $${file%.po}.mo $${file%.po}; done
