@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v8.2.0 (2020-03-13)
 
-- Added Belarus calendar, by @alexdoesstuff.
+- Added Belarus calendar, by @alexdoesstuff (#472).
 
 ## v8.1.0 (2020-02-07)
 
