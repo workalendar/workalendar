@@ -13,7 +13,7 @@ to include them, you may just have to create a class like this:
 
 """
 from datetime import date
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..registry_tools import iso_register
 from .core import UnitedStates

@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from gettext import gettext as _
+from .. import gettext as _
 import warnings
 from pyluach.dates import GregorianDate
 

@@ -1,7 +1,7 @@
 """
 Victoria Day mixins
 """
-from gettext import gettext as _
+from .... import gettext as _
 
 from ....core import MON
 

@@ -1,5 +1,5 @@
 from datetime import timedelta, date
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, MON
 from ..registry_tools import iso_register

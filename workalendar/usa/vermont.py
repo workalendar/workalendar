@@ -1,4 +1,4 @@
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import TUE
 from ..registry_tools import iso_register

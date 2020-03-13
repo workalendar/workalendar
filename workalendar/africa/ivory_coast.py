@@ -1,4 +1,4 @@
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import WesternCalendar, IslamicMixin, ChristianMixin
 from ..registry_tools import iso_register

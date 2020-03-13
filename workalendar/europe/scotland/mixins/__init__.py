@@ -6,7 +6,7 @@ module.
 """
 from ....core import MON, FRI
 from datetime import timedelta
-from gettext import gettext as _
+from .... import gettext as _
 
 from .spring_holiday import (
     SpringHolidayFirstMondayApril,

@@ -1,5 +1,5 @@
 from datetime import date
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin, THU, MON
 from ..registry_tools import iso_register

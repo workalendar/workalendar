@@ -1,6 +1,6 @@
 from datetime import timedelta
 from copy import copy
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON

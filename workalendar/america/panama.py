@@ -1,4 +1,4 @@
-from gettext import gettext as _
+from .. import gettext as _
 from datetime import timedelta
 
 from ..core import WesternCalendar, ChristianMixin

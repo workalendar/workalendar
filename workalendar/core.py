@@ -5,12 +5,12 @@ from copy import copy
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
-from gettext import gettext as _
 
 from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
 
+from . import gettext as _
 from .exceptions import UnsupportedDateType
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)

@@ -1,6 +1,6 @@
 from datetime import date
 import warnings
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..registry_tools import iso_register

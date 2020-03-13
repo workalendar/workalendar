@@ -12,7 +12,7 @@ day by implementing the following class:
         include_thanksgiving_wednesday = False
 
 """
-from gettext import gettext as _
+from .. import gettext as _
 from ..core import WED, FRI
 from ..registry_tools import iso_register
 from .core import UnitedStates

@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT

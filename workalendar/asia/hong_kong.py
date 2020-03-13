@@ -1,5 +1,5 @@
 from datetime import timedelta
-from gettext import gettext as _
+from .. import gettext as _
 
 from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin
 from ..astronomy import solar_term
