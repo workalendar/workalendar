@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -14,14 +16,14 @@ class Slovenia(WesternCalendar, ChristianMixin):
     include_christmas = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 8, "Preseren Day, the Slovenian Cultural Holiday"),
-        (4, 27, "Day of Uprising Against Occupation"),
-        (5, 1, "Labour Day"),
-        (5, 2, "Labour Day"),
-        (6, 25, "Statehood Day"),
-        (10, 31, "Reformation Day"),
-        (11, 1, "Day of Remembrance of the Dead"),
-        (12, 26, "Independence and Unity Day"),
+        (2, 8, _("Preseren Day, the Slovenian Cultural Holiday")),
+        (4, 27, _("Day of Uprising Against Occupation")),
+        (5, 1, _("Labour Day")),
+        (5, 2, _("Labour Day")),
+        (6, 25, _("Statehood Day")),
+        (10, 31, _("Reformation Day")),
+        (11, 1, _("Day of Remembrance of the Dead")),
+        (12, 26, _("Independence and Unity Day")),
     )
 
     def get_variable_days(self, year):
@@ -33,6 +35,6 @@ class Slovenia(WesternCalendar, ChristianMixin):
         # Source - Wikipedia
         # https://en.wikipedia.org/wiki/Public_holidays_in_Slovenia
         if 1955 <= year <= 2012 or year >= 2017:
-            days.append((date(year, 1, 2), "January 2nd"))
+            days.append((date(year, 1, 2), _("January 2nd")))
 
         return days

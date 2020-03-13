@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import SUN
 from ..registry_tools import iso_register
 
@@ -19,17 +21,17 @@ class Michigan(UnitedStates):
         # New Year's Eve to be added
         new_years_eve = date(year, 12, 31)
         days.append(
-            (new_years_eve, "New Years Eve")
+            (new_years_eve, _("New Years Eve"))
         )
 
         # Christmas Eve & New Year's Eve shift when it falls on SUN
         xmas_eve = date(year, 12, 24)
         if xmas_eve.weekday() == SUN:
             days.append(
-                (date(year, 12, 22), "Christmas Eve shift")
+                (date(year, 12, 22), _("Christmas Eve shift"))
             )
             days.append(
-                (date(year, 12, 29), "New Years Eve Shift")
+                (date(year, 12, 29), _("New Years Eve Shift"))
             )
 
         return days

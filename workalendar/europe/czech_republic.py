@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -10,16 +12,16 @@ class CzechRepublic(WesternCalendar, ChristianMixin):
     include_good_friday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 1, "Restoration Day of the Independent Czech State"),
-        (5, 1, "Labour Day"),
-        (5, 8, "Liberation Day"),
-        (7, 5, "Saints Cyril and Methodius Day"),
-        (7, 6, "Jan Hus Day"),
-        (9, 28, "St. Wenceslas Day (Czech Statehood Day)"),
-        (10, 28, "Independent Czechoslovak State Day"),
-        (11, 17, "Struggle for Freedom and Democracy Day"),
-        (12, 24, "Christmas Eve"),
-        (12, 26, "St. Stephen's Day (The Second Christmas Day)"),
+        (1, 1, _("Restoration Day of the Independent Czech State")),
+        (5, 1, _("Labour Day")),
+        (5, 8, _("Liberation Day")),
+        (7, 5, _("Saints Cyril and Methodius Day")),
+        (7, 6, _("Jan Hus Day")),
+        (9, 28, _("St. Wenceslas Day (Czech Statehood Day)")),
+        (10, 28, _("Independent Czechoslovak State Day")),
+        (11, 17, _("Struggle for Freedom and Democracy Day")),
+        (12, 24, _("Christmas Eve")),
+        (12, 26, _("St. Stephen's Day (The Second Christmas Day)")),
     )
 
     def get_variable_days(self, year):

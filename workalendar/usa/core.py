@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from gettext import gettext as _
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
@@ -10,26 +11,26 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     "United States of America"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (7, 4, 'Independence Day'),
+        (7, 4, _('Independence Day')),
     )
     # Veterans day label
     include_veterans_day = True
-    veterans_day_label = 'Veterans Day'
+    veterans_day_label = _('Veterans Day')
 
     # MLK
-    martin_luther_king_label = 'Birthday of Martin Luther King, Jr.'
+    martin_luther_king_label = _('Birthday of Martin Luther King, Jr.')
 
     include_thanksgiving_friday = False
-    thanksgiving_friday_label = "Thanksgiving Friday"
+    thanksgiving_friday_label = _("Thanksgiving Friday")
     # Some states don't include Washington's Birthday, or move it to December.
     include_federal_presidents_day = True
-    presidents_day_label = "Washington's Birthday"
+    presidents_day_label = _("Washington's Birthday")
 
     include_lincoln_birthday = False
 
     # Columbus day is included by default
     include_columbus_day = True
-    columbus_day_label = "Columbus Day"
+    columbus_day_label = _("Columbus Day")
     # Confederation day
     include_confederation_day = False
     # Jefferson Davis Birthday.
@@ -41,7 +42,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     include_patriots_day = False
 
     # Boxing day label is not "boxing day" in the US
-    boxing_day_label = "Day After Christmas"
+    boxing_day_label = _("Day After Christmas")
 
     # Election Day
     # To include every year?
@@ -51,12 +52,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
     # NOTE: if it's included on every year, it'll also be included
     # on even years. Setting these two flags to ON will give priority to the
     # yearly flag.
-    election_day_label = "Election Day"
+    election_day_label = _("Election Day")
     # Inauguration Day
     include_inauguration_day = False
 
     # National Memorial Day
-    national_memorial_day_label = "Memorial Day"
+    national_memorial_day_label = _("Memorial Day")
 
     # Some regional variants
     include_mardi_gras = False
@@ -84,10 +85,10 @@ class UnitedStates(WesternCalendar, ChristianMixin):
                 continue
             if day.weekday() == SAT:
                 new_holidays.append((day - timedelta(days=1),
-                                     label + " (Observed)"))
+                                     label + " (Observed)"))  # FIXME: gettext
             elif day.weekday() == SUN:
                 new_holidays.append((day + timedelta(days=1),
-                                     label + " (Observed)"))
+                                     label + " (Observed)"))  # FIXME gettext
 
         # If year+1 January the 1st is on SAT, add the FRI before to observed
         if date(year + 1, 1, 1).weekday() == SAT:
@@ -103,18 +104,18 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             if christmas.weekday() == SAT:
                 # Remove the "fake" XMAS Day shift, the one done before.
                 new_holidays.remove(
-                    (christmas_eve, "Christmas Day (Observed)")
+                    (christmas_eve, _("Christmas Day (Observed)"))
                 )
                 new_holidays.append((date(year, 12, 23),
-                                     "Christmas Eve (Observed)"))
+                                     _("Christmas Eve (Observed)")))
             # You are observing the 26th (TUE)
             elif christmas.weekday() == MON:
                 # Remove the "fake" XMAS Eve shift, done before
                 new_holidays.remove(
-                    (christmas, "Christmas Eve (Observed)")
+                    (christmas, _("Christmas Eve (Observed)"))
                 )
                 new_holidays.append((date(year, 12, 26),
-                                     "Christmas Day (Observed)"))
+                                     _("Christmas Day (Observed)")))
         return holidays + new_holidays
 
     @staticmethod
@@ -152,7 +153,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         Confederate memorial day is on the 4th MON of April.
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
-        return (day, "Confederate Memorial Day")
+        return (day, _("Confederate Memorial Day"))
 
     def get_jefferson_davis_birthday(self, year):
         """
@@ -160,7 +161,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         """
         return (
             self.get_nth_weekday_in_month(year, 6, MON, 1),
-            "Jefferson Davis Birthday"
+            _("Jefferson Davis Birthday")
         )
 
     def get_martin_luther_king_date(self, year):
@@ -196,14 +197,15 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
         Will return a list of days.
         """
-        days = [(date(year, 3, 31), "Cesar Chavez Day")]
+        days = [(date(year, 3, 31), _("Cesar Chavez Day"))]
         if date(year, 3, 31).weekday() == SUN:
-            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
+            days.append((date(year, 4, 1), _("Cesar Chavez Day (Observed)")))
         return days
 
     def get_patriots_day(self, year):
         """3rd Monday of April"""
-        return (self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day")
+        return (self.get_nth_weekday_in_month(year, 4, MON, 3),
+                _("Patriots Day"))
 
     def get_washington_birthday_december(self, year):
         """
@@ -245,7 +247,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         * Missouri,
         * New York
         """
-        return (date(year, 2, 12), "Lincoln's Birthday")
+        return (date(year, 2, 12), _("Lincoln's Birthday"))
 
     def get_inauguration_date(self, year):
         """
@@ -277,7 +279,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         Mardi Gras is the Tuesday happening 47 days before Easter
         """
         sunday = self.get_easter_sunday(year)
-        return (sunday - timedelta(days=47), "Mardi Gras")
+        return (sunday - timedelta(days=47), _("Mardi Gras"))
 
     def get_variable_days(self, year):
         # usual variable days
@@ -290,9 +292,9 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         days.extend([
             self.get_national_memorial_day(year),
             (UnitedStates.get_nth_weekday_in_month(year, 9, MON),
-                "Labor Day"),
+                _("Labor Day")),
             (UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4),
-                "Thanksgiving Day"),
+                _("Thanksgiving Day")),
         ])
 
         if self.include_mardi_gras:
@@ -323,7 +325,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             # Is it a "Inauguration year"?
             if UnitedStates.is_presidential_year(year - 1):
                 days.append(
-                    (self.get_inauguration_date(year), "Inauguration Day")
+                    (self.get_inauguration_date(year), _("Inauguration Day"))
                 )
 
         if self.include_election_day_every_year:

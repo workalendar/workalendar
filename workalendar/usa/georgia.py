@@ -1,5 +1,7 @@
 import warnings
 from datetime import date
+from gettext import gettext as _
+
 from ..core import MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -70,10 +72,10 @@ class Georgia(UnitedStates):
         Happens on the day after Thanksgiving.
         """
         if year < 2016:
-            label = "Robert E. Lee's Birthday (Observed)"
+            label = _("Robert E. Lee's Birthday (Observed)")
         else:
-            label = "State Holiday"
-        date, _ = self.get_thanksgiving_friday(year)
+            label = _("State Holiday")
+        date, __ = self.get_thanksgiving_friday(year)
         return (date, label)
 
     def get_variable_days(self, year):

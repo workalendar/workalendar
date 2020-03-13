@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from gettext import gettext as _
 
 from pyluach.dates import GregorianDate, HebrewDate
 
@@ -31,25 +32,27 @@ class Israel(Calendar):
 
             if month == 7:
                 if day == 1:
-                    days.append((current_date - delta, "Rosh Hashana Eve"))
-                    days.append((current_date, "Rosh Hashana"))
-                    days.append((current_date + delta, "Rosh Hashana"))
+                    days.append((current_date - delta, _("Rosh Hashana Eve")))
+                    days.append((current_date, _("Rosh Hashana")))
+                    days.append((current_date + delta, _("Rosh Hashana")))
                 elif day == 10:
-                    days.append((current_date - delta, "Yom Kippur Eve"))
-                    days.append((current_date, "Yom Kippur"))
+                    days.append((current_date - delta, _("Yom Kippur Eve")))
+                    days.append((current_date, _("Yom Kippur")))
                 elif day == 15:
-                    days.append((current_date - delta, "Sukkot Eve"))
-                    days.append((current_date, "Sukkot"))
+                    days.append((current_date - delta, _("Sukkot Eve")))
+                    days.append((current_date, _("Sukkot")))
                 elif day == 22:
-                    days.append((current_date - delta, "Shmini Atzeres Eve"))
-                    days.append((current_date, "Shmini Atzeres"))
+                    days.append((
+                        current_date - delta, _("Shmini Atzeres Eve"))
+                    )
+                    days.append((current_date, _("Shmini Atzeres")))
             elif month == 1:
                 if day == 15:
-                    days.append((current_date - delta, "Pesach Eve"))
-                    days.append((current_date, "Pesach"))
+                    days.append((current_date - delta, _("Pesach Eve")))
+                    days.append((current_date, _("Pesach")))
                 elif day == 21:
-                    days.append((current_date - delta, "7th of Pesach Eve"))
-                    days.append((current_date, "7th of Pesach"))
+                    days.append((current_date - delta, _("7th of Pesach Eve")))
+                    days.append((current_date, _("7th of Pesach")))
             elif month == 2:
                 if day == 5:
                     independence_date = current_date
@@ -66,12 +69,12 @@ class Israel(Calendar):
                             jewish_year, month, 6
                         ).to_pydate()
                     days.append(
-                        (independence_date - delta, "Independence Day Eve")
+                        (independence_date - delta, _("Independence Day Eve"))
                     )
-                    days.append((independence_date, "Independence Day"))
+                    days.append((independence_date, _("Independence Day")))
             elif month == 3 and day == 6:
-                days.append((current_date - delta, "Shavout Eve"))
-                days.append((current_date, "Shavout"))
+                days.append((current_date - delta, _("Shavout Eve")))
+                days.append((current_date, _("Shavout")))
 
             current_date += delta
 

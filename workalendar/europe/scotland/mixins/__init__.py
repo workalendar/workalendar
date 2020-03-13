@@ -6,6 +6,7 @@ module.
 """
 from ....core import MON, FRI
 from datetime import timedelta
+from gettext import gettext as _
 
 from .spring_holiday import (
     SpringHolidayFirstMondayApril,
@@ -47,7 +48,7 @@ class LateSummer:
         days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 9, MON),
-            "Late Summer Holiday"
+            _("Late Summer Holiday")
         ))
         return days
 
@@ -60,7 +61,7 @@ class BattleStirlingBridge:
         days = super().get_variable_days(year)
         days.append((
             self.get_nth_weekday_in_month(year, 9, MON, 2),
-            "Battle of Stirling Bridge Holiday"
+            _("Battle of Stirling Bridge Holiday")
         ))
         return days
 
@@ -71,10 +72,10 @@ class AyrGoldCup:
         # Ayr Gold Cup
         gold_cup_friday = self.get_nth_weekday_in_month(year, 9, FRI, 3)
         days.append(
-            (gold_cup_friday, "Ayr Gold Cup Friday")
+            (gold_cup_friday, _("Ayr Gold Cup Friday"))
         )
         days.append(
-            (gold_cup_friday + timedelta(days=3), "Ayr Gold Cup Monday")
+            (gold_cup_friday + timedelta(days=3), _("Ayr Gold Cup Monday"))
         )
         return days
 
@@ -88,7 +89,6 @@ __all__ = [
     'SpringHolidayFirstMondayJune',
     'VictoriaDayFourthMondayMay',
     'VictoriaDayLastMondayMay',
-    'VictoriaDayTuesdayAfterFirstMondayMay',
     'VictoriaDayFirstMondayJune',
     'FairHolidayLastMondayJune',
     'FairHolidayFirstMondayJuly',

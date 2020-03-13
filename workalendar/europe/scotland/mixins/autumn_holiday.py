@@ -1,12 +1,14 @@
 """
 Autumn Holiday mixins
 """
+from gettext import gettext as _
+
 from ....core import MON
 
 
 class AutumHoliday:
     include_autumn_holiday = True
-    autumn_holiday_label = "Autumn Holiday"
+    autumn_holiday_label = _("Autumn Holiday")
 
 
 class AutumnHolidayLastMondaySeptember(AutumHoliday):

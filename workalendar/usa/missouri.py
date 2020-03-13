@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from .core import UnitedStates
 from ..registry_tools import iso_register
 
@@ -6,6 +8,6 @@ from ..registry_tools import iso_register
 class Missouri(UnitedStates):
     """Missouri"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (5, 8, "Truman Day"),
+        (5, 8, _("Truman Day")),
     )
     include_lincoln_birthday = True

@@ -13,6 +13,7 @@ to include them, you may just have to create a class like this:
 
 """
 from datetime import date
+from gettext import gettext as _
 
 from ..registry_tools import iso_register
 from .core import UnitedStates
@@ -23,13 +24,13 @@ class WestVirginia(UnitedStates):
     """West Virginia"""
     include_thanksgiving_friday = True
     include_election_day_even = True
-    election_day_label = "Election Day / Susan B. Anthony Day"
+    election_day_label = _("Election Day / Susan B. Anthony Day")
 
     # West Virginia specific "half-holidays"
     west_virginia_include_christmas_eve = False
     west_virginia_include_nye = False
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (6, 20, "West Virgina Day"),
+        (6, 20, _("West Virgina Day")),
     )
     shift_exceptions = (
         (12, 24),
@@ -40,10 +41,10 @@ class WestVirginia(UnitedStates):
         days = super().get_fixed_holidays(year)
         if self.west_virginia_include_christmas_eve:
             days.append(
-                (date(year, 12, 24), "Christmas Eve")
+                (date(year, 12, 24), _("Christmas Eve"))
             )
         if self.west_virginia_include_nye:
             days.append(
-                (date(year, 12, 31), "New Years Eve")
+                (date(year, 12, 31), _("New Years Eve"))
             )
         return days

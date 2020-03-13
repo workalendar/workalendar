@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, OrthodoxMixin
 from ..registry_tools import iso_register
 
@@ -11,9 +13,9 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
     shift_new_years_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 8, "International Women’s Day"),
-        (5, 1, "Workers Solidarity Day"),
-        (5, 9, "Victory Day"),
+        (3, 8, _("International Women's Day")),
+        (5, 1, _("Workers Solidarity Day")),
+        (5, 9, _("Victory Day")),
     )
 
     include_christmas = False
@@ -30,9 +32,9 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
         if orthodox_christmas.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(orthodox_christmas),
-                "Orthodox Christmas (postponed)"))
+                _("Orthodox Christmas (postponed)")))
         else:
-            days.append((orthodox_christmas, "Orthodox Christmas"))
+            days.append((orthodox_christmas, _("Orthodox Christmas")))
 
         # Constitution Day was celebrated for the first time in 1996
         if year >= 1996:
@@ -40,35 +42,35 @@ class Ukraine(OrthodoxMixin, WesternCalendar):
             if constitution_day.weekday() in self.get_weekend_days():
                 days.append((
                     self.find_following_working_day(constitution_day),
-                    "Constitution Day (postponed)"))
+                    _("Constitution Day (postponed)")))
             else:
-                days.append((constitution_day, "Constitution Day"))
+                days.append((constitution_day, _("Constitution Day")))
 
         # Independence Day was first celebrated in 1991 on the 16th of June
         # After the official independence has been moved to the 24th of August
         if year == 1991:
-            days.append((date(year, 6, 16), "Independence Day"))
+            days.append((date(year, 6, 16), _("Independence Day")))
         if year >= 1992:
             independence_day = date(year, 8, 24)
 
             if independence_day.weekday() in self.get_weekend_days():
                 days.append((
                     self.find_following_working_day(independence_day),
-                    "Independence Day (postponed)"))
+                    _("Independence Day (postponed)")))
             else:
-                days.append((independence_day, "Independence Day"))
+                days.append((independence_day, _("Independence Day")))
 
         # Defender of Ukraine from 2015
         # https://en.wikipedia.org/wiki/Defender_of_Ukraine_Day
         if year >= 2015:
-            days.append((date(year, 10, 14), "Day of Defender of Ukraine"))
+            days.append((date(year, 10, 14), _("Day of Defender of Ukraine")))
 
         # Catholic Christmas has become an holiday only starting from 2017
         if year >= 2017:
-            days.append((date(year, 12, 25), "Christmas Day"))
+            days.append((date(year, 12, 25), _("Christmas Day")))
 
         # Workers Solidarity Day was celebrated also on the 2nd till 2017
         if year <= 2017:
-            days.append((date(year, 5, 2), "Workers Solidarity Day"))
+            days.append((date(year, 5, 2), _("Workers Solidarity Day")))
 
         return days

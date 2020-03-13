@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -7,9 +9,9 @@ class Belgium(WesternCalendar, ChristianMixin):
     'Belgium'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (7, 21, "National Day"),
-        (11, 11, "Armistice of 1918"),
+        (5, 1, _("Labour Day")),
+        (7, 21, _("National Day")),
+        (11, 11, _("Armistice of 1918")),
     )
 
     include_easter_monday = True

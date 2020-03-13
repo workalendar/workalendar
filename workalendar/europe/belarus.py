@@ -1,4 +1,6 @@
+from gettext import gettext as _
 from datetime import timedelta
+
 from ..core import WesternCalendar, OrthodoxMixin
 from ..registry_tools import iso_register
 
@@ -11,14 +13,14 @@ class Belarus(WesternCalendar, OrthodoxMixin):
     include_christmas = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 2, "Day After New Year"),
-        (1, 7, "Christmas (Orthodox)"),
-        (3, 8, "International Women's Day"),
-        (5, 1, "Labour Day"),
-        (5, 9, "Victory Day"),
-        (7, 3, "Republic Day"),
-        (11, 7, "October Revolution Day"),
-        (12, 25, "Christmas (Catholic)"),
+        (1, 2, _("Day After New Year")),
+        (1, 7, _("Christmas (Orthodox)")),
+        (3, 8, _("International Women's Day")),
+        (5, 1, _("Labour Day")),
+        (5, 9, _("Victory Day")),
+        (7, 3, _("Republic Day")),
+        (11, 7, _("October Revolution Day")),
+        (12, 25, _("Christmas (Catholic)")),
     )
     # Radonitsa
     # https://en.wikipedia.org/wiki/Radonitsa
@@ -33,6 +35,8 @@ class Belarus(WesternCalendar, OrthodoxMixin):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days.append((self.get_radonitsa(year), "Radonista"))
-        days.append((self.get_day_after_radonitsa(year), "Radonista Holiday"))
+        days.append((self.get_radonitsa(year), _("Radonista")))
+        days.append(
+            (self.get_day_after_radonitsa(year), _("Radonista Holiday"))
+        )
         return days

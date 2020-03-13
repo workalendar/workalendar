@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -9,16 +11,16 @@ class Estonia(WesternCalendar, ChristianMixin):
     include_good_friday = True
     include_easter_sunday = True
     include_whit_sunday = True
-    whit_sunday_label = 'Nelipühade 1. püha'
+    whit_sunday_label = _('Nelipühade 1. püha')
     include_christmas_eve = True
     include_christmas = True
     include_boxing_day = True
-    boxing_day_label = "Teine jõulupüha"
+    boxing_day_label = _("Teine jõulupüha")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 24, "Independence Day"),
-        (5, 1, "Kevadpüha"),
-        (6, 23, "Võidupüha"),
-        (6, 24, "Jaanipäev"),
-        (8, 20, "Taasiseseisvumispäev")
+        (2, 24, _("Independence Day")),
+        (5, 1, _("Kevadpüha")),
+        (6, 23, _("Võidupüha")),
+        (6, 24, _("Jaanipäev")),
+        (8, 20, _("Taasiseseisvumispäev"))
     )

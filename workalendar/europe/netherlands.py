@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -16,7 +18,7 @@ class Netherlands(WesternCalendar, ChristianMixin):
     include_boxing_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 5, "Liberation Day"),
+        (5, 5, _("Liberation Day")),
     )
 
     def get_king_queen_day(self, year):
@@ -27,14 +29,14 @@ class Netherlands(WesternCalendar, ChristianMixin):
         """
         if year > 2013:
             if date(year, 4, 27).weekday() != 6:
-                return date(year, 4, 27), "King's day"
+                return date(year, 4, 27), _("King's day")
             else:
-                return date(year, 4, 26), "King's day"
+                return date(year, 4, 26), _("King's day")
         else:
             if date(year, 4, 30).weekday() != 6:
-                return date(year, 4, 30), "Queen's day"
+                return date(year, 4, 30), _("Queen's day")
             else:
-                return date(year, 4, 29), "Queen's day"
+                return date(year, 4, 29), _("Queen's day")
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

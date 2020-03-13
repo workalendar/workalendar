@@ -1,3 +1,4 @@
+from gettext import gettext as _
 from datetime import date
 
 from ..core import WesternCalendar, ChristianMixin
@@ -8,11 +9,11 @@ from ..registry_tools import iso_register
 class Paraguay(WesternCalendar, ChristianMixin):
     "Paraguay"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (5, 14, "Independence Day"),
-        (6, 12, "Chaco Armistice"),
-        (9, 19, "Army holiday"),
-        (12, 8, "Virgin of Caacupé Day"),
+        (5, 1, _("Labour Day")),
+        (5, 14, _("Independence Day")),
+        (6, 12, _("Chaco Armistice")),
+        (9, 19, _("Army holiday")),
+        (12, 8, _("Virgin of Caacupé Day")),
     )
     include_holy_thursday = True
     include_good_friday = True
@@ -27,7 +28,7 @@ class Paraguay(WesternCalendar, ChristianMixin):
 
         ref: https://en.wikipedia.org/wiki/Public_holidays_in_Paraguay
         """
-        label = "Heroes' Day"
+        label = _("Heroes' Day")
         if year == 2017:
             day = date(year, 2, 27)
         else:
@@ -41,7 +42,7 @@ class Paraguay(WesternCalendar, ChristianMixin):
         In 2017, it has been moved to August 14th ; otherwise it happens on
         August 15th.
         """
-        label = "Founding of Asunción"
+        label = _("Founding of Asunción")
         if year == 2017:
             day = date(year, 8, 14)
         else:
@@ -55,7 +56,7 @@ class Paraguay(WesternCalendar, ChristianMixin):
         In 2017, it has been moved to October 2nd ; otherwise it happens on
         September 29th.
         """
-        label = "Boqueron Battle Victory Day"
+        label = _("Boqueron Battle Victory Day")
         if year == 2017:
             day = date(year, 10, 2)
         else:

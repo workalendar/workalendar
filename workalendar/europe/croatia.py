@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -7,11 +9,12 @@ class Croatia(WesternCalendar, ChristianMixin):
     'Croatia'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "International Workers' Day"),
-        (6, 22, "Anti-Fascist Struggle Day"),
-        (6, 25, "Statehood Day"),
-        (8, 5, "Victory & Homeland Thanksgiving & Day of Croatian defenders"),
-        (10, 8, "Independence Day"),
+        (5, 1, _("International Workers' Day")),
+        (6, 22, _("Anti-Fascist Struggle Day")),
+        (6, 25, _("Statehood Day")),
+        (8, 5,
+         _("Victory & Homeland Thanksgiving & Day of Croatian defenders")),
+        (10, 8, _("Independence Day")),
     )
 
     include_epiphany = True
@@ -22,4 +25,4 @@ class Croatia(WesternCalendar, ChristianMixin):
     include_all_saints = True
     include_christmas = True
     include_boxing_day = True
-    boxing_day_label = "St. Stephen's Day"
+    boxing_day_label = _("St. Stephen's Day")

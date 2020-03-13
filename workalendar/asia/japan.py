@@ -1,4 +1,5 @@
 from datetime import date
+from gettext import gettext as _
 
 from ..core import MON
 from ..core import WesternCalendar
@@ -11,13 +12,13 @@ class Japan(WesternCalendar):
     "Japan"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (2, 11, "Foundation Day"),
-        (4, 29, "Showa Day"),
-        (5, 3, "Constitution Memorial Day"),
-        (5, 4, "Greenery Day"),
-        (5, 5, "Children's Day"),
-        (11, 3, "Culture Day"),
-        (11, 23, "Labour Thanksgiving Day"),
+        (2, 11, _("Foundation Day")),
+        (4, 29, _("Showa Day")),
+        (5, 3, _("Constitution Memorial Day")),
+        (5, 4, _("Greenery Day")),
+        (5, 5, _("Children's Day")),
+        (11, 3, _("Culture Day")),
+        (11, 23, _("Labour Thanksgiving Day")),
     )
 
     def get_fixed_holidays(self, year):
@@ -35,23 +36,23 @@ class Japan(WesternCalendar):
         # Lots of adjustments for new emperor
         if year == 2019:
             days.extend([
-                (date(year, 4, 30), "Coronation Day"),
-                (date(year, 5, 1), "Coronation Day"),
-                (date(year, 5, 2), "Coronation Day"),
-                (date(year, 5, 6), "Children's Day Observed"),
-                (date(year, 8, 12), "Mountain Day Observed"),
-                (date(year, 10, 22), "Enthronement Ceremony Day"),
-                (date(year, 11, 4), "Culture Day Observed"),
+                (date(year, 4, 30), _("Coronation Day")),
+                (date(year, 5, 1), _("Coronation Day")),
+                (date(year, 5, 2), _("Coronation Day")),
+                (date(year, 5, 6), _("Children's Day Observed")),
+                (date(year, 8, 12), _("Mountain Day Observed")),
+                (date(year, 10, 22), _("Enthronement Ceremony Day")),
+                (date(year, 11, 4), _("Culture Day Observed")),
             ])
         if year == 2020:
             days.extend([
-                (date(year, 2, 24), "The Emperor's Birthday Observed"),
-                (date(year, 5, 6), "Constitution Memorial Day Observed"),
-                (date(year, 8, 10), "Mountain Day"),
+                (date(year, 2, 24), _("The Emperor's Birthday Observed")),
+                (date(year, 5, 6), _("Constitution Memorial Day Observed")),
+                (date(year, 8, 10), _("Mountain Day")),
             ])
             # Mountain Day is 8/10 this year for some reason
             # The next year that will be different is 2024
-            days.remove((date(year, 8, 11), "Mountain Day"))
+            days.remove((date(year, 8, 11), _("Mountain Day")))
         return days
 
     def get_variable_days(self, year):
@@ -63,12 +64,12 @@ class Japan(WesternCalendar):
         respect_for_the_aged = Japan.get_nth_weekday_in_month(year, 9, MON, 3)
         health_and_sport = Japan.get_nth_weekday_in_month(year, 10, MON, 2)
         days.extend([
-            (coming_of_age_day, 'Coming of Age Day'),
-            (marine_day, "Marine Day"),
-            (equinoxes[0], "Vernal Equinox Day"),
-            (respect_for_the_aged, "Respect-for-the-Aged Day"),
-            (equinoxes[1], "Autumnal Equinox Day"),
-            (health_and_sport, "Health and Sports Day"),
+            (coming_of_age_day, _('Coming of Age Day')),
+            (marine_day, _("Marine Day")),
+            (equinoxes[0], _("Vernal Equinox Day")),
+            (respect_for_the_aged, _("Respect-for-the-Aged Day")),
+            (equinoxes[1], _("Autumnal Equinox Day")),
+            (health_and_sport, _("Health and Sports Day")),
         ])
 
         # Marine Day is on a Thursday in 2020 for some year
@@ -77,10 +78,10 @@ class Japan(WesternCalendar):
         # of October, except in 2020 when it will happen in July
         # https://www.timeanddate.com/holidays/japan/sports-day
         if year == 2020:
-            days.remove((marine_day, "Marine Day"))
-            days.append((date(2020, 7, 23), "Marine Day"))
-            days.remove((health_and_sport, "Health and Sports Day"))
-            days.append((date(2020, 7, 24), "Health and Sports Day"))
+            days.remove((marine_day, _("Marine Day")))
+            days.append((date(2020, 7, 23), _("Marine Day")))
+            days.remove((health_and_sport, _("Health and Sports Day")))
+            days.append((date(2020, 7, 24), _("Health and Sports Day")))
         return days
 
 
@@ -91,7 +92,7 @@ class JapanBank(Japan):
     """
 
     FIXED_HOLIDAYS = Japan.FIXED_HOLIDAYS + (
-        (1, 2, "New Year Bank Holiday"),
-        (1, 3, "New Year Bank Holiday"),
-        (12, 31, "New Year Bank Holiday"),
+        (1, 2, _("New Year Bank Holiday")),
+        (1, 3, _("New Year Bank Holiday")),
+        (12, 31, _("New Year Bank Holiday")),
     )

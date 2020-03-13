@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin, SUN
 from ..registry_tools import iso_register
 
@@ -17,9 +19,9 @@ class Switzerland(WesternCalendar, ChristianMixin):
     include_boxing_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 2, "Berchtold's Day"),
-        (5, 1, "Labour Day"),
-        (8, 1, "National Holiday"),
+        (1, 2, _("Berchtold's Day")),
+        (5, 1, _("Labour Day")),
+        (8, 1, _("National Holiday")),
     )
 
 
@@ -31,8 +33,8 @@ class Vaud(Switzerland):
     include_federal_thanksgiving_monday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 2, "Berchtold's Day"),
-        (8, 1, "National Holiday"),
+        (1, 2, _("Berchtold's Day")),
+        (8, 1, _("National Holiday")),
     )
 
     def get_federal_thanksgiving_monday(self, year):
@@ -48,7 +50,7 @@ class Vaud(Switzerland):
         days = super().get_variable_days(year)
         if self.include_federal_thanksgiving_monday:
             days.append((self.get_federal_thanksgiving_monday(year),
-                         "Federal Thanksgiving Monday"))
+                         _("Federal Thanksgiving Monday")))
         return days
 
 
@@ -59,8 +61,8 @@ class Geneva(Switzerland):
     include_boxing_day = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (8, 1, "National Holiday"),
-        (12, 31, "Creation of Geneva Republic"),
+        (8, 1, _("National Holiday")),
+        (12, 31, _("Creation of Geneva Republic")),
     )
 
     def get_genevan_fast(self, year):
@@ -69,7 +71,7 @@ class Geneva(Switzerland):
         # The following thursday is 4 days after
         return (
             first_sunday + timedelta(days=4),
-            "Genevan Fast"
+            _("Genevan Fast")
         )
 
     def get_variable_days(self, year):

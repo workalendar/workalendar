@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from .core import UnitedStates
 from ..registry_tools import iso_register
 
@@ -11,6 +13,6 @@ class Massachusetts(UnitedStates):
 class SuffolkCountyMassachusetts(Massachusetts):
     """Suffolk County, Massachusetts"""
     FIXED_HOLIDAYS = UnitedStates.FIXED_HOLIDAYS + (
-        (3, 17, 'Evacuation Day'),
-        (6, 17, 'Bunker Hill Day'),
+        (3, 17, _('Evacuation Day')),
+        (6, 17, _('Bunker Hill Day')),
     )

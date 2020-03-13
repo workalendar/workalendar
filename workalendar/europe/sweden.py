@@ -1,4 +1,6 @@
 from datetime import date
+from gettext import gettext as _
+
 from ..core import WesternCalendar, ChristianMixin, FRI, SAT
 from ..registry_tools import iso_register
 
@@ -13,17 +15,17 @@ class Sweden(WesternCalendar, ChristianMixin):
     include_easter_monday = True
     include_ascension = True
     include_whit_sunday = True
-    whit_sunday_label = "Pentecost"
+    whit_sunday_label = _("Pentecost")
     # Christmas Eve is not a holiday but not a work day either
     include_christmas_eve = True
     include_boxing_day = True
-    boxing_day_label = "Second Day of Christmas"
+    boxing_day_label = _("Second Day of Christmas")
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
-        (6, 6, "National Day"),
+        (5, 1, _("Labour Day")),
+        (6, 6, _("National Day")),
         # New Year's Eve is not a holiday but not a work day either
-        (12, 31, "New Year's Eve")
+        (12, 31, _("New Year's Eve"))
     )
 
     # Midsummer Eve is not a holiday but not a work day either
@@ -46,7 +48,7 @@ class Sweden(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days.append((self.get_midsummer_day(year), "Midsummer's Day"))
-        days.append((self.get_midsummer_eve(year), "Midsummer's Eve"))
-        days.append((self.get_variable_all_saints(year), "All Saints"))
+        days.append((self.get_midsummer_day(year), _("Midsummer's Day")))
+        days.append((self.get_midsummer_eve(year), _("Midsummer's Eve")))
+        days.append((self.get_variable_all_saints(year), _("All Saints")))
         return days
