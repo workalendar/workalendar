@@ -20,11 +20,11 @@ msgstr "Fête du travail"
 
 #: workalendar/europe/france.py:20
 msgid "Victory in Europe Day"
-msgstr "Armistice 1945"
+msgstr "Fête de la Victoire"
 
 #: workalendar/europe/france.py:21
 msgid "Bastille Day"
-msgstr "Fête Nationale"
+msgstr "Fête nationale"
 
 #: workalendar/europe/france.py:22
 msgid "Armistice Day"
