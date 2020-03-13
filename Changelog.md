@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Belarus calendar, by @alexdoesstuff.
 
 ## v8.1.0 (2020-02-07)
 

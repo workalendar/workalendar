@@ -1,4 +1,5 @@
 from .austria import Austria
+from .belarus import Belarus
 from .belgium import Belgium
 from .bulgaria import Bulgaria
 from .cayman_islands import CaymanIslands
@@ -54,6 +55,7 @@ from .scotland import (
 
 __all__ = (
     'Austria',
+    'Belarus',
     'Belgium',
     'Bulgaria',
     'Catalonia',

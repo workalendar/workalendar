@@ -78,6 +78,7 @@ Europe
 ------
 
 * Austria
+* Belarus
 * Belgium
 * Bulgaria
 * Cayman Islands
