@@ -815,6 +815,7 @@ class BrazilBankCalendarTest(BrazilTest):
         self.assertIn(date(2017, 1, 1), holidays)  # New year
         self.assertIn(date(2017, 2, 27), holidays)  # Monday carnaval
         self.assertIn(date(2017, 2, 28), holidays)  # Tuesday carnaval
+        self.assertIn(date(2017, 3, 1), holidays)  # Ash wednesday
         self.assertIn(date(2017, 4, 14), holidays)  # Good friday
         self.assertIn(date(2017, 4, 21), holidays)  # Tiradentes
         self.assertIn(date(2017, 5, 1), holidays)  # Labour day
@@ -824,6 +825,8 @@ class BrazilBankCalendarTest(BrazilTest):
         self.assertIn(date(2017, 11, 2), holidays)  # All Souls' Day
         self.assertIn(date(2017, 11, 15), holidays)  # Republic day
         self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2017, 12, 29), holidays)  # Last working day of year
+        self.assertEquals(14, len(holidays))
 
     def test_year_2017_find_next_working_day_for_new_year(self):
         new_year = date(2017, 1, 1)
