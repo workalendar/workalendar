@@ -70,7 +70,12 @@ class ArgentinaTest(GenericCalendarTest):
         self.assertIn(date(2020, 2, 24), holidays)
         self.assertIn(date(2020, 2, 25), holidays)
         self.assertIn(date(2020, 3, 24), holidays)
-        self.assertIn(date(2020, 4, 2), holidays)
+        # Special case: Argentina has shifted this holiday due to
+        # Coronavirus lockdown in 2020.
+        self.assertNotIn(date(2020, 4, 2), holidays)
+        self.assertIn(date(2020, 3, 31), holidays)
+
+        # Back to normal, I hope...
         self.assertIn(date(2020, 4, 10), holidays)
         self.assertIn(date(2020, 5, 1), holidays)
         self.assertIn(date(2020, 5, 25), holidays)
