@@ -116,7 +116,7 @@ class Argentina(WesternCalendar, ChristianMixin):
         In 2020, it was shifted to March 31st because of
         the coronavirus crisis.
         """
-        label = "Día de las Malvinas"
+        label = "Día del Veterano y de los Caídos en la Guerra de Malvinas"
         if year == 2020:
             day = date(year, 3, 31)
         else:

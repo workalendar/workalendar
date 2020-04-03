@@ -102,6 +102,13 @@ class ArgentinaTest(GenericCalendarTest):
         # The day before
         self.assertIn(date(2021, 10, 11), holidays)
 
+    def test_dia_malvinas_label(self):
+        _, label = self.cal.get_malvinas_day(2020)
+        self.assertEqual(
+            label,
+            "Día del Veterano y de los Caídos en la Guerra de Malvinas"
+        )
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile

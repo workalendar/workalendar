@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Fixed Argentina's "Malvinas Day" date for 2020, shifted to March 31st because of the coronavirus crisis (#476).
+- Fixed Argentina's label for "Malvinas Day" (#476).
 
 ## v8.2.1 (2020-04-03)
 
