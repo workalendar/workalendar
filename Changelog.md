@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v8.2.1 (2020-04-03)
 
 - Added BrazilBankCalendar to support `include_` flags and make it possible to extend and change these flags to support custom bank calendars (#474).
