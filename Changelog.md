@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added BrazilBankCalendar to support `include_` flags and make it possible to extend and change these flags to support custom bank calendars.
 
 ## v8.2.0 (2020-03-13)
 

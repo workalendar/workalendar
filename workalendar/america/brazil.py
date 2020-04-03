@@ -583,9 +583,11 @@ class BrazilBankCalendar(Brazil):
     Calendar that considers only working days for bank transactions
     for companies and the general public
     """
-    FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
-        (12, 25, "Christmas Day"),
-    )
+    include_good_friday = True
+    include_ash_wednesday = True
+    include_corpus_christi = True
+    include_consciencia_negra = False
+    include_easter_sunday = False
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
         """
@@ -607,18 +609,13 @@ class BrazilBankCalendar(Brazil):
         Define the brazilian variable holidays and the last
         day for only internal bank transactions
         """
+        days = super().get_variable_days(year)
         tuesday_carnaval = self.get_carnaval(year)
         monday_carnaval = tuesday_carnaval - timedelta(days=1)
-        good_friday = self.get_good_friday(year)
-        corpus_christi = self.get_corpus_christi(year)
-        ash_wednesday = self.get_ash_wednesday(year)
 
-        non_fixed_holidays = [
+        carnaval_days = [
             (monday_carnaval, "Monday carnaval"),
             (tuesday_carnaval, "Tuesday carnaval"),
-            (good_friday, "Good friday"),
-            (corpus_christi, "Corpus Christi"),
-            (ash_wednesday, "Ash Wednesday"),
         ]
 
         non_working_days = [
@@ -628,7 +625,7 @@ class BrazilBankCalendar(Brazil):
             )
         ]
 
-        return non_fixed_holidays + non_working_days
+        return days + carnaval_days + non_working_days
 
     def find_following_working_day(self, day):
         """
