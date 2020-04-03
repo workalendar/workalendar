@@ -109,6 +109,15 @@ class ArgentinaTest(GenericCalendarTest):
             "Día del Veterano y de los Caídos en la Guerra de Malvinas"
         )
 
+    def test_dia_memoria_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label_memoria = holidays[date(2020, 3, 24)]
+        self.assertEqual(
+            label_memoria,
+            "Día Nacional de la Memoria por la Verdad y la Justicia"
+        )
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile

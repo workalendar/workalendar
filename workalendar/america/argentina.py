@@ -16,7 +16,7 @@ class Argentina(WesternCalendar, ChristianMixin):
     include_christmas = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 24, "Día de la Memoria"),
+        (3, 24, "Día Nacional de la Memoria por la Verdad y la Justicia"),
         (5, 1, "Día del Trabajador"),
         (5, 25, "Día de la Revolución de Mayo"),
         (6, 20, "Día Paso a la Inmortalidad del General Manuel Belgrano"),
