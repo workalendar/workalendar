@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# master (unreleased)
+
+Nothing here yet.
+
 ## v8.2.2 (2020-04-10)
 
 - Fixed Argentina's "Malvinas Day" date for 2020, shifted to March 31st because of the coronavirus crisis (#476).
