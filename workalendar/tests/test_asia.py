@@ -3,7 +3,8 @@ from datetime import date
 from . import GenericCalendarTest
 
 from ..asia import (
-    HongKong, Japan, JapanBank, Qatar, Singapore,
+    HongKong, HongKongBank,
+    Japan, JapanBank, Qatar, Singapore,
     SouthKorea, Taiwan, Malaysia, China, Israel
 )
 from ..asia.china import holidays as china_holidays
@@ -240,6 +241,19 @@ class HongKongTest(GenericCalendarTest):
         self.assertEqual(
             self.cal.add_working_days(start, 5),
             date(2020, 2, 12)
+        )
+
+
+class HongKongBankTest(HongKongTest):
+    cal_class = HongKongBank
+
+    def test_are_saturdays_working_days(self):
+        # Let's start with february 6th.
+        start = date(2020, 2, 6)
+        # If SAT and SUN are non-working days
+        self.assertEqual(
+            self.cal.add_working_days(start, 5),
+            date(2020, 2, 13)
         )
 
 

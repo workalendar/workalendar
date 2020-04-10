@@ -1,6 +1,9 @@
 from datetime import date, timedelta
 
-from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin, SUN
+from ..core import (
+    ChineseNewYearCalendar, WesternCalendar, ChristianMixin,
+    SUN, SAT
+)
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
@@ -72,3 +75,8 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
         days.extend(shifts)
 
         return days
+
+
+class HongKongBank(HongKong):
+    "Hong Kong Bank"
+    WEEKEND_DAYS = (SAT, SUN)
