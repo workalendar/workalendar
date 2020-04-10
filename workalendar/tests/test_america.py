@@ -70,7 +70,12 @@ class ArgentinaTest(GenericCalendarTest):
         self.assertIn(date(2020, 2, 24), holidays)
         self.assertIn(date(2020, 2, 25), holidays)
         self.assertIn(date(2020, 3, 24), holidays)
-        self.assertIn(date(2020, 4, 2), holidays)
+        # Special case: Argentina has shifted this holiday due to
+        # Coronavirus lockdown in 2020.
+        self.assertNotIn(date(2020, 4, 2), holidays)
+        self.assertIn(date(2020, 3, 31), holidays)
+
+        # Back to normal, I hope...
         self.assertIn(date(2020, 4, 10), holidays)
         self.assertIn(date(2020, 5, 1), holidays)
         self.assertIn(date(2020, 5, 25), holidays)
@@ -96,6 +101,22 @@ class ArgentinaTest(GenericCalendarTest):
         self.assertNotIn(date(2021, 10, 12), holidays)
         # The day before
         self.assertIn(date(2021, 10, 11), holidays)
+
+    def test_dia_malvinas_label(self):
+        _, label = self.cal.get_malvinas_day(2020)
+        self.assertEqual(
+            label,
+            "Día del Veterano y de los Caídos en la Guerra de Malvinas"
+        )
+
+    def test_dia_memoria_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label_memoria = holidays[date(2020, 3, 24)]
+        self.assertEqual(
+            label_memoria,
+            "Día Nacional de la Memoria por la Verdad y la Justicia"
+        )
 
 
 class ChileTest(GenericCalendarTest):
