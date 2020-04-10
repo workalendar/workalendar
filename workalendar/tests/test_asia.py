@@ -104,9 +104,10 @@ class HongKongTest(GenericCalendarTest):
     cal_class = HongKong
 
     def test_year_2010(self):
-        """ Interesting because Christmas fell on a Saturday and CNY fell
-            on a Sunday, so didn't roll, and Ching Ming was on the same day
-            as Easter Monday """
+        # Interesting because Christmas fell on a Saturday and CNY fell
+        # on a Sunday, so didn't roll, and Ching Ming was on the same day
+        # as Easter Monday
+        # https://www.gov.hk/en/about/abouthk/holiday/2010.htm
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 1, 1), holidays)    # New Year
         self.assertIn(date(2010, 2, 13), holidays)   # Chinese new year (shift)
@@ -128,6 +129,7 @@ class HongKongTest(GenericCalendarTest):
         self.assertIn(date(2010, 12, 27), holidays)  # Boxing Day (shifted)
 
     def test_year_2013(self):
+        # https://www.gov.hk/en/about/abouthk/holiday/2013.htm
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 1, 1), holidays)    # New Year
         self.assertIn(date(2013, 2, 11), holidays)   # Chinese new year
@@ -148,6 +150,7 @@ class HongKongTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing Day
 
     def test_year_2016(self):
+        # https://www.gov.hk/en/about/abouthk/holiday/2016.htm
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 1, 1), holidays)    # New Year
         self.assertIn(date(2016, 2, 8), holidays)    # Chinese new year
@@ -157,6 +160,7 @@ class HongKongTest(GenericCalendarTest):
         self.assertIn(date(2016, 3, 26), holidays)   # Day after Good Friday
         self.assertIn(date(2016, 3, 28), holidays)   # Easter Monday
         self.assertIn(date(2016, 4, 4), holidays)    # Ching Ming
+        self.assertIn(date(2016, 5, 1), holidays)    # Labour Day (SUN)
         self.assertIn(date(2016, 5, 2), holidays)    # Labour Day (shifted)
         self.assertIn(date(2016, 5, 14), holidays)   # Buddha's Birthday
         self.assertIn(date(2016, 6, 9), holidays)    # Tuen Ng Festival
@@ -164,10 +168,12 @@ class HongKongTest(GenericCalendarTest):
         self.assertIn(date(2016, 9, 16), holidays)   # Day after Mid-Autumn
         self.assertIn(date(2016, 10, 1), holidays)   # National Day
         self.assertIn(date(2016, 10, 10), holidays)  # Chung Yeung Festival
-        self.assertIn(date(2016, 12, 26), holidays)  # Christmas Day (shifted)
-        self.assertIn(date(2016, 12, 27), holidays)  # Boxing Day (shifted)
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2016, 12, 26), holidays)  # Christmas + Boxing Day
+        self.assertIn(date(2016, 12, 27), holidays)  # Second weekday
 
     def test_year_2017(self):
+        # https://www.gov.hk/en/about/abouthk/holiday/2017.htm
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 1, 2), holidays)    # New Year (shifted)
         self.assertIn(date(2017, 1, 28), holidays)   # Chinese new year
@@ -203,6 +209,38 @@ class HongKongTest(GenericCalendarTest):
         self.assertIn(date(2016, 4, 4), self.cal.holidays_set(2016))
         self.assertIn(date(2017, 4, 4), self.cal.holidays_set(2017))
         self.assertIn(date(2018, 4, 5), self.cal.holidays_set(2018))
+
+    def test_holidays_2020(self):
+        # https://www.gov.hk/en/about/abouthk/holiday/2020.htm
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)    # New Year (shifted)
+        self.assertIn(date(2020, 1, 25), holidays)   # Chinese new year
+        self.assertIn(date(2020, 1, 27), holidays)   # Chinese new year
+        self.assertIn(date(2020, 1, 28), holidays)   # Chinese new year
+        self.assertIn(date(2020, 4, 4), holidays)    # Ching Ming
+        self.assertIn(date(2020, 4, 10), holidays)   # Good Friday
+        self.assertIn(date(2020, 4, 11), holidays)   # Day after Good Friday
+        self.assertIn(date(2020, 4, 13), holidays)   # Easter Monday
+        self.assertIn(date(2020, 4, 30), holidays)    # Buddha's Birthday
+        self.assertIn(date(2020, 5, 1), holidays)    # Labour Day
+        self.assertIn(date(2020, 6, 25), holidays)   # Tuen Ng Festival
+        self.assertIn(date(2020, 7, 1), holidays)    # HK SAR Establishment Day
+        self.assertIn(date(2020, 10, 1), holidays)   # National Day
+        self.assertIn(date(2020, 10, 2), holidays)   # Day after Mid-Autumn
+        self.assertIn(date(2020, 10, 26), holidays)  # Chung Yeung Festival
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # Boxing Day
+        # Special: Boxing day is not shifted, because it's not a SUN
+        self.assertNotIn(date(2020, 12, 28), holidays)
+
+    def test_are_saturdays_working_days(self):
+        # Let's start with february 6th.
+        start = date(2020, 2, 6)
+        # If SAT was a non-working day, it would have been the 13th.
+        self.assertEqual(
+            self.cal.add_working_days(start, 5),
+            date(2020, 2, 12)
+        )
 
 
 class JapanTest(GenericCalendarTest):
