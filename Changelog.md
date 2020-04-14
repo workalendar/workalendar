@@ -1,6 +1,7 @@
 # CHANGELOG
 
-# master (unreleased)
+
+## v8.3.0 (2020-04-14)
 
 - Fixing Hong-Kong calendar, where SAT are common working days (#477).
 - Introducing Hong-Kong Bank calendar. For banks, Saturdays are non-working days (#477).
