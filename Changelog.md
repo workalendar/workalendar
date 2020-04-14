@@ -2,7 +2,8 @@
 
 # master (unreleased)
 
-Nothing here yet.
+- Fixing Hong-Kong calendar, where SAT are common working days (#477).
+- Introducing Hong-Kong Bank calendar. For banks, Saturdays are non-working days (#477).
 
 ## v8.2.2 (2020-04-10)
 
