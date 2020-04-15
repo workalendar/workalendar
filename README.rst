@@ -171,6 +171,7 @@ Africa
 * Angola
 * Benin
 * Ivory Coast
+* Kenya
 * Madagascar
 * São Tomé
 * South Africa

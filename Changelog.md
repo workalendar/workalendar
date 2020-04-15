@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Kenyan calendar, by @KidkArolis (#484)
 
 ## v8.3.0 (2020-04-14)
 
