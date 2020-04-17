@@ -1,5 +1,5 @@
-from datetime import date
-from ..core import WesternCalendar, ChristianMixin
+from datetime import date, timedelta
+from ..core import WesternCalendar, ChristianMixin, SUN
 from ..registry_tools import iso_register
 
 
@@ -26,15 +26,15 @@ class Netherlands(WesternCalendar, ChristianMixin):
         30 April, unless this is a Sunday in which case it is the 29th.
         """
         if year > 2013:
-            if date(year, 4, 27).weekday() != 6:
-                return date(year, 4, 27), "King's day"
-            else:
-                return date(year, 4, 26), "King's day"
+            king_day = date(year, 4, 27)
+            if king_day.weekday() != SUN:
+                return (king_day, "King's day")
+            return (king_day - timedelta(days=1), "King's day")
         else:
-            if date(year, 4, 30).weekday() != 6:
-                return date(year, 4, 30), "Queen's day"
-            else:
-                return date(year, 4, 29), "Queen's day"
+            queen_day = date(year, 4, 30)
+            if queen_day.weekday() != SUN:
+                return (queen_day, "Queen's day")
+            return (queen_day - timedelta(days=1), "Queen's day")
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
