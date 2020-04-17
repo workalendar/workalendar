@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## master (unreleased)
+## v8.4.0 (2020-04-17)
+
+### New Calendar
 
 - Added Kenyan calendar, by @KidkArolis (#484)
-- Fixed Lithuania calender to use the core flags for Assumption and All Saints (#468).
+
+### Minor fixes
+
+- Fixed Lithuania calendar to use the core flags for Assumption and All Saints (#468).
 - Fixed Malta calendar ; January 1st was already included, no need to add it to the ``FIXED_HOLIDAYS`` property (#469).
 - Small refactor in Netherlands calendar to use core constants (#470).
 
