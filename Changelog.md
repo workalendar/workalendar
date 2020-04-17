@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added Kenyan calendar, by @KidkArolis (#484)
+- Fixed Lithuania calender to use the core flags for Assumption and All Saints (#468).
 
 ## v8.3.0 (2020-04-14)
 
