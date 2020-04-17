@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v8.4.0 (2020-04-17)
 
 ### New Calendar
