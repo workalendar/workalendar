@@ -69,10 +69,10 @@ class BoxingDayMixin(Calendar):
         boxingday = date(year, 12, 26)
         if boxingday.weekday() == MON:
             days = [(boxingday, "Boxing Day"), (date(year, 12, 27),
-                    "Boxing Day (Shift)")]
+                    "Boxing Day Shift")]
         elif boxingday.weekday() == SAT or boxingday.weekday() == SUN:
             days = [(boxingday, "Boxing Day"), (date(year, 12, 28),
-                    "Boxing Day (Shift)")]
+                    "Boxing Day Shift")]
         else:
             days = [(boxingday, "Boxing Day")]
         return days
@@ -86,7 +86,7 @@ class StJeanBaptisteMixin(Calendar):
         if stjean.weekday() in self.get_weekend_days():
             days = [(stjean, "St Jean Baptiste"),
                     (self.find_following_working_day(stjean),
-                     "St Jean Baptiste (Shift)")]
+                     "St Jean Baptiste Shift")]
         else:
             days = [(stjean, "St Jean Baptiste")]
         return days
@@ -99,7 +99,7 @@ class RemembranceDayShiftMixin(Calendar):
         if remembranceday.weekday() in self.get_weekend_days():
             days = [(remembranceday, "Remembrance Day"),
                     (self.find_following_working_day(remembranceday),
-                    "Remembrance Day (Shift)")]
+                    "Remembrance Day Shift")]
         else:
             days = [(remembranceday, "Remembrance Day")]
         return days
@@ -338,5 +338,5 @@ class Nunavut(Canada, VictoriaDayMixin, ThanksgivingMixin,
         nuvanutday = date(year, 7, 9)
         days.append((nuvanutday, "Nuvanut Day"))
         if nuvanutday.weekday() == SUN:
-            days.append((date(year, 7, 10), "Nuvanut Day (Shift)"))
+            days.append((date(year, 7, 10), "Nuvanut Day Shift"))
         return days

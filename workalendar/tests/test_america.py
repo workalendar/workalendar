@@ -288,7 +288,7 @@ class BarbadosTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 1, 1), holidays)
         self.assertIn(date(2018, 1, 21), holidays)  # Errol Barrow Day
-        self.assertIn(date(2018, 1, 22), holidays)  # Errol Barrow Day (shift)
+        self.assertIn(date(2018, 1, 22), holidays)  # Errol Barrow Day Shift
         self.assertIn(date(2018, 3, 30), holidays)  # Good Friday
         self.assertIn(date(2018, 4, 1), holidays)  # Easter Sunday
         self.assertIn(date(2018, 4, 2), holidays)  # Easter Monday

@@ -34,7 +34,7 @@ class Ireland(WesternCalendar, ChristianMixin):
         if st_patrick.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(st_patrick),
-                "Saint Patrick substitute"))
+                "Saint Patrick Shift"))
 
         # May Day
         if year >= 1994:

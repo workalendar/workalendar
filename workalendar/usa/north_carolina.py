@@ -28,21 +28,21 @@ class NorthCarolina(UnitedStates):
             return []
         if xmas.weekday() == FRI:
             return [
-                (date(year, 12, 28), "Boxing day shift"),
+                (date(year, 12, 28), "Boxing day Shift"),
             ]
         elif xmas.weekday() == SAT:
             return [
-                (date(year, 12, 23), "Christmas Eve shift"),
-                (date(year, 12, 27), "Boxing Day shift"),
+                (date(year, 12, 23), "Christmas Eve Shift"),
+                (date(year, 12, 27), "Boxing Day Shift"),
             ]
         elif xmas.weekday() == SUN:
             return [
-                (date(year, 12, 23), "Christmas Eve shift"),
-                (date(year, 12, 27), "Boxing Day shift"),
+                (date(year, 12, 23), "Christmas Eve Shift"),
+                (date(year, 12, 27), "Boxing Day Shift"),
             ]
         elif xmas.weekday() == MON:
             return [
-                (date(year, 12, 27), "Christmas Eve shift"),
+                (date(year, 12, 27), "Christmas Eve Shift"),
             ]
 
     def get_variable_days(self, year):

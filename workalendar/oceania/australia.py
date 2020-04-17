@@ -55,14 +55,14 @@ class Australia(WesternCalendar, ChristianMixin):
         if january_first.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(january_first),
-                "New Year's Day shift")
+                "New Year's Day Shift")
             )
 
         australia_day = date(year, 1, 26)
         if australia_day.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(australia_day),
-                "Australia Day shift")
+                "Australia Day Shift")
             )
 
         # was fixed, but might be shifted

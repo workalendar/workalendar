@@ -26,7 +26,7 @@ class Michigan(UnitedStates):
         xmas_eve = date(year, 12, 24)
         if xmas_eve.weekday() == SUN:
             days.append(
-                (date(year, 12, 22), "Christmas Eve shift")
+                (date(year, 12, 22), "Christmas Eve Shift")
             )
             days.append(
                 (date(year, 12, 29), "New Years Eve Shift")

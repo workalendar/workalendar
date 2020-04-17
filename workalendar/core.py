@@ -540,7 +540,7 @@ class WesternCalendar(Calendar):
             if new_year.weekday() in self.get_weekend_days():
                 days.append((
                     self.find_following_working_day(new_year),
-                    "New Year shift"))
+                    "New Year Shift"))
         return days
 
 
@@ -658,7 +658,7 @@ class ChineseNewYearCalendar(LunarCalendar):
             if holiday.weekday() == SUN:
                 yield (
                     holiday + timedelta(days=1),
-                    label + ' shift'
+                    label + ' Shift'
                 )
 
     def get_calendar_holidays(self, year):

@@ -20,8 +20,8 @@ class CanadaTest(GenericCalendarTest):
 
     def test_holidays_2012(self):
         holidays = self.cal.holidays_set(2012)
-        self.assertIn(date(2012, 1, 2), holidays)  # New years shift
-        self.assertIn(date(2012, 7, 2), holidays)  # Canada day shift
+        self.assertIn(date(2012, 1, 2), holidays)  # New years Shift
+        self.assertIn(date(2012, 7, 2), holidays)  # Canada day Shift
         self.assertIn(date(2012, 9, 3), holidays)  # Labour day
         self.assertIn(date(2012, 12, 25), holidays)
 
@@ -44,8 +44,8 @@ class OntarioTest(GenericCalendarTest):
 
     def test_holidays_2010(self):
         holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 12, 27), holidays)  # Christmas day shift
-        self.assertIn(date(2010, 12, 28), holidays)  # Boxing day shift
+        self.assertIn(date(2010, 12, 27), holidays)  # Christmas day Shift
+        self.assertIn(date(2010, 12, 28), holidays)  # Boxing day Shift
 
     def test_holidays_2011(self):
         holidays = self.cal.holidays_set(2011)
@@ -59,7 +59,7 @@ class OntarioTest(GenericCalendarTest):
         self.assertIn(date(2011, 9, 5), holidays)  # Labour Day
         self.assertIn(date(2011, 10, 10), holidays)  # Canadian Thanksgiving
         self.assertIn(date(2011, 12, 26), holidays)
-        self.assertIn(date(2011, 12, 27), holidays)  # Boxing day shift
+        self.assertIn(date(2011, 12, 27), holidays)  # Boxing day Shift
 
     def test_holidays_2012(self):
         holidays = self.cal.holidays_set(2012)
@@ -160,7 +160,7 @@ class SaskatchewanTest(GenericCalendarTest):
         self.assertIn(date(2012, 8, 6), holidays)  # Civic Holiday
         self.assertIn(date(2012, 10, 8), holidays)  # Canadian Thanksgiving
         self.assertIn(date(2012, 11, 11), holidays)  # Remembrance Day
-        self.assertIn(date(2012, 11, 12), holidays)  # Remembrance Day (Shift)
+        self.assertIn(date(2012, 11, 12), holidays)  # Remembrance Day Shift
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas day
 
 

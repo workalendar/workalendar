@@ -89,7 +89,7 @@ class UnitedKingdomNorthernIreland(UnitedKingdom):
         if st_patrick.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(st_patrick),
-                "Saint Patrick substitute"))
+                "Saint Patrick Shift"))
 
         # Battle of boyne
         battle_of_boyne = date(year, 7, 12)
@@ -97,5 +97,5 @@ class UnitedKingdomNorthernIreland(UnitedKingdom):
         if battle_of_boyne.weekday() in self.get_weekend_days():
             days.append((
                 self.find_following_working_day(battle_of_boyne),
-                "Battle of the Boyne substitute"))
+                "Battle of the Boyne Shift"))
         return days

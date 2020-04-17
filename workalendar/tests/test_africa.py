@@ -94,7 +94,7 @@ class SouthAfricaTest(GenericCalendarTest):
         # Since the Founders' day is a Sunday, the same date appears twice
         # The second one is a substitute
         holidays = [item for item in holidays
-                    if item[1] != "Founder's Day substitute"]
+                    if item[1] != "Founder's Day Shift"]
         easter_monday_1980 = date(1980, 4, 7)
         holidays_dates = [item[0] for item in holidays]
         self.assertEqual(holidays_dates.count(easter_monday_1980), 1, holidays)

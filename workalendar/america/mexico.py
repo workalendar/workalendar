@@ -35,11 +35,11 @@ class Mexico(WesternCalendar, ChristianMixin):
         # If it's on a Saturday, the Friday is off
         for day, label in days:
             if day.weekday() == SAT:
-                days.append((day - timedelta(days=1), "%s substitute" % label))
+                days.append((day - timedelta(days=1), "%s Shift" % label))
             elif day.weekday() == SUN:
-                days.append((day + timedelta(days=1), "%s substitute" % label))
+                days.append((day + timedelta(days=1), "%s Shift" % label))
         # Extra: if new year's day is a saturday, the friday before is off
         next_new_year = date(year + 1, 1, 1)
         if next_new_year.weekday():
-            days.append((date(year, 12, 31), "New Year Day substitute"))
+            days.append((date(year, 12, 31), "New Year Day Shift"))
         return days

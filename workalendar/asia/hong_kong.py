@@ -64,7 +64,7 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
         for day, label in days:
             if day.weekday() == SUN:
                 shifts.append((
-                    day + timedelta(days=1), "{} (shift)".format(label)
+                    day + timedelta(days=1), "{} Shift".format(label)
                 ))
         # Special case for Boxing Day.
         # If Christmas day is on SUN, the December 27th is also a holiday
