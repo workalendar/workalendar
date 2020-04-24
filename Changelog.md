@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+* **BREAKING CHANGE**: the ``IsoRegistry.items()`` method has been removed from the API. You must use the ``get_calendars()`` to perform the same registry queries (#375, #491).
 
 ## v8.4.0 (2020-04-17)
 
