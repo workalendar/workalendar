@@ -88,8 +88,7 @@ You can also get the full dict of all calendars registered in the ISO Registry w
 Let's say that we only know the ISO code for Switzerland (`CH`). If we want to compute holidays for Switzerland in 2018, we can do as follows:
 
 ```python
->>> registry.get_calendar_class('CH')
->>> CalendarClass = registry.get_calendar_class('CH')
+>>> CalendarClass = registry.get('CH')
 >>> calendar = CalendarClass()
 >>> calendar.holidays(2018)
 [(datetime.date(2018, 1, 1), 'New year'),
