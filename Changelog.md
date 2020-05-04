@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added rules for all Switzerland Cantons, branching off the initial work by @brutasse (#497).
 
 ## v9.0.1 (2020-05-22)
 
