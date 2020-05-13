@@ -1,5 +1,3 @@
-from datetime import date
-
 from pyluach.dates import GregorianDate, HebrewDate
 
 from ..core import Calendar, FRI, SAT
@@ -15,12 +13,7 @@ class Israel(Calendar):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
 
-        current_date = date(year, 1, 1)
-        hebrew_date = GregorianDate(
-            year=current_date.year,
-            month=current_date.month,
-            day=current_date.day,
-        ).to_heb()
+        hebrew_date = GregorianDate(year=year, month=1, day=1).to_heb()
         jewish_year = hebrew_date.year
 
         holidays_hebrew_dates = [
@@ -47,6 +40,15 @@ class Israel(Calendar):
         return days
 
     def get_hebrew_independence_day(self, jewish_year):
+        """
+        Returns the independence day eve and independence day dates
+        according to the given hebrew year
+
+        :param jewish_year: the specific hebrew year for calculating
+                            the independence day dates
+        :return: independence day dates
+                 in the type of List[Tuple[HebrewDate, str]]
+        """
         month = 2
         day = 5
         original_hebrew_independence_date = HebrewDate(jewish_year, month, day)
