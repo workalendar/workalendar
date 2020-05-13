@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date
 
 from pyluach.dates import GregorianDate, HebrewDate
 
@@ -15,64 +15,48 @@ class Israel(Calendar):
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
 
-        delta = timedelta(days=1)
         current_date = date(year, 1, 1)
+        hebrew_date = GregorianDate(
+            year=current_date.year,
+            month=current_date.month,
+            day=current_date.day,
+        ).to_heb()
+        jewish_year = hebrew_date.year
 
-        while current_date.year == year:
-            hebrew_date = GregorianDate(
-                year=current_date.year,
-                month=current_date.month,
-                day=current_date.day,
-            ).to_heb()
+        holidays_hebrew_dates = [
+            (HebrewDate(jewish_year, 6, 29), "Rosh Hashana Eve"),
+            (HebrewDate(jewish_year + 1, 7, 1), "Rosh Hashana"),
+            (HebrewDate(jewish_year + 1, 7, 2), "Rosh Hashana"),
+            (HebrewDate(jewish_year + 1, 7, 9), "Yom Kippur Eve"),
+            (HebrewDate(jewish_year + 1, 7, 10), "Yom Kippur"),
+            (HebrewDate(jewish_year + 1, 7, 14), "Sukkot Eve"),
+            (HebrewDate(jewish_year + 1, 7, 15), "Sukkot"),
+            (HebrewDate(jewish_year + 1, 7, 21), "Shmini Atzeres Eve"),
+            (HebrewDate(jewish_year + 1, 7, 22), "Shmini Atzeres"),
+            (HebrewDate(jewish_year, 1, 14), "Pesach Eve"),
+            (HebrewDate(jewish_year, 1, 15), "Pesach"),
+            (HebrewDate(jewish_year, 1, 20), "7th of Pesach Eve"),
+            (HebrewDate(jewish_year, 1, 21), "7th of Pesach"),
+            (HebrewDate(jewish_year, 3, 5), "Shavout Eve"),
+            (HebrewDate(jewish_year, 3, 6), "Shavout"),
+        ]
+        holidays_hebrew_dates += self.get_hebrew_independence_day(jewish_year)
 
-            jewish_year = hebrew_date.year
-            month = hebrew_date.month
-            day = hebrew_date.day
-
-            if month == 7:
-                if day == 1:
-                    days.append((current_date - delta, "Rosh Hashana Eve"))
-                    days.append((current_date, "Rosh Hashana"))
-                    days.append((current_date + delta, "Rosh Hashana"))
-                elif day == 10:
-                    days.append((current_date - delta, "Yom Kippur Eve"))
-                    days.append((current_date, "Yom Kippur"))
-                elif day == 15:
-                    days.append((current_date - delta, "Sukkot Eve"))
-                    days.append((current_date, "Sukkot"))
-                elif day == 22:
-                    days.append((current_date - delta, "Shmini Atzeres Eve"))
-                    days.append((current_date, "Shmini Atzeres"))
-            elif month == 1:
-                if day == 15:
-                    days.append((current_date - delta, "Pesach Eve"))
-                    days.append((current_date, "Pesach"))
-                elif day == 21:
-                    days.append((current_date - delta, "7th of Pesach Eve"))
-                    days.append((current_date, "7th of Pesach"))
-            elif month == 2:
-                if day == 5:
-                    independence_date = current_date
-                    if hebrew_date.weekday() == 6:
-                        independence_date = HebrewDate(
-                            jewish_year, month, 4
-                        ).to_pydate()
-                    elif hebrew_date.weekday() == 7:
-                        independence_date = HebrewDate(
-                            jewish_year, month, 3
-                        ).to_pydate()
-                    elif hebrew_date.weekday() == 2:
-                        independence_date = HebrewDate(
-                            jewish_year, month, 6
-                        ).to_pydate()
-                    days.append(
-                        (independence_date - delta, "Independence Day Eve")
-                    )
-                    days.append((independence_date, "Independence Day"))
-            elif month == 3 and day == 6:
-                days.append((current_date - delta, "Shavout Eve"))
-                days.append((current_date, "Shavout"))
-
-            current_date += delta
-
+        for holiday_hebrew_date, holiday_name in holidays_hebrew_dates:
+            days.append((holiday_hebrew_date.to_pydate(), holiday_name))
         return days
+
+    def get_hebrew_independence_day(self, jewish_year):
+        month = 2
+        day = 5
+        original_hebrew_independence_date = HebrewDate(jewish_year, month, day)
+        if original_hebrew_independence_date.weekday() == 6:
+            day = 4
+        if original_hebrew_independence_date.weekday() == 7:
+            day = 3
+        if original_hebrew_independence_date.weekday() == 2:
+            day = 6
+        return [
+            (HebrewDate(jewish_year, month, day - 1), "Independence Day Eve"),
+            (HebrewDate(jewish_year, month, day), "Independence Day")
+        ]

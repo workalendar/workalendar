@@ -1,5 +1,6 @@
 from unittest.mock import patch
 from datetime import date
+import time
 from . import GenericCalendarTest
 
 from ..asia import (
@@ -635,3 +636,16 @@ class IsraelTest(GenericCalendarTest):
             date(2020, 5, 29),  # Shavuot
         }
         self.assertEqual(calculated_holidays, known_holidays)
+
+    def test_is_holiday_performance(self):
+        random_date = date(2019, 10, 9)
+        japan_cal = Japan()
+        timer = time.time()
+        for i in range(30):
+            japan_cal.is_holiday(random_date)
+        japan_time = time.time() - timer
+        timer = time.time()
+        for i in range(30):
+            self.cal.is_holiday(random_date)
+        israel_time = time.time() - timer
+        self.assertGreater(japan_time * 3, israel_time)
