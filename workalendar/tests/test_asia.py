@@ -553,66 +553,73 @@ class IsraelTest(GenericCalendarTest):
     cal_class = Israel
 
     def test_holidays_2017(self):
-        holidays = self.cal.holidays_set(2017)
-
-        self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
-        self.assertIn(date(2017, 4, 17), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2017, 5, 2), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was early in 2017
-        self.assertIn(date(2017, 5, 31), holidays)  # Shavuot
-        self.assertIn(
-            date(2017, 9, 21), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2017, 9, 22), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2017, 9, 30), holidays
-        )  # Yom Kippur (already a Saturday - Shabbat, weekend day)
-        self.assertIn(date(2017, 10, 5), holidays)  # Sukkot
-        self.assertIn(date(2017, 10, 12), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2017)
+        known_holidays = {
+            date(2017, 4, 10), # Passover (Pesach)
+            date(2017, 4, 11),
+            date(2017, 4, 16),
+            date(2017, 4, 17),
+            date(2017, 5, 1), # Independence Day (Yom Ha-Atzmaut)
+            date(2017, 5, 2),
+            date(2017, 9, 20), # Jewish New Year (Rosh Ha-Shana)
+            date(2017, 9, 21),
+            date(2017, 9, 22),
+            date(2017, 9, 29), # Yom Kippur
+            date(2017, 9, 30),
+            date(2017, 10, 4), # Sukkot
+            date(2017, 10, 5),
+            date(2017, 10, 11),
+            date(2017, 10, 12),
+            date(2017, 5, 30), # Shavuot
+            date(2017, 5, 31),
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2018(self):
-        holidays = self.cal.holidays_set(2018)
-
-        self.assertIn(date(2018, 3, 31), holidays)  # Passover (Pesach)
-        self.assertIn(date(2018, 4, 6), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2018, 4, 19), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2018
-        self.assertIn(date(2018, 5, 20), holidays)  # Shavuot
-        self.assertIn(
-            date(2018, 9, 10), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2018, 9, 11), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
-        self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
-        self.assertIn(date(2018, 9, 30), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2018)
+        known_holidays = {
+            date(2018, 3, 30), # Passover (Pesach)
+            date(2018, 3, 31),
+            date(2018, 4, 5),
+            date(2018, 4, 6),
+            date(2018, 4, 18), # Independence Day (Yom Ha-Atzmaut)
+            date(2018, 4, 19),
+            date(2018, 9, 9), # Rosh Hashana
+            date(2018, 9, 10),
+            date(2018, 9, 11),
+            date(2018, 9, 18), # Yom Kippur
+            date(2018, 9, 19),
+            date(2018, 9, 23), # Sukkot
+            date(2018, 9, 24),
+            date(2018, 9, 30),
+            date(2018, 10, 1),
+            date(2018, 5, 19), # Shavuot
+            date(2018, 5, 20),
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2019(self):
-        holidays = self.cal.holidays_set(2019)
-
-        self.assertIn(date(2019, 4, 20), holidays)  # Passover (Pesach)
-        self.assertIn(date(2019, 4, 26), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2019, 5, 9), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2019
-        self.assertIn(date(2019, 6, 9), holidays)  # Shavuot
-        self.assertIn(
-            date(2019, 9, 29), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2019, 9, 30), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2019, 10, 1), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(date(2019, 10, 9), holidays)  # Yom Kippur
-        self.assertIn(date(2019, 10, 14), holidays)  # Sukkot
-        self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2019)
+        known_holidays = {
+            date(2019, 4, 19), # Passover (Pesach)
+            date(2019, 4, 20), # Passover (Pesach)
+            date(2019, 4, 25), # Passover (Pesach)
+            date(2019, 4, 26), # Passover (Pesach)
+            date(2019, 5, 8), # Independence Day (Yom Ha-Atzmaut)
+            date(2019, 5, 9), # Independence Day (Yom Ha-Atzmaut)
+            date(2019, 6, 8), # Shavuot
+            date(2019, 6, 9), # Shavuot
+            date(2019, 9, 29), # Rosh Hashana
+            date(2019, 9, 30), # Rosh Hashana
+            date(2019, 10, 1), # Rosh Hashana
+            date(2019, 10, 8), # Yom Kippur
+            date(2019, 10, 9), # Yom Kippur
+            date(2019, 10, 13), # Sukkot
+            date(2019, 10, 14), # Sukkot
+            date(2019, 10, 20), # Sukkot
+            date(2019, 10, 21), # Sukkot
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2020(self):
         calculated_holidays = self.cal.holidays_set(2020)
