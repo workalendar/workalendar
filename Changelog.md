@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v9.0.1 (2020-05-22)
 
 - Making the Israel calendar more efficient (#498).
 - Fixing duplicated holidays in Hong-Kong and Hong-Kong Bank holiday calendars (#496).
