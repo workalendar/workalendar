@@ -56,8 +56,8 @@ from .scotland import (
 from .switzerland import (
     Switzerland, Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern,
     BaselLandschaft, BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura,
-    Luzern, Neuchatel, Nidwalden, StGallen, Schaffhausen, Solothurn, Schwyz,
-    Thurgau, Ticino, Uri, Vaud, Valais, Zug, Zurich
+    Luzern, Neuchatel, Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn,
+    Schwyz, Thurgau, Ticino, Uri, Vaud, Valais, Zug, Zurich
 )
 
 __all__ = (
@@ -119,7 +119,7 @@ __all__ = (
     'Switzerland',
     'Aargau', 'AppenzellInnerrhoden', 'AppenzellAusserrhoden', 'Bern',
     'BaselLandschaft', 'BaselStadt', 'Fribourg', 'Geneva', 'Glarus',
-    'Graubunden', 'Jura', 'Luzern', 'Neuchatel', 'Nidwalden', 'StGallen',
-    'Schaffhausen', 'Solothurn', 'Schwyz', 'Thurgau', 'Ticino', 'Uri', 'Vaud',
-    'Valais', 'Zug', 'Zurich',
+    'Graubunden', 'Jura', 'Luzern', 'Neuchatel', 'Nidwalden', 'Obwalden',
+    'StGallen', 'Schaffhausen', 'Solothurn', 'Schwyz', 'Thurgau', 'Ticino',
+    'Uri', 'Vaud', 'Valais', 'Zug', 'Zurich',
 )

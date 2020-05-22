@@ -306,17 +306,15 @@ class Vaud(Switzerland):
 
     def get_federal_thanksgiving_monday(self, year):
         "Monday following the 3rd sunday of September"
-        september_1st = date(year, 9, 1)
+        third_sunday = self.get_nth_weekday_in_month(year, 9, SUN, 3)
         return (
-            september_1st +
-            (6 - september_1st.weekday()) * timedelta(days=1) +  # 1st sunday
-            timedelta(days=15)  # Monday following 3rd sunday
+            third_sunday + timedelta(days=1),
+            "Federal Thanksgiving Monday"
         )
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days.append((self.get_federal_thanksgiving_monday(year),
-                     "Federal Thanksgiving Monday"))
+        days.append(self.get_federal_thanksgiving_monday(year))
         return days
 
 

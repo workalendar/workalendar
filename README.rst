@@ -112,11 +112,7 @@ Europe
 * Slovenia
 * Spain (incl. Catalonia)
 * Sweden
-* Switzerland
-
-  * Vaud
-  * Geneva
-
+* Switzerland (Aargau, Appenzell Innerrhoden, Appenzell Ausserrhoden, Bern, Basel-Landschaft, Basel-Stadt, Fribourg, Geneva, Glarus, Graubünden, Jura, Luzern, Neuchâtel, Nidwalden, Obwalden, St. Gallen, Schaffhausen, Solothurn, Schwyz, Thurgau, Ticino, Uri, Vaud, Valais, Zug, Zurich)
 * Turkey
 * Ukraine
 * United Kingdom (incl. Northern Ireland, Scotland and all its territories)
