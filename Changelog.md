@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Making the Israel calendar more efficient (#498).
 
 ## v9.0.0 (2020-04-24)
 
