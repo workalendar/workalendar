@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v9.0.1 (2020-05-22)
 
 - Making the Israel calendar more efficient (#498).
