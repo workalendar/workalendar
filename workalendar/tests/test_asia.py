@@ -257,6 +257,12 @@ class HongKongBankTest(HongKongTest):
             date(2020, 2, 13)
         )
 
+    def test_no_duplicate_days(self):
+        holidays = self.cal.holidays(2021)
+        labels = list(day[1] for day in holidays)
+        labels_dedup = list(set(labels))
+        assert sorted(labels) == sorted(labels_dedup)
+
 
 class JapanTest(GenericCalendarTest):
 
