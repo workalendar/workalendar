@@ -4,6 +4,7 @@
 
 - Making the Israel calendar more efficient (#498).
 - Fixing duplicated holidays in Hong-Kong and Hong-Kong Bank holiday calendars (#496).
+- Integrating Hong-Kong holidays for 2021 (#496).
 
 ## v9.0.0 (2020-04-24)
 

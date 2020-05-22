@@ -46,6 +46,7 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
 
         days = super().get_variable_days(year)
         chingming = solar_term(year, 15, 'Asia/Hong_Kong')
+        solar_term_chingming = chingming
         dupe_holiday = [chingming for day in days if chingming == day[0]]
         if dupe_holiday:
             # Roll Chingming forward a day as it clashes with another holiday
@@ -68,6 +69,15 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
                 (date(year, 12, 27), "The second weekday after Christmas")
             )
 
+        # Special case when Ching Ming and Easter overlap
+        # Ching Ming is shifted to easter monday (but it's handled elsewhere)
+        # Easter Monday is also shifted
+        easter_sunday = self.get_easter_sunday(year)
+        if easter_sunday == solar_term_chingming:
+            days.append((
+                easter_sunday + timedelta(days=2),
+                "The day following Easter Monday"
+            ))
         return days
 
 
