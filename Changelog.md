@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v9.2.0 (2020-06-02)
+
+### New Calendars
 
 - Added rules for all Switzerland Cantons, branching off the initial work by @brutasse (#497).
 
