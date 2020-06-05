@@ -21,38 +21,46 @@ class CaymanIslands(WesternCalendar, ChristianMixin):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days += [
+        days.extend([
             (self.get_national_heroes_day(year), "National Heroes Day"),
             (self.get_discovery_day(year), "Discovery Day"),
             (self.get_queens_birthday(year), "Queen's Birthday"),
             (self.get_constitution_day(year), "Constitution Day"),
             (self.get_remembrance_day(year), "Remembrance Day"),
-        ]
+        ])
 
         shifts = self.shift_christmas_boxing_days(year=year)
         days.extend(shifts)
 
         if year == 2017:
-            days += [(date(2017, 5, 24), "Election day")]
+            days.append((date(2017, 5, 24), "Election day"))
 
         return days
 
     def get_national_heroes_day(self, year):
-        """Fourth Monday in January"""
+        """National Heroes day: Fourth MON in January"""
         return CaymanIslands.get_nth_weekday_in_month(year, 1, MON, 4)
 
     def get_discovery_day(self, year):
-        """Third Monday in May"""
+        """Discovery Day: Third MON in May"""
         return CaymanIslands.get_nth_weekday_in_month(year, 5, MON, 3)
 
     def get_queens_birthday(self, year):
-        """On monday after second saturday in June"""
-        sat = CaymanIslands.get_nth_weekday_in_month(year, 6, SAT, 2)
-        holiday = sat + timedelta(days=2)
+        """
+        Queen's Birthday: On MON after second SAT in June, with exceptions
+        """
+        saturday = CaymanIslands.get_nth_weekday_in_month(year, 6, SAT, 2)
+        holiday = saturday + timedelta(days=2)
         return QUEENS_BIRTHDAY_EXCEPTIONS.get(year, holiday)
 
     def get_constitution_day(self, year):
-        return CaymanIslands.get_nth_weekday_in_month(year, 7, MON, 1)
+        """
+        Constitution Day: First MON of July.
+        """
+        return CaymanIslands.get_nth_weekday_in_month(year, 7, MON)
 
     def get_remembrance_day(self, year):
+        """
+        Remembrance Day: Second MON of November.
+        """
         return CaymanIslands.get_nth_weekday_in_month(year, 11, MON, 2)
