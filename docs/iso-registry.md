@@ -129,7 +129,7 @@ Let's say that we only know the ISO code for Switzerland (`CH`). If we want to c
 
 *Note*: this function would return `None` if the code is unknown.
 
-**DEPRECATION WARNING**: As of version X.X.X, the ``IsoRegistry.get_calendar_class()`` has been renamed into ``IsoRegistry.get()`` to retrieve a single calendar class out of the registry.
+**DEPRECATION WARNING**: As of version 10.0.0, the ``IsoRegistry.get_calendar_class()`` has been renamed into ``IsoRegistry.get()`` to retrieve a single calendar class out of the registry.
 
 
 ## Select only sub-regions
