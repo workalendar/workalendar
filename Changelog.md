@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Small fixes (docstrings, use of extends, etc) on Cayman Islands calendar (#507).
 
 ## v10.0.0 (2020-06-05)
 
