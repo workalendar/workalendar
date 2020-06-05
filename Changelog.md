@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- **BREAKING CHANGE**: the ``IsoRegistry.get_calendar_class()`` method has been removed from the code and should no longer be used (#375, #495).
 
 ## v9.2.0 (2020-06-02)
 
