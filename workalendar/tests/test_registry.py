@@ -1,5 +1,4 @@
 from unittest import TestCase
-import warnings
 
 from ..core import Calendar
 from ..exceptions import ISORegistryError
@@ -37,7 +36,6 @@ class NonStandardRegistryTest(TestCase):
             registry.register("NAC", NotACalendarClass)
 
     def test_get(self):
-        # get() is the new name for `get_calendar_class()`
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
@@ -48,27 +46,6 @@ class NonStandardRegistryTest(TestCase):
         self.assertEqual(calendar_class, SubRegionCalendar)
         # Unknown code/region
         self.assertIsNone(registry.get('XX'))
-
-    def test_get_calendar_class_alias(self):
-        registry = IsoRegistry(load_standard_modules=False)
-        registry.register('RE', self.region)
-        self.assertEqual(
-            registry.get('RE'),
-            registry.get_calendar_class('RE')
-        )
-
-    def test_get_calendar_class_deprecation(self):
-        registry = IsoRegistry(load_standard_modules=False)
-        with warnings.catch_warnings(record=True) as w:
-            # Cause all warnings to always be triggered.
-            warnings.simplefilter("always")
-            # Trigger a warning.
-            registry.get_calendar_class("RE")
-            # Verify some things
-            self.assertEqual(len(w), 1)
-            warning = w[0]
-            self.assertTrue(issubclass(warning.category, DeprecationWarning))
-            self.assertIn("deprecated", str(warning.message))
 
     def test_get_subregions(self):
         registry = IsoRegistry(load_standard_modules=False)
