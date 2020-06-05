@@ -10,6 +10,8 @@ from ..registry_tools import iso_register
 class Argentina(WesternCalendar, ChristianMixin):
     'Argentina'
 
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnival"
     include_good_friday = True
     include_easter_saturday = True
     include_easter_sunday = True
@@ -129,10 +131,6 @@ class Argentina(WesternCalendar, ChristianMixin):
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
                 "Carnival Lunes"))
-
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
 
         days.append(
             self.get_malvinas_day(year))

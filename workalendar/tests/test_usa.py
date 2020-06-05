@@ -207,7 +207,7 @@ class UnitedStatesTest(GenericCalendarTest):
 
     def test_mardi_gras(self):
         year = 2017
-        day, _ = self.cal.get_mardi_gras(year)
+        day = self.cal.get_fat_tuesday(year)
         holidays = self.cal.holidays_set(year)
         self.assertNotIn(day, holidays)
 
@@ -316,9 +316,11 @@ class IncludeMardiGras:
     """
     def test_mardi_gras(self):
         year = 2017
-        day, _ = self.cal.get_mardi_gras(year)
-        holidays = self.cal.holidays_set(year)
-        self.assertIn(day, holidays)
+        day = self.cal.get_fat_tuesday(year)
+        holidays = self.cal.holidays(year)
+        holidays_dict = dict(holidays)
+        self.assertIn(day, holidays_dict)
+        self.assertEqual(holidays_dict[day], "Mardi Gras")
 
 
 class AlabamaTest(UnitedStatesTest):

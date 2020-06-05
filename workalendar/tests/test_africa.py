@@ -549,6 +549,12 @@ class AngolaTest(GenericCalendarTest):
         # Dia do Natal – 25 de Dezembro
         self.assertIn(date(2018, 12, 25), holidays)  # Natal
 
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2018)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2018, 2, 13)]
+        self.assertEqual(label_carnaval, "Dia de Carnaval")
+
 
 class KenyaTest(GenericCalendarTest):
     cal_class = Kenya
