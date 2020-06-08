@@ -8,4 +8,4 @@ class Louisiana(UnitedStates):
     include_good_friday = True
     include_election_day_even = True
     include_columbus_day = False
-    include_mardi_gras = True
+    include_fat_tuesday = True

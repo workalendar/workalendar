@@ -118,6 +118,12 @@ class ArgentinaTest(GenericCalendarTest):
             "Día Nacional de la Memoria por la Verdad y la Justicia"
         )
 
+    def test_carnival_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label_carnival = holidays[date(2020, 2, 25)]
+        self.assertEqual(label_carnival, "Carnival")
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile

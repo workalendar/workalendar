@@ -10,7 +10,7 @@ from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
 
-from .exceptions import UnsupportedDateType
+from .exceptions import UnsupportedDateType, CalendarError
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -373,6 +373,10 @@ class ChristianMixin(Calendar):
     include_epiphany = False
     include_clean_monday = False
     include_annunciation = False
+    include_fat_tuesday = False
+    # Fat tuesday forced to `None` to make sure this value is always set
+    # We've seen that there was a wide variety of labels.
+    fat_tuesday_label = None
     include_ash_wednesday = False
     ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
@@ -397,6 +401,14 @@ class ChristianMixin(Calendar):
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
     include_all_souls = False
+
+    def get_fat_tuesday(self, year):
+        if not self.fat_tuesday_label:
+            raise CalendarError(
+                "Improperly configured: please provide a "
+                "`fat_tuesday_label` value")
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=47)
 
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
@@ -476,6 +488,10 @@ class ChristianMixin(Calendar):
             days.append((self.get_clean_monday(year), "Clean Monday"))
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
+        if self.include_fat_tuesday:
+            days.append(
+                (self.get_fat_tuesday(year), self.fat_tuesday_label)
+            )
         if self.include_ash_wednesday:
             days.append(
                 (self.get_ash_wednesday(year), self.ash_wednesday_label)

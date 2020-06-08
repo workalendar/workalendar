@@ -246,6 +246,12 @@ class BrazilRioDeJaneiroTest(BrazilTest):
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
 
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Carnaval")
+
 
 class BrazilRioGrandeDoNorteTest(BrazilTest):
     cal_class = BrazilRioGrandeDoNorte
@@ -337,6 +343,12 @@ class SaoPauloCityTest(SaoPauloStateTest):
             self.cal.get_holiday_label(good_friday),
             "Sexta-feira da Paixão",
         )
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2013)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2013, 2, 12)]
+        self.assertEqual(label_carnaval, "Carnaval")
 
 
 class BrazilSergipeTest(BrazilTest):
@@ -480,6 +492,12 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
             self.cal.get_holiday_label(good_friday),
             "Paixão do Cristo",
         )
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Carnaval")
 
 
 class BrazilRioBrancoCityTest(BrazilAcreTest):
@@ -898,6 +916,12 @@ class BrazilBankCalendarTest(BrazilTest):
         already_working_day = date(2017, 7, 25)
         working_day = self.cal.find_following_working_day(already_working_day)
         self.assertEquals(working_day, date(2017, 7, 25))
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Tuesday carnaval")
 
 
 class TestIBGERegister(TestCase):
