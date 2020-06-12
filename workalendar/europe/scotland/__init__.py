@@ -24,7 +24,7 @@ FIXME:
 # necessary to split this module and associated tests
 from datetime import date, timedelta
 import warnings
-from ...core import WesternCalendar, ChristianMixin, MON, THU, FRI
+from ...core import WesternCalendar, MON, THU, FRI
 from .mixins import (
     SpringHolidayFirstMondayApril,
     SpringHolidaySecondMondayApril,
@@ -51,7 +51,7 @@ from .mixins import (
 )
 
 
-class Scotland(WesternCalendar, ChristianMixin):
+class Scotland(WesternCalendar):
     "Scotland"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 2, "New Year Holiday"),

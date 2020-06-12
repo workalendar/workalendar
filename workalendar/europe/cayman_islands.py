@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin, MON, SAT
+from ..core import WesternCalendar, MON, SAT
 from ..registry_tools import iso_register
 
 
@@ -11,7 +11,7 @@ QUEENS_BIRTHDAY_EXCEPTIONS = {
 
 
 @iso_register('KY')
-class CaymanIslands(WesternCalendar, ChristianMixin):
+class CaymanIslands(WesternCalendar):
     "Cayman Islands"
     include_ash_wednesday = True
     include_good_friday = True

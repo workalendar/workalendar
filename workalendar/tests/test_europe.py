@@ -72,8 +72,7 @@ class BelarusTest(GenericCalendarTest):
         self.assertIn(date(2019, 1, 7), holidays)  # Christmas (Orthodox)
         self.assertIn(date(2019, 3, 8), holidays)  # International Women's Day
         self.assertIn(date(2019, 5, 1), holidays)  # Labour Day
-        self.assertIn(date(2019, 5, 6), holidays)  # Radonista
-        self.assertIn(date(2019, 5, 7), holidays)  # Radonista Holiday
+        self.assertIn(date(2019, 5, 7), holidays)  # Radonitsa
         self.assertIn(date(2019, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2019, 7, 3), holidays)  # Republic Day
         self.assertIn(date(2019, 11, 7), holidays)  # October Revolution Day
@@ -85,8 +84,7 @@ class BelarusTest(GenericCalendarTest):
         self.assertIn(date(2020, 1, 2), holidays)  # Day after NYE
         self.assertIn(date(2020, 1, 7), holidays)  # Christmas (Orthodox)
         self.assertIn(date(2020, 3, 8), holidays)  # International Women's Day
-        self.assertIn(date(2020, 4, 27), holidays)  # Radonista
-        self.assertIn(date(2020, 4, 28), holidays)  # Radonista Holiday
+        self.assertIn(date(2020, 4, 28), holidays)  # Radonitsa
         self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2020, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2020, 7, 3), holidays)  # Republic Day
@@ -568,6 +566,24 @@ class GreeceTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 28), holidays)  # Ochi Day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
         self.assertIn(date(2013, 12, 26), holidays)  # Glorifying mother of God
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # new year
+        self.assertIn(date(2020, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2020, 3, 2), holidays)  # Clean monday
+        # Annunciation & Independence day
+        self.assertIn(date(2020, 3, 25), holidays)
+        self.assertIn(date(2020, 4, 17), holidays)  # good friday
+        self.assertIn(date(2020, 4, 19), holidays)  # easter
+        self.assertIn(date(2020, 4, 20), holidays)  # easter monday
+        self.assertIn(date(2020, 5, 1), holidays)  # labour day
+        self.assertIn(date(2020, 6, 7), holidays)  # pentecost sunday
+        self.assertIn(date(2020, 6, 8), holidays)  # whit monday
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2020, 10, 28), holidays)  # Ochi Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertIn(date(2020, 12, 26), holidays)  # Glorifying mother of God
 
 
 class HungaryTest(GenericCalendarTest):

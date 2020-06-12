@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('ST')
-class SaoTomeAndPrincipe(WesternCalendar, ChristianMixin):
+class SaoTomeAndPrincipe(WesternCalendar):
     "São Tomé and Príncipe"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 3, "Martyr's Day"),

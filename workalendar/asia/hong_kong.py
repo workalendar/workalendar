@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
 from ..core import (
-    ChineseNewYearCalendar, WesternCalendar, ChristianMixin,
+    ChineseNewYearCalendar, NewYearsDayMixin, WesternMixin,
     SUN, SAT
 )
 from ..astronomy import solar_term
@@ -9,7 +9,7 @@ from ..registry_tools import iso_register
 
 
 @iso_register('HK')
-class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
+class HongKong(NewYearsDayMixin, WesternMixin, ChineseNewYearCalendar):
     "Hong Kong"
     include_good_friday = True
     include_easter_saturday = True
@@ -18,7 +18,7 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
 
     WEEKEND_DAYS = (SUN,)
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (7, 1, "SAR Establishment Day"),
         (10, 1, "National Day"),

@@ -1,11 +1,11 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin, MON, SAT, SUN
+from ..core import WesternCalendar, MON, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register("NZ")
-class NewZealand(WesternCalendar, ChristianMixin):
+class NewZealand(WesternCalendar):
     "New Zealand"
     include_good_friday = True
     include_easter_monday = True

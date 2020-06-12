@@ -1,16 +1,18 @@
 from datetime import date
 
-from ..core import MON
-from ..core import WesternCalendar
+from ..core import NewYearsDayMixin, Calendar, MON, SAT, SUN
 from ..astronomy import calculate_equinoxes
 from ..registry_tools import iso_register
 
 
 @iso_register('JP')
-class Japan(WesternCalendar):
+class Japan(NewYearsDayMixin, Calendar):
     "Japan"
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    # Japan uses the "western" workweek
+    WEEKEND_DAYS = (SAT, SUN)
+
+    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
         (2, 11, "Foundation Day"),
         (4, 29, "Showa Day"),
         (5, 3, "Constitution Memorial Day"),

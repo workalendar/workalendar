@@ -133,12 +133,12 @@ Now we've got 3 holidays out of 6.
 
 #### Add religious holidays
 
-Using `ChristianMixin` as a base to our `Zhraa` class will instantly add Christmas Day as a holiday. Now we can add Easter monday just by switching the correct flag.
+Since we're using `WesternCalendar` (it inherits from `ChristianMixin`) as a base to our `Zhraa` class, it automatically adds Christmas Day as a holiday. Now we can add Easter monday just by switching the correct flag.
 
 ```python
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 
-class Zhraa(WesternCalendar, ChristianMixin):
+class Zhraa(WesternCalendar):
     include_easter_monday = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -152,7 +152,7 @@ Almost there, 5 holidays out of 6.
 There are many static methods that will grant you a clean access to variable days computation. It's very easy to add days like the "Birthday of the Founder":
 
 ```python
-class Zhraa(WesternCalendar, ChristianMixin):
+class Zhraa(WesternCalendar):
     include_easter_monday = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -184,7 +184,7 @@ To register, add the following:
 from ..registry_tools import iso_register
 
 @iso_register('ZK')
-class Zhraa(WesternCalendar, ChristianMixin):
+class Zhraa(WesternCalendar):
     # The rest of your code...
 ```
 

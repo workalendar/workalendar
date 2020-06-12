@@ -1,13 +1,13 @@
-from ..core import ChineseNewYearCalendar, WesternCalendar
+from ..core import NewYearsDayMixin, ChineseNewYearCalendar
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
 
 @iso_register('TW')
-class Taiwan(ChineseNewYearCalendar, WesternCalendar):
+class Taiwan(NewYearsDayMixin, ChineseNewYearCalendar):
     "Taiwan (Republic of China)"
     FIXED_HOLIDAYS = (
-        WesternCalendar.FIXED_HOLIDAYS +
+        NewYearsDayMixin.FIXED_HOLIDAYS +
         (
             (2, 28, "228 Peace Memorial Day"),
             (4, 4, "Combination of Women's Day and Children's Day"),

@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin, THU, MON
+from ..core import WesternCalendar, THU, MON
 from ..registry_tools import iso_register
 
 
 @iso_register('IS')
-class Iceland(WesternCalendar, ChristianMixin):
+class Iceland(WesternCalendar):
     'Iceland'
 
     include_holy_thursday = True

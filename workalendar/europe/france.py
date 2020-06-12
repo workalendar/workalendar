@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('FR')
-class France(WesternCalendar, ChristianMixin):
+class France(WesternCalendar):
     'France'
 
     include_easter_monday = True

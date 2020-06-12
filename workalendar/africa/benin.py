@@ -1,10 +1,11 @@
-from ..core import WesternCalendar, IslamicMixin, ChristianMixin
+from ..core import NewYearsDayMixin, IslamoWesternCalendar, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('BJ')
-class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
+class Benin(NewYearsDayMixin, IslamoWesternCalendar):
     "Benin"
+    # Christian holidays
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
@@ -16,10 +17,13 @@ class Benin(WesternCalendar, IslamicMixin, ChristianMixin):
     include_day_of_sacrifice = True
     include_day_of_sacrifice_label = "Tabaski"
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
         (1, 10, "Traditional Day"),
         (5, 1, "Labour Day"),
         (8, 1, "Independence Day"),
         (10, 26, "Armed Forces Day"),
         (11, 30, "National Day"),
     )
+
+    # Explicitely assign these WE days, Benin has adopted the western workweek
+    WEEKEND_DAYS = (SAT, SUN)

@@ -1,12 +1,12 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('US')
-class UnitedStates(WesternCalendar, ChristianMixin):
+class UnitedStates(WesternCalendar):
     "United States of America"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

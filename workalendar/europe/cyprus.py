@@ -1,10 +1,10 @@
 from datetime import timedelta
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('CY')
-class Cyprus(WesternCalendar, ChristianMixin):
+class Cyprus(WesternCalendar):
     'Cyprus'
 
     include_epiphany = True

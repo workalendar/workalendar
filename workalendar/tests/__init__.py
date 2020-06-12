@@ -5,11 +5,26 @@ from unittest import TestCase
 from ..core import Calendar
 
 
-class GenericCalendarTest(TestCase):
+class CoreCalendarTest(TestCase):
     cal_class = Calendar
 
     def setUp(self):
         super().setUp()
-        warnings.simplefilter('ignore')
         self.year = date.today().year
         self.cal = self.cal_class()
+
+
+class GenericCalendarTest(CoreCalendarTest):
+
+    def setUp(self):
+        super().setUp()
+        warnings.simplefilter('ignore')
+
+    def test_weekend_days(self):
+        class_name = self.cal_class.__name__
+        if class_name in ('Calendar',):
+            return
+        try:
+            self.cal.get_weekend_days()
+        except NotImplementedError:
+            assert False, (self.cal, class_name)

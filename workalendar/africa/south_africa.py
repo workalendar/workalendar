@@ -1,14 +1,12 @@
 from datetime import timedelta, date
 
-from ..core import WesternCalendar
-from ..core import SUN, MON, FRI
-from ..core import ChristianMixin
+from ..core import WesternCalendar, SUN, MON, FRI
 from ..exceptions import CalendarError
 from ..registry_tools import iso_register
 
 
 @iso_register('ZA')
-class SouthAfrica(WesternCalendar, ChristianMixin):
+class SouthAfrica(WesternCalendar):
     "South Africa"
     include_good_friday = True
     include_christmas = True

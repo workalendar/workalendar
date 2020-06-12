@@ -1,12 +1,10 @@
-from ..core import Calendar
-from ..core import FRI, SAT, IslamicMixin
+from ..core import IslamicCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('QA')
-class Qatar(IslamicMixin, Calendar):
+class Qatar(IslamicCalendar):
     "Qatar"
-    WEEKEND_DAYS = (FRI, SAT)
 
     FIXED_HOLIDAYS = (
         (12, 18, "National Day"),

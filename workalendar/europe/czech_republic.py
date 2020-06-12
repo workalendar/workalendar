@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('CZ')
-class CzechRepublic(WesternCalendar, ChristianMixin):
+class CzechRepublic(WesternCalendar):
     'Czech Republic'
 
     include_easter_monday = True
