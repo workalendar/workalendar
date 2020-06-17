@@ -12,6 +12,7 @@ class Lithuania(WesternCalendar, ChristianMixin):
         (5, 1, "Labour Day"),
         (6, 24, "St. John's Day"),
         (7, 6, "Anniversary of the Coronation of King Mindaugas"),
+        (11, 2, "All Souls' Day"),
     )
 
     include_easter_sunday = True
