@@ -4,6 +4,7 @@
 
 - Small fixes (docstrings, use of extends, etc) on Cayman Islands calendar (#507).
 - Moving Carnaval / Mardi Gras / Fat Tuesday calculation into the `workalendar.core` module, because it's used in at least 3 countries and some States / Counties in the USA.
+- Adding All Souls' Day to Lithuania calendar, starting of 2020, thx to @norkunas (#512).
 
 ## v10.0.0 (2020-06-05)
 
