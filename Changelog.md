@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v10.1.0 (2020-06-18)
 
 ### Calendar fix
