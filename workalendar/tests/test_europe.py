@@ -1373,3 +1373,33 @@ class LithuaniaTest(GenericCalendarTest):
         self.assertIn(date(2017, 12, 24), holidays)  # Xmas eve
         self.assertIn(date(2017, 12, 25), holidays)  # Xmas day
         self.assertIn(date(2017, 12, 26), holidays)  # 2nd day of xmas
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # new year
+        self.assertIn(date(2020, 2, 16), holidays)  # restoration of the state
+        self.assertIn(date(2020, 3, 11), holidays)  # restoration of independ.
+        self.assertIn(date(2020, 4, 12), holidays)  # easter sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # easter monday
+        self.assertIn(date(2020, 5, 1), holidays)  # labour day
+        self.assertIn(date(2020, 5, 3), holidays)  # mother's day
+        self.assertIn(date(2020, 6, 7), holidays)  # father's day
+        self.assertIn(date(2020, 6, 24), holidays)  # st john's day
+        self.assertIn(date(2020, 7, 6), holidays)  # Anniversary of King Mind.
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption day
+        self.assertIn(date(2020, 11, 1), holidays)  # All saints day
+        self.assertIn(date(2020, 11, 2), holidays)  # All souls day
+        self.assertIn(date(2020, 12, 24), holidays)  # Xmas eve
+        self.assertIn(date(2020, 12, 25), holidays)  # Xmas day
+        self.assertIn(date(2020, 12, 26), holidays)  # 2nd day of xmas
+
+    def test_all_souls_day(self):
+        # All Souls day was introduced as of 2020
+        # https://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 11, 2), holidays)
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 11, 2), holidays)
+
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 11, 2), holidays)

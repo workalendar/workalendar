@@ -36,6 +36,9 @@ class Lithuania(WesternCalendar, ChristianMixin):
         )
 
     def get_variable_days(self, year):
+        # All Souls day was introduced as of 2020
+        # https://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+        self.include_all_souls = year >= 2020
         days = super().get_variable_days(year)
         days.append(self.get_mothers_day(year))
         days.append(self.get_fathers_day(year))
