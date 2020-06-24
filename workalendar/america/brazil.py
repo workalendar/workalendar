@@ -25,7 +25,7 @@ class Brazil(WesternCalendar, ChristianMixin):
     include_servidor_publico = False
     servidor_publico_label = "Dia do Servidor Público"
     # Consciência Negra day
-    include_consciencia_negra = True
+    include_consciencia_negra = False
     # There are two dates for the Consciência Negra day
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
