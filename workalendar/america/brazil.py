@@ -579,7 +579,6 @@ class BrazilBankCalendar(Brazil):
     include_good_friday = True
     include_ash_wednesday = True
     include_corpus_christi = True
-    include_consciencia_negra = False
     include_easter_sunday = False
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
