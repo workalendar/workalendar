@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v10.2.0 (2020-06-26)
 
 - Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
 - Bugfix: Introducing the changes in Croatia holidays as of 2020 - Remembrance Day, Independence Day, Statehood Day... thx to @davidpodrebarac for the bug report (#515).
