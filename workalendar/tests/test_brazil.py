@@ -30,6 +30,7 @@ from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 class BrazilTest(GenericCalendarTest):
     cal_class = Brazil
+    test_include_consciencia_negra = False
 
     def test_year_2013_federal(self):
         holidays = self.cal.holidays_set(2013)
@@ -41,6 +42,20 @@ class BrazilTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 2), holidays)  # Finados
         self.assertIn(date(2013, 11, 15), holidays)  # Proclamação da República
         self.assertIn(date(2013, 12, 25), holidays)  # Natal
+
+    def test_consciencia_negra(self):
+        # Consciência Negra day is not a national holiday
+        # It's triggered in the appropriate classes, so this test needs to
+        # be overwritten.
+        month, day = self.cal.consciencia_negra_day
+        consciencia_negra_day = date(self.year, month, day)
+        holidays = self.cal.holidays_set(self.year)
+        if self.test_include_consciencia_negra:
+            # Included where needed
+            self.assertIn(consciencia_negra_day, holidays)
+        else:
+            # By default, not in the holidays.
+            self.assertNotIn(consciencia_negra_day, holidays)
 
 
 class BrazilAcreTest(BrazilTest):
@@ -59,6 +74,7 @@ class BrazilAcreTest(BrazilTest):
 
 class BrazilAlagoasTest(BrazilTest):
     cal_class = BrazilAlagoas
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -71,6 +87,7 @@ class BrazilAlagoasTest(BrazilTest):
 
 class BrazilAmapaTest(BrazilTest):
     cal_class = BrazilAmapa
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -89,6 +106,7 @@ class BrazilAmapaTest(BrazilTest):
 
 class BrazilAmazonasTest(BrazilTest):
     cal_class = BrazilAmazonas
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -164,6 +182,7 @@ class BrazilMinasGeraisTest(BrazilTest):
 
 class BrazilMatoGrossoTest(BrazilTest):
     cal_class = BrazilMatoGrosso
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -226,6 +245,7 @@ class BrazilParanaTest(BrazilTest):
 
 class BrazilRioDeJaneiroTest(BrazilTest):
     cal_class = BrazilRioDeJaneiro
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -318,6 +338,7 @@ class SaoPauloStateTest(BrazilTest):
 
 class SaoPauloCityTest(SaoPauloStateTest):
     cal_class = BrazilSaoPauloCity
+    test_include_consciencia_negra = True
 
     def test_year_2013_city(self):
         holidays = self.cal.holidays_set(2013)
@@ -449,6 +470,7 @@ class BrazilGuarapariCityTest(BrazilEspiritoSantoTest):
     Guarapari city is in the Espírito Santo state
     """
     cal_class = BrazilGuarapariCity
+    test_include_consciencia_negra = True
 
     def test_year_2017_city(self):
         holidays = self.cal.holidays_set(2017)
