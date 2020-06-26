@@ -239,20 +239,66 @@ class CroatiaTest(GenericCalendarTest):
 
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day Nova Godin
-        self.assertIn(date(2016, 1, 6), holidays)   # Epiphany Bogojavljenje,
-        self.assertIn(date(2016, 3, 27), holidays)  # Easter Sunday Uskrs i us
+        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2016, 1, 6), holidays)   # Epiphany / Bogojavljenje
+        self.assertIn(date(2016, 3, 27), holidays)  # Easter Sunday
         self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
-        self.assertIn(date(2016, 5, 1), holidays)   # Intl Workers' Day Međunar
-        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi Tijelovo
-        self.assertIn(date(2016, 6, 22), holidays)  # Anti-Fascist Day Dan anti
-        self.assertIn(date(2016, 6, 25), holidays)  # Statehood Day 	Dan drž
+        self.assertIn(date(2016, 5, 1), holidays)   # Intl Workers' Day
+        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi / Tijelovo
+        self.assertIn(date(2016, 6, 22), holidays)  # Anti-Fascist Day
+        self.assertIn(date(2016, 6, 25), holidays)  # Statehood Day
         self.assertIn(date(2016, 8, 5), holidays)   # Victory & Homeland Thanks
-        self.assertIn(date(2016, 8, 15), holidays)  # Assumption of Mary 	Vel
+        self.assertIn(date(2016, 8, 15), holidays)  # Assumption of Mary
         self.assertIn(date(2016, 10, 8), holidays)  # Independence Day Dan neov
         self.assertIn(date(2016, 11, 1), holidays)  # All Saints' Day Dan svih
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas Božić
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen's Day Prvi d
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2020, 1, 6), holidays)   # Epiphany / Bogojavljenje
+        self.assertIn(date(2020, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 30), holidays)  # Statehood day
+        self.assertIn(date(2020, 6, 11), holidays)  # Corpus Christi
+        self.assertIn(date(2020, 6, 22), holidays)  # Anti-Fascist Day
+        # Victory & Homeland Thanksgiving
+        self.assertIn(date(2020, 8, 5), holidays)
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption of Mary
+        self.assertIn(date(2020, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2020, 11, 18), holidays)  # Remembrance Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertIn(date(2020, 12, 26), holidays)  # St Stephen
+
+    def test_statehood_day(self):
+        holidays_2019 = self.cal.holidays_set(2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+
+        # Statehood day was a holiday on June 25th until 2020
+        self.assertIn(date(2019, 6, 25), holidays_2019)
+        self.assertNotIn(date(2020, 6, 25), holidays_2020)
+
+        # Statehood day as of 2020 happens on May 30th
+        self.assertNotIn(date(2019, 5, 30), holidays_2019)
+        self.assertIn(date(2020, 5, 30), holidays_2020)
+
+    def test_independance_day(self):
+        # Independence Day was a holiday until 2020
+        holidays_2019 = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 10, 8), holidays_2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 10, 8), holidays_2020)
+
+    def test_remembrance_day(self):
+        # Remembrance Day was introduced as of 2020
+        holidays_2018 = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 11, 18), holidays_2018)
+        holidays_2019 = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 11, 18), holidays_2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 11, 18), holidays_2020)
 
 
 class Cyprus(GenericCalendarTest):
