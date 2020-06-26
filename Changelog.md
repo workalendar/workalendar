@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v10.2.0 (2020-06-26)
 
 - Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
