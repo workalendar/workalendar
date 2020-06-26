@@ -1,3 +1,5 @@
+from datetime import date
+
 from ..core import WesternCalendar, ChristianMixin
 from ..registry_tools import iso_register
 
@@ -9,9 +11,7 @@ class Croatia(WesternCalendar, ChristianMixin):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "International Workers' Day"),
         (6, 22, "Anti-Fascist Struggle Day"),
-        (6, 25, "Statehood Day"),
         (8, 5, "Victory & Homeland Thanksgiving & Day of Croatian defenders"),
-        (10, 8, "Independence Day"),
     )
 
     include_epiphany = True
@@ -23,3 +23,22 @@ class Croatia(WesternCalendar, ChristianMixin):
     include_christmas = True
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day"
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+
+        if year >= 2020:
+            days.extend([
+                # Statehood date has changed in 2020
+                (date(year, 5, 30), "Statehood Day"),
+                # Remembrance Day has been added in 2020
+                (date(year, 11, 18), "Remembrance Day"),
+            ])
+        else:
+            days.extend([
+                (date(year, 6, 25), "Statehood Day"),
+                # Independance day was a holiday until 2020
+                (date(year, 10, 8), "Independence Day"),
+            ])
+
+        return days
