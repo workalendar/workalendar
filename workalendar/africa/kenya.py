@@ -1,12 +1,12 @@
 from copy import copy
 from datetime import timedelta, date
 
-from ..core import NewYearsDayMixin, IslamoWesternCalendar, SAT, SUN
+from ..core import IslamoWesternCalendar, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('KE')
-class Kenya(NewYearsDayMixin, IslamoWesternCalendar):
+class Kenya(IslamoWesternCalendar):
     "Kenya"
     # Christian holidays
     include_good_friday = True
@@ -16,10 +16,10 @@ class Kenya(NewYearsDayMixin, IslamoWesternCalendar):
     include_day_of_sacrifice = True
     shift_sunday_holidays = True
 
-    # Explicitely assign these WE days, Kenya has adopted the western workweek
+    # Explicitly assign these WE days, Kenya has adopted the western workweek
     WEEKEND_DAYS = (SAT, SUN)
 
-    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = IslamoWesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (6, 1, "Madaraka Day"),
         (10, 20, "Mashujaa Day"),

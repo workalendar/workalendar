@@ -6,6 +6,8 @@ from ..registry_tools import iso_register
 class Qatar(IslamicCalendar):
     "Qatar"
 
+    include_new_years_day = False
+
     FIXED_HOLIDAYS = (
         (12, 18, "National Day"),
     )

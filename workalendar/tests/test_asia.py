@@ -440,6 +440,7 @@ class MalaysiaTest(GenericCalendarTest):
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar
+    test_include_january_1st = False
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -580,6 +581,7 @@ class TaiwanTest(GenericCalendarTest):
 class IsraelTest(GenericCalendarTest):
 
     cal_class = Israel
+    test_include_january_1st = False
 
     def test_holidays_2017(self):
         calculated_holidays = self.cal.holidays_set(2017)

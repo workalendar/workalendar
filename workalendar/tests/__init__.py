@@ -15,6 +15,7 @@ class CoreCalendarTest(TestCase):
 
 
 class GenericCalendarTest(CoreCalendarTest):
+    test_include_january_1st = True
 
     def setUp(self):
         super().setUp()
@@ -28,3 +29,13 @@ class GenericCalendarTest(CoreCalendarTest):
             self.cal.get_weekend_days()
         except NotImplementedError:
             assert False, (self.cal, class_name)
+
+    def test_january_1st(self):
+        class_name = self.cal_class.__name__
+        if class_name in ('Calendar',):
+            return
+        holidays = self.cal.holidays_set(self.year)
+        if self.test_include_january_1st:
+            self.assertIn(date(self.year, 1, 1), holidays)
+        else:
+            self.assertNotIn(date(self.year, 1, 1), holidays)

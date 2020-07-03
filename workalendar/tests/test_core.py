@@ -348,6 +348,7 @@ class OverwriteGetWeekendDaysCalendarTest(CoreCalendarTest):
 
 
 class NoHolidayCalendar(Calendar):
+    include_new_years_day = False
     WEEKEND_DAYS = (SAT, SUN)
 
 

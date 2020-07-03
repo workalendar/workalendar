@@ -1,9 +1,9 @@
-from ..core import NewYearsDayMixin, IslamoWesternCalendar, SAT, SUN
+from ..core import IslamoWesternCalendar, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('CI')
-class IvoryCoast(NewYearsDayMixin, IslamoWesternCalendar):
+class IvoryCoast(IslamoWesternCalendar):
     "Ivory Coast"
     # Christian holidays
     include_easter_monday = True
@@ -17,7 +17,7 @@ class IvoryCoast(NewYearsDayMixin, IslamoWesternCalendar):
     include_day_of_sacrifice = True
     include_day_of_sacrifice_label = "Feast of the Sacrifice"
 
-    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = IslamoWesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (8, 7, "Independence Day"),
         (11, 15, "National Peace Day"),

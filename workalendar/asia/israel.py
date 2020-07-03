@@ -7,7 +7,7 @@ from ..registry_tools import iso_register
 @iso_register("IL")
 class Israel(Calendar):
     "Israel"
-
+    include_new_years_day = False
     WEEKEND_DAYS = (SAT, FRI)
 
     def get_variable_days(self, year):

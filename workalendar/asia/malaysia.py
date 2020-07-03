@@ -1,14 +1,14 @@
 from datetime import date
 
 from ..core import (
-    NewYearsDayMixin, IslamicMixin, ChineseNewYearCalendar,
+    IslamicMixin, ChineseNewYearCalendar,
     SAT, SUN
 )
 from ..registry_tools import iso_register
 
 
 @iso_register('MY')
-class Malaysia(NewYearsDayMixin, IslamicMixin, ChineseNewYearCalendar):
+class Malaysia(IslamicMixin, ChineseNewYearCalendar):
     "Malaysia"
     include_nuzul_al_quran = True
     include_eid_al_fitr = True
@@ -23,7 +23,7 @@ class Malaysia(NewYearsDayMixin, IslamicMixin, ChineseNewYearCalendar):
     WEEKEND_DAYS = (SAT, SUN)
     # TODO: Add calendar exceptions
 
-    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (2, 1, "Federal Territory Day"),
         (5, 1, "Workers' Day"),
         (8, 31, "National Day"),

@@ -117,7 +117,7 @@ workon WORKALENDAR
 pip install tox
 ```
 
-With the `WesternCalendar` base class you have at least one holiday as a bonus: the New year's day, which is commonly a holiday.
+With the `WesternCalendar` base class you have at least one holiday as a bonus: the New Year's day, which is almost a worldwide holiday.
 
 #### Add fixed days
 

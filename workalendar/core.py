@@ -42,24 +42,6 @@ def cleaned_date(day, keep_datetime=False):
     return day
 
 
-class NewYearsDayMixin:
-    FIXED_HOLIDAYS = (
-        (1, 1, 'New year'),
-    )
-
-    shift_new_years_day = False
-
-    def get_variable_days(self, year):
-        days = super().get_variable_days(year)
-        new_year = date(year, 1, 1)
-        if self.shift_new_years_day:
-            if new_year.weekday() in self.get_weekend_days():
-                days.append((
-                    self.find_following_working_day(new_year),
-                    "New Year shift"))
-        return days
-
-
 class ChristianMixin:
     EASTER_METHOD = None  # to be assigned in the inherited mixin
     include_epiphany = False
@@ -813,16 +795,40 @@ class CoreCalendar:
 
 
 class Calendar(CoreCalendar):
-    pass
+    """
+    The cornerstone of Earth calendars.
+
+    Take care of the New Years Day, which is almost a worldwide holiday.
+    """
+    include_new_years_day = True
+    shift_new_years_day = False
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_new_years_day:
+            days.insert(
+                0, (date(year, 1, 1), "New year")
+            )
+        return days
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        new_year = date(year, 1, 1)
+        if self.include_new_years_day and self.shift_new_years_day:
+            if new_year.weekday() in self.get_weekend_days():
+                days.append((
+                    self.find_following_working_day(new_year),
+                    "New Year shift"))
+        return days
 
 
-class WesternCalendar(NewYearsDayMixin, WesternMixin, Calendar):
+class WesternCalendar(WesternMixin, Calendar):
     """
     A Christian calendar using Western definition for Easter.
     """
 
 
-class OrthodoxCalendar(NewYearsDayMixin, OrthodoxMixin, Calendar):
+class OrthodoxCalendar(OrthodoxMixin, Calendar):
     """
     A Christian calendar using Orthodox definition for Easter.
     """

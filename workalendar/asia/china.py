@@ -1,7 +1,7 @@
 from datetime import date
 import warnings
 
-from ..core import ChineseNewYearCalendar, NewYearsDayMixin
+from ..core import ChineseNewYearCalendar
 from ..registry_tools import iso_register
 from ..exceptions import CalendarError
 
@@ -56,12 +56,12 @@ workdays = {
 
 
 @iso_register('CN')
-class China(NewYearsDayMixin, ChineseNewYearCalendar):
+class China(ChineseNewYearCalendar):
     "China"
     # WARNING: Support 2018, 2019 currently, need update every year.
     # National Days, 10.1 - 10.7
     national_days = [(10, i, "National Day") for i in range(1, 8)]
-    FIXED_HOLIDAYS = NewYearsDayMixin.FIXED_HOLIDAYS + tuple(national_days)
+    FIXED_HOLIDAYS = tuple(national_days)
 
     include_chinese_new_year_eve = True
 
