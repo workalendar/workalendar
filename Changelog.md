@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v10.3.0 (2020-07-10)
 
 ### Bugfixes
