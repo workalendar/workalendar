@@ -10,6 +10,11 @@ from ..registry_tools import iso_register
 @iso_register('MY')
 class Malaysia(IslamicMixin, ChineseNewYearCalendar):
     "Malaysia"
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Workers' Day"
+
+    # Islamic holidays
     include_nuzul_al_quran = True
     include_eid_al_fitr = True
     length_eid_al_fitr = 2
@@ -25,7 +30,6 @@ class Malaysia(IslamicMixin, ChineseNewYearCalendar):
 
     FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (2, 1, "Federal Territory Day"),
-        (5, 1, "Workers' Day"),
         (8, 31, "National Day"),
         (9, 16, "Malaysia Day"),
         (12, 25, "Christmas Day"),

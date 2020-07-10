@@ -7,11 +7,13 @@ from ..registry_tools import iso_register
 class Germany(WesternCalendar):
     'Germany'
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (10, 3, "Day of German Unity"),
     )
 
+    # Christian holidays
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True

@@ -5,6 +5,8 @@ from ..registry_tools import iso_register
 @iso_register('CI')
 class IvoryCoast(IslamoWesternCalendar):
     "Ivory Coast"
+    # Civil holidays
+    include_labour_day = True
     # Christian holidays
     include_easter_monday = True
     include_ascension = True
@@ -18,7 +20,6 @@ class IvoryCoast(IslamoWesternCalendar):
     include_day_of_sacrifice_label = "Feast of the Sacrifice"
 
     FIXED_HOLIDAYS = IslamoWesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (8, 7, "Independence Day"),
         (11, 15, "National Peace Day"),
     )

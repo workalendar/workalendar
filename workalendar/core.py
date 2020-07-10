@@ -802,12 +802,19 @@ class Calendar(CoreCalendar):
     """
     include_new_years_day = True
     shift_new_years_day = False
+    include_labour_day = False
+    labour_day_label = "Labour Day"
 
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)
         if self.include_new_years_day:
             days.insert(
                 0, (date(year, 1, 1), "New year")
+            )
+
+        if self.include_labour_day:
+            days.append(
+                (date(year, 5, 1), self.labour_day_label)
             )
         return days
 

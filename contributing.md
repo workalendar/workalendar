@@ -123,13 +123,17 @@ With the `WesternCalendar` base class you have at least one holiday as a bonus: 
 
 ```python
 class Zhraa(WesternCalendar):
+
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (8, 2, "King Birthday"),
     )
 ```
 
+The `include_labour_day` is a flag common to all subclasses of `workalendar.core.Calendar`. Setting it to `True` activates the Labour Day for this calendar. Please note that there's a way to overwrite its label, using the `labour_day_label` class property.
+
 Now we've got 3 holidays out of 6.
+
 
 #### Add religious holidays
 
@@ -140,8 +144,8 @@ from ..core import WesternCalendar
 
 class Zhraa(WesternCalendar):
     include_easter_monday = True
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (8, 2, "King Birthday"),
     )
 ```
@@ -154,8 +158,8 @@ There are many static methods that will grant you a clean access to variable day
 ```python
 class Zhraa(WesternCalendar):
     include_easter_monday = True
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (8, 2, "King Birthday"),
     )
 

@@ -124,6 +124,12 @@ class ArgentinaTest(GenericCalendarTest):
         label_carnival = holidays[date(2020, 2, 25)]
         self.assertEqual(label_carnival, "Carnival")
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label = holidays[date(2020, 5, 1)]
+        self.assertEqual(label, "Día del Trabajador")
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile

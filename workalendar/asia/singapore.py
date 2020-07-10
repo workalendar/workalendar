@@ -10,6 +10,9 @@ from ..registry_tools import iso_register
 @iso_register('SG')
 class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
     "Singapore"
+    # Civil holidays
+    include_labour_day = True
+
     # Christian holiday
     include_good_friday = True
 
@@ -20,7 +23,6 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
     day_of_sacrifice_label = "Hari Raya Haji"
 
     FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (8, 9, "National Day"),
     )
 
@@ -50,8 +52,8 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         2017: date(2017, 10, 18),
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
-        2020: date(2020, 11, 14),   # This might change
-        2021: date(2021, 11, 4),
+        2020: date(2020, 11, 14),
+        2021: date(2021, 11, 4),  # This might change
     }
     chinese_new_year_label = "Chinese Lunar New Year's Day"
     include_chinese_second_day = True

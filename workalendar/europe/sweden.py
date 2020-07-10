@@ -7,6 +7,7 @@ from ..registry_tools import iso_register
 class Sweden(WesternCalendar):
     'Sweden'
 
+    # Christian holidays
     include_epiphany = True
     include_good_friday = True
     include_easter_sunday = True
@@ -19,8 +20,9 @@ class Sweden(WesternCalendar):
     include_boxing_day = True
     boxing_day_label = "Second Day of Christmas"
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (6, 6, "National Day"),
         # New Year's Eve is not a holiday but not a work day either
         (12, 31, "New Year's Eve")

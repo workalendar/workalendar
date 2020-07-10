@@ -8,9 +8,10 @@ from ..registry_tools import iso_register
 class Mexico(WesternCalendar):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (9, 16, "Independence Day"),
     )
+    # Civil holidays
+    include_labour_day = True
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

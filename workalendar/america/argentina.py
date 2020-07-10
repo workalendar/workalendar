@@ -6,7 +6,10 @@ from ..registry_tools import iso_register
 @iso_register('AR')
 class Argentina(WesternCalendar):
     'Argentina'
-
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Día del Trabajador"
+    # Christian holidays
     include_fat_tuesday = True
     fat_tuesday_label = "Carnival"
     include_good_friday = True
@@ -16,7 +19,6 @@ class Argentina(WesternCalendar):
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 24, "Día Nacional de la Memoria por la Verdad y la Justicia"),
-        (5, 1, "Día del Trabajador"),
         (5, 25, "Día de la Revolución de Mayo"),
         (6, 20, "Día Paso a la Inmortalidad del General Manuel Belgrano"),
         (7, 9, "Día de la Independencia"),

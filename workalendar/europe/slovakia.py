@@ -6,6 +6,7 @@ from ..registry_tools import iso_register
 class Slovakia(WesternCalendar):
     'Slovakia'
 
+    # Christian holidays
     include_epiphany = True
     include_easter_monday = True
     include_good_friday = True
@@ -14,9 +15,10 @@ class Slovakia(WesternCalendar):
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day (The Second Christmas Day)"
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 1, "Day of the Establishment of the Slovak Republic"),
-        (5, 1, "Labour Day"),
         (5, 8, "Liberation Day"),
         (7, 5, "Saints Cyril and Methodius Day"),
         (8, 29, "Slovak National Uprising anniversary"),

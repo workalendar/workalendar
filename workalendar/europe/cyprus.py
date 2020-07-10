@@ -7,6 +7,10 @@ from ..registry_tools import iso_register
 class Cyprus(WesternCalendar):
     'Cyprus'
 
+    # Civil holidays
+    include_labour_day = True
+
+    # Christian holidays
     include_epiphany = True
     include_clean_monday = True
     include_good_friday = True
@@ -22,7 +26,6 @@ class Cyprus(WesternCalendar):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Greek Independence Day"),
         (4, 1, "Cyprus National Day"),
-        (5, 1, "Labour Day"),
         (7, 15, "Dormition of the Theotokos"),
         (10, 1, "Cyprus Independence Day"),
         (10, 28, "Greek National Day"),

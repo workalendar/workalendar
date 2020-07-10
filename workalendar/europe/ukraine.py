@@ -12,10 +12,12 @@ class Ukraine(OrthodoxCalendar):
 
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (3, 8, "International Women’s Day"),
-        (5, 1, "Workers Solidarity Day"),
         (5, 9, "Victory Day"),
     )
-
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Workers Solidarity Day"
+    # Christian holidays
     include_christmas = False
     include_good_friday = True
     include_easter_sunday = True

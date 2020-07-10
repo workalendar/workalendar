@@ -5,6 +5,8 @@ from ..registry_tools import iso_register
 @iso_register('BJ')
 class Benin(IslamoWesternCalendar):
     "Benin"
+    # Civil holidays
+    include_labour_day = True
     # Christian holidays
     include_easter_monday = True
     include_ascension = True
@@ -19,7 +21,6 @@ class Benin(IslamoWesternCalendar):
 
     FIXED_HOLIDAYS = IslamoWesternCalendar.FIXED_HOLIDAYS + (
         (1, 10, "Traditional Day"),
-        (5, 1, "Labour Day"),
         (8, 1, "Independence Day"),
         (10, 26, "Armed Forces Day"),
         (11, 30, "National Day"),

@@ -6,12 +6,15 @@ from ..registry_tools import iso_register
 class CzechRepublic(WesternCalendar):
     'Czech Republic'
 
+    # Civil holidays
+    include_labour_day = True
+
+    # Christian holidays
     include_easter_monday = True
     include_good_friday = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 1, "Restoration Day of the Independent Czech State"),
-        (5, 1, "Labour Day"),
         (5, 8, "Liberation Day"),
         (7, 5, "Saints Cyril and Methodius Day"),
         (7, 6, "Jan Hus Day"),

@@ -61,6 +61,12 @@ class AustriaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Xmas
         self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 5, 1)], "State Holiday")
+        # a.k.a. Staatsfeiertag
+
 
 class BelarusTest(GenericCalendarTest):
     cal_class = Belarus
@@ -111,6 +117,12 @@ class BulgariaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
         # Non-attendance day for schools, otherwise a working day.
         self.assertNotIn(date(2016, 11, 1), holidays)   # National Awakening
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
 
 
 class CaymanIslandsTest(GenericCalendarTest):
@@ -297,6 +309,12 @@ class CroatiaTest(GenericCalendarTest):
         self.assertNotIn(date(2019, 11, 18), holidays_2019)
         holidays_2020 = self.cal.holidays_set(2020)
         self.assertIn(date(2020, 11, 18), holidays_2020)
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
 
 
 class Cyprus(GenericCalendarTest):
@@ -639,6 +657,12 @@ class MaltaTest(GenericCalendarTest):
         self.assertIn(date(2017, 12, 8), holidays)  # Il-Kunċizzjoni
         self.assertIn(date(2017, 12, 25), holidays)  # Il-Milied
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Worker's Day")
+
 
 class NorwayTest(GenericCalendarTest):
     cal_class = Norway
@@ -783,6 +807,12 @@ class ItalyTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 8), holidays)  # immaculate Conception
         self.assertIn(date(2013, 12, 25), holidays)  # christmas
         self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
 
 
 class LatviaTest(GenericCalendarTest):
@@ -983,6 +1013,11 @@ class UkraineTest(GenericCalendarTest):
     def test_year_2018(self):
         holidays = self.cal.holidays_set(2018)
         self.assertNotIn(date(2018, 5, 2), holidays)  # Workers Solidarity Day
+
+    def test_may_1st_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 5, 1)], "Workers Solidarity Day")
 
 
 class UnitedKingdomTest(GenericCalendarTest):
@@ -1192,6 +1227,12 @@ class PortugalTest(GenericCalendarTest):
         # Restauração da Independência
         self.assertIn(date(2016, 12, 1), holidays)
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Dia do Trabalhador")
+
 
 class SpainTest(GenericCalendarTest):
     cal_class = Spain
@@ -1217,6 +1258,12 @@ class SpainTest(GenericCalendarTest):
         self.assertIn(date(2016, 11, 1), holidays)
         self.assertIn(date(2016, 12, 6), holidays)
         self.assertIn(date(2016, 12, 8), holidays)
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Día del trabajador")
 
 
 class CataloniaTest(GenericCalendarTest):
@@ -1254,6 +1301,12 @@ class CataloniaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 8), holidays)
         self.assertIn(date(2016, 12, 25), holidays)
         self.assertIn(date(2016, 12, 26), holidays)
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Día del trabajador")
 
 
 class SerbiaTest(GenericCalendarTest):

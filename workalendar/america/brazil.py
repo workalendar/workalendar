@@ -9,7 +9,6 @@ class Brazil(WesternCalendar):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 21, "Tiradentes' Day"),
-        (5, 1, "Labour Day"),
         (9, 7, "Independence Day"),
         (10, 12, "Our Lady of Aparecida"),
         (11, 2, "All Souls' Day"),
@@ -21,6 +20,8 @@ class Brazil(WesternCalendar):
     sao_pedro_label = "São Pedro"
     include_sao_joao = False
     sao_joao_label = "São João"
+    # Civil holidays
+    include_labour_day = True
     include_servidor_publico = False
     servidor_publico_label = "Dia do Servidor Público"
     # Consciência Negra day
@@ -30,6 +31,7 @@ class Brazil(WesternCalendar):
     consciencia_negra_day = (11, 20)
     consciencia_negra_label = "Consciência Negra"
     include_nossa_senhora_conceicao = False
+    # Christian holidays
     include_easter_sunday = True
 
     def get_variable_days(self, year):
