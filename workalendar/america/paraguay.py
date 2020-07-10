@@ -1,11 +1,11 @@
 from datetime import date
 
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('PY')
-class Paraguay(WesternCalendar, ChristianMixin):
+class Paraguay(WesternCalendar):
     "Paraguay"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),

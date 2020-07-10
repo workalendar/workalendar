@@ -1,16 +1,16 @@
 from datetime import date
-from ..core import WesternCalendar, OrthodoxMixin
+from ..core import OrthodoxCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('UA')
-class Ukraine(OrthodoxMixin, WesternCalendar):
+class Ukraine(OrthodoxCalendar):
     'Ukraine'
 
     shift_sunday_holidays = True
     shift_new_years_day = True
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (3, 8, "International Women’s Day"),
         (5, 1, "Workers Solidarity Day"),
         (5, 9, "Victory Day"),

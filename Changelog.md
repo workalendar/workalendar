@@ -2,7 +2,12 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Refactoring the core ``Calendar`` classes / mixins for better understanding. Only one ``Calendar`` subclass should be imported / used in calendar classes, the rest (when possible) should be ``Mixins`` (related to #511).
+- Declaring the New year's Day as a worldwide holiday, with only two exceptions (to date): Israel & Qatar (#511).
+- Fixed `contributing.md` documentation with the new class/mixin organization.
+- Bugfix -- Belarus: removing day after Radonitsa, which is apparently not a holiday.
+- Bugfix -- Algeria: assigning the week-end days as FRI+SAT, as it's following a Islamic calendar.
+
 
 ## v10.2.0 (2020-06-26)
 

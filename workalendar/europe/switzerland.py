@@ -1,10 +1,10 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin, SUN
+from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('CH')
-class Switzerland(WesternCalendar, ChristianMixin):
+class Switzerland(WesternCalendar):
     'Switzerland'
 
     # ChristianMixin entries common to (most) cantons - opt out

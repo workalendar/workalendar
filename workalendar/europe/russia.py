@@ -1,14 +1,14 @@
-from ..core import WesternCalendar
+from ..core import OrthodoxCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('RU')
-class Russia(WesternCalendar):
+class Russia(OrthodoxCalendar):
     'Russia'
 
     shift_new_years_day = True
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Year"),
         (1, 7, "Christmas"),
         (2, 23, "Defendence of the Fatherland"),

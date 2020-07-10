@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('SK')
-class Slovakia(WesternCalendar, ChristianMixin):
+class Slovakia(WesternCalendar):
     'Slovakia'
 
     include_epiphany = True

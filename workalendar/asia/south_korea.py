@@ -1,11 +1,11 @@
-from ..core import ChineseNewYearCalendar, WesternCalendar
+from ..core import ChineseNewYearCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('KR')
-class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
+class SouthKorea(ChineseNewYearCalendar):
     "South Korea"
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (3, 1, "Independence Day"),
         (5, 5, "Children's Day"),
         (6, 6, "Memorial Day"),

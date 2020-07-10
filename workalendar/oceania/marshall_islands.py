@@ -1,10 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
-from ..core import FRI
+from ..core import WesternCalendar, FRI
 from ..registry_tools import iso_register
 
 
 @iso_register('MH')
-class MarshallIslands(WesternCalendar, ChristianMixin):
+class MarshallIslands(WesternCalendar):
     "Marshall Islands"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 3, "Remembrance Day"),

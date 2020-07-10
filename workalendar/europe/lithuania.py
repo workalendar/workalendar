@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin, SUN
+from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('LT')
-class Lithuania(WesternCalendar, ChristianMixin):
+class Lithuania(WesternCalendar):
     'Lithuania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

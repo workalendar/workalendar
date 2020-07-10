@@ -1,11 +1,10 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('AO')
-class Angola(WesternCalendar, ChristianMixin):
+class Angola(WesternCalendar):
     "Angola"
-
     include_fat_tuesday = True
     fat_tuesday_label = "Dia de Carnaval"
     include_good_friday = True

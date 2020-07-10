@@ -1,10 +1,10 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('DE')
-class Germany(WesternCalendar, ChristianMixin):
+class Germany(WesternCalendar):
     'Germany'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

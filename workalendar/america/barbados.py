@@ -1,13 +1,12 @@
 from datetime import timedelta
 from copy import copy
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import SUN, MON
+from ..core import WesternCalendar, SUN, MON
 from ..registry_tools import iso_register
 
 
 @iso_register("BB")
-class Barbados(WesternCalendar, ChristianMixin):
+class Barbados(WesternCalendar):
     "Barbados"
 
     include_good_friday = True

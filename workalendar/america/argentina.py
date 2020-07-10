@@ -1,13 +1,10 @@
 from datetime import timedelta, date
-from ..core import (
-    WesternCalendar, ChristianMixin,
-    MON, TUE, WED, THU, FRI, SAT
-)
+from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('AR')
-class Argentina(WesternCalendar, ChristianMixin):
+class Argentina(WesternCalendar):
     'Argentina'
 
     include_fat_tuesday = True

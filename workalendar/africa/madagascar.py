@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('MG')
-class Madagascar(WesternCalendar, ChristianMixin):
+class Madagascar(WesternCalendar):
     "Madagascar"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 29, "Martyrs' Day"),

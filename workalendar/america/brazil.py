@@ -1,12 +1,11 @@
 from datetime import timedelta, date
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import MON, SAT, SUN
+from ..core import WesternCalendar, MON, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('BR')
-class Brazil(WesternCalendar, ChristianMixin):
+class Brazil(WesternCalendar):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 21, "Tiradentes' Day"),

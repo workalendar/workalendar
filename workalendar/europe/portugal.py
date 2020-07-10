@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('PT')
-class Portugal(WesternCalendar, ChristianMixin):
+class Portugal(WesternCalendar):
     'Portugal'
 
     include_good_friday = True
