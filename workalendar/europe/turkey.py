@@ -1,13 +1,14 @@
 from datetime import timedelta
-from ..core import WesternCalendar, IslamicMixin
+from ..core import IslamicCalendar, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('TR')
-class Turkey(WesternCalendar, IslamicMixin):
+class Turkey(IslamicCalendar):
     'Turkey'
-
     shift_new_years_day = True
+    # Even though they're using an islamic calendar, the work week is MON->FRI
+    WEEKEND_DAYS = (SAT, SUN)
 
     # Islamic Holidays
     include_eid_al_fitr = True
@@ -15,7 +16,7 @@ class Turkey(WesternCalendar, IslamicMixin):
     include_eid_al_adha = True
     length_eid_al_adha = 4
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = IslamicCalendar.FIXED_HOLIDAYS + (
         (4, 23, "National Sovereignty and Children's Day"),
         (5, 1, "Labor and Solidarity Day"),
         (5, 19, "Commemoration of Atatürk, Youth and Sports Day"),

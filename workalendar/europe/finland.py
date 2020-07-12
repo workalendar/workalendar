@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin, FRI, SAT
+from ..core import WesternCalendar, FRI, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('FI')
-class Finland(WesternCalendar, ChristianMixin):
+class Finland(WesternCalendar):
     'Finland'
 
     include_epiphany = True

@@ -4,16 +4,16 @@ from unittest import TestCase
 
 import pandas
 
-from . import GenericCalendarTest
+from . import CoreCalendarTest
 from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
-    Calendar, LunarCalendar, WesternCalendar,
-    IslamicMixin, JalaliMixin, ChristianMixin
+    Calendar, LunarMixin, WesternCalendar,
+    IslamicMixin, JalaliMixin
 )
 from ..exceptions import UnsupportedDateType
 
 
-class CalendarTest(GenericCalendarTest):
+class CalendarTest(CoreCalendarTest):
 
     def test_private_variables(self):
         self.assertTrue(hasattr(self.cal, '_holidays'))
@@ -104,12 +104,11 @@ class CalendarTest(GenericCalendarTest):
         )
 
 
-class LunarCalendarTest(GenericCalendarTest):
-    cal_class = LunarCalendar
+class LunarCalendarTest(TestCase):
 
-    def test_new_year(self):
+    def test_lunar_new_year(self):
         self.assertEquals(
-            self.cal.lunar(2014, 1, 1),
+            LunarMixin.lunar(2014, 1, 1),
             date(2014, 1, 31)
         )
 
@@ -126,7 +125,7 @@ class MockCalendar(Calendar):
         return []  # no week-end, yes, it's sad
 
 
-class MockCalendarTest(GenericCalendarTest):
+class MockCalendarTest(CoreCalendarTest):
     cal_class = MockCalendar
 
     def test_holidays_set(self):
@@ -239,7 +238,7 @@ class MockCalendarTest(GenericCalendarTest):
         )
 
 
-class IslamicMixinTest(GenericCalendarTest):
+class IslamicMixinTest(CoreCalendarTest):
     cal_class = IslamicMixin
 
     def test_year_conversion(self):
@@ -247,7 +246,7 @@ class IslamicMixinTest(GenericCalendarTest):
         self.assertEquals(len(days), 365)
 
 
-class JalaliMixinTest(GenericCalendarTest):
+class JalaliMixinTest(CoreCalendarTest):
     cal_class = JalaliMixin
 
     def test_year_conversion(self):
@@ -255,11 +254,12 @@ class JalaliMixinTest(GenericCalendarTest):
         self.assertEquals(len(days), 365)
 
 
-class MockChristianCalendar(WesternCalendar, ChristianMixin):
+class MockChristianCalendar(WesternCalendar):
+    # WesternCalendar inherits from ChristianMixin
     pass
 
 
-class MockChristianCalendarTest(GenericCalendarTest):
+class MockChristianCalendarTest(CoreCalendarTest):
     cal_class = MockChristianCalendar
 
     def test_year_2014(self):
@@ -297,7 +297,7 @@ class NoWeekendCalendar(Calendar):
     """
 
 
-class NoWeekendCalendarTest(GenericCalendarTest):
+class NoWeekendCalendarTest(CoreCalendarTest):
     cal_class = NoWeekendCalendar
 
     def test_weekend(self):
@@ -317,7 +317,7 @@ class WeekendOnWednesdayCalendar(Calendar):
     WEEKEND_DAYS = (WED,)
 
 
-class WeekendOnWednesdayCalendarTest(GenericCalendarTest):
+class WeekendOnWednesdayCalendarTest(CoreCalendarTest):
     cal_class = WeekendOnWednesdayCalendar
 
     def test_weekend(self):
@@ -337,7 +337,7 @@ class OverwriteGetWeekendDaysCalendar(Calendar):
         return (WED,)
 
 
-class OverwriteGetWeekendDaysCalendarTest(GenericCalendarTest):
+class OverwriteGetWeekendDaysCalendarTest(CoreCalendarTest):
     cal_class = OverwriteGetWeekendDaysCalendar
 
     def test_weekend(self):
@@ -348,6 +348,7 @@ class OverwriteGetWeekendDaysCalendarTest(GenericCalendarTest):
 
 
 class NoHolidayCalendar(Calendar):
+    include_new_years_day = False
     WEEKEND_DAYS = (SAT, SUN)
 
 
@@ -487,7 +488,7 @@ class CalendarClassName(TestCase):
         )
 
 
-class TestAcceptableDateTypes(GenericCalendarTest):
+class TestAcceptableDateTypes(CoreCalendarTest):
     """
     Test cases about accepted date and datetime types.
     """
@@ -642,7 +643,7 @@ class TestAcceptableDateTypes(GenericCalendarTest):
             self.cal.get_holiday_label(datetime(2014, 1, 2)))
 
 
-class PandasTimestampTest(GenericCalendarTest):
+class PandasTimestampTest(CoreCalendarTest):
     cal_class = MockCalendar
 
     def test_panda_type_is_working_day(self):

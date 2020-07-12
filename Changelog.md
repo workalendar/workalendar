@@ -2,7 +2,52 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions. (#509).
+
+## v10.3.0 (2020-07-10)
+
+### Bugfixes
+
+- Belarus: removing day after Radonitsa, which is apparently not a holiday.
+- Algeria: assigning the week-end days as FRI+SAT, as it's following a Islamic calendar.
+
+### Other changes
+
+- Refactoring the core ``Calendar`` classes / mixins for better understanding. Only one ``Calendar`` subclass should be imported / used in calendar classes, the rest (when possible) should be ``Mixins`` (related to #511).
+- Declaring the New year's Day as a worldwide holiday, with only two exceptions (to date): Israel & Qatar (#511).
+- Fixed `contributing.md` documentation with the new class/mixin organization (#511).
+
+## v10.2.0 (2020-06-26)
+
+- Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
+- Bugfix: Introducing the changes in Croatia holidays as of 2020 - Remembrance Day, Independence Day, Statehood Day... thx to @davidpodrebarac for the bug report (#515).
+
+## v10.1.0 (2020-06-18)
+
+### Calendar fix
+
+- Adding All Souls' Day to Lithuania calendar, starting of 2020, thx to @norkunas (#512).
+
+### Minor changes
+
+- Small fixes (docstrings, use of extends, etc) on Cayman Islands calendar (#507).
+- Moving Carnaval / Mardi Gras / Fat Tuesday calculation into the `workalendar.core` module, because it's used in at least 3 countries and some States / Counties in the USA.
+
+## v10.0.0 (2020-06-05)
+
+- **BREAKING CHANGE**: the ``IsoRegistry.get_calendar_class()`` method has been removed from the code and should no longer be used (#375, #495).
+
+## v9.2.0 (2020-06-02)
+
+### New Calendars
+
+- Added rules for all Switzerland Cantons, branching off the initial work by @brutasse (#497).
+
+## v9.0.1 (2020-05-22)
+
+- Making the Israel calendar more efficient (#498).
+- Fixing duplicated holidays in Hong-Kong and Hong-Kong Bank holiday calendars (#496).
+- Integrating Hong-Kong holidays for 2021 (#496).
 
 ## v9.0.0 (2020-04-24)
 

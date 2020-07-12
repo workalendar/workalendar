@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('MT')
-class Malta(WesternCalendar, ChristianMixin):
+class Malta(WesternCalendar):
     'Malta'
 
     include_good_friday = True

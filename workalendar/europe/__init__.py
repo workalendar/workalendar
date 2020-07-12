@@ -31,7 +31,6 @@ from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import Spain, Catalonia
 from .sweden import Sweden
-from .switzerland import Switzerland, Vaud, Geneva
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
 from .turkey import Turkey
@@ -51,6 +50,14 @@ from .scotland import (
     Fife, Galashiels, Glasgow, Hawick, Inverclyde, Inverness, Kilmarnock,
     Lanark, Linlithgow, Lochaber, NorthLanarkshire, Paisley, Perth,
     ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire
+)
+
+# Switzerland
+from .switzerland import (
+    Switzerland, Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern,
+    BaselLandschaft, BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura,
+    Luzern, Neuchatel, Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn,
+    Schwyz, Thurgau, Ticino, Uri, Vaud, Valais, Zug, Zurich
 )
 
 __all__ = (
@@ -90,8 +97,6 @@ __all__ = (
     'Spain',
     'Sweden',
     'Switzerland',
-    'Vaud',
-    'Geneva',
     'Ukraine',
     'UnitedKingdom',
     'UnitedKingdomNorthernIreland',
@@ -109,5 +114,12 @@ __all__ = (
     'Edinburgh', 'Elgin', 'Falkirk', 'Fife', 'Galashiels', 'Glasgow',
     'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
     'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
-    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire'
+    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire',
+    # Switzerland
+    'Switzerland',
+    'Aargau', 'AppenzellInnerrhoden', 'AppenzellAusserrhoden', 'Bern',
+    'BaselLandschaft', 'BaselStadt', 'Fribourg', 'Geneva', 'Glarus',
+    'Graubunden', 'Jura', 'Luzern', 'Neuchatel', 'Nidwalden', 'Obwalden',
+    'StGallen', 'Schaffhausen', 'Solothurn', 'Schwyz', 'Thurgau', 'Ticino',
+    'Uri', 'Vaud', 'Valais', 'Zug', 'Zurich',
 )

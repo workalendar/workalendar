@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('LU')
-class Luxembourg(WesternCalendar, ChristianMixin):
+class Luxembourg(WesternCalendar):
     'Luxembourg'
 
     include_easter_monday = True

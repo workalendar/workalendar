@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin, SUN
+from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('LT')
-class Lithuania(WesternCalendar, ChristianMixin):
+class Lithuania(WesternCalendar):
     'Lithuania'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -36,6 +36,9 @@ class Lithuania(WesternCalendar, ChristianMixin):
         )
 
     def get_variable_days(self, year):
+        # All Souls day was introduced as of 2020
+        # https://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+        self.include_all_souls = year >= 2020
         days = super().get_variable_days(year)
         days.append(self.get_mothers_day(year))
         days.append(self.get_fathers_day(year))

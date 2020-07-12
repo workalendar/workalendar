@@ -1,12 +1,12 @@
-from datetime import timedelta
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('AO')
-class Angola(WesternCalendar, ChristianMixin):
-    """Angola"""
-
+class Angola(WesternCalendar):
+    "Angola"
+    include_fat_tuesday = True
+    fat_tuesday_label = "Dia de Carnaval"
     include_good_friday = True
     include_easter_sunday = True
     include_christmas = True
@@ -20,12 +20,3 @@ class Angola(WesternCalendar, ChristianMixin):
         (9, 17, "Dia do Fundador da Nação e do Herói Nacional"),
         (11, 11, "Dia da Independência Nacional"),
     )
-
-    def get_variable_entrudo(self, year):
-        easter_sunday = self.get_easter_sunday(year)
-        return easter_sunday - timedelta(days=47)
-
-    def get_variable_days(self, year):
-        days = super().get_variable_days(year)
-        days.append((self.get_variable_entrudo(year), "Dia de Carnaval"))
-        return days

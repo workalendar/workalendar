@@ -1,12 +1,11 @@
 from datetime import date
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import MON, TUE, WED, FRI
+from ..core import WesternCalendar, MON, TUE, WED, FRI
 from ..registry_tools import iso_register
 
 
 @iso_register('CL')
-class Chile(WesternCalendar, ChristianMixin):
+class Chile(WesternCalendar):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),

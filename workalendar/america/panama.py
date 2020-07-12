@@ -1,11 +1,11 @@
 from datetime import timedelta
 
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('PA')
-class Panama(WesternCalendar, ChristianMixin):
+class Panama(WesternCalendar):
     "Panama"
     include_good_friday = True
     include_easter_saturday = True

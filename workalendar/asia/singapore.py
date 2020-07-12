@@ -1,25 +1,31 @@
 from datetime import date
 
 from ..core import (
-    ChineseNewYearCalendar, WesternCalendar, ChristianMixin, IslamicMixin
+    WesternMixin, IslamicMixin, ChineseNewYearCalendar,
+    SAT, SUN
 )
 from ..registry_tools import iso_register
 
 
 @iso_register('SG')
-class Singapore(WesternCalendar,
-                ChineseNewYearCalendar, ChristianMixin, IslamicMixin):
+class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
     "Singapore"
+    # Christian holiday
     include_good_friday = True
+
+    # Islamic holidays
     include_eid_al_fitr = True
     eid_al_fitr_label = "Hari Raya Puasa"
     include_day_of_sacrifice = True
     day_of_sacrifice_label = "Hari Raya Haji"
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
         (8, 9, "National Day"),
     )
+
+    # Explicitly assign these WE days, Singapore calendar is too much of a mix
+    WEEKEND_DAYS = (SAT, SUN)
 
     # Diwali/Deepavali is sometimes celebrated on a different day to India
     # so this can't be put into a HinduMixin

@@ -118,6 +118,12 @@ class ArgentinaTest(GenericCalendarTest):
             "Día Nacional de la Memoria por la Verdad y la Justicia"
         )
 
+    def test_carnival_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label_carnival = holidays[date(2020, 2, 25)]
+        self.assertEqual(label_carnival, "Carnival")
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile
@@ -157,27 +163,99 @@ class ColombiaTest(GenericCalendarTest):
 
     def test_holidays_2015(self):
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 1, 12), holidays)
-        self.assertIn(date(2015, 3, 23), holidays)
-        self.assertIn(date(2015, 3, 29), holidays)
-        self.assertIn(date(2015, 4, 2), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 5), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 18), holidays)
-        self.assertIn(date(2015, 6, 8), holidays)
-        self.assertIn(date(2015, 6, 15), holidays)
-        self.assertIn(date(2015, 6, 29), holidays)
-        self.assertIn(date(2015, 7, 20), holidays)
-        self.assertIn(date(2015, 8, 7), holidays)
-        self.assertIn(date(2015, 8, 17), holidays)
-        self.assertIn(date(2015, 10, 12), holidays)
-        self.assertIn(date(2015, 11, 2), holidays)
-        self.assertIn(date(2015, 11, 16), holidays)
-        self.assertIn(date(2015, 12, 8), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
+        self.assertIn(date(2015, 1, 1), holidays)    # New year
+        self.assertIn(date(2015, 1, 12), holidays)   # Epiphany (shifted)
+        self.assertIn(date(2015, 3, 23), holidays)   # Saint Joseph
+        self.assertIn(date(2015, 3, 29), holidays)   # Palm Sunday
+        self.assertIn(date(2015, 4, 2), holidays)    # Holy Thursday
+        self.assertIn(date(2015, 4, 3), holidays)    # Good Friday
+        self.assertIn(date(2015, 4, 5), holidays)    # Easter (SUN)
+        self.assertIn(date(2015, 5, 1), holidays)    # Labour Day
+        self.assertIn(date(2015, 5, 18), holidays)   # Ascension (shifted)
+        self.assertIn(date(2015, 6, 8), holidays)    # Corpus Christi
+        self.assertIn(date(2015, 6, 15), holidays)   # Sacred Heart
+        self.assertIn(date(2015, 6, 29), holidays)   # St Peter & St Paul
+        self.assertIn(date(2015, 7, 20), holidays)   # Independance Day
+        self.assertIn(date(2015, 8, 7), holidays)    # Boyacá battle
+        self.assertIn(date(2015, 8, 17), holidays)   # Assumption (shifted)
+        self.assertIn(date(2015, 10, 12), holidays)  # Day of the Races
+        self.assertIn(date(2015, 11, 2), holidays)   # All Saints (shifted)
+        self.assertIn(date(2015, 11, 16), holidays)  # Cartagena independence
+        self.assertIn(date(2015, 12, 8), holidays)   # Immaculate Conception
+        self.assertIn(date(2015, 12, 25), holidays)  # XMas
         self.assertEqual(len(holidays), 20)
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)    # New year
+        self.assertIn(date(2020, 1, 6), holidays)    # Epiphany
+        self.assertIn(date(2020, 3, 23), holidays)   # Saint Joseph
+        self.assertIn(date(2020, 4, 5), holidays)    # Palm Sunday
+        self.assertIn(date(2020, 4, 9), holidays)    # Holy Thursday
+        self.assertIn(date(2020, 4, 10), holidays)   # Good Friday
+        self.assertIn(date(2020, 4, 12), holidays)   # Easter (SUN)
+        self.assertIn(date(2020, 5, 1), holidays)    # Labour Day
+        self.assertIn(date(2020, 5, 25), holidays)   # Ascension (shifted)
+        self.assertIn(date(2020, 6, 15), holidays)   # Corpus Christi
+        self.assertIn(date(2020, 6, 22), holidays)   # Sacred Heart
+        self.assertIn(date(2020, 6, 29), holidays)   # St Peter & St Paul
+        self.assertIn(date(2020, 7, 20), holidays)   # Independance Day
+        self.assertIn(date(2020, 8, 7), holidays)    # Boyacá battle
+        self.assertIn(date(2020, 8, 17), holidays)   # Assumption (shifted)
+        self.assertIn(date(2020, 10, 12), holidays)  # Day of the Races
+        self.assertIn(date(2020, 11, 2), holidays)   # All Saints (shifted)
+        self.assertIn(date(2020, 11, 16), holidays)  # Cartagena independence
+        self.assertIn(date(2020, 12, 8), holidays)   # Immaculate Conception
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertEqual(len(holidays), 20)
+
+    def test_epiphany_monday(self):
+        # In 2020, Epiphany falls on MON
+        epiphany_2020 = self.cal.get_epiphany(2020)
+        self.assertEqual(epiphany_2020, date(2020, 1, 6))
+        # In 2021, it does not, so it's shifted to the next MON
+        epiphany_2021 = self.cal.get_epiphany(2021)
+        self.assertEqual(epiphany_2021, date(2021, 1, 11))
+
+    def test_saint_peter_and_saint_paul_monday(self):
+        # In 2020, Saint Peter and Saint Paul falls on MON
+        st_peter_paul_2020 = self.cal.get_saint_peter_and_saint_paul(2020)
+        self.assertEqual(st_peter_paul_2020, date(2020, 6, 29))
+        # In 2021, it does not, so it's shifted to the next MON
+        st_peter_paul_2021 = self.cal.get_saint_peter_and_saint_paul(2021)
+        self.assertEqual(st_peter_paul_2021, date(2021, 7, 5))
+
+    def test_assumption_monday(self):
+        # In 2021, Assumption falls on SUN, so it's shifted to MON
+        assumption_2021 = self.cal.get_assumption(2021)
+        self.assertEqual(assumption_2021, date(2021, 8, 16))
+        # In 2022, Assumption falls on MON
+        assumption_2022 = self.cal.get_assumption(2022)
+        self.assertEqual(assumption_2022, date(2022, 8, 15))
+
+    def test_day_of_the_races_monday(self):
+        # In 2020, Day of the races and hispanity falls on MON
+        day_races_2020 = self.cal.get_day_of_the_races(2020)
+        self.assertEqual(day_races_2020, date(2020, 10, 12))
+        # In 2021, It does not, so it's shifted to the next MON
+        day_races_2021 = self.cal.get_day_of_the_races(2021)
+        self.assertEqual(day_races_2021, date(2021, 10, 18))
+
+    def test_all_saints_monday(self):
+        # In 2021, The All Saints falls on MON
+        all_saints_2021 = self.cal.get_all_saints(2021)
+        self.assertEqual(all_saints_2021, date(2021, 11, 1))
+        # In 2022, It does not, so it's shifted to the next MON
+        all_saints_2022 = self.cal.get_all_saints(2022)
+        self.assertEqual(all_saints_2022, date(2022, 11, 7))
+
+    def test_cartagena_independence_monday(self):
+        # In 2019, The Cartagena Independance falls on MON
+        cartagena_2019 = self.cal.get_cartagena_independence(2019)
+        self.assertEqual(cartagena_2019, date(2019, 11, 11))
+        # In 2020, It does not, so it's shifted to the next MON
+        cartagena_2020 = self.cal.get_cartagena_independence(2020)
+        self.assertEqual(cartagena_2020, date(2020, 11, 16))
 
 
 class MexicoTest(GenericCalendarTest):

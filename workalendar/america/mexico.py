@@ -1,12 +1,11 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import SUN, MON, SAT
+from ..core import WesternCalendar, SUN, MON, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('MX')
-class Mexico(WesternCalendar, ChristianMixin):
+class Mexico(WesternCalendar):
     "Mexico"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),

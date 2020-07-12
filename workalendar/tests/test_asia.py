@@ -1,5 +1,6 @@
 from unittest.mock import patch
 from datetime import date
+import time
 from . import GenericCalendarTest
 
 from ..asia import (
@@ -214,7 +215,7 @@ class HongKongTest(GenericCalendarTest):
     def test_holidays_2020(self):
         # https://www.gov.hk/en/about/abouthk/holiday/2020.htm
         holidays = self.cal.holidays_set(2020)
-        self.assertIn(date(2020, 1, 1), holidays)    # New Year (shifted)
+        self.assertIn(date(2020, 1, 1), holidays)    # New Year
         self.assertIn(date(2020, 1, 25), holidays)   # Chinese new year
         self.assertIn(date(2020, 1, 27), holidays)   # Chinese new year
         self.assertIn(date(2020, 1, 28), holidays)   # Chinese new year
@@ -234,6 +235,29 @@ class HongKongTest(GenericCalendarTest):
         # Special: Boxing day is not shifted, because it's not a SUN
         self.assertNotIn(date(2020, 12, 28), holidays)
 
+    def test_holidays_2021(self):
+        # https://www.gov.hk/en/about/abouthk/holiday/2021.htm
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)    # New Year
+        self.assertIn(date(2021, 2, 12), holidays)   # Chinese new year
+        self.assertIn(date(2021, 2, 13), holidays)   # Chinese new year
+        self.assertIn(date(2021, 2, 14), holidays)   # Chinese new year (SUN)
+        self.assertIn(date(2021, 2, 15), holidays)   # Chinese new year
+        self.assertIn(date(2021, 4, 2), holidays)    # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)    # Day after Good Friday
+        self.assertIn(date(2021, 4, 4), holidays)    # Ching Ming
+        self.assertIn(date(2021, 4, 5), holidays)    # Ching Ming shift+Easter
+        self.assertIn(date(2021, 4, 6), holidays)    # Day after Easter Monday
+        self.assertIn(date(2021, 5, 1), holidays)    # Labour Day
+        self.assertIn(date(2021, 5, 19), holidays)   # Buddha's Birthday
+        self.assertIn(date(2021, 6, 14), holidays)   # Tuen Ng Festival
+        self.assertIn(date(2021, 7, 1), holidays)    # HK SAR Establishment Day
+        self.assertIn(date(2021, 9, 22), holidays)   # Day after Mid-Autumn
+        self.assertIn(date(2021, 10, 1), holidays)   # National Day
+        self.assertIn(date(2021, 10, 14), holidays)  # Chung Yeung Festival
+        self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2021, 12, 27), holidays)  # First weekday after Xmas
+
     def test_are_saturdays_working_days(self):
         # Let's start with february 6th.
         start = date(2020, 2, 6)
@@ -242,6 +266,12 @@ class HongKongTest(GenericCalendarTest):
             self.cal.add_working_days(start, 5),
             date(2020, 2, 12)
         )
+
+    def test_no_duplicate_days(self):
+        holidays = self.cal.holidays(2021)
+        labels = list(day[1] for day in holidays)
+        labels_dedup = list(set(labels))
+        assert sorted(labels) == sorted(labels_dedup)
 
 
 class HongKongBankTest(HongKongTest):
@@ -410,6 +440,7 @@ class MalaysiaTest(GenericCalendarTest):
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar
+    test_include_january_1st = False
 
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
@@ -550,68 +581,76 @@ class TaiwanTest(GenericCalendarTest):
 class IsraelTest(GenericCalendarTest):
 
     cal_class = Israel
+    test_include_january_1st = False
 
     def test_holidays_2017(self):
-        holidays = self.cal.holidays_set(2017)
-
-        self.assertIn(date(2017, 4, 11), holidays)  # Passover (Pesach)
-        self.assertIn(date(2017, 4, 17), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2017, 5, 2), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was early in 2017
-        self.assertIn(date(2017, 5, 31), holidays)  # Shavuot
-        self.assertIn(
-            date(2017, 9, 21), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2017, 9, 22), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2017, 9, 30), holidays
-        )  # Yom Kippur (already a Saturday - Shabbat, weekend day)
-        self.assertIn(date(2017, 10, 5), holidays)  # Sukkot
-        self.assertIn(date(2017, 10, 12), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2017)
+        known_holidays = {
+            date(2017, 4, 10),  # Passover (Pesach)
+            date(2017, 4, 11),
+            date(2017, 4, 16),
+            date(2017, 4, 17),
+            date(2017, 5, 1),  # Independence Day (Yom Ha-Atzmaut)
+            date(2017, 5, 2),
+            date(2017, 9, 20),  # Jewish New Year (Rosh Ha-Shana)
+            date(2017, 9, 21),
+            date(2017, 9, 22),
+            date(2017, 9, 29),  # Yom Kippur
+            date(2017, 9, 30),
+            date(2017, 10, 4),  # Sukkot
+            date(2017, 10, 5),
+            date(2017, 10, 11),
+            date(2017, 10, 12),
+            date(2017, 5, 30),  # Shavuot
+            date(2017, 5, 31),
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2018(self):
-        holidays = self.cal.holidays_set(2018)
-
-        self.assertIn(date(2018, 3, 31), holidays)  # Passover (Pesach)
-        self.assertIn(date(2018, 4, 6), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2018, 4, 19), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2018
-        self.assertIn(date(2018, 5, 20), holidays)  # Shavuot
-        self.assertIn(
-            date(2018, 9, 10), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2018, 9, 11), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(date(2018, 9, 19), holidays)  # Yom Kippur
-        self.assertIn(date(2018, 9, 24), holidays)  # Sukkot
-        self.assertIn(date(2018, 9, 30), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2018)
+        known_holidays = {
+            date(2018, 3, 30),  # Passover (Pesach)
+            date(2018, 3, 31),
+            date(2018, 4, 5),
+            date(2018, 4, 6),
+            date(2018, 4, 18),  # Independence Day (Yom Ha-Atzmaut)
+            date(2018, 4, 19),
+            date(2018, 9, 9),  # Rosh Hashana
+            date(2018, 9, 10),
+            date(2018, 9, 11),
+            date(2018, 9, 18),  # Yom Kippur
+            date(2018, 9, 19),
+            date(2018, 9, 23),  # Sukkot
+            date(2018, 9, 24),
+            date(2018, 9, 30),
+            date(2018, 10, 1),
+            date(2018, 5, 19),  # Shavuot
+            date(2018, 5, 20),
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2019(self):
-        holidays = self.cal.holidays_set(2019)
-
-        self.assertIn(date(2019, 4, 20), holidays)  # Passover (Pesach)
-        self.assertIn(date(2019, 4, 26), holidays)  # Passover (Pesach)
-        self.assertIn(
-            date(2019, 5, 9), holidays
-        )  # Independence Day (Yom Ha-Atzmaut), was delayed in 2019
-        self.assertIn(date(2019, 6, 9), holidays)  # Shavuot
-        self.assertIn(
-            date(2019, 9, 29), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2019, 9, 30), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(
-            date(2019, 10, 1), holidays
-        )  # Jewish New Year (Rosh Ha-Shana)
-        self.assertIn(date(2019, 10, 9), holidays)  # Yom Kippur
-        self.assertIn(date(2019, 10, 14), holidays)  # Sukkot
-        self.assertIn(date(2019, 10, 20), holidays)  # Sukkot
+        calculated_holidays = self.cal.holidays_set(2019)
+        known_holidays = {
+            date(2019, 4, 19),  # Passover (Pesach)
+            date(2019, 4, 20),  # Passover (Pesach)
+            date(2019, 4, 25),  # Passover (Pesach)
+            date(2019, 4, 26),  # Passover (Pesach)
+            date(2019, 5, 8),  # Independence Day (Yom Ha-Atzmaut)
+            date(2019, 5, 9),  # Independence Day (Yom Ha-Atzmaut)
+            date(2019, 6, 8),  # Shavuot
+            date(2019, 6, 9),  # Shavuot
+            date(2019, 9, 29),  # Rosh Hashana
+            date(2019, 9, 30),  # Rosh Hashana
+            date(2019, 10, 1),  # Rosh Hashana
+            date(2019, 10, 8),  # Yom Kippur
+            date(2019, 10, 9),  # Yom Kippur
+            date(2019, 10, 13),  # Sukkot
+            date(2019, 10, 14),  # Sukkot
+            date(2019, 10, 20),  # Sukkot
+            date(2019, 10, 21),  # Sukkot
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
 
     def test_holidays_2020(self):
         calculated_holidays = self.cal.holidays_set(2020)
@@ -635,3 +674,16 @@ class IsraelTest(GenericCalendarTest):
             date(2020, 5, 29),  # Shavuot
         }
         self.assertEqual(calculated_holidays, known_holidays)
+
+    def test_is_holiday_performance(self):
+        random_date = date(2019, 10, 9)
+        japan_cal = Japan()
+        timer = time.time()
+        for i in range(30):
+            japan_cal.is_holiday(random_date)
+        japan_time = time.time() - timer
+        timer = time.time()
+        for i in range(30):
+            self.cal.is_holiday(random_date)
+        israel_time = time.time() - timer
+        self.assertGreater(japan_time * 3, israel_time)

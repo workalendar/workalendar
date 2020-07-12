@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('SI')
-class Slovenia(WesternCalendar, ChristianMixin):
+class Slovenia(WesternCalendar):
     'Slovenia'
 
     include_easter_sunday = True

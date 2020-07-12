@@ -1,10 +1,10 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('LV')
-class Latvia(WesternCalendar, ChristianMixin):
+class Latvia(WesternCalendar):
     'Latvia'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (

@@ -1,9 +1,9 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('EE')
-class Estonia(WesternCalendar, ChristianMixin):
+class Estonia(WesternCalendar):
     'Estonia'
 
     include_good_friday = True

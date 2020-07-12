@@ -1,7 +1,7 @@
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 
 
-class EuropeanCentralBank(WesternCalendar, ChristianMixin):
+class EuropeanCentralBank(WesternCalendar):
     "European Central Bank"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),

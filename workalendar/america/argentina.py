@@ -1,15 +1,14 @@
 from datetime import timedelta, date
-from ..core import (
-    WesternCalendar, ChristianMixin,
-    MON, TUE, WED, THU, FRI, SAT
-)
+from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('AR')
-class Argentina(WesternCalendar, ChristianMixin):
+class Argentina(WesternCalendar):
     'Argentina'
 
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnival"
     include_good_friday = True
     include_easter_saturday = True
     include_easter_sunday = True
@@ -129,10 +128,6 @@ class Argentina(WesternCalendar, ChristianMixin):
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
                 "Carnival Lunes"))
-
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
 
         days.append(
             self.get_malvinas_day(year))

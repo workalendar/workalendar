@@ -78,7 +78,7 @@ class FloridaLegal(Florida):
         (4, 2, 'Pascua Florida Day'),
         (6, 14, 'Flag Day'),
     )
-    include_mardi_gras = True
+    include_fat_tuesday = True
     include_lincoln_birthday = True
     include_federal_presidents_day = True
     include_good_friday = True

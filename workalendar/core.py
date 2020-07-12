@@ -12,7 +12,7 @@ from dateutil import easter
 from lunardate import LunarDate
 import icalendar
 
-from .exceptions import UnsupportedDateType
+from .exceptions import UnsupportedDateType, CalendarError
 from .__init__ import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
@@ -45,7 +45,433 @@ def cleaned_date(day, keep_datetime=False):
     return day
 
 
-class Calendar:
+class ChristianMixin:
+    EASTER_METHOD = None  # to be assigned in the inherited mixin
+    include_epiphany = False
+    include_clean_monday = False
+    include_annunciation = False
+    include_fat_tuesday = False
+    # Fat tuesday forced to `None` to make sure this value is always set
+    # We've seen that there was a wide variety of labels.
+    fat_tuesday_label = None
+    include_ash_wednesday = False
+    ash_wednesday_label = "Ash Wednesday"
+    include_palm_sunday = False
+    include_holy_thursday = False
+    include_good_friday = False
+    good_friday_label = "Good Friday"
+    include_easter_monday = False
+    include_easter_saturday = False
+    include_easter_sunday = False
+    include_all_saints = False
+    include_immaculate_conception = False
+    immaculate_conception_label = "Immaculate Conception"
+    include_christmas = True
+    include_christmas_eve = False
+    include_ascension = False
+    include_assumption = False
+    include_whit_sunday = False
+    whit_sunday_label = 'Whit Sunday'
+    include_whit_monday = False
+    whit_monday_label = 'Whit Monday'
+    include_corpus_christi = False
+    include_boxing_day = False
+    boxing_day_label = "Boxing Day"
+    include_all_souls = False
+
+    def get_fat_tuesday(self, year):
+        if not self.fat_tuesday_label:
+            raise CalendarError(
+                "Improperly configured: please provide a "
+                "`fat_tuesday_label` value")
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=47)
+
+    def get_ash_wednesday(self, year):
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=46)
+
+    def get_palm_sunday(self, year):
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=7)
+
+    def get_holy_thursday(self, year):
+        "Return the date of the last thursday before easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=3)
+
+    def get_good_friday(self, year):
+        "Return the date of the last friday before easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=2)
+
+    def get_clean_monday(self, year):
+        "Return the clean monday date"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=48)
+
+    def get_easter_saturday(self, year):
+        "Return the Easter Saturday date"
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=1)
+
+    def get_easter_sunday(self, year):
+        "Return the date of the easter (sunday) -- following the easter method"
+        return easter.easter(year, self.EASTER_METHOD)
+
+    def get_easter_monday(self, year):
+        "Return the date of the monday after easter"
+        sunday = self.get_easter_sunday(year)
+        return sunday + timedelta(days=1)
+
+    def get_ascension_thursday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=39)
+
+    def get_whit_monday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=50)
+
+    def get_whit_sunday(self, year):
+        easter = self.get_easter_sunday(year)
+        return easter + timedelta(days=49)
+
+    def get_corpus_christi(self, year):
+        return self.get_easter_sunday(year) + timedelta(days=60)
+
+    def shift_christmas_boxing_days(self, year):
+        """ When Christmas and/or Boxing Day falls on a weekend, it is rolled
+            forward to the next weekday.
+        """
+        christmas = date(year, 12, 25)
+        boxing_day = date(year, 12, 26)
+        boxing_day_label = "{} Shift".format(self.boxing_day_label)
+        results = []
+        if christmas.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(christmas)
+            results.append((shift, "Christmas Shift"))
+            results.append((shift + timedelta(days=1), boxing_day_label))
+        elif boxing_day.weekday() in self.get_weekend_days():
+            shift = self.find_following_working_day(boxing_day)
+            results.append((shift, boxing_day_label))
+        return results
+
+    def get_variable_days(self, year):  # noqa
+        "Return the christian holidays list according to the mixin"
+        days = super().get_variable_days(year)
+        if self.include_epiphany:
+            days.append((date(year, 1, 6), "Epiphany"))
+        if self.include_clean_monday:
+            days.append((self.get_clean_monday(year), "Clean Monday"))
+        if self.include_annunciation:
+            days.append((date(year, 3, 25), "Annunciation"))
+        if self.include_fat_tuesday:
+            days.append(
+                (self.get_fat_tuesday(year), self.fat_tuesday_label)
+            )
+        if self.include_ash_wednesday:
+            days.append(
+                (self.get_ash_wednesday(year), self.ash_wednesday_label)
+            )
+        if self.include_palm_sunday:
+            days.append((self.get_palm_sunday(year), "Palm Sunday"))
+        if self.include_holy_thursday:
+            days.append((self.get_holy_thursday(year), "Holy Thursday"))
+        if self.include_good_friday:
+            days.append((self.get_good_friday(year), self.good_friday_label))
+        if self.include_easter_saturday:
+            days.append((self.get_easter_saturday(year), "Easter Saturday"))
+        if self.include_easter_sunday:
+            days.append((self.get_easter_sunday(year), "Easter Sunday"))
+        if self.include_easter_monday:
+            days.append((self.get_easter_monday(year), "Easter Monday"))
+        if self.include_assumption:
+            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
+        if self.include_all_saints:
+            days.append((date(year, 11, 1), "All Saints Day"))
+        if self.include_all_souls:
+            days.append((date(year, 11, 2), "All Souls Day"))
+        if self.include_immaculate_conception:
+            days.append((date(year, 12, 8), self.immaculate_conception_label))
+        if self.include_christmas:
+            days.append((date(year, 12, 25), "Christmas Day"))
+        if self.include_christmas_eve:
+            days.append((date(year, 12, 24), "Christmas Eve"))
+        if self.include_boxing_day:
+            days.append((date(year, 12, 26), self.boxing_day_label))
+        if self.include_ascension:
+            days.append((
+                self.get_ascension_thursday(year), "Ascension Thursday"))
+        if self.include_whit_monday:
+            days.append((self.get_whit_monday(year), self.whit_monday_label))
+        if self.include_whit_sunday:
+            days.append((self.get_whit_sunday(year), self.whit_sunday_label))
+        if self.include_corpus_christi:
+            days.append((self.get_corpus_christi(year), "Corpus Christi"))
+        return days
+
+
+class WesternMixin(ChristianMixin):
+    """
+    General usage calendar for Western countries.
+
+    (chiefly Europe and Northern America)
+
+    """
+    EASTER_METHOD = easter.EASTER_WESTERN
+    WEEKEND_DAYS = (SAT, SUN)
+
+
+class OrthodoxMixin(ChristianMixin):
+    EASTER_METHOD = easter.EASTER_ORTHODOX
+    WEEKEND_DAYS = (SAT, SUN)
+
+
+class LunarMixin:
+    """
+    Calendar ready to compute luncar calendar days
+    """
+    @staticmethod
+    def lunar(year, month, day):
+        return LunarDate(year, month, day).toSolarDate()
+
+
+class ChineseNewYearMixin(LunarMixin):
+    """
+    Calendar including toolsets to compute the Chinese New Year holidays.
+    """
+    include_chinese_new_year_eve = False
+    chinese_new_year_eve_label = "Chinese New Year's eve"
+    # Chinese New Year will be included by default
+    include_chinese_new_year = True
+    chinese_new_year_label = 'Chinese New Year'
+    # Some countries include the 2nd lunar day as a holiday
+    include_chinese_second_day = False
+    chinese_second_day_label = "Chinese New Year (2nd day)"
+    include_chinese_third_day = False
+    chinese_third_day_label = "Chinese New Year (3rd day)"
+    shift_sunday_holidays = False
+    # Some calendars roll a starting Sunday CNY to Sat
+    shift_start_cny_sunday = False
+
+    def get_chinese_new_year(self, year):
+        """
+        Compute Chinese New Year days. To return a list of holidays.
+
+        By default, it'll at least return the Chinese New Year holidays chosen
+        using the following options:
+
+        * ``include_chinese_new_year_eve``
+        * ``include_chinese_new_year`` (on by default)
+        * ``include_chinese_second_day``
+
+        If the ``shift_sunday_holidays`` option is on, the rules are the
+        following.
+
+        * If the CNY1 falls on MON-FRI, there's not shift.
+        * If the CNY1 falls on SAT, the CNY2 is shifted to the Monday after.
+        * If the CNY1 falls on SUN, the CNY1 is shifted to the Monday after,
+          and CNY2 is shifted to the Tuesday after.
+        """
+        days = []
+
+        lunar_first_day = ChineseNewYearMixin.lunar(year, 1, 1)
+        # Chinese new year's eve
+        if self.include_chinese_new_year_eve:
+            days.append((
+                lunar_first_day - timedelta(days=1),
+                self.chinese_new_year_eve_label
+            ))
+        # Chinese new year (is included by default)
+        if self.include_chinese_new_year:
+            days.append((lunar_first_day, self.chinese_new_year_label))
+
+        if self.include_chinese_second_day:
+            lunar_second_day = lunar_first_day + timedelta(days=1)
+            days.append((
+                lunar_second_day,
+                self.chinese_second_day_label
+            ))
+        if self.include_chinese_third_day:
+            lunar_third_day = lunar_first_day + timedelta(days=2)
+            days.append((
+                lunar_third_day,
+                self.chinese_third_day_label
+            ))
+
+        if self.shift_sunday_holidays:
+            if lunar_first_day.weekday() == SUN:
+                if self.shift_start_cny_sunday:
+                    days.append(
+                        (lunar_first_day - timedelta(days=1),
+                         "Chinese Lunar New Year shift"),
+                    )
+                else:
+                    if self.include_chinese_third_day:
+                        shift_day = lunar_third_day
+                    else:
+                        shift_day = lunar_second_day
+                    days.append(
+                        (shift_day + timedelta(days=1),
+                         "Chinese Lunar New Year shift"),
+                    )
+            if (lunar_second_day.weekday() == SUN
+                    and self.include_chinese_third_day):
+                days.append(
+                    (lunar_third_day + timedelta(days=1),
+                     "Chinese Lunar New Year shift"),
+                )
+        return days
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        days.extend(self.get_chinese_new_year(year))
+        return days
+
+    def get_shifted_holidays(self, dates):
+        """
+        Taking a list of existing holidays, yield a list of 'shifted' days if
+        the holiday falls on SUN.
+        """
+        for holiday, label in dates:
+            if holiday.weekday() == SUN:
+                yield (
+                    holiday + timedelta(days=1),
+                    label + ' shift'
+                )
+
+    def get_calendar_holidays(self, year):
+        """
+        Take into account the eventual shift to the next MON if any holiday
+        falls on SUN.
+        """
+        # Unshifted days are here:
+        days = super().get_calendar_holidays(year)
+        if self.shift_sunday_holidays:
+            days_to_inspect = copy(days)
+            for day_shifted in self.get_shifted_holidays(days_to_inspect):
+                days.append(day_shifted)
+        return days
+
+
+class CalverterMixin:
+    conversion_method = None
+    ISLAMIC_HOLIDAYS = ()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.calverter = Calverter()
+        if self.conversion_method is None:
+            raise NotImplementedError
+
+    def converted(self, year):
+        conversion_method = getattr(
+            self.calverter, 'jd_to_%s' % self.conversion_method)
+        current = date(year, 1, 1)
+        days = []
+        while current.year == year:
+            julian_day = self.calverter.gregorian_to_jd(
+                current.year,
+                current.month,
+                current.day)
+            days.append(conversion_method(julian_day))
+            current = current + timedelta(days=1)
+        return days
+
+    def calverted_years(self, year):
+        converted = self.converted(year)
+        generator = (y for y, m, d in converted)
+        return sorted(list(set(generator)))
+
+    def get_islamic_holidays(self):
+        return self.ISLAMIC_HOLIDAYS
+
+    def get_delta_islamic_holidays(self, year):
+        """
+        Return the delta to add/substract according to the year or customs.
+
+        By default, to return None or timedelta(days=0)
+        """
+        return None
+
+    def get_variable_days(self, year):
+        warnings.warn('Please take note that, due to arbitrary decisions, '
+                      'this Islamic calendar computation may be wrong.')
+        days = super().get_variable_days(year)
+        years = self.calverted_years(year)
+        conversion_method = getattr(
+            self.calverter, '%s_to_jd' % self.conversion_method)
+        for month, day, label in self.get_islamic_holidays():
+            for y in years:
+                jd = conversion_method(y, month, day)
+                g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
+                holiday = date(g_year, g_month, g_day)
+
+                # Only add a delta if necessary
+                delta = self.get_delta_islamic_holidays(year)
+                if delta:
+                    holiday += delta
+
+                if holiday.year == year:
+                    days.append((holiday, label))
+        return days
+
+
+class IslamicMixin(CalverterMixin):
+
+    WEEKEND_DAYS = (FRI, SAT)
+
+    conversion_method = 'islamic'
+    include_prophet_birthday = False
+    include_day_after_prophet_birthday = False
+    include_start_ramadan = False
+    include_eid_al_fitr = False
+    length_eid_al_fitr = 1
+    eid_al_fitr_label = "Eid al-Fitr"
+    include_eid_al_adha = False
+    length_eid_al_adha = 1
+    include_day_of_sacrifice = False
+    day_of_sacrifice_label = "Eid al-Adha"
+    include_islamic_new_year = False
+    include_laylat_al_qadr = False
+    include_nuzul_al_quran = False
+
+    def get_islamic_holidays(self):
+        """Return a list of Islamic (month, day, label) for islamic holidays.
+        Please take note that these dates must be expressed using the Islamic
+        Calendar"""
+        days = list(super().get_islamic_holidays())
+
+        if self.include_islamic_new_year:
+            days.append((1, 1, "Islamic New Year"))
+        if self.include_prophet_birthday:
+            days.append((3, 12, "Prophet's Birthday"))
+        if self.include_day_after_prophet_birthday:
+            days.append((3, 13, "Day after Prophet's Birthday"))
+        if self.include_start_ramadan:
+            days.append((9, 1, "Start of ramadan"))
+        if self.include_nuzul_al_quran:
+            days.append((9, 17, "Nuzul Al-Qur'an"))
+        if self.include_eid_al_fitr:
+            for x in range(self.length_eid_al_fitr):
+                days.append((10, x + 1, self.eid_al_fitr_label))
+        if self.include_eid_al_adha:
+            for x in range(self.length_eid_al_adha):
+                days.append((12, x + 10, "Eid al-Adha"))
+        if self.include_day_of_sacrifice:
+            days.append((12, 10, self.day_of_sacrifice_label))
+        if self.include_laylat_al_qadr:
+            warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
+                          " by the religious authorities. It is not possible"
+                          " to compute it. You'll have to add it manually.")
+        return tuple(days)
+
+
+class JalaliMixin(CalverterMixin):
+    conversion_method = 'jalali'
+
+
+class CoreCalendar:
 
     FIXED_HOLIDAYS = ()
     WEEKEND_DAYS = ()
@@ -131,7 +557,6 @@ class Calendar:
 
         Please note that the ``extra_working_days`` list has priority over the
         ``extra_holidays`` list.
-
         """
         day = cleaned_date(day)
         if extra_working_days:
@@ -428,176 +853,27 @@ class Calendar:
         with open(target_path, 'wb') as export_file:
             export_file.write(ical)
 
-
-class ChristianMixin(Calendar):
-    EASTER_METHOD = None  # to be assigned in the inherited mixin
-    include_epiphany = False
-    include_clean_monday = False
-    include_annunciation = False
-    include_ash_wednesday = False
-    ash_wednesday_label = "Ash Wednesday"
-    include_palm_sunday = False
-    include_holy_thursday = False
-    include_good_friday = False
-    good_friday_label = "Good Friday"
-    include_easter_monday = False
-    include_easter_saturday = False
-    include_easter_sunday = False
-    include_all_saints = False
-    include_immaculate_conception = False
-    immaculate_conception_label = "Immaculate Conception"
-    include_christmas = True
-    include_christmas_eve = False
-    include_ascension = False
-    include_assumption = False
-    include_whit_sunday = False
-    whit_sunday_label = 'Whit Sunday'
-    include_whit_monday = False
-    whit_monday_label = 'Whit Monday'
-    include_corpus_christi = False
-    include_boxing_day = False
-    boxing_day_label = "Boxing Day"
-    include_all_souls = False
-
-    def get_ash_wednesday(self, year):
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=46)
-
-    def get_palm_sunday(self, year):
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=7)
-
-    def get_holy_thursday(self, year):
-        "Return the date of the last thursday before easter"
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=3)
-
-    def get_good_friday(self, year):
-        "Return the date of the last friday before easter"
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=2)
-
-    def get_clean_monday(self, year):
-        "Return the clean monday date"
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=48)
-
-    def get_easter_saturday(self, year):
-        "Return the Easter Saturday date"
-        sunday = self.get_easter_sunday(year)
-        return sunday - timedelta(days=1)
-
-    def get_easter_sunday(self, year):
-        "Return the date of the easter (sunday) -- following the easter method"
-        return easter.easter(year, self.EASTER_METHOD)
-
-    def get_easter_monday(self, year):
-        "Return the date of the monday after easter"
-        sunday = self.get_easter_sunday(year)
-        return sunday + timedelta(days=1)
-
-    def get_ascension_thursday(self, year):
-        easter = self.get_easter_sunday(year)
-        return easter + timedelta(days=39)
-
-    def get_whit_monday(self, year):
-        easter = self.get_easter_sunday(year)
-        return easter + timedelta(days=50)
-
-    def get_whit_sunday(self, year):
-        easter = self.get_easter_sunday(year)
-        return easter + timedelta(days=49)
-
-    def get_corpus_christi(self, year):
-        return self.get_easter_sunday(year) + timedelta(days=60)
-
-    def shift_christmas_boxing_days(self, year):
-        """ When Christmas and/or Boxing Day falls on a weekend, it is rolled
-            forward to the next weekday.
-        """
-        christmas = date(year, 12, 25)
-        boxing_day = date(year, 12, 26)
-        boxing_day_label = "{} Shift".format(self.boxing_day_label)
-        results = []
-        if christmas.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(christmas)
-            results.append((shift, "Christmas Shift"))
-            results.append((shift + timedelta(days=1), boxing_day_label))
-        elif boxing_day.weekday() in self.get_weekend_days():
-            shift = self.find_following_working_day(boxing_day)
-            results.append((shift, boxing_day_label))
-        return results
-
-    def get_variable_days(self, year):  # noqa
-        "Return the christian holidays list according to the mixin"
-        days = super().get_variable_days(year)
-        if self.include_epiphany:
-            days.append((date(year, 1, 6), "Epiphany"))
-        if self.include_clean_monday:
-            days.append((self.get_clean_monday(year), "Clean Monday"))
-        if self.include_annunciation:
-            days.append((date(year, 3, 25), "Annunciation"))
-        if self.include_ash_wednesday:
-            days.append(
-                (self.get_ash_wednesday(year), self.ash_wednesday_label)
-            )
-        if self.include_palm_sunday:
-            days.append((self.get_palm_sunday(year), "Palm Sunday"))
-        if self.include_holy_thursday:
-            days.append((self.get_holy_thursday(year), "Holy Thursday"))
-        if self.include_good_friday:
-            days.append((self.get_good_friday(year), self.good_friday_label))
-        if self.include_easter_saturday:
-            days.append((self.get_easter_saturday(year), "Easter Saturday"))
-        if self.include_easter_sunday:
-            days.append((self.get_easter_sunday(year), "Easter Sunday"))
-        if self.include_easter_monday:
-            days.append((self.get_easter_monday(year), "Easter Monday"))
-        if self.include_assumption:
-            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
-        if self.include_all_saints:
-            days.append((date(year, 11, 1), "All Saints Day"))
-        if self.include_all_souls:
-            days.append((date(year, 11, 2), "All Souls Day"))
-        if self.include_immaculate_conception:
-            days.append((date(year, 12, 8), self.immaculate_conception_label))
-        if self.include_christmas:
-            days.append((date(year, 12, 25), "Christmas Day"))
-        if self.include_christmas_eve:
-            days.append((date(year, 12, 24), "Christmas Eve"))
-        if self.include_boxing_day:
-            days.append((date(year, 12, 26), self.boxing_day_label))
-        if self.include_ascension:
-            days.append((
-                self.get_ascension_thursday(year), "Ascension Thursday"))
-        if self.include_whit_monday:
-            days.append((self.get_whit_monday(year), self.whit_monday_label))
-        if self.include_whit_sunday:
-            days.append((self.get_whit_sunday(year), self.whit_sunday_label))
-        if self.include_corpus_christi:
-            days.append((self.get_corpus_christi(year), "Corpus Christi"))
-        return days
-
-
-class WesternCalendar(Calendar):
+class Calendar(CoreCalendar):
     """
-    General usage calendar for Western countries.
+    The cornerstone of Earth calendars.
 
-    (chiefly Europe and Northern America)
-
+    Take care of the New Years Day, which is almost a worldwide holiday.
     """
-    EASTER_METHOD = easter.EASTER_WESTERN
-    WEEKEND_DAYS = (SAT, SUN)
+    include_new_years_day = True
     shift_new_years_day = False
 
-    FIXED_HOLIDAYS = (
-        (1, 1, 'New year'),
-    )
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_new_years_day:
+            days.insert(
+                0, (date(year, 1, 1), "New year")
+            )
+        return days
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         new_year = date(year, 1, 1)
-        if self.shift_new_years_day:
+        if self.include_new_years_day and self.shift_new_years_day:
             if new_year.weekday() in self.get_weekend_days():
                 days.append((
                     self.find_following_working_day(new_year),
@@ -605,246 +881,36 @@ class WesternCalendar(Calendar):
         return days
 
 
-class OrthodoxMixin(ChristianMixin):
-    EASTER_METHOD = easter.EASTER_ORTHODOX
-
-
-class LunarCalendar(Calendar):
+class WesternCalendar(WesternMixin, Calendar):
     """
-    Calendar ready to compute luncar calendar days
+    A Christian calendar using Western definition for Easter.
     """
-    @staticmethod
-    def lunar(year, month, day):
-        return LunarDate(year, month, day).toSolarDate()
 
 
-class ChineseNewYearCalendar(LunarCalendar):
+class OrthodoxCalendar(OrthodoxMixin, Calendar):
     """
-    Calendar including toolsets to compute the Chinese New Year holidays.
+    A Christian calendar using Orthodox definition for Easter.
     """
-    include_chinese_new_year_eve = False
-    chinese_new_year_eve_label = "Chinese New Year's eve"
-    # Chinese New Year will be included by default
-    include_chinese_new_year = True
-    chinese_new_year_label = 'Chinese New Year'
-    # Some countries include the 2nd lunar day as a holiday
-    include_chinese_second_day = False
-    chinese_second_day_label = "Chinese New Year (2nd day)"
-    include_chinese_third_day = False
-    chinese_third_day_label = "Chinese New Year (3rd day)"
-    shift_sunday_holidays = False
-    # Some calendars roll a starting Sunday CNY to Sat
-    shift_start_cny_sunday = False
-
-    def get_chinese_new_year(self, year):
-        """
-        Compute Chinese New Year days. To return a list of holidays.
-
-        By default, it'll at least return the Chinese New Year holidays chosen
-        using the following options:
-
-        * ``include_chinese_new_year_eve``
-        * ``include_chinese_new_year`` (on by default)
-        * ``include_chinese_second_day``
-
-        If the ``shift_sunday_holidays`` option is on, the rules are the
-        following.
-
-        * If the CNY1 falls on MON-FRI, there's not shift.
-        * If the CNY1 falls on SAT, the CNY2 is shifted to the Monday after.
-        * If the CNY1 falls on SUN, the CNY1 is shifted to the Monday after,
-          and CNY2 is shifted to the Tuesday after.
-        """
-        days = []
-
-        lunar_first_day = ChineseNewYearCalendar.lunar(year, 1, 1)
-        # Chinese new year's eve
-        if self.include_chinese_new_year_eve:
-            days.append((
-                lunar_first_day - timedelta(days=1),
-                self.chinese_new_year_eve_label
-            ))
-        # Chinese new year (is included by default)
-        if self.include_chinese_new_year:
-            days.append((lunar_first_day, self.chinese_new_year_label))
-
-        if self.include_chinese_second_day:
-            lunar_second_day = lunar_first_day + timedelta(days=1)
-            days.append((
-                lunar_second_day,
-                self.chinese_second_day_label
-            ))
-        if self.include_chinese_third_day:
-            lunar_third_day = lunar_first_day + timedelta(days=2)
-            days.append((
-                lunar_third_day,
-                self.chinese_third_day_label
-            ))
-
-        if self.shift_sunday_holidays:
-            if lunar_first_day.weekday() == SUN:
-                if self.shift_start_cny_sunday:
-                    days.append(
-                        (lunar_first_day - timedelta(days=1),
-                         "Chinese Lunar New Year shift"),
-                    )
-                else:
-                    if self.include_chinese_third_day:
-                        shift_day = lunar_third_day
-                    else:
-                        shift_day = lunar_second_day
-                    days.append(
-                        (shift_day + timedelta(days=1),
-                         "Chinese Lunar New Year shift"),
-                    )
-            if (lunar_second_day.weekday() == SUN
-                    and self.include_chinese_third_day):
-                days.append(
-                    (lunar_third_day + timedelta(days=1),
-                     "Chinese Lunar New Year shift"),
-                )
-        return days
-
-    def get_variable_days(self, year):
-        days = super().get_variable_days(year)
-        days.extend(self.get_chinese_new_year(year))
-        return days
-
-    def get_shifted_holidays(self, dates):
-        """
-        Taking a list of existing holidays, yield a list of 'shifted' days if
-        the holiday falls on SUN.
-        """
-        for holiday, label in dates:
-            if holiday.weekday() == SUN:
-                yield (
-                    holiday + timedelta(days=1),
-                    label + ' shift'
-                )
-
-    def get_calendar_holidays(self, year):
-        """
-        Take into account the eventual shift to the next MON if any holiday
-        falls on SUN.
-        """
-        # Unshifted days are here:
-        days = super().get_calendar_holidays(year)
-        if self.shift_sunday_holidays:
-            days_to_inspect = copy(days)
-            for day_shifted in self.get_shifted_holidays(days_to_inspect):
-                days.append(day_shifted)
-        return days
 
 
-class CalverterMixin(Calendar):
-    conversion_method = None
-    ISLAMIC_HOLIDAYS = ()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.calverter = Calverter()
-        if self.conversion_method is None:
-            raise NotImplementedError
-
-    def converted(self, year):
-        conversion_method = getattr(
-            self.calverter, 'jd_to_%s' % self.conversion_method)
-        current = date(year, 1, 1)
-        days = []
-        while current.year == year:
-            julian_day = self.calverter.gregorian_to_jd(
-                current.year,
-                current.month,
-                current.day)
-            days.append(conversion_method(julian_day))
-            current = current + timedelta(days=1)
-        return days
-
-    def calverted_years(self, year):
-        converted = self.converted(year)
-        generator = (y for y, m, d in converted)
-        return sorted(list(set(generator)))
-
-    def get_islamic_holidays(self):
-        return self.ISLAMIC_HOLIDAYS
-
-    def get_delta_islamic_holidays(self, year):
-        """
-        Return the delta to add/substract according to the year or customs.
-
-        By default, to return None or timedelta(days=0)
-        """
-        return None
-
-    def get_variable_days(self, year):
-        warnings.warn('Please take note that, due to arbitrary decisions, '
-                      'this Islamic calendar computation may be wrong.')
-        days = super().get_variable_days(year)
-        years = self.calverted_years(year)
-        conversion_method = getattr(
-            self.calverter, '%s_to_jd' % self.conversion_method)
-        for month, day, label in self.get_islamic_holidays():
-            for y in years:
-                jd = conversion_method(y, month, day)
-                g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
-                holiday = date(g_year, g_month, g_day)
-
-                # Only add a delta if necessary
-                delta = self.get_delta_islamic_holidays(year)
-                if delta:
-                    holiday += delta
-
-                if holiday.year == year:
-                    days.append((holiday, label))
-        return days
+class ChineseNewYearCalendar(ChineseNewYearMixin, Calendar):
+    """
+    Chinese Calendar, using Chinese New Year computation.
+    """
+    # There are regional exceptions to those week-end days, to define locally.
+    WEEKEND_DAYS = (SAT, SUN)
 
 
-class IslamicMixin(CalverterMixin):
-    conversion_method = 'islamic'
-    include_prophet_birthday = False
-    include_day_after_prophet_birthday = False
-    include_start_ramadan = False
-    include_eid_al_fitr = False
-    length_eid_al_fitr = 1
-    eid_al_fitr_label = "Eid al-Fitr"
-    include_eid_al_adha = False
-    length_eid_al_adha = 1
-    include_day_of_sacrifice = False
-    day_of_sacrifice_label = "Eid al-Adha"
-    include_islamic_new_year = False
-    include_laylat_al_qadr = False
-    include_nuzul_al_quran = False
-
-    def get_islamic_holidays(self):
-        """Return a list of Islamic (month, day, label) for islamic holidays.
-        Please take note that these dates must be expressed using the Islamic
-        Calendar"""
-        days = list(super().get_islamic_holidays())
-
-        if self.include_islamic_new_year:
-            days.append((1, 1, "Islamic New Year"))
-        if self.include_prophet_birthday:
-            days.append((3, 12, "Prophet's Birthday"))
-        if self.include_day_after_prophet_birthday:
-            days.append((3, 13, "Day after Prophet's Birthday"))
-        if self.include_start_ramadan:
-            days.append((9, 1, "Start of ramadan"))
-        if self.include_nuzul_al_quran:
-            days.append((9, 17, "Nuzul Al-Qur'an"))
-        if self.include_eid_al_fitr:
-            for x in range(self.length_eid_al_fitr):
-                days.append((10, x + 1, self.eid_al_fitr_label))
-        if self.include_eid_al_adha:
-            for x in range(self.length_eid_al_adha):
-                days.append((12, x + 10, "Eid al-Adha"))
-        if self.include_day_of_sacrifice:
-            days.append((12, 10, self.day_of_sacrifice_label))
-        if self.include_laylat_al_qadr:
-            warnings.warn("The Islamic holiday named Laylat al-Qadr is decided"
-                          " by the religious authorities. It is not possible"
-                          " to compute it. You'll have to add it manually.")
-        return tuple(days)
+class IslamicCalendar(IslamicMixin, Calendar):
+    """
+    Islamic calendar
+    """
 
 
-class JalaliMixin(CalverterMixin):
-    conversion_method = 'jalali'
+class IslamoWesternCalendar(IslamicMixin, WesternMixin, Calendar):
+    """
+    Mix of Islamic and Western calendars.
+
+    When countries have both Islamic and Western-Christian holidays.
+    """
+    FIXED_HOLIDAYS = Calendar.FIXED_HOLIDAYS
