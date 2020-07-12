@@ -3,14 +3,17 @@ Working day tools
 """
 from copy import copy
 import warnings
+import os
 from calendar import monthrange
 from datetime import date, timedelta, datetime
 
 from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
+import icalendar
 
 from .exceptions import UnsupportedDateType
+from .__init__ import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -366,6 +369,64 @@ class Calendar:
             if self.is_working_day(start):
                 count += 1
         return count
+
+    def export_to_ical(self, target_path, period=[2000, 2030]):
+        """
+        Export the calendar to iCal (RFC 5545) format.
+
+        Parameters
+        ----------
+        target_path : str
+            the name or path of the exported file
+
+        period : [int, int]
+            start and end year (inclusive) of calendar
+
+        Note
+        ----
+        If `target_path` does not have one of the extensions `.ical`, `.ics`,
+        `.ifb`, or `.icalendar`, the extension `.ics` is appended to the path.
+
+        Returns
+        -------
+        None.
+
+        Examples
+        --------
+        >>> cal = Austria()
+        >>> cal.export_to_ical('austrian_calendar')  # -> austrian_calendar.ics
+        """
+        # fetch holidays
+        holidays = []
+        first_year, last_year = period
+        for year in range(first_year, last_year + 1):
+            holidays += self.holidays(year)
+
+        # initialize icalendar
+        mycal = icalendar.Calendar()
+        mycal.add('prodid', '-//workalendar//ical %s//EN' % __version__)
+        mycal.add('version', '2.0')  # current RFC5545 version
+        now = datetime.now()
+
+        # add an event for each holiday
+        for date_, name in holidays:
+            event = icalendar.Event()
+            uid = '%s%s@peopledoc.github.io/workalendar' % (date_, name)
+            event.add('uid', uid)
+            event.add('dtstamp', now)
+            event.add('dtstart', date_)
+            event.add('summary', name)
+            mycal.add_component(event)
+
+        # convert to ical
+        ical = mycal.to_ical()
+
+        # save iCal file
+        ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
+        if os.path.splitext(target_path) not in ical_extensions:
+            target_path += '.ics'
+        with open(target_path, 'wb') as export_file:
+            export_file.write(ical)
 
 
 class ChristianMixin(Calendar):
