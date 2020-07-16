@@ -10,10 +10,8 @@ from datetime import date, timedelta, datetime
 from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
-import icalendar
 
 from .exceptions import UnsupportedDateType, CalendarError
-from .__init__ import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
