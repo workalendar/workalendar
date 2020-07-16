@@ -15,6 +15,7 @@ class CoreCalendarTest(TestCase):
         self.year = date.today().year
         self.cal = self.cal_class()
 
+
 class GenericCalendarTest(CoreCalendarTest):
     test_include_january_1st = True
 
@@ -77,7 +78,7 @@ class GenericCalendarTest(CoreCalendarTest):
                 uid_lines = []
             remaining_lines = ics_file.readlines()
             uid_lines += [line for line in remaining_lines
-                         if line.startswith('UID:')]
+                          if line.startswith('UID:')]
             # check number of entries
             assert len(uid_lines) == len(holidays)
             # check that UIDs are unique within the calendar

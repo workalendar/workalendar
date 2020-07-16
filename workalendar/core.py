@@ -851,6 +851,7 @@ class CoreCalendar:
         with open(target_path, 'w+') as export_file:
             export_file.write(ics)
 
+
 class Calendar(CoreCalendar):
     """
     The cornerstone of Earth calendars.
