@@ -191,16 +191,21 @@ class UnitedStates(WesternCalendar):
         day = UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3)
         return (day, self.presidents_day_label)
 
-    def get_cesar_chavez_days(self, year):
+    def get_cesar_chavez_day(self, year):
         """
-        Cesar Chavez day is on 31st of March, float to 1st April if Monday.
+        Cesar Chavez Day is on the 31st of March.
 
-        Will return a list of days.
+        Schools and State offices closed in:
+        * Arizona,
+        * California,
+        * Colorado,
+        * Michigan,
+        * New Mexico,
+        * Texas,
+        * Utah,
+        * Wisconsin
         """
-        days = [(date(year, 3, 31), "Cesar Chavez Day")]
-        if date(year, 3, 31).weekday() == SUN:
-            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
-        return days
+        return (date(year, 3, 31), "Cesar Chavez Day")
 
     def get_patriots_day(self, year):
         """3rd Monday of April"""
@@ -296,7 +301,7 @@ class UnitedStates(WesternCalendar):
             days.append(self.get_lincoln_birthday(year))
 
         if self.include_cesar_chavez_day:
-            days.extend(self.get_cesar_chavez_days(year))
+            days.append(self.get_cesar_chavez_day(year))
 
         if self.include_patriots_day:
             days.append(self.get_patriots_day(year))

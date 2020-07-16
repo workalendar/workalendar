@@ -828,30 +828,30 @@ class CoreCalendar:
             holidays += self.holidays(year)
 
         # initialize icalendar
-        mycal = icalendar.Calendar()
-        mycal.add('prodid', '-//workalendar//ical %s//EN' % __version__)
-        mycal.add('version', '2.0')  # current RFC5545 version
-        now = datetime.now()
+        ics = ('BEGIN:VCALENDAR\n'
+               'VERSION:2.0\n'  # current RFC5545 version
+               'PRODID:-//workalendar//ical 9.0.0//EN\n')
+        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s\n' % common_timestamp
 
         # add an event for each holiday
         for date_, name in holidays:
-            event = icalendar.Event()
-            uid = '%s%s@peopledoc.github.io/workalendar' % (date_, name)
-            event.add('uid', uid)
-            event.add('dtstamp', now)
-            event.add('dtstart', date_)
-            event.add('summary', name)
-            mycal.add_component(event)
+            ics += 'BEGIN:VEVENT\n'
+            ics += 'SUMMARY:%s\n' % name
+            ics += 'DTSTART;VALUE=DATE:%s\n' % date_.strftime('%Y%m%d')
+            ics += dtstamp
+            ics += 'UID:%s%s@peopledoc.github.io/workalendar\n' % (date_, name)
+            ics += 'END:VEVENT\n'
 
-        # convert to ical
-        ical = mycal.to_ical()
+        # add footer
+        ics += 'END:VCALENDAR\n'
 
         # save iCal file
         ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
-        if os.path.splitext(target_path) not in ical_extensions:
+        if os.path.splitext(target_path)[1] not in ical_extensions:
             target_path += '.ics'
-        with open(target_path, 'wb') as export_file:
-            export_file.write(ical)
+        with open(target_path, 'w+') as export_file:
+            export_file.write(ics)
 
 class Calendar(CoreCalendar):
     """
