@@ -16,9 +16,11 @@ class Turkey(IslamicCalendar):
     include_eid_al_adha = True
     length_eid_al_adha = 4
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Labor and Solidarity Day"
     FIXED_HOLIDAYS = IslamicCalendar.FIXED_HOLIDAYS + (
         (4, 23, "National Sovereignty and Children's Day"),
-        (5, 1, "Labor and Solidarity Day"),
         (5, 19, "Commemoration of Atatürk, Youth and Sports Day"),
         (7, 15, "Democracy and National Unity Day"),
         (8, 30, "Victory Day"),

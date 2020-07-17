@@ -11,6 +11,9 @@ from ..registry_tools import iso_register
 @iso_register('HK')
 class HongKong(WesternMixin, ChineseNewYearCalendar):
     "Hong Kong"
+    # Civil holidays
+    include_labour_day = True
+    # Christian holidays
     include_good_friday = True
     include_easter_saturday = True
     include_easter_monday = True
@@ -19,7 +22,6 @@ class HongKong(WesternMixin, ChineseNewYearCalendar):
     WEEKEND_DAYS = (SUN,)
 
     FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (7, 1, "SAR Establishment Day"),
         (10, 1, "National Day"),
     )

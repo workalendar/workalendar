@@ -7,13 +7,16 @@ from ..registry_tools import iso_register
 class Portugal(WesternCalendar):
     'Portugal'
 
+    # Christian holidays
     include_good_friday = True
     include_easter_sunday = True
     include_christmas = True
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Dia do Trabalhador"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Dia da Liberdade"),
-        (5, 1, "Dia do Trabalhador"),
         (6, 10, "Dia de Portugal"),
         (8, 15, "Assunção de Nossa Senhora"),
         (12, 8, "Imaculada Conceição"),

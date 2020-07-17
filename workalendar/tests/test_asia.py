@@ -437,6 +437,12 @@ class MalaysiaTest(GenericCalendarTest):
         # Back to normal, to avoid breaking further tests
         self.cal.MSIA_THAIPUSAM[2020] = save_2020
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Workers' Day")
+
 
 class QatarTest(GenericCalendarTest):
     cal_class = Qatar

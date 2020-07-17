@@ -9,11 +9,15 @@ class Croatia(WesternCalendar):
     'Croatia'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "International Workers' Day"),
         (6, 22, "Anti-Fascist Struggle Day"),
         (8, 5, "Victory & Homeland Thanksgiving & Day of Croatian defenders"),
     )
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "International Workers' Day"
+
+    # Christian holidays
     include_epiphany = True
     include_easter_sunday = True
     include_easter_monday = True

@@ -6,14 +6,16 @@ from ..registry_tools import iso_register
 class Lithuania(WesternCalendar):
     'Lithuania'
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 16, "Restoration of the State Day"),
         (3, 11, "Restoration of Independence Day"),
-        (5, 1, "Labour Day"),
         (6, 24, "St. John's Day"),
         (7, 6, "Anniversary of the Coronation of King Mindaugas"),
     )
 
+    # Christian holidays
     include_easter_sunday = True
     include_easter_monday = True
     include_assumption = True

@@ -7,17 +7,19 @@ from ..registry_tools import iso_register
 class Slovenia(WesternCalendar):
     'Slovenia'
 
+    # Christian holidays
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True
     include_assumption = True
     include_christmas = True
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (2, 8, "Preseren Day, the Slovenian Cultural Holiday"),
         (4, 27, "Day of Uprising Against Occupation"),
-        (5, 1, "Labour Day"),
-        (5, 2, "Labour Day"),
+        (5, 2, "Labour Day"),  # In Slovenia, Labour Day is 2-day long.
         (6, 25, "Statehood Day"),
         (10, 31, "Reformation Day"),
         (11, 1, "Day of Remembrance of the Dead"),

@@ -8,7 +8,6 @@ from ..registry_tools import iso_register
 class Chile(WesternCalendar):
     "Chile"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (5, 21, "Navy Day"),
         (6, 29, "Saint Peter and Saint Paul"),
         (7, 16, "Our Lady of Mount Carmel"),
@@ -17,6 +16,9 @@ class Chile(WesternCalendar):
         (10, 12, "Columbus Day"),
         (12, 31, "Banking Holiday"),
     )
+    # Civil holidays
+    include_labour_day = True
+    # Christian holidays
     include_good_friday = True
     include_easter_saturday = True
     include_assumption = True

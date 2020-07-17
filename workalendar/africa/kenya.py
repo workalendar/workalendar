@@ -8,6 +8,8 @@ from ..registry_tools import iso_register
 @iso_register('KE')
 class Kenya(IslamoWesternCalendar):
     "Kenya"
+    # Civil holidays
+    include_labour_day = True
     # Christian holidays
     include_good_friday = True
     include_easter_monday = True
@@ -20,7 +22,6 @@ class Kenya(IslamoWesternCalendar):
     WEEKEND_DAYS = (SAT, SUN)
 
     FIXED_HOLIDAYS = IslamoWesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (6, 1, "Madaraka Day"),
         (10, 20, "Mashujaa Day"),
         (12, 12, "Jamhuri Day"),

@@ -8,10 +8,12 @@ from ..registry_tools import iso_register
 class Colombia(WesternCalendar):
     "Colombia"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (7, 20, "Independence Day"),
         (8, 7, "Boyacá Battle"),
     )
+    # Civil holidays
+    include_labour_day = True
+    # Christian holidays
     include_palm_sunday = True
     include_holy_thursday = True
     include_good_friday = True

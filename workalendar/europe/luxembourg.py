@@ -7,6 +7,7 @@ from ..registry_tools import iso_register
 class Luxembourg(WesternCalendar):
     'Luxembourg'
 
+    # Christian holidays
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True
@@ -14,8 +15,9 @@ class Luxembourg(WesternCalendar):
     include_assumption = True
     include_boxing_day = True
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (6, 23, "Luxembourg National Holiday"),
     )
 

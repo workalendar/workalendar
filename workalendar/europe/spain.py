@@ -6,14 +6,17 @@ from ..registry_tools import iso_register
 class Spain(WesternCalendar):
     'Spain'
 
+    # Christian holidays
     include_epiphany = True
     include_immaculate_conception = True
     include_good_friday = True
     include_assumption = True
     include_all_saints = True
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Día del trabajador"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Día del trabajador"),
         (10, 12, "Fiesta nacional de España"),
         (12, 6, "Día de la Constitución Española")
     )

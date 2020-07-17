@@ -8,7 +8,9 @@ from ..registry_tools import iso_register
 @iso_register("BB")
 class Barbados(WesternCalendar):
     "Barbados"
-
+    # Civil holidays
+    include_labour_day = True
+    # Christian holidays
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True
@@ -19,7 +21,6 @@ class Barbados(WesternCalendar):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 21, "Errol Barrow Day"),
         (4, 28, "National Heroes Day"),
-        (5, 1, "Labour Day"),
         (8, 1, "Emancipation Day"),
         (11, 30, "Independance Day"),
     )

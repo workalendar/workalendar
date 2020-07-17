@@ -6,11 +6,14 @@ from ..registry_tools import iso_register
 class Greece(OrthodoxCalendar):
     'Greece'
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Independence Day"),
-        (5, 1, "Labour Day"),
         (10, 28, "Ohi Day"),
     )
+
+    # Christian holidays
     include_epiphany = True
     include_clean_monday = True
     include_annunciation = True

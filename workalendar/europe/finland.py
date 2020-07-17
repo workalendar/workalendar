@@ -7,6 +7,7 @@ from ..registry_tools import iso_register
 class Finland(WesternCalendar):
     'Finland'
 
+    # Christian holidays
     include_epiphany = True
     include_good_friday = True
     include_easter_sunday = True
@@ -18,8 +19,9 @@ class Finland(WesternCalendar):
     include_boxing_day = True
     boxing_day_label = "St. Stephen's Day"
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (12, 6, "Independence Day"),
     )
 

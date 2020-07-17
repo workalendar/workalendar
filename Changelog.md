@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-- Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions. (#509).
+- Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions (#509).
+- Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
 
 ## v10.3.0 (2020-07-10)
 

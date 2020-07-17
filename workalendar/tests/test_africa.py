@@ -555,6 +555,12 @@ class AngolaTest(GenericCalendarTest):
         label_carnaval = holidays_dict[date(2018, 2, 13)]
         self.assertEqual(label_carnaval, "Dia de Carnaval")
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays_dict = dict(holidays)
+        label = holidays_dict[date(2020, 5, 1)]
+        self.assertEqual(label, "Dia Internacional do Trabalhador")
+
 
 class KenyaTest(GenericCalendarTest):
     cal_class = Kenya
