@@ -581,7 +581,7 @@ class KenyaTest(GenericCalendarTest):
         self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day (old name)
         self.assertIn(date(2019, 12, 31), holidays)  # New Years Eve
-        self.assertEquals(len(holidays), 14)
+        self.assertEqual(len(holidays), 14)
 
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
@@ -599,4 +599,4 @@ class KenyaTest(GenericCalendarTest):
         self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2020, 12, 26), holidays)  # Utamaduni Day
         self.assertIn(date(2020, 12, 31), holidays)  # New Years Eve
-        self.assertEquals(len(holidays), 14)
+        self.assertEqual(len(holidays), 14)
