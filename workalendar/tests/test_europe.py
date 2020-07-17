@@ -540,12 +540,12 @@ class FranceTest(GenericCalendarTest):
 
     def test_business_days_computations(self):
         day = date(2013, 10, 30)
-        self.assertEquals(
+        self.assertEqual(
             self.cal.add_working_days(day, 0), date(2013, 10, 30))
-        self.assertEquals(
+        self.assertEqual(
             self.cal.add_working_days(day, 1), date(2013, 10, 31))
-        self.assertEquals(self.cal.add_working_days(day, 2), date(2013, 11, 4))
-        self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
+        self.assertEqual(self.cal.add_working_days(day, 2), date(2013, 11, 4))
+        self.assertEqual(self.cal.add_working_days(day, 3), date(2013, 11, 5))
 
 
 class FranceAlsaceMoselleTest(FranceTest):
