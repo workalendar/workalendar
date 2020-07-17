@@ -130,6 +130,12 @@ class ArgentinaTest(GenericCalendarTest):
         label = holidays[date(2020, 5, 1)]
         self.assertEqual(label, "Día del Trabajador")
 
+    def test_immaculate_conception_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label = holidays[date(2020, 12, 8)]
+        self.assertEqual(label, "Día de la Inmaculada Concepción de María")
+
 
 class ChileTest(GenericCalendarTest):
     cal_class = Chile
@@ -347,6 +353,12 @@ class ParaguayTest(GenericCalendarTest):
         # Boqueron Battle Victory Day: moved to October 2nd for 2017
         self.assertNotIn(date(2017, 9, 29), holidays)
         self.assertIn(date(2017, 10, 2), holidays)
+
+    def test_immaculate_conception_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        label = holidays[date(2020, 12, 8)]
+        self.assertEqual(label, "Virgin of Caacupé Day")
 
 
 class BarbadosTest(GenericCalendarTest):

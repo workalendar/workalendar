@@ -31,6 +31,7 @@ from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
 class BrazilTest(GenericCalendarTest):
     cal_class = Brazil
     test_include_consciencia_negra = False
+    test_include_immaculate_conception = False
 
     def test_year_2013_federal(self):
         holidays = self.cal.holidays_set(2013)
@@ -56,6 +57,23 @@ class BrazilTest(GenericCalendarTest):
         else:
             # By default, not in the holidays.
             self.assertNotIn(consciencia_negra_day, holidays)
+
+    def test_immaculate_conception(self):
+        # Immaculate Conception is not a national holiday
+        # It's triggered in the appropriate classes, so this test needs to
+        # be overwritten.
+        immaculate_conception_day = date(self.year, 12, 8)
+        holidays = dict(self.cal.holidays(self.year))
+        if self.test_include_immaculate_conception:
+            # Included where needed
+            self.assertIn(immaculate_conception_day, holidays)
+            # Test its label
+            self.assertEqual(
+                holidays[immaculate_conception_day],
+                "Dia de Nossa Senhora da Conceição")
+        else:
+            # By default, not in the holidays.
+            self.assertNotIn(immaculate_conception_day, holidays)
 
 
 class BrazilAcreTest(BrazilTest):
@@ -107,6 +125,7 @@ class BrazilAmapaTest(BrazilTest):
 class BrazilAmazonasTest(BrazilTest):
     cal_class = BrazilAmazonas
     test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -115,6 +134,8 @@ class BrazilAmazonasTest(BrazilTest):
         self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
+        # Label test
+        holidays = self.cal.holidays(2017)
 
 
 class BrazilBahiaTest(BrazilTest):
@@ -162,6 +183,7 @@ class BrazilGoiasTest(BrazilTest):
 
 class BrazilMaranhaoTest(BrazilTest):
     cal_class = BrazilMaranhao
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -199,6 +221,7 @@ class BrazilMatoGrossoDoSulTest(BrazilTest):
 
 class BrazilParaTest(BrazilTest):
     cal_class = BrazilPara
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -246,6 +269,7 @@ class BrazilParanaTest(BrazilTest):
 class BrazilRioDeJaneiroTest(BrazilTest):
     cal_class = BrazilRioDeJaneiro
     test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -471,6 +495,7 @@ class BrazilGuarapariCityTest(BrazilEspiritoSantoTest):
     """
     cal_class = BrazilGuarapariCity
     test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_city(self):
         holidays = self.cal.holidays_set(2017)
@@ -485,6 +510,7 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
     Serra city is in the Espírito Santo state
     """
     cal_class = BrazilSerraCity
+    test_include_immaculate_conception = True
 
     def test_year_2017_city(self):
         holidays = self.cal.holidays_set(2017)

@@ -11,6 +11,8 @@ class Portugal(WesternCalendar):
     include_good_friday = True
     include_easter_sunday = True
     include_christmas = True
+    include_immaculate_conception = True
+    immaculate_conception_label = "Imaculada Conceição"
 
     # Civil holidays
     include_labour_day = True
@@ -19,7 +21,6 @@ class Portugal(WesternCalendar):
         (4, 25, "Dia da Liberdade"),
         (6, 10, "Dia de Portugal"),
         (8, 15, "Assunção de Nossa Senhora"),
-        (12, 8, "Imaculada Conceição"),
     )
 
     def get_fixed_holidays(self, year):
