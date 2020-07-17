@@ -30,9 +30,12 @@ class Brazil(WesternCalendar):
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
     consciencia_negra_label = "Consciência Negra"
-    include_nossa_senhora_conceicao = False
+
     # Christian holidays
     include_easter_sunday = True
+    # Dia de Nossa Senhora da Conceição is the Immaculate Conception.
+    include_immaculate_conception = False
+    immaculate_conception_label = "Dia de Nossa Senhora da Conceição"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -48,10 +51,6 @@ class Brazil(WesternCalendar):
             month, day = self.consciencia_negra_day
             days.append(
                 (date(year, month, day), self.consciencia_negra_label)
-            )
-        if self.include_nossa_senhora_conceicao:
-            days.append(
-                (date(year, 12, 8), "Dia de Nossa Senhora da Conceição")
             )
         return days
 
@@ -99,7 +98,7 @@ class BrazilAmazonas(Brazil):
         (9, 5, "Elevação do Amazonas á categoria de província"),
     )
     include_consciencia_negra = True
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-BA')
@@ -147,7 +146,7 @@ class BrazilMaranhao(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 28, "Adesão do Maranhão á independência do Brasil"),
     )
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-MG')
@@ -179,7 +178,7 @@ class BrazilPara(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
     )
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-PB')
@@ -230,7 +229,7 @@ class BrazilRioDeJaneiro(Brazil):
     servidor_publico_label = "Dia do Funcionário Público"
     include_consciencia_negra = True
     consciencia_negra_label = "Dia da Consciência Negra"
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
     def get_dia_do_comercio(self, year):
         """
@@ -371,7 +370,7 @@ class BrazilGuarapariCity(BrazilEspiritoSanto):
     include_sao_pedro = True
     include_consciencia_negra = True
     consciencia_negra_day = (11, 29)
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 class BrazilSerraCity(BrazilEspiritoSanto):
@@ -386,7 +385,7 @@ class BrazilSerraCity(BrazilEspiritoSanto):
     include_good_friday = True
     good_friday_label = "Paixão do Cristo"
     include_sao_pedro = True
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

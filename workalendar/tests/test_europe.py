@@ -1233,6 +1233,11 @@ class PortugalTest(GenericCalendarTest):
         self.assertEqual(
             holidays[date(2020, 5, 1)], "Dia do Trabalhador")
 
+    def test_immaculate_conception_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 12, 8)], "Imaculada Conceição")
+
 
 class SpainTest(GenericCalendarTest):
     cal_class = Spain
