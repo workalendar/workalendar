@@ -4,8 +4,8 @@ from ..europe import (
     Denmark, Finland, France,
     # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
     Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg,
-    Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
-    Slovenia, Spain,
+    Malta, Monaco, Netherlands, Norway, Poland, Portugal, Romania, Russia,
+    Slovakia, Slovenia, Spain,
     # Catalonia,  # TODO: Add it to registry
     Sweden, UnitedKingdom,
     UnitedKingdomNorthernIreland,
@@ -69,6 +69,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Lithuania, classes)
         self.assertIn(Luxembourg, classes)
         self.assertIn(Malta, classes)
+        self.assertIn(Monaco, classes)
         self.assertIn(Netherlands, classes)
         self.assertIn(Norway, classes)
         self.assertIn(Poland, classes)
