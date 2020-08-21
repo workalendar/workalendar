@@ -101,6 +101,7 @@ Europe
 * Lithuania
 * Luxembourg
 * Malta
+* Monaco
 * Netherlands
 * Norway
 * Poland

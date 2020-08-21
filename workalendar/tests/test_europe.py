@@ -26,6 +26,7 @@ from ..europe import (
     Lithuania,
     Luxembourg,
     Malta,
+    Monaco,
     Netherlands,
     Norway,
     Poland,
@@ -662,6 +663,42 @@ class MaltaTest(GenericCalendarTest):
         holidays = dict(holidays)
         self.assertEqual(
             holidays[date(2020, 5, 1)], "Worker's Day")
+
+
+class MonacoTest(GenericCalendarTest):
+    cal_class = Monaco
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        # National Holidays
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2020, 1, 27), holidays)  # Saint Dévote's Day
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 21), holidays)  # Ascension Day
+        self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
+        self.assertIn(date(2020, 6, 11), holidays)  # Corpus Christi
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption Day
+        self.assertIn(date(2020, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2020, 11, 19), holidays)  # Sovereign Prince's Day
+        self.assertIn(date(2020, 12, 8), holidays)  # Conception Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        # National Holidays
+        self.assertIn(date(2018, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2018, 1, 27), holidays)  # Saint Dévote's Day
+        self.assertIn(date(2018, 4, 2), holidays)  # Easter Monday
+        self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2018, 5, 10), holidays)  # Ascension Day
+        self.assertIn(date(2018, 5, 21), holidays)  # Whit Monday
+        self.assertIn(date(2018, 5, 31), holidays)  # Corpus Christi
+        self.assertIn(date(2018, 8, 15), holidays)  # Assumption Day
+        self.assertIn(date(2018, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2018, 11, 19), holidays)  # Sovereign Prince's Day
+        self.assertIn(date(2018, 12, 8), holidays)  # Conception Day
+        self.assertIn(date(2018, 12, 25), holidays)  # Christmas Day
 
 
 class NorwayTest(GenericCalendarTest):

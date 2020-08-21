@@ -6,6 +6,7 @@
 - Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
 - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
 - Use `include_immaculate_conception` flag for Portugal, Brazil, Argentina, Paraguay calendars (#529).
+- Added Monaco by @joaopbnogueira
 
 ## v10.3.0 (2020-07-10)
 
