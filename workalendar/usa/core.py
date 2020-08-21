@@ -193,13 +193,12 @@ class UnitedStates(WesternCalendar):
 
     def get_cesar_chavez_days(self, year):
         """
-        Cesar Chavez day is on 31st of March, float to 1st April if Monday.
+        Cesar Chavez day is on 31st of March
 
-        Will return a list of days.
+        Will return a list of days, because in some states (California),
+        it can float to MON if it happens on SUN.
         """
         days = [(date(year, 3, 31), "Cesar Chavez Day")]
-        if date(year, 3, 31).weekday() == SUN:
-            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
         return days
 
     def get_patriots_day(self, year):
