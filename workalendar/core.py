@@ -2,6 +2,7 @@
 Working day tools
 """
 from copy import copy
+import os
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
@@ -792,6 +793,59 @@ class CoreCalendar:
             if self.is_working_day(start):
                 count += 1
         return count
+
+    def export_to_ical(self, target_path, period=[2000, 2030]):
+        """
+        Export the calendar to iCal (RFC 5545) format.
+        Parameters
+        ----------
+        target_path : str
+            the name or path of the exported file
+        period : [int, int]
+            start and end year (inclusive) of calendar
+        Note
+        ----
+        If `target_path` does not have one of the extensions `.ical`, `.ics`,
+        `.ifb`, or `.icalendar`, the extension `.ics` is appended to the path.
+        Returns
+        -------
+        None.
+        Examples
+        --------
+        >>> cal = Austria()
+        >>> cal.export_to_ical('austrian_calendar')  # -> austrian_calendar.ics
+        """
+        # fetch holidays
+        holidays = []
+        first_year, last_year = period
+        for year in range(first_year, last_year + 1):
+            holidays += self.holidays(year)
+
+        # initialize icalendar
+        ics = ('BEGIN:VCALENDAR\n'
+               'VERSION:2.0\n'  # current RFC5545 version
+               'PRODID:-//workalendar//ical 9.0.0//EN\n')
+        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s\n' % common_timestamp
+
+        # add an event for each holiday
+        for date_, name in holidays:
+            ics += 'BEGIN:VEVENT\n'
+            ics += 'SUMMARY:%s\n' % name
+            ics += 'DTSTART;VALUE=DATE:%s\n' % date_.strftime('%Y%m%d')
+            ics += dtstamp
+            ics += 'UID:%s%s@peopledoc.github.io/workalendar\n' % (date_, name)
+            ics += 'END:VEVENT\n'
+
+        # add footer
+        ics += 'END:VCALENDAR\n'
+
+        # save iCal file
+        ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
+        if os.path.splitext(target_path)[1] not in ical_extensions:
+            target_path += '.ics'
+        with open(target_path, 'w+') as export_file:
+            export_file.write(ics)
 
 
 class Calendar(CoreCalendar):
