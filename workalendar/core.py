@@ -3,6 +3,7 @@ Working day tools
 """
 from copy import copy
 import os
+from os.path import isdir
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
@@ -11,7 +12,10 @@ from calverter import Calverter
 from dateutil import easter
 from lunardate import LunarDate
 
-from .exceptions import UnsupportedDateType, CalendarError
+from .exceptions import (
+    UnsupportedDateType, CalendarError,
+    ICalExportRangeError, ICalExportTargetPathError
+)
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -794,15 +798,37 @@ class CoreCalendar:
                 count += 1
         return count
 
-    def export_to_ical(self, target_path, period=[2000, 2030]):
+    def _get_ical_period(self, period=None):
         """
-        Export the calendar to iCal (RFC 5545) format.
-        Parameters
-        ----------
-        target_path : str
-            the name or path of the exported file
-        period : [int, int]
-            start and end year (inclusive) of calendar
+        Return a usable period for iCal export
+
+        Default period is [2000, 2030]
+        """
+        # Default value.
+        if not period:
+            period = [2000, 2030]
+
+        # Make sure it's a usable iterable
+        if type(period) not in (list, tuple):
+            raise ICalExportRangeError(
+                "Incorrect Range type. Must be list or tuple.")
+
+        # Taking the extremes
+        period = [min(period), max(period)]
+
+        # check for internal types
+        check_types = map(type, period)
+        check_types = map(lambda x: x != int, check_types)
+        if any(check_types):
+            raise ICalExportRangeError(
+                "Incorrect Range boundaries. Must be int.")
+
+        return period
+
+    def _get_ical_target_path(self, target_path):
+        """
+        Return target path for iCal export.
+
         Note
         ----
         If `target_path` does not have one of the extensions `.ical`, `.ics`,
@@ -813,39 +839,82 @@ class CoreCalendar:
         Examples
         --------
         >>> cal = Austria()
-        >>> cal.export_to_ical('austrian_calendar')  # -> austrian_calendar.ics
+        >>> cal._get_ical_target_path('austria')  # -> austria.ics
+
         """
-        # fetch holidays
-        holidays = []
-        first_year, last_year = period
-        for year in range(first_year, last_year + 1):
-            holidays += self.holidays(year)
 
-        # initialize icalendar
-        ics = ('BEGIN:VCALENDAR\n'
-               'VERSION:2.0\n'  # current RFC5545 version
-               'PRODID:-//workalendar//ical 9.0.0//EN\n')
-        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
-        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s\n' % common_timestamp
+        if not target_path:
+            raise ICalExportTargetPathError(
+                "Incorrect target path. It must not be empty")
 
-        # add an event for each holiday
-        for date_, name in holidays:
-            ics += 'BEGIN:VEVENT\n'
-            ics += 'SUMMARY:%s\n' % name
-            ics += 'DTSTART;VALUE=DATE:%s\n' % date_.strftime('%Y%m%d')
-            ics += dtstamp
-            ics += 'UID:%s%s@peopledoc.github.io/workalendar\n' % (date_, name)
-            ics += 'END:VEVENT\n'
+        if isdir(target_path):
+            raise ICalExportTargetPathError(
+                "Incorrect target path. It must not be a directory"
+            )
 
-        # add footer
-        ics += 'END:VCALENDAR\n'
-
-        # save iCal file
         ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
         if os.path.splitext(target_path)[1] not in ical_extensions:
             target_path += '.ics'
-        with open(target_path, 'w+') as export_file:
-            export_file.write(ics)
+        return target_path
+
+    def export_to_ical(self, period=[2000, 2030], target_path=None):
+        """
+        Export the calendar to iCal (RFC 5545) format.
+
+        Parameters
+        ----------
+        period: [int, int]
+            start and end year (inclusive) of calendar
+            Default is [2000, 2030]
+
+        target_path: str
+            the name or path of the exported file. If this argument is missing,
+            the function will return the ical content.
+
+        """
+        first_year, last_year = self._get_ical_period(period)
+        if target_path:
+            # Generate filename path before calculate the holidays
+            target_path = self._get_ical_target_path(target_path)
+
+        # fetch holidays
+        holidays = []
+        for year in range(first_year, last_year + 1):
+            holidays.extend(self.holidays(year))
+
+        # initialize icalendar
+        ics = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',  # current RFC5545 version
+            'PRODID:-//workalendar//ical 9.0.0//EN'
+        ]
+        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
+
+        # add an event for each holiday
+        for date_, name in holidays:
+            ics.extend([
+                'BEGIN:VEVENT',
+                'SUMMARY:%s' % name,
+                'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
+                dtstamp,
+                'UID:%s%s@peopledoc.github.io/workalendar' % (date_, name),
+                'END:VEVENT',
+            ])
+
+        # add footer
+        ics.append('END:VCALENDAR\n')  # last line with a trailing \n
+
+        # Transform this list into text lines
+        ics = "\n".join(ics)
+
+        if target_path:
+            # save iCal file
+            with open(target_path, 'w+') as export_file:
+                export_file.write(ics)
+            return
+
+        return ics
 
 
 class Calendar(CoreCalendar):

@@ -3,7 +3,9 @@ import os
 from os.path import join
 import warnings
 from datetime import date
-from unittest import TestCase, SkipTest
+from unittest import TestCase
+
+from freezegun import freeze_time
 
 from ..core import Calendar
 
@@ -26,7 +28,7 @@ class GenericCalendarTest(CoreCalendarTest):
 
     def test_weekend_days(self):
         class_name = self.cal_class.__name__
-        if class_name in ('Calendar',):
+        if class_name in ['Calendar']:
             return
         try:
             self.cal.get_weekend_days()
@@ -35,7 +37,7 @@ class GenericCalendarTest(CoreCalendarTest):
 
     def test_january_1st(self):
         class_name = self.cal_class.__name__
-        if class_name in ('Calendar',):
+        if class_name in ['Calendar']:
             return
         holidays = self.cal.holidays_set(self.year)
         if self.test_include_january_1st:
@@ -46,8 +48,8 @@ class GenericCalendarTest(CoreCalendarTest):
     def test_ical_export(self):
         """Check that an iCal file can be created according to iCal spec."""
         class_name = self.cal_class.__name__
-        if class_name in ('Calendar',):
-            raise SkipTest('Calendar has no holidays.')
+        if class_name in ['Calendar']:
+            return
 
         holidays = self.cal.holidays(2019) + self.cal.holidays(2020)
 
@@ -59,8 +61,10 @@ class GenericCalendarTest(CoreCalendarTest):
             dir=temp_dir,
         )
 
-        self.cal.export_to_ical(target_path=test_file_name,
-                                period=[2019, 2020])
+        self.cal.export_to_ical(
+            period=[2019, 2020],
+            target_path=test_file_name,
+        )
         # A standard iCal extension should have been added automatically:
         with open(test_file_name) as ics_file:
             # check header
@@ -94,5 +98,21 @@ class GenericCalendarTest(CoreCalendarTest):
             # check last few lines of file
             assert remaining_lines[-2] == 'END:VEVENT\n'
             assert remaining_lines[-1] == 'END:VCALENDAR\n'
+
+        # Freeze time to make sure they both have the same timestamp
+        with freeze_time():
+            # Regenerate the file
+            self.cal.export_to_ical(
+                period=[2019, 2020],
+                target_path=test_file_name,
+            )
+            # Not providing any target => returns the value as a string
+            var_contents = self.cal.export_to_ical(period=[2019, 2020])
+
+        with open(test_file_name) as fd:
+            file_contents = fd.read()
+
+        assert file_contents == var_contents
+
         # Remove the .ics file if this test passes
         os.remove(test_file_name)
