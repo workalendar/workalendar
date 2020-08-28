@@ -1,13 +1,21 @@
 # CHANGELOG
 
-## master (unreleased)
+## v10.4.0 (2020-08-28)
+
+### New calendar
+
+- Added Monaco calendar by @joaopbnogueira (#538).
+
+### Major changes and bugfixes
+
+- Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
+- Bugfix: Avoid Cesar Chavez Day duplicated shifts by refactoring the California shift rules (#528).
+
+### Bugfixes
 
 - Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions (#509).
-- Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
 - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
 - Use `include_immaculate_conception` flag for Portugal, Brazil, Argentina, Paraguay calendars (#529).
-- Added Monaco by @joaopbnogueira
-- Bugfix: Avoid Cesar Chavez Day duplicated shifts by refactoring the California shift rules (#528).
 
 ## v10.3.0 (2020-07-10)
 
