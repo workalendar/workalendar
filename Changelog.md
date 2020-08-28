@@ -15,7 +15,7 @@ Nothing here yet.
 - Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
 - Bugfix: Avoid Cesar Chavez Day duplicated shifts by refactoring the California shift rules (#528).
 
-### Bugfixes
+### Other changes
 
 - Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions (#509).
 - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
