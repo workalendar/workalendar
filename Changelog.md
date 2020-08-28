@@ -7,6 +7,7 @@
 - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
 - Use `include_immaculate_conception` flag for Portugal, Brazil, Argentina, Paraguay calendars (#529).
 - Added Monaco by @joaopbnogueira
+- Bugfix: Avoid Cesar Chavez Day duplicated shifts by refactoring the California shift rules (#528).
 
 ## v10.3.0 (2020-07-10)
 

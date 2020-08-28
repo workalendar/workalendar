@@ -454,10 +454,26 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         self.assertIn(date(2015, 3, 31), holidays)  # Cesar Chavez Day
         self.assertIn(date(2015, 11, 27), holidays)  # Thanksgiving Friday
 
+    def test_state_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 3, 31), holidays)  # Cesar Chavez Day
+        # Happens on SAT, but is not shifted
+        self.assertNotIn(date(2018, 3, 30), holidays)
+        self.assertIn(date(2018, 11, 23), holidays)  # Thanksgiving Friday
+
     def test_state_year_2019(self):
         holidays = self.cal.holidays_set(2019)
         self.assertIn(date(2019, 3, 31), holidays)  # Cesar Chavez Day
+        self.assertIn(date(2019, 4, 1), holidays)  # Cesar Chavez Day Shift
         self.assertIn(date(2019, 11, 29), holidays)  # Thanksgiving Friday
+
+    def test_chavez_no_duplicates(self):
+        # See issue #528
+        holidays = self.cal.holidays(2019)
+        days = [item[0] for item in holidays]
+        assert days
+        for day in days:
+            assert days.count(day) == 1, "{} is duplicated".format(day)
 
 
 class CaliforniaEducationTest(CaliforniaTest):
