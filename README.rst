@@ -170,9 +170,10 @@ Africa
 * Ivory Coast
 * Kenya
 * Madagascar
+* Mozambique
 * São Tomé
 * South Africa
-* Mozambique
+
 
 And more to come (I hope!)
 
