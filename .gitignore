@@ -8,4 +8,3 @@ build/
 .cache/
 .pytest-cache/
 .pytest_cache/
-.vscode
