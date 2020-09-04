@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v11.0.0 (2020-09-04)
 
 ### New calendar
