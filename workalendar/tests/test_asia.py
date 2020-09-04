@@ -681,6 +681,29 @@ class IsraelTest(GenericCalendarTest):
         }
         self.assertEqual(calculated_holidays, known_holidays)
 
+    def test_holidays_2021(self):
+        calculated_holidays = self.cal.holidays_set(2021)
+        known_holidays = {
+            date(2021, 9, 6),  # Rosh Hashana Eve
+            date(2021, 9, 7),  # Rosh Hashana A
+            date(2021, 9, 8),  # Rosh Hashana B
+            date(2021, 9, 15),  # Kippur Eve
+            date(2021, 9, 16),  # Kippur
+            date(2021, 9, 20),  # Sukot A Eve
+            date(2021, 9, 21),  # Sukot A
+            date(2021, 9, 27),  # Sukot B Eve
+            date(2021, 9, 28),  # Sukot B
+            date(2021, 3, 27),  # Pesach A Eve
+            date(2021, 3, 28),  # Pesach A
+            date(2021, 4, 2),  # Pesach B Eve
+            date(2021, 4, 3),  # Pesach B
+            date(2021, 4, 14),  # Independence Day Eve
+            date(2021, 4, 15),  # Independence Day
+            date(2021, 5, 16),  # Shavuot Eve
+            date(2021, 5, 17),  # Shavuot
+        }
+        self.assertEqual(calculated_holidays, known_holidays)
+
     def test_is_holiday_performance(self):
         random_date = date(2019, 10, 9)
         japan_cal = Japan()
