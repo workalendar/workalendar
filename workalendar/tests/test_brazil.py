@@ -971,6 +971,19 @@ class BrazilBankCalendarTest(BrazilTest):
         label_carnaval = holidays_dict[date(2017, 2, 28)]
         self.assertEqual(label_carnaval, "Tuesday carnaval")
 
+    def test_shift_last_day_of_the_year(self):
+        # New Year's eve is on SAT
+        holidays = self.cal.holidays_set(2022)
+        # Shifted to the FRI before
+        self.assertIn(date(2022, 12, 30), holidays)
+        self.assertNotIn(date(2022, 12, 29), holidays)
+
+        # New Year's eve is on SUN
+        holidays = self.cal.holidays_set(2017)
+        # Shifted to the FRI before
+        self.assertNotIn(date(2017, 12, 30), holidays)
+        self.assertIn(date(2017, 12, 29), holidays)
+
 
 class TestIBGERegister(TestCase):
 
