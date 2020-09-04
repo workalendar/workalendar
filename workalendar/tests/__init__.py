@@ -8,6 +8,7 @@ from unittest import TestCase
 from freezegun import freeze_time
 
 from ..core import Calendar
+from .. import __version__
 
 
 class CoreCalendarTest(TestCase):
@@ -70,8 +71,9 @@ class GenericCalendarTest(CoreCalendarTest):
             # check header
             assert ics_file.readline() == 'BEGIN:VCALENDAR\n'
             assert ics_file.readline() == 'VERSION:2.0\n'
-            assert ics_file.readline().startswith(
-                'PRODID:-//workalendar//ical ')
+            prod_id_line = ics_file.readline()
+            assert prod_id_line == (
+                'PRODID:-//workalendar//ical {}//EN\n'.format(__version__))
             # check new year
             assert ics_file.readline() == 'BEGIN:VEVENT\n'
             first_event_name = holidays[0][1]

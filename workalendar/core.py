@@ -16,6 +16,7 @@ from .exceptions import (
     UnsupportedDateType, CalendarError,
     ICalExportRangeError, ICalExportTargetPathError
 )
+from . import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -886,7 +887,7 @@ class CoreCalendar:
         ics = [
             'BEGIN:VCALENDAR',
             'VERSION:2.0',  # current RFC5545 version
-            'PRODID:-//workalendar//ical 9.0.0//EN'
+            'PRODID:-//workalendar//ical {}//EN'.format(__version__)
         ]
         common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
