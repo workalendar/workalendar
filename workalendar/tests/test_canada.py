@@ -323,3 +323,14 @@ class NunavutTests(GenericCalendarTest):
         self.assertIn(date(2012, 11, 12), holidays)  # Remembrance Day Shift
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas day
         self.assertNotIn(date(2012, 12, 26), holidays)  # Boxing day
+
+    def test_nunavut_shift(self):
+        # Nunavut day happens on SAT, no shift
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 7, 9), holidays)
+        self.assertNotIn(date(2016, 7, 10), holidays)
+
+        # Nunavut day happens on SUN, shift to the next day
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 7, 9), holidays)
+        self.assertIn(date(2017, 7, 10), holidays)
