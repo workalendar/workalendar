@@ -2,7 +2,10 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+### New calendar
+
+- Added Mozambique calendar by @mr-shovel (#542).
+
 
 ## v10.4.0 (2020-08-28)
 
