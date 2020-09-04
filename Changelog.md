@@ -5,6 +5,7 @@
 - Improve coverage of South Africa calendar (#546).
 - Improve coverage of Brazil calendar (#546).
 - Improve coverage of Canada (Nunavut) calendar (#546).
+- Improve coverage of Israel calendar (#546).
 
 ## v11.0.0 (2020-09-04)
 
