@@ -417,6 +417,11 @@ class SouthAfricaTest(GenericCalendarTest):
         # Shift day because Jan 2nd was a sunday
         self.assertIn(date(2000, 1, 3), holidays)
 
+    def test_special_2001(self):
+        holidays = self.cal.holidays_set(2001)
+        # Holiday added to celebrate Y2K
+        self.assertIn(date(2001, 1, 2), holidays)
+
     def test_special_2004(self):
         # National and provincial government elections – 14 April 2004
         holidays = self.cal.holidays_set(2004)
