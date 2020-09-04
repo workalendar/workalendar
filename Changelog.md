@@ -9,6 +9,7 @@
 ### New feature
 
 - Added iCal export feature, initiated by @joooeey (#197).
+- Fix PRODID pattern for iCal exports: `"PRODID:-//workalendar//ical {__version__}//EN"`, using current workalendar version (#543).
 
 ## v10.4.0 (2020-08-28)
 
