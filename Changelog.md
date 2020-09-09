@@ -2,6 +2,7 @@
 
 ## master (unreleased)
 
+- Add ISO code decorator to Catalonia calendar, thanks to @jbagot (#551).
 - Improve coverage of South Africa calendar (#546).
 - Improve coverage of Brazil calendar (#546).
 - Improve coverage of Canada (Nunavut) calendar (#546).
