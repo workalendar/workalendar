@@ -22,6 +22,7 @@ class Spain(WesternCalendar):
     )
 
 
+@iso_register('ES-CT')
 class Catalonia(Spain):
     "Catalonia"
 

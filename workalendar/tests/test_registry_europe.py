@@ -5,8 +5,7 @@ from ..europe import (
     # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
     Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg,
     Malta, Monaco, Netherlands, Norway, Poland, Portugal, Romania, Russia,
-    Slovakia, Slovenia, Spain,
-    # Catalonia,  # TODO: Add it to registry
+    Slovakia, Slovenia, Spain, Catalonia,
     Sweden, UnitedKingdom,
     UnitedKingdomNorthernIreland,
 )
@@ -45,6 +44,10 @@ SWITZERLAND_REGION_CLASSES = (
     BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
     Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,
     Ticino, Uri, Vaud, Valais, Zug, Zurich
+)
+
+SPAIN_REGION_CLASSES = (
+    Catalonia,
 )
 
 
@@ -91,19 +94,28 @@ class RegistryEurope(TestCase):
             self.assertIn(klass, classes)
         for klass in SWITZERLAND_REGION_CLASSES:
             self.assertIn(klass, classes)
+        for klass in SPAIN_REGION_CLASSES:
+            self.assertIn(klass, classes)
 
-    def test_germany_subregion(self):
+    def test_germany_subregions(self):
         # Get all the subregions
         classes = (v for k, v in registry.get_subregions('DE').items())
         classes = list(classes)
         for klass in GERMANY_REGION_CLASSES:
             self.assertIn(klass, classes)
 
-    def test_switzerland_subregion(self):
+    def test_switzerland_subregions(self):
         # Get all the subregions
         classes = (v for k, v in registry.get_subregions('CH').items())
         classes = list(classes)
         for klass in SWITZERLAND_REGION_CLASSES:
+            self.assertIn(klass, classes)
+
+    def test_spain_subregions(self):
+        # Get all the subregions
+        classes = (v for k, v in registry.get_subregions('ES').items())
+        classes = list(classes)
+        for klass in SPAIN_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_slovenia_code(self):
