@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v11.0.1 (2020-09-11)
 
 - Add ISO code decorator to Catalonia calendar, thanks to @jbagot (#551).
 - Improve coverage of South Africa calendar (#546).
