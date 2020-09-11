@@ -64,6 +64,10 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         """
         Singapore variable days
         """
+        if year not in self.DEEPAVALI:
+            msg = 'Missing date for Singapore Deepavali for year: %s' % year
+            raise KeyError(msg)
+
         days = super().get_variable_days(year)
 
         # Vesak Day
@@ -72,9 +76,5 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         )
 
         # Add in Deepavali (hardcoded dates, so no need to shift)
-        deepavali = self.DEEPAVALI.get(year)
-        if not deepavali:
-            msg = 'Missing date for Singapore Deepavali for year: %s' % year
-            raise KeyError(msg)
-        days.append((deepavali, 'Deepavali'))
+        days.append((self.DEEPAVALI.get(year), 'Deepavali'))
         return days

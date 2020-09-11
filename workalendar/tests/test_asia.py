@@ -527,6 +527,15 @@ class SingaporeTest(GenericCalendarTest):
         current_year = date.today().year
         self.assertIn(current_year, self.cal.DEEPAVALI)
 
+    def test_deepavali_missing_year(self):
+        with self.assertRaises(KeyError) as context:
+            self.cal.holidays_set(1999)
+        self.assertEqual(
+            # Equivalent of the error msg
+            context.exception.args[0],
+            'Missing date for Singapore Deepavali for year: 1999',
+        )
+
 
 class SouthKoreaTest(GenericCalendarTest):
 
