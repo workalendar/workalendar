@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Improve coverage of Singapore calendar (#546).
 
 ## v11.0.1 (2020-09-11)
 
