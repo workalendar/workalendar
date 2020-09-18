@@ -30,7 +30,7 @@ from .russia import Russia
 from .serbia import Serbia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Andalusia, Spain, Catalonia, CastileAndLeon
+from .spain import Andalusia, Aragon, Spain, Catalonia, CastileAndLeon
 from .sweden import Sweden
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
@@ -117,7 +117,7 @@ __all__ = (
     'SouthLanarkshire', 'Stirling', 'WestDunbartonshire',
 
     # Spain
-    'Spain', 'Andalusia', 'Catalonia', 'CastileAndLeon',
+    'Spain', 'Andalusia', 'Aragon', 'Catalonia', 'CastileAndLeon',
 
     # Switzerland
     'Switzerland',

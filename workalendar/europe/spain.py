@@ -32,6 +32,17 @@ class Andalusia(Spain):
     include_holy_thursday = True  # Also called Maundy thursday
 
 
+@iso_register('ES-AR')
+class Aragon(Spain):
+    "Aragon"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (4, 23, "Aragonese National Day"),
+        (12, 20, "Aragon Ombudsman Day"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
+
+
 @iso_register('ES-CL')
 class CastileAndLeon(Spain):
     "Castile and León"
