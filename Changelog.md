@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Refactored Spain test modules (#531).
 
 ## v12.0.0 (2020-10-02)
 

@@ -8,10 +8,10 @@ class Spain(WesternCalendar):
 
     # Christian holidays
     include_epiphany = True
-    include_immaculate_conception = True
     include_good_friday = True
     include_assumption = True
     include_all_saints = True
+    include_immaculate_conception = True
 
     # Civil holidays
     include_labour_day = True
