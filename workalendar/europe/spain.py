@@ -105,3 +105,14 @@ class Galicia(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-IB')
+class BalearicIslands(Spain):
+    "Balearic Islands"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (3, 1, "Dia de les Illes Balears"),
+    )
+    # Christian holidays
+    include_holy_thursday = True  # Also called Maundy thursday
+    include_easter_monday = True

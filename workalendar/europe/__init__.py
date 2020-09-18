@@ -32,7 +32,7 @@ from .slovakia import Slovakia
 from .slovenia import Slovenia
 from .spain import (
     Andalusia, Aragon, Spain, Catalonia, CastileAndLeon, CastillaLaMancha,
-    CanaryIslands, Extremadura, Galicia
+    CanaryIslands, Extremadura, Galicia, BalearicIslands
 )
 from .sweden import Sweden
 from .ukraine import Ukraine
@@ -122,6 +122,7 @@ __all__ = (
     # Spain
     'Spain', 'Andalusia', 'Aragon', 'Catalonia', 'CastileAndLeon',
     'CastillaLaMancha', 'CanaryIslands', 'Extremadura', 'Galicia',
+    'BalearicIslands',
 
     # Switzerland
     'Switzerland',

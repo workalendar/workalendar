@@ -3,7 +3,7 @@ from datetime import date
 from . import GenericCalendarTest
 from ..europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
-    CanaryIslands, Extremadura, Galicia
+    CanaryIslands, Extremadura, Galicia, BalearicIslands
 )
 
 
@@ -181,4 +181,22 @@ class GaliciaTest(SpainTest):
         self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
         self.assertIn(date(2020, 5, 17), holidays)  # Galician Literature Day
         self.assertIn(date(2020, 7, 25), holidays)  # Regional Day
+        self.assertEqual(len(holidays), 13)
+
+
+class BalearicIslandsTest(SpainTest):
+    cal_class = BalearicIslands
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 1), holidays)  # Balearic National Day
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2019, 4, 22), holidays)  # Easter Monday
+        self.assertEqual(len(holidays), 13)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 1), holidays)  # Balearic National Day
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
         self.assertEqual(len(holidays), 13)
