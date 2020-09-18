@@ -4,6 +4,7 @@
 
 - Added Spain regions: Andalusia (#531).
 - Refactored Spain test modules (#531).
+- Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
 
 ## v12.0.0 (2020-10-02)
 

@@ -41,6 +41,5 @@ class Catalonia(Spain):
     boxing_day_label = "Sant Esteve"
 
     FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
-        (6, 24, "Sant Joan"),
         (9, 11, "Diada nacional de Catalunya"),
     )
