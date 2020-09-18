@@ -94,3 +94,14 @@ class Extremadura(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-GA')
+class Galicia(Spain):
+    "Galicia"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (5, 17, "Día das Letras Galegas"),
+        (7, 25, "Santiago Apóstol o Día da Patria Galega"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
