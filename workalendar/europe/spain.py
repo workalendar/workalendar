@@ -84,3 +84,13 @@ class Catalonia(Spain):
     FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
         (9, 11, "Diada nacional de Catalunya"),
     )
+
+
+@iso_register('ES-EX')
+class Extremadura(Spain):
+    "Extremadura"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (9, 8, "Día de Extremadura"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
