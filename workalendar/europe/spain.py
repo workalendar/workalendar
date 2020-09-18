@@ -22,6 +22,16 @@ class Spain(WesternCalendar):
     )
 
 
+@iso_register('ES-AN')
+class Andalusia(Spain):
+    "Andalusia"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (2, 28, "Andalusian National Day"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
+
+
 @iso_register('ES-CT')
 class Catalonia(Spain):
     "Catalonia"

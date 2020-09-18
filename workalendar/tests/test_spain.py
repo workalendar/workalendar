@@ -1,7 +1,7 @@
 from datetime import date
 
 from . import GenericCalendarTest
-from ..europe import Spain, Catalonia
+from ..europe import Spain, Andalusia, Catalonia
 
 
 class SpainTest(GenericCalendarTest):
@@ -38,6 +38,22 @@ class SpainTest(GenericCalendarTest):
         holidays = dict(holidays)
         self.assertEqual(
             holidays[date(2020, 5, 1)], "Día del trabajador")
+
+
+class AndalusiaTest(SpainTest):
+    cal_class = Andalusia
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 2, 28), holidays)  # Andalusian National Day
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy/Holy Thursday
+        self.assertEqual(len(holidays), 12)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 2, 28), holidays)  # Andalusian National Day
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
+        self.assertEqual(len(holidays), 12)
 
 
 class CataloniaTest(SpainTest):

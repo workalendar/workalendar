@@ -30,7 +30,7 @@ from .russia import Russia
 from .serbia import Serbia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Spain, Catalonia
+from .spain import Andalusia, Spain, Catalonia
 from .sweden import Sweden
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
@@ -66,7 +66,6 @@ __all__ = (
     'Belarus',
     'Belgium',
     'Bulgaria',
-    'Catalonia',
     'CaymanIslands',
     'Croatia',
     'Cyprus',
@@ -96,7 +95,6 @@ __all__ = (
     'Serbia',
     'Slovakia',
     'Slovenia',
-    'Spain',
     'Sweden',
     'Switzerland',
     'Ukraine',
@@ -117,6 +115,10 @@ __all__ = (
     'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
     'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
     'SouthLanarkshire', 'Stirling', 'WestDunbartonshire',
+
+    # Spain
+    'Spain', 'Andalusia', 'Catalonia',
+
     # Switzerland
     'Switzerland',
     'Aargau', 'AppenzellInnerrhoden', 'AppenzellAusserrhoden', 'Bern',
