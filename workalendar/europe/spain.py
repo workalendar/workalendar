@@ -63,6 +63,16 @@ class CastillaLaMancha(Spain):
     include_holy_thursday = True  # Also called Maundy thursday
 
 
+@iso_register('ES-CN')
+class CanaryIslands(Spain):
+    "Canary Islands"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (5, 30, "Día de Canarias"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
+
+
 @iso_register('ES-CT')
 class Catalonia(Spain):
     "Catalonia"

@@ -12,7 +12,8 @@ from ..europe import (
 
 # Spain & regions
 from ..europe import (
-    Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha
+    Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands,
 )
 
 # Switzerland
@@ -52,7 +53,8 @@ SWITZERLAND_REGION_CLASSES = (
 )
 
 SPAIN_REGION_CLASSES = (
-    Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha
+    Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands
 )
 
 
