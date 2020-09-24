@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Add optional school holidays to Netherlands calendar, by @Flix6x (#556).
 
 ## v12.1.0 (2020-10-16)
 
