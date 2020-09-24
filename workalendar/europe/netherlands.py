@@ -97,6 +97,7 @@ SUMMER_HOLIDAYS_LATE_REGIONS = {
 
 
 class NetherlandsWithSchoolHolidays(Netherlands):
+    """Netherlands with school holidays"""
 
     def __init__(self, region: str):
         """ Set up a calendar incl. school holidays for a specific region

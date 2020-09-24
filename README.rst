@@ -102,7 +102,7 @@ Europe
 * Luxembourg
 * Malta
 * Monaco
-* Netherlands
+* Netherlands (optionally with school holidays)
 * Norway
 * Poland
 * Portugal
