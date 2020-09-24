@@ -929,6 +929,9 @@ class Calendar(CoreCalendar):
     include_labour_day = False
     labour_day_label = "Labour Day"
 
+    def __init__(self, **kwargs):
+        super().__init__()
+
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)
         if self.include_new_years_day:

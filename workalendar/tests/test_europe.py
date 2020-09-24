@@ -28,6 +28,7 @@ from ..europe import (
     Malta,
     Monaco,
     Netherlands,
+    NetherlandsWithSchoolHolidays,
     Norway,
     Poland,
     Portugal,
@@ -910,7 +911,7 @@ class NetherlandsTest(GenericCalendarTest):
 
     cal_class = Netherlands
 
-    def test_year_2016(self):
+    def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)   # New Year
         self.assertIn(date(2015, 4, 3), holidays)   # Good friday
@@ -940,6 +941,77 @@ class NetherlandsTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 31), holidays)
 
+
+class NetherlandsWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="south")
+
+    def test_year_2020(self):
+        holidays = dict(self.cal.holidays(2020))
+        self.assertEqual(
+            holidays[date(2020, 1, 5)], "Christmas holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 2, 22)], "Spring holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 3, 1)], "Spring holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 4, 25)], "May holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 5, 3)], "May holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 7, 11)], "Summer holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 8, 23)], "Summer holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 10, 17)], "Fall holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 10, 25)], "Fall holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 12, 19)], "Christmas holiday"
+        )
+
+    def test_year_2021(self):
+        holidays = dict(self.cal.holidays(2021))
+        self.assertEqual(
+            holidays[date(2021, 1, 3)], "Christmas holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 13)], "Spring holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 21)], "Spring holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 5, 1)], "May holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 5, 9)], "May holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 7, 24)], "Summer holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 9, 5)], "Summer holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 10, 23)], "Fall holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 10, 31)], "Fall holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 12, 25)], "Christmas holiday"
+        )
 
 class Romania(GenericCalendarTest):
     cal_class = Romania

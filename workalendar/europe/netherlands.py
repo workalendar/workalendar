@@ -109,7 +109,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         super().__init__()
 
     def get_fall_holidays(self, year: int) -> List[Tuple[date, str]]:
-        num_days = 9
+        n_days = 9
         week = 43
 
         # Exceptional years
@@ -126,34 +126,54 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         except KeyError:
             raise NotImplementedError(f"Unknown fall holidays for {year}.")
 
-        return [(start + timedelta(days=i), "Fall holiday") for i in range(num_days)]
+        return [
+            (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
+        ]
 
-    def get_christmas_holidays(self, year: int, in_december: bool = True, in_january: bool = True) -> List[Tuple[date, str]]:
-        """ Christmas holidays run partially in December and partially in January (spillover from previous year). """
+    def get_christmas_holidays(
+            self, year: int, in_december: bool = True, in_january: bool = True
+    ) -> List[Tuple[date, str]]:
+        """ Christmas holidays run partially in December and partially in January
+        (spillover from previous year).
+        """
 
         if in_december:
 
-            week = date(year, 12, 27).isocalendar()[1]  # 27 December is always in a full week of holidays
+            # 27 December is always in a full week of holidays
+            week = date(year, 12, 27).isocalendar()[1]
 
             # Holiday starts on the preceding Saturday
             start = date.fromisocalendar(year, week - 1, 6)
 
-            dates = [(start + timedelta(days=i), "Christmas holiday") for i in range((date(year, 12, 31) - start).days + 1)]
+            dates = [
+                (
+                    start + timedelta(days=i), "Christmas holiday"
+                ) for i in range((date(year, 12, 31) - start).days + 1)
+            ]
 
             if in_january:
-                dates.extend(self.get_christmas_holidays(year, in_december=False))
+                dates.extend(
+                    self.get_christmas_holidays(year, in_december=False)
+                )
             return dates
 
-        num_days = 16
-        week = date(year - 1, 12, 27).isocalendar()[1]  # 27 December is always in a full week of holidays
+        n_days = 16
+        # 27 December is always in a full week of holidays
+        week = date(year - 1, 12, 27).isocalendar()[1]
 
         # Holiday ends 16 days after the preceding Saturday
-        end = date.fromisocalendar(year - 1, week - 1, 6) + timedelta(days=num_days - 1)
+        end = date.fromisocalendar(
+            year - 1, week - 1, 6
+        ) + timedelta(days=n_days - 1)
 
-        return [(date(year, 1, 1) + timedelta(days=i), "Christmas holiday") for i in range((end - date(year, 1, 1)).days + 1)]
+        return [
+            (
+                date(year, 1, 1) + timedelta(days=i), "Christmas holiday"
+            ) for i in range((end - date(year, 1, 1)).days + 1)
+        ]
 
     def get_spring_holidays(self, year: int) -> List[Tuple[date, str]]:
-        num_days = 9
+        n_days = 9
         week = 9
 
         # Exceptional years
@@ -170,10 +190,14 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         except KeyError:
             raise NotImplementedError(f"Unknown spring holidays for {year}.")
 
-        return [(start + timedelta(days=i), "Spring holiday") for i in range(num_days)]
+        return [
+            (
+                start + timedelta(days=i), "Spring holiday"
+            ) for i in range(n_days)
+        ]
 
     def get_may_holidays(self, year: int) -> List[Tuple[date, str]]:
-        num_days = 9
+        n_days = 9
         week = 18
 
         # Exceptional years
@@ -183,15 +207,13 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         # Holiday starts on the preceding Saturday
         start = date.fromisocalendar(year, week - 1, 6)
 
-        return [(start + timedelta(days=i), "May holiday") for i in range(num_days)]
+        return [
+            (start + timedelta(days=i), "May holiday") for i in range(n_days)
+        ]
 
     def get_summer_holidays(self, year: int) -> List[Tuple[date, str]]:
-        num_days = 44
+        n_days = 44
         week = 29
-
-        # Exceptional years
-        if year in [2024, 2021]:
-            week = 8
 
         # Holiday starts on the preceding Saturday
         start = date.fromisocalendar(year, week - 1, 6)
@@ -210,7 +232,11 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         except KeyError:
             raise NotImplementedError(f"Unknown summer holidays for {year}.")
 
-        return [(start + timedelta(days=i), "Summer holiday") for i in range(num_days)]
+        return [
+            (
+                start + timedelta(days=i), "Summer holiday"
+            ) for i in range(n_days)
+        ]
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

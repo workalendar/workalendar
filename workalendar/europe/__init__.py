@@ -21,7 +21,7 @@ from .lithuania import Lithuania
 from .luxembourg import Luxembourg
 from .malta import Malta
 from .monaco import Monaco
-from .netherlands import Netherlands
+from .netherlands import Netherlands, NetherlandsWithSchoolHolidays
 from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
@@ -88,6 +88,7 @@ __all__ = (
     'Malta',
     'Monaco',
     'Netherlands',
+    'NetherlandsWithSchoolHolidays',
     'Norway',
     'Poland',
     'Portugal',
