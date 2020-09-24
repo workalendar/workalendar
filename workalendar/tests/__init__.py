@@ -13,11 +13,12 @@ from .. import __version__
 
 class CoreCalendarTest(TestCase):
     cal_class = Calendar
+    kwargs = {}
 
     def setUp(self):
         super().setUp()
         self.year = date.today().year
-        self.cal = self.cal_class()
+        self.cal = self.cal_class(**self.kwargs)
 
 
 class GenericCalendarTest(CoreCalendarTest):
