@@ -97,7 +97,11 @@ SUMMER_HOLIDAYS_LATE_REGIONS = {
 
 
 class NetherlandsWithSchoolHolidays(Netherlands):
-    """Netherlands with school holidays"""
+    """Netherlands with school holidays (2016 to 2025).
+
+    Data source and regulating body:
+    https://www.rijksoverheid.nl/onderwerpen/schoolvakanties/overzicht-schoolvakanties-per-schooljaar
+    """
 
     def __init__(self, region: str):
         """ Set up a calendar incl. school holidays for a specific region
