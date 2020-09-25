@@ -4,6 +4,7 @@
 
 - Improve coverage of Singapore calendar (#546).
 - Add optional school holidays to Netherlands calendar.
+- Add optional carnival to Netherlands calendar.
 
 ## v11.0.1 (2020-09-11)
 
