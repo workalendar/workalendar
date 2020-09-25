@@ -1013,6 +1013,7 @@ class NetherlandsWithSchoolHolidaysTest(GenericCalendarTest):
             holidays[date(2021, 12, 25)], "Christmas holiday"
         )
 
+
 class Romania(GenericCalendarTest):
     cal_class = Romania
 
