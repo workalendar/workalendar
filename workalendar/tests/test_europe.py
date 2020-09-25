@@ -1290,6 +1290,59 @@ class NetherlandsSouthWithSchoolHolidaysTest(GenericCalendarTest):
             )
 
 
+class NetherlandsWithCarnivalTest(GenericCalendarTest):
+
+    cal_class = Netherlands
+    kwargs = dict(include_carnival=True)
+
+    def test_year_2020(self):
+        holidays = dict(self.cal.holidays(2020))
+        self.assertEqual(
+            holidays[date(2020, 2, 23)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2020, 2, 24)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2020, 2, 25)], "Carnival"
+        )
+
+    def test_year_2021(self):
+        holidays = dict(self.cal.holidays(2021))
+        self.assertEqual(
+            holidays[date(2021, 2, 14)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 15)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 16)], "Carnival"
+        )
+
+
+class NetherlandsWithSchoolHolidaysAndCarnivalTest(GenericCalendarTest):
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="south", carnival_instead_of_spring=True)
+
+    def test_year_2020(self):
+        holidays = dict(self.cal.holidays(2020))
+        self.assertEqual(
+            holidays[date(2020, 2, 22)], "Carnival holiday"
+        )
+        self.assertEqual(
+            holidays[date(2020, 3, 1)], "Carnival holiday"
+        )
+
+    def test_year_2021(self):
+        holidays = dict(self.cal.holidays(2021))
+        self.assertEqual(
+            holidays[date(2021, 2, 13)], "Carnival holiday"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 21)], "Carnival holiday"
+        )
+
+
 class Romania(GenericCalendarTest):
     cal_class = Romania
 
