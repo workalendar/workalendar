@@ -122,14 +122,22 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             week = 44
 
         # Holiday starts on the preceding Saturday
-        start = date.fromisocalendar(year, week - 1, 6)
+        try:
+            start = date.fromisocalendar(year, week - 1, 6)
+        except AttributeError:
+            # Adapted from https://stackoverflow.com/a/59200842
+            first = date(year, 1, 1)
+            base = 1 if first.isocalendar()[1] == 1 else 8
+            start = first + timedelta(
+                days=base - first.isocalendar()[2] + 7 * (week - 1) - 2
+            )
 
         # Some regions have their fall holiday 1 week earlier
         try:
             if self.region in FALL_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError(f"Unknown fall holidays for {year}.")
+            raise NotImplementedError("Unknown fall holidays for %d." % year)
 
         return [
             (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
@@ -148,7 +156,15 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             week = date(year, 12, 27).isocalendar()[1]
 
             # Holiday starts on the preceding Saturday
-            start = date.fromisocalendar(year, week - 1, 6)
+            try:
+                start = date.fromisocalendar(year, week - 1, 6)
+            except AttributeError:
+                # Adapted from https://stackoverflow.com/a/59200842
+                first = date(year, 1, 1)
+                base = 1 if first.isocalendar()[1] == 1 else 8
+                start = first + timedelta(
+                    days=base - first.isocalendar()[2] + 7 * (week - 1) - 2
+                )
 
             dates = [
                 (
@@ -166,10 +182,19 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         # 27 December is always in a full week of holidays
         week = date(year - 1, 12, 27).isocalendar()[1]
 
-        # Holiday ends 16 days after the preceding Saturday
-        end = date.fromisocalendar(
-            year - 1, week - 1, 6
-        ) + timedelta(days=n_days - 1)
+        # Holiday ends 15 days after the preceding Saturday
+        try:
+            end = date.fromisocalendar(
+                year - 1, week - 1, 6
+            ) + timedelta(days=n_days - 1)
+        except AttributeError:
+            # Adapted from https://stackoverflow.com/a/59200842
+            first = date(year - 1, 1, 1)
+            base = 1 if first.isocalendar()[1] == 1 else 8
+            end = first + timedelta(
+                days=base - first.isocalendar()[2] + 7 * (week - 1)
+                + n_days - 3
+            )
 
         return [
             (
@@ -186,14 +211,22 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             week = 8
 
         # Holiday starts on the preceding Saturday
-        start = date.fromisocalendar(year, week - 1, 6)
+        try:
+            start = date.fromisocalendar(year, week - 1, 6)
+        except AttributeError:
+            # Adapted from https://stackoverflow.com/a/59200842
+            first = date(year, 1, 1)
+            base = 1 if first.isocalendar()[1] == 1 else 8
+            start = first + timedelta(
+                days=base - first.isocalendar()[2] + 7 * (week - 1) - 2
+            )
 
         # Some regions have their spring holiday 1 week earlier
         try:
             if self.region in SPRING_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError(f"Unknown spring holidays for {year}.")
+            raise NotImplementedError("Unknown spring holidays for %d." % year)
 
         return [
             (
@@ -210,7 +243,15 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             week = 17
 
         # Holiday starts on the preceding Saturday
-        start = date.fromisocalendar(year, week - 1, 6)
+        try:
+            start = date.fromisocalendar(year, week - 1, 6)
+        except AttributeError:
+            # Adapted from https://stackoverflow.com/a/59200842
+            first = date(year, 1, 1)
+            base = 1 if first.isocalendar()[1] == 1 else 8
+            start = first + timedelta(
+                days=base - first.isocalendar()[2] + 7 * (week - 1) - 2
+            )
 
         return [
             (start + timedelta(days=i), "May holiday") for i in range(n_days)
@@ -221,21 +262,29 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         week = 29
 
         # Holiday starts on the preceding Saturday
-        start = date.fromisocalendar(year, week - 1, 6)
+        try:
+            start = date.fromisocalendar(year, week - 1, 6)
+        except AttributeError:
+            # Adapted from https://stackoverflow.com/a/59200842
+            first = date(year, 1, 1)
+            base = 1 if first.isocalendar()[1] == 1 else 8
+            start = first + timedelta(
+                days=base - first.isocalendar()[2] + 7 * (week - 1) - 2
+            )
 
         # Some regions have their summer holiday 1 week earlier
         try:
             if self.region in SUMMER_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError(f"Unknown summer holidays for {year}.")
+            raise NotImplementedError("Unknown summer holidays for %d." % year)
 
         # Some regions have their summer holiday 1 week later
         try:
             if self.region in SUMMER_HOLIDAYS_LATE_REGIONS[year]:
                 start = start + timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError(f"Unknown summer holidays for {year}.")
+            raise NotImplementedError("Unknown summer holidays for %d." % year)
 
         return [
             (
