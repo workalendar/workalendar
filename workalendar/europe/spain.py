@@ -176,3 +176,13 @@ class BasqueCountry(Spain):
     # Christian holidays
     include_holy_thursday = True  # Also called Maundy thursday
     include_easter_monday = True
+
+
+@iso_register('ES-CB')
+class Cantabria(Spain):
+    "Cantabria"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (9, 15, "Día de Cantabria o Día de La Montaña"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday

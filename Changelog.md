@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-- Added Spain regions: Andalusia, Aragon, Castile and León, Castilla-La Mancha, Canary Islands, Extremadura, Galicia, Balearic Islands, La Rioja, Community of Madrid, Murcia, Navarre, Asturias, Basque Country (#531).
+- Added Spain regions: Andalusia, Aragon, Castile and León, Castilla-La Mancha, Canary Islands, Extremadura, Galicia, Balearic Islands, La Rioja, Community of Madrid, Murcia, Navarre, Asturias, Basque Country, Cantabria (#531).
 - Refactored Spain test modules (#531).
 - Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
 
