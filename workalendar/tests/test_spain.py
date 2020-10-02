@@ -4,7 +4,7 @@ from . import GenericCalendarTest
 from ..europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
-    CommunityofMadrid, Murcia, Navarre
+    CommunityofMadrid, Murcia, Navarre, Asturias
 )
 
 
@@ -268,4 +268,20 @@ class NavarreTest(SpainTest):
         holidays = self.cal.holidays_set(2020)
         self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
         self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertEqual(len(holidays), 12)
+
+
+class AsturiasTest(SpainTest):
+    cal_class = Asturias
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2019, 9, 8), holidays)  # Día de Asturias
+        self.assertEqual(len(holidays), 12)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2020, 9, 8), holidays)  # Día de Asturias
         self.assertEqual(len(holidays), 12)

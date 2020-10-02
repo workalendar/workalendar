@@ -155,3 +155,13 @@ class Navarre(Spain):
     # Christian holidays
     include_holy_thursday = True  # Also called Maundy thursday
     include_easter_monday = True
+
+
+@iso_register('ES-AS')
+class Asturias(Spain):
+    "Asturias"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (9, 8, "Día de Asturias"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
