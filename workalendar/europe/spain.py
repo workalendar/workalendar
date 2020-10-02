@@ -165,3 +165,14 @@ class Asturias(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-PV')
+class BasqueCountry(Spain):
+    "Basque Country"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (10, 25, "Euskadi Eguna"),
+    )
+    # Christian holidays
+    include_holy_thursday = True  # Also called Maundy thursday
+    include_easter_monday = True
