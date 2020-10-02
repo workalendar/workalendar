@@ -4,7 +4,7 @@ from . import GenericCalendarTest
 from ..europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
-    CommunityofMadrid,
+    CommunityofMadrid, Murcia
 )
 
 
@@ -235,3 +235,21 @@ class CommunityofMadridTest(SpainTest):
         # Fiesta de la Comunidad de Madrid
         self.assertIn(date(2020, 5, 2), holidays)
         self.assertEqual(len(holidays), 12)
+
+
+class MurciaTest(SpainTest):
+    cal_class = Murcia
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 19), holidays)  # San José
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2019, 6, 9), holidays)  # Día de la Región de Murcia
+        self.assertEqual(len(holidays), 13)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 19), holidays)  # San José
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2020, 6, 9), holidays)  # Día de la Región de Murcia
+        self.assertEqual(len(holidays), 13)

@@ -136,3 +136,14 @@ class CommunityofMadrid(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-MC')
+class Murcia(Spain):
+    "Region of Murcia"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (6, 9, "Día de la Región de Murcia"),
+        (3, 19, "San José"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
