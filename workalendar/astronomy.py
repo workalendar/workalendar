@@ -1,7 +1,7 @@
 """
 Astronomical functions
 """
-from math import pi, radians
+from math import pi, radians, tau
 import pytz
 from skyfield.api import Loader
 from skyfield import almanac
@@ -15,9 +15,6 @@ hour = 1. / 24.
 minute = hour / 60.
 second = minute / 60.
 newton_precision = second / 10.
-
-# ``math.tau`` appears only in Python 3.6+
-tau = 2 * pi
 
 
 def calculate_equinoxes(year, timezone='UTC'):
