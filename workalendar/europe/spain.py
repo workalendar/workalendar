@@ -116,3 +116,13 @@ class BalearicIslands(Spain):
     # Christian holidays
     include_holy_thursday = True  # Also called Maundy thursday
     include_easter_monday = True
+
+
+@iso_register('ES-RI')
+class LaRioja(Spain):
+    "La Rioja"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (6, 9, "Dia de La Rioja"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday

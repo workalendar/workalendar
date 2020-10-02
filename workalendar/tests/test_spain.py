@@ -3,7 +3,7 @@ from datetime import date
 from . import GenericCalendarTest
 from ..europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
-    CanaryIslands, Extremadura, Galicia, BalearicIslands
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja
 )
 
 
@@ -200,3 +200,19 @@ class BalearicIslandsTest(SpainTest):
         self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
         self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
         self.assertEqual(len(holidays), 13)
+
+
+class LaRiojaTest(SpainTest):
+    cal_class = LaRioja
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2019, 6, 9), holidays)  # Dia de La Rioja
+        self.assertEqual(len(holidays), 12)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy/Holy Thursday
+        self.assertIn(date(2020, 6, 9), holidays)  # Dia de La Rioja
+        self.assertEqual(len(holidays), 12)
