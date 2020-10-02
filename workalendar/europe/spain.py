@@ -186,3 +186,14 @@ class Cantabria(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-VC')
+class ValencianCommunity(Spain):
+    "Valencian Community"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (3, 19, "San José"),
+        (10, 9, "Dia de la Comunitat Valenciana"),
+    )
+    # Christian holiday
+    include_easter_monday = True

@@ -34,6 +34,7 @@ from .spain import (
     Andalusia, Aragon, Spain, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
     CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
 )
 from .sweden import Sweden
 from .ukraine import Ukraine
@@ -124,7 +125,7 @@ __all__ = (
     'Spain', 'Andalusia', 'Aragon', 'Catalonia', 'CastileAndLeon',
     'CastillaLaMancha', 'CanaryIslands', 'Extremadura', 'Galicia',
     'BalearicIslands', 'LaRioja', 'CommunityofMadrid', 'Murcia', 'Navarre',
-    'Asturias', 'BasqueCountry', 'Cantabria',
+    'Asturias', 'BasqueCountry', 'Cantabria', 'ValencianCommunity',
 
     # Switzerland
     'Switzerland',

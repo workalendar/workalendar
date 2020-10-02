@@ -4,7 +4,8 @@ from . import GenericCalendarTest
 from ..europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
-    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity
 )
 
 
@@ -321,3 +322,23 @@ class CantabriaTest(SpainTest):
         # Día de Cantabria o Día de La Montaña
         self.assertIn(date(2020, 9, 15), holidays)
         self.assertEqual(len(holidays), 12)
+
+
+class ValencianCommunityTest(SpainTest):
+    cal_class = ValencianCommunity
+
+    def test_region_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 3, 19), holidays)  # San José
+        self.assertIn(date(2019, 4, 22), holidays)  # Easter Monday
+        # Dia de la Comunitat Valenciana
+        self.assertIn(date(2019, 10, 9), holidays)
+        self.assertEqual(len(holidays), 13)
+
+    def test_region_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 3, 19), holidays)  # San José
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        # Dia de la Comunitat Valenciana
+        self.assertIn(date(2020, 10, 9), holidays)
+        self.assertEqual(len(holidays), 13)
