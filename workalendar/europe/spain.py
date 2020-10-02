@@ -147,3 +147,11 @@ class Murcia(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-NA')
+class Navarre(Spain):
+    "Navarre"
+    # Christian holidays
+    include_holy_thursday = True  # Also called Maundy thursday
+    include_easter_monday = True
