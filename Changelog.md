@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v12.0.0 (2020-10-02)
 
 - **Deprecation:** Dropped support for Python 3.5. As of this version, workalendar now requires Python 3.6+ (#330).
