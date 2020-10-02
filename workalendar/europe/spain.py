@@ -126,3 +126,13 @@ class LaRioja(Spain):
     )
     # Christian holiday
     include_holy_thursday = True  # Also called Maundy thursday
+
+
+@iso_register('ES-MD')
+class CommunityofMadrid(Spain):
+    "Community of Madrid"
+    FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
+        (5, 2, "Fiesta de la Comunidad de Madrid"),
+    )
+    # Christian holiday
+    include_holy_thursday = True  # Also called Maundy thursday
