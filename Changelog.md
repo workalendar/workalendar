@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-- **Deprecation:** Dropped support for Python 3.5 (#330).
+- **Deprecation:** Dropped support for Python 3.5. As of this version, workalendar now requires Python 3.6+ (#330).
 - Improve coverage of Singapore calendar (#546).
 
 ## v11.0.1 (2020-09-11)

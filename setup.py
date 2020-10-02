@@ -41,6 +41,7 @@ params = dict(
     author_email='bruno.bord@people-doc.com',
     url='https://github.com/peopledoc/workalendar',
     license='MIT License',
+    python_requires='>=3.6',
     include_package_data=True,
     install_requires=REQUIREMENTS,
     zip_safe=False,
