@@ -6,6 +6,7 @@
 - Added all ISO codes for Spain regions (#531).
 - Refactored Spain test modules (#531).
 - Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
+- Improve coverage of `workalendar/core.py` module (#546).
 
 ## v12.0.0 (2020-10-02)
 
