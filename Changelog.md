@@ -2,7 +2,10 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added Spain regions: Andalusia, Aragon, Castile and León, Castilla-La Mancha, Canary Islands, Extremadura, Galicia, Balearic Islands, La Rioja, Community of Madrid, Murcia, Navarre, Asturias, Basque Country, Cantabria, Valencian Community (#531).
+- Added all ISO codes for Spain regions (#531).
+- Refactored Spain test modules (#531).
+- Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
 
 ## v12.0.0 (2020-10-02)
 
