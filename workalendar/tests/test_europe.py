@@ -1026,6 +1026,20 @@ class Romania(GenericCalendarTest):
         self.assertIn(date(2019, 12, 25), holidays)  # Crăciunul Christmas
         self.assertIn(date(2019, 12, 26), holidays)  # Crăciunul Christmas
 
+    def test_liberation_day(self):
+        # Liberation day only happened between 1949 and 1990 (incl.)
+        liberation_day_1989 = date(1989, 8, 23)
+        holidays = self.cal.holidays_set(1989)
+        self.assertIn(liberation_day_1989, holidays)
+
+        liberation_day_1990 = date(1990, 8, 23)
+        holidays = self.cal.holidays_set(1990)
+        self.assertIn(liberation_day_1990, holidays)
+
+        liberation_day_1991 = date(1991, 8, 23)
+        holidays = self.cal.holidays_set(1991)
+        self.assertNotIn(liberation_day_1991, holidays)
+
 
 class Russia(GenericCalendarTest):
     cal_class = Russia
