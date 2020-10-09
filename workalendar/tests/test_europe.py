@@ -923,15 +923,62 @@ class NetherlandsTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 25), holidays)  # Christmas
         self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen´s Day
 
-    def test_year_2025(self):
-        """ In 2025 King's Day is on 26 April """
-        holidays = self.cal.holidays_set(2025)
-        self.assertIn(date(2025, 4, 26), holidays)   # King's Day
+    def test_king_day_2014(self):
+        # As of 2014, King's Day replaces Queen's Day.
+        # It's normally happening on April 27th, except when it's on SUN
+        queen_day = date(2014, 4, 30)
+        real_king_day = date(2014, 4, 27)
+        king_day = date(2014, 4, 26)
+        holidays = dict(self.cal.holidays(2014))
+        self.assertNotIn(queen_day, holidays)
+        self.assertNotIn(real_king_day, holidays)
+        self.assertIn(king_day, holidays)
+        self.assertEqual(holidays[king_day], "King's day")
 
-    def test_year_1990(self):
-        """ In 1990 Queen's day was on 30 April """
-        holidays = self.cal.holidays_set(1990)
-        self.assertIn(date(1990, 4, 30), holidays)   # Queen's Day
+    def test_king_day_2020(self):
+        # Regular King's day
+        king_day = date(2020, 4, 27)
+        holidays = dict(self.cal.holidays(2020))
+        self.assertIn(king_day, holidays)
+        self.assertEqual(holidays[king_day], "King's day")
+
+    def test_king_day_2025(self):
+        # In 2025, it's shifted to the 26th, because it happens on SUN
+        holidays = self.cal.holidays_set(2025)
+        real_king_day = date(2025, 4, 27)
+        king_day = date(2025, 4, 26)
+        self.assertNotIn(real_king_day, holidays)
+        self.assertIn(king_day, holidays)
+
+    def test_queen_day(self):
+        # In 1990 Queen's day was on 30 April. So it was until 2013.
+        queen_day = date(1990, 4, 30)
+        holidays = dict(self.cal.holidays(1990))
+        self.assertIn(queen_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[queen_day], "Queen's day")
+
+        # Check in 2010
+        queen_day = date(2010, 4, 30)
+        holidays = dict(self.cal.holidays(2010))
+        self.assertIn(queen_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[queen_day], "Queen's day")
+
+        # No more in 2014
+        queen_day = date(2014, 4, 30)
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(queen_day, holidays)
+
+    def test_queen_day_on_sunday(self):
+        # On April 30th, 2006 Queen's day happened on SUN.
+        queen_day = date(2006, 4, 29)
+        holidays = dict(self.cal.holidays(2006))
+        # The regular holiday
+        self.assertNotIn(date(2006, 4, 30), holidays)
+        # It's shifted to the previous day
+        self.assertIn(queen_day, holidays)
+        self.assertEqual(holidays[queen_day], "Queen's day")
 
     def test_new_years_eve(self):
         # For some reason, the new year's eve was added to the list of fixed
