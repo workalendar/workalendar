@@ -7,6 +7,7 @@
 - Refactored Spain test modules (#531).
 - Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
 - Improve coverage of `workalendar/core.py` module (#546).
+- Improve coverage for the Netherlands calendar - Queen's Day (#546).
 
 ## v12.0.0 (2020-10-02)
 
