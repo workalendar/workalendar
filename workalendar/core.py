@@ -628,8 +628,6 @@ class CoreCalendar:
 
         days = 0
         temp_day = day
-        if type(temp_day) is datetime and not keep_datetime:
-            temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)
         while days < delta:
