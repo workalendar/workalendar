@@ -9,6 +9,7 @@
 - Improve coverage of `workalendar/core.py` module (#546).
 - Improve coverage for the Netherlands calendar - Queen's Day (#546).
 - Improve coverage for the Romania calendar - Liberation day (#546).
+- Improve coverage for the New Zealand calendar (#546).
 
 ## v12.0.0 (2020-10-02)
 
