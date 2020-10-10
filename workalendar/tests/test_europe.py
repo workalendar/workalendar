@@ -942,6 +942,29 @@ class NetherlandsTest(GenericCalendarTest):
         self.assertNotIn(date(2016, 12, 31), holidays)
 
 
+class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="east")
+
+    def setUp(self):
+        with self.assertRaises(ValueError) as cm:
+            super().setUp()
+        assert "Set region" in str(cm.exception)
+
+    def test_weekend_days(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_january_1st(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_ical_export(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+
 class NetherlandsWithSchoolHolidaysTest(GenericCalendarTest):
 
     cal_class = NetherlandsWithSchoolHolidays
