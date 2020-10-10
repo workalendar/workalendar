@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-from typing import List, Tuple
 from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
@@ -103,7 +102,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
     https://www.rijksoverheid.nl/onderwerpen/schoolvakanties/overzicht-schoolvakanties-per-schooljaar
     """
 
-    def __init__(self, region: str):
+    def __init__(self, region):
         """ Set up a calendar incl. school holidays for a specific region
 
         :param region: either "north", "middle" or "south"
@@ -113,7 +112,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         self.region = region
         super().__init__()
 
-    def get_fall_holidays(self, year: int) -> List[Tuple[date, str]]:
+    def get_fall_holidays(self, year):
         n_days = 9
         week = 43
 
@@ -144,8 +143,8 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         ]
 
     def get_christmas_holidays(
-            self, year: int, in_december: bool = True, in_january: bool = True
-    ) -> List[Tuple[date, str]]:
+            self, year, in_december=True, in_january=True
+    ):
         """ Christmas holidays run partially in December and partially in January
         (spillover from previous year).
         """
@@ -202,7 +201,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             ) for i in range((end - date(year, 1, 1)).days + 1)
         ]
 
-    def get_spring_holidays(self, year: int) -> List[Tuple[date, str]]:
+    def get_spring_holidays(self, year):
         n_days = 9
         week = 9
 
@@ -234,7 +233,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             ) for i in range(n_days)
         ]
 
-    def get_may_holidays(self, year: int) -> List[Tuple[date, str]]:
+    def get_may_holidays(self, year):
         n_days = 9
         week = 18
 
@@ -257,7 +256,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             (start + timedelta(days=i), "May holiday") for i in range(n_days)
         ]
 
-    def get_summer_holidays(self, year: int) -> List[Tuple[date, str]]:
+    def get_summer_holidays(self, year):
         n_days = 44
         week = 29
 
