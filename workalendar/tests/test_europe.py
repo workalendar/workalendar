@@ -1021,36 +1021,38 @@ class NetherlandsWithSchoolHolidaysTest(GenericCalendarTest):
             dict(self.cal.holidays(2010))
 
     def test_year_2020(self):
-        holidays = dict(self.cal.holidays(2020))
-        self.assertEqual(
-            holidays[date(2020, 1, 5)], "Christmas holiday"
+        holidays = {}
+        for h in self.cal.holidays(2020):
+            holidays.setdefault(h[0], []).append(h[1])
+        self.assertIn(
+            "Christmas holiday", holidays[date(2020, 1, 5)]
         )
-        self.assertEqual(
-            holidays[date(2020, 2, 22)], "Spring holiday"
+        self.assertIn(
+            "Spring holiday", holidays[date(2020, 2, 22)]
         )
-        self.assertEqual(
-            holidays[date(2020, 3, 1)], "Spring holiday"
+        self.assertIn(
+            "Spring holiday", holidays[date(2020, 3, 1)]
         )
-        self.assertEqual(
-            holidays[date(2020, 4, 25)], "May holiday"
+        self.assertIn(
+            "May holiday", holidays[date(2020, 4, 25)]
         )
-        self.assertEqual(
-            holidays[date(2020, 5, 3)], "May holiday"
+        self.assertIn(
+            "May holiday", holidays[date(2020, 5, 3)]
         )
-        self.assertEqual(
-            holidays[date(2020, 7, 11)], "Summer holiday"
+        self.assertIn(
+            "Summer holiday", holidays[date(2020, 7, 11)]
         )
-        self.assertEqual(
-            holidays[date(2020, 8, 23)], "Summer holiday"
+        self.assertIn(
+            "Summer holiday", holidays[date(2020, 8, 23)]
         )
-        self.assertEqual(
-            holidays[date(2020, 10, 17)], "Fall holiday"
+        self.assertIn(
+            "Fall holiday", holidays[date(2020, 10, 17)]
         )
-        self.assertEqual(
-            holidays[date(2020, 10, 25)], "Fall holiday"
+        self.assertIn(
+            "Fall holiday", holidays[date(2020, 10, 25)]
         )
-        self.assertEqual(
-            holidays[date(2020, 12, 19)], "Christmas holiday"
+        self.assertIn(
+            "Christmas holiday", holidays[date(2020, 12, 19)]
         )
 
     def test_year_2021(self):
