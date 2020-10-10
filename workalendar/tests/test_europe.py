@@ -1016,6 +1016,10 @@ class NetherlandsWithSchoolHolidaysTest(GenericCalendarTest):
     cal_class = NetherlandsWithSchoolHolidays
     kwargs = dict(region="south")
 
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
     def test_year_2020(self):
         holidays = dict(self.cal.holidays(2020))
         self.assertEqual(
