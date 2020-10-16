@@ -269,7 +269,7 @@ class PrinceEdwardIsland(LateFamilyDayMixin, RemembranceDayShiftMixin, Canada):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days.append((self.get_family_day(year, "Islander Day")))
+        days.append(self.get_family_day(year, "Islander Day"))
         days.extend(self.get_remembrance_day(year))
         return days
 

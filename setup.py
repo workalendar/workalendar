@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import io
 from os.path import join, dirname, abspath
 from setuptools import setup, find_packages
 
@@ -12,7 +10,7 @@ def read_relative_file(filename):
     Its path is supposed relative to this module.
     """
     path = join(dirname(abspath(__file__)), filename)
-    with io.open(path, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         return f.read()
 
 
@@ -28,7 +26,7 @@ REQUIREMENTS = [
     'pyluach',
     'setuptools>=1.0',
 ]
-version = '11.1.0.dev1'
+version = '12.2.0.dev0'
 __VERSION__ = version
 
 params = dict(
@@ -41,6 +39,7 @@ params = dict(
     author_email='bruno.bord@people-doc.com',
     url='https://github.com/peopledoc/workalendar',
     license='MIT License',
+    python_requires='>=3.6',
     include_package_data=True,
     install_requires=REQUIREMENTS,
     zip_safe=False,
@@ -50,7 +49,6 @@ params = dict(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',

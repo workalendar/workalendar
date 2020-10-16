@@ -4,7 +4,6 @@ cache: pip
 install: pip install tox tox-travis
 script: tox -v
 python:
-- 3.5
 - 3.6
 - 3.7
 - 3.8
@@ -13,3 +12,5 @@ matrix:
   include:
   - python: 3.8
     env: TOXENV=flake8
+  - python: 3.8
+    env: TOXENV=pyupgrade

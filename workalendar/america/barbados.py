@@ -50,7 +50,8 @@ class Barbados(WesternCalendar):
         days_to_shift = copy(days)
         for day, label in days_to_shift:
             if day.weekday() == SUN:
-                days.append(
-                    (day + timedelta(days=1), "%s %s" % (label, "(shifted)"))
-                )
+                days.append((
+                    day + timedelta(days=1),
+                    "{} {}".format(label, "(shifted)")
+                ))
         return days

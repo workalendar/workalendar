@@ -51,33 +51,33 @@ class NewZealand(WesternCalendar):
 
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
-        if christmas.weekday() is SAT:
+        if christmas.weekday() == SAT:
             shift = self.find_following_working_day(christmas)
             days.append((shift, "Christmas Shift"))
-        elif christmas.weekday() is SUN:
+        elif christmas.weekday() == SUN:
             shift = self.find_following_working_day(christmas)
             days.append((shift + timedelta(days=1), "Christmas Shift"))
 
-        if boxing_day.weekday() is SAT:
+        if boxing_day.weekday() == SAT:
             shift = self.find_following_working_day(boxing_day)
             days.append((shift, "Boxing Day Shift"))
-        elif boxing_day.weekday() is SUN:
+        elif boxing_day.weekday() == SUN:
             shift = self.find_following_working_day(boxing_day)
             days.append((shift + timedelta(days=1), "Boxing Day Shift"))
 
         new_year = date(year, 1, 1)
         day_after_new_year = date(year, 1, 2)
-        if new_year.weekday() is SAT:
+        if new_year.weekday() == SAT:
             shift = self.find_following_working_day(new_year)
             days.append((shift, "New Year Shift"))
-        elif new_year.weekday() is SUN:
+        elif new_year.weekday() == SUN:
             shift = self.find_following_working_day(new_year)
             days.append((shift + timedelta(days=1), "New Year Shift"))
 
-        if day_after_new_year.weekday() is SAT:
+        if day_after_new_year.weekday() == SAT:
             shift = self.find_following_working_day(day_after_new_year)
             days.append((shift, "Day after New Year's Day Shift"))
-        elif day_after_new_year.weekday() is SUN:
+        elif day_after_new_year.weekday() == SUN:
             shift = self.find_following_working_day(day_after_new_year)
             days.append((shift + timedelta(days=1),
                          "Day after New Year's Day Shift"))

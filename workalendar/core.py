@@ -148,7 +148,7 @@ class ChristianMixin:
         """
         christmas = date(year, 12, 25)
         boxing_day = date(year, 12, 26)
-        boxing_day_label = "{} Shift".format(self.boxing_day_label)
+        boxing_day_label = f"{self.boxing_day_label} Shift"
         results = []
         if christmas.weekday() in self.get_weekend_days():
             shift = self.find_following_working_day(christmas)
@@ -532,7 +532,7 @@ class CoreCalendar:
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"
-        return set([day for day, label in self.holidays(year)])
+        return {day for day, label in self.holidays(year)}
 
     def get_weekend_days(self):
         """Return a list (or a tuple) of weekdays that are *not* working days.
@@ -628,8 +628,6 @@ class CoreCalendar:
 
         days = 0
         temp_day = day
-        if type(temp_day) is datetime and not keep_datetime:
-            temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)
         while days < delta:
@@ -887,7 +885,7 @@ class CoreCalendar:
         ics = [
             'BEGIN:VCALENDAR',
             'VERSION:2.0',  # current RFC5545 version
-            'PRODID:-//workalendar//ical {}//EN'.format(__version__)
+            f'PRODID:-//workalendar//ical {__version__}//EN'
         ]
         common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
@@ -899,7 +897,7 @@ class CoreCalendar:
                 'SUMMARY:%s' % name,
                 'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
                 dtstamp,
-                'UID:%s%s@peopledoc.github.io/workalendar' % (date_, name),
+                f'UID:{date_}{name}@peopledoc.github.io/workalendar',
                 'END:VEVENT',
             ])
 

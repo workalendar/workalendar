@@ -2,6 +2,29 @@
 
 ## master (unreleased)
 
+- Add optional school holidays to Netherlands calendar, by @Flix6x (#556).
+
+## v12.1.0 (2020-10-16)
+
+### New calendars
+
+- Added Spain regions: Andalusia, Aragon, Castile and León, Castilla-La Mancha, Canary Islands, Extremadura, Galicia, Balearic Islands, La Rioja, Community of Madrid, Murcia, Navarre, Asturias, Basque Country, Cantabria, Valencian Community (#531).
+- Added all ISO codes for Spain regions - thx @ainarela for your help on this (#531).
+
+### Other changes
+
+- Refactored Spain test modules (#531).
+- Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
+- Improve coverage of `workalendar/core.py` module (#546).
+- Improve coverage for the Netherlands calendar - Queen's Day (#546).
+- Improve coverage for the Romania calendar - Liberation day (#546).
+- Improve coverage for the New Zealand calendar (#546).
+- Added a tox entrypoint to ensure code is Python 3.6+, using ``pyupgrade`` (#566).
+- Added the pyupgrade tox job to the test suite, amended contributing documentation (#566).
+
+## v12.0.0 (2020-10-02)
+
+- **Deprecation:** Dropped support for Python 3.5. As of this version, workalendar now requires Python 3.6+ (#330).
 - Improve coverage of Singapore calendar (#546).
 - Add optional school holidays to Netherlands calendar.
 - Add optional carnival to Netherlands calendar.
