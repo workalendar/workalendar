@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Add optional school holidays to Netherlands calendar, by @Flix6x (#556).
+- Add optional carnival to Netherlands calendar.
 
 ## v12.1.0 (2020-10-16)
 
@@ -26,8 +27,6 @@
 
 - **Deprecation:** Dropped support for Python 3.5. As of this version, workalendar now requires Python 3.6+ (#330).
 - Improve coverage of Singapore calendar (#546).
-- Add optional school holidays to Netherlands calendar.
-- Add optional carnival to Netherlands calendar.
 
 ## v11.0.1 (2020-09-11)
 
