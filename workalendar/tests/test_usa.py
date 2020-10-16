@@ -473,7 +473,7 @@ class CaliforniaTest(NoColumbus, UnitedStatesTest):
         days = [item[0] for item in holidays]
         assert days
         for day in days:
-            assert days.count(day) == 1, "{} is duplicated".format(day)
+            assert days.count(day) == 1, f"{day} is duplicated"
 
 
 class CaliforniaEducationTest(CaliforniaTest):

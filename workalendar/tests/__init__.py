@@ -73,7 +73,7 @@ class GenericCalendarTest(CoreCalendarTest):
             assert ics_file.readline() == 'VERSION:2.0\n'
             prod_id_line = ics_file.readline()
             assert prod_id_line == (
-                'PRODID:-//workalendar//ical {}//EN\n'.format(__version__))
+                f'PRODID:-//workalendar//ical {__version__}//EN\n')
             # check new year
             assert ics_file.readline() == 'BEGIN:VEVENT\n'
             first_event_name = holidays[0][1]
