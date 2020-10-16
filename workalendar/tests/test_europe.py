@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from collections import Counter
 
 from . import GenericCalendarTest
@@ -28,6 +28,7 @@ from ..europe import (
     Malta,
     Monaco,
     Netherlands,
+    NetherlandsWithSchoolHolidays,
     Norway,
     Poland,
     Portugal,
@@ -909,7 +910,7 @@ class NetherlandsTest(GenericCalendarTest):
 
     cal_class = Netherlands
 
-    def test_year_2016(self):
+    def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)   # New Year
         self.assertIn(date(2015, 4, 3), holidays)   # Good friday
@@ -985,6 +986,308 @@ class NetherlandsTest(GenericCalendarTest):
         # holidays. It appears it's not a holiday
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 31), holidays)
+
+
+class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="east")
+
+    def setUp(self):
+        with self.assertRaises(ValueError) as cm:
+            super().setUp()
+        assert "Set region" in str(cm.exception)
+
+    def test_weekend_days(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_january_1st(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_ical_export(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+
+class NetherlandsNorthWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="north")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 15)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 4)
+        fall_holiday_start = date(2020, 10, 10)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 20)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 10)
+        fall_holiday_start = date(2021, 10, 16)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
+
+
+class NetherlandsMiddleWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="middle")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 22)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 18)
+        fall_holiday_start = date(2020, 10, 17)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 20)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 17)
+        fall_holiday_start = date(2021, 10, 16)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
+
+
+class NetherlandsSouthWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="south")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 22)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 11)
+        fall_holiday_start = date(2020, 10, 17)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 13)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 24)
+        fall_holiday_start = date(2021, 10, 23)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
 
 
 class Romania(GenericCalendarTest):
