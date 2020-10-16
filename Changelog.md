@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## master (unreleased)
+## v12.1.0 (2020-10-16)
+
+### New calendars
 
 - Added Spain regions: Andalusia, Aragon, Castile and León, Castilla-La Mancha, Canary Islands, Extremadura, Galicia, Balearic Islands, La Rioja, Community of Madrid, Murcia, Navarre, Asturias, Basque Country, Cantabria, Valencian Community (#531).
-- Added all ISO codes for Spain regions (#531).
+- Added all ISO codes for Spain regions - thx @ainarela for your help on this (#531).
+
+### Other changes
+
 - Refactored Spain test modules (#531).
 - Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
 - Improve coverage of `workalendar/core.py` module (#546).

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import io
 from os.path import join, dirname, abspath
 from setuptools import setup, find_packages
 
@@ -27,7 +26,7 @@ REQUIREMENTS = [
     'pyluach',
     'setuptools>=1.0',
 ]
-version = '12.1.0.dev0'
+version = '12.1.0'
 __VERSION__ = version
 
 params = dict(
