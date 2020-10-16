@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import io
 from os.path import join, dirname, abspath
 from setuptools import setup, find_packages
@@ -12,7 +11,7 @@ def read_relative_file(filename):
     Its path is supposed relative to this module.
     """
     path = join(dirname(abspath(__file__)), filename)
-    with io.open(path, encoding='utf-8') as f:
+    with open(path, encoding='utf-8') as f:
         return f.read()
 
 
