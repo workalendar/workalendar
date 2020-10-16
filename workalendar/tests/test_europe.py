@@ -318,7 +318,7 @@ class CroatiaTest(GenericCalendarTest):
             holidays[date(2020, 5, 1)], "International Workers' Day")
 
 
-class Cyprus(GenericCalendarTest):
+class CyprusTest(GenericCalendarTest):
     cal_class = Cyprus
 
     def test_year_2017(self):
@@ -1341,7 +1341,7 @@ class NetherlandsWithSchoolHolidaysAndCarnivalTest(GenericCalendarTest):
             )
 
 
-class Romania(GenericCalendarTest):
+class RomaniaTest(GenericCalendarTest):
     cal_class = Romania
 
     def test_year_2017(self):
@@ -1395,7 +1395,7 @@ class Romania(GenericCalendarTest):
         self.assertNotIn(liberation_day_1991, holidays)
 
 
-class Russia(GenericCalendarTest):
+class RussiaTest(GenericCalendarTest):
     cal_class = Russia
 
     def test_year_2018(self):
