@@ -11,6 +11,7 @@
 - Improve coverage for the Romania calendar - Liberation day (#546).
 - Improve coverage for the New Zealand calendar (#546).
 - Added a tox entrypoint to ensure code is Python 3.6+, using ``pyupgrade`` (#566).
+- Added the pyupgrade tox job to the test suite, amended contributing documentation (#566).
 
 ## v12.0.0 (2020-10-02)
 
