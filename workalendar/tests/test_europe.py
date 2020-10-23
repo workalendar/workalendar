@@ -1326,21 +1326,19 @@ class NetherlandsWithSchoolHolidaysAndCarnivalTest(GenericCalendarTest):
 
     def test_year_2020(self):
         holidays = dict(self.cal.holidays(2020))
-        self.assertEqual(
-            holidays[date(2020, 2, 22)], "Carnival holiday"
-        )
-        self.assertEqual(
-            holidays[date(2020, 3, 1)], "Carnival holiday"
-        )
+        for d in range(9):
+            self.assertIn(
+                "Carnival holiday",
+                holidays[date(2020, 2, 22) + timedelta(days=d)],
+            )
 
     def test_year_2021(self):
         holidays = dict(self.cal.holidays(2021))
-        self.assertEqual(
-            holidays[date(2021, 2, 13)], "Carnival holiday"
-        )
-        self.assertEqual(
-            holidays[date(2021, 2, 21)], "Carnival holiday"
-        )
+        for d in range(9):
+            self.assertIn(
+                "Carnival holiday",
+                holidays[date(2021, 2, 13) + timedelta(days=d)],
+            )
 
 
 class RomaniaTest(GenericCalendarTest):
