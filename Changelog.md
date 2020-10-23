@@ -4,6 +4,7 @@
 
 - Add optional school holidays to Netherlands calendar, by @Flix6x (#556).
 - Add optional carnival to Netherlands calendar.
+- Moving the `contributing.md` file to the `docs/` directory (#573).
 
 ## v12.1.0 (2020-10-16)
 

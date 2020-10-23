@@ -12,7 +12,7 @@ Status
 
 This library is ready for production, although we may warn eventual users: some calendars may not be up-to-date, and this library doesn't cover all the existing countries on earth (yet).
 
-If you spot any bug or wish to add a calendar, please refer to the `Contributing doc <contributing.md>`_.
+If you spot any bug or wish to add a calendar, please refer to the `Contributing doc <docs/contributing.md>`_.
 
 Usage sample
 ============
@@ -191,7 +191,7 @@ the official data provided by the adequate authorities.
 Contributing
 ============
 
-Please read our `contributing.md <https://github.com/peopledoc/workalendar/blob/master/contributing.md>`_
+Please read our `contributing.md <https://github.com/peopledoc/workalendar/blob/master/docs/contributing.md>`_
 document to discover how you can contribute to ``workalendar``. Pull-requests
 are very welcome.
 
