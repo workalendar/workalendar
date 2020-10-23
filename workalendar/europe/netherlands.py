@@ -19,6 +19,10 @@ class Netherlands(WesternCalendar):
         (5, 5, "Liberation Day"),
     )
 
+    def __init__(self, include_carnival=False):
+        self.include_carnival = include_carnival
+        super().__init__()
+
     def get_king_queen_day(self, year):
         """27 April unless this is a Sunday in which case it is the 26th
 
@@ -36,9 +40,22 @@ class Netherlands(WesternCalendar):
                 return (queen_day, "Queen's day")
             return (queen_day - timedelta(days=1), "Queen's day")
 
+    def get_carnival_days(self, year):
+        """Carnival starts 7 weeks before Easter Sunday and lasts 3 days."""
+        n_days = 3
+        start = self.get_easter_sunday(year) - timedelta(weeks=7)
+
+        return [
+            (
+                start + timedelta(days=i), "Carnival"
+            ) for i in range(n_days)
+        ]
+
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days.append(self.get_king_queen_day(year))
+        if self.include_carnival:
+            days.extend(self.get_carnival_days(year))
         return days
 
 
@@ -102,7 +119,12 @@ class NetherlandsWithSchoolHolidays(Netherlands):
     https://www.rijksoverheid.nl/onderwerpen/schoolvakanties/overzicht-schoolvakanties-per-schooljaar
     """
 
-    def __init__(self, region):
+    def __init__(
+            self,
+            region,
+            carnival_instead_of_spring=False,
+            **kwargs,
+    ):
         """ Set up a calendar incl. school holidays for a specific region
 
         :param region: either "north", "middle" or "south"
@@ -110,7 +132,10 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         if region not in ("north", "middle", "south"):
             raise ValueError("Set region to 'north', 'middle' or 'south'.")
         self.region = region
-        super().__init__()
+        self.carnival_instead_of_spring = carnival_instead_of_spring
+        if carnival_instead_of_spring and "include_carnival" not in kwargs:
+            kwargs["include_carnival"] = True
+        super().__init__(**kwargs)
 
     def get_fall_holidays(self, year):
         n_days = 9
@@ -233,6 +258,19 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             ) for i in range(n_days)
         ]
 
+    def get_carnival_holidays(self, year):
+        """Carnival holiday starts 7 weeks and 1 day before Easter Sunday
+        and lasts 9 days.
+        """
+        n_days = 9
+        start = self.get_easter_sunday(year) - timedelta(weeks=7, days=1)
+
+        return [
+            (
+                start + timedelta(days=i), "Carnival holiday"
+            ) for i in range(n_days)
+        ]
+
     def get_may_holidays(self, year):
         n_days = 9
         week = 18
@@ -295,7 +333,10 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         days = super().get_variable_days(year)
         days.extend(self.get_fall_holidays(year))
         days.extend(self.get_christmas_holidays(year))
-        days.extend(self.get_spring_holidays(year))
+        if self.carnival_instead_of_spring:
+            days.extend(self.get_carnival_holidays(year))
+        else:
+            days.extend(self.get_spring_holidays(year))
         days.extend(self.get_may_holidays(year))
         days.extend(self.get_summer_holidays(year))
         return days
