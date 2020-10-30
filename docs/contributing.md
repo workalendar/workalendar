@@ -1,5 +1,7 @@
 # Contribute to Workalendar
 
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)
+
 ## Use it (and test it)
 
 If you are using `workalendar`, you are already contributing to it. As long as you are able to check its result, compare the designated working days and holidays to the reality, and make sure these are right, you're helping.
@@ -214,3 +216,5 @@ We're planning to build a complete documentation for the other cases (special ho
 There are dozens of calendars all over the world. We'd appreciate you to contribute to the core of the library by adding some new Mixins or Calendars.
 
 Bear in mind that the code you'd provide **must** be tested using unittests before you submit your pull-request.
+
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)

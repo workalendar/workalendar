@@ -18,3 +18,4 @@ See [the repository README](https://github.com/peopledoc/workalendar#available-c
 * [Advanced usage](advanced.md)
 * [ISO Registry](iso-registry.md)
 * [iCal Export](ical.md)
+* [How to contribute](contributing.md)
