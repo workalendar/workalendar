@@ -1,6 +1,6 @@
 # The ISO registry
 
-[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [Class options](class-options.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
 
 As of version 3.0 (August/September 2018), we have introduced a global calendar registry for calendars related to a country or a region that belongs to the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) or the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) for sub-regions (such as USA states, Australian territories or Canadian provinces and such).
 
@@ -150,4 +150,4 @@ As an example, the United States of America, or Australia and others are divided
 
 *Note*: this function will return an empty `dict` if the code is unknown.
 
-[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [Class options](class-options.md) / [iCal Export](ical.md) / [Contributing](contributing.md)

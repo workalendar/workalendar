@@ -1,6 +1,6 @@
 # Contribute to Workalendar
 
-[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [Class options](class-options.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)
 
 ## Use it (and test it)
 
@@ -217,4 +217,4 @@ There are dozens of calendars all over the world. We'd appreciate you to contrib
 
 Bear in mind that the code you'd provide **must** be tested using unittests before you submit your pull-request.
 
-[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)
+[Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [Class options](class-options.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md)

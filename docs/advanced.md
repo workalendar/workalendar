@@ -1,6 +1,6 @@
 # Advanced usage
 
-[Home](index.md) / [Basic usage](basic.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
+[Home](index.md) / [Basic usage](basic.md) / [Class options](class-options.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
 
 The following examples will better suit people willing to contribute to Workalendar or building their custom calendars. They use primitives and methods attached to the core Calendar class to enable computation of complex holidays, that is to say dates that are not fixed, not related to religious calendars (Christmas always happens on December 25th, right?).
 
@@ -82,4 +82,4 @@ Colombia, as an example, states that the Epiphany Day is set to the "First Monda
 datetime.date(2018, 1, 8)
 ```
 
-[Home](index.md) / [Basic usage](basic.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
+[Home](index.md) / [Basic usage](basic.md) / [Class options](class-options.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
