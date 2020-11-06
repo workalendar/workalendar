@@ -10,6 +10,7 @@
 - Added documentation about class options (#572).
 - Converted `README.rst` file into `README.md` (#575).
 - Switched from Travis CI to Github Actions for CI jobs, thanks to @mgu.
+- Added support of Python 3.9 (#557).
 
 ## v12.1.0 (2020-10-16)
 
