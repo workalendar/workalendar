@@ -204,7 +204,7 @@ There you are. Commit with a nice commit message, test, make sure it works for t
 Do not forget to:
 
 1. put the appropriate doctring in the Calendar class.
-2. add your calendar in the `README.rst` file, included in the appropriate continent.
+2. add your calendar in the `README.md` file, included in the appropriate continent.
 3. add your calendar to the `Changelog.md` file.
 
 **Note** *Please, do NOT change the version number in the changelog or in the ``setup.py`` file. It's the project maintainers' duty to decide when to release and how to increment the version number, according to the impact of the changes.*

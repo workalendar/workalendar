@@ -7,7 +7,7 @@ For information, read and make sure you're okay with the [Contributing guideline
 - [ ] Tests with a significant number of years to be tested for your calendar.
 - [ ] Docstrings for the Calendar class and specific methods.
 - [ ] Use the ``workalendar.registry_tools.iso_register`` decorator to register your new calendar using ISO codes (optional).
-- [ ] Calendar country / label added to the README.rst file.
+- [ ] Calendar country / label added to the README.md file.
 - [ ] Changelog amended with a mention like: "Added ``<country>`` by ``@pseudo`` (#)". **Note** *Please do NOT change the version number here. It's the project maintainers' duty.*
 
 <!-- if your contribution is a fix -->

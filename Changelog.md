@@ -8,6 +8,7 @@
 - Changed from `setup.py` to a nice `setup.cfg` file, thanks @ewjoachim (#576).
 - Switched from bionic to focal on Travis CI.
 - Added documentation about class options (#572).
+- Converted `README.rst` file into `README.md` (#575).
 
 ## v12.1.0 (2020-10-16)
 
