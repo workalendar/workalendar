@@ -50,9 +50,9 @@ If you're using wheels, you should be fine without having to install extra syste
 
 ## Tests
 
-Travis status:
+CI status:
 
-[![travis](https://travis-ci.org/peopledoc/workalendar.svg?branch=master)](https://travis-ci.org/peopledoc/workalendar)
+[![Github action status](https://github.com/peopledoc/workalendar/workflows/CI/badge.svg)](https://github.com/peopledoc/workalendar/actions?query=workflow%3ACI)
 
 To run test, just install tox with `pip install tox` and run:
 
