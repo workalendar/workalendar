@@ -18,13 +18,13 @@ For information, read and make sure you're okay with the [Contributing guideline
 <!-- Release management
 
 - Commit for the tag:
-    - [ ] Edit version in setup.py
+    - [ ] Edit version in setup.cfg
     - [ ] Add version in Changelog.md ; trim things
     - [ ] Push & wait for the tests to be green
     - [ ] tag me.
     - [ ] build sdist + wheel packages (``make package``)
 - Back to dev commit:
-    - [ ] Edit version in setup.py
+    - [ ] Edit version in setup.cfg
     - [ ] Add the "master / nothing to see here" in Changelog.md
     - [ ] Push & wait for the tests to be green
 - [ ] Merge --ff

@@ -6,6 +6,7 @@
 - Add optional carnival to Netherlands calendar.
 - Moving the `contributing.md` file to the `docs/` directory (#573).
 - Changed from `setup.py` to a nice `setup.cfg` file, thanks @ewjoachim (#576).
+- Fixed Pull Request template to reference `setup.cfg` (#587).
 - Switched from bionic to focal on Travis CI.
 - Added documentation about class options (#572).
 - Converted `README.rst` file into `README.md` (#575).
