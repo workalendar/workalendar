@@ -1410,6 +1410,33 @@ class RussiaTest(GenericCalendarTest):
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
         self.assertIn(date(2018, 11, 4), holidays)  # Independence Day
 
+    def test_year_2020_shift(self):
+        holidays = dict(self.cal.holidays(2020))
+        # Defender of the Fatherland Day
+        self.assertIn(date(2020, 2, 23), holidays)
+        # SUN => Shift to MON
+        self.assertIn(date(2020, 2, 24), holidays)
+        self.assertEqual(
+            holidays[date(2020, 2, 24)],
+            "Defendence of the Fatherland shift"
+        )
+        # International Women's Day
+        self.assertIn(date(2020, 3, 8), holidays)
+        # SUN => Shift to MON
+        self.assertIn(date(2020, 3, 9), holidays)
+        self.assertEqual(
+            holidays[date(2020, 3, 9)],
+            "International Women's Day shift"
+        )
+        # Victory Day
+        self.assertIn(date(2020, 5, 9), holidays)
+        # SAT => Shift to MON
+        self.assertIn(date(2020, 5, 11), holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 11)],
+            "Victory Day shift"
+        )
+
 
 class UkraineTest(GenericCalendarTest):
     cal_class = Ukraine
