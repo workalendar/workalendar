@@ -3,7 +3,7 @@
 [Home](index.md) / [Basic usage](basic.md) / [Advanced usage](advanced.md) / [ISO Registry](iso-registry.md) / [iCal Export](ical.md) / [Contributing](contributing.md)
 
 
-As of `v<VERSION NUMBER>` you can define *options* for your calendar.
+As of `v13.0.0` you can define *options* for your calendar.
 
 ## Options as "flags"
 

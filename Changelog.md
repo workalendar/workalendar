@@ -1,18 +1,27 @@
 # CHANGELOG
 
-## master (unreleased)
+## v13.0.0 (2020-11-13)
+
+### Calendars
 
 - Add optional school holidays to Netherlands calendar, by @Flix6x (#556).
 - Add optional carnival to Netherlands calendar.
+
+### Documentation
+
 - Moving the `contributing.md` file to the `docs/` directory (#573).
 - Changed from `setup.py` to a nice `setup.cfg` file, thanks @ewjoachim (#576).
-- Fixed Pull Request template to reference `setup.cfg` (#587).
-- Use the `setup.cfg` file in the key to cache in `ci.yml` file (#587).
-- Switched from bionic to focal on Travis CI.
 - Added documentation about class options (#572).
 - Converted `README.rst` file into `README.md` (#575).
+- Fixed Pull Request template to reference `setup.cfg` (#587).
+
+### Other changes
+
 - Switched from Travis CI to Github Actions for CI jobs, thanks to @mgu.
 - Added support of Python 3.9 (#557).
+- Changed from `setup.py` to a nice `setup.cfg` file, thanks @ewjoachim (#576).
+- Use the `setup.cfg` file in the key to cache in `ci.yml` file (#587).
+- [OBSOLETE] Switched from bionic to focal on Travis CI (we've switched to GH actions after that).
 
 ## v12.1.0 (2020-10-16)
 
