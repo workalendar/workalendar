@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fix Russia calendar: non-working days are shifted to the next MON when they happen on the week-end (#589).
 
 ## v13.0.0 (2020-11-13)
 
