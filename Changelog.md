@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v13.0.0 (2020-11-13)
 
 ### Calendars
