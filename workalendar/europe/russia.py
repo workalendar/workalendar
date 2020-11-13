@@ -1,3 +1,5 @@
+from datetime import date
+
 from ..core import OrthodoxCalendar, MON
 from ..registry_tools import iso_register
 
@@ -5,8 +7,6 @@ from ..registry_tools import iso_register
 @iso_register('RU')
 class Russia(OrthodoxCalendar):
     'Russia'
-    shift_new_years_day = True
-
     # Civil holidays
     include_labour_day = True
 
@@ -20,10 +20,26 @@ class Russia(OrthodoxCalendar):
         (11, 4, "Day of Unity"),
     )
 
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+
+        if year >= 2005:
+            days.extend([
+                (date(year, 1, 3), "Third Day after New Year"),
+                (date(year, 1, 4), "Fourth Day after New Year"),
+                (date(year, 1, 5), "Fifth Day after New Year"),
+                (date(year, 1, 6), "Sixth Day after New Year"),
+                (date(year, 1, 8), "Eighth Day after New Year"),
+            ])
+
+        return days
+
     def get_calendar_holidays(self, year):
         holidays = super().get_calendar_holidays(year)
         shifts = []
         for day, label in holidays:
+            if day.month == 1 and day.day in range(1, 9):
+                continue
             if day.weekday() in self.get_weekend_days():
                 shifts.append((
                     self.get_first_weekday_after(day, MON),

@@ -1437,6 +1437,29 @@ class RussiaTest(GenericCalendarTest):
             "Victory Day shift"
         )
 
+    def test_new_year_holidays_2004(self):
+        # At that time, only Jan 1st/2nd were holidays.
+        holidays = self.cal.holidays_set(2004)
+        self.assertIn(date(2004, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2004, 1, 2), holidays)  # Day after New Year
+        self.assertNotIn(date(2004, 1, 3), holidays)  # Shift of Jan 2nd
+        self.assertNotIn(date(2004, 1, 4), holidays)  # Not until 2005
+        self.assertNotIn(date(2004, 1, 5), holidays)  # Not until 2005
+        self.assertNotIn(date(2004, 1, 6), holidays)  # Not until 2005
+        self.assertIn(date(2004, 1, 7), holidays)  # XMas
+        self.assertNotIn(date(2004, 1, 8), holidays)  # Not until 2005
+
+    def test_new_year_holidays_2005(self):
+        holidays = self.cal.holidays_set(2005)
+        self.assertIn(date(2005, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2005, 1, 2), holidays)  # Day after New Year
+        self.assertIn(date(2005, 1, 3), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 4), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 5), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 6), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 7), holidays)  # XMas
+        self.assertIn(date(2005, 1, 8), holidays)  # Part of the holiday week
+
 
 class UkraineTest(GenericCalendarTest):
     cal_class = Ukraine

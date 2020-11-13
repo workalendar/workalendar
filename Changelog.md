@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Fix Russia calendar: non-working days are shifted to the next MON when they happen on the week-end (#589).
+- Fix Russia New year holidays. It has become a week off since 2005 (related to #578).
 
 ## v13.0.0 (2020-11-13)
 
