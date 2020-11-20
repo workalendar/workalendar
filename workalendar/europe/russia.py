@@ -20,6 +20,9 @@ class Russia(OrthodoxCalendar):
         (11, 4, "Day of Unity"),
     )
 
+    covid19_2020_start = date(2020, 3, 28)
+    covid19_2020_end = date(2020, 4, 30)
+
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)
 
@@ -34,7 +37,8 @@ class Russia(OrthodoxCalendar):
 
         if year == 2020:
             index = 1
-            for day in daterange(date(year, 3, 28), date(year, 4, 30)):
+            for day in daterange(self.covid19_2020_start,
+                                 self.covid19_2020_end):
                 days.append(
                     (day, f"Non-Working Day (COVID-19) #{index}")
                 )
@@ -46,6 +50,9 @@ class Russia(OrthodoxCalendar):
         shifts = []
         for day, label in holidays:
             if day.month == 1 and day.day in range(1, 9):
+                continue
+            # Add an exception for 2020 non-working days due to COVID-19
+            if self.covid19_2020_start <= day <= self.covid19_2020_end:
                 continue
             if day.weekday() in self.get_weekend_days():
                 shifts.append((
