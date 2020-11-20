@@ -2,6 +2,7 @@ from datetime import date, timedelta
 from collections import Counter
 
 from . import GenericCalendarTest
+from ..core import daterange
 from ..europe import (
     Austria,
     Bulgaria,
@@ -1436,6 +1437,22 @@ class RussiaTest(GenericCalendarTest):
             holidays[date(2020, 5, 11)],
             "Victory Day shift"
         )
+
+    def test_covid19_2020(self):
+        # By decree, several days of March and April were defined
+        # as non-working days because of the COVID-19 crisis.
+        # It spans from March 28th to April 30th (included).
+        holidays = self.cal.holidays_set(2020)
+        start = date(2020, 3, 28)
+        end = date(2020, 4, 30)
+        for day in daterange(start, end):
+            self.assertIn(day, holidays)
+        # Not for 2019, though
+        holidays = self.cal.holidays_set(2019)
+        start = date(2019, 3, 28)
+        end = date(2019, 4, 30)
+        for day in daterange(start, end):
+            self.assertNotIn(day, holidays)
 
     def test_new_year_holidays_2004(self):
         # At that time, only Jan 1st/2nd were holidays.
