@@ -1,6 +1,6 @@
 from datetime import date
 
-from ..core import OrthodoxCalendar, MON
+from ..core import OrthodoxCalendar, MON, daterange
 from ..registry_tools import iso_register
 
 
@@ -32,6 +32,13 @@ class Russia(OrthodoxCalendar):
                 (date(year, 1, 8), "Eighth Day after New Year"),
             ])
 
+        if year == 2020:
+            index = 1
+            for day in daterange(date(year, 3, 28), date(year, 4, 30)):
+                days.append(
+                    (day, f"Non-Working Day (COVID-19) #{index}")
+                )
+                index += 1
         return days
 
     def get_calendar_holidays(self, year):
