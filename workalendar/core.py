@@ -48,6 +48,21 @@ def cleaned_date(day, keep_datetime=False):
     return day
 
 
+def daterange(start, end):
+    """
+    Yield days from ``start`` to ``end`` including both of them.
+
+    If start and end are in opposite order, they'll be swapped silently.
+    """
+    # Swap if necessary
+    if start > end:
+        end, start = start, end
+    day = start
+    while day <= end:
+        yield day
+        day += timedelta(days=1)
+
+
 class ChristianMixin:
     EASTER_METHOD = None  # to be assigned in the inherited mixin
     include_epiphany = False
