@@ -1454,6 +1454,15 @@ class RussiaTest(GenericCalendarTest):
         for day in daterange(start, end):
             self.assertNotIn(day, holidays)
 
+    def test_covid19_2020_label(self):
+        # no "shift" for those days, all of them were non-working days
+        holidays = self.cal.holidays(2020)
+        start = date(2020, 3, 28)
+        end = date(2020, 4, 30)
+        for day, label in holidays:
+            if start <= day <= end:
+                self.assertNotIn("shift", label)
+
     def test_new_year_holidays_2004(self):
         # At that time, only Jan 1st/2nd were holidays.
         holidays = self.cal.holidays_set(2004)
