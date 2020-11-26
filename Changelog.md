@@ -6,6 +6,7 @@
 - Fix Russia New year holidays. It has become a week off since 2005 (related to #578).
 - Added a `daterange` function in `workalendar.core` module to iterate between two dates.
 - Added Russia COVID-19 non-working days for the year 2020 ; these days are not shifted to next MON (#578).
+- Update China's public holidays for 2021.
 
 ## v13.0.0 (2020-11-13)
 
