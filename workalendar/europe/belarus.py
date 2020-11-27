@@ -11,16 +11,16 @@ class Belarus(OrthodoxCalendar):
     include_labour_day = True
 
     # Christian holidays
-    include_christmas = False
+    include_christmas = True
+    christmas_day_label = "Christmas Day (Catholic)"
+    orthodox_christmas_day_label = "Christmas (Orthodox)"
 
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Year"),
-        (1, 7, "Christmas (Orthodox)"),
         (3, 8, "International Women's Day"),
         (5, 9, "Victory Day"),
         (7, 3, "Republic Day"),
         (11, 7, "October Revolution Day"),
-        (12, 25, "Christmas (Catholic)"),
     )
     # Radonitsa
     # https://en.wikipedia.org/wiki/Radonitsa

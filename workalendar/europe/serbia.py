@@ -8,7 +8,6 @@ class Serbia(OrthodoxCalendar):
 
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Year"),
-        (1, 7, "Christmas"),
         (2, 15, "Statehood Day"),
         (2, 16, "Statehood Day"),
         (5, 2, "Labour Day Holiday"),

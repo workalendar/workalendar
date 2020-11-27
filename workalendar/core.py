@@ -85,6 +85,7 @@ class ChristianMixin:
     include_immaculate_conception = False
     immaculate_conception_label = "Immaculate Conception"
     include_christmas = True
+    christmas_day_label = "Christmas Day"
     include_christmas_eve = False
     include_ascension = False
     include_assumption = False
@@ -212,7 +213,7 @@ class ChristianMixin:
         if self.include_immaculate_conception:
             days.append((date(year, 12, 8), self.immaculate_conception_label))
         if self.include_christmas:
-            days.append((date(year, 12, 25), "Christmas Day"))
+            days.append((date(year, 12, 25), self.christmas_day_label))
         if self.include_christmas_eve:
             days.append((date(year, 12, 24), "Christmas Eve"))
         if self.include_boxing_day:
@@ -243,6 +244,18 @@ class WesternMixin(ChristianMixin):
 class OrthodoxMixin(ChristianMixin):
     EASTER_METHOD = easter.EASTER_ORTHODOX
     WEEKEND_DAYS = (SAT, SUN)
+
+    include_orthodox_christmas = True
+    # This label should be de-duplicated if needed
+    orthodox_christmas_day_label = "Christmas"
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_orthodox_christmas:
+            days.append(
+                (date(year, 1, 7), self.orthodox_christmas_day_label)
+            )
+        return days
 
 
 class LunarMixin:

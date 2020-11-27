@@ -12,13 +12,15 @@ class Russia(OrthodoxCalendar):
 
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (1, 2, "Day After New Year"),
-        (1, 7, "Christmas"),
         (2, 23, "Defendence of the Fatherland"),
         (3, 8, "International Women's Day"),
         (5, 9, "Victory Day"),
         (6, 12, "National Day"),
         (11, 4, "Day of Unity"),
     )
+
+    # Christian holidays
+    include_christmas = False
 
     covid19_2020_start = date(2020, 3, 28)
     covid19_2020_end = date(2020, 4, 30)
