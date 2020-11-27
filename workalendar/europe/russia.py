@@ -45,6 +45,22 @@ class Russia(OrthodoxCalendar):
                     (day, f"Non-Working Day (COVID-19) #{index}")
                 )
                 index += 1
+
+            # Adding May extra days
+            days.extend([
+                (date(year, 5, 4), "May 4th, 2020 holiday"),
+                (date(year, 5, 5), "Day of Spring and Labor"),
+            ])
+
+            # Extra COVID-19 in May
+            days.extend([
+                (date(year, 5, 6), "Covid-19 May #1"),
+                (date(year, 5, 7), "Covid-19 May #2"),
+                (date(year, 5, 8), "Covid-19 May #3"),
+            ])
+
+            # Constitution Vote Public Holiday
+            days.append((date(year, 7, 1), "Constitution Vote Public Holiday"))
         return days
 
     def get_calendar_holidays(self, year):
