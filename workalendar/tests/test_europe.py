@@ -605,6 +605,11 @@ class GreeceTest(GenericCalendarTest):
         self.assertIn(date(2020, 12, 25), holidays)  # XMas
         self.assertIn(date(2020, 12, 26), holidays)  # Glorifying mother of God
 
+    def test_no_orthodox_christmas(self):
+        # This calendar is an Orthodox calendar, but there's no Jan XMas
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 1, 7), holidays)
+
 
 class HungaryTest(GenericCalendarTest):
     cal_class = Hungary
@@ -1395,6 +1400,11 @@ class RomaniaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(1991)
         self.assertNotIn(liberation_day_1991, holidays)
 
+    def test_no_orthodox_christmas(self):
+        # This calendar is an Orthodox calendar, but there's no Jan XMas
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 1, 7), holidays)
+
 
 class RussiaTest(GenericCalendarTest):
     cal_class = Russia
@@ -1447,6 +1457,11 @@ class RussiaTest(GenericCalendarTest):
         end = date(2020, 4, 30)
         for day in daterange(start, end):
             self.assertIn(day, holidays)
+        # COVID-19 days in May
+        self.assertIn(date(2020, 5, 6), holidays)  # Covid-19 May #1
+        self.assertIn(date(2020, 5, 7), holidays)  # Covid-19 May #2
+        self.assertIn(date(2020, 5, 8), holidays)  # Covid-19 May #3
+
         # Not for 2019, though
         holidays = self.cal.holidays_set(2019)
         start = date(2019, 3, 28)
@@ -1462,6 +1477,18 @@ class RussiaTest(GenericCalendarTest):
         for day, label in holidays:
             if start <= day <= end:
                 self.assertNotIn("shift", label)
+
+    def test_extra_days_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 5, 4), holidays)  # extra day, no other info
+        self.assertIn(date(2020, 5, 5), holidays)  # Day of spring/labor day
+        # Constitution Vote Public Holiday
+        self.assertIn(date(2020, 7, 1), holidays)
+        # Not in 2019
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 5, 4), holidays)
+        self.assertNotIn(date(2019, 5, 5), holidays)
+        self.assertNotIn(date(2019, 7, 1), holidays)
 
     def test_new_year_holidays_2004(self):
         # At that time, only Jan 1st/2nd were holidays.
@@ -1485,6 +1512,11 @@ class RussiaTest(GenericCalendarTest):
         self.assertIn(date(2005, 1, 6), holidays)  # Holiday since 2005
         self.assertIn(date(2005, 1, 7), holidays)  # XMas
         self.assertIn(date(2005, 1, 8), holidays)  # Part of the holiday week
+
+    def test_no_december_christmas(self):
+        # This calendar is an Orthodox calendar & it doesn't include Dec 25th
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 12, 25), holidays)
 
 
 class UkraineTest(GenericCalendarTest):
@@ -1808,6 +1840,11 @@ class SerbiaTest(GenericCalendarTest):
         self.assertIn(date(2017, 5, 1), holidays)
         self.assertIn(date(2017, 5, 2), holidays)
         self.assertIn(date(2017, 11, 11), holidays)
+
+    def test_no_december_christmas(self):
+        # This calendar is an Orthodox calendar & it doesn't include Dec 25th
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 12, 25), holidays)
 
 
 class SloveniaTest(GenericCalendarTest):
