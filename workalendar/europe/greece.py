@@ -26,3 +26,5 @@ class Greece(OrthodoxCalendar):
     include_assumption = True
     include_boxing_day = True
     boxing_day_label = "Glorifying Mother of God"
+    # No Orthodox Christmas
+    include_orthodox_christmas = False
