@@ -1,8 +1,7 @@
 import tempfile
-import os
-from os.path import join
 import warnings
 from datetime import date
+from pathlib import Path
 from unittest import TestCase
 
 from freezegun import freeze_time
@@ -55,20 +54,21 @@ class GenericCalendarTest(CoreCalendarTest):
 
         holidays = self.cal.holidays(2019) + self.cal.holidays(2020)
 
-        temp_dir = join(tempfile.gettempdir(), "failed_ical_tests")
-        os.makedirs(temp_dir, exist_ok=True)
+        temp_dir = Path(tempfile.gettempdir()) / "failed_ical_tests"
+        temp_dir.mkdir(parents=True, exist_ok=True)
         _, test_file_name = tempfile.mkstemp(
             prefix="%s_" % self.cal_class.__name__,
             suffix=".ics",
             dir=temp_dir,
         )
+        test_path = Path(test_file_name)
 
         self.cal.export_to_ical(
             period=[2019, 2020],
-            target_path=test_file_name,
+            target_path=test_path,
         )
         # A standard iCal extension should have been added automatically:
-        with open(test_file_name) as ics_file:
+        with test_path.open() as ics_file:
             # check header
             assert ics_file.readline() == 'BEGIN:VCALENDAR\n'
             assert ics_file.readline() == 'VERSION:2.0\n'
@@ -107,15 +107,14 @@ class GenericCalendarTest(CoreCalendarTest):
             # Regenerate the file
             self.cal.export_to_ical(
                 period=[2019, 2020],
-                target_path=test_file_name,
+                target_path=test_path,
             )
             # Not providing any target => returns the value as a string
             var_contents = self.cal.export_to_ical(period=[2019, 2020])
 
-        with open(test_file_name) as fd:
-            file_contents = fd.read()
+        file_contents = test_path.read_text()
 
         assert file_contents == var_contents
 
         # Remove the .ics file if this test passes
-        os.remove(test_file_name)
+        test_path.unlink()
