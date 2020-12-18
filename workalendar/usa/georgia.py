@@ -43,7 +43,7 @@ class Georgia(UnitedStates):
             day = date(year, 12, 23)  # THU
         else:  # christmas_day == SUN:
             day = date(year, 12, 27)  # FRI
-        return (day, self.label_washington_birthday_december)
+        return day, self.label_washington_birthday_december
 
     def get_confederate_day(self, year):
         """
@@ -58,10 +58,10 @@ class Georgia(UnitedStates):
 
         # At the moment, it's the only exception we know about.
         if year == 2020:
-            return (date(year, 4, 10), label)
+            return date(year, 4, 10), label
 
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
-        return (day, label)
+        return day, label
 
     def get_robert_lee_birthday(self, year):
         """
@@ -74,7 +74,7 @@ class Georgia(UnitedStates):
         else:
             label = "State Holiday"
         date, _ = self.get_thanksgiving_friday(year)
-        return (date, label)
+        return date, label
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
