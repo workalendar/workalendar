@@ -113,14 +113,12 @@ class RegistryUsa(TestCase):
         self.assertIn(Wyoming, classes)
 
     def test_usa_world(self):
-        classes = (v for k, v in registry.region_registry.items())
-        classes = list(classes)
+        classes = set(registry.region_registry.values())
         self._check_all_states(classes)
         # On top of it, the core class
         self.assertIn(UnitedStates, classes)
 
     def test_usa_subregion(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('US').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('US').values())
         self._check_all_states(classes)

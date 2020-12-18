@@ -138,7 +138,7 @@ class UnitedStates(WesternCalendar):
         """
         Return the Election Day
         """
-        return (self.get_election_date(year), self.election_day_label)
+        return self.get_election_date(year), self.election_day_label
 
     def get_thanksgiving_friday(self, year):
         """
@@ -146,14 +146,14 @@ class UnitedStates(WesternCalendar):
         """
         thanksgiving = UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4)
         thanksgiving_friday = thanksgiving + timedelta(days=1)
-        return (thanksgiving_friday, self.thanksgiving_friday_label)
+        return thanksgiving_friday, self.thanksgiving_friday_label
 
     def get_confederate_day(self, year):
         """
         Confederate memorial day is on the 4th MON of April.
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
-        return (day, "Confederate Memorial Day")
+        return day, "Confederate Memorial Day"
 
     def get_jefferson_davis_birthday(self, year):
         """
@@ -180,7 +180,7 @@ class UnitedStates(WesternCalendar):
         Return holiday record for Martin Luther King Jr. Day.
         """
         day = self.get_martin_luther_king_date(year)
-        return (day, self.martin_luther_king_label)
+        return day, self.martin_luther_king_label
 
     def get_presidents_day(self, year):
         """
@@ -189,7 +189,7 @@ class UnitedStates(WesternCalendar):
         May be called Washington's or Lincoln's birthday
         """
         day = UnitedStates.get_nth_weekday_in_month(year, 2, MON, 3)
-        return (day, self.presidents_day_label)
+        return day, self.presidents_day_label
 
     def get_cesar_chavez_days(self, year):
         """
@@ -203,7 +203,7 @@ class UnitedStates(WesternCalendar):
 
     def get_patriots_day(self, year):
         """3rd Monday of April"""
-        return (self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day")
+        return self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day"
 
     def get_washington_birthday_december(self, year):
         """
@@ -225,7 +225,7 @@ class UnitedStates(WesternCalendar):
             day = date(year, 12, 23)  # THU
         else:  # christmas_day == SUN:
             day = date(year, 12, 23)  # FRI
-        return (day, self.label_washington_birthday_december)
+        return day, self.label_washington_birthday_december
 
     def get_columbus_day(self, year):
         """
@@ -234,7 +234,7 @@ class UnitedStates(WesternCalendar):
         Only half of the states recognize it.
         """
         day = UnitedStates.get_nth_weekday_in_month(year, 10, MON, 2)
-        return (day, self.columbus_day_label)
+        return day, self.columbus_day_label
 
     def get_lincoln_birthday(self, year):
         """
@@ -245,7 +245,7 @@ class UnitedStates(WesternCalendar):
         * Missouri,
         * New York
         """
-        return (date(year, 2, 12), "Lincoln's Birthday")
+        return date(year, 2, 12), "Lincoln's Birthday"
 
     def get_inauguration_date(self, year):
         """
@@ -335,7 +335,7 @@ class UnitedStates(WesternCalendar):
 
         Placed here because some States are renaming it.
         """
-        return (date(year, 11, 11), self.veterans_day_label)
+        return date(year, 11, 11), self.veterans_day_label
 
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)

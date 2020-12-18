@@ -373,7 +373,7 @@ class OverwriteGetWeekendDaysCalendar(Calendar):
     Should work.
     """
     def get_weekend_days(self):
-        return (WED,)
+        return WED,
 
 
 class OverwriteGetWeekendDaysCalendarTest(CoreCalendarTest):

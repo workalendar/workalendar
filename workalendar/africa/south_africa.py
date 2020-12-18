@@ -22,7 +22,7 @@ class SouthAfrica(WesternCalendar):
             label = "Easter Monday"
         else:
             label = "Family Day"
-        return (self.get_easter_monday(year), label)
+        return self.get_easter_monday(year), label
 
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)

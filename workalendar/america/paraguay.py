@@ -35,7 +35,7 @@ class Paraguay(WesternCalendar):
             day = date(year, 2, 27)
         else:
             day = date(year, 3, 1)
-        return (day, label)
+        return day, label
 
     def get_founding_of_asuncion(self, year):
         """
@@ -49,7 +49,7 @@ class Paraguay(WesternCalendar):
             day = date(year, 8, 14)
         else:
             day = date(year, 8, 15)
-        return (day, label)
+        return day, label
 
     def get_boqueron_battle_victory_day(self, year):
         """
@@ -63,7 +63,7 @@ class Paraguay(WesternCalendar):
             day = date(year, 10, 2)
         else:
             day = date(year, 9, 29)
-        return (day, label)
+        return day, label
 
     def get_fixed_holidays(self, year):
         """

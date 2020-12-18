@@ -6,9 +6,7 @@ from ..registry import registry
 class GlobalRegistry(TestCase):
 
     def test_name(self):
-        classes = (v for k, v in registry.region_registry.items())
-        classes = list(classes)
-        for klass in classes:
+        for klass in registry.region_registry.values():
             # All classes have a `name` class property
             self.assertTrue(hasattr(klass, 'name'))
             # All classes have a non-empty name
