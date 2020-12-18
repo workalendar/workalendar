@@ -40,7 +40,8 @@ def cleaned_date(day, keep_datetime=False):
     """
     if not isinstance(day, (date, datetime)):
         raise UnsupportedDateType(
-            "`{}` is of unsupported type ({})".format(day, type(day)))
+            f"`{day}` is of unsupported type ({type(day)})"
+        )
     if not keep_datetime:
         if hasattr(day, 'date') and callable(day.date):
             day = day.date()
@@ -367,7 +368,7 @@ class ChineseNewYearMixin(LunarMixin):
             if holiday.weekday() == SUN:
                 yield (
                     holiday + timedelta(days=1),
-                    label + ' shift'
+                    f'{label} shift'
                 )
 
     def get_calendar_holidays(self, year):
@@ -396,7 +397,8 @@ class CalverterMixin:
 
     def converted(self, year):
         conversion_method = getattr(
-            self.calverter, 'jd_to_%s' % self.conversion_method)
+            self.calverter, f'jd_to_{self.conversion_method}'
+        )
         current = date(year, 1, 1)
         days = []
         while current.year == year:
@@ -430,7 +432,7 @@ class CalverterMixin:
         days = super().get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
-            self.calverter, '%s_to_jd' % self.conversion_method)
+            self.calverter, f'{self.conversion_method}_to_jd')
         for month, day, label in self.get_islamic_holidays():
             for y in years:
                 jd = conversion_method(y, month, day)
@@ -916,15 +918,14 @@ class CoreCalendar:
             'VERSION:2.0',  # current RFC5545 version
             f'PRODID:-//workalendar//ical {__version__}//EN'
         ]
-        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
-        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
+        dtstamp = f'DTSTAMP;VALUE=DATE-TIME:{datetime.utcnow():%Y%m%dT%H%M%SZ}'
 
         # add an event for each holiday
         for date_, name in holidays:
             ics.extend([
                 'BEGIN:VEVENT',
-                'SUMMARY:%s' % name,
-                'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
+                f'SUMMARY:{name}',
+                f'DTSTART;VALUE=DATE:{date_:%Y%m%d}',
                 dtstamp,
                 f'UID:{date_}{name}@peopledoc.github.io/workalendar',
                 'END:VEVENT',

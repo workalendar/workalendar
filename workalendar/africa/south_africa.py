@@ -122,7 +122,7 @@ class SouthAfrica(WesternCalendar):
             if holiday.weekday() == SUN:
                 days.append((
                     holiday + timedelta(days=1),
-                    "%s substitute" % label
+                    f"{label} substitute"
                 ))
 
         # Other one-offs. Don't shift these
