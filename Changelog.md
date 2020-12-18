@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Replace `os.path.*` calls with `pathlib.Path`
 
 ## v14.1.0 (2020-12-10)
 

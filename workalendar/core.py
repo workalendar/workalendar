@@ -2,11 +2,10 @@
 Working day tools
 """
 from copy import copy
-import os
-from os.path import isdir
 import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
+from pathlib import Path
 
 from calverter import Calverter
 from dateutil import easter
@@ -874,14 +873,16 @@ class CoreCalendar:
             raise ICalExportTargetPathError(
                 "Incorrect target path. It must not be empty")
 
-        if isdir(target_path):
+        target_path = Path(target_path)
+
+        if target_path.is_dir():
             raise ICalExportTargetPathError(
                 "Incorrect target path. It must not be a directory"
             )
 
         ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
-        if os.path.splitext(target_path)[1] not in ical_extensions:
-            target_path += '.ics'
+        if target_path.suffix not in ical_extensions:
+            target_path = target_path.with_name(target_path.name + '.ics')
         return target_path
 
     def export_to_ical(self, period=[2000, 2030], target_path=None):
@@ -894,7 +895,7 @@ class CoreCalendar:
             start and end year (inclusive) of calendar
             Default is [2000, 2030]
 
-        target_path: str
+        target_path: str or pathlib.Path
             the name or path of the exported file. If this argument is missing,
             the function will return the ical content.
 
@@ -937,7 +938,7 @@ class CoreCalendar:
 
         if target_path:
             # save iCal file
-            with open(target_path, 'w+') as export_file:
+            with target_path.open('w+') as export_file:
                 export_file.write(ics)
             return
 
