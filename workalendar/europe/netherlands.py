@@ -161,7 +161,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in FALL_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown fall holidays for %d." % year)
+            raise NotImplementedError(f"Unknown fall holidays for {year}.")
 
         return [
             (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
@@ -250,7 +250,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in SPRING_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown spring holidays for %d." % year)
+            raise NotImplementedError(f"Unknown spring holidays for {year}.")
 
         return [
             (
@@ -314,14 +314,14 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in SUMMER_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown summer holidays for %d." % year)
+            raise NotImplementedError(f"Unknown summer holidays for {year}.")
 
         # Some regions have their summer holiday 1 week later
         try:
             if self.region in SUMMER_HOLIDAYS_LATE_REGIONS[year]:
                 start = start + timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown summer holidays for %d." % year)
+            raise NotImplementedError(f"Unknown summer holidays for {year}.")
 
         return [
             (

@@ -57,7 +57,7 @@ class GenericCalendarTest(CoreCalendarTest):
         temp_dir = Path(tempfile.gettempdir()) / "failed_ical_tests"
         temp_dir.mkdir(parents=True, exist_ok=True)
         _, test_file_name = tempfile.mkstemp(
-            prefix="%s_" % self.cal_class.__name__,
+            prefix=f"{self.cal_class.__name__}_",
             suffix=".ics",
             dir=temp_dir,
         )
@@ -78,7 +78,7 @@ class GenericCalendarTest(CoreCalendarTest):
             # check new year
             assert ics_file.readline() == 'BEGIN:VEVENT\n'
             first_event_name = holidays[0][1]
-            assert ics_file.readline() == 'SUMMARY:%s\n' % first_event_name
+            assert ics_file.readline() == f'SUMMARY:{first_event_name}\n'
             if self.test_include_january_1st:
                 assert ics_file.readline() == 'DTSTART;VALUE=DATE:20190101\n'
                 assert ics_file.readline().startswith(

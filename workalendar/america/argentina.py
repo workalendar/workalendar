@@ -46,9 +46,10 @@ class Argentina(WesternCalendar):
         else:
             general_guemes_day
 
-        return (general_guemes_day,
-                "Día Paso a la Inmortalidad del " +
-                "General Martín Miguel de Güemes")
+        return (
+            general_guemes_day,
+            "Día Paso a la Inmortalidad del General Martín Miguel de Güemes"
+        )
 
     def get_general_martin_day(self, year):
         """
@@ -60,9 +61,10 @@ class Argentina(WesternCalendar):
             year, 8, MON, 3
         )
 
-        return (general_martin_day,
-                "Día Paso a la Inmortalidad del " +
-                "Gral. José de San Martín")
+        return (
+            general_martin_day,
+            "Día Paso a la Inmortalidad del Gral. José de San Martín"
+        )
 
     def get_soberania_day(self, year):
         """

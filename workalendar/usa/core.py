@@ -85,10 +85,10 @@ class UnitedStates(WesternCalendar):
                 continue
             if day.weekday() == SAT:
                 new_holidays.append((day - timedelta(days=1),
-                                     label + " (Observed)"))
+                                     f"{label} (Observed)"))
             elif day.weekday() == SUN:
                 new_holidays.append((day + timedelta(days=1),
-                                     label + " (Observed)"))
+                                     f"{label} (Observed)"))
 
         # If year+1 January the 1st is on SAT, add the FRI before to observed
         if date(year + 1, 1, 1).weekday() == SAT:
