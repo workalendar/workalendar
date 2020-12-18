@@ -1,7 +1,7 @@
 from datetime import date
 
 from . import GenericCalendarTest
-from ..europe import (
+from workalendar.europe import (
     Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
     BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
     Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,

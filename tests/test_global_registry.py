@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from ..registry import registry
+from workalendar.registry import registry
 
 
 class GlobalRegistry(TestCase):

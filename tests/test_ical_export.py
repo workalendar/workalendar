@@ -1,8 +1,10 @@
 import tempfile
 from pathlib import Path
 
-from ..core import Calendar
-from ..exceptions import ICalExportRangeError, ICalExportTargetPathError
+from workalendar.core import Calendar
+from workalendar.exceptions import (
+    ICalExportRangeError, ICalExportTargetPathError
+)
 
 from . import CoreCalendarTest
 

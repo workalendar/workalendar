@@ -1,5 +1,5 @@
 from unittest import TestCase
-from ..europe import (
+from workalendar.europe import (
     Austria, Belgium, Bulgaria, Croatia, Cyprus, CzechRepublic, Estonia,
     Denmark, Finland, France,
     # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
@@ -11,7 +11,7 @@ from ..europe import (
 )
 
 # Spain & regions
-from ..europe import (
+from workalendar.europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
     CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
@@ -19,7 +19,7 @@ from ..europe import (
 )
 
 # Switzerland
-from ..europe import (
+from workalendar.europe import (
     Switzerland,
     Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
     BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
@@ -28,14 +28,14 @@ from ..europe import (
 )
 
 # Germany
-from ..europe import (
+from workalendar.europe import (
     Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
     Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
     NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
     SaxonyAnhalt, SchleswigHolstein, Thuringia
 )
 
-from ..registry import registry
+from workalendar.registry import registry
 
 classes = (v for k, v in registry.region_registry.items())
 classes = list(classes)

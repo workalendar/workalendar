@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from ..oceania import (
+from workalendar.oceania import (
     Australia,
     MarshallIslands,
     NewZealand,
@@ -17,7 +17,7 @@ from ..oceania import (
     WesternAustralia
 )
 
-from ..registry import registry
+from workalendar.registry import registry
 
 AUSTRALIAN_TERRITORIES = (
     AustralianCapitalTerritory,

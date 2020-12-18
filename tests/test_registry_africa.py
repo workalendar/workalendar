@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from ..africa import (
+from workalendar.africa import (
     Algeria,
     Benin,
     IvoryCoast,
@@ -8,7 +8,7 @@ from ..africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-from ..registry import registry
+from workalendar.registry import registry
 
 
 class RegistryAfrica(TestCase):

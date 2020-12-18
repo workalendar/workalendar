@@ -2,7 +2,7 @@ from datetime import date
 from unittest import TestCase
 
 from . import GenericCalendarTest
-from ..america import (
+from workalendar.america import (
     Brazil, BrazilSaoPauloState,
     BrazilAcre, BrazilAlagoas, BrazilAmapa, BrazilAmazonas, BrazilBahia,
     BrazilCeara, BrazilDistritoFederal, BrazilEspiritoSanto, BrazilGoias,
@@ -25,7 +25,7 @@ from ..america import (
     # Banks
     BrazilBankCalendar,
 )
-from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
+from workalendar.america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 
 class BrazilTest(GenericCalendarTest):

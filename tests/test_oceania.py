@@ -1,7 +1,7 @@
 from datetime import date
 
 from . import GenericCalendarTest
-from ..oceania import (
+from workalendar.oceania import (
     Australia,
     AustralianCapitalTerritory,
     NewSouthWales,

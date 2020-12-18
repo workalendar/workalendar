@@ -2,8 +2,8 @@ from datetime import date, timedelta, datetime
 from collections import Counter
 
 from . import GenericCalendarTest
-from ..core import daterange
-from ..europe import (
+from workalendar.core import daterange
+from workalendar.europe import (
     Austria,
     Bulgaria,
     Belarus,

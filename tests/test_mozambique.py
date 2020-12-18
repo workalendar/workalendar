@@ -1,7 +1,7 @@
 from datetime import date
 
 from . import GenericCalendarTest
-from ..africa.mozambique import Mozambique
+from workalendar.africa.mozambique import Mozambique
 
 
 class MozambiqueTest(GenericCalendarTest):

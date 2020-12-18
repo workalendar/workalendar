@@ -3,7 +3,7 @@ from datetime import date
 import warnings
 
 from . import GenericCalendarTest
-from ..usa import (
+from workalendar.usa import (
     UnitedStates,
     Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty,
     Arkansas, Alaska, Arizona,

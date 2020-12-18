@@ -1,6 +1,6 @@
 from datetime import date
 from . import GenericCalendarTest
-from ..africa import (
+from workalendar.africa import (
     Algeria,
     Angola,
     Benin,
@@ -10,8 +10,8 @@ from ..africa import (
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
-from ..core import MON, FRI
-from ..exceptions import CalendarError
+from workalendar.core import MON, FRI
+from workalendar.exceptions import CalendarError
 
 
 class AlgeriaTest(GenericCalendarTest):

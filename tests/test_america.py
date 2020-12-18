@@ -1,6 +1,6 @@
 from datetime import date
 from . import GenericCalendarTest
-from ..america import (
+from workalendar.america import (
     Argentina, Barbados, Chile, Colombia, Mexico, Panama, Paraguay
 )
 

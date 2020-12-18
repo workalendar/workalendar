@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from ..core import Calendar
-from ..exceptions import ISORegistryError
-from ..registry import IsoRegistry
+from workalendar.core import Calendar
+from workalendar.exceptions import ISORegistryError
+from workalendar.registry import IsoRegistry
 
 
 class RegionCalendar(Calendar):

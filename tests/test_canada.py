@@ -1,7 +1,7 @@
 from datetime import date
 from . import GenericCalendarTest
-from ..core import MON
-from ..america.canada import (
+from workalendar.core import MON
+from workalendar.america.canada import (
     Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
     NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
     NorthwestTerritories, Nunavut

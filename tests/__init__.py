@@ -6,8 +6,8 @@ from unittest import TestCase
 
 from freezegun import freeze_time
 
-from ..core import Calendar
-from .. import __version__
+from workalendar.core import Calendar
+from workalendar import __version__
 
 
 class CoreCalendarTest(TestCase):

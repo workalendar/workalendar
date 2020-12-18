@@ -2,7 +2,7 @@ from datetime import date
 from unittest import TestCase
 
 from . import GenericCalendarTest
-from ..europe import (
+from workalendar.europe import (
     Germany, BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
     Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony, NorthRhineWestphalia,
     RhinelandPalatinate, Saarland, Saxony, SaxonyAnhalt, SchleswigHolstein,

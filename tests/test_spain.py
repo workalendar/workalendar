@@ -1,7 +1,7 @@
 from datetime import date
 
 from . import GenericCalendarTest
-from ..europe import (
+from workalendar.europe import (
     Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
     CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
     CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,

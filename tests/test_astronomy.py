@@ -1,6 +1,6 @@
 from datetime import date
 
-from ..astronomy import calculate_equinoxes, solar_term
+from workalendar.astronomy import calculate_equinoxes, solar_term
 
 
 def test_calculate_some_equinoxes():
