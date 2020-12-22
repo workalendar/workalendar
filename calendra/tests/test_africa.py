@@ -5,6 +5,7 @@ from ..africa import (
     Angola,
     Benin,
     IvoryCoast,
+    Kenya,
     Madagascar,
     SaoTomeAndPrincipe,
     SouthAfrica,
@@ -558,3 +559,43 @@ class AngolaTest(GenericCalendarTest):
         self.assertIn(date(2018, 11, 11), holidays)
         # Dia do Natal – 25 de Dezembro
         self.assertIn(date(2018, 12, 25), holidays)  # Natal
+
+
+class KenyaTest(GenericCalendarTest):
+    cal_class = Kenya
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # New Year
+        self.assertIn(date(2019, 4, 19), holidays)  # Good Friday
+        self.assertIn(date(2019, 4, 22), holidays)  # Easter Monday
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2019, 6, 1), holidays)  # Madaraka Day
+        self.assertIn(date(2019, 6, 5), holidays)  # Eid al-Fitr
+        self.assertIn(date(2019, 8, 12), holidays)  # Eid al-Adha
+        self.assertIn(date(2019, 10, 10), holidays)  # Moi Day (old name)
+        self.assertIn(date(2019, 10, 20), holidays)  # Mashujaa Day
+        self.assertIn(date(2019, 10, 21), holidays)  # Mashujaa Day shift
+        self.assertIn(date(2019, 12, 12), holidays)  # Jamhuri Day
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day (old name)
+        self.assertIn(date(2019, 12, 31), holidays)  # New Years Eve
+        self.assertEquals(len(holidays), 14)
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 2, 11), holidays)  # Moi Memorial (as of 2020)
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 24), holidays)  # Eid al-Fitr
+        self.assertIn(date(2020, 6, 1), holidays)  # Madaraka Day
+        self.assertIn(date(2020, 7, 31), holidays)  # Eid al-Adha
+        self.assertIn(date(2020, 10, 10), holidays)  # Huduma Day
+        self.assertIn(date(2020, 10, 20), holidays)  # Mashujaa Day
+        self.assertIn(date(2020, 12, 12), holidays)  # Jamhuri Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # Utamaduni Day
+        self.assertIn(date(2020, 12, 31), holidays)  # New Years Eve
+        self.assertEquals(len(holidays), 14)

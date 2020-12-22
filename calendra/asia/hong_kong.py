@@ -1,8 +1,11 @@
-from datetime import timedelta
+from datetime import date, timedelta
 
-from ..core import ChineseNewYearCalendar, WesternCalendar, ChristianMixin
+from ..core import (
+    ChineseNewYearCalendar, WesternCalendar, ChristianMixin,
+    SUN, SAT
+)
 from ..astronomy import solar_term
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('HK')
@@ -12,6 +15,8 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
     include_easter_saturday = True
     include_easter_monday = True
     include_boxing_day = True
+
+    WEEKEND_DAYS = (SUN,)
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 1, "Labour Day"),
@@ -54,4 +59,24 @@ class HongKong(WesternCalendar, ChineseNewYearCalendar, ChristianMixin):
             (ChineseNewYearCalendar.lunar(year, 9, 9), "Chung Yeung Festival"),
         ])
 
+        # Shifting all potential holidays that fall on SUN.
+        shifts = []
+        for day, label in days:
+            if day.weekday() == SUN:
+                shifts.append((
+                    day + timedelta(days=1), "{} (shift)".format(label)
+                ))
+        # Special case for Boxing Day.
+        # If Christmas day is on SUN, the December 27th is also a holiday
+        if date(year, 12, 25).weekday() == SUN:
+            shifts.append(
+                (date(year, 12, 27), "The second weekday after Christmas")
+            )
+        days.extend(shifts)
+
         return days
+
+
+class HongKongBank(HongKong):
+    "Hong Kong Bank"
+    WEEKEND_DAYS = (SAT, SUN)

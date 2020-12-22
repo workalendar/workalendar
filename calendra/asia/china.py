@@ -2,7 +2,7 @@ from datetime import date
 import warnings
 
 from ..core import ChineseNewYearCalendar, WesternCalendar
-from ..registry import iso_register
+from ..registry_tools import iso_register
 from ..exceptions import CalendarError
 
 holidays = {
@@ -74,7 +74,13 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                     self.extra_working_days.append(date(year, v[0], v[1]))
 
     def get_calendar_holidays(self, year):
-        warnings.warn("Support 2018, 2019 currently, need update every year.")
+        year_min, year_max = min(holidays.keys()), max(holidays.keys())
+        warnings.warn(
+            "Support years {}-{} currently, need update every year.".format(
+                year_min,
+                year_max,
+            )
+        )
         if year not in holidays.keys():
             msg = "Need configure {} for China.".format(year)
             raise CalendarError(msg)

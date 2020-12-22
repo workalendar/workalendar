@@ -1,7 +1,7 @@
 from datetime import timedelta, date
 
 from ..core import WesternCalendar, ChristianMixin, MON
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('CO')

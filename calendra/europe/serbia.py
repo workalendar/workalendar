@@ -1,5 +1,5 @@
 from ..core import WesternCalendar, OrthodoxMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('RS')

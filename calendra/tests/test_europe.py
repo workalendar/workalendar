@@ -5,6 +5,7 @@ from . import GenericCalendarTest
 from ..europe import (
     Austria,
     Bulgaria,
+    Belarus,
     Belgium,
     CaymanIslands,
     Croatia,
@@ -60,6 +61,38 @@ class AustriaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 8), holidays)  # Immaculate conception
         self.assertIn(date(2016, 12, 25), holidays)  # Xmas
         self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
+
+
+class BelarusTest(GenericCalendarTest):
+    cal_class = Belarus
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2019, 1, 2), holidays)  # Day after NYE
+        self.assertIn(date(2019, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2019, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2019, 5, 6), holidays)  # Radonista
+        self.assertIn(date(2019, 5, 7), holidays)  # Radonista Holiday
+        self.assertIn(date(2019, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2019, 7, 3), holidays)  # Republic Day
+        self.assertIn(date(2019, 11, 7), holidays)  # October Revolution Day
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas (Catholic)
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2020, 1, 2), holidays)  # Day after NYE
+        self.assertIn(date(2020, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2020, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2020, 4, 27), holidays)  # Radonista
+        self.assertIn(date(2020, 4, 28), holidays)  # Radonista Holiday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2020, 7, 3), holidays)  # Republic Day
+        self.assertIn(date(2020, 11, 7), holidays)  # October Revolution Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas (Catholic)
 
 
 class BulgariaTest(GenericCalendarTest):

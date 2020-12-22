@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('PA')

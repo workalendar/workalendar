@@ -1,6 +1,6 @@
 from ..core import ChineseNewYearCalendar, WesternCalendar
 from ..astronomy import solar_term
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('TW')

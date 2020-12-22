@@ -1,5 +1,5 @@
 from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('MT')
@@ -19,7 +19,6 @@ class Malta(WesternCalendar, ChristianMixin):
         (9, 21, "Independence Day"),       # (Jum l-Indipendenza)
         (12, 13, "Republic Day"),          # (Jum ir-Repubblika)
         # Public Holidays
-        (1, 1, "New Year's Day"),          # (L-Ewwel tas-Sena)
         (2, 10, "Feast of Saint Paul's Shipwreck"),
         (3, 19, "Feast of Saint Joseph"),  # (San Ġużepp)
         (5, 1, "Worker's Day"),            # (Jum il-Ħaddiem)

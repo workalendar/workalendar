@@ -1,5 +1,5 @@
 from ..core import WesternCalendar, ChristianMixin, SUN
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('LT')
@@ -12,12 +12,12 @@ class Lithuania(WesternCalendar, ChristianMixin):
         (5, 1, "Labour Day"),
         (6, 24, "St. John's Day"),
         (7, 6, "Anniversary of the Coronation of King Mindaugas"),
-        (8, 15, "Assumption Day"),
-        (11, 1, "All Saints' Day"),
     )
 
     include_easter_sunday = True
     include_easter_monday = True
+    include_assumption = True
+    include_all_saints = True
     include_christmas_eve = True
     include_christmas = True
     include_boxing_day = True

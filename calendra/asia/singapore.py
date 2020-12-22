@@ -3,7 +3,7 @@ from datetime import date
 from ..core import (
     ChineseNewYearCalendar, WesternCalendar, ChristianMixin, IslamicMixin
 )
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('SG')

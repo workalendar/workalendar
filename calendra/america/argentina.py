@@ -3,7 +3,7 @@ from ..core import (
     WesternCalendar, ChristianMixin,
     MON, TUE, WED, THU, FRI, SAT
 )
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('AR')
@@ -16,39 +16,13 @@ class Argentina(WesternCalendar, ChristianMixin):
     include_christmas = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (3, 24, "Día de la Memoria"),
-        (4, 2, "Día de las Malvinas"),
+        (3, 24, "Día Nacional de la Memoria por la Verdad y la Justicia"),
         (5, 1, "Día del Trabajador"),
         (5, 25, "Día de la Revolución de Mayo"),
         (6, 20, "Día Paso a la Inmortalidad del General Manuel Belgrano"),
         (7, 9, "Día de la Independencia"),
         (12, 8, "Día de la Inmaculada Concepción de María"),
     )
-
-    def get_variable_days(self, year):
-
-        days = super().get_variable_days(year)
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=48),
-                "Carnival Lunes"))
-
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
-
-        days.append(
-            (self.get_general_guemes_day(year)))
-
-        days.append(
-            (self.get_general_martin_day(year)))
-
-        days.append(
-            (self.get_soberania_day(year)))
-
-        days.append(
-            (self.get_diversidad_day(year)))
-
-        return days
 
     def get_general_guemes_day(self, year):
         """
@@ -131,3 +105,48 @@ class Argentina(WesternCalendar, ChristianMixin):
 
         return (diversidad_day,
                 "Día del Respeto a la Diversidad Cultural")
+
+    def get_malvinas_day(self, year):
+        """
+        Día de las Malvinas
+
+        In honour of the Veterans and the Fallen of the Malvinas war.
+        https://en.wikipedia.org/wiki/Malvinas_Day
+
+        In 2020, it was shifted to March 31st because of
+        the coronavirus crisis.
+        """
+        label = "Día del Veterano y de los Caídos en la Guerra de Malvinas"
+        if year == 2020:
+            day = date(year, 3, 31)
+        else:
+            day = date(year, 4, 2)
+        return (day, label)
+
+    def get_variable_days(self, year):
+
+        days = super().get_variable_days(year)
+        days.append(
+            (self.get_easter_sunday(year) - timedelta(days=48),
+                "Carnival Lunes"))
+
+        days.append(
+            (self.get_easter_sunday(year) - timedelta(days=47),
+                "Carnival"))
+
+        days.append(
+            self.get_malvinas_day(year))
+
+        days.append(
+            (self.get_general_guemes_day(year)))
+
+        days.append(
+            (self.get_general_martin_day(year)))
+
+        days.append(
+            (self.get_soberania_day(year)))
+
+        days.append(
+            (self.get_diversidad_day(year)))
+
+        return days

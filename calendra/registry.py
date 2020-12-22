@@ -61,6 +61,17 @@ class IsoRegistry:
 
     def get_calendar_class(self, iso_code):
         """
+        Alias for the ``get(iso_code)`` method.
+
+        This alias will be deprecated in a further release.
+        """
+        warnings.warn("The ``get_calendar_class(iso_code)`` method will soon"
+                      " be deprecated. Please use ``get(iso_code)`` instead.",
+                      DeprecationWarning)
+        return self.get(iso_code)
+
+    def get(self, iso_code):
+        """
         Retrieve calendar class associated with given ``iso_code``.
 
         If calendar of subdivision is not registered
@@ -90,24 +101,6 @@ class IsoRegistry:
             if key.startswith("{}-".format(iso_code)):
                 items[key] = value
         return items
-
-    def items(self, region_codes=None, include_subregions=False):
-        """
-        Returns calendar classes for regions
-
-        :param region_codes list of ISO codes for selected regions. If empty,
-                            the function will return all items from the
-                            registry.
-        :param include_subregions boolean if subregions
-        of selected regions should be included in result
-        :rtype dict
-        :return dict where keys are ISO codes strings
-        and values are calendar classes
-        """
-        warnings.warn("The ``items()`` method will soon be deprecated."
-                      " Please use ``get_calendars()`` instead.",
-                      DeprecationWarning)
-        return self.get_calendars(region_codes, include_subregions)
 
     def get_calendars(self, region_codes=None, include_subregions=False):
         """
@@ -142,29 +135,6 @@ class IsoRegistry:
 
 
 registry = IsoRegistry()
-
-
-def iso_register(iso_code):
-    """
-    Registers Calendar class as country or region in IsoRegistry.
-
-    Registered country must set class variables ``iso`` using this decorator.
-
-    >>> from calendra.core import Calendar
-    >>> @iso_register('MC-MR')
-    ... class MyRegion(Calendar):
-    ...     'My Region'
-
-    Region calendar is then retrievable from registry:
-
-    >>> calendar = registry.get_calendar_class('MC-MR')
-    """
-
-    def wrapper(cls):
-        registry.register(iso_code, cls)
-        return cls
-    return wrapper
-
 
 # Europe Countries
 from calendra.europe import *  # noqa

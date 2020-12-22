@@ -111,6 +111,7 @@ Europe
 ------
 
 * Austria
+* Belarus
 * Belgium
 * Bulgaria
 * Cayman Islands
@@ -203,6 +204,7 @@ Africa
 * Angola
 * Benin
 * Ivory Coast
+* Kenya
 * Madagascar
 * São Tomé
 * South Africa

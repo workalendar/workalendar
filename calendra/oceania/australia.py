@@ -2,7 +2,7 @@ from datetime import date, timedelta
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import MON, TUE, SAT, SUN
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('AU')

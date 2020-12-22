@@ -5,7 +5,7 @@ from dateutil import relativedelta as rd
 from ..core import WesternCalendar, ChristianMixin
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US')
@@ -112,7 +112,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_confederate_day(self, year):
         """
-        Confederation memorial day is on the 4th MON of April.
+        Confederate memorial day is on the 4th MON of April.
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
         return (day, "Confederate Memorial Day")

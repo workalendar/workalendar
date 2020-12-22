@@ -4,7 +4,7 @@ from dateutil import relativedelta as rd
 
 from ..core import WesternCalendar, ChristianMixin
 from ..core import Holiday
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('MX')

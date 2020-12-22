@@ -1,15 +1,55 @@
-v6.1.2
-------
+v9.0.0 (unreleased)
+-------------------
 
-#14: Replaced implicit dependency on setuptools with explicit
-dependency on importlib.metadata.
+Incorporate changes from workalendar v9.0.0 (2020-04-24)
 
-v6.1.1
-------
+- **BREAKING CHANGE**: the ``IsoRegistry.items()`` method has been removed from the API. You must use the ``get_calendars()`` to perform the same registry queries (#375, #491).
+- *Deprecation notice*: The usage of ``IsoRegistry.get_calendar_class()`` is strongly discouraged, in favor of ``get()``. The ``get_calendar_class`` method will be dropped in a further release. In the meantime, they'll be both equivalent (#375, #418).
 
-Fix version inference when installed from sdist.
+v8.4.0 (2020-04-17)
 
-v6.1.0
+- New Calendar
+
+  - Added Kenyan calendar, by @KidkArolis (#484)
+
+- Minor fixes
+
+  - Fixed Lithuania calendar to use the core flags for Assumption and All Saints (#468).
+  - Fixed Malta calendar ; January 1st was already included, no need to add it to the ``FIXED_HOLIDAYS`` property (#469).
+  - Small refactor in Netherlands calendar to use core constants (#470).
+
+v8.3.0 (2020-04-14)
+
+- Fixing Hong-Kong calendar, where SAT are common working days (#477).
+- Introducing Hong-Kong Bank calendar. For banks, Saturdays are non-working days (#477).
+
+v8.2.2 (2020-04-10)
+
+- Fixed Argentina's "Malvinas Day" date for 2020, shifted to March 31st because of the coronavirus crisis (#476).
+- Fixed Argentina's label for "Malvinas Day" and "Día de la Memoria" (#476).
+
+v8.2.1 (2020-04-03)
+
+- Added BrazilBankCalendar to support `include_` flags and make it possible to extend and change these flags to support custom bank calendars (#474).
+
+v8.2.0 (2020-03-13)
+
+- Added Belarus calendar, by @alexdoesstuff (#472).
+
+v8.1.0 (2020-02-07)
+
+- Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
+- Fix warning in China's holidays to dynamically read supported years, thx @fredrike (#459).
+
+v8.0.2 (2020-01-24)
+
+- Fix several miscalculations in Georgia (USA) calendar (#451).
+
+v8.0.1 (2020-01-24)
+
+- Fix Family Day for British Columbia (Canada) which was switched from 2nd to 3rd Monday of February in 2019 - thx @jbroudou for the bug report (#454).
+
+v8.0.0
 ------
 
 Incorporate changes from workalendar v8.0.0 (2020-01-10)

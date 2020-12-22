@@ -8,7 +8,7 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 
 ```python
 >>> from workalendar.registry import registry
->>> calendars = registry.get_calendars()
+>>> calendars = registry.get_calendars()  # This returns a dictionary
 >>> for code, calendar_class in calendars.items():
 ...     print("`{}` is code for '{}'".format(code, calendar_class.name))
 `AT` is code for 'Austria'
@@ -26,7 +26,7 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 
 The "private property" `registry.region_registry` is a `dict` object, with the ISO code as a key, and the calendar class as the value. As a "workalendar standard", **every** calendar in the registry has a `name` property (derived from the docstring), so you'd probably be able to build a user-friendly list of available calendars, for a dropdown list, for example.
 
-**DEPRECATION WARNING**: the ``get_calendars`` method used to be named ``items()``. In a future release, it'll be deprecated and re-purposed. Please switch to using ``get_calendars()`` for all your queries in the registry.
+**DEPRECATION WARNING**: As of version 9.0.0, the ``IsoRegistry.items()`` has been renamed into ``IsoRegistry.get_calendars()`` for all your queries in the registry.
 
 ## Retrieve a collection of regions
 
@@ -88,8 +88,7 @@ You can also get the full dict of all calendars registered in the ISO Registry w
 Let's say that we only know the ISO code for Switzerland (`CH`). If we want to compute holidays for Switzerland in 2018, we can do as follows:
 
 ```python
->>> registry.get_calendar_class('CH')
->>> CalendarClass = registry.get_calendar_class('CH')
+>>> CalendarClass = registry.get('CH')
 >>> calendar = CalendarClass()
 >>> calendar.holidays(2018)
 [(datetime.date(2018, 1, 1), 'New year'),
