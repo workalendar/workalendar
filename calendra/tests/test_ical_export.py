@@ -129,7 +129,7 @@ class ICalExportTargetPath(CoreCalendarTest):
 
     def test_known_extensions(self):
         for ext in ('ical', 'ics', 'ifb', 'icalendar'):
-            filename = "a.{}".format(ext)
+            filename = f"a.{ext}"
             self.assertEqual(
                 self.cal._get_ical_target_path(filename),
                 filename

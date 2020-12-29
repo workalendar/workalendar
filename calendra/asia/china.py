@@ -86,7 +86,7 @@ class China(SeriesShiftMixin, ChineseNewYearCalendar):
             )
         )
         if year not in holidays.keys():
-            msg = "Need configure {} for China.".format(year)
+            msg = f"Need configure {year} for China."
             raise CalendarError(msg)
         return super().get_calendar_holidays(year)
 

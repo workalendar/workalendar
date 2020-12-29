@@ -21,7 +21,7 @@ from .lithuania import Lithuania
 from .luxembourg import Luxembourg
 from .malta import Malta
 from .monaco import Monaco
-from .netherlands import Netherlands
+from .netherlands import Netherlands, NetherlandsWithSchoolHolidays
 from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
@@ -30,7 +30,12 @@ from .russia import Russia
 from .serbia import Serbia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Spain, Catalonia
+from .spain import (
+    Andalusia, Aragon, Spain, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
+)
 from .sweden import Sweden
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
@@ -66,7 +71,6 @@ __all__ = (
     'Belarus',
     'Belgium',
     'Bulgaria',
-    'Catalonia',
     'CaymanIslands',
     'Croatia',
     'Cyprus',
@@ -88,6 +92,7 @@ __all__ = (
     'Malta',
     'Monaco',
     'Netherlands',
+    'NetherlandsWithSchoolHolidays',
     'Norway',
     'Poland',
     'Portugal',
@@ -96,7 +101,6 @@ __all__ = (
     'Serbia',
     'Slovakia',
     'Slovenia',
-    'Spain',
     'Sweden',
     'Switzerland',
     'Ukraine',
@@ -117,6 +121,13 @@ __all__ = (
     'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
     'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
     'SouthLanarkshire', 'Stirling', 'WestDunbartonshire',
+
+    # Spain
+    'Spain', 'Andalusia', 'Aragon', 'Catalonia', 'CastileAndLeon',
+    'CastillaLaMancha', 'CanaryIslands', 'Extremadura', 'Galicia',
+    'BalearicIslands', 'LaRioja', 'CommunityofMadrid', 'Murcia', 'Navarre',
+    'Asturias', 'BasqueCountry', 'Cantabria', 'ValencianCommunity',
+
     # Switzerland
     'Switzerland',
     'Aargau', 'AppenzellInnerrhoden', 'AppenzellAusserrhoden', 'Bern',

@@ -5,9 +5,17 @@ from ..europe import (
     # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
     Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg,
     Malta, Monaco, Netherlands, Norway, Poland, Portugal, Romania, Russia,
-    Slovakia, Slovenia, Spain, Catalonia,
+    Slovakia, Slovenia,
     Sweden, UnitedKingdom,
     UnitedKingdomNorthernIreland,
+)
+
+# Spain & regions
+from ..europe import (
+    Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
 )
 
 # Switzerland
@@ -47,7 +55,10 @@ SWITZERLAND_REGION_CLASSES = (
 )
 
 SPAIN_REGION_CLASSES = (
-    Catalonia,
+    Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
 )
 
 

@@ -340,8 +340,6 @@ class CoreCalendar:
 
         days = 0
         temp_day = day
-        if type(temp_day) is datetime and not keep_datetime:
-            temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)
         while days < delta:
@@ -602,7 +600,7 @@ class CoreCalendar:
         ics = [
             'BEGIN:VCALENDAR',
             'VERSION:2.0',  # current RFC5545 version
-            'PRODID:-//workalendar//ical {}//EN'.format(__version__)
+            f'PRODID:-//workalendar//ical {__version__}//EN'
         ]
         common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
         dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
@@ -615,7 +613,7 @@ class CoreCalendar:
                 'SUMMARY:%s' % holiday.name,
                 'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
                 dtstamp,
-                'UID:%s%s@peopledoc.github.io/workalendar' % (date_, holiday.name),
+                f'UID:{date_}{holiday.name}@peopledoc.github.io/workalendar',
                 'END:VEVENT',
             ])
 
@@ -644,6 +642,9 @@ class Calendar(CoreCalendar):
     shift_new_years_day = False
     include_labour_day = False
     labour_day_label = "Labour Day"
+
+    def __init__(self, **kwargs):
+        super().__init__()
 
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)

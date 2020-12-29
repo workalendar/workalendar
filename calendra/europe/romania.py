@@ -41,7 +41,7 @@ class Romania(OrthodoxCalendar):
     def get_liberation_day(self, year):
         """returns a possibly empty list of (date, holiday_name) tuples"""
         days = []
-        if year >= 1949 and year <= 1990:
+        if 1949 <= year <= 1990:
             actual_date = date(year, 8, 23)
             days = [(actual_date, "Liberation from Fascist Occupation Day")]
 

@@ -13,11 +13,12 @@ from .. import __version__
 
 class CoreCalendarTest(TestCase):
     cal_class = Calendar
+    kwargs = {}
 
     def setUp(self):
         super().setUp()
         self.year = date.today().year
-        self.cal = self.cal_class()
+        self.cal = self.cal_class(**self.kwargs)
 
 
 class GenericCalendarTest(CoreCalendarTest):
@@ -73,7 +74,7 @@ class GenericCalendarTest(CoreCalendarTest):
             assert ics_file.readline() == 'VERSION:2.0\n'
             prod_id_line = ics_file.readline()
             assert prod_id_line == (
-                'PRODID:-//workalendar//ical {}//EN\n'.format(__version__))
+                f'PRODID:-//workalendar//ical {__version__}//EN\n')
             # check new year
             assert ics_file.readline() == 'BEGIN:VEVENT\n'
             first_event_name = holidays[0][1]
@@ -96,7 +97,7 @@ class GenericCalendarTest(CoreCalendarTest):
             # check that UIDs are unique within the calendar
             assert len(uid_lines) == len(set(uid_lines))
             # check that final year is included
-            assert remaining_lines[-3].startswith('UID:2020')
+            assert remaining_lines[-3].startswith(('UID:2020', 'UID:2021'))
             # check last few lines of file
             assert remaining_lines[-2] == 'END:VEVENT\n'
             assert remaining_lines[-1] == 'END:VCALENDAR\n'

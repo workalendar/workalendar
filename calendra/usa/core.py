@@ -213,7 +213,7 @@ class UnitedStates(WesternCalendar):
         """
         if ((year - 1) % 4) != 0:
             raise ValueError(
-                "The year {} is not an Inauguration Year".format(year))
+                f"The year {year} is not an Inauguration Year")
         inauguration_day = date(year, 1, 20)
         if inauguration_day.weekday() == SUN:
             inauguration_day = date(year, 1, 21)

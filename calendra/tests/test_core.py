@@ -1,18 +1,19 @@
 from datetime import date
 from datetime import datetime
 from unittest import TestCase
+from unittest.mock import patch
 
 import dateutil.relativedelta as rd
 import pandas
 
 from . import CoreCalendarTest
+from ..core import Holiday
 from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
     Calendar, LunarMixin, WesternCalendar,
-    IslamicMixin, JalaliMixin
+    CalverterMixin, IslamicMixin, JalaliMixin
 )
-from ..core import Holiday
-from ..exceptions import UnsupportedDateType
+from ..exceptions import UnsupportedDateType, CalendarError
 
 
 class CalendarTest(CoreCalendarTest):
@@ -296,6 +297,43 @@ class JalaliMixinTest(CoreCalendarTest):
         self.assertEqual(len(days), 365)
 
 
+class CalverterClassNoConversionMethod(CalverterMixin):
+    pass
+
+
+class NoConversionMethodTest(TestCase):
+    def test_no_conversion_method(self):
+        with self.assertRaises(NotImplementedError):
+            CalverterClassNoConversionMethod()
+
+
+class IncludeLaylatAlQadr(IslamicMixin):
+    include_laylat_al_qadr = True
+
+
+class DoesNotIncludeLaylatAlQadr(IslamicMixin):
+    include_laylat_al_qadr = False
+
+
+class LaylatAlQadrTest(TestCase):
+
+    def test_warning_laylat_al_qadr(self):
+        cal = IncludeLaylatAlQadr()
+        with patch('warnings.warn') as patched:
+            cal.get_islamic_holidays()
+        patched.assert_called_with(
+            'The Islamic holiday named Laylat al-Qadr is decided by the '
+            'religious authorities. It is not possible to compute it. '
+            "You'll have to add it manually."
+        )
+
+    def test_no_warning_laylat_al_qadr(self):
+        cal = DoesNotIncludeLaylatAlQadr()
+        with patch('warnings.warn') as patched:
+            cal.get_islamic_holidays()
+        patched.assert_not_called()
+
+
 class MockChristianCalendar(WesternCalendar):
     # WesternCalendar inherits from ChristianMixin
     pass
@@ -511,7 +549,7 @@ class MultipleLineEmptyFirstDocstring(Calendar):
     """
 
 
-class CalendarClassName(TestCase):
+class CalendarClassNameTest(TestCase):
     def test_no_docstring(self):
         self.assertEqual(NoDocstring.name, "NoDocstring")
 
@@ -767,3 +805,15 @@ class PandasTimestampTest(CoreCalendarTest):
         self.assertEqual(delta, 2)
         delta = self.cal.get_working_days_delta(end, start)
         self.assertEqual(delta, 2)
+
+
+class MockCalendarNoFatTuesdayLabel(WesternCalendar):
+    fat_tuesday_label = None
+
+
+class FatTuesdayLabelTest(TestCase):
+
+    def test_fat_tuesday_label(self):
+        cal = MockCalendarNoFatTuesdayLabel()
+        with self.assertRaises(CalendarError):
+            cal.get_fat_tuesday(2020)
