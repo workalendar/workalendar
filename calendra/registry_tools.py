@@ -17,7 +17,7 @@ def iso_register(iso_code):
 
     Region calendar is then retrievable from registry:
 
-    >>> calendar = registry.get_calendar_class('MC-MR')
+    >>> calendar = registry.get('MC-MR')
     """
 
     def wrapper(cls):

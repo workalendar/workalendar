@@ -7,8 +7,17 @@ from ..europe import (
     Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
     Slovenia, Spain,
     # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
+    Sweden, UnitedKingdom,
     UnitedKingdomNorthernIreland,
+)
+
+# Switzerland
+from ..europe import (
+    Switzerland,
+    Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
+    BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
+    Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,
+    Ticino, Uri, Vaud, Valais, Zug, Zurich
 )
 
 # Germany
@@ -29,6 +38,13 @@ GERMANY_REGION_CLASSES = (
     Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
     NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
     SaxonyAnhalt, SchleswigHolstein, Thuringia
+)
+
+SWITZERLAND_REGION_CLASSES = (
+    Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
+    BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
+    Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,
+    Ticino, Uri, Vaud, Valais, Zug, Zurich
 )
 
 
@@ -72,12 +88,21 @@ class RegistryEurope(TestCase):
         self.assertIn(Germany, classes)
         for klass in GERMANY_REGION_CLASSES:
             self.assertIn(klass, classes)
+        for klass in SWITZERLAND_REGION_CLASSES:
+            self.assertIn(klass, classes)
 
     def test_germany_subregion(self):
         # Get all the subregions
         classes = (v for k, v in registry.get_subregions('DE').items())
         classes = list(classes)
         for klass in GERMANY_REGION_CLASSES:
+            self.assertIn(klass, classes)
+
+    def test_switzerland_subregion(self):
+        # Get all the subregions
+        classes = (v for k, v in registry.get_subregions('CH').items())
+        classes = list(classes)
+        for klass in SWITZERLAND_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_slovenia_code(self):

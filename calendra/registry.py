@@ -1,5 +1,4 @@
 from importlib import import_module
-import warnings
 
 from .core import Calendar
 from .exceptions import ISORegistryError
@@ -58,17 +57,6 @@ class IsoRegistry:
                 iso_code, class_name = iso_stuff
                 if iso_code and cls.__name__ == class_name:
                     self.register(iso_code, cls)
-
-    def get_calendar_class(self, iso_code):
-        """
-        Alias for the ``get(iso_code)`` method.
-
-        This alias will be deprecated in a further release.
-        """
-        warnings.warn("The ``get_calendar_class(iso_code)`` method will soon"
-                      " be deprecated. Please use ``get(iso_code)`` instead.",
-                      DeprecationWarning)
-        return self.get(iso_code)
 
     def get(self, iso_code):
         """

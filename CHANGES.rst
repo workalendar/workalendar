@@ -1,3 +1,22 @@
+v10.0.0 (unreleased)
+--------------------
+
+Incorporate changes from workalendar v10.0.0 (2020-06-05)
+
+- **BREAKING CHANGE**: the ``IsoRegistry.get_calendar_class()`` method has been removed from the code and should no longer be used (#375, #495).
+
+v9.2.0 (2020-06-02)
+
+- New Calendars
+
+- Added rules for all Switzerland Cantons, branching off the initial work by @brutasse (#497).
+
+v9.0.1 (2020-05-22)
+
+- Making the Israel calendar more efficient (#498).
+- Fixing duplicated holidays in Hong-Kong and Hong-Kong Bank holiday calendars (#496).
+- Integrating Hong-Kong holidays for 2021 (#496).
+
 v9.0.0 (unreleased)
 -------------------
 
