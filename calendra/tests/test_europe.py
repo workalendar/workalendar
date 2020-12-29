@@ -1,8 +1,8 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from collections import Counter
 
 from . import GenericCalendarTest
-from ..core import daterange
+from ..core import daterange, Holiday
 from ..europe import (
     Austria,
     Bulgaria,
@@ -1532,6 +1532,40 @@ class RussiaTest(GenericCalendarTest):
         # This calendar is an Orthodox calendar & it doesn't include Dec 25th
         holidays = self.cal.holidays_set(2020)
         self.assertNotIn(date(2020, 12, 25), holidays)
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays(2021)
+        holidays_2021 = [
+            (date(2021, 1, 1), "New year"),
+            (date(2021, 1, 2), "Day After New Year"),  # SAT
+            (date(2021, 1, 3), "Third Day after New Year"),  # SUN
+            (date(2021, 1, 4), "Fourth Day after New Year"),
+            (date(2021, 1, 5), "Fifth Day after New Year"),
+            (date(2021, 1, 6), "Sixth Day after New Year"),
+            (date(2021, 1, 7), "Christmas"),
+            (date(2021, 1, 8), "Eighth Day after New Year"),
+            (date(2021, 2, 22), "Day Before Defendence of the Fatherland"),
+            (date(2021, 2, 23), "Defendence of the Fatherland"),
+            (date(2021, 3, 8), "International Women's Day"),
+            (date(2021, 5, 1), "The Day of Spring and Labour"),
+            (date(2021, 5, 3), "The Day of Spring and Labour shift"),
+            (date(2021, 5, 9), "Victory Day"),
+            (date(2021, 5, 10), "Victory Day shift"),
+            (date(2021, 6, 12), "National Day"),
+            (date(2021, 6, 14), "National Day shift"),
+            (date(2021, 11, 4), "Day of Unity"),
+            (date(2021, 11, 5), "Day After Day of Unity"),
+            (date(2021, 12, 31), "New Year's Eve")
+        ]
+        holidays_2021 = [Holiday(*h) for h in holidays_2021]
+        self.assertEqual(holidays, holidays_2021)
+
+    def test_year_2021_extra_working_day(self):
+        self.assertTrue(self.cal.is_working_day(date(2021, 2, 20)))
+        self.assertTrue(self.cal.is_working_day(datetime(2021, 2, 20)))
+
+        self.assertTrue(self.cal.is_working_day(date(2021, 2, 19)))
+        self.assertTrue(self.cal.is_working_day(datetime(2020, 2, 19)))
 
 
 class UkraineTest(GenericCalendarTest):

@@ -1,3 +1,10 @@
+v14.1.0
+-------
+
+Incorporate changes from workalendar v14.1.0 (2020-12-10)
+
+- Fix Russia 2021 holidays, thx @MichalChromcak for the bug report (#578).
+
 v14.0.0 (unreleased)
 --------------------
 
