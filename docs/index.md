@@ -17,3 +17,4 @@ See [the repository README](https://github.com/jaraco/calendra#available-calenda
 * [Basic usage](basic.md)
 * [Advanced usage](advanced.md)
 * [ISO Registry](iso-registry.md)
+* [iCal Export](ical.md)

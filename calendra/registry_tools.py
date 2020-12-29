@@ -1,7 +1,6 @@
 """
 Tools to update the ISO registry.
 """
-from calendra.registry import registry
 
 
 def iso_register(iso_code):
@@ -11,6 +10,8 @@ def iso_register(iso_code):
     Registered country must set class variables ``iso`` using this decorator.
 
     >>> from calendra.core import Calendar
+    >>> from calendra.registry import registry
+    >>> from calendra.registry_tools import iso_register
     >>> @iso_register('MC-MR')
     ... class MyRegion(Calendar):
     ...     'My Region'
@@ -21,6 +22,7 @@ def iso_register(iso_code):
     """
 
     def wrapper(cls):
+        from calendra.registry import registry
         registry.register(iso_code, cls)
         return cls
     return wrapper

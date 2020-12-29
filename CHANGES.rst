@@ -1,3 +1,64 @@
+v11.0.0 (unreleased)
+--------------------
+
+Incorporate changes from workalendar v11.0.0 (2020-09-04)
+
+New calendar
+
+- Added Mozambique calendar by @mr-shovel (#542).
+
+New feature
+
+- Added iCal export feature, initiated by @joooeey (#197).
+- Fix PRODID pattern for iCal exports: `"PRODID:-//workalendar//ical {__version__}//EN"`, using current workalendar version (#543).
+
+v10.4.0 (2020-08-28)
+
+- New calendar
+
+  - Added Monaco calendar by @joaopbnogueira (#538).
+
+- Major changes and bugfixes
+
+  - Migrating Labour Day as a worldwide holiday, disabled by default, but activated (to date) for about 50 countries (including label change when necessary), `contributing.md` documentation amended (#467).
+  - Bugfix: Avoid Cesar Chavez Day duplicated shifts by refactoring the California shift rules (#528).
+
+- Other changes
+
+  - Small refactoring for the Colombia / added docstrings & comments to explain why we're not using stock options. Added tests for year 2020 and handling shift exceptions (#509).
+  - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
+  - Use `include_immaculate_conception` flag for Portugal, Brazil, Argentina, Paraguay calendars (#529).
+
+v10.3.0 (2020-07-10)
+
+- Bugfixes
+
+  - Belarus: removing day after Radonitsa, which is apparently not a holiday.
+  - Algeria: assigning the week-end days as FRI+SAT, as it's following a Islamic calendar.
+
+- Other changes
+
+  - Refactoring the core ``Calendar`` classes / mixins for better understanding. Only one ``Calendar`` subclass should be imported / used in calendar classes, the rest (when possible) should be ``Mixins`` (related to #511).
+  - Declaring the New year's Day as a worldwide holiday, with only two exceptions (to date): Israel & Qatar (#511).
+  - Fixed `contributing.md` documentation with the new class/mixin organization (#511).
+
+v10.2.0 (2020-06-26)
+
+- Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
+- Bugfix: Introducing the changes in Croatia holidays as of 2020 - Remembrance Day, Independence Day, Statehood Day... thx to @davidpodrebarac for the bug report (#515).
+
+v10.1.0 (2020-06-18)
+
+- Calendar fix
+
+  - Adding All Souls' Day to Lithuania calendar, starting of 2020, thx to @norkunas (#512).
+
+- Minor changes
+
+  - Small fixes (docstrings, use of extends, etc) on Cayman Islands calendar (#507).
+  - Moving Carnaval / Mardi Gras / Fat Tuesday calculation into the `workalendar.core` module, because it's used in at least 3 countries and some States / Counties in the USA.
+
+
 v10.0.0 (unreleased)
 --------------------
 

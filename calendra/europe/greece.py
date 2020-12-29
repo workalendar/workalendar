@@ -1,16 +1,19 @@
-from ..core import WesternCalendar, OrthodoxMixin
+from ..core import OrthodoxCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('GR')
-class Greece(OrthodoxMixin, WesternCalendar):
+class Greece(OrthodoxCalendar):
     'Greece'
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    # Civil holidays
+    include_labour_day = True
+    FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
         (3, 25, "Independence Day"),
-        (5, 1, "Labour Day"),
         (10, 28, "Ohi Day"),
     )
+
+    # Christian holidays
     include_epiphany = True
     include_clean_monday = True
     include_annunciation = True

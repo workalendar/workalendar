@@ -16,12 +16,12 @@ class Alabama(UnitedStates):
 
 class AlabamaBaldwinCounty(Alabama):
     "Baldwin County, Alabama"
-    include_mardi_gras = True
+    include_fat_tuesday = True
 
 
 class AlabamaMobileCounty(Alabama):
     "Mobile County, Alabama"
-    include_mardi_gras = True
+    include_fat_tuesday = True
 
 
 class AlabamaPerryCounty(Alabama):

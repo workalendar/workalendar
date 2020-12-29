@@ -1,11 +1,11 @@
-from ..core import ChineseNewYearCalendar, WesternCalendar
+from ..core import ChineseNewYearCalendar, SeriesShiftMixin
 from ..registry_tools import iso_register
 
 
 @iso_register('KR')
-class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
+class SouthKorea(SeriesShiftMixin, ChineseNewYearCalendar):
     "South Korea"
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
+    FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (3, 1, "Independence Day"),
         (5, 5, "Children's Day"),
         (6, 6, "Memorial Day"),
@@ -19,6 +19,7 @@ class SouthKorea(WesternCalendar, ChineseNewYearCalendar):
     chinese_new_year_eve_label = "Korean New Year's Day"
     include_chinese_second_day = True
     chinese_second_day_label = "Korean New Year's Day"
+    series_requiring_shifts = ["Korean New Year's Day", "Midautumn Festival"]
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

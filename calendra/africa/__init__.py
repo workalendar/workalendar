@@ -6,7 +6,7 @@ from .madagascar import Madagascar
 from .sao_tome import SaoTomeAndPrincipe
 from .south_africa import SouthAfrica
 from .angola import Angola
-
+from .mozambique import Mozambique
 
 __all__ = (
     'Algeria',
@@ -17,4 +17,5 @@ __all__ = (
     'SaoTomeAndPrincipe',
     'SouthAfrica',
     'Angola',
+    'Mozambique',
 )

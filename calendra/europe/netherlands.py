@@ -1,10 +1,10 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin, SUN
+from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('NL')
-class Netherlands(WesternCalendar, ChristianMixin):
+class Netherlands(WesternCalendar):
     'Netherlands'
 
     include_good_friday = True

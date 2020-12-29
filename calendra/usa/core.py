@@ -2,14 +2,14 @@ from datetime import date, timedelta
 
 from dateutil import relativedelta as rd
 
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
 from ..core import Holiday
 from ..registry_tools import iso_register
 
 
 @iso_register('US')
-class UnitedStates(WesternCalendar, ChristianMixin):
+class UnitedStates(WesternCalendar):
     "United States of America"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -25,7 +25,7 @@ class UnitedStates(WesternCalendar, ChristianMixin):
         return Holiday.nearest_weekday
 
     # Veterans day label
-    include_veterans_day = True
+    include_veterans_day = False
     veterans_day_label = 'Veterans Day'
 
     # MLK
@@ -72,6 +72,8 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     # Some regional variants
     include_mardi_gras = False
+    include_fat_tuesday = False
+    fat_tuesday_label = "Mardi Gras"
 
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
@@ -149,13 +151,12 @@ class UnitedStates(WesternCalendar, ChristianMixin):
 
     def get_cesar_chavez_days(self, year):
         """
-        Cesar Chavez day is on 31st of March, float to 1st April if Monday.
+        Cesar Chavez day is on 31st of March
 
-        Will return a list of days.
+        Will return a list of days, because in some states (California),
+        it can float to MON if it happens on SUN.
         """
         days = [(date(year, 3, 31), "Cesar Chavez Day")]
-        if date(year, 3, 31).weekday() == SUN:
-            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
         return days
 
     def get_patriots_day(self, year):
@@ -224,13 +225,6 @@ class UnitedStates(WesternCalendar, ChristianMixin):
             self.national_memorial_day_label,
             indication="Last Monday in May",
         )
-
-    def get_mardi_gras(self, year):
-        """
-        Mardi Gras is the Tuesday happening 47 days before Easter
-        """
-        sunday = self.get_easter_sunday(year)
-        return (sunday - timedelta(days=47), "Mardi Gras")
 
     def get_variable_days(self, year):
         # usual variable days

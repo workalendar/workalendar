@@ -1,22 +1,25 @@
 from datetime import date
 
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('PY')
-class Paraguay(WesternCalendar, ChristianMixin):
+class Paraguay(WesternCalendar):
     "Paraguay"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (5, 14, "Independence Day"),
         (6, 12, "Chaco Armistice"),
         (9, 19, "Army holiday"),
-        (12, 8, "Virgin of Caacupé Day"),
     )
+    # Civil holidays
+    include_labour_day = True
+    # Christian holidays
     include_holy_thursday = True
     include_good_friday = True
     include_easter_saturday = True
+    include_immaculate_conception = True
+    immaculate_conception_label = "Virgin of Caacupé Day"
 
     def get_heroes_day(self, year):
         """

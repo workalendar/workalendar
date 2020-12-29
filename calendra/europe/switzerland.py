@@ -1,10 +1,10 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin, SUN
+from ..core import WesternCalendar, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('CH')
-class Switzerland(WesternCalendar, ChristianMixin):
+class Switzerland(WesternCalendar):
     'Switzerland'
 
     # ChristianMixin entries common to (most) cantons - opt out
@@ -27,7 +27,6 @@ class Switzerland(WesternCalendar, ChristianMixin):
     # Swiss entries with varying observance - opt in
     include_berchtolds_day = False
     include_st_josephs_day = False
-    include_labour_day = False
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (8, 1, "National Holiday"),
@@ -39,8 +38,6 @@ class Switzerland(WesternCalendar, ChristianMixin):
             days.append((date(year, 1, 2), "Berchtold's Day"))
         if self.include_st_josephs_day:
             days.append((date(year, 3, 19), "St Joseph's Day"))
-        if self.include_labour_day:
-            days.append((date(year, 5, 1), "Labour Day"))
         return days
 
 

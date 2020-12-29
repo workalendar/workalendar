@@ -1,16 +1,14 @@
 from datetime import timedelta, date
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import MON, SAT, SUN
+from ..core import WesternCalendar, MON, SAT, SUN
 from ..registry_tools import iso_register
 
 
 @iso_register('BR')
-class Brazil(WesternCalendar, ChristianMixin):
+class Brazil(WesternCalendar):
     "Brazil"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 21, "Tiradentes' Day"),
-        (5, 1, "Labour Day"),
         (9, 7, "Independence Day"),
         (10, 12, "Our Lady of Aparecida"),
         (11, 2, "All Souls' Day"),
@@ -22,24 +20,22 @@ class Brazil(WesternCalendar, ChristianMixin):
     sao_pedro_label = "São Pedro"
     include_sao_joao = False
     sao_joao_label = "São João"
+    # Civil holidays
+    include_labour_day = True
     include_servidor_publico = False
     servidor_publico_label = "Dia do Servidor Público"
     # Consciência Negra day
-    include_consciencia_negra = True
+    include_consciencia_negra = False
     # There are two dates for the Consciência Negra day
     # The most common is November, 20th
     consciencia_negra_day = (11, 20)
     consciencia_negra_label = "Consciência Negra"
-    include_nossa_senhora_conceicao = False
+
+    # Christian holidays
     include_easter_sunday = True
-
-    def get_carnaval(self, year):
-        """
-        Return the third day of Carnaval (Tuesday)
-
-        This day is shared holidays by several Brazil states.
-        """
-        return self.get_easter_sunday(year) - timedelta(days=47)
+    # Dia de Nossa Senhora da Conceição is the Immaculate Conception.
+    include_immaculate_conception = False
+    immaculate_conception_label = "Dia de Nossa Senhora da Conceição"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -55,10 +51,6 @@ class Brazil(WesternCalendar, ChristianMixin):
             month, day = self.consciencia_negra_day
             days.append(
                 (date(year, month, day), self.consciencia_negra_label)
-            )
-        if self.include_nossa_senhora_conceicao:
-            days.append(
-                (date(year, 12, 8), "Dia de Nossa Senhora da Conceição")
             )
         return days
 
@@ -106,7 +98,7 @@ class BrazilAmazonas(Brazil):
         (9, 5, "Elevação do Amazonas á categoria de província"),
     )
     include_consciencia_negra = True
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-BA')
@@ -154,7 +146,7 @@ class BrazilMaranhao(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (7, 28, "Adesão do Maranhão á independência do Brasil"),
     )
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-MG')
@@ -186,7 +178,7 @@ class BrazilPara(Brazil):
     FIXED_HOLIDAYS = Brazil.FIXED_HOLIDAYS + (
         (8, 15, "Adesão do Grão-Pará á independência do Brasil"),
     )
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 @iso_register('BR-PB')
@@ -231,11 +223,13 @@ class BrazilRioDeJaneiro(Brazil):
         (4, 23, "Dia de São Jorge"),
         (3, 1, "Aniversário da Cidade do Rio de Janeiro"),
     )
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnaval"
     include_servidor_publico = True
     servidor_publico_label = "Dia do Funcionário Público"
     include_consciencia_negra = True
     consciencia_negra_label = "Dia da Consciência Negra"
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
     def get_dia_do_comercio(self, year):
         """
@@ -247,7 +241,6 @@ class BrazilRioDeJaneiro(Brazil):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        days.append((self.get_carnaval(year), "Carnaval"))
         days.append((self.get_dia_do_comercio(year), "Dia do Comércio"))
         return days
 
@@ -309,17 +302,14 @@ class BrazilSaoPauloCity(BrazilSaoPauloState):
     FIXED_HOLIDAYS = BrazilSaoPauloState.FIXED_HOLIDAYS + (
         (1, 25, "Anniversary of the city of São Paulo"),
     )
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnaval"
     include_easter_sunday = True
     include_corpus_christi = True
     include_good_friday = True
     good_friday_label = "Sexta-feira da Paixão"
     include_consciencia_negra = True
     consciencia_negra_label = "Dia da Consciência Negra"
-
-    def get_variable_days(self, year):
-        days = super().get_variable_days(year)
-        days.append((self.get_carnaval(year), "Carnaval"))
-        return days
 
 
 @iso_register('BR-SE')
@@ -380,7 +370,7 @@ class BrazilGuarapariCity(BrazilEspiritoSanto):
     include_sao_pedro = True
     include_consciencia_negra = True
     consciencia_negra_day = (11, 29)
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
 
 class BrazilSerraCity(BrazilEspiritoSanto):
@@ -388,18 +378,19 @@ class BrazilSerraCity(BrazilEspiritoSanto):
     FIXED_HOLIDAYS = BrazilEspiritoSanto.FIXED_HOLIDAYS + (
         (12, 26, "Dia do Serrano"),
     )
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnaval"
     include_ash_wednesday = True
     ash_wednesday_label = "Quarta-feira de cinzas"
     include_good_friday = True
     good_friday_label = "Paixão do Cristo"
     include_sao_pedro = True
-    include_nossa_senhora_conceicao = True
+    include_immaculate_conception = True
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        carnaval_tuesday = self.get_carnaval(year)
+        carnaval_tuesday = self.get_fat_tuesday(year)
         days.append((carnaval_tuesday - timedelta(days=1), "Carnaval Monday"))
-        days.append((carnaval_tuesday, "Carnaval"))
         return days
 
 
@@ -583,10 +574,11 @@ class BrazilBankCalendar(Brazil):
     Calendar that considers only working days for bank transactions
     for companies and the general public
     """
+    include_fat_tuesday = True
+    fat_tuesday_label = "Tuesday carnaval"
     include_good_friday = True
     include_ash_wednesday = True
     include_corpus_christi = True
-    include_consciencia_negra = False
     include_easter_sunday = False
 
     def get_last_day_of_year_for_only_internal_bank_trans(self, year):
@@ -610,22 +602,17 @@ class BrazilBankCalendar(Brazil):
         day for only internal bank transactions
         """
         days = super().get_variable_days(year)
-        tuesday_carnaval = self.get_carnaval(year)
+        tuesday_carnaval = self.get_fat_tuesday(year)
         monday_carnaval = tuesday_carnaval - timedelta(days=1)
 
-        carnaval_days = [
-            (monday_carnaval, "Monday carnaval"),
-            (tuesday_carnaval, "Tuesday carnaval"),
-        ]
+        days.append((monday_carnaval, "Monday carnaval"))
 
-        non_working_days = [
-            (
-                self.get_last_day_of_year_for_only_internal_bank_trans(year),
-                "Last day of year for only internal bank transactions"
-            )
-        ]
+        days.append((
+            self.get_last_day_of_year_for_only_internal_bank_trans(year),
+            "Last day of year for only internal bank transactions"
+        ))
 
-        return days + carnaval_days + non_working_days
+        return days
 
     def find_following_working_day(self, day):
         """

@@ -1,27 +1,29 @@
 from datetime import timedelta, date
-from ..core import (
-    WesternCalendar, ChristianMixin,
-    MON, TUE, WED, THU, FRI, SAT
-)
+from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('AR')
-class Argentina(WesternCalendar, ChristianMixin):
+class Argentina(WesternCalendar):
     'Argentina'
-
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Día del Trabajador"
+    # Christian holidays
+    include_fat_tuesday = True
+    fat_tuesday_label = "Carnival"
     include_good_friday = True
     include_easter_saturday = True
     include_easter_sunday = True
     include_christmas = True
+    include_immaculate_conception = True
+    immaculate_conception_label = "Día de la Inmaculada Concepción de María"
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (3, 24, "Día Nacional de la Memoria por la Verdad y la Justicia"),
-        (5, 1, "Día del Trabajador"),
         (5, 25, "Día de la Revolución de Mayo"),
         (6, 20, "Día Paso a la Inmortalidad del General Manuel Belgrano"),
         (7, 9, "Día de la Independencia"),
-        (12, 8, "Día de la Inmaculada Concepción de María"),
     )
 
     def get_general_guemes_day(self, year):
@@ -124,29 +126,17 @@ class Argentina(WesternCalendar, ChristianMixin):
         return (day, label)
 
     def get_variable_days(self, year):
-
         days = super().get_variable_days(year)
         days.append(
             (self.get_easter_sunday(year) - timedelta(days=48),
                 "Carnival Lunes"))
 
-        days.append(
-            (self.get_easter_sunday(year) - timedelta(days=47),
-                "Carnival"))
-
-        days.append(
-            self.get_malvinas_day(year))
-
-        days.append(
-            (self.get_general_guemes_day(year)))
-
-        days.append(
-            (self.get_general_martin_day(year)))
-
-        days.append(
-            (self.get_soberania_day(year)))
-
-        days.append(
-            (self.get_diversidad_day(year)))
+        days.extend([
+            self.get_malvinas_day(year),
+            self.get_general_guemes_day(year),
+            self.get_general_martin_day(year),
+            self.get_soberania_day(year),
+            self.get_diversidad_day(year)
+        ])
 
         return days

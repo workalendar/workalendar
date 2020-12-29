@@ -1,21 +1,23 @@
 from datetime import date
-from ..core import WesternCalendar, OrthodoxMixin
+from ..core import OrthodoxCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('RO')
-class Romania(OrthodoxMixin, WesternCalendar):
+class Romania(OrthodoxCalendar):
     'Romania'
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (1, 2, "Day After New Years"),
+    # Civil holidays
+    include_labour_day = True
+    FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (
+        (1, 2, "Day After New Year"),
         (1, 24, "Union Day"),
-        (5, 1, "Labour Day"),
         (8, 15, "Dormition of the Theotokos"),
         (11, 30, "St. Andrew's Day"),
         (12, 1, "National Day/Great Union"),
     )
 
+    # Christian holidays
     include_good_friday = True
     include_easter_sunday = True
     include_easter_monday = True

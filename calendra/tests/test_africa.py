@@ -560,6 +560,18 @@ class AngolaTest(GenericCalendarTest):
         # Dia do Natal – 25 de Dezembro
         self.assertIn(date(2018, 12, 25), holidays)  # Natal
 
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2018)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2018, 2, 13)]
+        self.assertEqual(label_carnaval, "Dia de Carnaval")
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays_dict = dict(holidays)
+        label = holidays_dict[date(2020, 5, 1)]
+        self.assertEqual(label, "Dia Internacional do Trabalhador")
+
 
 class KenyaTest(GenericCalendarTest):
     cal_class = Kenya
@@ -580,7 +592,7 @@ class KenyaTest(GenericCalendarTest):
         self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day (old name)
         self.assertIn(date(2019, 12, 31), holidays)  # New Years Eve
-        self.assertEquals(len(holidays), 14)
+        self.assertEqual(len(holidays), 14)
 
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
@@ -598,4 +610,4 @@ class KenyaTest(GenericCalendarTest):
         self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2020, 12, 26), holidays)  # Utamaduni Day
         self.assertIn(date(2020, 12, 31), holidays)  # New Years Eve
-        self.assertEquals(len(holidays), 14)
+        self.assertEqual(len(holidays), 14)

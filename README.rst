@@ -134,6 +134,7 @@ Europe
 * Lithuania
 * Luxembourg
 * Malta
+* Monaco
 * Netherlands
 * Norway
 * Poland
@@ -202,8 +203,10 @@ Africa
 * Ivory Coast
 * Kenya
 * Madagascar
+* Mozambique
 * São Tomé
 * South Africa
+
 
 And more to come (I hope!)
 

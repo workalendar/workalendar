@@ -1,10 +1,10 @@
 from datetime import timedelta
-from ..core import WesternCalendar, ChristianMixin
+from ..core import WesternCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('DK')
-class Denmark(WesternCalendar, ChristianMixin):
+class Denmark(WesternCalendar):
     'Denmark'
 
     include_holy_thursday = True

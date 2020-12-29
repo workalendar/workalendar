@@ -1,12 +1,11 @@
 from datetime import date
 
-from ..core import WesternCalendar, ChristianMixin, Calendar
-from ..core import SUN, MON, SAT
+from ..core import WesternCalendar, SUN, MON, SAT
 from ..registry_tools import iso_register
 
 
 @iso_register('CA')
-class Canada(WesternCalendar, ChristianMixin):
+class Canada(WesternCalendar):
     "Canada"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (7, 1, "Canada Day"),
@@ -31,14 +30,14 @@ class Canada(WesternCalendar, ChristianMixin):
         return days
 
 
-class LateFamilyDayMixin(Calendar):
+class LateFamilyDayMixin:
     "3rd Monday of February"
 
     def get_family_day(self, year, label="Family Day"):
         return (self.get_nth_weekday_in_month(year, 2, MON, 3), label)
 
 
-class VictoriaDayMixin(Calendar):
+class VictoriaDayMixin:
     "Monday preceding the 25th of May"
 
     def get_victoria_day(self, year):
@@ -47,14 +46,14 @@ class VictoriaDayMixin(Calendar):
                 return (date(year, 5, day), "Victoria Day")
 
 
-class AugustCivicHolidayMixin(Calendar):
+class AugustCivicHolidayMixin:
     "1st Monday of August; different names depending on location"
 
     def get_civic_holiday(self, year, label="Civic Holiday"):
         return (self.get_nth_weekday_in_month(year, 8, MON), label)
 
 
-class ThanksgivingMixin(Calendar):
+class ThanksgivingMixin:
     "2nd Monday of October"
 
     def get_thanksgiving(self, year):
@@ -62,7 +61,7 @@ class ThanksgivingMixin(Calendar):
         return (thanksgiving, "Thanksgiving")
 
 
-class BoxingDayMixin(Calendar):
+class BoxingDayMixin:
     "26th of December; shift to next working day"
 
     def get_boxing_day(self, year):
@@ -78,7 +77,7 @@ class BoxingDayMixin(Calendar):
         return days
 
 
-class StJeanBaptisteMixin(Calendar):
+class StJeanBaptisteMixin:
     "24th of June; shift to next working day"
 
     def get_st_jean(self, year):
@@ -92,7 +91,7 @@ class StJeanBaptisteMixin(Calendar):
         return days
 
 
-class RemembranceDayShiftMixin(Calendar):
+class RemembranceDayShiftMixin:
     "11th of November; shift to next day"
     def get_remembrance_day(self, year):
         remembranceday = date(year, 11, 11)
@@ -106,8 +105,9 @@ class RemembranceDayShiftMixin(Calendar):
 
 
 @iso_register('CA-ON')
-class Ontario(Canada, BoxingDayMixin, ThanksgivingMixin, VictoriaDayMixin,
-              LateFamilyDayMixin, AugustCivicHolidayMixin):
+class Ontario(BoxingDayMixin, ThanksgivingMixin, VictoriaDayMixin,
+              LateFamilyDayMixin, AugustCivicHolidayMixin,
+              Canada):
     "Ontario"
     include_good_friday = True
 
@@ -125,7 +125,7 @@ class Ontario(Canada, BoxingDayMixin, ThanksgivingMixin, VictoriaDayMixin,
 
 
 @iso_register('CA-QC')
-class Quebec(Canada, VictoriaDayMixin, StJeanBaptisteMixin, ThanksgivingMixin):
+class Quebec(VictoriaDayMixin, StJeanBaptisteMixin, ThanksgivingMixin, Canada):
     "Quebec"
     include_easter_monday = True
 
@@ -140,8 +140,8 @@ class Quebec(Canada, VictoriaDayMixin, StJeanBaptisteMixin, ThanksgivingMixin):
 
 
 @iso_register('CA-BC')
-class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
-                      ThanksgivingMixin):
+class BritishColumbia(VictoriaDayMixin, AugustCivicHolidayMixin,
+                      ThanksgivingMixin, Canada):
     "British Columbia"
 
     include_good_friday = True
@@ -176,7 +176,7 @@ class BritishColumbia(Canada, VictoriaDayMixin, AugustCivicHolidayMixin,
 
 
 @iso_register('CA-AB')
-class Alberta(Canada, LateFamilyDayMixin, VictoriaDayMixin, ThanksgivingMixin):
+class Alberta(LateFamilyDayMixin, VictoriaDayMixin, ThanksgivingMixin, Canada):
     "Alberta"
     include_good_friday = True
 
@@ -195,9 +195,9 @@ class Alberta(Canada, LateFamilyDayMixin, VictoriaDayMixin, ThanksgivingMixin):
 
 
 @iso_register('CA-SK')
-class Saskatchewan(Canada, LateFamilyDayMixin, VictoriaDayMixin,
+class Saskatchewan(LateFamilyDayMixin, VictoriaDayMixin,
                    RemembranceDayShiftMixin, AugustCivicHolidayMixin,
-                   ThanksgivingMixin):
+                   ThanksgivingMixin, Canada):
     "Saskatchewan"
     include_good_friday = True
 
@@ -214,8 +214,9 @@ class Saskatchewan(Canada, LateFamilyDayMixin, VictoriaDayMixin,
 
 
 @iso_register('CA-MB')
-class Manitoba(Canada, LateFamilyDayMixin, VictoriaDayMixin,
-               AugustCivicHolidayMixin, ThanksgivingMixin):
+class Manitoba(LateFamilyDayMixin, VictoriaDayMixin,
+               AugustCivicHolidayMixin, ThanksgivingMixin,
+               Canada):
     "Manitoba"
     include_good_friday = True
 
@@ -231,7 +232,7 @@ class Manitoba(Canada, LateFamilyDayMixin, VictoriaDayMixin,
 
 
 @iso_register('CA-NB')
-class NewBrunswick(Canada, AugustCivicHolidayMixin):
+class NewBrunswick(AugustCivicHolidayMixin, Canada):
     "New Brunswick"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
@@ -247,7 +248,7 @@ class NewBrunswick(Canada, AugustCivicHolidayMixin):
 
 
 @iso_register('CA-NS')
-class NovaScotia(Canada, RemembranceDayShiftMixin, LateFamilyDayMixin):
+class NovaScotia(RemembranceDayShiftMixin, LateFamilyDayMixin, Canada):
     "Nova Scotia"
 
     include_good_friday = True
@@ -261,7 +262,7 @@ class NovaScotia(Canada, RemembranceDayShiftMixin, LateFamilyDayMixin):
 
 
 @iso_register('CA-PE')
-class PrinceEdwardIsland(Canada, LateFamilyDayMixin, RemembranceDayShiftMixin):
+class PrinceEdwardIsland(LateFamilyDayMixin, RemembranceDayShiftMixin, Canada):
     "Prince Edward Island"
 
     include_good_friday = True
@@ -280,7 +281,7 @@ class Newfoundland(Canada):
 
 
 @iso_register('CA-YT')
-class Yukon(Canada, VictoriaDayMixin, ThanksgivingMixin):
+class Yukon(VictoriaDayMixin, ThanksgivingMixin, Canada):
     "Yukon"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
@@ -300,8 +301,8 @@ class Yukon(Canada, VictoriaDayMixin, ThanksgivingMixin):
 
 
 @iso_register('CA-NT')
-class NorthwestTerritories(Canada, RemembranceDayShiftMixin, VictoriaDayMixin,
-                           ThanksgivingMixin):
+class NorthwestTerritories(RemembranceDayShiftMixin, VictoriaDayMixin,
+                           ThanksgivingMixin, Canada):
     "Northwest Territories"
 
     FIXED_HOLIDAYS = Canada.FIXED_HOLIDAYS + (
@@ -321,8 +322,8 @@ class NorthwestTerritories(Canada, RemembranceDayShiftMixin, VictoriaDayMixin,
 
 
 @iso_register('CA-NU')
-class Nunavut(Canada, VictoriaDayMixin, ThanksgivingMixin,
-              RemembranceDayShiftMixin):
+class Nunavut(VictoriaDayMixin, ThanksgivingMixin, RemembranceDayShiftMixin,
+              Canada):
     "Nunavut"
     include_good_friday = True
 
