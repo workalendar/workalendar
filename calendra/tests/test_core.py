@@ -11,7 +11,8 @@ from ..core import Holiday
 from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
     Calendar, LunarMixin, WesternCalendar,
-    CalverterMixin, IslamicMixin, JalaliMixin
+    CalverterMixin, IslamicMixin, JalaliMixin,
+    daterange,
 )
 from ..exceptions import UnsupportedDateType, CalendarError
 
@@ -817,3 +818,46 @@ class FatTuesdayLabelTest(TestCase):
         cal = MockCalendarNoFatTuesdayLabel()
         with self.assertRaises(CalendarError):
             cal.get_fat_tuesday(2020)
+
+
+def test_daterange_start_end():
+    start = date(2020, 4, 1)
+    end = date(2020, 4, 10)
+    date_list = list(daterange(start, end))
+    assert date_list == [
+        date(2020, 4, 1),
+        date(2020, 4, 2),
+        date(2020, 4, 3),
+        date(2020, 4, 4),
+        date(2020, 4, 5),
+        date(2020, 4, 6),
+        date(2020, 4, 7),
+        date(2020, 4, 8),
+        date(2020, 4, 9),
+        date(2020, 4, 10),
+    ]
+
+
+def test_daterange_end_start():
+    end = date(2020, 4, 1)
+    start = date(2020, 4, 10)
+    date_list = list(daterange(start, end))
+    assert date_list == [
+        date(2020, 4, 1),
+        date(2020, 4, 2),
+        date(2020, 4, 3),
+        date(2020, 4, 4),
+        date(2020, 4, 5),
+        date(2020, 4, 6),
+        date(2020, 4, 7),
+        date(2020, 4, 8),
+        date(2020, 4, 9),
+        date(2020, 4, 10),
+    ]
+
+
+def test_daterange_same_date():
+    # Stupid usecase, but nonetheless
+    start = end = date(2020, 4, 1)
+    date_list = list(daterange(start, end))
+    assert date_list == [date(2020, 4, 1)]

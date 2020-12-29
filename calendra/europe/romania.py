@@ -28,6 +28,8 @@ class Romania(OrthodoxCalendar):
     include_christmas = True
     include_boxing_day = True
     boxing_day_label = 'Christmas Day'
+    # No Orthodox Christmas
+    include_orthodox_christmas = False
 
     def get_childrens_day(self, year):
         """returns a possibly empty list of (date, holiday_name) tuples"""

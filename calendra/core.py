@@ -52,6 +52,21 @@ def cleaned_date(day, keep_datetime=False):
     return day
 
 
+def daterange(start, end):
+    """
+    Yield days from ``start`` to ``end`` including both of them.
+
+    If start and end are in opposite order, they'll be swapped silently.
+    """
+    # Swap if necessary
+    if start > end:
+        end, start = start, end
+    day = start
+    while day <= end:
+        yield day
+        day += timedelta(days=1)
+
+
 class Holiday(date):
     """
     A named holiday with an indicated date, name, and additional keyword
@@ -931,6 +946,17 @@ class WesternCalendar(WesternMixin, Calendar):
 class OrthodoxMixin(ChristianMixin):
     EASTER_METHOD = easter.EASTER_ORTHODOX
     WEEKEND_DAYS = (SAT, SUN)
+    include_orthodox_christmas = True
+    # This label should be de-duplicated if needed
+    orthodox_christmas_day_label = "Christmas"
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_orthodox_christmas:
+            days.append(
+                (date(year, 1, 7), self.orthodox_christmas_day_label)
+            )
+        return days
 
 
 class OrthodoxCalendar(OrthodoxMixin, Calendar):

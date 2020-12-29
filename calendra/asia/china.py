@@ -28,6 +28,13 @@ holidays = {
             'Dragon Boat Festival': [(6, 25), (6, 26), (6, 27)],
             'National Day': [(10, 8)]
         },
+    2021:
+        {
+            'Ching Ming Festival': [(4, 3), (4, 4), (4, 5)],
+            'Labour Day Holiday': [(5, 1), (5, 2), (5, 3), (5, 4), (5, 5)],
+            'Dragon Boat Festival': [(6, 12), (6, 13), (6, 14)],
+            'Mid-Autumn Festival': [(9, 19), (9, 20), (9, 21)]
+        },
 }
 
 workdays = {
@@ -51,6 +58,13 @@ workdays = {
             'Labour Day Holiday Shift': [(4, 26), (5, 9)],
             'Dragon Boat Festival Shift': [(6, 28)],
             'National Day Shift': [(9, 27), (10, 10)]
+        },
+    2021:
+        {
+            'Spring Festival Shift': [(2, 7), (2, 20)],
+            'Labour Day Holiday Shift': [(4, 25), (5, 8)],
+            'Mid-Autumn Festival Shift': [(9, 18)],
+            'National Day Shift': [(9, 26), (10, 9)]
         },
 }
 

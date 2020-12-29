@@ -1,3 +1,20 @@
+v14.0.0 (unreleased)
+--------------------
+
+Incorporate changes from workalendar v14.0.0 (2020-11-27)
+
+- Fixes
+
+  - Fix Russia calendar: non-working days are shifted to the next MON when they happen on the week-end (#589).
+  - Fix Russia New year holidays. It has become a week off since 2005 (related to #578).
+  - Added Russia COVID-19 non-working days for the year 2020 ; these days are not shifted to next MON (#578).
+  - Fixed Russia Christmas day ; December 25th is not a public holiday. Fixed several other Orthodox calendars (#530).
+  - Update China's public holidays for 2021, thanks @iamsk.
+
+- Minor changes
+
+  - Added a `daterange` function in `workalendar.core` module to iterate between two dates.
+
 v13.0.0 (unreleased)
 --------------------
 
