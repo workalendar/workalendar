@@ -1,20 +1,44 @@
-# Workalendar
+[![](https://img.shields.io/pypi/v/calendra.svg)][1]
+
+[![](https://img.shields.io/pypi/pyversions/calendra.svg)][1]
+
+  [1]: https://pypi.org/project/calendra
+
+[![Automated Tests](https://github.com/jaraco/calendra/workflows/Automated%20Tests/badge.svg)](https://github.com/jaraco/calendra/actions?query=workflow%3A%22Automated+Tests%22)
+
+[![](https://readthedocs.org/projects/calendra/badge/?version=latest)](https://calendra.readthedocs.io/en/latest/?badge=latest)
 
 ## Overview
 
-Workalendar is a Python module that offers classes able to handle calendars, list legal / religious holidays and gives working-day-related computation functions.
+Calendra is a Python module that offers classes able to handle calendars, list legal / religious holidays and gives working-day-related computation functions.
+
+## History
+
+Calendra is a fork of [Workalendar](https://github.com/peopledoc/workalendar)
+designed to be more extensible and introspectable, adding interfaces where
+[Workalendar is philosophically opposed for the sake of simplicity](https://github.com/peopledoc/workalendar/pull/79).
+
+What can Calendra do that Workalendar cannot?
+
+- Provides descriptions for holidays for the "day indicated" for each
+  Holiday (such as '3rd Monday in August').
+- Keeps distinct the indicated and observed dates for Holidays, such
+  that it's possible to determine on what day a given holiday is observed.
+- Allows the number of Holidays in a calendar year to be counted.
+- Consolidates observance logic in the core code rather than requiring
+  each calendar implementation to implement its own.
 
 ## Status
 
-This library is ready for production, although we may warn eventual users: some calendars may not be up-to-date, and this library doesn't cover all the existing countries on earth (yet).
+The project is stable and in production use. Calendra follows the principles of [semver](https://semver.org) for released verisons.
 
 If you spot any bug or wish to add a calendar, please refer to the [Contributing doc](docs/contributing.md).
 
 ## Usage sample
 
-```python
+```python-repl
 >>> from datetime import date
->>> from workalendar.europe import France
+>>> from calendra.europe import France
 >>> cal = France()
 >>> cal.holidays(2012)
 [(datetime.date(2012, 1, 1), 'New year'),
@@ -42,25 +66,15 @@ For a more complete documentation and advanced usage, go to [the official workal
 
 ## External dependencies
 
-Workalendar has been tested on Python 3.6, 3.7, 3.8, 3.9.
-
-**Incompatibility:** Workalendar will require you to use Python 3.6+.
+Calendra has been tested on the Python versions declared in setup.cfg.
 
 If you're using wheels, you should be fine without having to install extra system packages. As of `v7.0.0`, we have dropped `ephem` as a dependency for computing astronomical ephemeris in favor of `skyfield`. So if you had any trouble because of this new dependency, during the installation or at runtime, [do not hesitate to file an issue](https://github.com/peopledoc/workalendar/issues/).
 
 ## Tests
 
-CI status:
-
-[![Github action status](https://github.com/peopledoc/workalendar/workflows/CI/badge.svg)](https://github.com/peopledoc/workalendar/actions?query=workflow%3ACI)
-
-To run test, just install tox with `pip install tox` and run:
-
-```
-tox
-```
-
+To run test, just install tox with `pip install tox` and run `tox`
 from the command line.
+
 
 ## Available Calendars
 
@@ -163,6 +177,7 @@ And more to come (I hope!)
 ## Caveats
 
 Please take note that some calendars are not 100% accurate. The most common example is the Islamic calendar, where some computed holidays are not exactly on the same official day decided by religious authorities, and this may vary country by country. Whenever it's possible, try to adjust your results with the official data provided by the adequate authorities.
+
 
 ## Contributing
 
