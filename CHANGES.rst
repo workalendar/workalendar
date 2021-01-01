@@ -1,12 +1,9 @@
-v14.1.0
+v7.0.0
 -------
 
 Incorporate changes from workalendar v14.1.0 (2020-12-10)
 
 - Fix Russia 2021 holidays, thx @MichalChromcak for the bug report (#578).
-
-v14.0.0 (unreleased)
---------------------
 
 Incorporate changes from workalendar v14.0.0 (2020-11-27)
 
@@ -21,9 +18,6 @@ Incorporate changes from workalendar v14.0.0 (2020-11-27)
 - Minor changes
 
   - Added a `daterange` function in `workalendar.core` module to iterate between two dates.
-
-v13.0.0 (unreleased)
---------------------
 
 Incorporate changes from workalendar v13.0.0 (2020-11-13)
 
@@ -48,7 +42,7 @@ Incorporate changes from workalendar v13.0.0 (2020-11-13)
   - Use the `setup.cfg` file in the key to cache in `ci.yml` file (#587).
   - [OBSOLETE] Switched from bionic to focal on Travis CI (we've switched to GH actions after that).
 
-v12.1.0 (2020-10-16)
+Incorporate changes from workalendar v12.1.0 (2020-10-16)
 
 - New calendars
 
@@ -66,24 +60,18 @@ v12.1.0 (2020-10-16)
   - Added a tox entrypoint to ensure code is Python 3.6+, using ``pyupgrade`` (#566).
   - Added the pyupgrade tox job to the test suite, amended contributing documentation (#566).
 
-v12.0.0 (unreleased)
---------------------
-
 Incorporate changes from workalendar v12.0.0 (2020-10-02)
 
 - **Deprecation:** Dropped support for Python 3.5. As of this version, workalendar now requires Python 3.6+ (#330).
 - Improve coverage of Singapore calendar (#546).
 
-v11.0.1 (2020-09-11)
+Incorporate changes from workalendar v11.0.1 (2020-09-11)
 
 - Add ISO code decorator to Catalonia calendar, thanks to @jbagot (#551).
 - Improve coverage of South Africa calendar (#546).
 - Improve coverage of Brazil calendar (#546).
 - Improve coverage of Canada (Nunavut) calendar (#546).
 - Improve coverage of Israel calendar (#546).
-
-v11.0.0 (unreleased)
---------------------
 
 Incorporate changes from workalendar v11.0.0 (2020-09-04)
 
@@ -96,7 +84,7 @@ New feature
 - Added iCal export feature, initiated by @joooeey (#197).
 - Fix PRODID pattern for iCal exports: `"PRODID:-//workalendar//ical {__version__}//EN"`, using current workalendar version (#543).
 
-v10.4.0 (2020-08-28)
+Incorporate changes from workalendar v10.4.0 (2020-08-28)
 
 - New calendar
 
@@ -113,7 +101,7 @@ v10.4.0 (2020-08-28)
   - Tech: Replace occurrences of `assertEquals` with `assertEqual` to clear warnings (#533).
   - Use `include_immaculate_conception` flag for Portugal, Brazil, Argentina, Paraguay calendars (#529).
 
-v10.3.0 (2020-07-10)
+Incorporate changes from workalendar v10.3.0 (2020-07-10)
 
 - Bugfixes
 
@@ -126,12 +114,12 @@ v10.3.0 (2020-07-10)
   - Declaring the New year's Day as a worldwide holiday, with only two exceptions (to date): Israel & Qatar (#511).
   - Fixed `contributing.md` documentation with the new class/mixin organization (#511).
 
-v10.2.0 (2020-06-26)
+Incorporate changes from workalendar v10.2.0 (2020-06-26)
 
 - Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
 - Bugfix: Introducing the changes in Croatia holidays as of 2020 - Remembrance Day, Independence Day, Statehood Day... thx to @davidpodrebarac for the bug report (#515).
 
-v10.1.0 (2020-06-18)
+Incorporate changes from workalendar v10.1.0 (2020-06-18)
 
 - Calendar fix
 
@@ -142,35 +130,28 @@ v10.1.0 (2020-06-18)
   - Small fixes (docstrings, use of extends, etc) on Cayman Islands calendar (#507).
   - Moving Carnaval / Mardi Gras / Fat Tuesday calculation into the `workalendar.core` module, because it's used in at least 3 countries and some States / Counties in the USA.
 
-
-v10.0.0 (unreleased)
---------------------
-
 Incorporate changes from workalendar v10.0.0 (2020-06-05)
 
 - **BREAKING CHANGE**: the ``IsoRegistry.get_calendar_class()`` method has been removed from the code and should no longer be used (#375, #495).
 
-v9.2.0 (2020-06-02)
+Incorporate changes from workalendar v9.2.0 (2020-06-02)
 
 - New Calendars
 
 - Added rules for all Switzerland Cantons, branching off the initial work by @brutasse (#497).
 
-v9.0.1 (2020-05-22)
+Incorporate changes from workalendar v9.0.1 (2020-05-22)
 
 - Making the Israel calendar more efficient (#498).
 - Fixing duplicated holidays in Hong-Kong and Hong-Kong Bank holiday calendars (#496).
 - Integrating Hong-Kong holidays for 2021 (#496).
-
-v9.0.0 (unreleased)
--------------------
 
 Incorporate changes from workalendar v9.0.0 (2020-04-24)
 
 - **BREAKING CHANGE**: the ``IsoRegistry.items()`` method has been removed from the API. You must use the ``get_calendars()`` to perform the same registry queries (#375, #491).
 - *Deprecation notice*: The usage of ``IsoRegistry.get_calendar_class()`` is strongly discouraged, in favor of ``get()``. The ``get_calendar_class`` method will be dropped in a further release. In the meantime, they'll be both equivalent (#375, #418).
 
-v8.4.0 (2020-04-17)
+Incorporate changes from workalendar v8.4.0 (2020-04-17)
 
 - New Calendar
 
@@ -182,39 +163,36 @@ v8.4.0 (2020-04-17)
   - Fixed Malta calendar ; January 1st was already included, no need to add it to the ``FIXED_HOLIDAYS`` property (#469).
   - Small refactor in Netherlands calendar to use core constants (#470).
 
-v8.3.0 (2020-04-14)
+Incorporate changes from workalendar v8.3.0 (2020-04-14)
 
 - Fixing Hong-Kong calendar, where SAT are common working days (#477).
 - Introducing Hong-Kong Bank calendar. For banks, Saturdays are non-working days (#477).
 
-v8.2.2 (2020-04-10)
+Incorporate changes from workalendar v8.2.2 (2020-04-10)
 
 - Fixed Argentina's "Malvinas Day" date for 2020, shifted to March 31st because of the coronavirus crisis (#476).
 - Fixed Argentina's label for "Malvinas Day" and "Día de la Memoria" (#476).
 
-v8.2.1 (2020-04-03)
+Incorporate changes from workalendar v8.2.1 (2020-04-03)
 
 - Added BrazilBankCalendar to support `include_` flags and make it possible to extend and change these flags to support custom bank calendars (#474).
 
-v8.2.0 (2020-03-13)
+Incorporate changes from workalendar v8.2.0 (2020-03-13)
 
 - Added Belarus calendar, by @alexdoesstuff (#472).
 
-v8.1.0 (2020-02-07)
+Incorporate changes from workalendar v8.1.0 (2020-02-07)
 
 - Added Israel holidays eves and removed holidays which are not affecting the working days in Israel (#461).
 - Fix warning in China's holidays to dynamically read supported years, thx @fredrike (#459).
 
-v8.0.2 (2020-01-24)
+Incorporate changes from workalendar v8.0.2 (2020-01-24)
 
 - Fix several miscalculations in Georgia (USA) calendar (#451).
 
-v8.0.1 (2020-01-24)
+Incorporate changes from workalendar v8.0.1 (2020-01-24)
 
 - Fix Family Day for British Columbia (Canada) which was switched from 2nd to 3rd Monday of February in 2019 - thx @jbroudou for the bug report (#454).
-
-v8.0.0
-------
 
 Incorporate changes from workalendar v8.0.0 (2020-01-10)
 
@@ -263,7 +241,6 @@ Other changes
 - Fix Denmark, re-add Christmas Eve, which is widely treated as public holiday ; thx to @KidkArolis, (#414).
 - Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam.
 - Increase China coverage by adding tests for special extra-holidays & extra-working days cases.
-
 
 v6.0.0
 ------
