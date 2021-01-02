@@ -194,6 +194,20 @@ Incorporate changes from workalendar v8.0.1 (2020-01-24)
 
 - Fix Family Day for British Columbia (Canada) which was switched from 2nd to 3rd Monday of February in 2019 - thx @jbroudou for the bug report (#454).
 
+v6.1.2
+------
+
+#14: Replaced implicit dependency on setuptools with explicit
+dependency on importlib.metadata.
+
+v6.1.1
+------
+
+Fix version inference when installed from sdist.
+
+v6.1.0
+------
+
 Incorporate changes from workalendar v8.0.0 (2020-01-10)
 
 - **BREAKING CHANGE** Drop Support for Python 2 - EOL January 1st 2020 (#442).
