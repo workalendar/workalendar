@@ -6,6 +6,7 @@ from datetime import date
 from unittest import TestCase
 
 from freezegun import freeze_time
+import pytest
 
 from ..core import Calendar
 from .. import __version__
@@ -47,6 +48,9 @@ class GenericCalendarTest(CoreCalendarTest):
         else:
             self.assertNotIn(date(self.year, 1, 1), holidays)
 
+    @pytest.mark.xfail(
+        "platform.system() == 'Windows'",
+        reason="https://github.com/peopledoc/workalendar/issues/607")
     def test_ical_export(self):
         """Check that an iCal file can be created according to iCal spec."""
         class_name = self.cal_class.__name__
