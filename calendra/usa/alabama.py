@@ -1,6 +1,6 @@
 from .core import UnitedStates
 from ..core import MON
-from ..registry import iso_register
+from ..registry_tools import iso_register
 
 
 @iso_register('US-AL')
@@ -16,12 +16,12 @@ class Alabama(UnitedStates):
 
 class AlabamaBaldwinCounty(Alabama):
     "Baldwin County, Alabama"
-    include_mardi_gras = True
+    include_fat_tuesday = True
 
 
 class AlabamaMobileCounty(Alabama):
     "Mobile County, Alabama"
-    include_mardi_gras = True
+    include_fat_tuesday = True
 
 
 class AlabamaPerryCounty(Alabama):

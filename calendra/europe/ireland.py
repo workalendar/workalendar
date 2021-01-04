@@ -1,10 +1,10 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin, MON
-from ..registry import iso_register
+from ..core import WesternCalendar, MON
+from ..registry_tools import iso_register
 
 
 @iso_register('IE')
-class Ireland(WesternCalendar, ChristianMixin):
+class Ireland(WesternCalendar):
     'Ireland'
 
     include_easter_monday = True

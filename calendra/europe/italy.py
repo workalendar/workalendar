@@ -1,16 +1,20 @@
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('IT')
-class Italy(WesternCalendar, ChristianMixin):
+class Italy(WesternCalendar):
     'Italy'
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "International Workers' Day"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Liberation Day"),
-        (5, 1, "International Workers' Day"),
         (6, 2, "Republic Day"),
     )
+
+    # Christian holidays
     include_immaculate_conception = True
     include_epiphany = True
     include_easter_monday = True

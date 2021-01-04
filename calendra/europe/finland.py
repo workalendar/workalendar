@@ -1,12 +1,13 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin, FRI, SAT
-from ..registry import iso_register
+from ..core import WesternCalendar, FRI, SAT
+from ..registry_tools import iso_register
 
 
 @iso_register('FI')
-class Finland(WesternCalendar, ChristianMixin):
+class Finland(WesternCalendar):
     'Finland'
 
+    # Christian holidays
     include_epiphany = True
     include_good_friday = True
     include_easter_sunday = True
@@ -19,8 +20,9 @@ class Finland(WesternCalendar, ChristianMixin):
     boxing_day_label = "St. Stephen's Day"
     observance_shift = None
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (12, 6, "Independence Day"),
     )
 

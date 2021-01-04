@@ -1,4 +1,5 @@
 from .austria import Austria
+from .belarus import Belarus
 from .belgium import Belgium
 from .bulgaria import Bulgaria
 from .cayman_islands import CaymanIslands
@@ -19,7 +20,8 @@ from .latvia import Latvia
 from .lithuania import Lithuania
 from .luxembourg import Luxembourg
 from .malta import Malta
-from .netherlands import Netherlands
+from .monaco import Monaco
+from .netherlands import Netherlands, NetherlandsWithSchoolHolidays
 from .norway import Norway
 from .poland import Poland
 from .portugal import Portugal
@@ -28,9 +30,13 @@ from .russia import Russia
 from .serbia import Serbia
 from .slovakia import Slovakia
 from .slovenia import Slovenia
-from .spain import Spain, Catalonia
+from .spain import (
+    Andalusia, Aragon, Spain, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
+)
 from .sweden import Sweden
-from .switzerland import Switzerland, Vaud, Geneva
 from .ukraine import Ukraine
 from .united_kingdom import UnitedKingdom, UnitedKingdomNorthernIreland
 from .turkey import Turkey
@@ -52,11 +58,19 @@ from .scotland import (
     ScottishBorders, SouthLanarkshire, Stirling, WestDunbartonshire
 )
 
+# Switzerland
+from .switzerland import (
+    Switzerland, Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern,
+    BaselLandschaft, BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura,
+    Luzern, Neuchatel, Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn,
+    Schwyz, Thurgau, Ticino, Uri, Vaud, Valais, Zug, Zurich
+)
+
 __all__ = (
     'Austria',
+    'Belarus',
     'Belgium',
     'Bulgaria',
-    'Catalonia',
     'CaymanIslands',
     'Croatia',
     'Cyprus',
@@ -76,7 +90,9 @@ __all__ = (
     'Lithuania',
     'Luxembourg',
     'Malta',
+    'Monaco',
     'Netherlands',
+    'NetherlandsWithSchoolHolidays',
     'Norway',
     'Poland',
     'Portugal',
@@ -85,11 +101,8 @@ __all__ = (
     'Serbia',
     'Slovakia',
     'Slovenia',
-    'Spain',
     'Sweden',
     'Switzerland',
-    'Vaud',
-    'Geneva',
     'Ukraine',
     'UnitedKingdom',
     'UnitedKingdomNorthernIreland',
@@ -107,5 +120,19 @@ __all__ = (
     'Edinburgh', 'Elgin', 'Falkirk', 'Fife', 'Galashiels', 'Glasgow',
     'Hawick', 'Inverclyde', 'Inverness', 'Kilmarnock', 'Lanark', 'Linlithgow',
     'Lochaber', 'NorthLanarkshire', 'Paisley', 'Perth', 'ScottishBorders',
-    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire'
+    'SouthLanarkshire', 'Stirling', 'WestDunbartonshire',
+
+    # Spain
+    'Spain', 'Andalusia', 'Aragon', 'Catalonia', 'CastileAndLeon',
+    'CastillaLaMancha', 'CanaryIslands', 'Extremadura', 'Galicia',
+    'BalearicIslands', 'LaRioja', 'CommunityofMadrid', 'Murcia', 'Navarre',
+    'Asturias', 'BasqueCountry', 'Cantabria', 'ValencianCommunity',
+
+    # Switzerland
+    'Switzerland',
+    'Aargau', 'AppenzellInnerrhoden', 'AppenzellAusserrhoden', 'Bern',
+    'BaselLandschaft', 'BaselStadt', 'Fribourg', 'Geneva', 'Glarus',
+    'Graubunden', 'Jura', 'Luzern', 'Neuchatel', 'Nidwalden', 'Obwalden',
+    'StGallen', 'Schaffhausen', 'Solothurn', 'Schwyz', 'Thurgau', 'Ticino',
+    'Uri', 'Vaud', 'Valais', 'Zug', 'Zurich',
 )

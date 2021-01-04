@@ -4,11 +4,27 @@ from ..europe import (
     Denmark, Finland, France,
     # FranceAlsaceMoselle,  # TODO: Should we add it to the registry?
     Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lithuania, Luxembourg,
-    Malta, Netherlands, Norway, Poland, Portugal, Romania, Russia, Slovakia,
-    Slovenia, Spain,
-    # Catalonia,  # TODO: Add it to registry
-    Sweden, Switzerland, Vaud, Geneva, UnitedKingdom,
+    Malta, Monaco, Netherlands, Norway, Poland, Portugal, Romania, Russia,
+    Slovakia, Slovenia,
+    Sweden, UnitedKingdom,
     UnitedKingdomNorthernIreland,
+)
+
+# Spain & regions
+from ..europe import (
+    Spain, Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
+)
+
+# Switzerland
+from ..europe import (
+    Switzerland,
+    Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
+    BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
+    Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,
+    Ticino, Uri, Vaud, Valais, Zug, Zurich
 )
 
 # Germany
@@ -29,6 +45,20 @@ GERMANY_REGION_CLASSES = (
     Hamburg, Hesse, MecklenburgVorpommern, LowerSaxony,
     NorthRhineWestphalia, RhinelandPalatinate, Saarland, Saxony,
     SaxonyAnhalt, SchleswigHolstein, Thuringia
+)
+
+SWITZERLAND_REGION_CLASSES = (
+    Aargau, AppenzellInnerrhoden, AppenzellAusserrhoden, Bern, BaselLandschaft,
+    BaselStadt, Fribourg, Geneva, Glarus, Graubunden, Jura, Luzern, Neuchatel,
+    Nidwalden, Obwalden, StGallen, Schaffhausen, Solothurn, Schwyz, Thurgau,
+    Ticino, Uri, Vaud, Valais, Zug, Zurich
+)
+
+SPAIN_REGION_CLASSES = (
+    Andalusia, Aragon, Catalonia, CastileAndLeon, CastillaLaMancha,
+    CanaryIslands, Extremadura, Galicia, BalearicIslands, LaRioja,
+    CommunityofMadrid, Murcia, Navarre, Asturias, BasqueCountry, Cantabria,
+    ValencianCommunity,
 )
 
 
@@ -53,6 +83,7 @@ class RegistryEurope(TestCase):
         self.assertIn(Lithuania, classes)
         self.assertIn(Luxembourg, classes)
         self.assertIn(Malta, classes)
+        self.assertIn(Monaco, classes)
         self.assertIn(Netherlands, classes)
         self.assertIn(Norway, classes)
         self.assertIn(Poland, classes)
@@ -72,12 +103,30 @@ class RegistryEurope(TestCase):
         self.assertIn(Germany, classes)
         for klass in GERMANY_REGION_CLASSES:
             self.assertIn(klass, classes)
+        for klass in SWITZERLAND_REGION_CLASSES:
+            self.assertIn(klass, classes)
+        for klass in SPAIN_REGION_CLASSES:
+            self.assertIn(klass, classes)
 
-    def test_germany_subregion(self):
+    def test_germany_subregions(self):
         # Get all the subregions
         classes = (v for k, v in registry.get_subregions('DE').items())
         classes = list(classes)
         for klass in GERMANY_REGION_CLASSES:
+            self.assertIn(klass, classes)
+
+    def test_switzerland_subregions(self):
+        # Get all the subregions
+        classes = (v for k, v in registry.get_subregions('CH').items())
+        classes = list(classes)
+        for klass in SWITZERLAND_REGION_CLASSES:
+            self.assertIn(klass, classes)
+
+    def test_spain_subregions(self):
+        # Get all the subregions
+        classes = (v for k, v in registry.get_subregions('ES').items())
+        classes = list(classes)
+        for klass in SPAIN_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_slovenia_code(self):

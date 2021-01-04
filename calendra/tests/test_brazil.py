@@ -30,6 +30,8 @@ from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
 
 class BrazilTest(GenericCalendarTest):
     cal_class = Brazil
+    test_include_consciencia_negra = False
+    test_include_immaculate_conception = False
 
     def test_year_2013_federal(self):
         holidays = self.cal.holidays_set(2013)
@@ -41,6 +43,37 @@ class BrazilTest(GenericCalendarTest):
         self.assertIn(date(2013, 11, 2), holidays)  # Finados
         self.assertIn(date(2013, 11, 15), holidays)  # Proclamação da República
         self.assertIn(date(2013, 12, 25), holidays)  # Natal
+
+    def test_consciencia_negra(self):
+        # Consciência Negra day is not a national holiday
+        # It's triggered in the appropriate classes, so this test needs to
+        # be overwritten.
+        month, day = self.cal.consciencia_negra_day
+        consciencia_negra_day = date(self.year, month, day)
+        holidays = self.cal.holidays_set(self.year)
+        if self.test_include_consciencia_negra:
+            # Included where needed
+            self.assertIn(consciencia_negra_day, holidays)
+        else:
+            # By default, not in the holidays.
+            self.assertNotIn(consciencia_negra_day, holidays)
+
+    def test_immaculate_conception(self):
+        # Immaculate Conception is not a national holiday
+        # It's triggered in the appropriate classes, so this test needs to
+        # be overwritten.
+        immaculate_conception_day = date(self.year, 12, 8)
+        holidays = dict(self.cal.holidays(self.year))
+        if self.test_include_immaculate_conception:
+            # Included where needed
+            self.assertIn(immaculate_conception_day, holidays)
+            # Test its label
+            self.assertEqual(
+                holidays[immaculate_conception_day],
+                "Dia de Nossa Senhora da Conceição")
+        else:
+            # By default, not in the holidays.
+            self.assertNotIn(immaculate_conception_day, holidays)
 
 
 class BrazilAcreTest(BrazilTest):
@@ -59,6 +92,7 @@ class BrazilAcreTest(BrazilTest):
 
 class BrazilAlagoasTest(BrazilTest):
     cal_class = BrazilAlagoas
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -71,6 +105,7 @@ class BrazilAlagoasTest(BrazilTest):
 
 class BrazilAmapaTest(BrazilTest):
     cal_class = BrazilAmapa
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -89,6 +124,8 @@ class BrazilAmapaTest(BrazilTest):
 
 class BrazilAmazonasTest(BrazilTest):
     cal_class = BrazilAmazonas
+    test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -97,6 +134,8 @@ class BrazilAmazonasTest(BrazilTest):
         self.assertIn(date(2017, 11, 20), holidays)  # Consciência Negra
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
+        # Label test
+        holidays = self.cal.holidays(2017)
 
 
 class BrazilBahiaTest(BrazilTest):
@@ -144,6 +183,7 @@ class BrazilGoiasTest(BrazilTest):
 
 class BrazilMaranhaoTest(BrazilTest):
     cal_class = BrazilMaranhao
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -164,6 +204,7 @@ class BrazilMinasGeraisTest(BrazilTest):
 
 class BrazilMatoGrossoTest(BrazilTest):
     cal_class = BrazilMatoGrosso
+    test_include_consciencia_negra = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -180,6 +221,7 @@ class BrazilMatoGrossoDoSulTest(BrazilTest):
 
 class BrazilParaTest(BrazilTest):
     cal_class = BrazilPara
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -226,6 +268,8 @@ class BrazilParanaTest(BrazilTest):
 
 class BrazilRioDeJaneiroTest(BrazilTest):
     cal_class = BrazilRioDeJaneiro
+    test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_state(self):
         holidays = self.cal.holidays_set(2017)
@@ -245,6 +289,12 @@ class BrazilRioDeJaneiroTest(BrazilTest):
 
         # Dia de Nossa Senhora da Conceição
         self.assertIn(date(2017, 12, 8), holidays)
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Carnaval")
 
 
 class BrazilRioGrandeDoNorteTest(BrazilTest):
@@ -312,6 +362,7 @@ class SaoPauloStateTest(BrazilTest):
 
 class SaoPauloCityTest(SaoPauloStateTest):
     cal_class = BrazilSaoPauloCity
+    test_include_consciencia_negra = True
 
     def test_year_2013_city(self):
         holidays = self.cal.holidays_set(2013)
@@ -337,6 +388,12 @@ class SaoPauloCityTest(SaoPauloStateTest):
             self.cal.get_holiday_label(good_friday),
             "Sexta-feira da Paixão",
         )
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2013)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2013, 2, 12)]
+        self.assertEqual(label_carnaval, "Carnaval")
 
 
 class BrazilSergipeTest(BrazilTest):
@@ -437,6 +494,8 @@ class BrazilGuarapariCityTest(BrazilEspiritoSantoTest):
     Guarapari city is in the Espírito Santo state
     """
     cal_class = BrazilGuarapariCity
+    test_include_consciencia_negra = True
+    test_include_immaculate_conception = True
 
     def test_year_2017_city(self):
         holidays = self.cal.holidays_set(2017)
@@ -451,6 +510,7 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
     Serra city is in the Espírito Santo state
     """
     cal_class = BrazilSerraCity
+    test_include_immaculate_conception = True
 
     def test_year_2017_city(self):
         holidays = self.cal.holidays_set(2017)
@@ -480,6 +540,12 @@ class BrazilSerraCityTest(BrazilEspiritoSantoTest):
             self.cal.get_holiday_label(good_friday),
             "Paixão do Cristo",
         )
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Carnaval")
 
 
 class BrazilRioBrancoCityTest(BrazilAcreTest):
@@ -815,6 +881,7 @@ class BrazilBankCalendarTest(BrazilTest):
         self.assertIn(date(2017, 1, 1), holidays)  # New year
         self.assertIn(date(2017, 2, 27), holidays)  # Monday carnaval
         self.assertIn(date(2017, 2, 28), holidays)  # Tuesday carnaval
+        self.assertIn(date(2017, 3, 1), holidays)  # Ash wednesday
         self.assertIn(date(2017, 4, 14), holidays)  # Good friday
         self.assertIn(date(2017, 4, 21), holidays)  # Tiradentes
         self.assertIn(date(2017, 5, 1), holidays)  # Labour day
@@ -824,77 +891,98 @@ class BrazilBankCalendarTest(BrazilTest):
         self.assertIn(date(2017, 11, 2), holidays)  # All Souls' Day
         self.assertIn(date(2017, 11, 15), holidays)  # Republic day
         self.assertIn(date(2017, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2017, 12, 29), holidays)  # Last working day of year
+        self.assertEqual(14, len(holidays))
 
     def test_year_2017_find_next_working_day_for_new_year(self):
         new_year = date(2017, 1, 1)
         working_day = self.cal.find_following_working_day(new_year)
-        self.assertEquals(working_day, date(2017, 1, 2))
+        self.assertEqual(working_day, date(2017, 1, 2))
 
     def test_year_2017_find_next_working_day_for_monday_carnaval(self):
         monday_carnaval = date(2017, 2, 27)
         working_day = self.cal.find_following_working_day(monday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 2))
+        self.assertEqual(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_tuesday_carnaval(self):
         tuesday_carnaval = date(2017, 2, 28)
         working_day = self.cal.find_following_working_day(tuesday_carnaval)
-        self.assertEquals(working_day, date(2017, 3, 2))
+        self.assertEqual(working_day, date(2017, 3, 2))
 
     def test_year_2017_find_next_working_day_for_good_friday(self):
         good_friday = date(2017, 4, 14)
         working_day = self.cal.find_following_working_day(good_friday)
-        self.assertEquals(working_day, date(2017, 4, 17))
+        self.assertEqual(working_day, date(2017, 4, 17))
 
     def test_year_2017_find_next_working_day_for_tiradentes(self):
         tiradentes = date(2017, 4, 21)
         working_day = self.cal.find_following_working_day(tiradentes)
-        self.assertEquals(working_day, date(2017, 4, 24))
+        self.assertEqual(working_day, date(2017, 4, 24))
 
     def test_year_2017_find_next_working_day_for_labour_day(self):
         labour_day = date(2017, 5, 1)
         working_day = self.cal.find_following_working_day(labour_day)
-        self.assertEquals(working_day, date(2017, 5, 2))
+        self.assertEqual(working_day, date(2017, 5, 2))
 
     def test_year_2017_find_next_working_day_for_corpus_christi(self):
         corpus_christi = date(2017, 6, 15)
         working_day = self.cal.find_following_working_day(corpus_christi)
-        self.assertEquals(working_day, date(2017, 6, 16))
+        self.assertEqual(working_day, date(2017, 6, 16))
 
     def test_year_2017_find_next_working_day_for_independence_day(self):
         independence_day = date(2017, 9, 7)
         working_day = self.cal.find_following_working_day(independence_day)
-        self.assertEquals(working_day, date(2017, 9, 8))
+        self.assertEqual(working_day, date(2017, 9, 8))
 
     def test_year_2017_find_next_working_day_for_our_lady_aparecida(self):
         our_lady_aparecida = date(2017, 10, 12)
         working_day = self.cal.find_following_working_day(our_lady_aparecida)
-        self.assertEquals(working_day, date(2017, 10, 13))
+        self.assertEqual(working_day, date(2017, 10, 13))
 
     def test_year_2017_find_next_working_day_for_our_all_souls(self):
         all_souls = date(2017, 11, 2)
         working_day = self.cal.find_following_working_day(all_souls)
-        self.assertEquals(working_day, date(2017, 11, 3))
+        self.assertEqual(working_day, date(2017, 11, 3))
 
     def test_year_2017_find_next_working_day_for_our_republic_day(self):
         republic_day = date(2017, 11, 15)
         working_day = self.cal.find_following_working_day(republic_day)
-        self.assertEquals(working_day, date(2017, 11, 16))
+        self.assertEqual(working_day, date(2017, 11, 16))
 
     def test_year_2017_find_next_working_day_for_our_christmas_day(self):
         christmas_day = date(2017, 12, 25)
         working_day = self.cal.find_following_working_day(christmas_day)
-        self.assertEquals(working_day, date(2017, 12, 26))
+        self.assertEqual(working_day, date(2017, 12, 26))
 
     def test_year_2017_find_next_working_day_for_last_day(self):
         # last day of year for only internal bank transactions
         last_day = date(2017, 12, 29)
         working_day = self.cal.find_following_working_day(last_day)
-        self.assertEquals(working_day, date(2018, 1, 2))
+        self.assertEqual(working_day, date(2018, 1, 2))
 
     def test_year_2017_find_next_working_day_for_already_working_day(self):
         already_working_day = date(2017, 7, 25)
         working_day = self.cal.find_following_working_day(already_working_day)
-        self.assertEquals(working_day, date(2017, 7, 25))
+        self.assertEqual(working_day, date(2017, 7, 25))
+
+    def test_carnaval_label(self):
+        holidays = self.cal.holidays(2017)
+        holidays_dict = dict(holidays)
+        label_carnaval = holidays_dict[date(2017, 2, 28)]
+        self.assertEqual(label_carnaval, "Tuesday carnaval")
+
+    def test_shift_last_day_of_the_year(self):
+        # New Year's eve is on SAT
+        holidays = self.cal.holidays_set(2022)
+        # Shifted to the FRI before
+        self.assertIn(date(2022, 12, 30), holidays)
+        self.assertNotIn(date(2022, 12, 29), holidays)
+
+        # New Year's eve is on SUN
+        holidays = self.cal.holidays_set(2017)
+        # Shifted to the FRI before
+        self.assertNotIn(date(2017, 12, 30), holidays)
+        self.assertIn(date(2017, 12, 29), holidays)
 
 
 class TestIBGERegister(TestCase):

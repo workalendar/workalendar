@@ -1,8 +1,8 @@
 from datetime import date
 import warnings
 
-from ..core import ChineseNewYearCalendar, WesternCalendar
-from ..registry import iso_register
+from ..core import ChineseNewYearCalendar, SeriesShiftMixin
+from ..registry_tools import iso_register
 from ..exceptions import CalendarError
 
 holidays = {
@@ -28,6 +28,13 @@ holidays = {
             'Dragon Boat Festival': [(6, 25), (6, 26), (6, 27)],
             'National Day': [(10, 8)]
         },
+    2021:
+        {
+            'Ching Ming Festival': [(4, 3), (4, 4), (4, 5)],
+            'Labour Day Holiday': [(5, 1), (5, 2), (5, 3), (5, 4), (5, 5)],
+            'Dragon Boat Festival': [(6, 12), (6, 13), (6, 14)],
+            'Mid-Autumn Festival': [(9, 19), (9, 20), (9, 21)]
+        },
 }
 
 workdays = {
@@ -52,18 +59,29 @@ workdays = {
             'Dragon Boat Festival Shift': [(6, 28)],
             'National Day Shift': [(9, 27), (10, 10)]
         },
+    2021:
+        {
+            'Spring Festival Shift': [(2, 7), (2, 20)],
+            'Labour Day Holiday Shift': [(4, 25), (5, 8)],
+            'Mid-Autumn Festival Shift': [(9, 18)],
+            'National Day Shift': [(9, 26), (10, 9)]
+        },
 }
 
 
 @iso_register('CN')
-class China(ChineseNewYearCalendar, WesternCalendar):
+class China(SeriesShiftMixin, ChineseNewYearCalendar):
     "China"
     # WARNING: Support 2018, 2019 currently, need update every year.
     # National Days, 10.1 - 10.7
     national_days = [(10, i, "National Day") for i in range(1, 8)]
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + tuple(national_days)
+    FIXED_HOLIDAYS = tuple(national_days)
 
     include_chinese_new_year_eve = True
+    series_requiring_shifts = ['Spring Festival', 'Ching Ming Festival',
+                               'Labour Day Holiday', 'Dragon Boat Festival',
+                               'Mid-Autumn Festival', 'New year',
+                               'National Day']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -74,9 +92,15 @@ class China(ChineseNewYearCalendar, WesternCalendar):
                     self.extra_working_days.append(date(year, v[0], v[1]))
 
     def get_calendar_holidays(self, year):
-        warnings.warn("Support 2018, 2019 currently, need update every year.")
+        year_min, year_max = min(holidays.keys()), max(holidays.keys())
+        warnings.warn(
+            "Support years {}-{} currently, need update every year.".format(
+                year_min,
+                year_max,
+            )
+        )
         if year not in holidays.keys():
-            msg = "Need configure {} for China.".format(year)
+            msg = f"Need configure {year} for China."
             raise CalendarError(msg)
         return super().get_calendar_holidays(year)
 

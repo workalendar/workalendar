@@ -1,5 +1,4 @@
 from unittest import TestCase
-import warnings
 
 from ..core import Calendar
 from ..exceptions import ISORegistryError
@@ -36,30 +35,17 @@ class NonStandardRegistryTest(TestCase):
         with self.assertRaises(ISORegistryError):
             registry.register("NAC", NotACalendarClass)
 
-    def test_get_calendar_class(self):
+    def test_get(self):
         registry = IsoRegistry(load_standard_modules=False)
         registry.register('RE', self.region)
         registry.register('RE-SR', self.subregion)
-        calendar_class = registry.get_calendar_class('RE')
+        calendar_class = registry.get('RE')
         self.assertEqual(calendar_class, RegionCalendar)
         # Subregion
-        calendar_class = registry.get_calendar_class('RE-SR')
+        calendar_class = registry.get('RE-SR')
         self.assertEqual(calendar_class, SubRegionCalendar)
         # Unknown code/region
-        self.assertIsNone(registry.get_calendar_class('XX'))
-
-    def test_items_deprecation(self):
-        registry = IsoRegistry(load_standard_modules=False)
-        with warnings.catch_warnings(record=True) as w:
-            # Cause all warnings to always be triggered.
-            warnings.simplefilter("always")
-            # Trigger a warning.
-            registry.items()
-            # Verify some things
-            self.assertEqual(len(w), 1)
-            warning = w[0]
-            self.assertTrue(issubclass(warning.category, DeprecationWarning))
-            self.assertIn("deprecated", str(warning.message))
+        self.assertIsNone(registry.get('XX'))
 
     def test_get_subregions(self):
         registry = IsoRegistry(load_standard_modules=False)
@@ -144,7 +130,7 @@ class NonStandardRegistryTest(TestCase):
         self.assertEqual(set({"RE", "RE2", "RE3"}), set(calendars.keys()))
 
         # Should be equivalent to [] + include subregions
-        calendars = registry.items(include_subregions=True)
+        calendars = registry.get_calendars(include_subregions=True)
         self.assertEqual(len(calendars), 4)
         self.assertEqual(
             set({"RE", "RE2", "RE3", "RE-SR"}),

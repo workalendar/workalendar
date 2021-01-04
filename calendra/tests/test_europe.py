@@ -1,10 +1,12 @@
-from datetime import date
+from datetime import date, timedelta, datetime
 from collections import Counter
 
 from . import GenericCalendarTest
+from ..core import daterange, Holiday
 from ..europe import (
     Austria,
     Bulgaria,
+    Belarus,
     Belgium,
     CaymanIslands,
     Croatia,
@@ -25,16 +27,16 @@ from ..europe import (
     Lithuania,
     Luxembourg,
     Malta,
+    Monaco,
     Netherlands,
+    NetherlandsWithSchoolHolidays,
     Norway,
     Poland,
     Portugal,
     Romania,
     Russia,
     Serbia,
-    Spain, Catalonia,
     Slovenia,
-    Switzerland, Vaud, Geneva,
     Ukraine,
     UnitedKingdom,
     UnitedKingdomNorthernIreland,
@@ -61,6 +63,42 @@ class AustriaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 25), holidays)  # Xmas
         self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 5, 1)], "State Holiday")
+        # a.k.a. Staatsfeiertag
+
+
+class BelarusTest(GenericCalendarTest):
+    cal_class = Belarus
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2019, 1, 2), holidays)  # Day after NYE
+        self.assertIn(date(2019, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2019, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2019, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2019, 5, 7), holidays)  # Radonitsa
+        self.assertIn(date(2019, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2019, 7, 3), holidays)  # Republic Day
+        self.assertIn(date(2019, 11, 7), holidays)  # October Revolution Day
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas (Catholic)
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2020, 1, 2), holidays)  # Day after NYE
+        self.assertIn(date(2020, 1, 7), holidays)  # Christmas (Orthodox)
+        self.assertIn(date(2020, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2020, 4, 28), holidays)  # Radonitsa
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 9), holidays)  # Victory Day
+        self.assertIn(date(2020, 7, 3), holidays)  # Republic Day
+        self.assertIn(date(2020, 11, 7), holidays)  # October Revolution Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas (Catholic)
+
 
 class BulgariaTest(GenericCalendarTest):
     cal_class = Bulgaria
@@ -81,6 +119,12 @@ class BulgariaTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
         # Non-attendance day for schools, otherwise a working day.
         self.assertNotIn(date(2016, 11, 1), holidays)   # National Awakening
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
 
 
 class CaymanIslandsTest(GenericCalendarTest):
@@ -207,23 +251,75 @@ class CroatiaTest(GenericCalendarTest):
 
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day Nova Godin
-        self.assertIn(date(2016, 1, 6), holidays)   # Epiphany Bogojavljenje,
-        self.assertIn(date(2016, 3, 27), holidays)  # Easter Sunday Uskrs i us
+        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2016, 1, 6), holidays)   # Epiphany / Bogojavljenje
+        self.assertIn(date(2016, 3, 27), holidays)  # Easter Sunday
         self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
-        self.assertIn(date(2016, 5, 1), holidays)   # Intl Workers' Day Međunar
-        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi Tijelovo
-        self.assertIn(date(2016, 6, 22), holidays)  # Anti-Fascist Day Dan anti
-        self.assertIn(date(2016, 6, 25), holidays)  # Statehood Day 	Dan drž
+        self.assertIn(date(2016, 5, 1), holidays)   # Intl Workers' Day
+        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi / Tijelovo
+        self.assertIn(date(2016, 6, 22), holidays)  # Anti-Fascist Day
+        self.assertIn(date(2016, 6, 25), holidays)  # Statehood Day
         self.assertIn(date(2016, 8, 5), holidays)   # Victory & Homeland Thanks
-        self.assertIn(date(2016, 8, 15), holidays)  # Assumption of Mary 	Vel
+        self.assertIn(date(2016, 8, 15), holidays)  # Assumption of Mary
         self.assertIn(date(2016, 10, 8), holidays)  # Independence Day Dan neov
         self.assertIn(date(2016, 11, 1), holidays)  # All Saints' Day Dan svih
         self.assertIn(date(2016, 12, 25), holidays)  # Christmas Božić
         self.assertIn(date(2016, 12, 26), holidays)  # St. Stephen's Day Prvi d
 
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2020, 1, 6), holidays)   # Epiphany / Bogojavljenje
+        self.assertIn(date(2020, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 30), holidays)  # Statehood day
+        self.assertIn(date(2020, 6, 11), holidays)  # Corpus Christi
+        self.assertIn(date(2020, 6, 22), holidays)  # Anti-Fascist Day
+        # Victory & Homeland Thanksgiving
+        self.assertIn(date(2020, 8, 5), holidays)
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption of Mary
+        self.assertIn(date(2020, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2020, 11, 18), holidays)  # Remembrance Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertIn(date(2020, 12, 26), holidays)  # St Stephen
 
-class Cyprus(GenericCalendarTest):
+    def test_statehood_day(self):
+        holidays_2019 = self.cal.holidays_set(2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+
+        # Statehood day was a holiday on June 25th until 2020
+        self.assertIn(date(2019, 6, 25), holidays_2019)
+        self.assertNotIn(date(2020, 6, 25), holidays_2020)
+
+        # Statehood day as of 2020 happens on May 30th
+        self.assertNotIn(date(2019, 5, 30), holidays_2019)
+        self.assertIn(date(2020, 5, 30), holidays_2020)
+
+    def test_independance_day(self):
+        # Independence Day was a holiday until 2020
+        holidays_2019 = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 10, 8), holidays_2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 10, 8), holidays_2020)
+
+    def test_remembrance_day(self):
+        # Remembrance Day was introduced as of 2020
+        holidays_2018 = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 11, 18), holidays_2018)
+        holidays_2019 = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 11, 18), holidays_2019)
+        holidays_2020 = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 11, 18), holidays_2020)
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
+
+
+class CyprusTest(GenericCalendarTest):
     cal_class = Cyprus
 
     def test_year_2017(self):
@@ -460,12 +556,12 @@ class FranceTest(GenericCalendarTest):
 
     def test_business_days_computations(self):
         day = date(2013, 10, 30)
-        self.assertEquals(
+        self.assertEqual(
             self.cal.add_working_days(day, 0), date(2013, 10, 30))
-        self.assertEquals(
+        self.assertEqual(
             self.cal.add_working_days(day, 1), date(2013, 10, 31))
-        self.assertEquals(self.cal.add_working_days(day, 2), date(2013, 11, 4))
-        self.assertEquals(self.cal.add_working_days(day, 3), date(2013, 11, 5))
+        self.assertEqual(self.cal.add_working_days(day, 2), date(2013, 11, 4))
+        self.assertEqual(self.cal.add_working_days(day, 3), date(2013, 11, 5))
 
 
 class FranceAlsaceMoselleTest(FranceTest):
@@ -504,6 +600,29 @@ class GreeceTest(GenericCalendarTest):
         self.assertIn(date(2013, 10, 28), holidays)  # Ochi Day
         self.assertIn(date(2013, 12, 25), holidays)  # XMas
         self.assertIn(date(2013, 12, 26), holidays)  # Glorifying mother of God
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # new year
+        self.assertIn(date(2020, 1, 6), holidays)  # epiphany
+        self.assertIn(date(2020, 3, 2), holidays)  # Clean monday
+        # Annunciation & Independence day
+        self.assertIn(date(2020, 3, 25), holidays)
+        self.assertIn(date(2020, 4, 17), holidays)  # good friday
+        self.assertIn(date(2020, 4, 19), holidays)  # easter
+        self.assertIn(date(2020, 4, 20), holidays)  # easter monday
+        self.assertIn(date(2020, 5, 1), holidays)  # labour day
+        self.assertIn(date(2020, 6, 7), holidays)  # pentecost sunday
+        self.assertIn(date(2020, 6, 8), holidays)  # whit monday
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption
+        self.assertIn(date(2020, 10, 28), holidays)  # Ochi Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertIn(date(2020, 12, 26), holidays)  # Glorifying mother of God
+
+    def test_no_orthodox_christmas(self):
+        # This calendar is an Orthodox calendar, but there's no Jan XMas
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 1, 7), holidays)
 
 
 class HungaryTest(GenericCalendarTest):
@@ -558,6 +677,48 @@ class MaltaTest(GenericCalendarTest):
         self.assertIn(date(2017, 8, 15), holidays)  # Santa Marija
         self.assertIn(date(2017, 12, 8), holidays)  # Il-Kunċizzjoni
         self.assertIn(date(2017, 12, 25), holidays)  # Il-Milied
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Worker's Day")
+
+
+class MonacoTest(GenericCalendarTest):
+    cal_class = Monaco
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        # National Holidays
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2020, 1, 27), holidays)  # Saint Dévote's Day
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 5, 21), holidays)  # Ascension Day
+        self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
+        self.assertIn(date(2020, 6, 11), holidays)  # Corpus Christi
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption Day
+        self.assertIn(date(2020, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2020, 11, 19), holidays)  # Sovereign Prince's Day
+        self.assertIn(date(2020, 12, 8), holidays)  # Conception Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+
+    def test_year_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        # National Holidays
+        self.assertIn(date(2018, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2018, 1, 27), holidays)  # Saint Dévote's Day
+        self.assertIn(date(2018, 4, 2), holidays)  # Easter Monday
+        self.assertIn(date(2018, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2018, 5, 10), holidays)  # Ascension Day
+        self.assertIn(date(2018, 5, 21), holidays)  # Whit Monday
+        self.assertIn(date(2018, 5, 31), holidays)  # Corpus Christi
+        self.assertIn(date(2018, 8, 15), holidays)  # Assumption Day
+        self.assertIn(date(2018, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2018, 11, 19), holidays)  # Sovereign Prince's Day
+        self.assertIn(date(2018, 12, 8), holidays)  # Conception Day
+        self.assertIn(date(2018, 12, 25), holidays)  # Christmas Day
 
 
 class NorwayTest(GenericCalendarTest):
@@ -705,6 +866,12 @@ class ItalyTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)  # christmas
         self.assertIn(date(2013, 12, 26), holidays)  # San Stefano
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "International Workers' Day")
+
 
 class LatviaTest(GenericCalendarTest):
 
@@ -764,7 +931,7 @@ class NetherlandsTest(GenericCalendarTest):
 
     cal_class = Netherlands
 
-    def test_year_2016(self):
+    def test_year_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 1, 1), holidays)   # New Year
         self.assertIn(date(2015, 4, 3), holidays)   # Good friday
@@ -778,15 +945,62 @@ class NetherlandsTest(GenericCalendarTest):
         self.assertIn(date(2015, 12, 25), holidays)  # Christmas
         self.assertIn(date(2015, 12, 26), holidays)  # St. Stephen´s Day
 
-    def test_year_2025(self):
-        """ In 2025 King's Day is on 26 April """
-        holidays = self.cal.holidays_set(2025)
-        self.assertIn(date(2025, 4, 26), holidays)   # King's Day
+    def test_king_day_2014(self):
+        # As of 2014, King's Day replaces Queen's Day.
+        # It's normally happening on April 27th, except when it's on SUN
+        queen_day = date(2014, 4, 30)
+        real_king_day = date(2014, 4, 27)
+        king_day = date(2014, 4, 26)
+        holidays = dict(self.cal.holidays(2014))
+        self.assertNotIn(queen_day, holidays)
+        self.assertNotIn(real_king_day, holidays)
+        self.assertIn(king_day, holidays)
+        self.assertEqual(holidays[king_day], "King's day")
 
-    def test_year_1990(self):
-        """ In 1990 Queen's day was on 30 April """
-        holidays = self.cal.holidays_set(1990)
-        self.assertIn(date(1990, 4, 30), holidays)   # Queen's Day
+    def test_king_day_2020(self):
+        # Regular King's day
+        king_day = date(2020, 4, 27)
+        holidays = dict(self.cal.holidays(2020))
+        self.assertIn(king_day, holidays)
+        self.assertEqual(holidays[king_day], "King's day")
+
+    def test_king_day_2025(self):
+        # In 2025, it's shifted to the 26th, because it happens on SUN
+        holidays = self.cal.holidays_set(2025)
+        real_king_day = date(2025, 4, 27)
+        king_day = date(2025, 4, 26)
+        self.assertNotIn(real_king_day, holidays)
+        self.assertIn(king_day, holidays)
+
+    def test_queen_day(self):
+        # In 1990 Queen's day was on 30 April. So it was until 2013.
+        queen_day = date(1990, 4, 30)
+        holidays = dict(self.cal.holidays(1990))
+        self.assertIn(queen_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[queen_day], "Queen's day")
+
+        # Check in 2010
+        queen_day = date(2010, 4, 30)
+        holidays = dict(self.cal.holidays(2010))
+        self.assertIn(queen_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[queen_day], "Queen's day")
+
+        # No more in 2014
+        queen_day = date(2014, 4, 30)
+        holidays = self.cal.holidays_set(2014)
+        self.assertNotIn(queen_day, holidays)
+
+    def test_queen_day_on_sunday(self):
+        # On April 30th, 2006 Queen's day happened on SUN.
+        queen_day = date(2006, 4, 29)
+        holidays = dict(self.cal.holidays(2006))
+        # The regular holiday
+        self.assertNotIn(date(2006, 4, 30), holidays)
+        # It's shifted to the previous day
+        self.assertIn(queen_day, holidays)
+        self.assertEqual(holidays[queen_day], "Queen's day")
 
     def test_new_years_eve(self):
         # For some reason, the new year's eve was added to the list of fixed
@@ -795,7 +1009,360 @@ class NetherlandsTest(GenericCalendarTest):
         self.assertNotIn(date(2016, 12, 31), holidays)
 
 
-class Romania(GenericCalendarTest):
+class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="east")
+
+    def setUp(self):
+        with self.assertRaises(ValueError) as cm:
+            super().setUp()
+        assert "Set region" in str(cm.exception)
+
+    def test_weekend_days(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_january_1st(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+    def test_ical_export(self):
+        """Skip test as calendar setup is expected to fail"""
+        pass
+
+
+class NetherlandsNorthWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="north")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 15)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 4)
+        fall_holiday_start = date(2020, 10, 10)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 20)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 10)
+        fall_holiday_start = date(2021, 10, 16)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
+
+
+class NetherlandsMiddleWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="middle")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 22)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 18)
+        fall_holiday_start = date(2020, 10, 17)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 20)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 17)
+        fall_holiday_start = date(2021, 10, 16)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
+
+
+class NetherlandsSouthWithSchoolHolidaysTest(GenericCalendarTest):
+
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="south")
+
+    def test_year_2010(self):
+        with self.assertRaises(NotImplementedError):
+            dict(self.cal.holidays(2010))
+
+    def test_year_2020(self):
+        year = 2020
+        christmas_holiday_end = date(2020, 1, 5)
+        spring_holiday_start = date(2020, 2, 22)
+        may_holiday_start = date(2020, 4, 25)
+        summer_holiday_start = date(2020, 7, 11)
+        fall_holiday_start = date(2020, 10, 17)
+        christmas_holiday_start = date(2020, 12, 19)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def test_year_2021(self):
+        year = 2021
+        christmas_holiday_end = date(2021, 1, 3)
+        spring_holiday_start = date(2021, 2, 13)
+        may_holiday_start = date(2021, 5, 1)
+        summer_holiday_start = date(2021, 7, 24)
+        fall_holiday_start = date(2021, 10, 23)
+        christmas_holiday_start = date(2021, 12, 25)
+
+        self._test_school_holidays(
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+        )
+
+    def _test_school_holidays(
+            self,
+            year,
+            christmas_holiday_start,
+            spring_holiday_start,
+            may_holiday_start,
+            summer_holiday_start,
+            fall_holiday_start,
+            christmas_holiday_end,
+    ):
+        holidays = {}
+        for h in self.cal.holidays(year):
+            holidays.setdefault(h[0], []).append(h[1])
+
+        for d in range(christmas_holiday_end.day):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_end - timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Spring holiday",
+                holidays[spring_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "May holiday",
+                holidays[may_holiday_start + timedelta(days=d)],
+            )
+        for d in range(44):
+            self.assertIn(
+                "Summer holiday",
+                holidays[summer_holiday_start + timedelta(days=d)],
+            )
+        for d in range(9):
+            self.assertIn(
+                "Fall holiday",
+                holidays[fall_holiday_start + timedelta(days=d)],
+            )
+        for d in range(31 - christmas_holiday_start.day + 1):
+            self.assertIn(
+                "Christmas holiday",
+                holidays[christmas_holiday_start + timedelta(days=d)],
+            )
+
+
+class NetherlandsWithCarnivalTest(GenericCalendarTest):
+
+    cal_class = Netherlands
+    kwargs = dict(include_carnival=True)
+
+    def test_year_2020(self):
+        holidays = dict(self.cal.holidays(2020))
+        self.assertEqual(
+            holidays[date(2020, 2, 23)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2020, 2, 24)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2020, 2, 25)], "Carnival"
+        )
+
+    def test_year_2021(self):
+        holidays = dict(self.cal.holidays(2021))
+        self.assertEqual(
+            holidays[date(2021, 2, 14)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 15)], "Carnival"
+        )
+        self.assertEqual(
+            holidays[date(2021, 2, 16)], "Carnival"
+        )
+
+
+class NetherlandsWithSchoolHolidaysAndCarnivalTest(GenericCalendarTest):
+    cal_class = NetherlandsWithSchoolHolidays
+    kwargs = dict(region="south", carnival_instead_of_spring=True)
+
+    def test_year_2020(self):
+        holidays = dict(self.cal.holidays(2020))
+        for d in range(9):
+            self.assertIn(
+                "Carnival holiday",
+                holidays[date(2020, 2, 22) + timedelta(days=d)],
+            )
+
+    def test_year_2021(self):
+        holidays = dict(self.cal.holidays(2021))
+        for d in range(9):
+            self.assertIn(
+                "Carnival holiday",
+                holidays[date(2021, 2, 13) + timedelta(days=d)],
+            )
+
+
+class RomaniaTest(GenericCalendarTest):
     cal_class = Romania
 
     def test_year_2017(self):
@@ -834,8 +1401,27 @@ class Romania(GenericCalendarTest):
         self.assertIn(date(2019, 12, 25), holidays)  # Crăciunul Christmas
         self.assertIn(date(2019, 12, 26), holidays)  # Crăciunul Christmas
 
+    def test_liberation_day(self):
+        # Liberation day only happened between 1949 and 1990 (incl.)
+        liberation_day_1989 = date(1989, 8, 23)
+        holidays = self.cal.holidays_set(1989)
+        self.assertIn(liberation_day_1989, holidays)
 
-class Russia(GenericCalendarTest):
+        liberation_day_1990 = date(1990, 8, 23)
+        holidays = self.cal.holidays_set(1990)
+        self.assertIn(liberation_day_1990, holidays)
+
+        liberation_day_1991 = date(1991, 8, 23)
+        holidays = self.cal.holidays_set(1991)
+        self.assertNotIn(liberation_day_1991, holidays)
+
+    def test_no_orthodox_christmas(self):
+        # This calendar is an Orthodox calendar, but there's no Jan XMas
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 1, 7), holidays)
+
+
+class RussiaTest(GenericCalendarTest):
     cal_class = Russia
 
     def test_year_2018(self):
@@ -849,6 +1435,137 @@ class Russia(GenericCalendarTest):
         self.assertIn(date(2018, 5, 9), holidays)  # Victory Day
         self.assertIn(date(2018, 6, 12), holidays)  # National Day
         self.assertIn(date(2018, 11, 4), holidays)  # Independence Day
+
+    def test_year_2020_shift(self):
+        holidays = dict(self.cal.holidays(2020))
+        # Defender of the Fatherland Day
+        self.assertIn(date(2020, 2, 23), holidays)
+        # SUN => Shift to MON
+        self.assertIn(date(2020, 2, 24), holidays)
+        self.assertEqual(
+            holidays[date(2020, 2, 24)],
+            "Defendence of the Fatherland shift"
+        )
+        # International Women's Day
+        self.assertIn(date(2020, 3, 8), holidays)
+        # SUN => Shift to MON
+        self.assertIn(date(2020, 3, 9), holidays)
+        self.assertEqual(
+            holidays[date(2020, 3, 9)],
+            "International Women's Day shift"
+        )
+        # Victory Day
+        self.assertIn(date(2020, 5, 9), holidays)
+        # SAT => Shift to MON
+        self.assertIn(date(2020, 5, 11), holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 11)],
+            "Victory Day shift"
+        )
+
+    def test_covid19_2020(self):
+        # By decree, several days of March and April were defined
+        # as non-working days because of the COVID-19 crisis.
+        # It spans from March 28th to April 30th (included).
+        holidays = self.cal.holidays_set(2020)
+        start = date(2020, 3, 28)
+        end = date(2020, 4, 30)
+        for day in daterange(start, end):
+            self.assertIn(day, holidays)
+        # COVID-19 days in May
+        self.assertIn(date(2020, 5, 6), holidays)  # Covid-19 May #1
+        self.assertIn(date(2020, 5, 7), holidays)  # Covid-19 May #2
+        self.assertIn(date(2020, 5, 8), holidays)  # Covid-19 May #3
+
+        # Not for 2019, though
+        holidays = self.cal.holidays_set(2019)
+        start = date(2019, 3, 28)
+        end = date(2019, 4, 30)
+        for day in daterange(start, end):
+            self.assertNotIn(day, holidays)
+
+    def test_covid19_2020_label(self):
+        # no "shift" for those days, all of them were non-working days
+        holidays = self.cal.holidays(2020)
+        start = date(2020, 3, 28)
+        end = date(2020, 4, 30)
+        for day, label in holidays:
+            if start <= day <= end:
+                self.assertNotIn("shift", label)
+
+    def test_extra_days_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 5, 4), holidays)  # extra day, no other info
+        self.assertIn(date(2020, 5, 5), holidays)  # Day of spring/labor day
+        # Constitution Vote Public Holiday
+        self.assertIn(date(2020, 7, 1), holidays)
+        # Not in 2019
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 5, 4), holidays)
+        self.assertNotIn(date(2019, 5, 5), holidays)
+        self.assertNotIn(date(2019, 7, 1), holidays)
+
+    def test_new_year_holidays_2004(self):
+        # At that time, only Jan 1st/2nd were holidays.
+        holidays = self.cal.holidays_set(2004)
+        self.assertIn(date(2004, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2004, 1, 2), holidays)  # Day after New Year
+        self.assertNotIn(date(2004, 1, 3), holidays)  # Shift of Jan 2nd
+        self.assertNotIn(date(2004, 1, 4), holidays)  # Not until 2005
+        self.assertNotIn(date(2004, 1, 5), holidays)  # Not until 2005
+        self.assertNotIn(date(2004, 1, 6), holidays)  # Not until 2005
+        self.assertIn(date(2004, 1, 7), holidays)  # XMas
+        self.assertNotIn(date(2004, 1, 8), holidays)  # Not until 2005
+
+    def test_new_year_holidays_2005(self):
+        holidays = self.cal.holidays_set(2005)
+        self.assertIn(date(2005, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2005, 1, 2), holidays)  # Day after New Year
+        self.assertIn(date(2005, 1, 3), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 4), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 5), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 6), holidays)  # Holiday since 2005
+        self.assertIn(date(2005, 1, 7), holidays)  # XMas
+        self.assertIn(date(2005, 1, 8), holidays)  # Part of the holiday week
+
+    def test_no_december_christmas(self):
+        # This calendar is an Orthodox calendar & it doesn't include Dec 25th
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 12, 25), holidays)
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays(2021)
+        holidays_2021 = [
+            (date(2021, 1, 1), "New year"),
+            (date(2021, 1, 2), "Day After New Year"),  # SAT
+            (date(2021, 1, 3), "Third Day after New Year"),  # SUN
+            (date(2021, 1, 4), "Fourth Day after New Year"),
+            (date(2021, 1, 5), "Fifth Day after New Year"),
+            (date(2021, 1, 6), "Sixth Day after New Year"),
+            (date(2021, 1, 7), "Christmas"),
+            (date(2021, 1, 8), "Eighth Day after New Year"),
+            (date(2021, 2, 22), "Day Before Defendence of the Fatherland"),
+            (date(2021, 2, 23), "Defendence of the Fatherland"),
+            (date(2021, 3, 8), "International Women's Day"),
+            (date(2021, 5, 1), "The Day of Spring and Labour"),
+            (date(2021, 5, 3), "The Day of Spring and Labour shift"),
+            (date(2021, 5, 9), "Victory Day"),
+            (date(2021, 5, 10), "Victory Day shift"),
+            (date(2021, 6, 12), "National Day"),
+            (date(2021, 6, 14), "National Day shift"),
+            (date(2021, 11, 4), "Day of Unity"),
+            (date(2021, 11, 5), "Day After Day of Unity"),
+            (date(2021, 12, 31), "New Year's Eve")
+        ]
+        holidays_2021 = [Holiday(*h) for h in holidays_2021]
+        self.assertEqual(holidays, holidays_2021)
+
+    def test_year_2021_extra_working_day(self):
+        self.assertTrue(self.cal.is_working_day(date(2021, 2, 20)))
+        self.assertTrue(self.cal.is_working_day(datetime(2021, 2, 20)))
+
+        self.assertTrue(self.cal.is_working_day(date(2021, 2, 19)))
+        self.assertTrue(self.cal.is_working_day(datetime(2020, 2, 19)))
 
 
 class UkraineTest(GenericCalendarTest):
@@ -905,6 +1622,11 @@ class UkraineTest(GenericCalendarTest):
     def test_year_2018(self):
         holidays = self.cal.holidays_set(2018)
         self.assertNotIn(date(2018, 5, 2), holidays)  # Workers Solidarity Day
+
+    def test_may_1st_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 5, 1)], "Workers Solidarity Day")
 
 
 class UnitedKingdomTest(GenericCalendarTest):
@@ -1123,68 +1845,16 @@ class PortugalTest(GenericCalendarTest):
         # Restauração da Independência
         self.assertIn(date(2016, 12, 1), holidays)
 
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Dia do Trabalhador")
 
-class SpainTest(GenericCalendarTest):
-    cal_class = Spain
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 1, 6), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 8, 15), holidays)
-        self.assertIn(date(2015, 10, 12), holidays)
-        self.assertIn(date(2015, 12, 8), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-
-    def test_year_2016(self):
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)
-        self.assertIn(date(2016, 1, 6), holidays)
-        self.assertIn(date(2016, 3, 25), holidays)
-        self.assertIn(date(2016, 8, 15), holidays)
-        self.assertIn(date(2016, 10, 12), holidays)
-        self.assertIn(date(2016, 11, 1), holidays)
-        self.assertIn(date(2016, 12, 6), holidays)
-        self.assertIn(date(2016, 12, 8), holidays)
-
-
-class CataloniaTest(GenericCalendarTest):
-    cal_class = Catalonia
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 1, 6), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 6, 24), holidays)
-        self.assertIn(date(2015, 8, 15), holidays)
-        self.assertIn(date(2015, 9, 11), holidays)
-        self.assertIn(date(2015, 10, 12), holidays)
-        self.assertIn(date(2015, 11, 1), holidays)
-        self.assertIn(date(2015, 12, 6), holidays)
-        self.assertIn(date(2015, 12, 8), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
-
-    def test_year_2016(self):
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)
-        self.assertIn(date(2016, 1, 6), holidays)
-        self.assertIn(date(2016, 3, 25), holidays)
-        self.assertIn(date(2016, 3, 28), holidays)
-        self.assertIn(date(2016, 6, 24), holidays)
-        self.assertIn(date(2016, 8, 15), holidays)
-        self.assertIn(date(2016, 9, 11), holidays)
-        self.assertIn(date(2016, 10, 12), holidays)
-        self.assertIn(date(2016, 11, 1), holidays)
-        self.assertIn(date(2016, 12, 6), holidays)
-        self.assertIn(date(2016, 12, 8), holidays)
-        self.assertIn(date(2016, 12, 25), holidays)
-        self.assertIn(date(2016, 12, 26), holidays)
+    def test_immaculate_conception_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(holidays[date(2020, 12, 8)], "Imaculada Conceição")
 
 
 class SerbiaTest(GenericCalendarTest):
@@ -1229,6 +1899,11 @@ class SerbiaTest(GenericCalendarTest):
         self.assertIn(date(2017, 5, 1), holidays)
         self.assertIn(date(2017, 5, 2), holidays)
         self.assertIn(date(2017, 11, 11), holidays)
+
+    def test_no_december_christmas(self):
+        # This calendar is an Orthodox calendar & it doesn't include Dec 25th
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 12, 25), holidays)
 
 
 class SloveniaTest(GenericCalendarTest):
@@ -1293,80 +1968,6 @@ class SloveniaTest(GenericCalendarTest):
         # In 2017, january 2nd became a state holiday
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 1, 2), holidays)
-
-
-class SwitzerlandTest(GenericCalendarTest):
-    cal_class = Switzerland
-
-    def test_year_2015(self):
-        holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 1, 1), holidays)
-        self.assertIn(date(2015, 1, 2), holidays)
-        self.assertIn(date(2015, 4, 3), holidays)
-        self.assertIn(date(2015, 4, 5), holidays)
-        self.assertIn(date(2015, 4, 6), holidays)
-        self.assertIn(date(2015, 5, 1), holidays)
-        self.assertIn(date(2015, 5, 14), holidays)
-        self.assertIn(date(2015, 5, 24), holidays)
-        self.assertIn(date(2015, 5, 25), holidays)
-        self.assertIn(date(2015, 8, 1), holidays)
-        self.assertIn(date(2015, 12, 25), holidays)
-        self.assertIn(date(2015, 12, 26), holidays)
-
-    def test_year_2016(self):
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)
-        self.assertIn(date(2016, 1, 2), holidays)
-        self.assertIn(date(2016, 3, 25), holidays)
-        self.assertIn(date(2016, 3, 28), holidays)
-        self.assertIn(date(2016, 5, 1), holidays)
-        self.assertIn(date(2016, 5, 5), holidays)
-        self.assertIn(date(2016, 5, 15), holidays)
-        self.assertIn(date(2016, 5, 16), holidays)
-        self.assertIn(date(2016, 8, 1), holidays)
-        self.assertIn(date(2016, 12, 25), holidays)
-        self.assertIn(date(2016, 12, 26), holidays)
-
-
-class VaudTest(GenericCalendarTest):
-    cal_class = Vaud
-
-    def test_year_2016(self):
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 9, 19), holidays)
-        self.assertNotIn(date(2016, 5, 1), holidays)
-        self.assertNotIn(date(2016, 12, 26), holidays)
-
-    def test_year_2017(self):
-        holidays = self.cal.holidays_set(2017)
-        self.assertIn(date(2017, 9, 18), holidays)
-        self.assertNotIn(date(2017, 5, 1), holidays)
-        self.assertNotIn(date(2017, 12, 26), holidays)
-
-
-class GenevaTest(GenericCalendarTest):
-    cal_class = Geneva
-
-    def test_year_2018(self):
-        holidays = self.cal.holidays_set(2018)
-        self.assertIn(date(2018, 9, 6), holidays)
-        self.assertIn(date(2018, 12, 31), holidays)
-        self.assertNotIn(date(2018, 5, 1), holidays)
-        self.assertNotIn(date(2018, 12, 26), holidays)
-
-    def test_year_2019(self):
-        holidays = self.cal.holidays_set(2019)
-        self.assertIn(date(2019, 9, 5), holidays)
-        self.assertIn(date(2019, 12, 31), holidays)
-        self.assertNotIn(date(2019, 5, 1), holidays)
-        self.assertNotIn(date(2019, 12, 26), holidays)
-
-    def test_year_2020(self):
-        holidays = self.cal.holidays_set(2020)
-        self.assertIn(date(2020, 9, 10), holidays)
-        self.assertIn(date(2020, 12, 31), holidays)
-        self.assertNotIn(date(2020, 5, 1), holidays)
-        self.assertNotIn(date(2020, 12, 26), holidays)
 
 
 class EstoniaTest(GenericCalendarTest):
@@ -1440,3 +2041,33 @@ class LithuaniaTest(GenericCalendarTest):
         self.assertIn(date(2017, 12, 24), holidays)  # Xmas eve
         self.assertIn(date(2017, 12, 25), holidays)  # Xmas day
         self.assertIn(date(2017, 12, 26), holidays)  # 2nd day of xmas
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # new year
+        self.assertIn(date(2020, 2, 16), holidays)  # restoration of the state
+        self.assertIn(date(2020, 3, 11), holidays)  # restoration of independ.
+        self.assertIn(date(2020, 4, 12), holidays)  # easter sunday
+        self.assertIn(date(2020, 4, 13), holidays)  # easter monday
+        self.assertIn(date(2020, 5, 1), holidays)  # labour day
+        self.assertIn(date(2020, 5, 3), holidays)  # mother's day
+        self.assertIn(date(2020, 6, 7), holidays)  # father's day
+        self.assertIn(date(2020, 6, 24), holidays)  # st john's day
+        self.assertIn(date(2020, 7, 6), holidays)  # Anniversary of King Mind.
+        self.assertIn(date(2020, 8, 15), holidays)  # Assumption day
+        self.assertIn(date(2020, 11, 1), holidays)  # All saints day
+        self.assertIn(date(2020, 11, 2), holidays)  # All souls day
+        self.assertIn(date(2020, 12, 24), holidays)  # Xmas eve
+        self.assertIn(date(2020, 12, 25), holidays)  # Xmas day
+        self.assertIn(date(2020, 12, 26), holidays)  # 2nd day of xmas
+
+    def test_all_souls_day(self):
+        # All Souls day was introduced as of 2020
+        # https://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 11, 2), holidays)
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 11, 2), holidays)
+
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 11, 2), holidays)

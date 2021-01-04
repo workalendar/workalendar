@@ -13,7 +13,7 @@ day by implementing the following class:
 
 """
 from ..core import WED, FRI
-from ..registry import iso_register
+from ..registry_tools import iso_register
 from .core import UnitedStates
 
 

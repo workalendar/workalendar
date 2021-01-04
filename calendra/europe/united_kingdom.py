@@ -3,12 +3,12 @@ from datetime import date
 from dateutil import relativedelta as rd
 
 from ..core import Holiday
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('GB')
-class UnitedKingdom(WesternCalendar, ChristianMixin):
+class UnitedKingdom(WesternCalendar):
     'United Kingdom'
 
     include_good_friday = True

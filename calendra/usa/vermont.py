@@ -1,5 +1,5 @@
 from ..core import TUE
-from ..registry import iso_register
+from ..registry_tools import iso_register
 from .core import UnitedStates
 
 

@@ -1,5 +1,6 @@
 from datetime import date
 from . import GenericCalendarTest
+from ..core import MON
 from ..america.canada import (
     Canada, Ontario, Quebec, BritishColumbia, Alberta, Saskatchewan, Manitoba,
     NewBrunswick, NovaScotia, PrinceEdwardIsland, Newfoundland, Yukon,
@@ -104,7 +105,9 @@ class BritishColumbiaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2012)
         observed = set(map(self.cal.get_observed_date, holidays))
         self.assertIn(date(2012, 1, 2), observed)
-        self.assertIn(date(2012, 2, 13), holidays)  # Family Day BC
+        # Family Day BC was not set in 2012
+        self.assertNotIn(date(2012, 2, 13), holidays)
+
         self.assertIn(date(2012, 4, 6), holidays)  # Good Friday
         self.assertNotIn(date(2012, 4, 9), holidays)  # Easter Monday
         self.assertIn(date(2012, 5, 21), holidays)  # Victoria Day
@@ -114,6 +117,21 @@ class BritishColumbiaTest(GenericCalendarTest):
         self.assertIn(date(2012, 10, 8), holidays)  # Canadian Thanksgiving
         self.assertIn(date(2012, 11, 11), holidays)  # Remembrance Day
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas day
+
+    def test_family_day(self):
+        # From 2013 to 2018, Family Day was on 2nd MON of February
+        for year in range(2013, 2019):
+            holidays = dict(self.cal.holidays(year))
+            day = self.cal.get_nth_weekday_in_month(year, 2, MON, 2)
+            self.assertIn(day, holidays)
+            self.assertEqual(holidays[day], "Family Day")
+
+        # As of 2019, it happens on 3rd MON of February
+        for year in (2019, 2020, 2021):
+            holidays = dict(self.cal.holidays(year))
+            day = self.cal.get_nth_weekday_in_month(year, 2, MON, 3)
+            self.assertIn(day, holidays)
+            self.assertEqual(holidays[day], "Family Day")
 
 
 class AlbertaTest(GenericCalendarTest):
@@ -321,3 +339,14 @@ class NunavutTests(GenericCalendarTest):
         self.assertIn(date(2012, 11, 12), holidays)  # Remembrance Day Shift
         self.assertIn(date(2012, 12, 25), holidays)  # Christmas day
         self.assertNotIn(date(2012, 12, 26), holidays)  # Boxing day
+
+    def test_nunavut_shift(self):
+        # Nunavut day happens on SAT, no shift
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 7, 9), holidays)
+        self.assertNotIn(date(2016, 7, 10), holidays)
+
+        # Nunavut day happens on SUN, shift to the next day
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 7, 9), holidays)
+        self.assertIn(date(2017, 7, 10), holidays)

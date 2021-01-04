@@ -79,3 +79,9 @@ class TurkeyTest(GenericCalendarTest):
         self.assertIn(date(2019, 8, 12), holidays)
         self.assertIn(date(2019, 8, 13), holidays)
         self.assertIn(date(2019, 8, 14), holidays)
+
+    def test_labour_day_label(self):
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 1)], "Labor and Solidarity Day")

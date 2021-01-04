@@ -1,12 +1,11 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar, ChristianMixin
-from ..core import MON, TUE, SAT, SUN
-from ..registry import iso_register
+from ..core import WesternCalendar, MON, TUE, SAT, SUN
+from ..registry_tools import iso_register
 
 
 @iso_register('AU')
-class Australia(WesternCalendar, ChristianMixin):
+class Australia(WesternCalendar):
     "Australia"
     include_good_friday = True
     include_easter_monday = True

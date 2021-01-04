@@ -1,5 +1,5 @@
 from .china import China
-from .hong_kong import HongKong
+from .hong_kong import HongKong, HongKongBank
 from .japan import Japan, JapanBank
 from .malaysia import Malaysia
 from .qatar import Qatar
@@ -12,6 +12,7 @@ from .israel import Israel
 __all__ = (
     'China',
     'HongKong',
+    'HongKongBank',
     'Japan',
     'JapanBank',
     'Malaysia',

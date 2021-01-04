@@ -1,16 +1,18 @@
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('AT')
-class Austria(WesternCalendar, ChristianMixin):
+class Austria(WesternCalendar):
     'Austria'
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "National Holiday"),  # Staatsfeiertag
         (10, 26, "National Holiday"),  # Nationalfeiertag
     )
-
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "State Holiday"  # Staatsfeiertag
+    # Christian holidays
     include_epiphany = True
     include_easter_monday = True
     include_ascension = True

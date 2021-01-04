@@ -1,17 +1,19 @@
 from datetime import date, timedelta
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('DE')
-class Germany(WesternCalendar, ChristianMixin):
+class Germany(WesternCalendar):
     'Germany'
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (10, 3, "Day of German Unity"),
     )
 
+    # Christian holidays
     include_easter_monday = True
     include_ascension = True
     include_whit_monday = True

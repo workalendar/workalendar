@@ -1,17 +1,20 @@
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('PL')
-class Poland(WesternCalendar, ChristianMixin):
+class Poland(WesternCalendar):
     'Poland'
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 6, 'Trzech Kroli'),
-        (5, 1, 'Labour Day'),
         (5, 3, 'Constitution Day'),
         (11, 11, 'Independence Day'),
     )
+
+    # Christian holidays
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_sunday = True

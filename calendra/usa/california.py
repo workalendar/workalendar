@@ -1,6 +1,8 @@
+from datetime import date
+
 from .core import UnitedStates
-from ..core import MON
-from ..registry import iso_register
+from ..core import MON, SUN
+from ..registry_tools import iso_register
 
 
 @iso_register('US-CA')
@@ -9,6 +11,19 @@ class California(UnitedStates):
     include_thanksgiving_friday = True
     include_cesar_chavez_day = True
     include_columbus_day = False
+
+    shift_exceptions = [
+        (3, 31)  # Cesar Chavez Day should not be shifted the usual way.
+    ]
+
+    def get_cesar_chavez_days(self, year):
+        """
+        Special shift rules for Cesar Chavez Day in California
+        """
+        days = super().get_cesar_chavez_days(year)
+        if date(year, 3, 31).weekday() == SUN:
+            days.append((date(year, 4, 1), "Cesar Chavez Day (Observed)"))
+        return days
 
 
 class CaliforniaEducation(California):

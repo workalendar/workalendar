@@ -1,12 +1,13 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin, THU, MON
-from ..registry import iso_register
+from ..core import WesternCalendar, THU, MON
+from ..registry_tools import iso_register
 
 
 @iso_register('IS')
-class Iceland(WesternCalendar, ChristianMixin):
+class Iceland(WesternCalendar):
     'Iceland'
 
+    # Christian holidays
     include_holy_thursday = True
     include_good_friday = True
     include_easter_monday = True
@@ -16,8 +17,9 @@ class Iceland(WesternCalendar, ChristianMixin):
     include_boxing_day = True
     boxing_day_label = "St Stephen's Day"
 
+    # Civil holidays
+    include_labour_day = True
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 1, "Labour Day"),
         (6, 17, "Icelandic National Day"),
         (12, 31, "New Year's Eve"),
     )

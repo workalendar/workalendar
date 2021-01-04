@@ -1,11 +1,14 @@
 """
 Working day tools
 """
-from copy import copy
+import os
+from os.path import isdir
 import warnings
+
 import itertools
 from calendar import monthrange
 from datetime import date, timedelta, datetime
+from typing import Optional, List
 
 from calverter import Calverter
 from dateutil import easter
@@ -13,7 +16,11 @@ from lunardate import LunarDate
 from dateutil import relativedelta as rd
 from more_itertools import recipes
 
-from .exceptions import UnsupportedDateType
+from .exceptions import (
+    UnsupportedDateType, CalendarError,
+    ICalExportRangeError, ICalExportTargetPathError
+)
+from . import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -43,6 +50,21 @@ def cleaned_date(day, keep_datetime=False):
         if hasattr(day, 'date') and callable(day.date):
             day = day.date()
     return day
+
+
+def daterange(start, end):
+    """
+    Yield days from ``start`` to ``end`` including both of them.
+
+    If start and end are in opposite order, they'll be swapped silently.
+    """
+    # Swap if necessary
+    if start > end:
+        end, start = start, end
+    day = start
+    while day <= end:
+        yield day
+        day += timedelta(days=1)
 
 
 class Holiday(date):
@@ -140,7 +162,7 @@ class Holiday(date):
         return item
 
 
-class Calendar:
+class CoreCalendar:
 
     FIXED_HOLIDAYS = ()
     WEEKEND_DAYS = ()
@@ -333,8 +355,6 @@ class Calendar:
 
         days = 0
         temp_day = day
-        if type(temp_day) is datetime and not keep_datetime:
-            temp_day = temp_day.date()
         day_added = 1 if delta >= 0 else -1
         delta = abs(delta)
         while days < delta:
@@ -506,12 +526,231 @@ class Calendar:
                 count += 1
         return count
 
+    def _get_ical_period(self, period=None):
+        """
+        Return a usable period for iCal export
 
-class ChristianMixin(Calendar):
+        Default period is [2000, 2030]
+        """
+        # Default value.
+        if not period:
+            period = [2000, 2030]
+
+        # Make sure it's a usable iterable
+        if type(period) not in (list, tuple):
+            raise ICalExportRangeError(
+                "Incorrect Range type. Must be list or tuple.")
+
+        # Taking the extremes
+        period = [min(period), max(period)]
+
+        # check for internal types
+        check_types = map(type, period)
+        check_types = map(lambda x: x != int, check_types)
+        if any(check_types):
+            raise ICalExportRangeError(
+                "Incorrect Range boundaries. Must be int.")
+
+        return period
+
+    def _get_ical_target_path(self, target_path):
+        """
+        Return target path for iCal export.
+
+        Note
+        ----
+        If `target_path` does not have one of the extensions `.ical`, `.ics`,
+        `.ifb`, or `.icalendar`, the extension `.ics` is appended to the path.
+        Returns
+        -------
+        None.
+        Examples
+        --------
+        >>> from calendra.europe import Austria
+        >>> cal = Austria()
+        >>> cal._get_ical_target_path('austria')
+        'austria.ics'
+        """
+
+        if not target_path:
+            raise ICalExportTargetPathError(
+                "Incorrect target path. It must not be empty")
+
+        if isdir(target_path):
+            raise ICalExportTargetPathError(
+                "Incorrect target path. It must not be a directory"
+            )
+
+        ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
+        if os.path.splitext(target_path)[1] not in ical_extensions:
+            target_path += '.ics'
+        return target_path
+
+    def export_to_ical(self, period=[2000, 2030], target_path=None):
+        """
+        Export the calendar to iCal (RFC 5545) format.
+
+        Parameters
+        ----------
+        period: [int, int]
+            start and end year (inclusive) of calendar
+            Default is [2000, 2030]
+
+        target_path: str
+            the name or path of the exported file. If this argument is missing,
+            the function will return the ical content.
+
+        """
+        first_year, last_year = self._get_ical_period(period)
+        if target_path:
+            # Generate filename path before calculate the holidays
+            target_path = self._get_ical_target_path(target_path)
+
+        # fetch holidays
+        holidays = []
+        for year in range(first_year, last_year + 1):
+            holidays.extend(self.holidays(year))
+
+        # initialize icalendar
+        ics = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',  # current RFC5545 version
+            f'PRODID:-//workalendar//ical {__version__}//EN'
+        ]
+        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
+
+        # add an event for each holiday
+        for holiday in holidays:
+            date_ = self.get_observed_date(holiday)
+            ics.extend([
+                'BEGIN:VEVENT',
+                'SUMMARY:%s' % holiday.name,
+                'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
+                dtstamp,
+                f'UID:{date_}{holiday.name}@peopledoc.github.io/workalendar',
+                'END:VEVENT',
+            ])
+
+        # add footer
+        ics.append('END:VCALENDAR\n')  # last line with a trailing \n
+
+        # Transform this list into text lines
+        ics = "\n".join(ics)
+
+        if target_path:
+            # save iCal file
+            with open(target_path, 'w+') as export_file:
+                export_file.write(ics)
+            return
+
+        return ics
+
+
+class Calendar(CoreCalendar):
+    """
+    The cornerstone of Earth calendars.
+
+    Take care of the New Years Day, which is almost a worldwide holiday.
+    """
+    include_new_years_day = True
+    shift_new_years_day = False
+    include_labour_day = False
+    labour_day_label = "Labour Day"
+
+    def __init__(self, **kwargs):
+        super().__init__()
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_new_years_day:
+            days.insert(
+                0, (date(year, 1, 1), "New year")
+            )
+
+        if self.include_labour_day:
+            days.append(
+                (date(year, 5, 1), self.labour_day_label)
+            )
+        return days
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        new_year = date(year, 1, 1)
+        if self.include_new_years_day and self.shift_new_years_day:
+            if new_year.weekday() in self.get_weekend_days():
+                days.append((
+                    self.find_following_working_day(new_year),
+                    "New Year shift"))
+        return days
+
+
+class SeriesShiftMixin:
+    """
+    "Series" holidays like the two Islamic Eid's or Chinese Spring Festival span
+    multiple days. If one of these days encounters a non-zero observance_shift,
+    we need to apply that shift to all subsequent members of the series.
+
+    Packagin as a standalone Mixin ensure that the logic can be applied as
+    needed *after* any default shift is applied.
+    """
+    series_requiring_shifts: Optional[List[str]] = None
+    """
+    A list of all holiday labels that require series shifting to be applied.
+    """
+
+    def get_calendar_holidays(self, year):
+        """
+        The point at which any shift occurs is year-specific.
+        """
+        days = super().get_calendar_holidays(year)
+        series_shift = {series: None for series in self.series_requiring_shifts}
+        holidays = []
+        for holiday, label in days:
+            #
+            # Make a year-specific copy in case we have to attach a shift.
+            #
+            holiday = Holiday(holiday, label)
+            #
+            # For either Eid series, apply the shift to all days in the
+            # series after the first shift.
+            #
+            if label in series_shift:
+                shifted = self.get_observed_date(holiday)
+                if series_shift[holiday.name] is None and shifted.day != holiday.day:
+
+                    def observance_shift_for_series(holiday, calendar):
+                        """
+                        Taking an existing holiday, return a 'shifted' day based
+                        on delta in the current year's closure.
+                        """
+                        return holiday + delta
+
+                    delta = date(shifted.year, shifted.month, shifted.day) - \
+                        date(holiday.year, holiday.month, holiday.day)
+                    #
+                    # Learn the observance_shift for all subsequent days in the
+                    # series.
+                    #
+                    series_shift[holiday.name] = observance_shift_for_series
+                elif series_shift[holiday.name] is not None:
+                    #
+                    # Apply the learned observance_shift.
+                    #
+                    holiday.observance_shift = series_shift[holiday.name]
+            holidays.append(holiday)
+        return holidays
+
+
+class ChristianMixin:
     EASTER_METHOD = None  # to be assigned in the inherited mixin
     include_epiphany = False
     include_clean_monday = False
     include_annunciation = False
+    include_fat_tuesday = False
+    # Fat tuesday forced to `None` to make sure this value is always set
+    # We've seen that there was a wide variety of labels.
+    fat_tuesday_label = None
     include_ash_wednesday = False
     ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
@@ -536,6 +775,14 @@ class ChristianMixin(Calendar):
     include_boxing_day = False
     boxing_day_label = "Boxing Day"
     include_all_souls = False
+
+    def get_fat_tuesday(self, year):
+        if not self.fat_tuesday_label:
+            raise CalendarError(
+                "Improperly configured: please provide a "
+                "`fat_tuesday_label` value")
+        sunday = self.get_easter_sunday(year)
+        return sunday - timedelta(days=47)
 
     def get_ash_wednesday(self, year):
         sunday = self.get_easter_sunday(year)
@@ -615,6 +862,10 @@ class ChristianMixin(Calendar):
             days.append((self.get_clean_monday(year), "Clean Monday"))
         if self.include_annunciation:
             days.append((date(year, 3, 25), "Annunciation"))
+        if self.include_fat_tuesday:
+            days.append(
+                (self.get_fat_tuesday(year), self.fat_tuesday_label)
+            )
         if self.include_ash_wednesday:
             days.append(
                 (self.get_ash_wednesday(year), self.ash_wednesday_label)
@@ -665,7 +916,7 @@ class ChristianMixin(Calendar):
         return days
 
 
-class WesternCalendar(Calendar):
+class WesternMixin(ChristianMixin):
     """
     General usage calendar for Western countries.
 
@@ -674,6 +925,7 @@ class WesternCalendar(Calendar):
     """
     EASTER_METHOD = easter.EASTER_WESTERN
     WEEKEND_DAYS = (SAT, SUN)
+    include_new_years_day = False
     shift_new_years_day = False
 
     def get_variable_days(self, year):
@@ -687,11 +939,31 @@ class WesternCalendar(Calendar):
         return days
 
 
+class WesternCalendar(WesternMixin, Calendar):
+    pass
+
+
 class OrthodoxMixin(ChristianMixin):
     EASTER_METHOD = easter.EASTER_ORTHODOX
+    WEEKEND_DAYS = (SAT, SUN)
+    include_orthodox_christmas = True
+    # This label should be de-duplicated if needed
+    orthodox_christmas_day_label = "Christmas"
+
+    def get_fixed_holidays(self, year):
+        days = super().get_fixed_holidays(year)
+        if self.include_orthodox_christmas:
+            days.append(
+                (date(year, 1, 7), self.orthodox_christmas_day_label)
+            )
+        return days
 
 
-class LunarCalendar(Calendar):
+class OrthodoxCalendar(OrthodoxMixin, Calendar):
+    pass
+
+
+class LunarMixin:
     """
     Calendar ready to compute luncar calendar days
     """
@@ -700,7 +972,11 @@ class LunarCalendar(Calendar):
         return LunarDate(year, month, day).toSolarDate()
 
 
-class ChineseNewYearCalendar(LunarCalendar):
+class LunarCalendar(LunarMixin, Calendar):
+    pass
+
+
+class ChineseNewYearMixin(LunarMixin):
     """
     Calendar including toolsets to compute the Chinese New Year holidays.
     """
@@ -739,7 +1015,7 @@ class ChineseNewYearCalendar(LunarCalendar):
         """
         days = []
 
-        lunar_first_day = ChineseNewYearCalendar.lunar(year, 1, 1)
+        lunar_first_day = ChineseNewYearMixin.lunar(year, 1, 1)
         # Chinese new year's eve
         if self.include_chinese_new_year_eve:
             days.append((
@@ -792,17 +1068,24 @@ class ChineseNewYearCalendar(LunarCalendar):
         days.extend(self.get_chinese_new_year(year))
         return days
 
+    @staticmethod
+    def observance_shift_for_sunday(holiday, calendar):
+        """
+        Taking an existing holiday, return a 'shifted' day to skip on from SUN.
+        """
+        return holiday + timedelta(days=1)
+
     def get_shifted_holidays(self, dates):
         """
         Taking a list of existing holidays, yield a list of 'shifted' days if
         the holiday falls on SUN.
         """
         for holiday, label in dates:
+            if isinstance(holiday, date):
+                holiday = Holiday(holiday, label)
             if holiday.weekday() == SUN:
-                yield (
-                    holiday + timedelta(days=1),
-                    label + ' shift'
-                )
+                holiday.observance_shift = self.observance_shift_for_sunday
+            yield holiday
 
     def get_calendar_holidays(self, year):
         """
@@ -812,13 +1095,19 @@ class ChineseNewYearCalendar(LunarCalendar):
         # Unshifted days are here:
         days = super().get_calendar_holidays(year)
         if self.shift_sunday_holidays:
-            days_to_inspect = copy(days)
-            for day_shifted in self.get_shifted_holidays(days_to_inspect):
-                days.append(day_shifted)
+            days = self.get_shifted_holidays(days)
         return days
 
 
-class CalverterMixin(Calendar):
+class ChineseNewYearCalendar(ChineseNewYearMixin, LunarCalendar):
+    """
+    Chinese Calendar, using Chinese New Year computation.
+    """
+    # There are regional exceptions to those week-end days, to define locally.
+    WEEKEND_DAYS = (SAT, SUN)
+
+
+class CalverterMixin:
     conversion_method = None
     ISLAMIC_HOLIDAYS = ()
 
@@ -881,7 +1170,10 @@ class CalverterMixin(Calendar):
         return days
 
 
-class IslamicMixin(CalverterMixin):
+class IslamicMixin(SeriesShiftMixin, CalverterMixin):
+
+    WEEKEND_DAYS = (FRI, SAT)
+
     conversion_method = 'islamic'
     include_prophet_birthday = False
     include_day_after_prophet_birthday = False
@@ -927,6 +1219,26 @@ class IslamicMixin(CalverterMixin):
                           " to compute it. You'll have to add it manually.")
         return tuple(days)
 
+    def get_calendar_holidays(self, year):
+        self.series_requiring_shifts = [self.eid_al_fitr_label,
+                                        self.day_of_sacrifice_label]
+        return super().get_calendar_holidays(year)
+
 
 class JalaliMixin(CalverterMixin):
     conversion_method = 'jalali'
+
+
+class IslamicCalendar(IslamicMixin, Calendar):
+    """
+    Islamic calendar
+    """
+
+
+class IslamoWesternCalendar(IslamicMixin, WesternMixin, Calendar):
+    """
+    Mix of Islamic and Western calendars.
+
+    When countries have both Islamic and Western-Christian holidays.
+    """
+    FIXED_HOLIDAYS = Calendar.FIXED_HOLIDAYS

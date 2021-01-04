@@ -1,22 +1,26 @@
 from datetime import date
-from ..core import WesternCalendar, ChristianMixin
-from ..registry import iso_register
+from ..core import WesternCalendar
+from ..registry_tools import iso_register
 
 
 @iso_register('PT')
-class Portugal(WesternCalendar, ChristianMixin):
+class Portugal(WesternCalendar):
     'Portugal'
 
+    # Christian holidays
     include_good_friday = True
     include_easter_sunday = True
     include_christmas = True
+    include_immaculate_conception = True
+    immaculate_conception_label = "Imaculada Conceição"
 
+    # Civil holidays
+    include_labour_day = True
+    labour_day_label = "Dia do Trabalhador"
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (4, 25, "Dia da Liberdade"),
-        (5, 1, "Dia do Trabalhador"),
         (6, 10, "Dia de Portugal"),
         (8, 15, "Assunção de Nossa Senhora"),
-        (12, 8, "Imaculada Conceição"),
     )
 
     def get_fixed_holidays(self, year):

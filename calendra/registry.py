@@ -1,5 +1,4 @@
 from importlib import import_module
-import warnings
 
 from .core import Calendar
 from .exceptions import ISORegistryError
@@ -33,7 +32,7 @@ class IsoRegistry:
         self.region_registry = dict()
         if load_standard_modules:
             for module_name in self.STANDARD_MODULES:
-                module = 'calendra.{}'.format(module_name)
+                module = f'calendra.{module_name}'
                 all_classes = getattr(import_module(module), '__all__')
                 self.load_module_from_items(module, all_classes)
 
@@ -43,7 +42,7 @@ class IsoRegistry:
         """
         if not issubclass(cls, Calendar):
             raise ISORegistryError(
-                "Class `{}` is not a Calendar class".format(cls)
+                f"Class `{cls}` is not a Calendar class"
             )
         self.region_registry[iso_code] = cls
 
@@ -59,7 +58,7 @@ class IsoRegistry:
                 if iso_code and cls.__name__ == class_name:
                     self.register(iso_code, cls)
 
-    def get_calendar_class(self, iso_code):
+    def get(self, iso_code):
         """
         Retrieve calendar class associated with given ``iso_code``.
 
@@ -87,27 +86,9 @@ class IsoRegistry:
         """
         items = dict()
         for key, value in self.region_registry.items():
-            if key.startswith("{}-".format(iso_code)):
+            if key.startswith(f"{iso_code}-"):
                 items[key] = value
         return items
-
-    def items(self, region_codes=None, include_subregions=False):
-        """
-        Returns calendar classes for regions
-
-        :param region_codes list of ISO codes for selected regions. If empty,
-                            the function will return all items from the
-                            registry.
-        :param include_subregions boolean if subregions
-        of selected regions should be included in result
-        :rtype dict
-        :return dict where keys are ISO codes strings
-        and values are calendar classes
-        """
-        warnings.warn("The ``items()`` method will soon be deprecated."
-                      " Please use ``get_calendars()`` instead.",
-                      DeprecationWarning)
-        return self.get_calendars(region_codes, include_subregions)
 
     def get_calendars(self, region_codes=None, include_subregions=False):
         """
@@ -142,29 +123,6 @@ class IsoRegistry:
 
 
 registry = IsoRegistry()
-
-
-def iso_register(iso_code):
-    """
-    Registers Calendar class as country or region in IsoRegistry.
-
-    Registered country must set class variables ``iso`` using this decorator.
-
-    >>> from calendra.core import Calendar
-    >>> @iso_register('MC-MR')
-    ... class MyRegion(Calendar):
-    ...     'My Region'
-
-    Region calendar is then retrievable from registry:
-
-    >>> calendar = registry.get_calendar_class('MC-MR')
-    """
-
-    def wrapper(cls):
-        registry.register(iso_code, cls)
-        return cls
-    return wrapper
-
 
 # Europe Countries
 from calendra.europe import *  # noqa
