@@ -31,6 +31,7 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
 
     # Diwali/Deepavali is sometimes celebrated on a different day to India
     # so this can't be put into a HinduMixin
+    # Reference: https://holidays.kayaposoft.com/public_holidays.php?year=2022&country=sgp&region=#
     DEEPAVALI = {
         2000: date(2000, 10, 26),
         2001: date(2001, 11, 14),
@@ -53,7 +54,16 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
         2020: date(2020, 11, 14),
-        2021: date(2021, 11, 4),  # This might change
+        2021: date(2021, 11, 4),
+        2022: date(2022, 10, 24),
+        2023: date(2023, 12, 11),
+        2024: date(2024, 10, 31),
+        2025: date(2025, 10, 20),
+        2026: date(2026, 11, 9),
+        2027: date(2027, 10, 28),
+        2028: date(2028, 11, 15),
+        2029: date(2029, 11, 5),
+        2030: date(2030, 10, 25),
     }
     chinese_new_year_label = "Chinese Lunar New Year's Day"
     include_chinese_second_day = True
