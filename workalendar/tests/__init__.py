@@ -1,8 +1,10 @@
+import os
 import tempfile
 import warnings
 from datetime import date
 from pathlib import Path
 from unittest import TestCase
+from platform import system
 
 from freezegun import freeze_time
 
@@ -56,7 +58,7 @@ class GenericCalendarTest(CoreCalendarTest):
 
         temp_dir = Path(tempfile.gettempdir()) / "failed_ical_tests"
         temp_dir.mkdir(parents=True, exist_ok=True)
-        _, test_file_name = tempfile.mkstemp(
+        test_file_fd, test_file_name = tempfile.mkstemp(
             prefix=f"{self.cal_class.__name__}_",
             suffix=".ics",
             dir=temp_dir,
@@ -116,5 +118,8 @@ class GenericCalendarTest(CoreCalendarTest):
 
         assert file_contents == var_contents
 
+        # If platform is Windows close the temp file descriptor
+        if system() == 'Windows':
+            os.close(test_file_fd)
         # Remove the .ics file if this test passes
         test_path.unlink()
