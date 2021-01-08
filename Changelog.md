@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Replace `os.path.*` calls with `pathlib.Path`
+- Update Singapore for range from 2022 to 2030 (Deepavali), by @hprobotic
 
 ## v14.1.0 (2020-12-10)
 
