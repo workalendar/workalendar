@@ -8,6 +8,7 @@
 - Simplify collections handling, thx to @eumiro (#606)
 - Use integers for time units divisions, thx to @eumiro
 - Adding Mac OS & Windows tests to the test matrix (related to #607).
+- Fix tests when running them on Windows (#607).
 
 ## v14.1.0 (2020-12-10)
 
