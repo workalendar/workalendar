@@ -42,11 +42,17 @@ For a more complete documentation and advanced usage, go to [the official workal
 
 ## External dependencies
 
+**Workalendar will require you to use Python 3.6+.**
+
 Workalendar is tested on Python 3.6, 3.7, 3.8, 3.9, and on Linux (Ubuntu), Mac OS and Windows using Github actions.
 
-**Incompatibility:** Workalendar will require you to use Python 3.6+.
+### Conditional dependencies
 
-If you're using wheels, you should be fine without having to install extra system packages. As of `v7.0.0`, we have dropped `ephem` as a dependency for computing astronomical ephemeris in favor of `skyfield`. So if you had any trouble because of this new dependency, during the installation or at runtime, [do not hesitate to file an issue](https://github.com/peopledoc/workalendar/issues/).
+As of [NEXT RELEASE]:
+
+* If you're using \*Nix and Python 3.6, 3.7, 3.8, the package `backports.zoneinfo` is required
+* If you're using Windows and Python 3.6, 3.7, 3.8, the package `tzdata` is *also* a requirement (with the `backports.zoneinfo`).
+* If you're using Python 3.9+, the stdlib `zoneinfo` package will be used.
 
 ## Tests
 
