@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v14.2.0 (2021-01-08)
 
 ### Calendar changes
