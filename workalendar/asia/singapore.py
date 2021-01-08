@@ -76,7 +76,7 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         Singapore variable days
         """
         if year not in self.DEEPAVALI:
-            msg = 'Missing date for Singapore Deepavali for year: %s' % year
+            msg = f'Missing date for Singapore Deepavali for year: {year}'
             raise KeyError(msg)
 
         days = super().get_variable_days(year)

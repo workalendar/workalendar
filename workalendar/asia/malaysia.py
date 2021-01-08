@@ -83,13 +83,13 @@ class Malaysia(IslamicMixin, ChineseNewYearCalendar):
         # Add in Deepavali and Thaipusam (hardcoded dates, so no need to shift)
         msia_deepavali = self.MSIA_DEEPAVALI.get(year)
         if not msia_deepavali:
-            mdmsg = 'Missing date for Malaysia Deepavali for year: %s' % year
+            mdmsg = f'Missing date for Malaysia Deepavali for year: {year}'
             raise KeyError(mdmsg)
         days.append((msia_deepavali, 'Deepavali'))
 
         msia_thaipusam = self.MSIA_THAIPUSAM.get(year)
         if not msia_thaipusam:
-            mtmsg = 'Missing date for Malaysia Thaipusam for year: %s' % year
+            mtmsg = f'Missing date for Malaysia Thaipusam for year: {year}'
             raise KeyError(mtmsg)
         days.append((msia_thaipusam, 'Thaipusam'))
         return days

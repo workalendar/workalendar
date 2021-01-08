@@ -90,10 +90,8 @@ class China(ChineseNewYearCalendar):
     def get_calendar_holidays(self, year):
         year_min, year_max = min(holidays.keys()), max(holidays.keys())
         warnings.warn(
-            "Support years {}-{} currently, need update every year.".format(
-                year_min,
-                year_max,
-            )
+            f"Support years {year_min}-{year_max} currently, "
+            f"need update every year."
         )
         if year not in holidays.keys():
             msg = f"Need configure {year} for China."
