@@ -2,7 +2,10 @@
 Astronomical functions
 """
 from math import pi, radians, tau
-import pytz
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:  # pre-3.9
+    from backports.zoneinfo import ZoneInfo
 from skyfield.api import Loader
 from skyfield import almanac
 from skyfield_data import get_skyfield_data_path
@@ -19,7 +22,7 @@ newton_precision = second / 10.
 
 def calculate_equinoxes(year, timezone='UTC'):
     """ calculate equinox with time zone """
-    tz = pytz.timezone(timezone)
+    tz = ZoneInfo(timezone)
 
     load = Loader(get_skyfield_data_path())
     ts = load.timescale()
@@ -80,7 +83,7 @@ def solar_term(year, degrees, timezone='UTC'):
     earth = planets['earth']
     sun = planets['sun']
     ts = load.timescale()
-    tz = pytz.timezone(timezone)
+    tz = ZoneInfo(timezone)
 
     jan_first = ts.utc(date(year, 1, 1))
     current_longitude = get_current_longitude(jan_first, earth, sun)

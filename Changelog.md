@@ -6,6 +6,7 @@
 - Update Singapore for range from 2022 to 2030 (Deepavali), by @hprobotic
 - Use f-string for string formatting, thx to @eumiro (#605)
 - Simplify collections handling, thx to @eumiro (#606)
+- Replace pytz with (backports.)zoneinfo, thx to @eumiro
 
 ## v14.1.0 (2020-12-10)
 
