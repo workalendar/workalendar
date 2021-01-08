@@ -56,7 +56,7 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
         2020: date(2020, 11, 14),
         2021: date(2021, 11, 4),
         2022: date(2022, 10, 24),
-        2023: date(2023, 12, 11),
+        2023: date(2023, 11, 13),
         2024: date(2024, 10, 31),
         2025: date(2025, 10, 20),
         2026: date(2026, 11, 9),
