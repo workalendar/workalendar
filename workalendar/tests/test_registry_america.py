@@ -81,8 +81,7 @@ class RegistryAmerica(TestCase):
         self.assertIn(Nunavut, classes)
 
     def test_america(self):
-        classes = (v for k, v in registry.region_registry.items())
-        classes = list(classes)
+        classes = set(registry.region_registry.values())
         self.assertIn(Brazil, classes)
         self._check_brazil_states(classes)
 
@@ -97,11 +96,9 @@ class RegistryAmerica(TestCase):
         self.assertIn(Paraguay, classes)
 
     def test_brazil_subregion(self):
-        classes = (v for k, v in registry.get_subregions('BR').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('BR').values())
         self._check_brazil_states(classes)
 
     def test_canada_subregion(self):
-        classes = (v for k, v in registry.get_subregions('CA').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('CA').values())
         self._check_canada_provinces(classes)

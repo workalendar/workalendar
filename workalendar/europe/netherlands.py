@@ -32,13 +32,13 @@ class Netherlands(WesternCalendar):
         if year > 2013:
             king_day = date(year, 4, 27)
             if king_day.weekday() != SUN:
-                return (king_day, "King's day")
-            return (king_day - timedelta(days=1), "King's day")
+                return king_day, "King's day"
+            return king_day - timedelta(days=1), "King's day"
         else:
             queen_day = date(year, 4, 30)
             if queen_day.weekday() != SUN:
-                return (queen_day, "Queen's day")
-            return (queen_day - timedelta(days=1), "Queen's day")
+                return queen_day, "Queen's day"
+            return queen_day - timedelta(days=1), "Queen's day"
 
     def get_carnival_days(self, year):
         """Carnival starts 7 weeks before Easter Sunday and lasts 3 days."""

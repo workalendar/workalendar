@@ -412,8 +412,7 @@ class CalverterMixin:
 
     def calverted_years(self, year):
         converted = self.converted(year)
-        generator = (y for y, m, d in converted)
-        return sorted(list(set(generator)))
+        return sorted({y for y, m, d in converted})
 
     def get_islamic_holidays(self):
         return self.ISLAMIC_HOLIDAYS
@@ -556,8 +555,7 @@ class CoreCalendar:
     def get_holiday_label(self, day):
         """Return the label of the holiday, if the date is a holiday"""
         day = cleaned_date(day)
-        return {day: label for day, label in self.holidays(day.year)
-                }.get(day)
+        return {day: label for day, label in self.holidays(day.year)}.get(day)
 
     def holidays_set(self, year=None):
         "Return a quick date index (set)"

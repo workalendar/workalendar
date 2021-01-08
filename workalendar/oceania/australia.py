@@ -42,10 +42,10 @@ class Australia(WesternCalendar):
     def get_anzac_day(self, year):
         anzac_day = date(year, 4, 25)
         if not self.shift_anzac_day:
-            return (anzac_day, "Anzac Day")
+            return anzac_day, "Anzac Day"
         if anzac_day.weekday() in self.ANZAC_SHIFT_DAYS:
             anzac_day = self.find_following_working_day(anzac_day)
-        return (anzac_day, "Anzac Day")
+        return anzac_day, "Anzac Day"
 
     def get_variable_days(self, year):
         # usual variable days
@@ -132,7 +132,7 @@ class AustralianCapitalTerritory(Australia):
             # (not and int, or whatever)
             return None
 
-        return (day, self._family_community_label)
+        return day, self._family_community_label
 
     def get_reconciliation_day(self, year):
         """
@@ -145,7 +145,7 @@ class AustralianCapitalTerritory(Australia):
 
         reconciliation_day = date(year, 5, 27)
         if reconciliation_day.weekday() == MON:
-            return (reconciliation_day, "Reconciliation Day")
+            return reconciliation_day, "Reconciliation Day"
         else:
             shift = AustralianCapitalTerritory.get_first_weekday_after(
                 reconciliation_day, MON)
@@ -245,7 +245,7 @@ class SouthAustralia(Australia):
         )
 
     def get_proclamation_day(self, year):
-        return (date(year, 12, 26), "Proclamation Day")
+        return date(year, 12, 26), "Proclamation Day"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
