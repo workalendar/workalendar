@@ -11,10 +11,10 @@ from datetime import date, timedelta
 
 # Parameter for the newton method to converge towards the closest solution
 # to the function. By default it'll be an approximation of a 10th of a second.
-hour = 1. / 24.
-minute = hour / 60.
-second = minute / 60.
-newton_precision = second / 10.
+hour = 1 / 24
+minute = hour / 60
+second = minute / 60
+newton_precision = second / 10
 
 
 def calculate_equinoxes(year, timezone='UTC'):
