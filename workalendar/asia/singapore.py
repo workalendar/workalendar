@@ -31,7 +31,8 @@ class Singapore(WesternMixin, IslamicMixin, ChineseNewYearCalendar):
 
     # Diwali/Deepavali is sometimes celebrated on a different day to India
     # so this can't be put into a HinduMixin
-    # Reference: https://holidays.kayaposoft.com/public_holidays.php?year=2022&country=sgp&region=#
+    # Ref:
+    # https://holidays.kayaposoft.com/public_holidays.php?year=2022&country=sgp
     DEEPAVALI = {
         2000: date(2000, 10, 26),
         2001: date(2001, 11, 14),
