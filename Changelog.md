@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## master (unreleased)
+## v14.2.0 (2021-01-08)
+
+### Calendar changes
+
+- Update Singapore for range from 2022 to 2030 (Deepavali), by @hprobotic
+
+### Internal changes
 
 - Replace `os.path.*` calls with `pathlib.Path`, thx to @eumiro (#603)
-- Update Singapore for range from 2022 to 2030 (Deepavali), by @hprobotic
 - Use f-string for string formatting, thx to @eumiro (#605)
 - Simplify collections handling, thx to @eumiro (#606)
 - Use integers for time units divisions, thx to @eumiro
