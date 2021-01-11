@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Update Malaysia 2022-2024 (Deepavali + Thaipusam) by @jack-pace
 
 ## v14.2.0 (2021-01-08)
 
