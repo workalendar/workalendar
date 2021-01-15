@@ -6,6 +6,7 @@ import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
 from pathlib import Path
+import sys
 
 from calverter import Calverter
 from dateutil import easter
@@ -18,6 +19,7 @@ from .exceptions import (
 from . import __version__
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
+ISO_MON, ISO_TUE, ISO_WED, ISO_THU, ISO_FRI, ISO_SAT, ISO_SUN = range(1, 8)
 
 
 class classproperty:
@@ -752,6 +754,46 @@ class CoreCalendar:
                 break
             day = day - timedelta(days=1)
         return day
+
+    @staticmethod
+    def get_iso_week_date(year, week_nb, weekday=ISO_MON):
+        """
+        Return the date of the weekday of the week number (ISO definition).
+
+        **Warning:** in the ISO definition, the weeks start on MON, not SUN.
+
+        By default, if you don't provide the ``weekday`` argument, it'll return
+        the date of the MON of this week number.
+
+        Example:
+
+            >>> Calendar.get_iso_week_date(2021, 44)
+            datetime.date(2021, 11, 1)
+
+        For your convenience, the ISO weekdays are available via the
+        ``workalendar.core`` module, like this:
+
+            from workalendar.core import ISO_MON, ISO_TUE  # etc.
+
+        i.e.: if you need to get the FRI of the week 44 of the year 2020,
+        you'll have to use:
+
+            from workalendar.core import ISO_FRI
+            Calendar.get_iso_week_date(2020, 44, ISO_FRI)
+
+        """
+        if sys.version_info >= (3, 8, 0):
+            # use the stock Python 3.8 function
+            return date.fromisocalendar(year, week_nb, weekday)
+
+        # else, use the backport
+        # Adapted from https://stackoverflow.com/a/59200842
+        jan_1st = date(year, 1, 1)
+        _, jan_1st_week, jan_1st_weekday = jan_1st.isocalendar()
+        base = 1 if jan_1st_week == 1 else 8
+        delta = base - jan_1st_weekday + 7 * (week_nb - 1) + (weekday - 1)
+        start = jan_1st + timedelta(days=delta)
+        return start
 
     @staticmethod
     def get_first_weekday_after(day, weekday):
