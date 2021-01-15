@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v14.3.0 (2021-01-15)
+
+### Calendar change
 
 - Update Malaysia 2022-2024 (Deepavali + Thaipusam) by @jack-pace
 
