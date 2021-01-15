@@ -8,6 +8,7 @@ import pandas
 from . import CoreCalendarTest
 from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
+    ISO_TUE, ISO_FRI,
     Calendar, LunarMixin, WesternCalendar,
     CalverterMixin, IslamicMixin, JalaliMixin,
     daterange,
@@ -103,6 +104,34 @@ class CalendarTest(CoreCalendarTest):
         self.assertEqual(
             Calendar.get_first_weekday_after(date(2015, 4, 14), TUE),
             date(2015, 4, 14)
+        )
+
+    def test_get_iso_week_date(self):
+        # Find the MON of the week 1 in 2021
+        self.assertEqual(
+            Calendar.get_iso_week_date(2021, 1),
+            date(2021, 1, 4)
+        )
+        # Find the FRI of the week 1 in 2021
+        self.assertEqual(
+            Calendar.get_iso_week_date(2021, 1, ISO_FRI),
+            date(2021, 1, 8)
+        )
+
+        # Find the TUE of the week 44 in 2021
+        self.assertEqual(
+            Calendar.get_iso_week_date(2021, 44, ISO_TUE),
+            date(2021, 11, 2)
+        )
+
+    # Remove this test when dropping support for Python 3.7
+    @patch('workalendar.core.sys')
+    def test_get_iso_week_date_patched(self, mock_sys):
+        # The Python 3.6-3.7 backport should always work
+        mock_sys.version_info = (3, 6, 0)
+        self.assertEqual(
+            Calendar.get_iso_week_date(2021, 44, ISO_TUE),
+            date(2021, 11, 2)
         )
 
 
