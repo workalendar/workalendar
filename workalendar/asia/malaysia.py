@@ -35,6 +35,7 @@ class Malaysia(IslamicMixin, ChineseNewYearCalendar):
         (12, 25, "Christmas Day"),
     )
 
+    # Ref: https://publicholidays.com.my/deepavali/
     MSIA_DEEPAVALI = {
         2010: date(2010, 11, 5),
         2011: date(2011, 10, 26),
@@ -46,10 +47,14 @@ class Malaysia(IslamicMixin, ChineseNewYearCalendar):
         2017: date(2017, 10, 18),
         2018: date(2018, 11, 6),
         2019: date(2019, 10, 27),
-        2020: date(2020, 11, 14),  # This might change
+        2020: date(2020, 11, 14),
         2021: date(2021, 11, 4),
+        2022: date(2022, 10, 24),
+        2023: date(2023, 11, 13),  # in lieu of 12th Nov
+        2024: date(2024, 10, 31),
     }
 
+    # Ref: https://publicholidays.com.my/thaipusam/
     MSIA_THAIPUSAM = {
         2010: date(2010, 1, 30),
         2011: date(2011, 1, 20),
@@ -61,8 +66,11 @@ class Malaysia(IslamicMixin, ChineseNewYearCalendar):
         2017: date(2017, 2, 9),
         2018: date(2018, 1, 31),
         2019: date(2019, 1, 21),
-        2020: date(2020, 2, 8),  # This might change
+        2020: date(2020, 2, 8),
         2021: date(2021, 1, 28),
+        2022: date(2022, 1, 18),
+        2023: date(2023, 2, 4),
+        2024: date(2024, 1, 25),
     }
     chinese_new_year_label = "First Day of Lunar New Year"
     include_chinese_second_day = True
