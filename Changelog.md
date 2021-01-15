@@ -5,6 +5,7 @@
 - Small fixes in Netherlands School calendars (#619).
 - New method available in `core` module: `Calendar.get_iso_week_date()` to find the weekday X of the week number Y (#619).
 - Improve Netherlands coverage (#546, #619).
+- Improve Russia coverage (#546).
 
 ## v14.3.0 (2021-01-15)
 

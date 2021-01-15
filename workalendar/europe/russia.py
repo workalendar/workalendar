@@ -83,7 +83,7 @@ class Russia(OrthodoxCalendar):
                 continue
             # Add an exception for 2020 non-working days due to COVID-19
             if self.covid19_2020_start <= day <= self.covid19_2020_end:
-                continue
+                continue  # pragma: no cover
             if day.weekday() in self.get_weekend_days():
                 shifts.append((
                     self.get_first_weekday_after(day, MON),
