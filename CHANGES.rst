@@ -1,6 +1,14 @@
 v7.0.0
 -------
 
+New feature
+
+- Enhanced support for multi-day "series" holidays such as Chinese Spring
+  Festival and Islamic Eid. Previously, if one day of the series was shifted
+  as per the observance shift rules, it would "merge" into the next day of the
+  series, effectively shortening the observed series. Now, all the following
+  days of the series are shifted, maintaining its duration.
+
 Incorporate changes from workalendar v14.1.0 (2020-12-10)
 
 - Fix Russia 2021 holidays, thx @MichalChromcak for the bug report (#578).
@@ -75,14 +83,14 @@ Incorporate changes from workalendar v11.0.1 (2020-09-11)
 
 Incorporate changes from workalendar v11.0.0 (2020-09-04)
 
-New calendar
+- New calendar
 
-- Added Mozambique calendar by @mr-shovel (#542).
+  - Added Mozambique calendar by @mr-shovel (#542).
 
-New feature
+- New feature
 
-- Added iCal export feature, initiated by @joooeey (#197).
-- Fix PRODID pattern for iCal exports: `"PRODID:-//workalendar//ical {__version__}//EN"`, using current workalendar version (#543).
+  - Added iCal export feature, initiated by @joooeey (#197).
+  - Fix PRODID pattern for iCal exports: `"PRODID:-//workalendar//ical {__version__}//EN"`, using current workalendar version (#543).
 
 Incorporate changes from workalendar v10.4.0 (2020-08-28)
 
