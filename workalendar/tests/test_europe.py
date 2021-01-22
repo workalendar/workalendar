@@ -1618,6 +1618,17 @@ class RussiaTest(GenericCalendarTest):
         self.assertTrue(self.cal.is_working_day(date(2021, 2, 19)))
         self.assertTrue(self.cal.is_working_day(datetime(2020, 2, 19)))
 
+    def test_labour_day_label(self):
+        # After 1992:
+        self.cal.get_fixed_holidays(2021)
+        self.assertEqual(
+            self.cal.labour_day_label, "The Day of Spring and Labour")
+
+        # Before 1992:
+        self.cal.get_fixed_holidays(1991)
+        self.assertEqual(
+            self.cal.labour_day_label, "International Workers' Day")
+
 
 class UkraineTest(GenericCalendarTest):
     cal_class = Ukraine
