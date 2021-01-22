@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
 from ..core import WesternCalendar
-from ..core import SUN, MON, TUE, WED, THU, FRI, SAT
+from ..core import SUN, MON, TUE, THU, SAT
 from ..registry_tools import iso_register
 
 
@@ -204,28 +204,6 @@ class UnitedStates(WesternCalendar):
     def get_patriots_day(self, year):
         """3rd Monday of April"""
         return self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day"
-
-    def get_washington_birthday_december(self, year):
-        """
-        Floating observance, to give long weekend at christmas.
-        It's only observed in Georgia and Indiana.
-        """
-        christmas_day = date(year, 12, 25).weekday()
-        if christmas_day == MON:
-            day = date(year, 12, 26)  # TUE
-        elif christmas_day == TUE:
-            day = date(year, 12, 24)  # MON
-        elif christmas_day == WED:
-            day = date(year, 12, 24)  # TUE
-        elif christmas_day == THU:
-            day = date(year, 12, 26)  # FRI
-        elif christmas_day == FRI:
-            day = date(year, 12, 24)  # THU
-        elif christmas_day == SAT:
-            day = date(year, 12, 23)  # THU
-        else:  # christmas_day == SUN:
-            day = date(year, 12, 23)  # FRI
-        return day, self.label_washington_birthday_december
 
     def get_columbus_day(self, year):
         """

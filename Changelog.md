@@ -6,6 +6,7 @@
 - New method available in `core` module: `Calendar.get_iso_week_date()` to find the weekday X of the week number Y (#619).
 - Improve Netherlands coverage (#546, #619).
 - Improve Russia coverage (#546).
+- Improve USA calendar coverage by removing a method that wasn't used anyways (`get_washington_birthday_december()`). The method is implemented in both Indiana and Georgia State calendars, and is specific for each state, even if they look very similar (#546).
 
 ## v14.3.0 (2021-01-15)
 
