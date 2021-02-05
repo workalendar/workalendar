@@ -5,7 +5,7 @@ from unittest import TestCase
 
 import pandas
 
-from . import CoreCalendarTest
+from . import CoreCalendarTest, GenericCalendarTest
 from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
     ISO_TUE, ISO_FRI,
@@ -375,6 +375,14 @@ class NoWeekendCalendarTest(CoreCalendarTest):
         day = date(2017, 5, 17)  # This is a Wednesday
         with self.assertRaises(NotImplementedError):
             self.cal.is_working_day(day)
+
+
+class GenericCalendarTestTest(GenericCalendarTest):
+    cal_class = NoWeekendCalendar
+
+    def test_weekend_days(self):
+        with self.assertRaises(AssertionError):
+            super().test_weekend_days()
 
 
 class WeekendOnWednesdayCalendar(Calendar):
