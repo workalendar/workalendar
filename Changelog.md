@@ -7,6 +7,7 @@
 - Improve Netherlands coverage (#546, #619).
 - Improve Russia coverage (#546).
 - Improve USA calendar coverage by removing a method that wasn't used anyways (`get_washington_birthday_december()`). The method is implemented in both Indiana and Georgia State calendars, and is specific for each state, even if they look very similar (#546).
+- Temporary downgrade of `pyupgrade` to fix the `pyup_dirs`.
 
 ## v14.3.0 (2021-01-15)
 
