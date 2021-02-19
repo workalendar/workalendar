@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v15.0.0 (2021-02-19)
 
 ### Major changes
