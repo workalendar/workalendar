@@ -10,6 +10,8 @@
 - Temporary downgrade of `pyupgrade` to fix the `pyup_dirs`.
 - Improve the `astronomy.py` module coverage (#546).
 - Improve coverage for the `tests/__init__.py` module (#546). *Note:* system-dependant test branch (if Windows) won't be counted for coverage.
+- Replace pytz with `(backports.)zoneinfo`, thx to @eumiro (#614)
+- Documented the different (in)compatibilities due to the use of `zoneinfo` (#614).
 
 ## v14.3.0 (2021-01-15)
 
