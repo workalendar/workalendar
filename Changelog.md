@@ -1,17 +1,27 @@
 # CHANGELOG
 
-## master (unreleased)
+## v15.0.0 (2021-02-19)
+
+### Major changes
+
+- API: New method available in `core` module: `Calendar.get_iso_week_date()` to find the weekday X of the week number Y (#619).
+- Requirements: Replace pytz with `(backports.)zoneinfo`, thx to @eumiro (#614)
+- Doc: Documented the different (in)compatibilities due to the use of `zoneinfo` (#614).
+
+### Minor changes
+
+#### Bugfixes
 
 - Small fixes in Netherlands School calendars (#619).
-- New method available in `core` module: `Calendar.get_iso_week_date()` to find the weekday X of the week number Y (#619).
+- Temporary downgrade of `pyupgrade` to fix the `pyup_dirs`.
+
+#### Improving test coverage
+
 - Improve Netherlands coverage (#546, #619).
 - Improve Russia coverage (#546).
 - Improve USA calendar coverage by removing a method that wasn't used anyways (`get_washington_birthday_december()`). The method is implemented in both Indiana and Georgia State calendars, and is specific for each state, even if they look very similar (#546).
-- Temporary downgrade of `pyupgrade` to fix the `pyup_dirs`.
 - Improve the `astronomy.py` module coverage (#546).
 - Improve coverage for the `tests/__init__.py` module (#546). *Note:* system-dependant test branch (if Windows) won't be counted for coverage.
-- Replace pytz with `(backports.)zoneinfo`, thx to @eumiro (#614)
-- Documented the different (in)compatibilities due to the use of `zoneinfo` (#614).
 
 ## v14.3.0 (2021-01-15)
 

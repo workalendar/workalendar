@@ -48,7 +48,7 @@ Workalendar is tested on Python 3.6, 3.7, 3.8, 3.9, and on Linux (Ubuntu), Mac O
 
 ### Conditional dependencies
 
-As of [NEXT RELEASE]:
+As of v15.0.0:
 
 * If you're using \*Nix and Python 3.6, 3.7, 3.8, the package `backports.zoneinfo` is required
 * If you're using Windows and Python 3.6, 3.7, 3.8, the package `tzdata` is *also* a requirement (with the `backports.zoneinfo`).
