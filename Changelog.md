@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Hotfix: Taiwan exceptional working day on February, 20th 2021 (#628).
+- Hotfix: September 11th is a working day in Taiwan (#628).
 
 ## v15.0.0 (2021-02-19)
 

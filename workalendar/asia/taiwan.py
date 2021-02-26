@@ -18,7 +18,7 @@ class Taiwan(ChineseNewYearCalendar):
 
     def is_working_day(self, day, *args, **kwargs):
         day = cleaned_date(day)
-        if day == date(2021, 2, 20):
+        if day in (date(2021, 2, 20), date(2021, 9, 11)):
             return True
         return super().is_working_day(day, *args, **kwargs)
 
