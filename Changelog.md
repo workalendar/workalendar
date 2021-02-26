@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Hotfix: Taiwan exceptional working day on February, 20th 2021 (#628).
 
 ## v15.0.0 (2021-02-19)
 

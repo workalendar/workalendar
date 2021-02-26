@@ -612,6 +612,16 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
 
+    def test_extra_day_2021(self):
+        extra_day_feb_20 = date(2021, 2, 20)
+        self.assertTrue(self.cal.is_working_day(extra_day_feb_20))
+        # Compute deltas with the extra-working day...
+        five_days_after = self.cal.add_working_days(
+            date(2021, 2, 19), 5
+        )
+        # Should've been on 26th, albeit the 20th
+        self.assertEqual(five_days_after, date(2021, 2, 25))
+
 
 class IsraelTest(GenericCalendarTest):
 
