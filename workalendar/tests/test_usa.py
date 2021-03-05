@@ -1874,15 +1874,15 @@ class NormalShiftTestCase(UnitedStatesTest):
         self.assertEqual(holiday_dict[dec_26th], "Christmas Day (Observed)")
 
 
-class NormalShiftTestCaseExceptions(UnitedStatesTest):
+class ShiftExceptionsTestCase(UnitedStatesTest):
     # Using a fake calendar here
-    class NormalShiftUnitedStatesExceptions(UnitedStates):
+    class ShiftExceptionsCalendar(UnitedStates):
         "Normal Shift Fake United State calendar"
         shift_exceptions = (
             (7, 4),  # Month/Day == Fourth of July.
         )
 
-    cal_class = NormalShiftUnitedStatesExceptions
+    cal_class = ShiftExceptionsCalendar
 
     def test_shift_2015(self):
         # Test a normal shift on 4th of July.
@@ -1905,3 +1905,29 @@ class NormalShiftTestCaseExceptions(UnitedStatesTest):
         self.assertIn(fourth_july, holiday_dict)
         self.assertEqual(holiday_dict[fourth_july], "Independence Day")
         self.assertNotIn(observed, holiday_dict)
+
+
+class ShiftExceptionsNextYearTestCase(UnitedStatesTest):
+    class ShiftExceptionsCalendar(UnitedStates):
+        "Shift exception happens on jan 1st and XMas"
+        shift_exceptions = (
+            (1, 1),  # January 1st
+            (12, 25),  # Christmas Day
+        )
+
+    cal_class = ShiftExceptionsCalendar
+
+    def test_shift_2021(self):
+        # January 1st is a saturday in 2022
+        # As a consequence, Dec 31st should be a holiday.
+        # BUT here, January 1st is in the shift_exceptions,
+        # so 2021-12-31 should be a working day
+        holidays = self.cal.holidays_set(2021)
+        # XMas is a holiday
+        self.assertIn(date(2021, 12, 25), holidays)
+        # XMas eve is a working day
+        self.assertNotIn(date(2021, 12, 24), holidays)
+
+        # January 1st is a non-shift, Dec 31st should be a working day
+        self.assertNotIn(date(2021, 12, 31), holidays)
+        self.assertTrue(self.cal.is_working_day(date(2021, 12, 31)))
