@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Bugfix: USA calendar would take the `shift_exceptions` into account, even if the exceptions are set in the next or previous year (#610).
+- Requirements: Unpin `pyupgrade` library (#634).
 
 ## v15.0.1 (2021-02-26)
 
