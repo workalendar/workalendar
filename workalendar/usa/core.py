@@ -65,16 +65,23 @@ class UnitedStates(WesternCalendar):
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
-        # Exemple:
+        # Example:
         # (11, 11),  # Veterans day won't be shifted
     )
 
     def shift(self, holidays, year):
+        """
+        Shift all holidays of the year, according to the shifting rules.
+        """
         new_holidays = []
         holiday_lookup = [x[0] for x in holidays]
-        exceptions = [
-            date(year, month, day) for month, day in self.shift_exceptions
-        ]
+        exceptions = []
+        if self.shift_exceptions:
+            exceptions = [
+                *[date(year - 1, m, d) for m, d in self.shift_exceptions],
+                *[date(year, m, d) for m, d in self.shift_exceptions],
+                *[date(year + 1, m, d) for m, d in self.shift_exceptions]
+            ]
 
         # For each holiday available:
         # * if it falls on SUN, add the observed on MON
@@ -84,16 +91,18 @@ class UnitedStates(WesternCalendar):
             if day in exceptions:
                 continue
             if day.weekday() == SAT:
-                new_holidays.append((day - timedelta(days=1),
-                                     f"{label} (Observed)"))
+                new_holidays.append(
+                    (day - timedelta(days=1), f"{label} (Observed)"))
             elif day.weekday() == SUN:
-                new_holidays.append((day + timedelta(days=1),
-                                     f"{label} (Observed)"))
+                new_holidays.append(
+                    (day + timedelta(days=1), f"{label} (Observed)"))
 
         # If year+1 January the 1st is on SAT, add the FRI before to observed
-        if date(year + 1, 1, 1).weekday() == SAT:
-            new_holidays.append((date(year, 12, 31,),
-                                 "New Years Day (Observed)"))
+        next_year_jan_1st = date(year + 1, 1, 1)
+        if next_year_jan_1st.weekday() == SAT and \
+                next_year_jan_1st not in exceptions:
+            new_holidays.append(
+                (date(year, 12, 31,), "New Years Day (Observed)"))
 
         # Special rules for XMas and XMas Eve
         christmas = date(year, 12, 25)
@@ -106,16 +115,16 @@ class UnitedStates(WesternCalendar):
                 new_holidays.remove(
                     (christmas_eve, "Christmas Day (Observed)")
                 )
-                new_holidays.append((date(year, 12, 23),
-                                     "Christmas Eve (Observed)"))
+                new_holidays.append(
+                    (date(year, 12, 23), "Christmas Eve (Observed)"))
             # You are observing the 26th (TUE)
             elif christmas.weekday() == MON:
                 # Remove the "fake" XMAS Eve shift, done before
                 new_holidays.remove(
                     (christmas, "Christmas Eve (Observed)")
                 )
-                new_holidays.append((date(year, 12, 26),
-                                     "Christmas Day (Observed)"))
+                new_holidays.append(
+                    (date(year, 12, 26), "Christmas Day (Observed)"))
         return holidays + new_holidays
 
     @staticmethod
