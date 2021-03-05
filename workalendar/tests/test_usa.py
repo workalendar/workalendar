@@ -1874,15 +1874,15 @@ class NormalShiftTestCase(UnitedStatesTest):
         self.assertEqual(holiday_dict[dec_26th], "Christmas Day (Observed)")
 
 
-class NormalShiftTestCaseExceptions(UnitedStatesTest):
+class ShiftExceptionsTestCase(UnitedStatesTest):
     # Using a fake calendar here
-    class NormalShiftUnitedStatesExceptions(UnitedStates):
+    class ShiftExceptionsCalendar(UnitedStates):
         "Normal Shift Fake United State calendar"
         shift_exceptions = (
             (7, 4),  # Month/Day == Fourth of July.
         )
 
-    cal_class = NormalShiftUnitedStatesExceptions
+    cal_class = ShiftExceptionsCalendar
 
     def test_shift_2015(self):
         # Test a normal shift on 4th of July.
