@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing to see here yet.
+
 ## v15.1.0 (2021-03-12)
 
 - Bugfix: Bulgaria holidays are now computed using the Orthodox calendar, include shifting rules for holidays that fall on a week-end (#596).
