@@ -516,6 +516,61 @@ class WorkingDaysDeltatest(TestCase):
         delta = cal.get_working_days_delta(day1, day2, include_start=True)
         self.assertEqual(delta, 1)
 
+    def test_use_extra_working_days(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(
+            day1, day2,
+            extra_working_days=[date(2018, 12, 25)]
+        )
+        # there are 3 days, because of the week-end
+        # and Christmas Day is a working day
+        self.assertEqual(delta, 3)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(
+            day2, day1,
+            extra_working_days=[date(2018, 12, 25)])
+        self.assertEqual(delta, 3)
+
+    def test_use_extra_holidays(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(
+            day1, day2,
+            extra_holidays=[date(2018, 12, 24)]
+        )
+        # Only 1 day, because of the week-end + XMas + XMas Eve
+        self.assertEqual(delta, 1)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(
+            day2, day1,
+            extra_holidays=[date(2018, 12, 24)])
+        self.assertEqual(delta, 1)
+
+    def test_use_both_extra(self):
+        cal = MockChristianCalendar()
+        day1 = date(2018, 12, 21)
+        day2 = date(2018, 12, 26)
+        delta = cal.get_working_days_delta(
+            day1, day2,
+            extra_working_days=[date(2018, 12, 25)],
+            extra_holidays=[date(2018, 12, 24)]
+        )
+        # Only 1 day, because of the week-end + XMas Eve
+        # And Christmas is a working day
+        self.assertEqual(delta, 2)
+
+        # No difference if you swap the two dates
+        delta = cal.get_working_days_delta(
+            day2, day1,
+            extra_working_days=[date(2018, 12, 25)],
+            extra_holidays=[date(2018, 12, 24)])
+        self.assertEqual(delta, 2)
+
 
 class NoDocstring(Calendar):
     pass
