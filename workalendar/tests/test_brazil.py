@@ -676,6 +676,9 @@ class BrazilCuiabaCityTest(BrazilMatoGrossoTest):
         # Fixed days
         # Aniversário de Cuiabá
         self.assertIn(date(2017, 4, 8), holidays)
+        self.assertIn(date(2017, 4, 14), holidays)  # good_friday
+        self.assertIn(date(2017, 4, 16), holidays)  # easter_sunday
+        self.assertIn(date(2017, 6, 15), holidays)  # corpus_christi
 
 
 class BrazilBelemCityTest(BrazilParaTest):
