@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing to see here yet.
+- Fixed Cuiaba City calendar (Brazil), adding Easter Sunday, Corpus Christi and Good Friday, thx @leogregianin (#642).
 
 ## v15.1.0 (2021-03-12)
 
