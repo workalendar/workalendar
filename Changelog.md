@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing to see here yet.
+- Fix Catalonian calendar: add missing St John the Baptist public holiday
 
 ## v15.1.0 (2021-03-12)
 
