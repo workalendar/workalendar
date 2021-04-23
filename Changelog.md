@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v15.2.0 (2021-04-23)
 
 - Fixed Cuiaba City calendar (Brazil), adding Easter Sunday, Corpus Christi and Good Friday, thx @leogregianin (#642).
 - Fix Catalonian calendar: add missing St John the Baptist public holiday, thx @lozlow (#643).
