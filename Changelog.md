@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Fixed Cuiaba City calendar (Brazil), adding Easter Sunday, Corpus Christi and Good Friday, thx @leogregianin (#642).
+- Fix Catalonian calendar: add missing St John the Baptist public holiday, thx @lozlow (#643).
 
 ## v15.1.0 (2021-03-12)
 

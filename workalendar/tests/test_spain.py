@@ -135,16 +135,20 @@ class CataloniaTest(SpainTest):
         self.assertIn(date(2015, 4, 6), holidays)  # Easter Monday
         # Diada nacional de Catalunya
         self.assertIn(date(2015, 9, 11), holidays)
+        # La revetlla de Sant Joan, Nit de Sant Joan
+        self.assertIn(date(2015, 6, 24), holidays)
         self.assertIn(date(2015, 12, 26), holidays)  # Sant Esteve
-        self.assertEqual(len(holidays), 13)
+        self.assertEqual(len(holidays), 14)
 
     def test_region_year_2016(self):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
         # Diada nacional de Catalunya
         self.assertIn(date(2016, 9, 11), holidays)
+        # La revetlla de Sant Joan, Nit de Sant Joan
+        self.assertIn(date(2016, 6, 24), holidays)
         self.assertIn(date(2016, 12, 26), holidays)  # Sant Esteve
-        self.assertEqual(len(holidays), 13)
+        self.assertEqual(len(holidays), 14)
 
     def test_boxing_day_label(self):
         holidays = self.cal.holidays(2020)
