@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fix Barbados calendar to add 2 non computable public holiday and fix boxing day computation.
 
 ## v15.2.0 (2021-04-23)
 
