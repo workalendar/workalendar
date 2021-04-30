@@ -16,7 +16,7 @@ class Barbados(WesternCalendar):
     include_easter_monday = True
     include_whit_monday = True
     non_computable_holiday_dict = {
-        2016: [date(2016, 12, 27), "Public Holiday"],
+        2016: [(date(2016, 12, 27), "Public Holiday")],
         2021: [
             (date(2021, 1, 4), "Public Holiday"),
             (date(2021, 1, 5), "Public Holiday"),

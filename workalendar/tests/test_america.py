@@ -385,7 +385,7 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2016, 1, 1), holidays)
         self.assertIn(date(2016, 1, 21), holidays)  # Errol Barrow Day
         self.assertIn(date(2016, 3, 25), holidays)  # Good Friday
-        self.assertIn(date(2016, 2, 28), holidays)  # Easter Monday
+        self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
         self.assertIn(date(2016, 4, 28), holidays)  # National Heroes Day
         self.assertIn(date(2016, 5, 2), holidays)  # Labour Day
         self.assertIn(date(2016, 5, 16), holidays)  # Whit Monday
