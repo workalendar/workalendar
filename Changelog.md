@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v15.3.0 (2021-05-07)
 
-- Fix Barbados calendar to add 2 non computable public holiday and fix boxing day computation.
+- Fix Barbados calendar to add 2 non computable public holiday and fix boxing day computation, thx to @ludsoft (#647).
 
 ## v15.2.0 (2021-04-23)
 
