@@ -1,8 +1,8 @@
 from datetime import date
+
+from ..america import (Argentina, Barbados, Chile, Colombia, Mexico, Panama,
+                       Paraguay)
 from . import GenericCalendarTest
-from ..america import (
-    Argentina, Barbados, Chile, Colombia, Mexico, Panama, Paraguay
-)
 
 
 class ArgentinaTest(GenericCalendarTest):
@@ -380,6 +380,22 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2009, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2009, 12, 26), holidays)  # Boxing Day
 
+    def test_holidays_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2016, 3, 25), holidays)  # Good Friday
+        self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
+        self.assertIn(date(2016, 4, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2016, 5, 2), holidays)  # Labour Day
+        self.assertIn(date(2016, 5, 16), holidays)  # Whit Monday
+        self.assertIn(date(2016, 8, 1), holidays)  # Kabooment Day
+        self.assertIn(date(2016, 8, 2), holidays)  # Emancipation Day
+        self.assertIn(date(2016, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2016, 12, 26), holidays)  # Boxing Day
+        self.assertIn(date(2016, 12, 27), holidays)  # Public Holiday
+
     def test_holidays_2018(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 1, 1), holidays)
@@ -416,3 +432,39 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2019, 11, 30), holidays)  # Independant Day
         self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)
+        self.assertIn(date(2020, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+
+        # National Heroes Day & shift
+        self.assertIn(date(2020, 4, 28), holidays)
+
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
+        self.assertIn(date(2020, 8, 1), holidays)  # Emancipation Day
+        self.assertIn(date(2020, 8, 3), holidays)  # Kabooment Day
+        self.assertIn(date(2020, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2021, 1, 4), holidays)  # Public Holiday
+        self.assertIn(date(2021, 1, 5), holidays)  # Public Holiday
+        self.assertIn(date(2021, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        self.assertIn(date(2021, 4, 28), holidays)  # National Heroes Day
+
+        self.assertIn(date(2021, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2021, 5, 24), holidays)  # Whit Monday
+        self.assertIn(date(2021, 8, 2), holidays)  # Kabooment Day
+        self.assertIn(date(2021, 8, 3), holidays)  # Emancipation Day
+        self.assertIn(date(2021, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2021, 12, 27), holidays)  # Boxing Day
