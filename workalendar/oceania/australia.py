@@ -14,7 +14,6 @@ class Australia(WesternCalendar):
     include_boxing_day = True
     # Shall we shift Anzac Day?
     shift_anzac_day = True
-
     ANZAC_SHIFT_DAYS = (SAT, SUN)
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
@@ -185,8 +184,6 @@ class NorthernTerritory(Australia):
     include_easter_saturday = True
     include_queens_birthday = True
     include_boxing_day = True
-
-    ANZAC_SHIFT_DAYS = (SUN,)
 
     def get_may_day(self, year):
         return (

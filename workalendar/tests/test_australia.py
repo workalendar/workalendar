@@ -180,10 +180,30 @@ class NorthernTerritoryTest(AustraliaTest):
     def test_anzac_shift(self):
         holidays = self.cal.holidays_set(2010)
         self.assertIn(date(2010, 4, 26), holidays)
+        self.assertNotIn(date(2010, 4, 25), holidays)
 
-        # We don't shift if ANZAC day falls on a Saturday
+        # We do shift if ANZAC day falls on a Saturday
         holidays = self.cal.holidays_set(2015)
-        self.assertIn(date(2015, 4, 25), holidays)
+        self.assertNotIn(date(2015, 4, 25), holidays)
+        self.assertNotIn(date(2015, 4, 26), holidays)
+        self.assertIn(date(2015, 4, 27), holidays)
+
+    def test_full_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year Day
+        self.assertIn(date(2021, 1, 26), holidays)  # Australia Day
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)  # Easter Saturday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        # Anzac day moved from 25th (SUN) to 26th
+        self.assertNotIn(date(2021, 4, 25), holidays)
+        self.assertIn(date(2021, 4, 26), holidays)
+
+        self.assertIn(date(2021, 5, 3), holidays)  # May Day
+        self.assertIn(date(2021, 6, 14), holidays)  # Queen's Birthday
+        self.assertIn(date(2021, 8, 2), holidays)  # Picnic Day
+        self.assertIn(date(2021, 12, 25), holidays)  # XMas
+        self.assertIn(date(2021, 12, 26), holidays)  # Boxing Day
 
 
 class QueenslandTest(AustraliaTest):
