@@ -176,7 +176,7 @@ class NewSouthWales(Australia):
     include_labour_day_october = True
     include_boxing_day = True
 
-    ANZAC_SHIFT_DAYS = (SUN,)
+    shift_anzac_day = False
 
 
 @iso_register('AU-NT')

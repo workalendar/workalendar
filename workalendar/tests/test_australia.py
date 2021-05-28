@@ -52,7 +52,7 @@ class AustraliaTest(GenericCalendarTest):
         self.assertIn(date(2009, 12, 28), holidays)
 
 
-class AustraliaCapitalTerritoryTest(AustraliaTest):
+class AustralianCapitalTerritoryTest(AustraliaTest):
     cal_class = AustralianCapitalTerritory
 
     def test_regional_specific_2013(self):
@@ -138,12 +138,32 @@ class NewSouthWalesTest(AustraliaTest):
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_anzac_shift(self):
+        # Not shift, it's a SUN
         holidays = self.cal.holidays_set(2010)
-        self.assertIn(date(2010, 4, 26), holidays)
+        self.assertIn(date(2010, 4, 25), holidays)
+        self.assertNotIn(date(2010, 4, 26), holidays)
 
         # We don't shift if ANZAC day falls on a Saturday
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 25), holidays)
+        self.assertNotIn(date(2015, 4, 26), holidays)
+
+    def test_full_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2021, 1, 26), holidays)  # Australia Day
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)  # Easter Saturday
+        self.assertIn(date(2021, 4, 4), holidays)  # Easter Sunday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        # Anzac day not moved from 25th (SUN) to 26th
+        self.assertIn(date(2021, 4, 25), holidays)
+        self.assertNotIn(date(2021, 4, 26), holidays)
+
+        self.assertIn(date(2021, 6, 14), holidays)  # Queen's Birthday
+        self.assertIn(date(2021, 10, 4), holidays)  # Labour day
+        self.assertIn(date(2021, 12, 25), holidays)  # Xmas
+        self.assertIn(date(2021, 12, 26), holidays)  # Boxing Day
 
 
 class NorthernTerritoryTest(AustraliaTest):
