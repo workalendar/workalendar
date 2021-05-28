@@ -92,6 +92,7 @@ class AustralianCapitalTerritory(Australia):
     include_queens_birthday = True
     include_labour_day_october = True
     include_boxing_day = True
+    include_easter_sunday = True
 
     _family_community_label = "Family & Community Day"
 

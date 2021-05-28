@@ -4,6 +4,10 @@
 
 - The Workalendar project has been moved from Peopledoc's organization to its own (#651).
 
+### Australia refactor/fixes
+
+* Australian Capital Territory fixes: added the Easter Sunday to holidays.
+
 ## v15.3.0 (2021-05-07)
 
 - Fix Barbados calendar to add 2 non computable public holiday and fix boxing day computation, thx to @ludsoft (#647).
