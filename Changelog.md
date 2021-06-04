@@ -275,7 +275,7 @@
 
 - Changes in the ``registry.items()`` method API.
   - This method is aliased to ``get_calendars()``. In a near release, the ``items()`` method will change its purpose.
-  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://peopledoc.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
+  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://workalendar.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
 
 ## v7.2.0 (2019-12-06)
 
@@ -484,7 +484,7 @@
 ### Major changes
 
 - Removed dependency to `PyEphem`. This package was the "Python2-compatible" library to deal with the xephem system library. Now it's obsolete, so you don't need this dual-dependency handling, because `ephem` is compatible with Python 2 & Python 3 (#296).
-- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the [basic documentation](https://peopledoc.github.io/workalendar/basic.html#standard-datetime-types-only-please) for more details (#294).
+- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the [basic documentation](https://workalendar.github.io/workalendar/basic.html#standard-datetime-types-only-please) for more details (#294).
 
 ## v3.1.1 (2018-11-17)
 
