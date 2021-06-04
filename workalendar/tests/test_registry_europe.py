@@ -126,5 +126,5 @@ class RegistryEurope(TestCase):
             self.assertIn(klass, classes)
 
     def test_slovenia_code(self):
-        # Source: https://github.com/peopledoc/workalendar/pull/291
+        # Source: https://github.com/workalendar/workalendar/pull/291
         self.assertEqual(registry.region_registry['SI'], Slovenia)
