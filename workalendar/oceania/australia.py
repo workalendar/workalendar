@@ -211,6 +211,7 @@ class Queensland(Australia):
     "Queensland"
     include_easter_saturday = True
     easter_saturday_label = "The day after Good Friday"
+    include_easter_sunday = True
     include_queens_birthday = True
     include_boxing_day = True
 
