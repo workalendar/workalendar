@@ -239,8 +239,11 @@ class Queensland(Australia):
 class SouthAustralia(Australia):
     "South Australia"
     include_easter_saturday = True
+    easter_saturday_label = "The day after Good Friday"
     include_queens_birthday = True
     include_labour_day_october = True
+    include_boxing_day = True
+    boxing_day_label = "Proclamation Day"
 
     ANZAC_SHIFT_DAYS = (SUN,)
 
@@ -250,14 +253,10 @@ class SouthAustralia(Australia):
             "Adelaide's cup"
         )
 
-    def get_proclamation_day(self, year):
-        return date(year, 12, 26), "Proclamation Day"
-
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days.extend([
             self.get_adelaides_cup(year),
-            self.get_proclamation_day(year),
         ])
         return days
 

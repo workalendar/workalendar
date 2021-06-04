@@ -10,6 +10,7 @@
 * New South Wales: Fixed the ANZAC day shift flag. This is not a holiday if it falls on a week-end.
 * Northern Territory: Fixed the ANZAC day shift rules.
 * Queensland: Fixed Queen's Birthday and Easter Saturday label. Added Easter Sunday.
+* South Australia: Turned the dedicated Proclamation day into a overridden Boxing Day.
 
 ## v15.3.0 (2021-05-07)
 

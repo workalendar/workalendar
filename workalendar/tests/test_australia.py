@@ -279,6 +279,43 @@ class SouthAustraliaTest(AustraliaTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 25), holidays)
 
+    def test_label_easter_saturday(self):
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        easter_saturday_label = holidays_dict[date(2021, 4, 3)]
+        self.assertEqual(easter_saturday_label, "The day after Good Friday")
+
+    def test_label_labour_day_october(self):
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        labour_day_label = holidays_dict[date(2021, 10, 4)]
+        self.assertEqual(labour_day_label, "Labour Day")
+
+    def test_boxing_day_label(self):
+        # Boxing day is renamed Proclamation Day
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        proclamation_day_label = holidays_dict[date(2021, 12, 26)]
+        self.assertEqual(proclamation_day_label, "Proclamation Day")
+
+    def test_full_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year Day
+        self.assertIn(date(2021, 1, 26), holidays)  # Australia Day
+        self.assertIn(date(2021, 3, 8), holidays)  # Adelaide Cup
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)  # Easter Saturday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        # Anzac day moved from 25th (SUN) to 26th
+        self.assertNotIn(date(2021, 4, 25), holidays)
+        self.assertIn(date(2021, 4, 26), holidays)
+        self.assertIn(date(2021, 6, 14), holidays)  # Queen's Birthday
+        self.assertIn(date(2021, 10, 4), holidays)  # Labour Day (october)
+
+        self.assertIn(date(2021, 12, 25), holidays)  # XMas
+        # Boxing Day is renamed Proclamation Day
+        self.assertIn(date(2021, 12, 26), holidays)
+
 
 class TasmaniaTest(AustraliaTest):
     cal_class = Tasmania
