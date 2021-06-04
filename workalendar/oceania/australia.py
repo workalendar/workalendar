@@ -210,6 +210,7 @@ class NorthernTerritory(Australia):
 class Queensland(Australia):
     "Queensland"
     include_easter_saturday = True
+    easter_saturday_label = "The day after Good Friday"
     include_queens_birthday = True
     include_boxing_day = True
 
@@ -219,6 +220,12 @@ class Queensland(Australia):
         return (
             Queensland.get_nth_weekday_in_month(year, 5, MON),
             "Labour Day"
+        )
+
+    def get_queens_birthday(self, year):
+        return (
+            Queensland.get_nth_weekday_in_month(year, 10, MON),
+            "Queen's Birthday"
         )
 
     def get_variable_days(self, year):

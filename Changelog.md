@@ -9,6 +9,7 @@
 * Australian Capital Territory fixes: added the Easter Sunday to holidays.
 * New South Wales: Fixed the ANZAC day shift flag. This is not a holiday if it falls on a week-end.
 * Northern Territory: Fixed the ANZAC day shift rules.
+* Queensland: Fixed Queen's Birthday and Easter Saturday label.
 
 ## v15.3.0 (2021-05-07)
 

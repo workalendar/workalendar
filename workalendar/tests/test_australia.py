@@ -205,6 +205,12 @@ class NorthernTerritoryTest(AustraliaTest):
         self.assertIn(date(2021, 12, 25), holidays)  # XMas
         self.assertIn(date(2021, 12, 26), holidays)  # Boxing Day
 
+    def test_label_may_day(self):
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        easter_saturday_label = holidays_dict[date(2021, 5, 3)]
+        self.assertEqual(easter_saturday_label, "May Day")
+
 
 class QueenslandTest(AustraliaTest):
     cal_class = Queensland
@@ -213,7 +219,7 @@ class QueenslandTest(AustraliaTest):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 3, 30), holidays)  # Easter Saturday
         self.assertIn(date(2013, 5, 6), holidays)  # May's labour day
-        self.assertIn(date(2013, 6, 10), holidays)  # Queen's Bday
+        self.assertIn(date(2013, 10, 7), holidays)  # Queen's Bday
         self.assertIn(date(2013, 12, 26), holidays)  # Boxing day
 
     def test_anzac_shift(self):
@@ -223,6 +229,33 @@ class QueenslandTest(AustraliaTest):
         # We don't shift if ANZAC day falls on a Saturday
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 4, 25), holidays)
+
+    def test_full_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year Day
+        self.assertIn(date(2021, 1, 26), holidays)  # Australia Day
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)  # Easter Saturday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        # Anzac day moved from 25th (SUN) to 26th
+        self.assertNotIn(date(2021, 4, 25), holidays)
+        self.assertIn(date(2021, 4, 26), holidays)
+        self.assertIn(date(2021, 5, 3), holidays)  # Labour Day
+        self.assertIn(date(2021, 10, 4), holidays)  # Queen's Birthday
+        self.assertIn(date(2021, 12, 25), holidays)  # XMas
+        self.assertIn(date(2021, 12, 26), holidays)  # Boxing Day
+
+    def test_label_easter_saturday(self):
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        easter_saturday_label = holidays_dict[date(2021, 4, 3)]
+        self.assertEqual(easter_saturday_label, "The day after Good Friday")
+
+    def test_label_labour_day(self):
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        easter_saturday_label = holidays_dict[date(2021, 5, 3)]
+        self.assertEqual(easter_saturday_label, "Labour Day")
 
 
 class SouthAustraliaTest(AustraliaTest):

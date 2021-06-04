@@ -82,6 +82,7 @@ class ChristianMixin:
     good_friday_label = "Good Friday"
     include_easter_monday = False
     include_easter_saturday = False
+    easter_saturday_label = "Easter Saturday"
     include_easter_sunday = False
     include_all_saints = False
     include_immaculate_conception = False
@@ -201,7 +202,9 @@ class ChristianMixin:
         if self.include_good_friday:
             days.append((self.get_good_friday(year), self.good_friday_label))
         if self.include_easter_saturday:
-            days.append((self.get_easter_saturday(year), "Easter Saturday"))
+            days.append(
+                (self.get_easter_saturday(year), self.easter_saturday_label)
+            )
         if self.include_easter_sunday:
             days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
