@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing to see here yet.
+- The Workalendar project has been moved from Peopledoc's organization to its own (#651).
 
 ## v15.3.0 (2021-05-07)
 
