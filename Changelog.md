@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-- Added Nigeria calendar by @taiyeoguns
+- Added Nigeria calendar by @taiyeoguns (#656)
 
 ## v15.3.1 (2021-07-02)
 
