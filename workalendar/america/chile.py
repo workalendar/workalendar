@@ -1,6 +1,6 @@
 from datetime import date
 
-from ..core import SAT, WesternCalendar, MON, TUE, WED, THU, FRI
+from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
