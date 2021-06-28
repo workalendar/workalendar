@@ -233,6 +233,96 @@ class ChileTest(GenericCalendarTest):
         self.assertIn(date(2017, 10, 27), holidays)
 
 
+    def test_national_bridge_days(self):
+        # MON TUE
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 9, 18), holidays)
+        self.assertIn(date(2017, 9, 19), holidays)
+        
+        # TUE WED
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 17), holidays)
+        self.assertIn(date(2018, 9, 18), holidays)
+        self.assertIn(date(2018, 9, 19), holidays)
+        self.assertNotIn(date(2018, 9, 20), holidays)
+        
+        # WED THU
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 9, 17), holidays)
+        self.assertIn(date(2019, 9, 18), holidays)
+        self.assertIn(date(2019, 9, 19), holidays)
+        self.assertIn(date(2019, 9, 20), holidays)
+        
+        # THU FRI
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 9, 18), holidays)
+        self.assertIn(date(2020, 9, 19), holidays)
+        
+        # FRI SAT
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 9, 17), holidays)
+        self.assertIn(date(2015, 9, 18), holidays)
+        self.assertIn(date(2015, 9, 19), holidays)
+ 
+        # SUN MON
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 9, 18), holidays)
+        self.assertIn(date(2016, 9, 19), holidays)
+        self.assertNotIn(date(2016, 9, 20), holidays)
+
+        # SAT SUN for additional day
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 9, 17), holidays)
+        self.assertIn(date(2021, 9, 18), holidays)
+        self.assertIn(date(2021, 9, 19), holidays)
+
+    def test_columbus_day(self):
+        # MON
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 10, 12), holidays)
+        # TUE
+        holidays = self.cal.holidays_set(2021)
+        self.assertNotIn(date(2021, 10, 12), holidays)
+        self.assertIn(date(2021, 10, 11), holidays)
+        # WED
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 10, 12), holidays)
+        self.assertIn(date(2016, 10, 10), holidays)
+        # THU
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 10, 12), holidays)
+        self.assertIn(date(2017, 10, 9), holidays)
+        # FRI
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 10, 12), holidays)
+        self.assertIn(date(2018, 10, 15), holidays)
+
+
+    
+    def test_st_peter_and_st_paul_day(self):
+        # MON
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 6, 29), holidays)
+        # TUE
+        holidays = self.cal.holidays_set(2021)
+        self.assertNotIn(date(2021, 6, 29), holidays)
+        self.assertIn(date(2021, 6, 28), holidays)
+        # WED
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 6, 29), holidays)
+        self.assertIn(date(2016, 6, 27), holidays)
+        # THU
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 6, 29), holidays)
+        self.assertIn(date(2017, 6, 26), holidays)
+        # FRI
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 6, 29), holidays)
+        self.assertIn(date(2018, 7, 2), holidays)
+
+
+
+
 class ColombiaTest(GenericCalendarTest):
     cal_class = Colombia
 
