@@ -101,13 +101,3 @@ class Chile(WesternCalendar):
             days.append((reformation_day, "Reformation Day"))
 
         return days
-
-# @iso_register('CL-AP')
-# class ChileAricaParinacota(Chile):
-#     "Región de Arica y Parinacota"
-#     # Law 20.663
-
-# @iso_register('CL-NB')
-# class ChileNuble(Chile):
-#     "Región de Ñuble"
-#     # Law 29.768
