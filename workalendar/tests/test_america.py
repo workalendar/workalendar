@@ -160,11 +160,70 @@ class ChileTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        # Año Nuevo
+        self.assertIn(date(2021, 1, 1), holidays)
+        # Viernes Santo
+        self.assertIn(date(2021, 4, 2), holidays)
+        # Sábado Santo
+        self.assertIn(date(2021, 4, 3), holidays)
+        # Día Nacional del Trabajo
+        self.assertIn(date(2021, 5, 1), holidays)
+        # Día de las Glorias Navales
+        self.assertIn(date(2021, 5, 21), holidays)
+        # día nacional de los pueblos indígenas (June solstice)
+        self.assertIn(date(2021, 6, 21), holidays)
+        # San Pedro y San Pablo
+        self.assertIn(date(2021, 6, 28), holidays)
+        # Día de la Virgen del Carmen
+        self.assertIn(date(2021, 7, 16), holidays)
+        # Asunción de la Virgen
+        self.assertIn(date(2021, 8, 15), holidays)
+        # Additional Holiday
+        self.assertIn(date(2021, 9, 17), holidays)
+        # Independencia Nacional
+        self.assertIn(date(2021, 9, 18), holidays)
+        # Día de las Glorias del Ejército
+        self.assertIn(date(2021, 9, 19), holidays)
+        # Encuentro de Dos Mundos
+        self.assertIn(date(2021, 10, 11), holidays)
+        # Día de las Iglesias Evangélicas y Protestantes
+        self.assertIn(date(2021, 10, 31), holidays)
+        # Día de Todos los Santos
+        self.assertIn(date(2021, 11, 1), holidays)
+        # Inmaculada Concepción
+        self.assertIn(date(2021, 12, 8), holidays)
+        # Navidad
+        self.assertIn(date(2021, 12, 25), holidays)
+        # Feriado Bancario
+        self.assertIn(date(2021, 12, 31), holidays)
+    
+    def test_indigenous_people_day(self):
+        # Testing because variable nature of June solstice
+
+        # approved in 2021
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 6, 21), holidays)
+        self.assertNotIn(date(2020, 6, 20), holidays)
+        
+        # fixed day in 2021
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2012, 6, 21), holidays)
+
+        # solstice 2022
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2012, 6, 21), holidays)
+
+        # solstice 2023
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2012, 6, 20), holidays)
+
     def test_reformation_day(self):
         holidays = self.cal.holidays_set(2012)
         self.assertNotIn(date(2012, 10, 31), holidays)
         self.assertIn(date(2012, 11, 2), holidays)
-        #
+
         holidays = self.cal.holidays_set(2017)
         self.assertNotIn(date(2017, 10, 31), holidays)
         self.assertIn(date(2017, 10, 27), holidays)
