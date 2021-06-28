@@ -321,8 +321,6 @@ class ChileTest(GenericCalendarTest):
         self.assertIn(date(2018, 7, 2), holidays)
 
 
-
-
 class ColombiaTest(GenericCalendarTest):
     cal_class = Colombia
 
