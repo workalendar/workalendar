@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - The Workalendar project has been moved from Peopledoc's organization to its own (#651).
+- Fix Chilean calendar floating dates, add Indigenous Peoples Day using solar term.
 
 ## v15.3.0 (2021-05-07)
 
