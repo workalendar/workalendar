@@ -71,7 +71,7 @@ class Chile(WesternCalendar):
             if september_20.weekday() == FRI:
                 days.append((september_20, '"Bridge" holiday'))
 
-        # San Viernes (Law 20.983)
+        # Additional Friday (Law 20.983)
         if year >= 2017:
             september_18 = date(year, 9, 18)
             if (september_18.weekday() == SAT):
