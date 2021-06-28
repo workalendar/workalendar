@@ -209,16 +209,20 @@ class ChileTest(GenericCalendarTest):
         
         # fixed day in 2021
         holidays = self.cal.holidays_set(2021)
-        self.assertIn(date(2012, 6, 21), holidays)
+        self.assertIn(date(2021, 6, 21), holidays)
 
         # solstice 2022
         holidays = self.cal.holidays_set(2022)
-        self.assertIn(date(2012, 6, 21), holidays)
+        self.assertIn(date(2022, 6, 21), holidays)
 
         # solstice 2023
-        holidays = self.cal.holidays_set(2022)
-        self.assertIn(date(2012, 6, 20), holidays)
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 6, 21), holidays)
 
+        # solstice 2023
+        holidays = self.cal.holidays_set(2024)
+        self.assertIn(date(2024, 6, 20), holidays)
+        
     def test_reformation_day(self):
         holidays = self.cal.holidays_set(2012)
         self.assertNotIn(date(2012, 10, 31), holidays)
