@@ -85,13 +85,19 @@ class Japan(Calendar):
             marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)
             health_and_sport = Japan.get_nth_weekday_in_month(year, 10, MON, 2)
 
+        # Health and Sports Day became "Sports Day" as of 2020
+        if year < 2020:
+            health_and_sport_label = "Health and Sports Day"
+        else:
+            health_and_sport_label = "Sports Day"
+
         days.extend([
             (coming_of_age_day, 'Coming of Age Day'),
             (marine_day, "Marine Day"),
             (equinoxes[0], "Vernal Equinox Day"),
             (respect_for_the_aged, "Respect-for-the-Aged Day"),
             (equinoxes[1], "Autumnal Equinox Day"),
-            (health_and_sport, "Health and Sports Day"),
+            (health_and_sport, health_and_sport_label),
         ])
 
         return days
