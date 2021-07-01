@@ -6,7 +6,7 @@
 
 If you are using `workalendar`, you are already contributing to it. As long as you are able to check its result, compare the designated working days and holidays to the reality, and make sure these are right, you're helping.
 
-If any of the computed holidays for the country / area your are using is **wrong**, please report [it using the Github issues](https://github.com/peopledoc/workalendar/issues).
+If any of the computed holidays for the country / area your are using is **wrong**, please report [it using the Github issues](https://github.com/workalendar/workalendar/issues).
 
 ## Report an issue
 

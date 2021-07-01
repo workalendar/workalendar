@@ -2,7 +2,7 @@ refs #
 
 <!-- if your contribution is a new calendar -->
 
-For information, read and make sure you're okay with the [Contributing guidelines](https://peopledoc.github.io/workalendar/contributing.html#adding-new-calendars).
+For information, read and make sure you're okay with the [Contributing guidelines](https://workalendar.github.io/workalendar/contributing.html#adding-new-calendars).
 
 - [ ] Tests with a significant number of years to be tested for your calendar.
 - [ ] Docstrings for the Calendar class and specific methods.

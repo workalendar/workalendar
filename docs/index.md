@@ -10,7 +10,7 @@ This library is ready for production, although we may warn eventual users: some 
 
 ## Available Calendars
 
-See [the repository README](https://github.com/peopledoc/workalendar#available-calendars) for the most up-to-date catalog of the available calendars.
+See [the repository README](https://github.com/workalendar/workalendar#available-calendars) for the most up-to-date catalog of the available calendars.
 
 ## Usage examples
 
