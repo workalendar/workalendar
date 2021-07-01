@@ -56,16 +56,12 @@ class Japan(Calendar):
             days.remove((date(year, 8, 11), "Mountain Day"))
         if year == 2021:
             days.extend([
-                (date(year, 7, 22), "Marine Day"),
-                (date(year, 7, 23), "Sports Day"),
                 (date(year, 8, 8), "Mountain Day"),
                 (date(year, 8, 9), "Mountain Day Observed"),
             ])
-            # Marine Day, Sports Day and Mountain Day change in 2021 because of the Olympics.
+            # Mountain Day change in 2021 because of the Olympics.
             # https://www.kantei.go.jp/jp/headline/tokyo2020/shukujitsu.html
-            days.remove((date(year, 7, 19), "Marine Day"))
             days.remove((date(year, 8, 11), "Mountain Day"))
-            days.remove((date(year, 10, 11), "Health and Sports Day"))
         return days
 
     def get_variable_days(self, year):
@@ -95,6 +91,13 @@ class Japan(Calendar):
             days.append((date(2020, 7, 23), "Marine Day"))
             days.remove((health_and_sport, "Health and Sports Day"))
             days.append((date(2020, 7, 24), "Health and Sports Day"))
+        # Marine Day and Sports Day change in 2021 because of the Olympics.
+        # https://www.kantei.go.jp/jp/headline/tokyo2020/shukujitsu.html
+        if year == 2021:
+            days.remove((date(year, 7, 19), "Marine Day"))
+            days.append((date(year, 7, 22), "Marine Day"))
+            days.remove((date(year, 10, 11), "Health and Sports Day"))
+            days.append((date(year, 7, 23), "Sports Day"))
         return days
 
 
