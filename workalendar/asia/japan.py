@@ -27,7 +27,7 @@ class Japan(Calendar):
         Fixed holidays for Japan.
         """
         days = super().get_fixed_holidays(year)
-        if year >= 2016:
+        if year >= 2016 and year != 2021:
             days.append((date(year, 8, 11), "Mountain Day"))
         # Change in Emperor
         if year < 2019:
@@ -54,6 +54,12 @@ class Japan(Calendar):
             # Mountain Day is 8/10 this year for some reason
             # The next year that will be different is 2024
             days.remove((date(year, 8, 11), "Mountain Day"))
+        if year == 2021:
+            # Mountain Day is changed due to Tokyo's Olympics
+            days.extend([
+                (date(year, 8, 8), "Mountain Day"),
+                (date(year, 8, 9), "Mountain Day Observed"),
+            ])
         return days
 
     def get_variable_days(self, year):
@@ -61,28 +67,39 @@ class Japan(Calendar):
         days = super().get_variable_days(year)
         equinoxes = calculate_equinoxes(year, 'Asia/Tokyo')
         coming_of_age_day = Japan.get_nth_weekday_in_month(year, 1, MON, 2)
-        marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)
         respect_for_the_aged = Japan.get_nth_weekday_in_month(year, 9, MON, 3)
-        health_and_sport = Japan.get_nth_weekday_in_month(year, 10, MON, 2)
+
+        if year == 2020:
+            # Health and Sports Day will continue on the 2nd monday
+            # of October, except in 2020 when it will happen in July
+            # https://www.timeanddate.com/holidays/japan/sports-day
+            marine_day = date(2020, 7, 23)
+            health_and_sport = date(2020, 7, 24)
+        elif year == 2021:
+            # Marine Day & Sport's Day are changed due to Tokyo's Olympics
+            marine_day = date(year, 7, 22)
+            health_and_sport = date(year, 7, 23)
+        else:
+            # Marine Day is on a Thursday in 2020 for some year
+            # https://www.timeanddate.com/holidays/japan/sea-day
+            marine_day = Japan.get_nth_weekday_in_month(year, 7, MON, 3)
+            health_and_sport = Japan.get_nth_weekday_in_month(year, 10, MON, 2)
+
+        # Health and Sports Day became "Sports Day" as of 2020
+        if year < 2020:
+            health_and_sport_label = "Health and Sports Day"
+        else:
+            health_and_sport_label = "Sports Day"
+
         days.extend([
             (coming_of_age_day, 'Coming of Age Day'),
             (marine_day, "Marine Day"),
             (equinoxes[0], "Vernal Equinox Day"),
             (respect_for_the_aged, "Respect-for-the-Aged Day"),
             (equinoxes[1], "Autumnal Equinox Day"),
-            (health_and_sport, "Health and Sports Day"),
+            (health_and_sport, health_and_sport_label),
         ])
 
-        # Marine Day is on a Thursday in 2020 for some year
-        # https://www.timeanddate.com/holidays/japan/sea-day
-        # Health and Sports Day will continue on the 2nd monday
-        # of October, except in 2020 when it will happen in July
-        # https://www.timeanddate.com/holidays/japan/sports-day
-        if year == 2020:
-            days.remove((marine_day, "Marine Day"))
-            days.append((date(2020, 7, 23), "Marine Day"))
-            days.remove((health_and_sport, "Health and Sports Day"))
-            days.append((date(2020, 7, 24), "Health and Sports Day"))
         return days
 
 

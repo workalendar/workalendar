@@ -354,6 +354,11 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2019, 5, 6), holidays)  # Children's Day
         self.assertIn(date(2019, 8, 12), holidays)  # Mountain Day Observed
         self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(
+            holidays_dict[date(2019, 10, 14)], "Health and Sports Day")
 
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
@@ -362,6 +367,24 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
         self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
         self.assertNotIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2020)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2020, 7, 24)], "Sports Day")
+
+    def test_year_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 7, 22), holidays)  # Marine Day
+        self.assertIn(date(2021, 7, 23), holidays)  # Sports Day
+        self.assertIn(date(2021, 8, 8), holidays)  # Mountain Day
+        self.assertIn(date(2021, 8, 9), holidays)  # Mountain Day Observed
+        self.assertNotIn(date(2021, 7, 19), holidays)  # Marine Day
+        self.assertNotIn(date(2021, 8, 11), holidays)  # Mountain Day
+        self.assertNotIn(date(2021, 10, 11), holidays)  # Sports Day
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2021, 7, 23)], "Sports Day")
 
 
 class JapanBankTest(GenericCalendarTest):
