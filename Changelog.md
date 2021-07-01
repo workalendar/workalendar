@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - The Workalendar project has been moved from Peopledoc's organization to its own (#651, #653, thx to @ewjoachim).
+- Updated Japan calendar because of the Olympics, thx @lxlgarnett. (#662)
 
 ## v15.3.0 (2021-05-07)
 
