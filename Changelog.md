@@ -1,10 +1,15 @@
 # CHANGELOG
 
-## master (unreleased)
+## v15.3.1 (2021-07-02)
 
-- The Workalendar project has been moved from Peopledoc's organization to its own (#651, #653, thx to @ewjoachim).
+### Bugfixes
+
 - Updated Japan calendar because of the Olympics, thx @lxlgarnett. (#662)
 - Fixed Japan "Sports Day" label depending on the year.
+
+### Documentation
+
+- The Workalendar project has been moved from Peopledoc's organization to its own (#651, #653, thx to @ewjoachim).
 
 ## v15.3.0 (2021-05-07)
 
