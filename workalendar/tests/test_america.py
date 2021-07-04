@@ -198,7 +198,7 @@ class ChileTest(GenericCalendarTest):
         self.assertIn(date(2021, 12, 25), holidays)
         # Feriado Bancario
         self.assertIn(date(2021, 12, 31), holidays)
-    
+
     def test_indigenous_people_day(self):
         # Testing because variable nature of June solstice
 
@@ -206,7 +206,7 @@ class ChileTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2020)
         self.assertNotIn(date(2020, 6, 21), holidays)
         self.assertNotIn(date(2020, 6, 20), holidays)
-        
+
         # fixed day in 2021
         holidays = self.cal.holidays_set(2021)
         self.assertIn(date(2021, 6, 21), holidays)
@@ -222,7 +222,7 @@ class ChileTest(GenericCalendarTest):
         # solstice 2023
         holidays = self.cal.holidays_set(2024)
         self.assertIn(date(2024, 6, 20), holidays)
-        
+
     def test_reformation_day(self):
         holidays = self.cal.holidays_set(2012)
         self.assertNotIn(date(2012, 10, 31), holidays)
@@ -232,38 +232,37 @@ class ChileTest(GenericCalendarTest):
         self.assertNotIn(date(2017, 10, 31), holidays)
         self.assertIn(date(2017, 10, 27), holidays)
 
-
     def test_national_bridge_days(self):
         # MON TUE
         holidays = self.cal.holidays_set(2017)
         self.assertIn(date(2017, 9, 18), holidays)
         self.assertIn(date(2017, 9, 19), holidays)
-        
+
         # TUE WED
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 9, 17), holidays)
         self.assertIn(date(2018, 9, 18), holidays)
         self.assertIn(date(2018, 9, 19), holidays)
         self.assertNotIn(date(2018, 9, 20), holidays)
-        
+
         # WED THU
         holidays = self.cal.holidays_set(2019)
         self.assertNotIn(date(2019, 9, 17), holidays)
         self.assertIn(date(2019, 9, 18), holidays)
         self.assertIn(date(2019, 9, 19), holidays)
         self.assertIn(date(2019, 9, 20), holidays)
-        
+
         # THU FRI
         holidays = self.cal.holidays_set(2020)
         self.assertIn(date(2020, 9, 18), holidays)
         self.assertIn(date(2020, 9, 19), holidays)
-        
+
         # FRI SAT
         holidays = self.cal.holidays_set(2015)
         self.assertNotIn(date(2015, 9, 17), holidays)
         self.assertIn(date(2015, 9, 18), holidays)
         self.assertIn(date(2015, 9, 19), holidays)
- 
+
         # SUN MON
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 9, 18), holidays)
@@ -297,8 +296,6 @@ class ChileTest(GenericCalendarTest):
         self.assertNotIn(date(2018, 10, 12), holidays)
         self.assertIn(date(2018, 10, 15), holidays)
 
-
-    
     def test_st_peter_and_st_paul_day(self):
         # MON
         holidays = self.cal.holidays_set(2020)

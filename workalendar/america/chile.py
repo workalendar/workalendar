@@ -32,10 +32,8 @@ class Chile(WesternCalendar):
     # Immaculate Conception (Law 2.977)
     include_immaculate_conception = True
 
-    
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-
 
         # Indigenous Peoples (Law 21.357)
         indigenous_peoples_day = date(year, 6, 21)
@@ -44,19 +42,20 @@ class Chile(WesternCalendar):
         elif year > 2021:
             june_solstice = solar_term(year, 90, 'America/Santiago')
             days.append((june_solstice, 'Indigenous Peoples Day'))
-        
+
         # Saint Peter and Saint Paul (Law 18.432)
-        st_peter_and_st_paul_day = date(year, 6, 29)
+        peter_paul = date(year, 6, 29)
         if year < 2000:
-            days.append((st_peter_and_st_paul_day, 'Saint Peter and Saint Paul'))
+            days.append((peter_paul, 'Saint Peter and Saint Paul'))
         else:
             # floating monday (Law 19.668)
-            if st_peter_and_st_paul_day.weekday() in [TUE, WED, THU]:
-                days.append((Chile.get_nth_weekday_in_month(year, 6, MON, 4), 'Saint Peter and Saint Paul'))
-            elif st_peter_and_st_paul_day.weekday() == FRI:
+            if peter_paul.weekday() in [TUE, WED, THU]:
+                days.append((Chile.get_nth_weekday_in_month(year, 6, MON, 4),
+                            'Saint Peter and Saint Paul'))
+            elif peter_paul.weekday() == FRI:
                 days.append((date(year, 7, 2), 'Saint Peter and Saint Paul'))
             else:
-                days.append((st_peter_and_st_paul_day, 'Columbus Day'))
+                days.append((peter_paul, 'Columbus Day'))
 
         # Our Lady of Mount Carmel (Law 20.148)
         if year >= 2007:
@@ -84,7 +83,8 @@ class Chile(WesternCalendar):
         else:
             # floating monday (Law 19.668)
             if columbus_day.weekday() in [TUE, WED, THU]:
-                days.append((Chile.get_nth_weekday_in_month(year, 10, MON, 2), 'Columbus Day'))
+                days.append((Chile.get_nth_weekday_in_month(year, 10, MON, 2),
+                            'Columbus Day'))
             elif columbus_day.weekday() == FRI:
                 days.append((date(year, 10, 15), 'Columbus Day'))
             else:
