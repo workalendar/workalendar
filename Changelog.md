@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## 15.5.0rc1 (2021-07-12)
+
+**RELEASE CANDIDATE DO NOT USE IN PRODUCTION**
 
 - Replace `pkg_resources` with `importlib_metadata` to fetch the version number in `__init__.py` (#657)
 
