@@ -1,9 +1,9 @@
 # CHANGELOG
 
-## master (unreleased)
+## v15.4.0 (2021-07-12)
 
-- Added Nigeria calendar by @taiyeoguns (#656)
-- Fix Chilean calendar floating dates, add Indigenous Peoples Day using solar term, thx @ajcobo.
+- New calendar: Added Nigeria calendar by @taiyeoguns (#656)
+- Fix: Chilean calendar floating dates, add Indigenous Peoples Day using solar term, thx @ajcobo.
 
 ## v15.3.1 (2021-07-02)
 
