@@ -161,6 +161,7 @@ from the command line.
 - Kenya
 - Madagascar
 - Mozambique
+- Nigeria
 - São Tomé
 - South Africa
 

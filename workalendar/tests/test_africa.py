@@ -7,6 +7,7 @@ from ..africa import (
     IvoryCoast,
     Kenya,
     Madagascar,
+    Nigeria,
     SaoTomeAndPrincipe,
     SouthAfrica,
 )
@@ -605,3 +606,29 @@ class KenyaTest(GenericCalendarTest):
         self.assertIn(date(2020, 12, 26), holidays)  # Utamaduni Day
         self.assertIn(date(2020, 12, 31), holidays)  # New Years Eve
         self.assertEqual(len(holidays), 14)
+
+
+class NigeriaTest(GenericCalendarTest):
+    cal_class = Nigeria
+
+    def test_year_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # New Year
+        self.assertIn(date(2019, 4, 19), holidays)  # Good Friday
+        self.assertIn(date(2019, 4, 22), holidays)  # Easter Monday
+        self.assertIn(date(2019, 5, 1), holidays)  # Workers Day
+        self.assertIn(date(2019, 6, 5), holidays)  # Eid al-Fitr
+        self.assertIn(date(2019, 6, 12), holidays)  # Democracy Day
+        self.assertIn(date(2019, 10, 1), holidays)  # Independence Day
+        self.assertIn(date(2019, 8, 12), holidays)  # Eid al-Adha
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day
+
+    def test_year_2000(self):
+        holidays = self.cal.holidays_set(2000)
+        self.assertIn(date(2000, 5, 29), holidays)  # Former Democracy Day
+
+    def test_year_1998(self):
+        holidays = self.cal.holidays_set(1998)
+        self.assertNotIn(date(1998, 5, 29), holidays)  # No Democracy Day yet
+        self.assertNotIn(date(1998, 6, 12), holidays)  # No Democracy Day yet
