@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Added Nigeria calendar by @taiyeoguns (#656)
+- Fix Chilean calendar floating dates, add Indigenous Peoples Day using solar term, thx @ajcobo.
 
 ## v15.3.1 (2021-07-02)
 
