@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v15.4.0 (2021-07-12)
 
 - New calendar: Added Nigeria calendar by @taiyeoguns (#656)
