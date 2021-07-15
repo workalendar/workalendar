@@ -8,7 +8,7 @@ from datetime import date, timedelta, datetime
 from pathlib import Path
 import sys
 
-from calverter import Calverter
+import convertdate
 from dateutil import easter
 from lunardate import LunarDate
 
@@ -393,23 +393,22 @@ class CalverterMixin:
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.calverter = Calverter()
         if self.conversion_method is None:
             raise NotImplementedError
 
     def converted(self, year):
-        conversion_method = getattr(
-            self.calverter, f'jd_to_{self.conversion_method}'
-        )
         current = date(year, 1, 1)
+        delta = timedelta(days=1)
         days = []
         while current.year == year:
-            julian_day = self.calverter.gregorian_to_jd(
-                current.year,
-                current.month,
-                current.day)
-            days.append(conversion_method(julian_day))
-            current = current + timedelta(days=1)
+            days.append(
+                self.conversion_method.from_gregorian(
+                    current.year,
+                    current.month,
+                    current.day
+                )
+            )
+            current += delta
         return days
 
     def calverted_years(self, year):
@@ -432,13 +431,10 @@ class CalverterMixin:
                       'this Islamic calendar computation may be wrong.')
         days = super().get_variable_days(year)
         years = self.calverted_years(year)
-        conversion_method = getattr(
-            self.calverter, f'{self.conversion_method}_to_jd')
         for month, day, label in self.get_islamic_holidays():
             for y in years:
-                jd = conversion_method(y, month, day)
-                g_year, g_month, g_day = self.calverter.jd_to_gregorian(jd)
-                holiday = date(g_year, g_month, g_day)
+                g_date = self.conversion_method.to_gregorian(y, month, day)
+                holiday = date(*g_date)
 
                 # Only add a delta if necessary
                 delta = self.get_delta_islamic_holidays(year)
@@ -454,7 +450,7 @@ class IslamicMixin(CalverterMixin):
 
     WEEKEND_DAYS = (FRI, SAT)
 
-    conversion_method = 'islamic'
+    conversion_method = convertdate.islamic
     include_prophet_birthday = False
     include_day_after_prophet_birthday = False
     include_start_ramadan = False
@@ -498,10 +494,6 @@ class IslamicMixin(CalverterMixin):
                           " by the religious authorities. It is not possible"
                           " to compute it. You'll have to add it manually.")
         return tuple(days)
-
-
-class JalaliMixin(CalverterMixin):
-    conversion_method = 'jalali'
 
 
 class CoreCalendar:

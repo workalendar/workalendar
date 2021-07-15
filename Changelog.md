@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Replace `pyCalverter` with `convertdate` (#536)
+- Remove unused `JalaliMixin`
 
 ## v15.4.0 (2021-07-12)
 
