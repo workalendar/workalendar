@@ -7,6 +7,7 @@
 - Replace `pyCalverter` with `convertdate` (#536)
 - Remove unused `JalaliMixin`
 - New calendar: Added Philippines calendar by @micodls (#396)
+- Remove `skyfield` dependency, added `[astronomy]` as extra dependency
 
 ## v15.4.0 (2021-07-12)
 
