@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added new badges (pypi, conda, license) and installation instructions (pip, conda) to readme file @sugatoray (#673). 
 
 ## v15.4.0 (2021-07-12)
 
