@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Replace `pkg_resources` with `importlib_metadata` to fetch the version number in `__init__.py` (#657)
 
 ## v15.4.0 (2021-07-12)
 
