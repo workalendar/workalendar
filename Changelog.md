@@ -6,6 +6,7 @@
 - Added new badges (pypi, conda, license) and installation instructions (pip, conda) to readme file @sugatoray (#673).
 - Replace `pyCalverter` with `convertdate` (#536)
 - Remove unused `JalaliMixin`
+- Fixed United Kingdom's 2022 holidays ; Spring Bank Holiday has been moved to the 3rd of June and Queen's Platinum Jubilee added to 2nd of June.
 
 ## v15.4.0 (2021-07-12)
 
