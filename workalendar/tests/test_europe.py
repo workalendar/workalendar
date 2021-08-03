@@ -1875,6 +1875,20 @@ class UnitedKingdomTest(GenericCalendarTest):
             holidays[date(2020, 5, 8)], "Early May bank holiday (VE day)"
         )
 
+    def test_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        print(holidays)
+        self.assertIn(date(2022, 1, 3), holidays)  # New Year
+        self.assertIn(date(2022, 4, 15), holidays)  # Good Friday
+        self.assertIn(date(2022, 4, 18), holidays)  # Easter Monday
+        self.assertIn(date(2022, 5, 2), holidays)  # Early May Bank Holiday
+        self.assertNotIn(date(2022, 5, 30), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2022, 6, 2), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2022, 6, 3), holidays)  # Platinum Jubilee bank holiday
+        self.assertIn(date(2022, 8, 29), holidays)  # Summer bank holiday
+        self.assertIn(date(2022, 12, 26), holidays)  # Boxing Day
+        self.assertIn(date(2022, 12, 27), holidays)  # Christmas Day
+
 
 class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
     cal_class = UnitedKingdomNorthernIreland
