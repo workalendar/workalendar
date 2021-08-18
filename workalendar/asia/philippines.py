@@ -1,6 +1,5 @@
 from ..core import (
-    Calendar, WesternMixin,
-    IslamicMixin, ChineseNewYearCalendar,
+    WesternMixin, IslamicMixin, ChineseNewYearCalendar,
     SAT, SUN
 )
 from ..registry_tools import iso_register
