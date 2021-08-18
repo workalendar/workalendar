@@ -3,7 +3,7 @@
 [![license](http://img.shields.io/pypi/l/workalendar.svg)](https://github.com/workalendar/workalendar/blob/master/LICENSE)
 [![pypi](http://img.shields.io/pypi/v/workalendar.svg)](https://pypi.python.org/pypi/workalendar)
 [![conda](https://img.shields.io/conda/v/conda-forge/workalendar?color=blue&logo=anaconda)](https://anaconda.org/conda-forge/workalendar)
-    
+
 ## Overview
 
 Workalendar is a Python module that offers classes able to handle calendars, list legal / religious holidays and gives working-day-related computation functions.
@@ -159,6 +159,7 @@ from the command line.
 - Japan
 - JapanBank
 - Malaysia
+- Philippines
 - Qatar
 - Singapore
 - South Korea

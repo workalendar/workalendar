@@ -7,6 +7,10 @@
 - Replace `pyCalverter` with `convertdate` (#536)
 - Remove unused `JalaliMixin`
 
+## v15.5.0 (2021-07-18)
+
+- New calendar: Added Philippines calendar by @micodls (#396)
+
 ## v15.4.0 (2021-07-12)
 
 - New calendar: Added Nigeria calendar by @taiyeoguns (#656)
