@@ -78,7 +78,7 @@ class ChristianMixin:
     ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
     include_holy_thursday = False
-    holy_thursday_label = "Holy Thurssaday"
+    holy_thursday_label = "Holy Thursday"
     include_good_friday = False
     good_friday_label = "Good Friday"
     include_easter_monday = False
@@ -1024,11 +1024,6 @@ class Calendar(CoreCalendar):
         if self.include_labour_day:
             days.append((date(year, 5, 1), self.labour_day_label))
         return days
-
-        if self.include_islamic_new_year:
-            days.append((1, 1, "Islamic New Year"))
-        if self.include_prophet_birthday:
-            days.append((3, 12, "Prophet's Birthday"))
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

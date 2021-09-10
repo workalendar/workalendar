@@ -818,3 +818,28 @@ class Philippines(GenericCalendarTest):
         self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2021, 12, 30), holidays)  # Rizal Day
         self.assertIn(date(2021, 12, 31), holidays)  # New Year's Eve
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 1, 25), holidays)  # Chinese New Year
+        self.assertIn(date(2020, 2, 25), holidays)  # EDSA Revolution
+        self.assertIn(date(2020, 4, 9), holidays)  # Araw ng Kagitingan
+        self.assertIn(date(2020, 4, 9), holidays)  # Maundy Thursday
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 11), holidays)  # Black Saturday
+        self.assertIn(date(2020, 4, 12), holidays)  # Easter Sunday
+        self.assertIn(date(2020, 5, 1), holidays)  # Labor Day
+        self.assertIn(date(2020, 5, 24), holidays)  # Eid'l Fitr
+        self.assertIn(date(2020, 6, 12), holidays)  # Independence Day
+        self.assertIn(date(2020, 7, 31), holidays)  # Eid'l Adha
+        self.assertIn(date(2020, 8, 21), holidays)  # Ninoy Aquino Day
+        self.assertIn(date(2020, 8, 30), holidays)  # National Heroes' Day
+        self.assertIn(date(2020, 11, 1), holidays)  # All Saints' Day
+        self.assertIn(date(2020, 11, 2), holidays)  # All Souls Day
+        self.assertIn(date(2020, 11, 30), holidays)  # Bonifacio Day
+        self.assertIn(date(2020, 12, 8), holidays)  # Immaculate Conception
+        self.assertIn(date(2020, 12, 24), holidays)  # Christmas Eve
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 30), holidays)  # Rizal Day
+        self.assertIn(date(2020, 12, 31), holidays)  # New Year's Eve

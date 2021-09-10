@@ -6,9 +6,6 @@
 - Added new badges (pypi, conda, license) and installation instructions (pip, conda) to readme file @sugatoray (#673).
 - Replace `pyCalverter` with `convertdate` (#536)
 - Remove unused `JalaliMixin`
-
-## v15.5.0 (2021-07-18)
-
 - New calendar: Added Philippines calendar by @micodls (#396)
 
 ## v15.4.0 (2021-07-12)
