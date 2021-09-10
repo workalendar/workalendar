@@ -78,10 +78,12 @@ class ChristianMixin:
     ash_wednesday_label = "Ash Wednesday"
     include_palm_sunday = False
     include_holy_thursday = False
+    holy_thursday_label = "Holy Thursday"
     include_good_friday = False
     good_friday_label = "Good Friday"
     include_easter_monday = False
     include_easter_saturday = False
+    easter_saturday_label = "Easter Saturday"
     include_easter_sunday = False
     include_all_saints = False
     include_immaculate_conception = False
@@ -197,11 +199,15 @@ class ChristianMixin:
         if self.include_palm_sunday:
             days.append((self.get_palm_sunday(year), "Palm Sunday"))
         if self.include_holy_thursday:
-            days.append((self.get_holy_thursday(year), "Holy Thursday"))
+            days.append(
+                (self.get_holy_thursday(year), self.holy_thursday_label)
+            )
         if self.include_good_friday:
             days.append((self.get_good_friday(year), self.good_friday_label))
         if self.include_easter_saturday:
-            days.append((self.get_easter_saturday(year), "Easter Saturday"))
+            days.append(
+                (self.get_easter_saturday(year), self.easter_saturday_label)
+            )
         if self.include_easter_sunday:
             days.append((self.get_easter_sunday(year), "Easter Sunday"))
         if self.include_easter_monday:
@@ -458,6 +464,7 @@ class IslamicMixin(CalverterMixin):
     length_eid_al_fitr = 1
     eid_al_fitr_label = "Eid al-Fitr"
     include_eid_al_adha = False
+    eid_al_adha_label = "Eid al-Adha"
     length_eid_al_adha = 1
     include_day_of_sacrifice = False
     day_of_sacrifice_label = "Eid al-Adha"
@@ -486,7 +493,7 @@ class IslamicMixin(CalverterMixin):
                 days.append((10, x + 1, self.eid_al_fitr_label))
         if self.include_eid_al_adha:
             for x in range(self.length_eid_al_adha):
-                days.append((12, x + 10, "Eid al-Adha"))
+                days.append((12, x + 10, self.eid_al_adha_label))
         if self.include_day_of_sacrifice:
             days.append((12, 10, self.day_of_sacrifice_label))
         if self.include_laylat_al_qadr:
@@ -1000,6 +1007,7 @@ class Calendar(CoreCalendar):
     Take care of the New Years Day, which is almost a worldwide holiday.
     """
     include_new_years_day = True
+    include_new_years_eve = False
     shift_new_years_day = False
     include_labour_day = False
     labour_day_label = "Labour Day"
@@ -1010,14 +1018,11 @@ class Calendar(CoreCalendar):
     def get_fixed_holidays(self, year):
         days = super().get_fixed_holidays(year)
         if self.include_new_years_day:
-            days.insert(
-                0, (date(year, 1, 1), "New year")
-            )
-
+            days.insert(0, (date(year, 1, 1), "New year"))
+        if self.include_new_years_eve:
+            days.append((date(year, 12, 31), "New Year's eve"))
         if self.include_labour_day:
-            days.append(
-                (date(year, 5, 1), self.labour_day_label)
-            )
+            days.append((date(year, 5, 1), self.labour_day_label))
         return days
 
     def get_variable_days(self, year):
