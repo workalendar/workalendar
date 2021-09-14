@@ -9,6 +9,7 @@
 ### New calendar
 
 - New calendar: Added Philippines calendar by @micodls (#396)
+- New calendar: Added Guernsey calendar by @ludsoft (#681)
 
 ### Internal changes
 
