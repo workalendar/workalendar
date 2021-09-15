@@ -1,1 +1,3 @@
 include README.md
+include workalendar/equinoxes.json.gz
+include workalendar/solar_terms.json.gz

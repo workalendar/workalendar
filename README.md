@@ -190,6 +190,8 @@ And more to come (I hope!)
 
 Please take note that some calendars are not 100% accurate. The most common example is the Islamic calendar, where some computed holidays are not exactly on the same official day decided by religious authorities, and this may vary country by country. Whenever it's possible, try to adjust your results with the official data provided by the adequate authorities.
 
+Some countries have some holidays based on ephemerids and equinoxes. Those are computed for the previous and next 30 years to prevent big computations and dependencies.
+
 ## Contributing
 
 Please read our [contributing.md](https://github.com/workalendar/workalendar/blob/master/docs/contributing.md) document to discover how you can contribute to `workalendar`. Pull-requests are very welcome.

@@ -28,6 +28,13 @@ Since `workalendar` is mainly built around configuration variables and generic m
 
 Please respect the PEP8 convention, otherwise your PR won't be accepted.
 
+## Maintain Equinoxes and Solar terms
+
+To reduce dependencies and computation time, equinoxes and solar terms are precomputed for the 30 previous and next years.
+From time to time and before each release, please run the `create-astronomical-data` data file to update those files.
+
+You also need to regenerate the `.json.gz` files if you plan to add a timezone to the astronomical data.
+
 ### Example
 
 Let's assume you want to include the holidays of the magic (fictional) kingdom of *"Zhraa"*, which has a few holidays of different kind.

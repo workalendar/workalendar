@@ -6,7 +6,11 @@ from unittest.mock import patch
 from skyfield.api import Loader
 from skyfield_data import get_skyfield_data_path
 
-from ..astronomy import calculate_equinoxes, solar_term, newton_angle_function
+from ..skyfield_astronomy import (
+    calculate_equinoxes,
+    solar_term,
+    newton_angle_function,
+)
 
 
 def test_calculate_some_equinoxes():
@@ -57,7 +61,8 @@ def test_newton_angle_function_normal_range(params_newton_angle):
     """
     t0, ts, earth, sun = params_newton_angle
 
-    with patch('workalendar.astronomy.get_current_longitude') as patched:
+    with patch('workalendar.skyfield_astronomy.get_current_longitude') \
+            as patched:
         patched.return_value = pi
         assert newton_angle_function(t0, ts, 0, earth, sun) == -pi
 
@@ -72,7 +77,8 @@ def test_newton_angle_function_above_pi(params_newton_angle):
     """
     t0, ts, earth, sun = params_newton_angle
 
-    with patch('workalendar.astronomy.get_current_longitude') as patched:
+    with patch('workalendar.skyfield_astronomy.get_current_longitude') \
+            as patched:
         patched.return_value = pi + 0.1
         expected = pytest.approx(-.1)
         assert newton_angle_function(t0, ts, 0, earth, sun) == expected
@@ -88,7 +94,8 @@ def test_newton_angle_function_below_minus_pi(params_newton_angle):
     """
     t0, ts, earth, sun = params_newton_angle
 
-    with patch('workalendar.astronomy.get_current_longitude') as patched:
+    with patch('workalendar.skyfield_astronomy.get_current_longitude') \
+            as patched:
         patched.return_value = -pi - 0.1
         expected = pytest.approx(.1)
         assert newton_angle_function(t0, ts, 0, earth, sun) == expected
