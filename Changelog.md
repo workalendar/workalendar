@@ -8,6 +8,8 @@
 - Remove unused `JalaliMixin`
 - New calendar: Added Philippines calendar by @micodls (#396)
 - Remove `skyfield` dependency, added `[astronomy]` as extra dependency
+- Added the "Workalendar maintainers" in the LICENSE file.
+- Changed the maintainer email.
 
 ## v15.4.0 (2021-07-12)
 
