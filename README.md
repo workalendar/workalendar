@@ -22,6 +22,20 @@ pip install workalendar
 conda install -c conda-forge workalendar
 ```
 
+### Extra dependencies
+
+**Note: NEW in v16.0.0**
+
+If the calendar(s) you want to work with requires astronomical computations (such as Asian calendars needing equinoxes or solar terms), Workalendar will provide pre-computed values within the year range from 1991 to 2051.
+
+However, if you want to use astronomical libraries to compute the calendar yourself, you'll need to install the `[astronomy]` extra dependency like this:
+
+```sh
+pip install workalendar[astronomy]
+```
+
+If you had previously installed the `skyfield` and `skyfield-data` packages, they'll be used to compute the calendars. If you want to benefit from the "astronomical cache", and eventually benefit from performance gains, you'll have to **uninstall** those packages first to fallback to pre-computed files.
+
 ## Status
 
 This library is ready for production, although we may warn eventual users: some calendars may not be up-to-date, and this library doesn't cover all the existing countries on earth (yet).

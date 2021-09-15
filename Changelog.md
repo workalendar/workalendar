@@ -1,13 +1,20 @@
 # CHANGELOG
 
-## master (unreleased)
+## v16.0.0 (2021-09-16)
 
+### New calendar
+
+- New calendar: Added Philippines calendar by @micodls (#396)
+
+### Internal changes
+
+**See the README for more details about requirements, you may have to make changes to your installed packages in your environment.**
+
+- Remove `skyfield` dependency, added `[astronomy]` as extra dependency (#660).
+- Replace `pyCalverter` with `convertdate` (#536).
+- Remove unused `JalaliMixin`
 - Replace `pkg_resources` with `importlib_metadata` to fetch the version number in `__init__.py` (#657)
 - Added new badges (pypi, conda, license) and installation instructions (pip, conda) to readme file @sugatoray (#673).
-- Replace `pyCalverter` with `convertdate` (#536)
-- Remove unused `JalaliMixin`
-- New calendar: Added Philippines calendar by @micodls (#396)
-- Remove `skyfield` dependency, added `[astronomy]` as extra dependency
 - Added the "Workalendar maintainers" in the LICENSE file.
 - Changed the maintainer email.
 
