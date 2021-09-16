@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v16.0.0 (2021-09-16)
 
 ### New calendar
