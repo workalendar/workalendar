@@ -4,6 +4,9 @@ dist/
 build/
 .coverage
 .tox/
+Pipfile
+Pipfile.lock
+pyproject.toml
 # py.test cache
 .cache/
 .pytest-cache/

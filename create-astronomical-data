@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+from tqdm import tqdm
+
+from workalendar.precomputed_astronomy import create_astronomical_data
+
+if __name__ == '__main__':
+    create_astronomical_data(tqdm)
