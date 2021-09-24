@@ -1884,7 +1884,8 @@ class UnitedKingdomTest(GenericCalendarTest):
         self.assertIn(date(2022, 5, 2), holidays)  # Early May Bank Holiday
         self.assertNotIn(date(2022, 5, 30), holidays)  # Spring Bank Holiday
         self.assertIn(date(2022, 6, 2), holidays)  # Spring Bank Holiday
-        self.assertIn(date(2022, 6, 3), holidays)  # Platinum Jubilee bank holiday
+        # Platinum Jubilee Bank Holiday
+        self.assertIn(date(2022, 6, 3), holidays)
         self.assertIn(date(2022, 8, 29), holidays)  # Summer bank holiday
         self.assertIn(date(2022, 12, 26), holidays)  # Boxing Day
         self.assertIn(date(2022, 12, 27), holidays)  # Christmas Day
