@@ -20,6 +20,7 @@ class UnitedKingdom(WesternCalendar):
         2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
         2011: [(date(2011, 4, 29), "Royal Wedding"), ],
         2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+        2022: [(date(2022, 6, 3), "Queen’s Platinum Jubilee bank holiday"), ],
     }
 
     def get_early_may_bank_holiday(self, year):
@@ -45,6 +46,8 @@ class UnitedKingdom(WesternCalendar):
             spring_bank_holiday = date(1977, 6, 6)
         elif year == 2002:
             spring_bank_holiday = date(2002, 6, 4)
+        elif year == 2022:
+            spring_bank_holiday = date(2022, 6, 2)
         else:
             spring_bank_holiday = UnitedKingdom \
                 .get_last_weekday_in_month(year, 5, MON)
