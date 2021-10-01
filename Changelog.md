@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master (unreleased)
+## v16.1.0 (2021-10-01)
 
 - Fixed United Kingdom's 2022 holidays ; Spring Bank Holiday has been moved to the 3rd of June and Queen's Platinum Jubilee added to 2nd of June.
 - New calendar: Added Guernsey calendar by @ludsoft (#681)
