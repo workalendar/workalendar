@@ -20,6 +20,7 @@ from ..europe import (
     Sweden,
     France, FranceAlsaceMoselle,
     Greece,
+    Guernsey,
     Hungary,
     Iceland,
     Ireland,
@@ -43,8 +44,6 @@ from ..europe import (
     UnitedKingdomNorthernIreland,
     EuropeanCentralBank,
 )
-
-
 # Tests dedicated to Netherlands School holidays
 from ..europe.netherlands import (
     SPRING_HOLIDAYS_EARLY_REGIONS,
@@ -1904,6 +1903,57 @@ class UnitedKingdomNorthernIrelandTest(UnitedKingdomTest):
         holidays = self.cal.holidays_set(2014)
         self.assertIn(date(2014, 7, 12), holidays)  # Battle of the Boyne
         self.assertIn(date(2014, 7, 14), holidays)  # Battle of the Boyne sub
+
+
+class GuernseyTest(GenericCalendarTest):
+    cal_class = Guernsey
+
+    def test_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+        # This is where the year 2020 becomes special:
+        # The Early May Bank Holiday has been moved to May 8th
+        # to commemorate the 75th anniversary of the end of WWII
+        self.assertNotIn(date(2020, 5, 4), holidays)
+        self.assertIn(date(2020, 5, 25), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2020, 8, 31), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # 'Boxing Day
+        self.assertIn(date(2020, 12, 28), holidays)  # Boxing Day Shift
+
+        # May the 8th is VE day
+        holidays = self.cal.holidays(2020)
+        holidays = dict(holidays)
+        self.assertIn(date(2020, 5, 8), holidays)
+        self.assertEqual(
+            holidays[date(2020, 5, 8)], "Early May bank holiday (VE day)"
+        )
+
+    def test_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        self.assertIn(date(2021, 5, 3), holidays)  # May Day Bank Holiday
+        self.assertIn(date(2021, 5, 9), holidays)  # Liberation Day
+        self.assertIn(date(2021, 5, 31), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2021, 8, 30), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2021, 12, 27), holidays)  # Christmas Day
+        self.assertIn(date(2021, 12, 28), holidays)  # Boxing Day Shift
+
+    def test_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 1, 3), holidays)  # New Year
+        self.assertIn(date(2022, 4, 15), holidays)  # Good Friday
+        self.assertIn(date(2022, 4, 18), holidays)  # Easter Monday
+        self.assertIn(date(2022, 5, 2), holidays)  # May Day bank Holiday
+        self.assertIn(date(2022, 5, 9), holidays)  # Liberation Day
+        self.assertIn(date(2022, 5, 30), holidays)  # Spring Bank Holiday
+        self.assertIn(date(2022, 8, 29), holidays)  # Late Summer Bank Holiday
+        self.assertIn(date(2022, 12, 26), holidays)  # 'Boxing Day
+        self.assertIn(date(2022, 12, 27), holidays)  # Christmas Day
 
 
 class EuropeanCentralBankTest(GenericCalendarTest):

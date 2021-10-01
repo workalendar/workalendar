@@ -120,6 +120,7 @@ from the command line.
 - France (Alsace / Moselle)
 - Germany
 - Greece
+- Guernsey
 - Hungary
 - Iceland
 - Ireland

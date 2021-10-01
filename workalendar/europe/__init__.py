@@ -12,6 +12,7 @@ from .denmark import Denmark
 from .finland import Finland
 from .france import France, FranceAlsaceMoselle
 from .greece import Greece
+from .guernsey import Guernsey
 from .hungary import Hungary
 from .iceland import Iceland
 from .ireland import Ireland
@@ -82,6 +83,7 @@ __all__ = (
     'France',
     'FranceAlsaceMoselle',
     'Greece',
+    'Guernsey',
     'Hungary',
     'Iceland',
     'Ireland',
