@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
 
 ## v16.2.0 (2021-12-10)
 
