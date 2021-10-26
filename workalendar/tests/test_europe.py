@@ -649,6 +649,7 @@ class FranceAlsaceMoselleTest(FranceTest):
     def test_business_days_computations(self):
         super().test_business_days_computations()
 
+
 class GeorgiaTest(GenericCalendarTest):
     cal_class = Georgia
 
@@ -694,13 +695,19 @@ class GeorgiaTest(GenericCalendarTest):
         self.assertIn(date(2020, 10, 14), holidays)  # Day of Svetitskovloba
         self.assertIn(date(2020, 11, 23), holidays)  # St George's Day
 
+    def test_no_labor_day(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 5, 1), holidays)
+
     def test_no_christmas(self):
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 24), holidays)
+        self.assertNotIn(date(2016, 12, 25), holidays)
 
         holidays = self.cal.holidays_set(2020)
         self.assertNotIn(date(2020, 12, 24), holidays)
-        
+        self.assertNotIn(date(2020, 12, 25), holidays)
+
 
 class GreeceTest(GenericCalendarTest):
     cal_class = Greece
