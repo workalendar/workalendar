@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- New calendar: Added Georgia (country) calendar by @atj01
+ 
 ## master (unreleased)
 
 Nothing here yet.
