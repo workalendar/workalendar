@@ -19,6 +19,7 @@ from ..europe import (
     Estonia,
     Sweden,
     France, FranceAlsaceMoselle,
+    Georgia,
     Greece,
     Guernsey,
     Hungary,
@@ -648,6 +649,58 @@ class FranceAlsaceMoselleTest(FranceTest):
     def test_business_days_computations(self):
         super().test_business_days_computations()
 
+class GeorgiaTest(GenericCalendarTest):
+    cal_class = Georgia
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+
+        self.assertIn(date(2016, 1, 1), holidays)  # New Year
+        self.assertIn(date(2016, 1, 2), holidays)  # Second day of the New Year
+        self.assertIn(date(2016, 1, 7), holidays)  # Orthodox Christmas
+        self.assertIn(date(2016, 1, 19), holidays)  # Orthodox Epiphany
+        self.assertIn(date(2016, 3, 3), holidays)  # Mother's Day
+        self.assertIn(date(2016, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2016, 4, 9), holidays)  # Day of National Unity
+        self.assertIn(date(2016, 4, 29), holidays)  # Orthodox Good Friday
+        self.assertIn(date(2016, 4, 30), holidays)  # Great Saturday
+        self.assertIn(date(2016, 5, 1), holidays)  # Orthodox Easter Day
+        self.assertIn(date(2016, 5, 2), holidays)  # Orthodox Easter Monday
+        self.assertIn(date(2016, 5, 9), holidays)  # Day of victory over fascism
+        self.assertIn(date(2016, 5, 12), holidays)  # St Andrew the First-Called Day
+        self.assertIn(date(2016, 5, 26), holidays)  # Independence Day
+        self.assertIn(date(2016, 8, 28), holidays)  # St Mary's Day
+        self.assertIn(date(2016, 10, 14), holidays)  # Day of Svetitskovloba
+        self.assertIn(date(2016, 11, 23), holidays)  # St George's day
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 1, 2), holidays)  # Second day of the New Year
+        self.assertIn(date(2020, 1, 7), holidays)  # Orthodox Christmas
+        self.assertIn(date(2020, 1, 19), holidays)  # Orthodox Epiphany
+        self.assertIn(date(2020, 3, 3), holidays)  # Mother's Day
+        self.assertIn(date(2020, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2020, 4, 9), holidays)  # Day of National Unity
+        self.assertIn(date(2020, 4, 17), holidays)  # Orthodox Good Friday
+        self.assertIn(date(2020, 4, 18), holidays)  # Great Saturday
+        self.assertIn(date(2020, 4, 19), holidays)  # Orthodox Easter Day
+        self.assertIn(date(2020, 4, 20), holidays)  # Orthodox Easter Monday
+        self.assertIn(date(2020, 5, 9), holidays)  # Day of victory over fascism
+        self.assertIn(date(2020, 5, 12), holidays)  # St Andrew the First-Called Day
+        self.assertIn(date(2020, 5, 26), holidays)  # Independence Day
+        self.assertIn(date(2020, 8, 28), holidays)  # St Mary's Day
+        self.assertIn(date(2020, 10, 14), holidays)  # Day of Svetitskovloba
+        self.assertIn(date(2020, 11, 23), holidays)  # St George's Day
+
+    def test_no_christmas(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 12, 24), holidays)
+
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 12, 24), holidays)
+        
 
 class GreeceTest(GenericCalendarTest):
     cal_class = Greece
