@@ -4,8 +4,12 @@ from ..registry_tools import iso_register
 
 @iso_register('GE')
 class Georgia(OrthodoxCalendar):
-    """Country of Georgia
-    """
+    'Country of Georgia'
+
+    "Sources: "
+    "https://en.wikipedia.org/wiki/Public_holidays_in_Georgia_(country)"
+    "https://www.officeholidays.com/countries/georgia/2021"
+    
     include_christmas = False
     include_christmas_eve = False
 
