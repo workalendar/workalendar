@@ -118,6 +118,7 @@ from the command line.
 - Finland
 - France
 - France (Alsace / Moselle)
+- Georgia
 - Germany
 - Greece
 - Guernsey
