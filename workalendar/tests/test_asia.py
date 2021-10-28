@@ -930,7 +930,6 @@ class KazakhstanTest(GenericCalendarTest):
         self.assertIn(date(2016, 12, 16), holidays)  # Independence Day
         self.assertIn(date(2016, 12, 17), holidays)  # Independence Day
 
-
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
 
