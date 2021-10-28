@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- New calendar: Added Kazakhstan calendar by @atj01 (#)
+
 ## master (unreleased)
 
 Nothing here yet.

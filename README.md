@@ -173,6 +173,7 @@ from the command line.
 - Israel
 - Japan
 - JapanBank
+- Kazakhstan
 - Malaysia
 - Philippines
 - Qatar
