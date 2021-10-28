@@ -62,7 +62,6 @@ class Kazakhstan(OrthodoxCalendar, IslamicCalendar):
         days = super(OrthodoxCalendar, self).get_fixed_holidays(year)
         return days
 
-
     def get_variable_days(self, year):
 
         # Kurban Ait (Eid al-Adha in islamic calendar) is an official holiday
