@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
+- New calendar: Added Kazakhstan calendar by @atj01 (#688).
 
 ## v16.2.0 (2021-12-10)
 
