@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Update China's public holidays for 2022.
 
 ## v16.1.0 (2021-10-01)
 
