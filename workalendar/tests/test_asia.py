@@ -106,7 +106,8 @@ class ChinaTest(GenericCalendarTest):
 
         self.assertNotIn(date(2022, 1, 29), holidays)  # Spring Festival Shift
         self.assertNotIn(date(2022, 1, 30), holidays)  # Spring Festival Shift
-        self.assertNotIn(date(2022, 4, 2), holidays)  # Ching Ming Festival Shift
+        # Ching Ming Festival Shift
+        self.assertNotIn(date(2022, 4, 2), holidays)
         self.assertNotIn(date(2022, 4, 24), holidays)  # Labour Day Shift
         self.assertNotIn(date(2022, 5, 7), holidays)  # Labour Day Shift
         self.assertNotIn(date(2022, 10, 8), holidays)  # National Day Shift
