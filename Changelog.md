@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v16.2.0 (2021-12-10)
 
-- Update China's public holidays for 2022.
+- Update China's public holidays for 2022, thx to @iamsk (#693).
 
 ## v16.1.0 (2021-10-01)
 
