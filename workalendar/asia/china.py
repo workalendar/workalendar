@@ -35,6 +35,13 @@ holidays = {
             'Dragon Boat Festival': [(6, 12), (6, 13), (6, 14)],
             'Mid-Autumn Festival': [(9, 19), (9, 20), (9, 21)]
         },
+    2022:
+        {
+            'Ching Ming Festival': [(4, 3), (4, 4), (4, 5)],
+            'Labour Day Holiday': [(4, 30), (5, 1), (5, 2), (5, 3), (5, 4)],
+            'Dragon Boat Festival': [(6, 3), (6, 4), (6, 5)],
+            'Mid-Autumn Festival': [(9, 10), (9, 11), (9, 12)]
+        },
 }
 
 workdays = {
@@ -66,13 +73,21 @@ workdays = {
             'Mid-Autumn Festival Shift': [(9, 18)],
             'National Day Shift': [(9, 26), (10, 9)]
         },
+    2022:
+        {
+            'Spring Festival Shift': [(1, 29), (1, 30)],
+            'Ching Ming Festival Shift': [(4, 2)],
+            'Labour Day Holiday Shift': [(4, 24), (5, 7)],
+            'National Day Shift': [(10, 8), (10, 9)]
+        },
 }
 
 
 @iso_register('CN')
 class China(ChineseNewYearCalendar):
     "China"
-    # WARNING: Support 2018, 2019 currently, need update every year.
+    # WARNING: Support 2018-2022 currently, need update every year.
+    shift_new_years_day = True
     # National Days, 10.1 - 10.7
     national_days = [(10, i, "National Day") for i in range(1, 8)]
     FIXED_HOLIDAYS = tuple(national_days)

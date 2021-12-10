@@ -87,6 +87,32 @@ class ChinaTest(GenericCalendarTest):
         self.assertNotIn(date(2021, 9, 26), holidays)  # National Day Shift
         self.assertNotIn(date(2021, 10, 9), holidays)  # National Day Shift
 
+    def test_year_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 1, 1), holidays)  # New Year
+        self.assertIn(date(2022, 1, 3), holidays)  # New Year
+        self.assertIn(date(2022, 1, 31), holidays)  # Spring Festival
+        self.assertIn(date(2022, 2, 6), holidays)  # Spring Festival
+        self.assertIn(date(2022, 4, 3), holidays)  # Ching Ming Festival
+        self.assertIn(date(2022, 4, 5), holidays)  # Ching Ming Festival
+        self.assertIn(date(2022, 4, 30), holidays)  # Labour Day Holiday
+        self.assertIn(date(2022, 5, 4), holidays)  # Labour Day Holiday
+        self.assertIn(date(2022, 6, 3), holidays)  # Dragon Boat Festival
+        self.assertIn(date(2022, 6, 5), holidays)  # Dragon Boat Festival
+        self.assertIn(date(2022, 9, 10), holidays)  # Mid-Autumn Festival
+        self.assertIn(date(2022, 9, 12), holidays)  # Mid-Autumn Festival
+        self.assertIn(date(2022, 10, 1), holidays)  # National Day
+        self.assertIn(date(2022, 10, 7), holidays)  # National Day
+
+        self.assertNotIn(date(2022, 1, 29), holidays)  # Spring Festival Shift
+        self.assertNotIn(date(2022, 1, 30), holidays)  # Spring Festival Shift
+        # Ching Ming Festival Shift
+        self.assertNotIn(date(2022, 4, 2), holidays)
+        self.assertNotIn(date(2022, 4, 24), holidays)  # Labour Day Shift
+        self.assertNotIn(date(2022, 5, 7), holidays)  # Labour Day Shift
+        self.assertNotIn(date(2022, 10, 8), holidays)  # National Day Shift
+        self.assertNotIn(date(2022, 10, 9), holidays)  # National Day Shift
+
     def test_missing_holiday_year(self):
         save_2018 = china_holidays[2018]
         del china_holidays[2018]
@@ -99,7 +125,7 @@ class ChinaTest(GenericCalendarTest):
         with patch('warnings.warn') as patched:
             self.cal.get_calendar_holidays(year)
         patched.assert_called_with(
-            'Support years 2018-2021 currently, need update every year.'
+            'Support years 2018-2022 currently, need update every year.'
         )
 
     def test_is_working_day(self):
