@@ -86,7 +86,7 @@ workdays = {
 @iso_register('CN')
 class China(ChineseNewYearCalendar):
     "China"
-    # WARNING: Support 2018, 2019 currently, need update every year.
+    # WARNING: Support 2018-2022 currently, need update every year.
     shift_new_years_day = True
     # National Days, 10.1 - 10.7
     national_days = [(10, i, "National Day") for i in range(1, 8)]
