@@ -9,7 +9,7 @@ class Georgia(OrthodoxCalendar):
     "Sources: "
     "https://en.wikipedia.org/wiki/Public_holidays_in_Georgia_(country)"
     "https://www.officeholidays.com/countries/georgia/2021"
-    
+
     include_christmas = False
     include_christmas_eve = False
 

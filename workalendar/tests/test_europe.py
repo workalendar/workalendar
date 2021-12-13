@@ -667,8 +667,8 @@ class GeorgiaTest(GenericCalendarTest):
         self.assertIn(date(2016, 4, 30), holidays)  # Great Saturday
         self.assertIn(date(2016, 5, 1), holidays)  # Orthodox Easter Day
         self.assertIn(date(2016, 5, 2), holidays)  # Orthodox Easter Monday
-        self.assertIn(date(2016, 5, 9), holidays)  # Day of victory over fascism
-        self.assertIn(date(2016, 5, 12), holidays)  # St Andrew the First-Called Day
+        self.assertIn(date(2016, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2016, 5, 12), holidays)  # St Andrew's day
         self.assertIn(date(2016, 5, 26), holidays)  # Independence Day
         self.assertIn(date(2016, 8, 28), holidays)  # St Mary's Day
         self.assertIn(date(2016, 10, 14), holidays)  # Day of Svetitskovloba
@@ -688,8 +688,8 @@ class GeorgiaTest(GenericCalendarTest):
         self.assertIn(date(2020, 4, 18), holidays)  # Great Saturday
         self.assertIn(date(2020, 4, 19), holidays)  # Orthodox Easter Day
         self.assertIn(date(2020, 4, 20), holidays)  # Orthodox Easter Monday
-        self.assertIn(date(2020, 5, 9), holidays)  # Day of victory over fascism
-        self.assertIn(date(2020, 5, 12), holidays)  # St Andrew the First-Called Day
+        self.assertIn(date(2020, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2020, 5, 12), holidays)  # St Andrew's Day
         self.assertIn(date(2020, 5, 26), holidays)  # Independence Day
         self.assertIn(date(2020, 8, 28), holidays)  # St Mary's Day
         self.assertIn(date(2020, 10, 14), holidays)  # Day of Svetitskovloba
