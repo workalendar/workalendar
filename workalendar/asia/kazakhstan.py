@@ -49,7 +49,7 @@ class Kazakhstan(OrthodoxCalendar, IslamicCalendar):
 
     def get_fixed_holidays(self, year):
 
-        # Orthodox Christmas is an official holiday in Kazakhstan only since 2007
+        # Orthodox Christmas is an official holiday in Kazakhstan since 2007
         # see https://en.wikipedia.org/wiki/Public_holidays_in_Kazakhstan
         self.include_orthodox_christmas = (year >= 2007)
         if year >= 2013:
