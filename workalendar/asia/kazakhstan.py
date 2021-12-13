@@ -1,3 +1,4 @@
+from datetime import date
 from ..core import OrthodoxCalendar, IslamicCalendar
 from ..registry_tools import iso_register
 
@@ -52,14 +53,14 @@ class Kazakhstan(OrthodoxCalendar, IslamicCalendar):
         # Orthodox Christmas is an official holiday in Kazakhstan since 2007
         # see https://en.wikipedia.org/wiki/Public_holidays_in_Kazakhstan
         self.include_orthodox_christmas = (year >= 2007)
+        days = super(OrthodoxCalendar, self).get_fixed_holidays(year)
         if year >= 2013:
             # The 'Day of the First President' and the
             # 'Defender of the Faterland Day' are celebrated only since 2013
             # see https://en.wikipedia.org/wiki/Public_holidays_in_Kazakhstan
-            self.FIXED_HOLIDAYS += ((12, 1, "Day of the First President"),
-                                    (5, 7, "Defender of the Fatherland Day"))
+            days.append((date(year, 12, 1), "Day of the First President"))
+            days.append((date(year, 5, 7), "Defender of the Fatherland Day"))
 
-        days = super(OrthodoxCalendar, self).get_fixed_holidays(year)
         return days
 
     def get_variable_days(self, year):
