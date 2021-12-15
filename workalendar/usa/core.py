@@ -1,7 +1,6 @@
 from datetime import date, timedelta
 
-from ..core import WesternCalendar
-from ..core import SUN, MON, TUE, THU, SAT
+from ..core import MON, SAT, SUN, THU, TUE, WesternCalendar
 from ..registry_tools import iso_register
 
 
@@ -61,6 +60,9 @@ class UnitedStates(WesternCalendar):
     # Some regional variants
     include_fat_tuesday = False
     fat_tuesday_label = "Mardi Gras"
+
+    # Juneteenth
+    include_juneteenth = False
 
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
@@ -259,6 +261,15 @@ class UnitedStates(WesternCalendar):
             self.national_memorial_day_label
         )
 
+    def get_juneteenth_day(self, year):
+        """
+        Return Juneteenth Day
+        """
+        # Juneteenth started to be a federal holiday in 2021
+        if year < 2021:
+            raise ValueError("Juneteenth became a federal holiday in 2021")
+        return (date(year, 6, 19), "Juneteenth National Independence Day")
+
     def get_variable_days(self, year):
         # usual variable days
         days = super().get_variable_days(year)
@@ -314,6 +325,9 @@ class UnitedStates(WesternCalendar):
                 self.get_thanksgiving_friday(year)
             )
 
+        if self.include_juneteenth and year >= 2021:
+            days.append(self.get_juneteenth_day(year))
+
         return days
 
     def get_veterans_day(self, year):
@@ -337,3 +351,9 @@ class UnitedStates(WesternCalendar):
         days = super().get_calendar_holidays(year)
         days = self.shift(days, year)
         return days
+
+
+class FederalReserveSystem(UnitedStates):
+    "Board of Governors of the Federal Reserve System of the USA"
+
+    include_juneteenth = True

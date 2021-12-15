@@ -8,6 +8,7 @@
 - Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 - Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 - Documentation: Fix the ``keep_datetime`` usage example in the "basic" doc (#690).
+- New calendar: Added USA Federal Reserve System calendar by @ludsoft (#695)
 
 ## v16.2.0 (2021-12-10)
 
