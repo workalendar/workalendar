@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- New calendar: Added USA Federal Reserve System calendar by @ludsoft (#695)
 
 ## v16.2.0 (2021-12-10)
 
