@@ -32,9 +32,12 @@ class Switzerland(WesternCalendar):
         (8, 1, "National Holiday"),
     )
 
+    def has_berchtolds_day(self, year):
+        return self.include_berchtolds_day
+
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
-        if self.include_berchtolds_day:
+        if self.has_berchtolds_day(year):
             days.append((date(year, 1, 2), "Berchtold's Day"))
         if self.include_st_josephs_day:
             days.append((date(year, 3, 19), "St Joseph's Day"))
@@ -181,13 +184,25 @@ class Luzern(Switzerland):
 class Neuchatel(Switzerland):
     'Neuchâtel'
 
-    include_boxing_day = False
-    include_berchtolds_day = True
+    include_boxing_day = False  # Conditionally added in get_variable_days().
     include_labour_day = True
 
     FIXED_HOLIDAYS = Switzerland.FIXED_HOLIDAYS + (
         (3, 1, "Republic Day"),
     )
+
+    def has_berchtolds_day(self, year):
+        # See https://rsn.ne.ch/DATA/program/books/rsne/pdf/94102.pdf, Art. 3
+        if date(year, 1, 1).weekday() == SUN:
+            return True
+        return False
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        # See https://rsn.ne.ch/DATA/program/books/rsne/pdf/94102.pdf, Art. 3
+        if date(year, 12, 25).weekday() == SUN:
+            days.append((date(year, 12, 26), self.boxing_day_label))
+        return days
 
 
 @iso_register('CH-NW')
