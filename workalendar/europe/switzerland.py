@@ -35,6 +35,14 @@ class Switzerland(WesternCalendar):
     def has_berchtolds_day(self, year):
         return self.include_berchtolds_day
 
+    def get_federal_thanksgiving_monday(self, year):
+        "Monday following the 3rd sunday of September"
+        third_sunday = self.get_nth_weekday_in_month(year, 9, SUN, 3)
+        return (
+            third_sunday + timedelta(days=1),
+            "Federal Thanksgiving Monday"
+        )
+
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         if self.has_berchtolds_day(year):
@@ -199,6 +207,7 @@ class Neuchatel(Switzerland):
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
+        days.append(self.get_federal_thanksgiving_monday(year))
         # See https://rsn.ne.ch/DATA/program/books/rsne/pdf/94102.pdf, Art. 3
         if date(year, 12, 25).weekday() == SUN:
             days.append((date(year, 12, 26), self.boxing_day_label))
@@ -315,14 +324,6 @@ class Vaud(Switzerland):
 
     include_berchtolds_day = True
     include_boxing_day = False
-
-    def get_federal_thanksgiving_monday(self, year):
-        "Monday following the 3rd sunday of September"
-        third_sunday = self.get_nth_weekday_in_month(year, 9, SUN, 3)
-        return (
-            third_sunday + timedelta(days=1),
-            "Federal Thanksgiving Monday"
-        )
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
