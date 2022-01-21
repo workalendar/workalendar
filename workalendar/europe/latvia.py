@@ -12,7 +12,6 @@ class Latvia(WesternCalendar):
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (6, 23, "Midsummer Day"),
         (6, 24, "St. John's Day"),
-        (11, 18, "Proclamation Day"),
         (12, 31, "New Years Eve"),
     )
 

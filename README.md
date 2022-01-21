@@ -118,6 +118,7 @@ from the command line.
 - Finland
 - France
 - France (Alsace / Moselle)
+- Georgia
 - Germany
 - Greece
 - Guernsey
@@ -173,6 +174,7 @@ from the command line.
 - Israel
 - Japan
 - JapanBank
+- Kazakhstan
 - Malaysia
 - Philippines
 - Qatar

@@ -6,7 +6,7 @@ from . import GenericCalendarTest
 from ..asia import (
     HongKong, HongKongBank,
     Japan, JapanBank, Qatar, Singapore,
-    SouthKorea, Taiwan, Malaysia, China, Israel, Philippines
+    SouthKorea, Taiwan, Malaysia, China, Israel, Philippines, Kazakhstan
 )
 from ..asia.china import holidays as china_holidays
 from ..exceptions import CalendarError
@@ -869,3 +869,85 @@ class Philippines(GenericCalendarTest):
         self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2020, 12, 30), holidays)  # Rizal Day
         self.assertIn(date(2020, 12, 31), holidays)  # New Year's Eve
+
+
+class KazakhstanTest(GenericCalendarTest):
+    cal_class = Kazakhstan
+
+    def test_year_2006(self):
+        holidays = self.cal.holidays_set(2006)
+
+        self.assertIn(date(2006, 1, 1), holidays)  # New Year
+        self.assertIn(date(2006, 1, 2), holidays)  # New Year Holiday
+        self.assertIn(date(2006, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2006, 3, 21), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2006, 3, 22), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2006, 3, 23), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2006, 5, 1), holidays)  # Unity Day
+        self.assertIn(date(2006, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2006, 7, 6), holidays)  # Capital City Day
+        self.assertIn(date(2006, 8, 30), holidays)  # Constitution Day
+        self.assertIn(date(2006, 12, 16), holidays)  # Independence Day
+        self.assertIn(date(2006, 12, 17), holidays)  # Independence Day
+
+    def test_year_2012(self):
+        holidays = self.cal.holidays_set(2012)
+
+        assert len(holidays) == 14
+        self.assertIn(date(2012, 1, 1), holidays)  # New Year
+        self.assertIn(date(2012, 1, 2), holidays)  # New Year Holiday
+        self.assertIn(date(2012, 1, 7), holidays)  # Orthodox Christmas
+        self.assertIn(date(2012, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2012, 3, 21), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2012, 3, 22), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2012, 3, 23), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2012, 5, 1), holidays)  # Unity Day
+        self.assertIn(date(2012, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2012, 7, 6), holidays)  # Capital City Day
+        self.assertIn(date(2012, 8, 30), holidays)  # Constitution Day
+        self.assertIn(date(2012, 10, 26), holidays)  # Kurban Ait (Eid al-Adha)
+        self.assertIn(date(2012, 12, 16), holidays)  # Independence Day
+        self.assertIn(date(2012, 12, 17), holidays)  # Independence Day
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+
+        assert len(holidays) == 16
+        self.assertIn(date(2016, 1, 1), holidays)  # New Year
+        self.assertIn(date(2016, 1, 2), holidays)  # New Year Holiday
+        self.assertIn(date(2016, 1, 7), holidays)  # Orthodox Christmas
+        self.assertIn(date(2016, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2016, 3, 21), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2016, 3, 22), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2016, 3, 23), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2016, 5, 1), holidays)  # Unity Day
+        self.assertIn(date(2016, 5, 7), holidays)  # Defender of the Fatherland
+        self.assertIn(date(2016, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2016, 7, 6), holidays)  # Capital City Day
+        self.assertIn(date(2016, 8, 30), holidays)  # Constitution Day
+        self.assertIn(date(2016, 9, 13), holidays)  # Kurban Ait (Eid al-Adha)
+        self.assertIn(date(2016, 12, 1), holidays)  # First President Day
+        self.assertIn(date(2016, 12, 16), holidays)  # Independence Day
+        self.assertIn(date(2016, 12, 17), holidays)  # Independence Day
+
+    def test_year_2020(self):
+        holidays = self.cal.holidays_set(2020)
+
+        assert len(holidays) == 16
+
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year
+        self.assertIn(date(2020, 1, 2), holidays)  # New Year Holiday
+        self.assertIn(date(2020, 1, 7), holidays)  # Orthodox Christmas
+        self.assertIn(date(2020, 3, 8), holidays)  # International Women's Day
+        self.assertIn(date(2020, 3, 21), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2020, 3, 22), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2020, 3, 23), holidays)  # Nauryz Meyramy
+        self.assertIn(date(2020, 5, 1), holidays)  # Unity Day
+        self.assertIn(date(2020, 5, 7), holidays)  # Defender of the Fatherland
+        self.assertIn(date(2020, 5, 9), holidays)  # Day of victory
+        self.assertIn(date(2020, 7, 6), holidays)  # Capital City Day
+        self.assertIn(date(2020, 7, 31), holidays)  # Kurban Ait (Eid al-Adha)
+        self.assertIn(date(2020, 8, 30), holidays)  # Constitution Day
+        self.assertIn(date(2020, 12, 1), holidays)  # First President Day
+        self.assertIn(date(2020, 12, 16), holidays)  # Independence Day
+        self.assertIn(date(2020, 12, 17), holidays)  # Independence Day
