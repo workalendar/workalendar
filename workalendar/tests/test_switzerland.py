@@ -411,7 +411,7 @@ class NeuchatelTest(GenericCalendarTest):
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
         self.assertIn(date(2020, 1, 1), holidays)  # New years day
-        self.assertIn(date(2020, 1, 2), holidays)  # Berchtolds
+        self.assertNotIn(date(2020, 1, 2), holidays)  # Berchtolds
         self.assertIn(date(2020, 3, 1), holidays)  # Republic Day
         self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
         self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
@@ -419,12 +419,15 @@ class NeuchatelTest(GenericCalendarTest):
         self.assertIn(date(2020, 5, 21), holidays)  # Ascension day
         self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
         self.assertIn(date(2020, 8, 1), holidays)  # Swiss National Day
+        # Lundi du Jeûne - Only in Vaud/Neuchatel
+        self.assertIn(date(2020, 9, 21), holidays)
         self.assertIn(date(2020, 12, 25), holidays)  # XMas
+        self.assertNotIn(date(2022, 12, 26), holidays)  # St Stephen's day
 
     def test_year_2021(self):
         holidays = self.cal.holidays_set(2021)
         self.assertIn(date(2021, 1, 1), holidays)  # New years day
-        self.assertIn(date(2021, 1, 2), holidays)  # Berchtolds
+        self.assertNotIn(date(2021, 1, 2), holidays)  # Berchtolds
         self.assertIn(date(2021, 3, 1), holidays)  # Republic Day
         self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
         self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
@@ -432,7 +435,20 @@ class NeuchatelTest(GenericCalendarTest):
         self.assertIn(date(2021, 5, 13), holidays)  # Ascension day
         self.assertIn(date(2021, 5, 24), holidays)  # Whit Monday
         self.assertIn(date(2021, 8, 1), holidays)  # Swiss National Day
+        # Lundi du Jeûne - Only in Vaud/Neuchatel
+        self.assertIn(date(2021, 9, 20), holidays)
         self.assertIn(date(2021, 12, 25), holidays)  # XMas
+        self.assertNotIn(date(2022, 12, 26), holidays)  # St Stephen's day
+
+    def test_year_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        # Only when Christmas is on Sunday
+        self.assertIn(date(2022, 12, 26), holidays)  # St Stephen's day
+
+    def test_year_2023(self):
+        holidays = self.cal.holidays_set(2023)
+        # Only when New year is on Sunday
+        self.assertIn(date(2023, 1, 2), holidays)  # Berchtolds
 
 
 class NidwaldenTest(GenericCalendarTest):
@@ -767,7 +783,7 @@ class VaudTest(GenericCalendarTest):
         self.assertIn(date(2020, 5, 21), holidays)  # Ascension day
         self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
         self.assertIn(date(2020, 8, 1), holidays)  # Swiss National Day
-        # Lundi du Jeûne - Only in Vaud
+        # Lundi du Jeûne - Only in Vaud/Neuchatel
         self.assertIn(date(2020, 9, 21), holidays)
         self.assertIn(date(2020, 12, 25), holidays)  # XMas
 
@@ -780,7 +796,7 @@ class VaudTest(GenericCalendarTest):
         self.assertIn(date(2021, 5, 13), holidays)  # Ascension day
         self.assertIn(date(2021, 5, 24), holidays)  # Whit Monday
         self.assertIn(date(2021, 8, 1), holidays)  # Swiss National Day
-        # Lundi du Jeûne - Only in Vaud
+        # Lundi du Jeûne - Only in Vaud/Neuchatel
         self.assertIn(date(2021, 9, 20), holidays)
         self.assertIn(date(2021, 12, 25), holidays)  # XMas
 
