@@ -6,8 +6,8 @@
 - New calendar: Added Kazakhstan calendar by @atj01 (#688).
 - New calendar: Added Georgia (country) calendar by @atj01 (#687).
 - Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
-- Added Federal Thanksgiving Monday and two conditional holidays on 26th December
-  and 2nd January in Neuchatel (Switzerland) (#697).
+- Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
+- Documentation: Fix the ``keep_datetime`` usage example in the "basic" doc (#690).
 
 ## v16.2.0 (2021-12-10)
 
