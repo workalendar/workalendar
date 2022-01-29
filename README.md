@@ -201,6 +201,7 @@ from the command line.
 - Nigeria
 - São Tomé
 - South Africa
+- Tunisia
 
 And more to come (I hope!)
 
