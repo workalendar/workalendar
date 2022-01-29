@@ -8,6 +8,7 @@
 - Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 - Added Federal Thanksgiving Monday and two conditional holidays on 26th December
   and 2nd January in Neuchatel (Switzerland) (#697).
+- New calendar: Added Tunisia calendar by @macharmi (#702)
 
 ## v16.2.0 (2021-12-10)
 
