@@ -1,4 +1,4 @@
-from .core import UnitedStates
+from .core import UnitedStates, FederalReserveSystem
 
 from .alabama import (
     Alabama, AlabamaBaldwinCounty, AlabamaMobileCounty, AlabamaPerryCounty)
@@ -122,4 +122,5 @@ __all__ = [
     # Non-State territories
     'AmericanSamoa',
     'Guam',
+    'FederalReserveSystem'
 ]

@@ -21,6 +21,7 @@ from ..usa import (
     Utah, Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming,
     # Other territories, cities...
     AmericanSamoa, ChicagoIllinois, Guam, SuffolkCountyMassachusetts,
+    FederalReserveSystem,
 )
 
 
@@ -1931,3 +1932,33 @@ class ShiftExceptionsNextYearTestCase(UnitedStatesTest):
         # January 1st is a non-shift, Dec 31st should be a working day
         self.assertNotIn(date(2021, 12, 31), holidays)
         self.assertTrue(self.cal.is_working_day(date(2021, 12, 31)))
+
+
+class FederalReserveSystemTest(UnitedStatesTest):
+
+    cal_class = FederalReserveSystem
+
+    def test_juneteenth_day(self):
+
+        holidays = self.cal.holidays_set(2021)
+        juneteenth, _ = self.cal.get_juneteenth_day(2021)
+        self.assertEqual(date(2021, 6, 19), juneteenth)
+        # 2021-06-19 is a Saturday so holiday is shifted
+        self.assertIn(date(2021, 6, 18), holidays)
+
+        holidays = self.cal.holidays_set(2022)
+        juneteenth, _ = self.cal.get_juneteenth_day(2022)
+        self.assertEqual(date(2022, 6, 19), juneteenth)
+        # 2022-06-19 is a Sunday so holiday is shifted
+        self.assertIn(date(2022, 6, 20), holidays)
+
+        holidays = self.cal.holidays_set(2023)
+        juneteenth, _ = self.cal.get_juneteenth_day(2023)
+        self.assertEqual(date(2023, 6, 19), juneteenth)
+        self.assertIn(juneteenth, holidays)
+
+        # No JuneTeeth before 2021
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 6, 20), holidays)
+        with self.assertRaises(ValueError):
+            self.cal.get_juneteenth_day(2020)
