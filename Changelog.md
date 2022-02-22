@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v16.3.0 (2022-02-22)
 
 ### New calendars
