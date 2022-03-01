@@ -2,13 +2,24 @@
 
 ## master (unreleased)
 
-- Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
-- New calendar: Added Kazakhstan calendar by @atj01 (#688).
+Nothing here yet.
+
+## v16.3.0 (2022-02-22)
+
+### New calendars
+
 - New calendar: Added Georgia (country) calendar by @atj01 (#687).
-- Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
-- Added Federal Thanksgiving Monday and two conditional holidays on 26th December
+- New calendar: Added Kazakhstan calendar by @atj01 (#688).
+- New calendar: Added USA Federal Reserve System calendar by @ludsoft (#695)
+
+### Bugfixes and other changes
+
+- Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
+- Documentation: Fix the ``keep_datetime`` usage example in the "basic" doc (#690).
+- Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
   and 2nd January in Neuchatel (Switzerland) (#697).
 - New calendar: Added Tunisia calendar by @macharmi (#702)
+- Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 
 ## v16.2.0 (2021-12-10)
 
