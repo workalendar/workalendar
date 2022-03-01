@@ -27,6 +27,16 @@ class TunisiaTest(GenericCalendarTest):
         self.assertIn(date(2013, 8, 8), holidays)  # Eid ul-fitr
         self.assertIn(date(2013, 8, 9), holidays)  # Eid ul-fitr next day
         self.assertIn(date(2013, 10, 15), holidays)  # Evacuation Day
+    
+
+    def test_year_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 3, 20), holidays)  # Independance Day
+        self.assertIn(date(2022, 7, 25), holidays)  # Republic Day
+        self.assertIn(date(2022, 10, 8), holidays)   # Milad un Nabi
+        self.assertIn(date(2022, 5, 3), holidays)  # Eid ul-fitr
+        self.assertIn(date(2022, 5, 4), holidays)  # Eid ul-fitr next day
+        self.assertIn(date(2022, 10, 15), holidays)  # Evacuation Day
 
     def test_revolution_day(self):
         holidays = self.cal.holidays_set(2013)
