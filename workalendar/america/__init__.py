@@ -29,6 +29,7 @@ from .mexico import Mexico
 from .panama import Panama
 from .paraguay import Paraguay
 from .argentina import Argentina
+from .el_salvador import ElSalvador
 
 
 __all__ = (
@@ -116,4 +117,5 @@ __all__ = (
     'Panama',
     'Paraguay',
     'Argentina',
+    'ElSalvador',
 )

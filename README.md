@@ -155,6 +155,7 @@ from the command line.
 - Canada (including provincial and territory holidays)
 - Chile
 - Colombia
+- El Salvador
 - Mexico
 - Panama
 - Paraguay
