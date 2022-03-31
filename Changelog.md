@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- New calendar: Added El Salvador calendar by @hersoncruz
 
 ## v16.3.0 (2022-02-22)
 
