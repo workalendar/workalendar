@@ -10,7 +10,7 @@ import sys
 
 import convertdate
 from dateutil import easter
-from lunardate import LunarDate
+from lunarcalendar import Lunar, DateNotExist
 
 from .exceptions import (
     UnsupportedDateType, CalendarError,
@@ -272,7 +272,7 @@ class LunarMixin:
     """
     @staticmethod
     def lunar(year, month, day):
-        return LunarDate(year, month, day).toSolarDate()
+        return Lunar(year, month, day, isleap=False).to_date()
 
 
 class ChineseNewYearMixin(LunarMixin):
