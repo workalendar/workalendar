@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
+- Replace `lunardate` GPL-3 dependency with `lunarcalendar` which is MIT licensed (#709)
 
 ## v17.0.0 (2023-01-01)
 
