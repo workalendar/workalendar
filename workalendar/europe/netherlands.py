@@ -15,9 +15,7 @@ class Netherlands(WesternCalendar):
     include_whit_monday = True
     include_boxing_day = True
 
-    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
-        (5, 5, "Liberation Day"),
-    )
+    FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS
 
     def __init__(self, include_carnival=False):
         self.include_carnival = include_carnival
@@ -51,9 +49,16 @@ class Netherlands(WesternCalendar):
             ) for i in range(n_days)
         ]
 
+    def get_liberation_day(self, year):
+        if year % 5 == 0:
+            return [(date(year, 5, 5), "Liberation day")]
+        else:
+            return []
+
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
         days.append(self.get_king_queen_day(year))
+        days.extend(self.get_liberation_day(year))
         if self.include_carnival:
             days.extend(self.get_carnival_days(year))
         return days
