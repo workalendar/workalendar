@@ -10,7 +10,7 @@ import sys
 
 import convertdate
 from dateutil import easter
-from lunarcalendar import Lunar, DateNotExist
+from lunarcalendar import Lunar
 
 from .exceptions import (
     UnsupportedDateType, CalendarError,
