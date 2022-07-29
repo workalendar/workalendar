@@ -195,3 +195,13 @@ class Thuringia(Germany):
     'Thuringia'
 
     all_time_include_reformation_day = True
+
+    def get_international_children_day(self, year):
+        day = date(year, 9, 20)
+        return day, "International Childrens's Day"
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        if year >= 2019:
+            days.append(self.get_international_children_day(year))
+        return days

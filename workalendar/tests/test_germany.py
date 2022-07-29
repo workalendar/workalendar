@@ -311,3 +311,15 @@ class ThuringiaTest(GermanyTest):
     def test_extra_2015(self):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 10, 31), holidays)
+
+    def test_extra_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 9, 20), holidays)
+
+    def test_extra_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 9, 20), holidays)
+
+    def test_extra_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 9, 20), holidays)
