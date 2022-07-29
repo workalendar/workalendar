@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Added International Children's Day 20th September in Thuringa (Germany) (#713).
 
 ## v16.3.0 (2022-02-22)
 
