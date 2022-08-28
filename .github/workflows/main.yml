@@ -1,4 +1,4 @@
-name: Automated Tests
+name: tests
 
 on: [push, pull_request]
 
@@ -6,32 +6,53 @@ jobs:
   test:
     strategy:
       matrix:
-        python: [3.6, 3.8, 3.9]
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        python:
+        - 3.7
+        - '3.10'
+        - '3.11'
+        platform:
+        - ubuntu-latest
+        - macos-latest
+        - windows-latest
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python }}
+          python-version: ${{ matrix.python }}-dev
       - name: Install tox
         run: |
           python -m pip install tox
       - name: Run tests
         run: tox
 
+  check:  # This job does nothing and is only used for the branch protection
+    if: always()
+
+    needs:
+    - test
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        jobs: ${{ toJSON(needs) }}
+
   release:
-    needs: test
+    needs:
+    - check
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: "3.11-dev"
       - name: Install tox
         run: |
           python -m pip install tox
