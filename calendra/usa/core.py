@@ -226,7 +226,7 @@ class UnitedStates(WesternCalendar):
             indication="Last Monday in May",
         )
 
-    def get_variable_days(self, year):
+    def get_variable_days(self, year):  # noqa: C901
         # usual variable days
         days = super().get_variable_days(year)
 

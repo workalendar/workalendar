@@ -24,7 +24,7 @@ class SouthAfrica(WesternCalendar):
             label = "Family Day"
         return (self.get_easter_monday(year), label)
 
-    def get_fixed_holidays(self, year):
+    def get_fixed_holidays(self, year):  # noqa: C901
         days = super().get_fixed_holidays(year)
         if year >= 1990:
             days.append((date(year, 3, 21), 'Human Rights Day'))

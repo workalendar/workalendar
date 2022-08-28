@@ -1189,7 +1189,7 @@ class IslamicMixin(SeriesShiftMixin, CalverterMixin):
     include_laylat_al_qadr = False
     include_nuzul_al_quran = False
 
-    def get_islamic_holidays(self):
+    def get_islamic_holidays(self):  # noqa: C901
         """Return a list of Islamic (month, day, label) for islamic holidays.
         Please take note that these dates must be expressed using the Islamic
         Calendar"""
