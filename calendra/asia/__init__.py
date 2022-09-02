@@ -7,6 +7,7 @@ from .singapore import Singapore
 from .south_korea import SouthKorea
 from .taiwan import Taiwan
 from .israel import Israel
+from .philippines import Philippines
 
 
 __all__ = (
@@ -21,4 +22,5 @@ __all__ = (
     'SouthKorea',
     'Taiwan',
     'Israel',
+    'Philippines'
 )

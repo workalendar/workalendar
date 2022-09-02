@@ -12,7 +12,7 @@ from ..core import (
     MON, TUE, THU, FRI, WED, SAT, SUN,
     ISO_TUE, ISO_FRI,
     Calendar, LunarMixin, WesternCalendar,
-    CalverterMixin, IslamicMixin, JalaliMixin,
+    CalverterMixin, IslamicMixin,
     daterange,
 )
 from ..exceptions import UnsupportedDateType, CalendarError
@@ -313,14 +313,6 @@ class ObservanceCalendarTest(CoreCalendarTest):
 
 class IslamicMixinTest(CoreCalendarTest):
     cal_class = IslamicMixin
-
-    def test_year_conversion(self):
-        days = self.cal.converted(2013)
-        self.assertEqual(len(days), 365)
-
-
-class JalaliMixinTest(CoreCalendarTest):
-    cal_class = JalaliMixin
 
     def test_year_conversion(self):
         days = self.cal.converted(2013)

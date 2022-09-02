@@ -1,3 +1,22 @@
+v7.4.0
+------
+
+Incorporate changes from workalendar v16.0.0 (2021-09-16)
+
+Calendars
+
+- New calendar: Added Philippines calendar by @micodls (#396)
+
+Internal
+
+- Remove `skyfield` dependency, added `[astronomy]` as extra dependency (#660).
+- Replace `pyCalverter` with `convertdate` (#536).
+- Remove unused `JalaliMixin`
+- Replace `pkg_resources` with `importlib_metadata` to fetch the version number in `__init__.py` (#657)
+- Added new badges (pypi, conda, license) and installation instructions (pip, conda) to readme file @sugatoray (#673).
+- Added the "Workalendar maintainers" in the LICENSE file.
+- Changed the maintainer email.
+
 v7.3.0
 ------
 

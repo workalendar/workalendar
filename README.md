@@ -8,6 +8,10 @@
 
 [![](https://readthedocs.org/projects/calendra/badge/?version=latest)](https://calendra.readthedocs.io/en/latest/?badge=latest)
 
+[![license](http://img.shields.io/pypi/l/workalendar.svg)](https://github.com/workalendar/workalendar/blob/master/LICENSE)
+[![pypi](http://img.shields.io/pypi/v/workalendar.svg)](https://pypi.python.org/pypi/workalendar)
+[![conda](https://img.shields.io/conda/v/conda-forge/workalendar?color=blue&logo=anaconda)](https://anaconda.org/conda-forge/workalendar)
+
 ## Overview
 
 Calendra is a Python module that offers classes able to handle calendars, list legal / religious holidays and gives working-day-related computation functions.
@@ -27,6 +31,34 @@ What can Calendra do that Workalendar cannot?
 - Allows the number of Holidays in a calendar year to be counted.
 - Consolidates observance logic in the core code rather than requiring
   each calendar implementation to implement its own.
+
+## Installation
+
+**With pip**
+
+```sh
+pip install workalendar
+```
+
+**With conda**
+
+```sh
+conda install -c conda-forge workalendar
+```
+
+### Extra dependencies
+
+**Note: NEW in v16.0.0**
+
+If the calendar(s) you want to work with requires astronomical computations (such as Asian calendars needing equinoxes or solar terms), Workalendar will provide pre-computed values within the year range from 1991 to 2051.
+
+However, if you want to use astronomical libraries to compute the calendar yourself, you'll need to install the `[astronomy]` extra dependency like this:
+
+```sh
+pip install workalendar[astronomy]
+```
+
+If you had previously installed the `skyfield` and `skyfield-data` packages, they'll be used to compute the calendars. If you want to benefit from the "astronomical cache", and eventually benefit from performance gains, you'll have to **uninstall** those packages first to fallback to pre-computed files.
 
 ## Status
 
@@ -151,6 +183,7 @@ from the command line.
 - Japan
 - JapanBank
 - Malaysia
+- Philippines
 - Qatar
 - Singapore
 - South Korea
@@ -181,6 +214,7 @@ And more to come (I hope!)
 
 Please take note that some calendars are not 100% accurate. The most common example is the Islamic calendar, where some computed holidays are not exactly on the same official day decided by religious authorities, and this may vary country by country. Whenever it's possible, try to adjust your results with the official data provided by the adequate authorities.
 
+Some countries have some holidays based on ephemerids and equinoxes. Those are computed for the previous and next 30 years to prevent big computations and dependencies.
 
 ## Contributing
 
