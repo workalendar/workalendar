@@ -1,8 +1,10 @@
 from datetime import date, timedelta, datetime
 from collections import Counter
+from unittest import TestCase
 
 from . import GenericCalendarTest
-from ..core import daterange, Holiday
+from ..core import daterange, ISO_SAT
+from ..core import Holiday
 from ..europe import (
     Austria,
     Bulgaria,
@@ -41,6 +43,14 @@ from ..europe import (
     UnitedKingdom,
     UnitedKingdomNorthernIreland,
     EuropeanCentralBank,
+)
+
+
+# Tests dedicated to Netherlands School holidays
+from ..europe.netherlands import (
+    SPRING_HOLIDAYS_EARLY_REGIONS,
+    SUMMER_HOLIDAYS_EARLY_REGIONS,
+    SUMMER_HOLIDAYS_LATE_REGIONS,
 )
 
 
@@ -1009,27 +1019,42 @@ class NetherlandsTest(GenericCalendarTest):
         self.assertNotIn(date(2016, 12, 31), holidays)
 
 
-class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(GenericCalendarTest):
+class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(TestCase):
 
-    cal_class = NetherlandsWithSchoolHolidays
-    kwargs = dict(region="east")
-
-    def setUp(self):
+    def test_instanciate_invalid_region(self):
         with self.assertRaises(ValueError) as cm:
-            super().setUp()
+            NetherlandsWithSchoolHolidays(region="east")
         assert "Set region" in str(cm.exception)
 
-    def test_weekend_days(self):
-        """Skip test as calendar setup is expected to fail"""
-        pass
+        with self.assertRaises(ValueError) as cm:
+            NetherlandsWithSchoolHolidays(region="")
+        assert "Set region" in str(cm.exception)
 
-    def test_january_1st(self):
-        """Skip test as calendar setup is expected to fail"""
-        pass
+    def test_instanciate_no_region(self):
+        with self.assertRaises(TypeError) as cm:
+            NetherlandsWithSchoolHolidays()
+        assert "missing 1 required positional argument" in str(cm.exception)
 
-    def test_ical_export(self):
-        """Skip test as calendar setup is expected to fail"""
-        pass
+
+class NetherlandsWithSchoolHolidaysInvalidRanges(TestCase):
+
+    def test_spring_holidays_invalid_range(self):
+        max_year = max(SPRING_HOLIDAYS_EARLY_REGIONS)
+        calendar = NetherlandsWithSchoolHolidays(region="north")
+        with self.assertRaises(NotImplementedError):
+            calendar.get_spring_holidays(max_year + 1)
+
+    def test_summer_early_holidays_invalid_range(self):
+        max_year = max(SUMMER_HOLIDAYS_EARLY_REGIONS)
+        calendar = NetherlandsWithSchoolHolidays(region="north")
+        with self.assertRaises(NotImplementedError):
+            calendar.get_summer_holidays(max_year + 1)
+
+    def test_summer_late_holidays_invalid_range(self):
+        max_year = max(SUMMER_HOLIDAYS_LATE_REGIONS)
+        calendar = NetherlandsWithSchoolHolidays(region="north")
+        with self.assertRaises(NotImplementedError):
+            calendar.get_summer_holidays(max_year + 1)
 
 
 class NetherlandsNorthWithSchoolHolidaysTest(GenericCalendarTest):
@@ -1123,6 +1148,49 @@ class NetherlandsNorthWithSchoolHolidaysTest(GenericCalendarTest):
                 "Christmas holiday",
                 holidays[christmas_holiday_start + timedelta(days=d)],
             )
+
+    def test_may_holidays_exceptions(self):
+        # In 2017, May holidays started on week 17 instead of 18
+
+        # First, make sure we have a coherent date for 2021
+        may_holidays_2021 = self.cal.get_may_holidays(2021)
+        start_2021 = may_holidays_2021[0][0]
+        self.assertEqual(
+            start_2021,
+            # Preceding SAT
+            self.cal.get_iso_week_date(2021, 18 - 1, ISO_SAT)
+        )
+
+        # Then, get the start date for 2017
+        may_holidays_2017 = self.cal.get_may_holidays(2017)
+        start_2017 = may_holidays_2017[0][0]
+        self.assertEqual(
+            start_2017,
+            # Preceding SAT
+            self.cal.get_iso_week_date(2017, 17 - 1, ISO_SAT)
+        )
+
+    def test_fall_holidays_exceptions(self):
+        # In 2024, May holidays start on week 44 instead of 43
+
+        # First, make sure we have a coherent date for 2019
+        # (using 2019 to avoid being in FALL_HOLIDAYS_EARLY_REGIONS)
+        fall_holidays_2019 = self.cal.get_fall_holidays(2019)
+        start_2019 = fall_holidays_2019[0][0]
+        self.assertEqual(
+            start_2019,
+            # Preceding SAT
+            self.cal.get_iso_week_date(2019, 43 - 1, ISO_SAT)
+        )
+
+        # Then, get the start date for 2024
+        fall_holidays_2024 = self.cal.get_fall_holidays(2024)
+        start_2024 = fall_holidays_2024[0][0]
+        self.assertEqual(
+            start_2024,
+            # Preceding SAT
+            self.cal.get_iso_week_date(2024, 44 - 1, ISO_SAT)
+        )
 
 
 class NetherlandsMiddleWithSchoolHolidaysTest(GenericCalendarTest):
@@ -1566,6 +1634,17 @@ class RussiaTest(GenericCalendarTest):
 
         self.assertTrue(self.cal.is_working_day(date(2021, 2, 19)))
         self.assertTrue(self.cal.is_working_day(datetime(2020, 2, 19)))
+
+    def test_labour_day_label(self):
+        # After 1992:
+        self.cal.get_fixed_holidays(2021)
+        self.assertEqual(
+            self.cal.labour_day_label, "The Day of Spring and Labour")
+
+        # Before 1992:
+        self.cal.get_fixed_holidays(1991)
+        self.assertEqual(
+            self.cal.labour_day_label, "International Workers' Day")
 
 
 class UkraineTest(GenericCalendarTest):

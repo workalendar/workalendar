@@ -2,7 +2,11 @@
 Astronomical functions
 """
 from math import pi, radians, tau
-import pytz
+try:
+    # As of Python 3.9, included in the stdlib
+    from zoneinfo import ZoneInfo
+except ImportError:  # pre-3.9
+    from backports.zoneinfo import ZoneInfo
 from skyfield.api import Loader
 from skyfield import almanac
 from skyfield_data import get_skyfield_data_path
@@ -19,7 +23,7 @@ newton_precision = second / 10
 
 def calculate_equinoxes(year, timezone='UTC'):
     """ calculate equinox with time zone """
-    tz = pytz.timezone(timezone)
+    tz = ZoneInfo(timezone)
 
     load = Loader(get_skyfield_data_path())
     ts = load.timescale()
@@ -42,19 +46,37 @@ def get_current_longitude(current_date, earth, sun):
     return longitude.radians
 
 
-def newton(f, x0, x1, precision=newton_precision):
+def newton(f, x0, x1, precision=newton_precision,
+           **func_kwargs):
     """Return an x-value at which the given function reaches zero.
 
     Stops and declares victory once the x-value is within ``precision``
     of the solution, which defaults to a half-second of clock time.
-
     """
-    f0, f1 = f(x0), f(x1)
+    f0, f1 = f(x0, **func_kwargs), f(x1, **func_kwargs)
     while f1 and abs(x1 - x0) > precision and f1 != f0:
         new_x1 = x1 + (x1 - x0) / (f0 / f1 - 1)
         x0, x1 = x1, new_x1
-        f0, f1 = f1, f(x1)
+        f0, f1 = f1, f(x1, **func_kwargs)
     return x1
+
+
+def newton_angle_function(t, ts, target_angle, body1, body2):
+    """
+    Compute the longitude of body2 relative to body1
+
+    In our case, it's Earth & Sun, but it could be used as any other
+    combination of solar system planets/bodies.
+    """
+    # We've got a float which is the `tt`
+    sky_tt = ts.tt_jd(t)
+    longitude = get_current_longitude(sky_tt, body1, body2)
+    result = target_angle - longitude
+    if result > pi:
+        result = result - pi
+    if result < -pi:
+        result = result + pi
+    return result
 
 
 def solar_term(year, degrees, timezone='UTC'):
@@ -80,7 +102,7 @@ def solar_term(year, degrees, timezone='UTC'):
     earth = planets['earth']
     sun = planets['sun']
     ts = load.timescale()
-    tz = pytz.timezone(timezone)
+    tz = ZoneInfo(timezone)
 
     jan_first = ts.utc(date(year, 1, 1))
     current_longitude = get_current_longitude(jan_first, earth, sun)
@@ -92,17 +114,6 @@ def solar_term(year, degrees, timezone='UTC'):
     # convert to "tt" and reconvert it back to a Time object
     t0 = ts.tt_jd(jan_first.tt + date_delta)
 
-    def f(t):
-        # We've got a float which is the `tt`
-        sky_tt = ts.tt_jd(t)
-        longitude = get_current_longitude(sky_tt, earth, sun)
-        result = target_angle - longitude
-        if result > pi:
-            result = result - pi
-        elif result < -pi:
-            result = result + pi
-        return result
-
     # Using datetimes to compute the next step date
     t0_plus_one_minute = t0.utc_datetime() + timedelta(minutes=1)
     # Back to Skyfield Time objects
@@ -113,7 +124,15 @@ def solar_term(year, degrees, timezone='UTC'):
     # Adding one minute to have a second boundary
     t0_plus_one_minute = t0_plus_one_minute.tt
     # Newton method to converge towards the target angle
-    t = newton(f, t0, t0_plus_one_minute)
+    t = newton(
+        newton_angle_function, t0, t0_plus_one_minute,
+        precision=newton_precision,
+        # Passed as kwargs to the angle function
+        ts=ts,
+        target_angle=target_angle,
+        body1=earth,
+        body2=sun,
+    )
     # Here we have a float to convert to julian days.
     t = ts.tt_jd(t)
     # To convert to datetime

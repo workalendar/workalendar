@@ -123,7 +123,7 @@ class GenericCalendarTest(CoreCalendarTest):
         assert file_contents == var_contents
 
         # If platform is Windows close the temp file descriptor
-        if system() == 'Windows':
+        if system() == 'Windows':  # pragma: no cover
             os.close(test_file_fd)
         # Remove the .ics file if this test passes
         test_path.unlink()

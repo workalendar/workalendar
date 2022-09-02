@@ -68,7 +68,9 @@ For a more complete documentation and advanced usage, go to [the official workal
 
 Calendra has been tested on the Python versions declared in setup.cfg.
 
-If you're using wheels, you should be fine without having to install extra system packages. As of `v7.0.0`, we have dropped `ephem` as a dependency for computing astronomical ephemeris in favor of `skyfield`. So if you had any trouble because of this new dependency, during the installation or at runtime, [do not hesitate to file an issue](https://github.com/peopledoc/workalendar/issues/).
+* If you're using \*Nix and Python 3.6, 3.7, 3.8, the package `backports.zoneinfo` is required
+* If you're using Windows and Python 3.6, 3.7, 3.8, the package `tzdata` is *also* a requirement (with the `backports.zoneinfo`).
+* If you're using Python 3.9+, the stdlib `zoneinfo` package will be used.
 
 ## Tests
 
