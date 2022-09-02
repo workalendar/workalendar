@@ -1,5 +1,5 @@
-Next
-----
+v7.1.0
+------
 
 Incorporate changes from workalendar v14.3.0 (2021-01-15)
 
@@ -23,7 +23,7 @@ Internal
 - Fix tests when running them on Windows (#607).
 
 v7.0.0
--------
+------
 
 New feature
 
