@@ -1056,18 +1056,18 @@ class Calendar(CoreCalendar):
 
 
 class WesternCalendar(WesternMixin, Calendar):
-    pass
+    """
+    A Christian calendar using Western definition for Easter.
+    """
 
 
 class OrthodoxCalendar(OrthodoxMixin, Calendar):
-    pass
+    """
+    A Christian calendar using Orthodox definition for Easter.
+    """
 
 
-class LunarCalendar(LunarMixin, Calendar):
-    pass
-
-
-class ChineseNewYearCalendar(ChineseNewYearMixin, LunarCalendar):
+class ChineseNewYearCalendar(ChineseNewYearMixin, Calendar):
     """
     Chinese Calendar, using Chinese New Year computation.
     """
