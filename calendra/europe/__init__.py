@@ -11,7 +11,9 @@ from .european_central_bank import EuropeanCentralBank
 from .denmark import Denmark
 from .finland import Finland
 from .france import France, FranceAlsaceMoselle
+from .georgia import Georgia
 from .greece import Greece
+from .guernsey import Guernsey
 from .hungary import Hungary
 from .iceland import Iceland
 from .ireland import Ireland
@@ -81,7 +83,9 @@ __all__ = (
     'Finland',
     'France',
     'FranceAlsaceMoselle',
+    'Georgia',
     'Greece',
+    'Guernsey',
     'Hungary',
     'Iceland',
     'Ireland',

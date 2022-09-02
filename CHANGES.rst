@@ -1,3 +1,30 @@
+v7.5.0
+------
+
+Incorporate changes from workalendar v16.3.0 (2022-02-22)
+
+Calendars
+
+- New calendar: Added Georgia (country) calendar by @atj01 (#687).
+- New calendar: Added Kazakhstan calendar by @atj01 (#688).
+- New calendar: Added USA Federal Reserve System calendar by @ludsoft (#695)
+
+Bugfixes and other changes
+
+- Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
+- Documentation: Fix the ``keep_datetime`` usage example in the "basic" doc (#690).
+- Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
+- Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
+
+Incorporate changes from workalendar v16.2.0 (2021-12-10)
+
+- Update China's public holidays for 2022, thx to @iamsk (#693).
+
+Incorporate changes from workalendar v16.1.0 (2021-10-01)
+
+- Fixed United Kingdom's 2022 holidays ; Spring Bank Holiday has been moved to the 3rd of June and Queen's Platinum Jubilee added to 2nd of June.
+- New calendar: Added Guernsey calendar by @ludsoft (#681)
+
 v7.4.0
 ------
 

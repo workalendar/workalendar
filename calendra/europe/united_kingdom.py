@@ -24,6 +24,7 @@ class UnitedKingdom(WesternCalendar):
         2002: [(date(2002, 6, 3), "Queen’s Golden Jubilee"), ],
         2011: [(date(2011, 4, 29), "Royal Wedding"), ],
         2012: [(date(2012, 6, 5), "Queen’s Diamond Jubilee"), ],
+        2022: [(date(2022, 6, 3), "Queen’s Platinum Jubilee bank holiday"), ],
     }
 
     def get_early_may_bank_holiday(self, year):
@@ -47,6 +48,8 @@ class UnitedKingdom(WesternCalendar):
             day = date(year, 6, 4)
         if year in (1977,):
             day = date(year, 6, 6)
+        if year == 2022:
+            day = date(year, 6, 2)
         return Holiday(
             day,
             "Spring Bank Holiday",

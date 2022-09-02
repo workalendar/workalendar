@@ -128,8 +128,10 @@ from the command line.
 - Finland
 - France
 - France (Alsace / Moselle)
+- Georgia
 - Germany
 - Greece
+- Guernsey
 - Hungary
 - Iceland
 - Ireland
@@ -174,6 +176,7 @@ from the command line.
   - Suffolk County, Massachusetts
   - California Education, Berkeley, San Francisco, West Hollywood
   - Florida Legal and Florida Circuit Courts, Miami-Dade
+  - Federal Reserve System
 
 ### Asia
 
@@ -182,6 +185,7 @@ from the command line.
 - Israel
 - Japan
 - JapanBank
+- Kazakhstan
 - Malaysia
 - Philippines
 - Qatar

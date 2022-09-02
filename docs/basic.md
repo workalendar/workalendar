@@ -96,10 +96,10 @@ Example:
 >>> cal.is_working_day(datetime(2012, 12, 25, 14, 0, 39))
 False
 >>> cal.add_working_days(datetime(2012, 12, 23, 14, 0, 39), 5)
-datetime.datetime(2012, 12, 31)
+datetime.date(2012, 12, 31)
 ```
 
-If you really need it, you can use the ``add_working_days()`` with an option that will keep the ``datetime`` type:
+You see that the default result type is ``datetime.date``. But if you really need it, you can use the ``keep_datetime`` option to return the result with the input type:
 
 ```python
 >>> from datetime import date, datetime

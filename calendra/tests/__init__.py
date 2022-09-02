@@ -1,7 +1,6 @@
 import os
 import tempfile
 import warnings
-import functools
 from datetime import date
 from pathlib import Path
 from unittest import TestCase
@@ -24,19 +23,6 @@ class CoreCalendarTest(TestCase):
         self.cal = self.cal_class(**self.kwargs)
 
 
-def china_xfail(func):
-    @functools.wraps(func)
-    def wrapper(self):
-        try:
-            func(self)
-        except Exception:
-            pytest.xfail("Fails in 2022")
-        else:
-            if self.cal_class.__name__ == "China":
-                pytest.fail("Did not raise")
-    return wrapper
-
-
 class GenericCalendarTest(CoreCalendarTest):
     test_include_january_1st = True
 
@@ -53,7 +39,6 @@ class GenericCalendarTest(CoreCalendarTest):
         except NotImplementedError:
             assert False, (self.cal, class_name)
 
-    @china_xfail
     def test_january_1st(self):
         class_name = self.cal_class.__name__
         if class_name in ['Calendar']:
