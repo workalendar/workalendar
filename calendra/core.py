@@ -1,12 +1,11 @@
 """
 Working day tools
 """
-import os
-from os.path import isdir
 import warnings
 
 from calendar import monthrange
 from datetime import date, timedelta, datetime
+from pathlib import Path
 
 from calverter import Calverter
 from dateutil import easter
@@ -43,7 +42,8 @@ def cleaned_date(day, keep_datetime=False):
     """
     if not isinstance(day, (date, datetime)):
         raise UnsupportedDateType(
-            "`{}` is of unsupported type ({})".format(day, type(day)))
+            f"`{day}` is of unsupported type ({type(day)})"
+        )
     if not keep_datetime:
         if hasattr(day, 'date') and callable(day.date):
             day = day.date()
@@ -422,7 +422,8 @@ class CalverterMixin:
 
     def converted(self, year):
         conversion_method = getattr(
-            self.calverter, 'jd_to_%s' % self.conversion_method)
+            self.calverter, f'jd_to_{self.conversion_method}'
+        )
         current = date(year, 1, 1)
         days = []
         while current.year == year:
@@ -436,8 +437,7 @@ class CalverterMixin:
 
     def calverted_years(self, year):
         converted = self.converted(year)
-        generator = (y for y, m, d in converted)
-        return sorted(list(set(generator)))
+        return sorted({y for y, m, d in converted})
 
     def get_islamic_holidays(self):
         return self.ISLAMIC_HOLIDAYS
@@ -456,7 +456,7 @@ class CalverterMixin:
         days = super().get_variable_days(year)
         years = self.calverted_years(year)
         conversion_method = getattr(
-            self.calverter, '%s_to_jd' % self.conversion_method)
+            self.calverter, f'{self.conversion_method}_to_jd')
         for month, day, label in self.get_islamic_holidays():
             for y in years:
                 jd = conversion_method(y, month, day)
@@ -594,8 +594,7 @@ class CoreCalendar:
     def get_holiday_label(self, day):
         """Return the label of the holiday, if the date is a holiday"""
         day = cleaned_date(day)
-        return {day: label for day, label in self.holidays(day.year)
-                }.get(day)
+        return {day: label for day, label in self.holidays(day.year)}.get(day)
 
     def get_observed_date(self, holiday):
         """
@@ -938,7 +937,7 @@ class CoreCalendar:
         --------
         >>> from calendra.europe import Austria
         >>> cal = Austria()
-        >>> cal._get_ical_target_path('austria')
+        >>> str(cal._get_ical_target_path('austria'))
         'austria.ics'
         """
 
@@ -946,14 +945,16 @@ class CoreCalendar:
             raise ICalExportTargetPathError(
                 "Incorrect target path. It must not be empty")
 
-        if isdir(target_path):
+        target_path = Path(target_path)
+
+        if target_path.is_dir():
             raise ICalExportTargetPathError(
                 "Incorrect target path. It must not be a directory"
             )
 
         ical_extensions = ['.ical', '.ics', '.ifb', '.icalendar']
-        if os.path.splitext(target_path)[1] not in ical_extensions:
-            target_path += '.ics'
+        if target_path.suffix not in ical_extensions:
+            target_path = target_path.with_name(target_path.name + '.ics')
         return target_path
 
     def export_to_ical(self, period=[2000, 2030], target_path=None):
@@ -966,7 +967,7 @@ class CoreCalendar:
             start and end year (inclusive) of calendar
             Default is [2000, 2030]
 
-        target_path: str
+        target_path: str or pathlib.Path
             the name or path of the exported file. If this argument is missing,
             the function will return the ical content.
 
@@ -987,16 +988,15 @@ class CoreCalendar:
             'VERSION:2.0',  # current RFC5545 version
             f'PRODID:-//workalendar//ical {__version__}//EN'
         ]
-        common_timestamp = datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
-        dtstamp = 'DTSTAMP;VALUE=DATE-TIME:%s' % common_timestamp
+        dtstamp = f'DTSTAMP;VALUE=DATE-TIME:{datetime.utcnow():%Y%m%dT%H%M%SZ}'
 
         # add an event for each holiday
         for holiday in holidays:
             date_ = self.get_observed_date(holiday)
             ics.extend([
                 'BEGIN:VEVENT',
-                'SUMMARY:%s' % holiday.name,
-                'DTSTART;VALUE=DATE:%s' % date_.strftime('%Y%m%d'),
+                f'SUMMARY:{holiday.name}',
+                f'DTSTART;VALUE=DATE:{date_:%Y%m%d}',
                 dtstamp,
                 f'UID:{date_}{holiday.name}@peopledoc.github.io/workalendar',
                 'END:VEVENT',
@@ -1010,7 +1010,7 @@ class CoreCalendar:
 
         if target_path:
             # save iCal file
-            with open(target_path, 'w+') as export_file:
+            with target_path.open('w+') as export_file:
                 export_file.write(ics)
             return
 

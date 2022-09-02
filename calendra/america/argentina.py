@@ -46,9 +46,10 @@ class Argentina(WesternCalendar):
         else:
             general_guemes_day
 
-        return (general_guemes_day,
-                "Día Paso a la Inmortalidad del " +
-                "General Martín Miguel de Güemes")
+        return (
+            general_guemes_day,
+            "Día Paso a la Inmortalidad del General Martín Miguel de Güemes"
+        )
 
     def get_general_martin_day(self, year):
         """
@@ -60,9 +61,10 @@ class Argentina(WesternCalendar):
             year, 8, MON, 3
         )
 
-        return (general_martin_day,
-                "Día Paso a la Inmortalidad del " +
-                "Gral. José de San Martín")
+        return (
+            general_martin_day,
+            "Día Paso a la Inmortalidad del Gral. José de San Martín"
+        )
 
     def get_soberania_day(self, year):
         """
@@ -78,7 +80,7 @@ class Argentina(WesternCalendar):
             year, 11, MON, n=3, start=first_friday_november
         )
 
-        return (soberania_day, "Día de la Soberanía Nacional")
+        return soberania_day, "Día de la Soberanía Nacional"
 
     def get_diversidad_day(self, year):
         """
@@ -123,7 +125,7 @@ class Argentina(WesternCalendar):
             day = date(year, 3, 31)
         else:
             day = date(year, 4, 2)
-        return (day, label)
+        return day, label
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

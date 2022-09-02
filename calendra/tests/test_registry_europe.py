@@ -37,8 +37,7 @@ from ..europe import (
 
 from ..registry import registry
 
-classes = (v for k, v in registry.region_registry.items())
-classes = list(classes)
+classes = set(registry.region_registry.values())
 
 GERMANY_REGION_CLASSES = (
     BadenWurttemberg, Bavaria, Berlin, Brandenburg, Bremen,
@@ -110,22 +109,19 @@ class RegistryEurope(TestCase):
 
     def test_germany_subregions(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('DE').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('DE').values())
         for klass in GERMANY_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_switzerland_subregions(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('CH').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('CH').values())
         for klass in SWITZERLAND_REGION_CLASSES:
             self.assertIn(klass, classes)
 
     def test_spain_subregions(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('ES').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('ES').values())
         for klass in SPAIN_REGION_CLASSES:
             self.assertIn(klass, classes)
 

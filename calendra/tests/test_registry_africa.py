@@ -13,8 +13,7 @@ from ..registry import registry
 
 class RegistryAfrica(TestCase):
     def test_africa(self):
-        classes = (v for k, v in registry.region_registry.items())
-        classes = list(classes)
+        classes = set(registry.region_registry.values())
         self.assertIn(Algeria, classes)
         self.assertIn(Benin, classes)
         self.assertIn(IvoryCoast, classes)

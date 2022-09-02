@@ -34,7 +34,7 @@ class LateFamilyDayMixin:
     "3rd Monday of February"
 
     def get_family_day(self, year, label="Family Day"):
-        return (self.get_nth_weekday_in_month(year, 2, MON, 3), label)
+        return self.get_nth_weekday_in_month(year, 2, MON, 3), label
 
 
 class VictoriaDayMixin:
@@ -43,14 +43,14 @@ class VictoriaDayMixin:
     def get_victoria_day(self, year):
         for day in range(18, 25):
             if date(year, 5, day).weekday() == MON:
-                return (date(year, 5, day), "Victoria Day")
+                return date(year, 5, day), "Victoria Day"
 
 
 class AugustCivicHolidayMixin:
     "1st Monday of August; different names depending on location"
 
     def get_civic_holiday(self, year, label="Civic Holiday"):
-        return (self.get_nth_weekday_in_month(year, 8, MON), label)
+        return self.get_nth_weekday_in_month(year, 8, MON), label
 
 
 class ThanksgivingMixin:
@@ -58,7 +58,7 @@ class ThanksgivingMixin:
 
     def get_thanksgiving(self, year):
         thanksgiving = self.get_nth_weekday_in_month(year, 10, MON, 2)
-        return (thanksgiving, "Thanksgiving")
+        return thanksgiving, "Thanksgiving"
 
 
 class BoxingDayMixin:
@@ -159,8 +159,8 @@ class BritishColumbia(VictoriaDayMixin, AugustCivicHolidayMixin,
         """
         label = "Family Day"
         if year >= 2019:
-            return (self.get_nth_weekday_in_month(year, 2, MON, 3), label)
-        return (self.get_nth_weekday_in_month(year, 2, MON, 2), label)
+            return self.get_nth_weekday_in_month(year, 2, MON, 3), label
+        return self.get_nth_weekday_in_month(year, 2, MON, 2), label
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

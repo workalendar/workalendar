@@ -100,13 +100,13 @@ class FloridaLegal(Florida):
         """
         Confederation memorial day is on the April 26th for Florida Legal.
         """
-        return (date(year, 4, 26), "Confederate Memorial Day")
+        return date(year, 4, 26), "Confederate Memorial Day"
 
     def get_jefferson_davis_birthday(self, year):
         """
         Jefferson Davis Birthday appears to be a fixed holiday (June 3rd)
         """
-        return (date(year, 6, 3), "Jefferson Davis Birthday")
+        return date(year, 6, 3), "Jefferson Davis Birthday"
 
 
 class FloridaCircuitCourts(HebrewHolidays, Florida):

@@ -197,7 +197,7 @@ class SpringHolidayTestCase(TestCase):
             include_spring_holiday = True
 
             def get_spring_holiday(self, year):
-                return (date(year, 1, 1), "Spring Holiday")
+                return date(year, 1, 1), "Spring Holiday"
 
         cal = FakeCalendar()
         self.assertTrue(cal.holidays_set(2018))
@@ -218,7 +218,7 @@ class VictoriaDayTestCase(TestCase):
             include_victoria_day = True
 
             def get_victoria_day(self, year):
-                return (date(year, 1, 1), "Victoria Day")
+                return date(year, 1, 1), "Victoria Day"
 
         cal = FakeCalendar()
         self.assertTrue(cal.holidays_set(2018))
@@ -239,7 +239,7 @@ class FairHolidayTestCase(TestCase):
             include_fair_holiday = True
 
             def get_fair_holiday(self, year):
-                return (date(year, 1, 1), "Fair Holiday")
+                return date(year, 1, 1), "Fair Holiday"
 
         cal = FakeCalendar()
         self.assertTrue(cal.holidays_set(2018))
@@ -260,7 +260,7 @@ class AutumnHolidayTestCase(TestCase):
             include_autumn_holiday = True
 
             def get_autumn_holiday(self, year):
-                return (date(year, 1, 1), "Autumn Holiday")
+                return date(year, 1, 1), "Autumn Holiday"
 
         cal = FakeCalendar()
         self.assertTrue(cal.holidays_set(2018))

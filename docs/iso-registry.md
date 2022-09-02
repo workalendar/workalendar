@@ -10,7 +10,7 @@ As of version 3.0 (August/September 2018), we have introduced a global calendar 
 >>> from workalendar.registry import registry
 >>> calendars = registry.get_calendars()  # This returns a dictionary
 >>> for code, calendar_class in calendars.items():
-...     print("`{}` is code for '{}'".format(code, calendar_class.name))
+...     print(f"`{code}` is code for {calendar_class.name!r}")
 `AT` is code for 'Austria'
 `BE` is code for 'Belgium'
 `BG` is code for 'Bulgaria'

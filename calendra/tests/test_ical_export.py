@@ -1,6 +1,5 @@
 import tempfile
-import os
-from os.path import join
+from pathlib import Path
 
 from ..core import Calendar
 from ..exceptions import ICalExportRangeError, ICalExportTargetPathError
@@ -111,31 +110,40 @@ class ICalExportTargetPath(CoreCalendarTest):
             self.cal._get_ical_target_path(None)
 
     def test_target_is_directory(self):
-        temp_dir = join(tempfile.gettempdir(), "failed_ical_tests")
-        os.makedirs(temp_dir, exist_ok=True)
+        temp_dir = Path(tempfile.gettempdir()) / "failed_ical_tests"
+        temp_dir.mkdir(parents=True, exist_ok=True)
 
         with self.assertRaises(ICalExportTargetPathError):
             self.cal._get_ical_target_path(temp_dir)
 
     def test_no_extension(self):
         # Relative paths
-        self.assertEqual(self.cal._get_ical_target_path("a"), "a.ics")
-        self.assertEqual(self.cal._get_ical_target_path("a/b"), "a/b.ics")
+        self.assertEqual(self.cal._get_ical_target_path("a"), Path("a.ics"))
+        self.assertEqual(
+            self.cal._get_ical_target_path("a/b"),
+            Path("a/b.ics")
+        )
         # Absolute path
         self.assertEqual(
             self.cal._get_ical_target_path("/path/to/a"),
-            "/path/to/a.ics"
+            Path("/path/to/a.ics")
         )
 
     def test_known_extensions(self):
         for ext in ('ical', 'ics', 'ifb', 'icalendar'):
-            filename = f"a.{ext}"
+            filename = Path(f"a.{ext}")
             self.assertEqual(
                 self.cal._get_ical_target_path(filename),
                 filename
             )
 
     def test_added_extensions(self):
-        self.assertEqual(self.cal._get_ical_target_path('a.'), 'a..ics')
-        self.assertEqual(self.cal._get_ical_target_path('a.txt'), 'a.txt.ics')
-        self.assertEqual(self.cal._get_ical_target_path('.test'), '.test.ics')
+        self.assertEqual(self.cal._get_ical_target_path('a.'), Path('a..ics'))
+        self.assertEqual(
+            self.cal._get_ical_target_path('a.txt'),
+            Path('a.txt.ics')
+        )
+        self.assertEqual(
+            self.cal._get_ical_target_path('.test'),
+            Path('.test.ics')
+        )

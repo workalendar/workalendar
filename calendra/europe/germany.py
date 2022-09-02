@@ -44,7 +44,7 @@ class Germany(WesternCalendar):
         depending on the Länder or the year (see #150).
         """
         day = date(year, 10, 31)
-        return (day, "Reformation Day")
+        return day, "Reformation Day"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -78,11 +78,11 @@ class Berlin(Germany):
 
     def get_international_womens_day(self, year):
         day = date(year, 3, 8)
-        return (day, "International Women's Day")
+        return day, "International Women's Day"
 
     def get_liberation_day(self, year):
         day = date(year, 5, 8)
-        return (day, "Liberation Day")
+        return day, "Liberation Day"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)
@@ -168,7 +168,7 @@ class Saxony(Germany):
         day = date(year, 11, 22)
         while day.weekday() != 2:  # 2=Wednesday
             day -= timedelta(days=1)
-        return (day, "Repentance Day")
+        return day, "Repentance Day"
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

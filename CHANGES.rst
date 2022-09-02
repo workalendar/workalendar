@@ -1,3 +1,27 @@
+Next
+----
+
+Incorporate changes from workalendar v14.3.0 (2021-01-15)
+
+Calendars
+
+- Update Malaysia 2022-2024 (Deepavali + Thaipusam) by @jack-pace
+
+Incorporate changes from workalendar v14.2.0 (2021-01-08)
+
+Calendars
+
+- Update Singapore for range from 2022 to 2030 (Deepavali), by @hprobotic
+
+Internal
+
+- Replace `os.path.*` calls with `pathlib.Path`, thx to @eumiro (#603)
+- Use f-string for string formatting, thx to @eumiro (#605)
+- Simplify collections handling, thx to @eumiro (#606)
+- Use integers for time units divisions, thx to @eumiro
+- Adding Mac OS & Windows tests to the test matrix (related to #607).
+- Fix tests when running them on Windows (#607).
+
 v7.0.0
 -------
 

@@ -102,7 +102,7 @@ class UnitedStates(WesternCalendar):
         """
         Return the Election Day
         """
-        return (self.get_election_date(year), self.election_day_label)
+        return self.get_election_date(year), self.election_day_label
 
     def get_thanksgiving_friday(self, year):
         """
@@ -110,14 +110,14 @@ class UnitedStates(WesternCalendar):
         """
         thanksgiving = UnitedStates.get_nth_weekday_in_month(year, 11, THU, 4)
         thanksgiving_friday = thanksgiving + timedelta(days=1)
-        return (thanksgiving_friday, self.thanksgiving_friday_label)
+        return thanksgiving_friday, self.thanksgiving_friday_label
 
     def get_confederate_day(self, year):
         """
         Confederate memorial day is on the 4th MON of April.
         """
         day = self.get_nth_weekday_in_month(year, 4, MON, 4)
-        return (day, "Confederate Memorial Day")
+        return day, "Confederate Memorial Day"
 
     def get_jefferson_davis_birthday(self, year):
         """
@@ -136,6 +136,9 @@ class UnitedStates(WesternCalendar):
         return date(year, 1, 1) + rd.relativedelta(weekday=rd.MO(3))
 
     def get_martin_luther_king_day(self, year):
+        """
+        Return holiday record for Martin Luther King Jr. Day.
+        """
         return Holiday(
             self.get_martin_luther_king_date(year),
             self.martin_luther_king_label,
@@ -143,6 +146,11 @@ class UnitedStates(WesternCalendar):
         )
 
     def get_presidents_day(self, year):
+        """
+        Presidents Day is on the 3rd MON of February
+
+        May be called Washington's or Lincoln's birthday
+        """
         return Holiday(
             date(year, 2, 1) + rd.relativedelta(weekday=rd.MO(3)),
             self.presidents_day_label,
@@ -161,7 +169,7 @@ class UnitedStates(WesternCalendar):
 
     def get_patriots_day(self, year):
         """3rd Monday of April"""
-        return (self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day")
+        return self.get_nth_weekday_in_month(year, 4, MON, 3), "Patriots Day"
 
     def get_washington_birthday_december(self, year):
         """
@@ -183,9 +191,14 @@ class UnitedStates(WesternCalendar):
             day = date(year, 12, 23)  # THU
         else:  # christmas_day == SUN:
             day = date(year, 12, 23)  # FRI
-        return (day, self.label_washington_birthday_december)
+        return day, self.label_washington_birthday_december
 
     def get_columbus_day(self, year):
+        """
+        Columbus day is on the 2nd MON of October.
+
+        Only half of the states recognize it.
+        """
         return Holiday(
             date(year, 10, 1) + rd.relativedelta(weekday=rd.MO(2)),
             self.columbus_day_label,
@@ -201,7 +214,7 @@ class UnitedStates(WesternCalendar):
         * Missouri,
         * New York
         """
-        return (date(year, 2, 12), "Lincoln's Birthday")
+        return date(year, 2, 12), "Lincoln's Birthday"
 
     def get_inauguration_date(self, year):
         """
@@ -300,6 +313,11 @@ class UnitedStates(WesternCalendar):
         return days
 
     def get_veterans_day(self, year):
+        """
+        Return Veterans Day (November 11th).
+
+        Placed here because some States are renaming it.
+        """
         return Holiday(
             date(year, 11, 11),
             self.veterans_day_label,

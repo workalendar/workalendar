@@ -33,8 +33,7 @@ AUSTRALIAN_TERRITORIES = (
 
 class RegistryOceania(TestCase):
     def test_oceania(self):
-        classes = (v for k, v in registry.region_registry.items())
-        classes = list(classes)
+        classes = set(registry.region_registry.values())
         self.assertIn(Australia, classes)
         self.assertIn(MarshallIslands, classes)
         self.assertIn(NewZealand, classes)
@@ -43,7 +42,6 @@ class RegistryOceania(TestCase):
 
     def test_australia_territories(self):
         # Get all the subregions
-        classes = (v for k, v in registry.get_subregions('AU').items())
-        classes = list(classes)
+        classes = set(registry.get_subregions('AU').values())
         for klass in AUSTRALIAN_TERRITORIES:
             self.assertIn(klass, classes)

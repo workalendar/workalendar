@@ -59,7 +59,7 @@ class Kenya(IslamoWesternCalendar):
                     label != self.day_of_sacrifice_label):
                 yield (
                     holiday + timedelta(days=1),
-                    label + ' Shift'
+                    f'{label} Shift'
                 )
 
     def get_calendar_holidays(self, year):

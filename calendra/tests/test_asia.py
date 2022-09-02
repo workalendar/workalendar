@@ -299,7 +299,7 @@ class HongKongTest(GenericCalendarTest):
 
     def test_no_duplicate_days(self):
         holidays = self.cal.holidays(2021)
-        labels = list(day[1] for day in holidays)
+        labels = [day[1] for day in holidays]
         labels_dedup = list(set(labels))
         assert sorted(labels) == sorted(labels_dedup)
 
@@ -444,12 +444,8 @@ class MalaysiaTest(GenericCalendarTest):
         self.assertEqual(holidays[deepavali], "Deepavali")
 
     def test_msia_thaipusam(self):
-        years = self.cal.MSIA_THAIPUSAM.keys()
-        # we only have them for years 2010-2021
-        self.assertEqual(
-            set(years),
-            set(range(2010, 2022))
-        )
+        # we only have them for years 2010-2024
+        self.assertEqual(set(self.cal.MSIA_THAIPUSAM), set(range(2010, 2025)))
 
     def test_missing_deepavali(self):
         save_2020 = self.cal.MSIA_DEEPAVALI[2020]

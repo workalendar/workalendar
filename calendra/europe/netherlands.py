@@ -33,13 +33,13 @@ class Netherlands(SeriesShiftMixin, WesternCalendar):
         if year > 2013:
             king_day = date(year, 4, 27)
             if king_day.weekday() != SUN:
-                return (king_day, "King's day")
-            return (king_day - timedelta(days=1), "King's day")
+                return king_day, "King's day"
+            return king_day - timedelta(days=1), "King's day"
         else:
             queen_day = date(year, 4, 30)
             if queen_day.weekday() != SUN:
-                return (queen_day, "Queen's day")
-            return (queen_day - timedelta(days=1), "Queen's day")
+                return queen_day, "Queen's day"
+            return queen_day - timedelta(days=1), "Queen's day"
 
     def get_carnival_days(self, year):
         """Carnival starts 7 weeks before Easter Sunday and lasts 3 days."""
@@ -167,7 +167,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in FALL_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown fall holidays for %d." % year)
+            raise NotImplementedError(f"Unknown fall holidays for {year}.")
 
         return [
             (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
@@ -256,7 +256,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in SPRING_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown spring holidays for %d." % year)
+            raise NotImplementedError(f"Unknown spring holidays for {year}.")
 
         return [
             (
@@ -320,14 +320,14 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             if self.region in SUMMER_HOLIDAYS_EARLY_REGIONS[year]:
                 start = start - timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown summer holidays for %d." % year)
+            raise NotImplementedError(f"Unknown summer holidays for {year}.")
 
         # Some regions have their summer holiday 1 week later
         try:
             if self.region in SUMMER_HOLIDAYS_LATE_REGIONS[year]:
                 start = start + timedelta(weeks=1)
         except KeyError:
-            raise NotImplementedError("Unknown summer holidays for %d." % year)
+            raise NotImplementedError(f"Unknown summer holidays for {year}.")
 
         return [
             (

@@ -239,7 +239,7 @@ class Edinburgh(Scotland):
             spring_holiday = self.get_nth_weekday_in_month(
                 year, 4, MON, 2)
 
-        return (spring_holiday, self.spring_holiday_label)
+        return spring_holiday, self.spring_holiday_label
 
     def get_victoria_day(self, year):
         """
@@ -253,7 +253,7 @@ class Edinburgh(Scotland):
         # current weekday (starting at 0), or 7 days before the May 24th
         shift = may_24th.weekday() or 7
         victoria_day = may_24th - timedelta(days=shift)
-        return (victoria_day, "Victoria Day")
+        return victoria_day, "Victoria Day"
 
     def get_autumn_holiday(self, year):
         """

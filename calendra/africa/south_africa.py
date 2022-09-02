@@ -22,7 +22,7 @@ class SouthAfrica(WesternCalendar):
             label = "Easter Monday"
         else:
             label = "Family Day"
-        return (self.get_easter_monday(year), label)
+        return self.get_easter_monday(year), label
 
     def get_fixed_holidays(self, year):  # noqa: C901
         days = super().get_fixed_holidays(year)
@@ -115,7 +115,7 @@ class SouthAfrica(WesternCalendar):
                          "Settlers' Day"))
         return days
 
-    def get_calendar_holidays(self, year):
+    def get_calendar_holidays(self, year):  # noqa: C901
         days = super().get_calendar_holidays(year)
 
         # Other one-offs. Don't shift these

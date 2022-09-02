@@ -41,7 +41,7 @@ class Indiana(UnitedStates):
             day = date(year, 12, 23)  # THU
         else:  # christmas_day == SUN:
             day = date(year, 12, 23)  # FRI
-        return (day, self.label_washington_birthday_december)
+        return day, self.label_washington_birthday_december
 
     def get_primary_election_day(self, year):
         """
