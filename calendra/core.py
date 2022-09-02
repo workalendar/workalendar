@@ -614,7 +614,11 @@ class CoreCalendar:
             return shift(holiday, self)
         shift = shift or {}
         delta = rd.relativedelta(**shift)
-        should_shift = holiday.weekday() in self.get_weekend_days()
+        try:
+            weekend_days = self.get_weekend_days()
+        except NotImplementedError:
+            weekend_days = ()
+        should_shift = holiday.weekday() in weekend_days
         shifted = holiday + delta if should_shift else holiday
         precedent = getattr(holiday, 'observe_after', None)
         while precedent and shifted <= self.get_observed_date(precedent):
