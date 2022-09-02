@@ -7,7 +7,6 @@ import warnings
 
 from calendar import monthrange
 from datetime import date, timedelta, datetime
-from typing import Optional, List
 
 from calverter import Calverter
 from dateutil import easter
@@ -19,7 +18,7 @@ from .exceptions import (
     ICalExportRangeError, ICalExportTargetPathError
 )
 from . import __version__
-from .holiday import Holiday
+from .holiday import Holiday, SeriesShiftMixin
 
 MON, TUE, WED, THU, FRI, SAT, SUN = range(7)
 
@@ -587,63 +586,6 @@ class Calendar(CoreCalendar):
                     self.find_following_working_day(new_year),
                     "New Year shift"))
         return days
-
-
-class SeriesShiftMixin:
-    """
-    "Series" holidays like the two Islamic Eid's or Chinese Spring Festival span
-    multiple days. If one of these days encounters a non-zero observance_shift,
-    we need to apply that shift to all subsequent members of the series.
-
-    Packagin as a standalone Mixin ensure that the logic can be applied as
-    needed *after* any default shift is applied.
-    """
-    series_requiring_shifts: Optional[List[str]] = None
-    """
-    A list of all holiday labels that require series shifting to be applied.
-    """
-
-    def get_calendar_holidays(self, year):
-        """
-        The point at which any shift occurs is year-specific.
-        """
-        days = super().get_calendar_holidays(year)
-        series_shift = {series: None for series in self.series_requiring_shifts}
-        holidays = []
-        for holiday, label in days:
-            #
-            # Make a year-specific copy in case we have to attach a shift.
-            #
-            holiday = Holiday(holiday, label)
-            #
-            # For either Eid series, apply the shift to all days in the
-            # series after the first shift.
-            #
-            if label in series_shift:
-                shifted = self.get_observed_date(holiday)
-                if series_shift[holiday.name] is None and shifted.day != holiday.day:
-
-                    def observance_shift_for_series(holiday, calendar):
-                        """
-                        Taking an existing holiday, return a 'shifted' day based
-                        on delta in the current year's closure.
-                        """
-                        return holiday + delta
-
-                    delta = date(shifted.year, shifted.month, shifted.day) - \
-                        date(holiday.year, holiday.month, holiday.day)
-                    #
-                    # Learn the observance_shift for all subsequent days in the
-                    # series.
-                    #
-                    series_shift[holiday.name] = observance_shift_for_series
-                elif series_shift[holiday.name] is not None:
-                    #
-                    # Apply the learned observance_shift.
-                    #
-                    holiday.observance_shift = series_shift[holiday.name]
-            holidays.append(holiday)
-        return holidays
 
 
 class ChristianMixin:
