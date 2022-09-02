@@ -1,4 +1,6 @@
-from ..core import ChineseNewYearCalendar
+from datetime import date
+
+from ..core import ChineseNewYearCalendar, cleaned_date
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
@@ -13,6 +15,12 @@ class Taiwan(ChineseNewYearCalendar):
     )
     include_chinese_new_year_eve = True
     include_chinese_second_day = True
+
+    def is_working_day(self, day, *args, **kwargs):
+        day = cleaned_date(day)
+        if day in (date(2021, 2, 20), date(2021, 9, 11)):
+            return True
+        return super().is_working_day(day, *args, **kwargs)
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

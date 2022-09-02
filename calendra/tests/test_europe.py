@@ -113,28 +113,103 @@ class BelarusTest(GenericCalendarTest):
 class BulgariaTest(GenericCalendarTest):
     cal_class = Bulgaria
 
-    def test_year_2016(self):
-        holidays = self.cal.holidays_set(2016)
-        self.assertIn(date(2016, 1, 1), holidays)   # New Year's Day
-        self.assertIn(date(2016, 3, 3), holidays)   # Liberation Day
-        self.assertIn(date(2016, 3, 27), holidays)   # Easter Sun
-        self.assertIn(date(2016, 3, 28), holidays)   # Easter Mon
-        self.assertIn(date(2016, 5, 1), holidays)   # International Workers'
-        self.assertIn(date(2016, 5, 6), holidays)   # St George's Day
-        self.assertIn(date(2016, 5, 24), holidays)   # St Cyril & Methodius
-        self.assertIn(date(2016, 9, 6), holidays)   # Unification Day
-        self.assertIn(date(2016, 9, 22), holidays)   # Independence Day
-        self.assertIn(date(2016, 12, 24), holidays)   # Christmas Eve
-        self.assertIn(date(2016, 12, 25), holidays)   # Christmas 1
-        self.assertIn(date(2016, 12, 26), holidays)   # Christmas 2
-        # Non-attendance day for schools, otherwise a working day.
-        self.assertNotIn(date(2016, 11, 1), holidays)   # National Awakening
-
     def test_labour_day_label(self):
         holidays = self.cal.holidays(2020)
         holidays = dict(holidays)
         self.assertEqual(
             holidays[date(2020, 5, 1)], "International Workers' Day")
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2019, 3, 3), holidays)  # Liberation Day
+        self.assertIn(date(2019, 3, 4), holidays)  # Liberation Day (shift)
+
+        self.assertIn(date(2019, 4, 26), holidays)  # Good Friday
+        self.assertIn(date(2019, 4, 27), holidays)  # Holy Saturday
+        self.assertIn(date(2019, 4, 28), holidays)  # Easter day (sunday)
+        self.assertIn(date(2019, 4, 29), holidays)  # Easter Monday
+
+        self.assertIn(date(2019, 5, 1), holidays)  # International Workers' day
+        self.assertIn(date(2019, 5, 6), holidays)  # St George's Day
+        self.assertIn(date(2019, 5, 24), holidays)  # St Cyril & Methodius
+        self.assertIn(date(2019, 9, 6), holidays)  # Unification Day
+
+        self.assertIn(date(2019, 9, 22), holidays)  # Independence Day
+        self.assertIn(date(2019, 9, 23), holidays)  # Independence Day (shift)
+
+        self.assertIn(date(2019, 12, 24), holidays)  # Christmas Eve
+        self.assertIn(date(2019, 12, 25), holidays)  # Christmas 1 (FRI)
+        self.assertIn(date(2019, 12, 26), holidays)  # Christmas 2 (SAT)
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2020, 3, 3), holidays)  # Liberation Day
+        self.assertIn(date(2020, 4, 17), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 18), holidays)  # Holy Saturday
+        self.assertIn(date(2020, 4, 19), holidays)  # Easter day (sunday)
+        self.assertIn(date(2020, 4, 20), holidays)  # Easter Monday
+
+        self.assertIn(date(2020, 5, 1), holidays)  # International Workers' day
+        self.assertIn(date(2020, 5, 6), holidays)  # St George's Day
+        self.assertIn(date(2020, 5, 24), holidays)  # St Cyril & Methodius
+        self.assertIn(date(2020, 5, 25), holidays)  # (shift)
+        self.assertIn(date(2020, 9, 6), holidays)  # Unification Day
+        self.assertIn(date(2020, 9, 7), holidays)  # Unification Day (shift)
+
+        self.assertIn(date(2020, 9, 22), holidays)  # Independence Day
+
+        self.assertIn(date(2020, 12, 24), holidays)  # Christmas Eve
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas 1 (FRI)
+        self.assertIn(date(2020, 12, 26), holidays)  # Christmas 2 (SAT)
+        self.assertIn(date(2020, 12, 28), holidays)  # Christmas 2b (shift)
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2021, 3, 3), holidays)  # Liberation Day
+        self.assertIn(date(2021, 4, 30), holidays)  # Good Friday
+        self.assertIn(date(2021, 5, 1), holidays)  # Holy Saturday
+        self.assertIn(date(2021, 5, 2), holidays)  # Easter day (sunday)
+        self.assertIn(date(2021, 5, 3), holidays)  # Easter Monday
+        # International Workers' day (in lieu, because easter)
+        self.assertIn(date(2021, 5, 4), holidays)
+        self.assertIn(date(2021, 5, 6), holidays)  # St George's Day
+
+        self.assertIn(date(2021, 5, 24), holidays)  # St Cyril & Methodius
+        self.assertIn(date(2021, 9, 6), holidays)  # Unification Day
+        self.assertIn(date(2021, 9, 22), holidays)  # Independence Day
+
+        self.assertIn(date(2021, 12, 24), holidays)  # Christmas Eve
+        self.assertIn(date(2021, 12, 25), holidays)  # Christmas 1 (SAT)
+        self.assertIn(date(2021, 12, 26), holidays)  # Christmas 2
+        self.assertIn(date(2021, 12, 27), holidays)  # Christmas 2b
+        self.assertIn(date(2021, 12, 28), holidays)  # Christmas 2c
+
+    def test_holidays_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2022, 1, 3), holidays)  # New Year's Day (shift)
+        self.assertIn(date(2022, 3, 3), holidays)  # Liberation Day
+        self.assertIn(date(2022, 4, 22), holidays)  # Good Friday
+        self.assertIn(date(2022, 4, 23), holidays)  # Holy Saturday
+        self.assertIn(date(2022, 4, 24), holidays)  # Easter day (sunday)
+        self.assertIn(date(2022, 4, 25), holidays)  # Easter Monday
+
+        self.assertIn(date(2022, 5, 1), holidays)  # International Workers' day
+        self.assertIn(date(2022, 5, 2), holidays)  # Labour day Shift
+        self.assertIn(date(2022, 5, 6), holidays)  # St George's Day
+
+        self.assertIn(date(2022, 5, 24), holidays)  # St Cyril & Methodius
+        self.assertIn(date(2022, 9, 6), holidays)  # Unification Day
+        self.assertIn(date(2022, 9, 22), holidays)  # Independence Day
+
+        self.assertIn(date(2022, 12, 24), holidays)  # Christmas Eve
+        self.assertIn(date(2022, 12, 25), holidays)  # Christmas 1 (SAT)
+        self.assertIn(date(2022, 12, 26), holidays)  # Christmas 2
+        self.assertIn(date(2022, 12, 27), holidays)  # Christmas 2b
+        self.assertIn(date(2022, 12, 28), holidays)  # Christmas 2c
 
 
 class CaymanIslandsTest(GenericCalendarTest):

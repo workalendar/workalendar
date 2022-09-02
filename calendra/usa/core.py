@@ -78,7 +78,7 @@ class UnitedStates(WesternCalendar):
     # Shift day mechanism
     # These days won't be shifted to next MON or previous FRI
     shift_exceptions = (
-        # Exemple:
+        # Example:
         # (11, 11),  # Veterans day won't be shifted
     )
 

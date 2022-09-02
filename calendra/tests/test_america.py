@@ -1,8 +1,8 @@
 from datetime import date
+
+from ..america import (Argentina, Barbados, Chile, Colombia, Mexico, Panama,
+                       Paraguay)
 from . import GenericCalendarTest
-from ..america import (
-    Argentina, Barbados, Chile, Colombia, Mexico, Panama, Paraguay
-)
 
 
 class ArgentinaTest(GenericCalendarTest):
@@ -160,14 +160,162 @@ class ChileTest(GenericCalendarTest):
         self.assertIn(date(2013, 12, 25), holidays)
         self.assertIn(date(2013, 12, 31), holidays)
 
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        # Año Nuevo
+        self.assertIn(date(2021, 1, 1), holidays)
+        # Viernes Santo
+        self.assertIn(date(2021, 4, 2), holidays)
+        # Sábado Santo
+        self.assertIn(date(2021, 4, 3), holidays)
+        # Día Nacional del Trabajo
+        self.assertIn(date(2021, 5, 1), holidays)
+        # Día de las Glorias Navales
+        self.assertIn(date(2021, 5, 21), holidays)
+        # día nacional de los pueblos indígenas (June solstice)
+        self.assertIn(date(2021, 6, 21), holidays)
+        # San Pedro y San Pablo
+        self.assertIn(date(2021, 6, 28), holidays)
+        # Día de la Virgen del Carmen
+        self.assertIn(date(2021, 7, 16), holidays)
+        # Asunción de la Virgen
+        self.assertIn(date(2021, 8, 15), holidays)
+        # Additional Holiday
+        self.assertIn(date(2021, 9, 17), holidays)
+        # Independencia Nacional
+        self.assertIn(date(2021, 9, 18), holidays)
+        # Día de las Glorias del Ejército
+        self.assertIn(date(2021, 9, 19), holidays)
+        # Encuentro de Dos Mundos
+        self.assertIn(date(2021, 10, 11), holidays)
+        # Día de las Iglesias Evangélicas y Protestantes
+        self.assertIn(date(2021, 10, 31), holidays)
+        # Día de Todos los Santos
+        self.assertIn(date(2021, 11, 1), holidays)
+        # Inmaculada Concepción
+        self.assertIn(date(2021, 12, 8), holidays)
+        # Navidad
+        self.assertIn(date(2021, 12, 25), holidays)
+        # Feriado Bancario
+        self.assertIn(date(2021, 12, 31), holidays)
+
+    def test_indigenous_people_day(self):
+        # Testing because variable nature of June solstice
+
+        # approved in 2021
+        holidays = self.cal.holidays_set(2020)
+        self.assertNotIn(date(2020, 6, 21), holidays)
+        self.assertNotIn(date(2020, 6, 20), holidays)
+
+        # fixed day in 2021
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 6, 21), holidays)
+
+        # solstice 2022
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 6, 21), holidays)
+
+        # solstice 2023
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 6, 21), holidays)
+
+        # solstice 2023
+        holidays = self.cal.holidays_set(2024)
+        self.assertIn(date(2024, 6, 20), holidays)
+
     def test_reformation_day(self):
         holidays = self.cal.holidays_set(2012)
         self.assertNotIn(date(2012, 10, 31), holidays)
         self.assertIn(date(2012, 11, 2), holidays)
-        #
+
         holidays = self.cal.holidays_set(2017)
         self.assertNotIn(date(2017, 10, 31), holidays)
         self.assertIn(date(2017, 10, 27), holidays)
+
+    def test_national_bridge_days(self):
+        # MON TUE
+        holidays = self.cal.holidays_set(2017)
+        self.assertIn(date(2017, 9, 18), holidays)
+        self.assertIn(date(2017, 9, 19), holidays)
+
+        # TUE WED
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 9, 17), holidays)
+        self.assertIn(date(2018, 9, 18), holidays)
+        self.assertIn(date(2018, 9, 19), holidays)
+        self.assertNotIn(date(2018, 9, 20), holidays)
+
+        # WED THU
+        holidays = self.cal.holidays_set(2019)
+        self.assertNotIn(date(2019, 9, 17), holidays)
+        self.assertIn(date(2019, 9, 18), holidays)
+        self.assertIn(date(2019, 9, 19), holidays)
+        self.assertIn(date(2019, 9, 20), holidays)
+
+        # THU FRI
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 9, 18), holidays)
+        self.assertIn(date(2020, 9, 19), holidays)
+
+        # FRI SAT
+        holidays = self.cal.holidays_set(2015)
+        self.assertNotIn(date(2015, 9, 17), holidays)
+        self.assertIn(date(2015, 9, 18), holidays)
+        self.assertIn(date(2015, 9, 19), holidays)
+
+        # SUN MON
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 9, 18), holidays)
+        self.assertIn(date(2016, 9, 19), holidays)
+        self.assertNotIn(date(2016, 9, 20), holidays)
+
+        # SAT SUN for additional day
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 9, 17), holidays)
+        self.assertIn(date(2021, 9, 18), holidays)
+        self.assertIn(date(2021, 9, 19), holidays)
+
+    def test_columbus_day(self):
+        # MON
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 10, 12), holidays)
+        # TUE
+        holidays = self.cal.holidays_set(2021)
+        self.assertNotIn(date(2021, 10, 12), holidays)
+        self.assertIn(date(2021, 10, 11), holidays)
+        # WED
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 10, 12), holidays)
+        self.assertIn(date(2016, 10, 10), holidays)
+        # THU
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 10, 12), holidays)
+        self.assertIn(date(2017, 10, 9), holidays)
+        # FRI
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 10, 12), holidays)
+        self.assertIn(date(2018, 10, 15), holidays)
+
+    def test_st_peter_and_st_paul_day(self):
+        # MON
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 6, 29), holidays)
+        # TUE
+        holidays = self.cal.holidays_set(2021)
+        self.assertNotIn(date(2021, 6, 29), holidays)
+        self.assertIn(date(2021, 6, 28), holidays)
+        # WED
+        holidays = self.cal.holidays_set(2016)
+        self.assertNotIn(date(2016, 6, 29), holidays)
+        self.assertIn(date(2016, 6, 27), holidays)
+        # THU
+        holidays = self.cal.holidays_set(2017)
+        self.assertNotIn(date(2017, 6, 29), holidays)
+        self.assertIn(date(2017, 6, 26), holidays)
+        # FRI
+        holidays = self.cal.holidays_set(2018)
+        self.assertNotIn(date(2018, 6, 29), holidays)
+        self.assertIn(date(2018, 7, 2), holidays)
 
 
 class ColombiaTest(GenericCalendarTest):
@@ -382,6 +530,22 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2009, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2009, 12, 26), holidays)  # Boxing Day
 
+    def test_holidays_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)
+        self.assertIn(date(2016, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2016, 3, 25), holidays)  # Good Friday
+        self.assertIn(date(2016, 3, 28), holidays)  # Easter Monday
+        self.assertIn(date(2016, 4, 28), holidays)  # National Heroes Day
+        self.assertIn(date(2016, 5, 2), holidays)  # Labour Day
+        self.assertIn(date(2016, 5, 16), holidays)  # Whit Monday
+        self.assertIn(date(2016, 8, 1), holidays)  # Kabooment Day
+        self.assertIn(date(2016, 8, 2), holidays)  # Emancipation Day
+        self.assertIn(date(2016, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2016, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2016, 12, 26), holidays)  # Boxing Day
+        self.assertIn(date(2016, 12, 27), holidays)  # Public Holiday
+
     def test_holidays_2018(self):
         holidays = self.cal.holidays_set(2018)
         self.assertIn(date(2018, 1, 1), holidays)
@@ -418,3 +582,39 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2019, 11, 30), holidays)  # Independant Day
         self.assertIn(date(2019, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2019, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)
+        self.assertIn(date(2020, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 13), holidays)  # Easter Monday
+
+        # National Heroes Day & shift
+        self.assertIn(date(2020, 4, 28), holidays)
+
+        self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
+        self.assertIn(date(2020, 8, 1), holidays)  # Emancipation Day
+        self.assertIn(date(2020, 8, 3), holidays)  # Kabooment Day
+        self.assertIn(date(2020, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2020, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2020, 12, 26), holidays)  # Boxing Day
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)  # New Year's Day
+        self.assertIn(date(2021, 1, 4), holidays)  # Public Holiday
+        self.assertIn(date(2021, 1, 5), holidays)  # Public Holiday
+        self.assertIn(date(2021, 1, 21), holidays)  # Errol Barrow Day
+        self.assertIn(date(2021, 4, 2), holidays)  # Good Friday
+        self.assertIn(date(2021, 4, 5), holidays)  # Easter Monday
+        self.assertIn(date(2021, 4, 28), holidays)  # National Heroes Day
+
+        self.assertIn(date(2021, 5, 1), holidays)  # Labour Day
+        self.assertIn(date(2021, 5, 24), holidays)  # Whit Monday
+        self.assertIn(date(2021, 8, 2), holidays)  # Kabooment Day
+        self.assertIn(date(2021, 8, 3), holidays)  # Emancipation Day
+        self.assertIn(date(2021, 11, 30), holidays)  # Independant Day
+        self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
+        self.assertIn(date(2021, 12, 27), holidays)  # Boxing Day

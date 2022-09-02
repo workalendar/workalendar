@@ -885,7 +885,8 @@ class CoreCalendar:
         day = day + timedelta(days=day_delta)
         return day
 
-    def get_working_days_delta(self, start, end, include_start=False):
+    def get_working_days_delta(self, start, end, include_start=False,
+                               extra_working_days=None, extra_holidays=None):
         """
         Return the number of working day between two given dates.
         The order of the dates provided doesn't matter.
@@ -916,13 +917,16 @@ class CoreCalendar:
 
         >>> from dateutil.parser import parse
         >>> cal = France()
-        >>> day_1 = parse('09/05/2018 00:01', dayfirst=True)
-        >>> day_2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
-        >>> cal.get_working_days_delta(day_1, day_2)
+        >>> day1 = parse('09/05/2018 00:01', dayfirst=True)
+        >>> day2 = parse('10/05/2018 19:01', dayfirst=True) # holiday in france
+        >>> cal.get_working_days_delta(day1, day2)
         0
 
-        >>> cal.get_working_days_delta(day_1, day_2, include_start=True)
+        >>> cal.get_working_days_delta(day1, day2, include_start=True)
         1
+
+        As in many other methods, you can use the ``extra_holidays`` and
+        ``extra_working_days`` to exclude
         """
         start = cleaned_date(start)
         end = cleaned_date(end)
@@ -934,10 +938,20 @@ class CoreCalendar:
             start, end = end, start
 
         # Starting count here
-        count = 1 if include_start and self.is_working_day(start) else 0
+        is_working_day = self.is_working_day(
+            start,
+            extra_working_days=extra_working_days,
+            extra_holidays=extra_holidays
+        )
+        count = 1 if include_start and is_working_day else 0
         while start < end:
             start += timedelta(days=1)
-            if self.is_working_day(start):
+            is_working_day = self.is_working_day(
+                start,
+                extra_working_days=extra_working_days,
+                extra_holidays=extra_holidays
+            )
+            if is_working_day:
                 count += 1
         return count
 

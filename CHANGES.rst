@@ -1,3 +1,46 @@
+v7.3.0
+------
+
+Incorporate changes from workalendar v15.4.0 (2021-07-12)
+
+- New calendar: Added Nigeria calendar by @taiyeoguns (#656)
+- Fix: Chilean calendar floating dates, add Indigenous Peoples Day using solar term, thx @ajcobo.
+
+Incorporate changes from workalendar v15.3.1 (2021-07-02)
+
+Bugfixes
+
+- Updated Japan calendar because of the Olympics, thx @lxlgarnett. (#662)
+- Fixed Japan "Sports Day" label depending on the year.
+
+Documentation
+
+- The Workalendar project has been moved from Peopledoc's organization to its own (#651, #653, thx to @ewjoachim).
+
+Incorporate changes from workalendar v15.3.0 (2021-05-07)
+
+- Fix Barbados calendar to add 2 non computable public holiday and fix boxing day computation, thx to @ludsoft (#647).
+
+Incorporate changes from workalendar v15.2.0 (2021-04-23)
+
+- Fixed Cuiaba City calendar (Brazil), adding Easter Sunday, Corpus Christi and Good Friday, thx @leogregianin (#642).
+- Fix Catalonian calendar: add missing St John the Baptist public holiday, thx @lozlow (#643).
+
+Incorporate changes from workalendar v15.1.0 (2021-03-12)
+
+- Bugfix: Bulgaria holidays are now computed using the Orthodox calendar, include shifting rules for holidays that fall on a week-end (#596).
+- Bugfix: `get_working_days_delta` method to integrate the `extra_holidays` and `extra_working_days` args (#631).
+
+Incorporate changes from workalendar v15.0.2 (2021-03-05)
+
+- Bugfix: USA calendar would take the `shift_exceptions` into account, even if the exceptions are set in the next or previous year (#610).
+- Requirements: Unpin `pyupgrade` library (#634).
+
+Incorporate changes from workalendar v15.0.1 (2021-02-26)
+
+- Hotfix: Taiwan exceptional working day on February, 20th 2021 (#628).
+- Hotfix: September 11th is a working day in Taiwan (#628).
+
 v7.2.0
 ------
 
@@ -272,7 +315,7 @@ Incorporate changes from workalendar v8.0.0 (2020-01-10)
 
 - Changes in the ``registry.items()`` method API.
   - This method is aliased to ``get_calendars()``. In a near release, the ``items()`` method will change its purpose.
-  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://peopledoc.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
+  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://workalendar.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
 
 Incorporate changes from workalendar v7.2.0 (2019-12-06)
 
@@ -493,7 +536,7 @@ Incorporate changes from workalendar 3.2.1:
 Incorporate changes from workalendar 3.2.0:
 
 - Removed dependency to `PyEphem`. This package was the "Python2-compatible" library to deal with the xephem system library. Now it's obsolete, so you don't need this dual-dependency handling, because `ephem` is compatible with Python 2 & Python 3 (#296).
-- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the `basic documentation <https://peopledoc.github.io/workalendar/basic.html#standard-datetime-types-only-please>`_ for more details (#294).
+- Raise an exception when trying to use unsupported date/datetime types. Workalendar now only supports stdlib `date` & `datetime` (sub)types. See the `basic documentation <https://workalendar.github.io/workalendar/basic.html#standard-datetime-types-only-please>`_ for more details (#294).
 
 Incorporate changes from workalendar 3.1.1:
 

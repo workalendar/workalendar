@@ -462,6 +462,10 @@ class BrazilCuiabaCity(BrazilMatoGrosso):
     FIXED_HOLIDAYS = BrazilMatoGrosso.FIXED_HOLIDAYS + (
         (4, 8, "Aniversário de Cuiabá"),
     )
+    include_easter_sunday = True
+    include_corpus_christi = True
+    include_good_friday = True
+    good_friday_label = "Sexta-feira da Paixão"
 
 
 class BrazilBelemCity(BrazilPara):

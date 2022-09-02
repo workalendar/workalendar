@@ -1,7 +1,7 @@
-from datetime import timedelta
 from copy import copy
+from datetime import date, timedelta
 
-from ..core import WesternCalendar, SUN, MON
+from ..core import MON, SUN, WesternCalendar
 from ..registry_tools import iso_register
 
 
@@ -15,14 +15,20 @@ class Barbados(WesternCalendar):
     include_easter_sunday = True
     include_easter_monday = True
     include_whit_monday = True
-    include_boxing_day = True
+    non_computable_holiday_dict = {
+        2016: [(date(2016, 12, 27), "Public Holiday")],
+        2021: [
+            (date(2021, 1, 4), "Public Holiday"),
+            (date(2021, 1, 5), "Public Holiday"),
+            ],
+    }
 
     # All holiday are shifted if on a Sunday
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 21, "Errol Barrow Day"),
         (4, 28, "National Heroes Day"),
-        (8, 1, "Emancipation Day"),
         (11, 30, "Independance Day"),
+        (12, 26, "Boxing Day"),  # Not the same as UK Boxing Day
     )
 
     def get_kadooment_day(self, year):
@@ -32,13 +38,30 @@ class Barbados(WesternCalendar):
         return (Barbados.get_nth_weekday_in_month(year, 8, MON),
                 "Kadooment Day")
 
+    def get_emancipation_day(self, year):
+        emancipation_day = date(year, 8, 1)
+        if emancipation_day.weekday() == SUN:
+            emancipation_day += timedelta(days=1)
+        kadooment_day = self.get_kadooment_day(year)
+        if emancipation_day == kadooment_day[0]:
+            emancipation_day += timedelta(days=1)
+        return (emancipation_day, "Emancipation Day")
+
     def get_variable_days(self, year):
         """
         Return variable holidays of the Barbados calendar.
         """
         days = super().get_variable_days(year)
         days.append(self.get_kadooment_day(year))
+        days.append(self.get_emancipation_day(year))
+        non_computable = self.non_computable_holiday(year)
+        if non_computable:
+            days.extend(non_computable)
         return days
+
+    def non_computable_holiday(self, year):
+        non_computable = self.non_computable_holiday_dict.get(year, None)
+        return non_computable
 
     def get_fixed_holidays(self, year):
         """

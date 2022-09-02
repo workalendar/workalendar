@@ -83,6 +83,7 @@ class Catalonia(Spain):
 
     FIXED_HOLIDAYS = Spain.FIXED_HOLIDAYS + (
         (9, 11, "Diada nacional de Catalunya"),
+        (6, 24, "La revetlla de Sant Joan, Nit de Sant Joan"),
     )
 
 

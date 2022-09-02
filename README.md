@@ -62,7 +62,7 @@ True
 datetime.date(2012, 12, 31)
 ```
 
-For a more complete documentation and advanced usage, go to [the official workalendar documentation](https://peopledoc.github.io/workalendar).
+For a more complete documentation and advanced usage, go to [the official workalendar documentation](https://workalendar.github.io/workalendar).
 
 ## External dependencies
 
@@ -171,6 +171,7 @@ from the command line.
 - Kenya
 - Madagascar
 - Mozambique
+- Nigeria
 - São Tomé
 - South Africa
 
@@ -183,7 +184,15 @@ Please take note that some calendars are not 100% accurate. The most common exam
 
 ## Contributing
 
-Please read our [contributing.md](https://github.com/peopledoc/workalendar/blob/master/docs/contributing.md) document to discover how you can contribute to `workalendar`. Pull-requests are very welcome.
+Please read our [contributing.md](https://github.com/workalendar/workalendar/blob/master/docs/contributing.md) document to discover how you can contribute to `workalendar`. Pull-requests are very welcome.
+
+## History
+
+This project was born in 2013, as an answer to the question "how do we calculate *this date + 5 working days*?". It was a use-case for [PeopleDoc](https://www.people-doc.fr/), in their ticketing application, for calculating SLAs. And it began as a small open-source library, for France and the USA at first.
+
+Thanks to PeopleDoc, this project grew and eventually became a world-wide library, with the help of dozens of contributors.
+
+As of June 2021, this project has moved to its own organization.
 
 ## License
 

@@ -363,6 +363,11 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2019, 5, 6), holidays)  # Children's Day
         self.assertIn(date(2019, 8, 12), holidays)  # Mountain Day Observed
         self.assertIn(date(2019, 11, 4), holidays)  # Culture Day Observed
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2019)
+        holidays_dict = dict(holidays)
+        self.assertEqual(
+            holidays_dict[date(2019, 10, 14)], "Health and Sports Day")
 
     def test_year_2020(self):
         holidays = self.cal.holidays_set(2020)
@@ -371,6 +376,24 @@ class JapanTest(GenericCalendarTest):
         self.assertIn(date(2020, 8, 10), holidays)  # Mountain Day adjustment
         self.assertNotIn(date(2020, 8, 11), holidays)  # Mountain Day
         self.assertNotIn(date(2020, 12, 31), holidays)  # New Year's Bank Day
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2020)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2020, 7, 24)], "Sports Day")
+
+    def test_year_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 7, 22), holidays)  # Marine Day
+        self.assertIn(date(2021, 7, 23), holidays)  # Sports Day
+        self.assertIn(date(2021, 8, 8), holidays)  # Mountain Day
+        self.assertIn(date(2021, 8, 9), holidays)  # Mountain Day Observed
+        self.assertNotIn(date(2021, 7, 19), holidays)  # Marine Day
+        self.assertNotIn(date(2021, 8, 11), holidays)  # Mountain Day
+        self.assertNotIn(date(2021, 10, 11), holidays)  # Sports Day
+        # retrieve the sports day label
+        holidays = self.cal.holidays(2021)
+        holidays_dict = dict(holidays)
+        self.assertEqual(holidays_dict[date(2021, 7, 23)], "Sports Day")
 
 
 class JapanBankTest(GenericCalendarTest):
@@ -622,6 +645,26 @@ class TaiwanTest(GenericCalendarTest):
         self.assertIn(date(2012, 4, 4), self.cal.holidays_set(2012))
         self.assertIn(date(2013, 4, 4), self.cal.holidays_set(2013))
         self.assertIn(date(2014, 4, 4), self.cal.holidays_set(2014))
+
+    def test_extra_day_2021_february(self):
+        extra_day_feb_20 = date(2021, 2, 20)
+        self.assertTrue(self.cal.is_working_day(extra_day_feb_20))
+        # Compute deltas with the extra-working day...
+        five_days_after = self.cal.add_working_days(
+            date(2021, 2, 19), 5
+        )
+        # Should've been on 26th, albeit the 20th
+        self.assertEqual(five_days_after, date(2021, 2, 25))
+
+    def test_extra_day_2021_september(self):
+        extra_day_sept_11 = date(2021, 9, 11)
+        self.assertTrue(self.cal.is_working_day(extra_day_sept_11))
+        # Compute deltas with the extra-working day...
+        five_days_after = self.cal.add_working_days(
+            date(2021, 9, 10), 5
+        )
+        # Should've been on 17th, albeit the 11th
+        self.assertEqual(five_days_after, date(2021, 9, 16))
 
 
 class IsraelTest(GenericCalendarTest):
