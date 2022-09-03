@@ -7,6 +7,7 @@ from calendar import monthrange
 from datetime import date, timedelta, datetime
 from pathlib import Path
 import sys
+import functools
 
 import convertdate
 from dateutil import easter
@@ -232,7 +233,7 @@ class ChristianMixin:
                 date(year, 12, 26),
                 self.boxing_day_label,
                 indication="Day after Christmas",
-                observe_after=christmas
+                observe_after=christmas,
             )
             days.append(boxing_day)
         if self.include_ascension:
@@ -527,11 +528,6 @@ class IslamicMixin(SeriesShiftMixin, CalverterMixin):
                           " to compute it. You'll have to add it manually.")
         return tuple(days)
 
-    def get_calendar_holidays(self, year):
-        self.series_requiring_shifts = [self.eid_al_fitr_label,
-                                        self.day_of_sacrifice_label]
-        return super().get_calendar_holidays(year)
-
 
 class CoreCalendar:
 
@@ -597,6 +593,7 @@ class CoreCalendar:
         day = cleaned_date(day)
         return {day: label for day, label in self.holidays(day.year)}.get(day)
 
+    @functools.lru_cache()
     def get_observed_date(self, holiday):
         """
         The date the holiday is observed for this calendar. If the holiday
