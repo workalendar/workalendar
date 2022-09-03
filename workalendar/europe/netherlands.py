@@ -166,25 +166,23 @@ class NetherlandsWithSchoolHolidays(Netherlands):
         Christmas holidays run partially in December and partially in January
         (spillover from previous year).
         """
+        return (
+            self._get_christmas_holidays_december(year) +
+            self._get_christmas_holidays_january(year)
+        )
 
-        if in_december:
+    def _get_christmas_holidays_december(self, year):
+        # 27 December is always in a full week of holidays
+        week = date(year, 12, 27).isocalendar()[1]
 
-            # 27 December is always in a full week of holidays
-            week = date(year, 12, 27).isocalendar()[1]
+        # Holiday starts on the preceding Saturday
+        start = self.get_iso_week_date(year, week - 1, ISO_SAT)
+        return [
+            (start + timedelta(days=i), "Christmas holiday")
+            for i in range((date(year, 12, 31) - start).days + 1)
+        ]
 
-            # Holiday starts on the preceding Saturday
-            start = self.get_iso_week_date(year, week - 1, ISO_SAT)
-            dates = [
-                (start + timedelta(days=i), "Christmas holiday")
-                for i in range((date(year, 12, 31) - start).days + 1)
-            ]
-
-            if in_january:
-                dates.extend(
-                    self.get_christmas_holidays(year, in_december=False)
-                )
-            return dates
-
+    def _get_christmas_holidays_january(self, year):
         # 27 December is always in a full week of holidays
         week = date(year - 1, 12, 27).isocalendar()[1]
 
