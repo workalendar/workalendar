@@ -388,32 +388,12 @@ class ChineseNewYearMixin(LunarMixin):
         return days
 
     @staticmethod
-    def observance_shift_for_sunday(holiday, calendar):
+    def observance_shift(holiday, calendar):
         """
         Taking an existing holiday, return a 'shifted' day to skip on from SUN.
         """
-        return holiday + timedelta(days=1)
-
-    def get_shifted_holidays(self, dates):
-        """
-        Taking a list of existing holidays, yield a list of 'shifted' days if
-        the holiday falls on SUN.
-        """
-        for holiday in dates:
-            if holiday.weekday() == SUN:
-                holiday.observance_shift = self.observance_shift_for_sunday
-            yield holiday
-
-    def get_calendar_holidays(self, year):
-        """
-        Take into account the eventual shift to the next MON if any holiday
-        falls on SUN.
-        """
-        # Unshifted days are here:
-        days = super().get_calendar_holidays(year)
-        if self.shift_sunday_holidays:
-            days = self.get_shifted_holidays(days)
-        return days
+        do_shift = calendar.shift_sunday_holidays and holiday.weekday() == SUN
+        return holiday + timedelta(days=1) * do_shift
 
 
 class CalverterMixin:

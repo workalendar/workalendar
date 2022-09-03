@@ -33,6 +33,7 @@ class HongKong(WesternMixin, ChineseNewYearCalendar):
     chinese_third_day_label = "Third day of Chinese Lunar New Year"
     shift_sunday_holidays = True  # Except CNY which rolls to Saturday
     shift_start_cny_sunday = False  # Prior to 2011 this was True
+    shift_new_years_day = True
 
     def get_variable_days(self, year):
         """
