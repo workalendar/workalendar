@@ -7,10 +7,6 @@ from ..core import Holiday
 from ..registry_tools import iso_register
 
 
-def _by_name(holidays):
-    return {day.name: day for day in holidays if hasattr(day, 'name')}
-
-
 @iso_register("NZ")
 class NewZealand(WesternCalendar, ChristianMixin):
     "New Zealand"
@@ -44,7 +40,6 @@ class NewZealand(WesternCalendar, ChristianMixin):
         days.append(Holiday(
             date(year, 1, 2),
             "Day after New Year's Day",
-            observe_after=_by_name(days)["New year"],
         ))
         days.append(self.get_queens_birthday(year))
         days.append(self.get_labour_day(year))

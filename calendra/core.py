@@ -233,7 +233,6 @@ class ChristianMixin:
                 date(year, 12, 26),
                 self.boxing_day_label,
                 indication="Day after Christmas",
-                observe_after=christmas,
             )
             days.append(boxing_day)
         if self.include_ascension:
@@ -400,9 +399,7 @@ class ChineseNewYearMixin(LunarMixin):
         Taking a list of existing holidays, yield a list of 'shifted' days if
         the holiday falls on SUN.
         """
-        for holiday, label in dates:
-            if isinstance(holiday, date):
-                holiday = Holiday(holiday, label)
+        for holiday in dates:
             if holiday.weekday() == SUN:
                 holiday.observance_shift = self.observance_shift_for_sunday
             yield holiday
@@ -478,7 +475,7 @@ class CalverterMixin:
         return days
 
 
-class IslamicMixin(SeriesShiftMixin, CalverterMixin):
+class IslamicMixin(CalverterMixin):
 
     WEEKEND_DAYS = (FRI, SAT)
 
@@ -1073,7 +1070,7 @@ class CoreCalendar:
         return ics
 
 
-class Calendar(CoreCalendar):
+class Calendar(SeriesShiftMixin, CoreCalendar):
     """
     The cornerstone of Earth calendars.
 

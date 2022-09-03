@@ -1,11 +1,10 @@
 from datetime import date, timedelta
 from ..core import WesternCalendar, SUN, ISO_SAT
-from ..core import SeriesShiftMixin
 from ..registry_tools import iso_register
 
 
 @iso_register('NL')
-class Netherlands(SeriesShiftMixin, WesternCalendar):
+class Netherlands(WesternCalendar):
     'Netherlands'
 
     include_good_friday = True

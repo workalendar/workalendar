@@ -1,9 +1,9 @@
-from ..core import OrthodoxCalendar, SeriesShiftMixin
+from ..core import OrthodoxCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('RS')
-class Serbia(SeriesShiftMixin, OrthodoxCalendar):
+class Serbia(OrthodoxCalendar):
     'Serbia'
 
     FIXED_HOLIDAYS = OrthodoxCalendar.FIXED_HOLIDAYS + (

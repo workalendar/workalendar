@@ -1,9 +1,9 @@
-from ..core import ChineseNewYearCalendar, SeriesShiftMixin
+from ..core import ChineseNewYearCalendar
 from ..registry_tools import iso_register
 
 
 @iso_register('KR')
-class SouthKorea(SeriesShiftMixin, ChineseNewYearCalendar):
+class SouthKorea(ChineseNewYearCalendar):
     "South Korea"
     FIXED_HOLIDAYS = ChineseNewYearCalendar.FIXED_HOLIDAYS + (
         (3, 1, "Independence Day"),

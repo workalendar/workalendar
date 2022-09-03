@@ -1,7 +1,7 @@
 from datetime import date
 import warnings
 
-from ..core import ChineseNewYearCalendar, SeriesShiftMixin
+from ..core import ChineseNewYearCalendar
 from ..registry_tools import iso_register
 from ..exceptions import CalendarError
 
@@ -84,7 +84,7 @@ workdays = {
 
 
 @iso_register('CN')
-class China(SeriesShiftMixin, ChineseNewYearCalendar):
+class China(ChineseNewYearCalendar):
     "China"
     # WARNING: Support 2018-2022 currently, need update every year.
     shift_new_years_day = True
