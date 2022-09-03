@@ -584,15 +584,16 @@ class CoreCalendar:
         # observance_shift may be overridden in the holiday itself
         shift = getattr(holiday, 'observance_shift', self.observance_shift)
         if callable(shift):
-            return shift(holiday, self)
-        shift = shift or {}
-        delta = rd.relativedelta(**shift)
-        try:
-            weekend_days = self.get_weekend_days()
-        except NotImplementedError:
-            weekend_days = ()
-        should_shift = holiday.weekday() in weekend_days
-        shifted = holiday + delta if should_shift else holiday
+            shifted = shift(holiday, self)
+        else:
+            shift = shift or {}
+            delta = rd.relativedelta(**shift)
+            try:
+                weekend_days = self.get_weekend_days()
+            except NotImplementedError:
+                weekend_days = ()
+            should_shift = holiday.weekday() in weekend_days
+            shifted = holiday + delta if should_shift else holiday
         precedent = getattr(holiday, 'observe_after', None)
         while precedent and shifted <= self.get_observed_date(precedent):
             shifted += timedelta(days=1)
