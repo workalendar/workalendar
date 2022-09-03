@@ -19,7 +19,6 @@ class SouthKorea(SeriesShiftMixin, ChineseNewYearCalendar):
     chinese_new_year_eve_label = "Korean New Year's Day"
     include_chinese_second_day = True
     chinese_second_day_label = "Korean New Year's Day"
-    series_requiring_shifts = ["Korean New Year's Day", "Midautumn Festival"]
 
     def get_variable_days(self, year):
         days = super().get_variable_days(year)

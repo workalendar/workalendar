@@ -22,4 +22,3 @@ class Serbia(SeriesShiftMixin, OrthodoxCalendar):
     include_easter_sunday = True
     include_easter_monday = True
     include_christmas = False
-    series_requiring_shifts = ["Statehood Day"]

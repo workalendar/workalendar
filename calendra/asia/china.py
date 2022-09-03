@@ -93,10 +93,6 @@ class China(SeriesShiftMixin, ChineseNewYearCalendar):
     FIXED_HOLIDAYS = tuple(national_days)
 
     include_chinese_new_year_eve = True
-    series_requiring_shifts = ['Spring Festival', 'Ching Ming Festival',
-                               'Labour Day Holiday', 'Dragon Boat Festival',
-                               'Mid-Autumn Festival', 'New year',
-                               'National Day']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
