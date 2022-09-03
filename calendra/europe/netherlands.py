@@ -2,7 +2,6 @@ from datetime import date, timedelta
 from ..core import WesternCalendar, SUN, ISO_SAT
 from ..core import SeriesShiftMixin
 from ..registry_tools import iso_register
-from ..core import Holiday
 
 
 @iso_register('NL')
@@ -16,6 +15,8 @@ class Netherlands(SeriesShiftMixin, WesternCalendar):
     include_whit_sunday = True
     include_whit_monday = True
     include_boxing_day = True
+
+    observance_shift = None
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (5, 5, "Liberation Day"),
@@ -161,13 +162,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
         ]
 
-    def get_christmas_holidays(self, year):
-        return [
-            Holiday._from_resolved_definition(defn, observance_shift=None)
-            for defn in self._get_christmas_holidays(year)
-        ]
-
-    def _get_christmas_holidays(self, year, in_december=True, in_january=True):
+    def get_christmas_holidays(self, year, in_december=True, in_january=True):
         """
         Return Christmas holidays
 
@@ -189,7 +184,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
 
             if in_january:
                 dates.extend(
-                    self._get_christmas_holidays(year, in_december=False)
+                    self.get_christmas_holidays(year, in_december=False)
                 )
             return dates
 
