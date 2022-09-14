@@ -1945,7 +1945,8 @@ class UnitedKingdomTest(GenericCalendarTest):
         # Platinum Jubilee Bank Holiday
         self.assertIn(date(2022, 6, 3), holidays)
         self.assertIn(date(2022, 8, 29), holidays)  # Summer bank holiday
-        self.assertIn(date(2022, 9, 19), holidays)  # State Funeral of Queen Elizabeth II
+        # State Funeral of Queen Elizabeth II
+        self.assertIn(date(2022, 9, 19), holidays)
         self.assertIn(date(2022, 12, 26), holidays)  # Boxing Day
         self.assertIn(date(2022, 12, 27), holidays)  # Christmas Day
 
