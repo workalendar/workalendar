@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fixed United Kingdom's 2022 holidays ; Added Bank Holiday for the State Funeral of Queen Elizabeth II
 
 ## v16.3.0 (2022-02-22)
 
