@@ -1936,7 +1936,6 @@ class UnitedKingdomTest(GenericCalendarTest):
 
     def test_2022(self):
         holidays = self.cal.holidays_set(2022)
-        print(holidays)
         self.assertIn(date(2022, 1, 3), holidays)  # New Year
         self.assertIn(date(2022, 4, 15), holidays)  # Good Friday
         self.assertIn(date(2022, 4, 18), holidays)  # Easter Monday
@@ -1946,6 +1945,7 @@ class UnitedKingdomTest(GenericCalendarTest):
         # Platinum Jubilee Bank Holiday
         self.assertIn(date(2022, 6, 3), holidays)
         self.assertIn(date(2022, 8, 29), holidays)  # Summer bank holiday
+        self.assertIn(date(2022, 9, 19), holidays)  # State Funeral of Queen Elizabeth II
         self.assertIn(date(2022, 12, 26), holidays)  # Boxing Day
         self.assertIn(date(2022, 12, 27), holidays)  # Christmas Day
 
