@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## master (unreleased)
+## v16.4.0 (2022-09-16)
 
-- Fixed United Kingdom's 2022 holidays ; Added Bank Holiday for the State Funeral of Queen Elizabeth II
+- Fixed United Kingdom's 2022 holidays ; Added Bank Holiday for the State Funeral of Queen Elizabeth II (#719).
 
 ## v16.3.0 (2022-02-22)
 
