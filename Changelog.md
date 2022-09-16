@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Fixed Netherlands public holidays: Liberation day is only a public holiday every 5 years by @KidkArolis (#711).
 
 ## v16.4.0 (2022-09-16)
 

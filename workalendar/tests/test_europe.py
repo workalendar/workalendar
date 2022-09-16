@@ -1136,6 +1136,25 @@ class NetherlandsTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2016)
         self.assertNotIn(date(2016, 12, 31), holidays)
 
+    def test_liberation_day(self):
+        # Liberation day is only a public holiday every 5 years
+        liberation_day = date(1990, 5, 5)
+        holidays = dict(self.cal.holidays(1990))
+        self.assertIn(liberation_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[liberation_day], "Liberation day")
+
+        # Check 2020
+        liberation_day = date(2020, 5, 5)
+        holidays = dict(self.cal.holidays(2020))
+        self.assertIn(liberation_day, holidays)
+        # Check for label
+        self.assertEqual(holidays[liberation_day], "Liberation day")
+
+        # Not in 2022
+        liberation_day = date(2022, 4, 30)
+        holidays = self.cal.holidays_set(2022)
+        self.assertNotIn(liberation_day, holidays)
 
 class NetherlandsWithSchoolHolidaysWithInvalidRegionTest(TestCase):
 
