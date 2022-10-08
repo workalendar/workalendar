@@ -12,6 +12,7 @@ class India(HinduCalender, WesternCalendar, IslamicCalendar):
     include_new_years_day = True
     include_good_friday = True
     include_eid_al_fitr = True
+    include_labour_day = True
 
     FIXED_HOLIDAYS = WesternCalendar.FIXED_HOLIDAYS + (
         (1, 26, "Republic Day"),

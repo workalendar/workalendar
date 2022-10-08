@@ -21,30 +21,35 @@ class IndiaTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(test_year)
         self.assertIn(date(test_year, 1, 1), holidays)    # New year
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
+        self.assertIn(date(test_year, 2, 13), holidays)   # Mahashivratri
         self.assertIn(date(test_year, 3, 30), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 6, 15), holidays)   # eid-al-fitr
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 19), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 7), holidays)   # Diwali
         self.assertIn(date(test_year, 11, 23), holidays)  # Guru Nanak Jayanti
-        self.assertIn(date(test_year, 2, 13), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
+
 
     def test_year_2019(self):
         test_year = 2019
         holidays = self.cal.holidays_set(test_year)
         self.assertIn(date(test_year, 1, 1), holidays)    # New year
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
+        self.assertIn(date(test_year, 3, 4), holidays)    # Mahashivratri
         self.assertIn(date(test_year, 4, 19), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
         self.assertIn(date(test_year, 6, 5), holidays)    # eid-al-fitr
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 8), holidays)   # Dussehra
         self.assertIn(date(test_year, 10, 27), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 12), holidays)  # Guru Nanak Jayanti
-        self.assertIn(date(test_year, 3, 4), holidays)    # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2020(self):
         test_year = 2020
@@ -54,12 +59,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 4, 10), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
         self.assertIn(date(test_year, 5, 24), holidays)   # eid-al-fitr
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 25), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 14), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 30), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 21), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2021(self):
         test_year = 2021
@@ -68,6 +75,7 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 2), holidays)    # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 5, 13), holidays)   # eid-al-fitr
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
@@ -75,6 +83,7 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 11, 4), holidays)   # Diwali
         self.assertIn(date(test_year, 11, 19), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 3, 11), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2022(self):
         test_year = 2022
@@ -83,6 +92,7 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 15), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 5, 3), holidays)    # eid-al-fitr
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
@@ -90,6 +100,7 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 10, 24), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 8), holidays)   # Guru Nanak Jayanti
         self.assertIn(date(test_year, 3, 1), holidays)    # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2023(self):
         test_year = 2023
@@ -99,12 +110,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 4, 7), holidays)    # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
         self.assertIn(date(test_year, 4, 22), holidays)   # eid-al-fitr
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 24), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 12), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 27), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 18), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2024(self):
         test_year = 2024
@@ -113,12 +126,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 3, 29), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 12), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 1), holidays)   # Diwali
         self.assertIn(date(test_year, 11, 15), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 3, 8), holidays)    # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2025(self):
         test_year = 2025
@@ -127,12 +142,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 18), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 2), holidays)   # Dussehra
         self.assertIn(date(test_year, 10, 21), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 5), holidays)   # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 26), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2026(self):
         test_year = 2026
@@ -141,12 +158,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 3), holidays)    # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 20), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 8), holidays)   # Diwali
         self.assertIn(date(test_year, 11, 23), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 15), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2027(self):
         test_year = 2027
@@ -155,12 +174,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 3, 26), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 9), holidays)   # Dussehra
         self.assertIn(date(test_year, 10, 29), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 13), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 3, 6), holidays)    # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2028(self):
         test_year = 2028
@@ -169,12 +190,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 14), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 9, 27), holidays)   # Dussehra
         self.assertIn(date(test_year, 10, 17), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 1), holidays)   # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 23), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2029(self):
         test_year = 2029
@@ -183,12 +206,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 3, 30), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 16), holidays)  # Dussehra
         self.assertIn(date(test_year, 11, 5), holidays)   # Diwali
         self.assertIn(date(test_year, 11, 21), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 2, 11), holidays)   # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
     def test_year_2030(self):
         test_year = 2030
@@ -197,12 +222,14 @@ class IndiaTest(GenericCalendarTest):
         self.assertIn(date(test_year, 1, 26), holidays)   # Republic Day
         self.assertIn(date(test_year, 4, 19), holidays)   # Good Friday
         self.assertIn(date(test_year, 4, 14), holidays)   # Mahavir/Ambedkar
+        self.assertIn(date(test_year, 5, 1), holidays)    # Labour day
         self.assertIn(date(test_year, 8, 15), holidays)   # Independence Day
         self.assertIn(date(test_year, 10, 2), holidays)   # Gandhi Jayanti
         self.assertIn(date(test_year, 10, 6), holidays)   # Dussehra
         self.assertIn(date(test_year, 10, 26), holidays)  # Diwali
         self.assertIn(date(test_year, 11, 10), holidays)  # Guru Nanak Jayanti
         self.assertIn(date(test_year, 3, 2), holidays)    # Mahashivratri
+        self.assertIn(date(test_year, 12, 25), holidays)  # Christmas
 
 
 class ChinaTest(GenericCalendarTest):
