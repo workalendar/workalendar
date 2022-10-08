@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 Nothing here yet.
+- New calendar: Added India (country) calendar by @jaydeepkarale (#687).
 
 ## v16.4.0 (2022-09-16)
 

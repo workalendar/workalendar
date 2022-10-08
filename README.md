@@ -124,6 +124,7 @@ from the command line.
 - Guernsey
 - Hungary
 - Iceland
+- India
 - Ireland
 - Italy
 - Latvia

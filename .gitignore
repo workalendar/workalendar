@@ -11,3 +11,4 @@ pyproject.toml
 .cache/
 .pytest-cache/
 .pytest_cache/
+.idea/
