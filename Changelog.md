@@ -2,8 +2,12 @@
 
 ## master (unreleased)
 
+<<<<<<< HEAD
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
 - Added Holy Monday holiday to Chile.
+=======
+- Added Holy Monday holiday to Chile (#725).
+>>>>>>> f440f46 (PR number)
 
 ## v17.0.0 (2023-01-01)
 
