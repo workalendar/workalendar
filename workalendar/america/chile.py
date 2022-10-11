@@ -1,6 +1,6 @@
 from datetime import date
 
-from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT
+from ..core import WesternCalendar, MON, TUE, WED, THU, FRI, SAT, SUN
 from ..astronomy import solar_term
 from ..registry_tools import iso_register
 
@@ -99,5 +99,13 @@ class Chile(WesternCalendar):
                 reformation_day = date(year, 10, 27)
 
             days.append((reformation_day, "Reformation Day"))
+
+        # Holy Monday (Law 20.983)
+        if year >= 2017:
+            new_year = date(year, 1, 1)
+            if new_year.weekday() == SUN:
+                holy_monday = date(year, 1, 2)
+                days.append((holy_monday, "Holy Monday"))
+
 
         return days
