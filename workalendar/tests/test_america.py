@@ -1,7 +1,10 @@
 from datetime import date
 
 from ..america import (Argentina, Barbados, Chile, Colombia, Mexico, Panama,
-                       Paraguay)
+                       Paraguay,)
+
+
+
 from . import GenericCalendarTest
 
 
@@ -590,7 +593,6 @@ class BarbadosTest(GenericCalendarTest):
 
         # National Heroes Day & shift
         self.assertIn(date(2020, 4, 28), holidays)
-
         self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
         self.assertIn(date(2020, 8, 1), holidays)  # Emancipation Day
@@ -616,3 +618,5 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2021, 11, 30), holidays)  # Independant Day
         self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2021, 12, 27), holidays)  # Boxing Day
+
+

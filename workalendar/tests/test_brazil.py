@@ -1009,3 +1009,71 @@ class TestIBGERegister(TestCase):
     def test_all_are_brazilian_classes(self):
         for key, value in IBGE_TUPLE:
             self.assertTrue(issubclass(value, Brazil))
+
+@pytest.mark.anbima_test
+class BrazilAnbimaTest(GenericCalendarTest):
+    cal_class = AnbimaCalendar
+
+    def test_year_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 1, 1), holidays)  # new year
+        self.assertIn(date(2022, 4, 15), holidays)  #
+        self.assertIn(date(2022, 4, 21), holidays)  #
+        self.assertIn(date(2022, 5, 1), holidays)  #
+        self.assertIn(date(2022, 6, 16), holidays)  #
+        self.assertIn(date(2022, 9, 7), holidays)  #
+        self.assertIn(date(2022, 10, 12), holidays)  #
+        self.assertIn(date(2022, 11, 2), holidays)  #
+        self.assertIn(date(2022, 11, 15), holidays)  #
+        self.assertIn(date(2022, 12, 25), holidays)  #
+        # variable days
+        self.assertIn(date(2022, 2, 28), holidays)  # carnaval monday
+        self.assertIn(date(2022, 3, 1), holidays)  # carnaval tuesday
+
+    def test_year_2023(self):
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 1, 1), holidays)  # new year
+        self.assertIn(date(2023, 4, 15), holidays)  #
+        self.assertIn(date(2023, 4, 21), holidays)  #
+        self.assertIn(date(2023, 5, 1), holidays)  #
+        self.assertIn(date(2023, 6, 16), holidays)  #
+        self.assertIn(date(2023, 9, 7), holidays)  #
+        self.assertIn(date(2023, 10, 12), holidays)  #
+        self.assertIn(date(2023, 11, 2), holidays)  #
+        self.assertIn(date(2023, 11, 15), holidays)  #
+        self.assertIn(date(2023, 12, 25), holidays)  #
+        # variable days
+        self.assertIn(date(2023, 2, 20), holidays)  # carnaval monday
+        self.assertIn(date(2023, 2, 21), holidays)  # carnaval tuesday
+
+    def test_year_2024(self):
+        holidays = self.cal.holidays_set(2024)
+        self.assertIn(date(2024, 1, 1), holidays)  # new year
+        self.assertIn(date(2024, 4, 15), holidays)  #
+        self.assertIn(date(2024, 4, 21), holidays)  #
+        self.assertIn(date(2024, 5, 1), holidays)  #
+        self.assertIn(date(2024, 6, 16), holidays)  #
+        self.assertIn(date(2024, 9, 7), holidays)  #
+        self.assertIn(date(2024, 10, 12), holidays)  #
+        self.assertIn(date(2024, 11, 2), holidays)  #
+        self.assertIn(date(2024, 11, 15), holidays)  #
+        self.assertIn(date(2024, 12, 25), holidays)  #
+        # variable days
+        self.assertIn(date(2024, 2, 12), holidays)  # carnaval monday
+        self.assertIn(date(2024, 2, 13), holidays)  # carnaval tuesday
+
+    def test_year_2025(self):
+        holidays = self.cal.holidays_set(2025)
+        self.assertIn(date(2025, 1, 1), holidays)  # new year
+        self.assertIn(date(2025, 4, 15), holidays)  #
+        self.assertIn(date(2025, 4, 21), holidays)  #
+        self.assertIn(date(2025, 5, 1), holidays)  #
+        self.assertIn(date(2025, 6, 16), holidays)  #
+        self.assertIn(date(2025, 9, 7), holidays)  #
+        self.assertIn(date(2025, 10, 12), holidays)  #
+        self.assertIn(date(2025, 11, 2), holidays)  #
+        self.assertIn(date(2025, 11, 15), holidays)  #
+        self.assertIn(date(2025, 12, 25), holidays)  #
+        # variable days
+        self.assertIn(date(2025, 3, 3), holidays)  # carnaval monday
+        self.assertIn(date(2025, 3, 4), holidays)  # carnaval tuesday
