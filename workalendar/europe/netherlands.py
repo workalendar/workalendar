@@ -159,7 +159,7 @@ class NetherlandsWithSchoolHolidays(Netherlands):
             (start + timedelta(days=i), "Fall holiday") for i in range(n_days)
         ]
 
-    def get_christmas_holidays(self, year, in_december=True, in_january=True):
+    def get_christmas_holidays(self, year):
         """
         Return Christmas holidays
 
