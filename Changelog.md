@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Refactor ``NetherlandsWithSchoolHolidays.get_christmas_holidays`` for simplicity and readability.
 
 ## v16.4.0 (2022-09-16)
 
