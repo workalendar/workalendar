@@ -6,7 +6,7 @@ Nothing here yet.
 
 ## v16.4.0 (2022-10-23)
 
-- - New calendar: Added AnbimaCalendar (finance calendar) by @davi_milhome.
+- New calendar: Added AnbimaCalendar (finance calendar) by @davi_milhome.
 
 ## v16.4.0 (2022-09-16)
 
