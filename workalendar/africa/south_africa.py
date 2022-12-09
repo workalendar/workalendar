@@ -155,5 +155,7 @@ class SouthAfrica(WesternCalendar):
             days.append((date(year, 8, 3), "Local Elections"))
         if year == 2019:
             days.append((date(year, 5, 8), "National Elections"))
+        if year == 2022:
+            days.append((date(year, 12, 27), "Special Day of Goodwill"))
 
         return days
