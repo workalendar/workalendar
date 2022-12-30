@@ -68,7 +68,7 @@ pip install -e ./
 When you provide a patch for workalendar, whether it would be a new calendar or a fix to an existing one, or else, you will have to make sure that your contribution follows these basic requirements:
 
 * Your code should pass the `flake8` test ; that is to say that it follows the [PEP8](https://www.python.org/dev/peps/pep-0008/) guidelines. You can check using the `tox -e flake8` command. If you can't, our CI jobs will do it, and you'll be able to know where are your mistakes, if any.
-* Your code should be compatible with our supported Python version. Currently: Python 3.7, 3.8, 3.9 and 3.10. Again, the CI (powered by Github Actions) will check your code against all those versions so you won't have to.
+* Your code should be compatible with our supported Python version. Currently: Python 3.7, 3.8, 3.9, 3.10 and 3.11. Again, the CI (powered by Github Actions) will check your code against all those versions so you won't have to.
 * If you encounter a failure in the `pyupgrade` tox job, you can fix it by running the followinf command: `tox -r pyupgrade`. It'll modify your code so it will pass this test. **Warning:** sometimes, this change can break the `flake8` standards, so you'll have to make sure that both linters will pass.
 
 #### Test-driven start
