@@ -7,6 +7,7 @@
 - Added support for Python 3.10 (#706).
 - Added support for Python 3.11 (#732).
 - New calendar: Added Tunisia calendar by @macharmi (#702)
+- New calendar: Added El Salvador calendar by @hersoncruz (#708).
 
 ## v16.4.0 (2022-09-16)
 
