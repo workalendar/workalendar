@@ -10,9 +10,43 @@ from ..africa import (
     Nigeria,
     SaoTomeAndPrincipe,
     SouthAfrica,
+    Tunisia,
 )
 from ..core import MON, FRI
 from ..exceptions import CalendarError
+
+
+class TunisiaTest(GenericCalendarTest):
+    cal_class = Tunisia
+
+    def test_year_2013(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertIn(date(2013, 3, 20), holidays)  # Independance Day
+        self.assertIn(date(2013, 7, 25), holidays)  # Republic Day
+        self.assertIn(date(2013, 1, 24), holidays)   # Milad un Nabi
+        self.assertIn(date(2013, 8, 8), holidays)  # Eid ul-fitr
+        self.assertIn(date(2013, 8, 9), holidays)  # Eid ul-fitr next day
+        self.assertIn(date(2013, 10, 15), holidays)  # Evacuation Day
+
+    def test_year_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 3, 20), holidays)  # Independance Day
+        self.assertIn(date(2022, 7, 25), holidays)  # Republic Day
+        self.assertIn(date(2022, 10, 8), holidays)   # Milad un Nabi
+        self.assertIn(date(2022, 5, 3), holidays)  # Eid ul-fitr
+        self.assertIn(date(2022, 5, 4), holidays)  # Eid ul-fitr next day
+        self.assertIn(date(2022, 10, 15), holidays)  # Evacuation Day
+
+    def test_revolution_day(self):
+        holidays = self.cal.holidays_set(2013)
+        self.assertNotIn(date(2013, 12, 17), holidays)  # Revolution Day
+        self.assertIn(date(2013, 1, 14), holidays)  # Revolution Day
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 12, 17), holidays)  # Revolution Day
+        self.assertNotIn(date(2022, 1, 14), holidays)  # Revolution Day
+        holidays = self.cal.holidays_set(2010)
+        self.assertNotIn(date(2010, 12, 17), holidays)  # Revolution Day
+        self.assertNotIn(date(2010, 1, 14), holidays)  # Revolution Day
 
 
 class AlgeriaTest(GenericCalendarTest):

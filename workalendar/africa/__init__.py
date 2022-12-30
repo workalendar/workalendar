@@ -8,6 +8,7 @@ from .south_africa import SouthAfrica
 from .angola import Angola
 from .mozambique import Mozambique
 from .nigeria import Nigeria
+from .tunisia import Tunisia
 
 __all__ = (
     'Algeria',
@@ -20,4 +21,5 @@ __all__ = (
     'Angola',
     'Mozambique',
     'Nigeria',
+    'Tunisia',
 )

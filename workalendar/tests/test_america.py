@@ -1,7 +1,15 @@
 from datetime import date
 
-from ..america import (Argentina, Barbados, Chile, Colombia, Mexico, Panama,
-                       Paraguay)
+from ..america import (
+        Argentina,
+        Barbados,
+        Chile,
+        Colombia,
+        ElSalvador,
+        Mexico,
+        Panama,
+        Paraguay
+    )
 from . import GenericCalendarTest
 
 
@@ -616,3 +624,67 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2021, 11, 30), holidays)  # Independant Day
         self.assertIn(date(2021, 12, 25), holidays)  # Christmas Day
         self.assertIn(date(2021, 12, 27), holidays)  # Boxing Day
+
+
+class ElSalvadorTest(GenericCalendarTest):
+    cal_class = ElSalvador
+
+    def test_holidays_2018(self):
+        holidays = self.cal.holidays_set(2018)
+        self.assertIn(date(2018, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2018, 3, 29), holidays)  # Maundy Thursday
+        self.assertIn(date(2018, 3, 30), holidays)  # Good Friday
+        self.assertIn(date(2018, 3, 31), holidays)  # Holy Saturday
+        self.assertIn(date(2018, 5, 1), holidays)   # Labor Day
+        self.assertIn(date(2018, 5, 10), holidays)  # Mothers' Day
+        self.assertIn(date(2018, 6, 17), holidays)  # Fathers' Day
+        # Celebrations of San Salvador
+        self.assertIn(date(2018, 8, 6), holidays)
+        self.assertIn(date(2018, 9, 15), holidays)  # Independence Day
+        self.assertIn(date(2018, 11, 2), holidays)  # All Saints Day
+        self.assertIn(date(2018, 12, 25), holidays)  # XMas
+
+    def test_holidays_2019(self):
+        holidays = self.cal.holidays_set(2019)
+        self.assertIn(date(2019, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2019, 4, 18), holidays)  # Maundy Thursday
+        self.assertIn(date(2019, 4, 19), holidays)  # Good Friday
+        self.assertIn(date(2019, 4, 20), holidays)  # Holy Saturday
+        self.assertIn(date(2019, 5, 1), holidays)   # Labor Day
+        self.assertIn(date(2019, 5, 10), holidays)  # Mothers' Day
+        self.assertIn(date(2019, 6, 17), holidays)  # Fathers' Day
+        # Celebrations of San Salvador
+        self.assertIn(date(2019, 8, 6), holidays)
+        self.assertIn(date(2019, 9, 15), holidays)  # Independence Day
+        self.assertIn(date(2019, 11, 2), holidays)  # All Saints Day
+        self.assertIn(date(2019, 12, 25), holidays)  # XMas
+
+    def test_holidays_2020(self):
+        holidays = self.cal.holidays_set(2020)
+        self.assertIn(date(2020, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2020, 4, 9), holidays)   # Maundy Thursday
+        self.assertIn(date(2020, 4, 10), holidays)  # Good Friday
+        self.assertIn(date(2020, 4, 11), holidays)  # Holy Saturday
+        self.assertIn(date(2020, 5, 1), holidays)   # Labor Day
+        self.assertIn(date(2020, 5, 10), holidays)  # Mothers' Day
+        self.assertIn(date(2020, 6, 17), holidays)  # Fathers' Day
+        # Celebrations of San Salvador
+        self.assertIn(date(2020, 8, 6), holidays)
+        self.assertIn(date(2020, 9, 15), holidays)  # Independence Day
+        self.assertIn(date(2020, 11, 2), holidays)  # All Saints Day
+        self.assertIn(date(2020, 12, 25), holidays)  # XMas
+
+    def test_holidays_2021(self):
+        holidays = self.cal.holidays_set(2021)
+        self.assertIn(date(2021, 1, 1), holidays)   # New Year's Day
+        self.assertIn(date(2021, 4, 2), holidays)   # Maundy Thursday
+        self.assertIn(date(2021, 4, 2), holidays)   # Good Friday
+        self.assertIn(date(2021, 4, 3), holidays)   # Holy Saturday
+        self.assertIn(date(2021, 5, 1), holidays)   # Labor Day
+        self.assertIn(date(2021, 5, 10), holidays)  # Mothers' Day
+        self.assertIn(date(2021, 6, 17), holidays)  # Fathers' Day
+        # Celebrations of San Salvador
+        self.assertIn(date(2021, 8, 6), holidays)
+        self.assertIn(date(2021, 9, 15), holidays)  # Independence Day
+        self.assertIn(date(2021, 11, 2), holidays)  # All Saints Day
+        self.assertIn(date(2021, 12, 25), holidays)  # XMas
