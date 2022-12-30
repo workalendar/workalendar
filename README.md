@@ -76,7 +76,7 @@ For a more complete documentation and advanced usage, go to [the official workal
 
 **Workalendar will require you to use Python 3.7+.**
 
-Workalendar is tested on Python 3.7, 3.8, 3.9, and on Linux (Ubuntu), Mac OS and Windows using Github actions.
+Workalendar is tested on Python 3.7, 3.8, 3.9, 3.10, and on Linux (Ubuntu), Mac OS and Windows using Github actions.
 
 ### Conditional dependencies
 

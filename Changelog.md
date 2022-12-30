@@ -4,6 +4,7 @@
 
 - Removed compatibility with Python 3.6, also, removed tests & amended documentation (#705).
 - Upgraded `tox` usage, now compatble with tox 4+ (added `allowlist_externals`).
+- Added support for Python 3.10 (#706).
 
 ## v16.4.0 (2022-09-16)
 
