@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Removed compatibility with Python 3.6, also, removed tests & amended documentation (#705).
 
 ## v16.4.0 (2022-09-16)
 
