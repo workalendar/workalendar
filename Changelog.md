@@ -9,6 +9,7 @@
 - Added support for Python 3.11 (#732).
 - New calendar: Added Tunisia calendar by @macharmi (#702)
 - New calendar: Added El Salvador calendar by @hersoncruz (#708).
+- Update China's public holidays for 2023 (#728).
 
 ## v16.4.0 (2022-09-16)
 
