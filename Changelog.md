@@ -1,15 +1,20 @@
 # CHANGELOG
 
-## master (unreleased)
+## v17.0.0 (2023-01-01)
 
-- Refactor ``NetherlandsWithSchoolHolidays.get_christmas_holidays`` for simplicity and readability.
+### New calendars
+
+- New calendar: Added Tunisia calendar by @macharmi (#702)
+- New calendar: Added El Salvador calendar by @hersoncruz (#708).
+
+### Other changes
+
+- Update China's public holidays for 2023 (#728).
 - Removed compatibility with Python 3.6, also, removed tests & amended documentation (#705).
 - Upgraded `tox` usage, now compatble with tox 4+ (added `allowlist_externals`).
 - Added support for Python 3.10 (#706).
 - Added support for Python 3.11 (#732).
-- New calendar: Added Tunisia calendar by @macharmi (#702)
-- New calendar: Added El Salvador calendar by @hersoncruz (#708).
-- Update China's public holidays for 2023 (#728).
+- Refactor ``NetherlandsWithSchoolHolidays.get_christmas_holidays`` for simplicity and readability.
 
 ## v16.4.0 (2022-09-16)
 
