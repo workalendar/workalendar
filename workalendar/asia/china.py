@@ -42,6 +42,14 @@ holidays = {
             'Dragon Boat Festival': [(6, 3), (6, 4), (6, 5)],
             'Mid-Autumn Festival': [(9, 10), (9, 11), (9, 12)]
         },
+    2023:
+        {
+            'Ching Ming Festival': [(4, 5)],
+            'Labour Day Holiday': [(4, 29), (4, 30), (5, 1), (5, 2), (5, 3)],
+            'Dragon Boat Festival': [(6, 22), (6, 23), (6, 24)],
+            'Mid-Autumn Festival': [(9, 29)],
+            'National Day': [(9, 30)]
+        },
 }
 
 workdays = {
@@ -80,18 +88,21 @@ workdays = {
             'Labour Day Holiday Shift': [(4, 24), (5, 7)],
             'National Day Shift': [(10, 8), (10, 9)]
         },
+    2023:
+        {
+            'Spring Festival Shift': [(1, 28), (1, 29)],
+            'Labour Day Holiday Shift': [(4, 23), (5, 6)],
+            'Dragon Boat Festival Shift': [(6, 25)],
+            'National Day Shift': [(10, 7), (10, 8)]
+        },
 }
 
 
 @iso_register('CN')
 class China(ChineseNewYearCalendar):
     "China"
-    # WARNING: Support 2018-2022 currently, need update every year.
+    # WARNING: Support 2018-2023 currently, need update every year.
     shift_new_years_day = True
-    # National Days, 10.1 - 10.7
-    national_days = [(10, i, "National Day") for i in range(1, 8)]
-    FIXED_HOLIDAYS = tuple(national_days)
-
     include_chinese_new_year_eve = True
 
     def __init__(self, *args, **kwargs):
@@ -119,6 +130,11 @@ class China(ChineseNewYearCalendar):
         for i in range(2, 7):
             days.append((ChineseNewYearCalendar.lunar(year, 1, i),
                          "Spring Festival"))
+        # National Days, 10.1 - 10.7 in general
+        for i in range(1, 8):
+            if date(year, 10, i) not in self.extra_working_days:
+                days.append((date(year, 10, i), "National Day"))
+
         # other holidays
         for holiday_name, day_list in holidays[year].items():
             for v in day_list:

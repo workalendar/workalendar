@@ -113,6 +113,27 @@ class ChinaTest(GenericCalendarTest):
         self.assertNotIn(date(2022, 10, 8), holidays)  # National Day Shift
         self.assertNotIn(date(2022, 10, 9), holidays)  # National Day Shift
 
+    def test_year_2023(self):
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 1, 2), holidays)       # New Year
+        self.assertIn(date(2023, 1, 21), holidays)      # Spring Festival
+        self.assertIn(date(2023, 1, 27), holidays)      # Spring Festival
+        self.assertIn(date(2023, 4, 5), holidays)       # Ching Ming Festival
+        self.assertIn(date(2023, 4, 29), holidays)      # Labour Day Holiday
+        self.assertIn(date(2023, 5, 3), holidays)       # Labour Day Holiday
+        self.assertIn(date(2023, 6, 22), holidays)      # Dragon Boat Festival
+        self.assertIn(date(2023, 6, 24), holidays)      # Dragon Boat Festival
+        self.assertIn(date(2023, 9, 29), holidays)      # Mid-Autumn Festival
+        self.assertIn(date(2023, 9, 30), holidays)      # National Day
+        self.assertIn(date(2023, 10, 6), holidays)      # National Day
+
+        self.assertNotIn(date(2023, 1, 28), holidays)   # Spring Festival Shift
+        self.assertNotIn(date(2023, 1, 29), holidays)   # Spring Festival Shift
+        self.assertNotIn(date(2023, 4, 23), holidays)   # Labour Day Shift
+        self.assertNotIn(date(2023, 5, 6), holidays)    # Labour Day Shift
+        self.assertNotIn(date(2023, 10, 7), holidays)   # National Day Shift
+        self.assertNotIn(date(2023, 10, 8), holidays)   # National Day Shift
+
     def test_missing_holiday_year(self):
         save_2018 = china_holidays[2018]
         del china_holidays[2018]
@@ -125,7 +146,7 @@ class ChinaTest(GenericCalendarTest):
         with patch('warnings.warn') as patched:
             self.cal.get_calendar_holidays(year)
         patched.assert_called_with(
-            'Support years 2018-2022 currently, need update every year.'
+            'Support years 2018-2023 currently, need update every year.'
         )
 
     def test_is_working_day(self):
