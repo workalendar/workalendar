@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## v17.0.0 (2023-01-01)
 
 ### New calendars
