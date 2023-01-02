@@ -238,6 +238,182 @@ class ChristianMixin:
         return days
 
 
+class HinduBaseMixin:
+    """ Covers Diwali and Dussehra """
+
+    # All dates taken from https://www.drikpanchang.com/
+    GURUNANKJAYANTI = {
+        2000: date(2000, 11, 11),
+        2001: date(2001, 11, 30),
+        2002: date(2002, 11, 19),
+        2003: date(2003, 11, 8),
+        2004: date(2004, 11, 26),
+        2005: date(2005, 11, 15),
+        2006: date(2006, 11, 5),
+        2007: date(2007, 11, 24),
+        2008: date(2008, 11, 13),
+        2009: date(2009, 11, 2),
+        2010: date(2010, 11, 21),
+        2011: date(2011, 11, 10),
+        2012: date(2012, 11, 28),
+        2013: date(2013, 11, 17),
+        2014: date(2014, 11, 6),
+        2015: date(2015, 11, 25),
+        2016: date(2016, 11, 14),
+        2017: date(2017, 11, 4),
+        2018: date(2018, 11, 23),
+        2019: date(2019, 11, 12),
+        2020: date(2020, 11, 30),
+        2021: date(2021, 11, 19),
+        2022: date(2022, 11, 8),
+        2023: date(2023, 11, 27),
+        2024: date(2024, 11, 15),
+        2025: date(2025, 11, 5),
+        2026: date(2026, 11, 23),
+        2027: date(2027, 11, 13),
+        2028: date(2028, 11, 1),
+        2029: date(2029, 11, 21),
+        2030: date(2030, 11, 10),
+        2031: date(2030, 11, 28),
+    }
+
+    DIWALI = {
+        2000: date(2000, 10, 26),
+        2001: date(2001, 11, 14),
+        2002: date(2002, 11, 4),
+        2003: date(2003, 10, 25),
+        2004: date(2004, 11, 12),
+        2005: date(2005, 11, 1),
+        2006: date(2006, 10, 21),
+        2007: date(2007, 11, 9),
+        2008: date(2008, 10, 28),
+        2009: date(2009, 10, 17),
+        2010: date(2010, 11, 5),
+        2011: date(2011, 10, 26),
+        2012: date(2012, 11, 13),
+        2013: date(2013, 11, 3),
+        2014: date(2014, 10, 23),
+        2015: date(2015, 11, 11),
+        2016: date(2016, 10, 30),
+        2017: date(2017, 10, 19),
+        2018: date(2018, 11, 7),
+        2019: date(2019, 10, 27),
+        2020: date(2020, 11, 14),
+        2021: date(2021, 11, 4),
+        2022: date(2022, 10, 24),
+        2023: date(2023, 11, 12),
+        2024: date(2024, 11, 1),
+        2025: date(2025, 10, 21),
+        2026: date(2026, 11, 8),
+        2027: date(2027, 10, 29),
+        2028: date(2028, 10, 17),
+        2029: date(2029, 11, 5),
+        2030: date(2030, 10, 26),
+        2031: date(2030, 11, 14),
+    }
+
+    DUSSEHRA = {
+        2000: date(2000, 10, 7),
+        2001: date(2001, 10, 26),
+        2002: date(2002, 10, 15),
+        2003: date(2003, 10, 5),
+        2004: date(2004, 10, 22),
+        2005: date(2005, 10, 12),
+        2006: date(2006, 10, 2),
+        2007: date(2007, 10, 21),
+        2008: date(2008, 10, 9),
+        2009: date(2009, 9, 28),
+        2010: date(2010, 10, 17),
+        2011: date(2011, 10, 6),
+        2012: date(2012, 10, 24),
+        2013: date(2013, 10, 13),
+        2014: date(2014, 10, 3),
+        2015: date(2015, 10, 22),
+        2016: date(2016, 10, 11),
+        2017: date(2017, 9, 30),
+        2018: date(2018, 10, 19),
+        2019: date(2019, 10, 8),
+        2020: date(2020, 10, 25),
+        2021: date(2021, 10, 15),
+        2022: date(2022, 10, 5),
+        2023: date(2023, 10, 24),
+        2024: date(2024, 10, 12),
+        2025: date(2025, 10, 2),
+        2026: date(2026, 10, 20),
+        2027: date(2027, 10, 9),
+        2028: date(2028, 9, 27),
+        2029: date(2029, 10, 16),
+        2030: date(2030, 10, 6),
+        2031: date(2031, 10, 25),
+    }
+
+    MAHASHIVRATRI = {
+        2000: date(2000, 3, 4),
+        2001: date(2001, 2, 21),
+        2002: date(2002, 3, 12),
+        2003: date(2003, 3, 1),
+        2004: date(2004, 2, 18),
+        2005: date(2005, 3, 8),
+        2006: date(2006, 2, 26),
+        2007: date(2007, 2, 16),
+        2008: date(2008, 3, 6),
+        2009: date(2009, 2, 23),
+        2010: date(2010, 2, 12),
+        2011: date(2011, 3, 2),
+        2012: date(2012, 2, 20),
+        2013: date(2013, 3, 10),
+        2014: date(2014, 2, 27),
+        2015: date(2015, 2, 17),
+        2016: date(2016, 3, 7),
+        2017: date(2017, 2, 24),
+        2018: date(2018, 2, 13),
+        2019: date(2019, 3, 4),
+        2020: date(2020, 2, 21),
+        2021: date(2021, 3, 11),
+        2022: date(2022, 3, 1),
+        2023: date(2023, 2, 18),
+        2024: date(2024, 3, 8),
+        2025: date(2025, 2, 26),
+        2026: date(2026, 2, 15),
+        2027: date(2027, 3, 6),
+        2028: date(2028, 2, 23),
+        2029: date(2029, 2, 11),
+        2030: date(2030, 3, 2),
+        2031: date(2031, 2, 20),
+    }
+
+    def get_variable_days(self, year):
+        """
+        Hindu variable days for Diwali, Dussehra and Guru Nanak Jayanti
+        """
+        days = super().get_variable_days(year)
+
+        if year not in self.DIWALI:
+            msg = f'Missing date for Deepavali for year: {year}'
+            raise KeyError(msg)
+
+        # Add in Deepavali (hardcoded dates, so no need to shift)
+        days.append((self.DIWALI.get(year), 'Diwali'))
+
+        # Add in Dussehra (hardcoded dates, so no need to shift)
+        days.append((self.DUSSEHRA.get(year), 'Dussehra'))
+
+        # Add in Guru Nanak Jayanti (hardcoded dates, so no need to shift)
+        days.append((self.GURUNANKJAYANTI.get(year), 'Guru Nanak Jayanti'))
+
+        # Add in Mahashivratri (hardcoded dates, so no need to shift)
+        days.append((self.MAHASHIVRATRI.get(year), 'Mahashivratri'))
+
+        return days
+
+
+class HinduMixin(HinduBaseMixin):
+    """
+    Extend the Indian holidays to regional ones
+    """
+    WEEKEND_DAYS = (SAT, SUN)
+
+
 class WesternMixin(ChristianMixin):
     """
     General usage calendar for Western countries.
@@ -270,6 +446,7 @@ class LunarMixin:
     """
     Calendar ready to compute luncar calendar days
     """
+
     @staticmethod
     def lunar(year, month, day):
         return LunarDate(year, month, day).toSolarDate()
@@ -453,7 +630,6 @@ class CalverterMixin:
 
 
 class IslamicMixin(CalverterMixin):
-
     WEEKEND_DAYS = (FRI, SAT)
 
     conversion_method = convertdate.islamic
@@ -504,7 +680,6 @@ class IslamicMixin(CalverterMixin):
 
 
 class CoreCalendar:
-
     FIXED_HOLIDAYS = ()
     WEEKEND_DAYS = ()
 
@@ -1069,3 +1244,12 @@ class IslamoWesternCalendar(IslamicMixin, WesternMixin, Calendar):
     When countries have both Islamic and Western-Christian holidays.
     """
     FIXED_HOLIDAYS = Calendar.FIXED_HOLIDAYS
+
+
+class HinduCalender(HinduMixin, Calendar):
+    """
+        Hindu Calender
+        Designed for India
+    """
+    # to be implemented to support regional Indian holidays
+    pass

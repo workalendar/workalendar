@@ -9,12 +9,14 @@ from .taiwan import Taiwan
 from .israel import Israel
 from .philippines import Philippines
 from .kazakhstan import Kazakhstan
+from .india import India
 
 
 __all__ = (
     'China',
     'HongKong',
     'HongKongBank',
+    'India',
     'Japan',
     'JapanBank',
     'Malaysia',
