@@ -324,7 +324,7 @@ class ChileTest(GenericCalendarTest):
         holidays = self.cal.holidays_set(2018)
         self.assertNotIn(date(2018, 6, 29), holidays)
         self.assertIn(date(2018, 7, 2), holidays)
-    
+
     def test_holy_monday(self):
         # new_years not SUN
         holidays = self.cal.holidays_set(2022)
