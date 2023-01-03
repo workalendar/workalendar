@@ -1010,7 +1010,6 @@ class TestIBGERegister(TestCase):
         for key, value in IBGE_TUPLE:
             self.assertTrue(issubclass(value, Brazil))
 
-@pytest.mark.anbima_test
 class BrazilAnbimaTest(GenericCalendarTest):
     cal_class = AnbimaCalendar
 
