@@ -107,5 +107,4 @@ class Chile(WesternCalendar):
                 holy_monday = date(year, 1, 2)
                 days.append((holy_monday, "Holy Monday"))
 
-
         return days
