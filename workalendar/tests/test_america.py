@@ -10,7 +10,6 @@ from ..america import (
         Panama,
         Paraguay
     )
-
 from . import GenericCalendarTest
 
 
@@ -599,6 +598,7 @@ class BarbadosTest(GenericCalendarTest):
 
         # National Heroes Day & shift
         self.assertIn(date(2020, 4, 28), holidays)
+
         self.assertIn(date(2020, 5, 1), holidays)  # Labour Day
         self.assertIn(date(2020, 6, 1), holidays)  # Whit Monday
         self.assertIn(date(2020, 8, 1), holidays)  # Emancipation Day
@@ -626,8 +626,6 @@ class BarbadosTest(GenericCalendarTest):
         self.assertIn(date(2021, 12, 27), holidays)  # Boxing Day
 
 
-<<<<<<< HEAD
-=======
 class ElSalvadorTest(GenericCalendarTest):
     cal_class = ElSalvador
 
@@ -690,4 +688,4 @@ class ElSalvadorTest(GenericCalendarTest):
         self.assertIn(date(2021, 9, 15), holidays)  # Independence Day
         self.assertIn(date(2021, 11, 2), holidays)  # All Saints Day
         self.assertIn(date(2021, 12, 25), holidays)  # XMas
->>>>>>> master
+
