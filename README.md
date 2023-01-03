@@ -74,16 +74,16 @@ For a more complete documentation and advanced usage, go to [the official workal
 
 ## External dependencies
 
-**Workalendar will require you to use Python 3.6+.**
+**Workalendar will require you to use Python 3.7+.**
 
-Workalendar is tested on Python 3.6, 3.7, 3.8, 3.9, and on Linux (Ubuntu), Mac OS and Windows using Github actions.
+Workalendar is tested on Python 3.7, 3.8, 3.9, 3.10, 3.11, and on Linux (Ubuntu), Mac OS and Windows using Github actions.
 
 ### Conditional dependencies
 
 As of v15.0.0:
 
-* If you're using \*Nix and Python 3.6, 3.7, 3.8, the package `backports.zoneinfo` is required
-* If you're using Windows and Python 3.6, 3.7, 3.8, the package `tzdata` is *also* a requirement (with the `backports.zoneinfo`).
+* If you're using \*Nix and Python 3.7, 3.8, the package `backports.zoneinfo` is required
+* If you're using Windows and Python 3.7, 3.8, the package `tzdata` is *also* a requirement (with the `backports.zoneinfo`).
 * If you're using Python 3.9+, the stdlib `zoneinfo` package will be used.
 
 ## Tests
@@ -155,6 +155,7 @@ from the command line.
 - Canada (including provincial and territory holidays)
 - Chile
 - Colombia
+- El Salvador
 - Mexico
 - Panama
 - Paraguay
@@ -201,6 +202,7 @@ from the command line.
 - Nigeria
 - São Tomé
 - South Africa
+- Tunisia
 
 And more to come (I hope!)
 
