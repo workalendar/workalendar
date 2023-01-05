@@ -628,6 +628,16 @@ class BrazilBankCalendar(Brazil):
             day = day + timedelta(days=1)
         return day
 
+class BrazilCity():
+    """
+    Template for a Brazil City
+    """
+    def __new__(cls, city_ibge: str):
+        # Check the city class according to ibge value
+        if city_ibge in IBGE_REGISTER:
+            return IBGE_REGISTER.get(city_ibge)
+
+        return BrazilSaoPauloCity()
 
 IBGE_TUPLE = (
     ('BR-IBGE-12', BrazilAcre),

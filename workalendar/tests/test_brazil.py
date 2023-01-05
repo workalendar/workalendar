@@ -22,6 +22,7 @@ from ..america import (
     BrazilPortoVelhoCity, BrazilBoaVistaCity, BrazilPortoAlegreCity,
     BrazilChapecoCity, BrazilFlorianopolisCity, BrazilJoinvilleCity,
     BrazilAracajuCity, BrazilSorocabaCity, BrazilPalmasCity,
+    BrazilCity,
     # Banks
     BrazilBankCalendar,
 )
@@ -880,6 +881,16 @@ class BrazilPalmasCityTest(BrazilTocantinsTest):
         # Fixed days
         # Aniversário de Palmas
         self.assertIn(date(2017, 5, 20), holidays)
+
+
+class BrazilCityTest(BrazilTest):
+    """
+    Brazil City test
+    """
+
+    def test_brazil_city_fortaleza(self):
+        self.cal_class = BrazilCity('BR-IBGE-2304400')
+        assert self.cal_class == BrazilFortalezCity
 
 
 class BrazilBankCalendarTest(BrazilTest):
