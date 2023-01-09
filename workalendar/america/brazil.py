@@ -630,7 +630,7 @@ class BrazilBankCalendar(Brazil):
 
 
 @iso_register('BR-ANB')
-class AnbimaCalendar(workalendar.america.Brazil):
+class AnbimaCalendar(Brazil):
     """ Anbima is a association that decide some rules to the finance
     market
     """
@@ -643,7 +643,7 @@ class AnbimaCalendar(workalendar.america.Brazil):
 
       days = super().get_variable_days(year)
       tuesday_carnaval = self.get_fat_tuesday(year)
-      monday_carnaval = tuesday_carnaval - dt.timedelta(days=1)
+      monday_carnaval = tuesday_carnaval - timedelta(days=1)
       days.append((monday_carnaval, "Monday carnaval"))
 
       return days

@@ -25,7 +25,7 @@ from ..america import (
     # Banks
     BrazilBankCalendar,
 )
-from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE
+from ..america.brazil import IBGE_REGISTER, IBGE_TUPLE, AnbimaCalendar
 
 
 class BrazilTest(GenericCalendarTest):
@@ -1023,7 +1023,7 @@ class BrazilAnbimaTest(GenericCalendarTest):
         self.assertIn(date(2022, 9, 7), holidays)  #
         self.assertIn(date(2022, 10, 12), holidays)  #
         self.assertIn(date(2022, 11, 2), holidays)  #
-        self.assertIn(date(2022, 11, 15), holidays)  #
+        self.assertIn(date(2022, 11,15), holidays)  #
         self.assertIn(date(2022, 12, 25), holidays)  #
         # variable days
         self.assertIn(date(2022, 2, 28), holidays)  # carnaval monday
@@ -1032,10 +1032,10 @@ class BrazilAnbimaTest(GenericCalendarTest):
     def test_year_2023(self):
         holidays = self.cal.holidays_set(2023)
         self.assertIn(date(2023, 1, 1), holidays)  # new year
-        self.assertIn(date(2023, 4, 15), holidays)  #
+        self.assertIn(date(2023, 4, 7), holidays)  #
         self.assertIn(date(2023, 4, 21), holidays)  #
         self.assertIn(date(2023, 5, 1), holidays)  #
-        self.assertIn(date(2023, 6, 16), holidays)  #
+        self.assertIn(date(2023, 6, 8), holidays)  #
         self.assertIn(date(2023, 9, 7), holidays)  #
         self.assertIn(date(2023, 10, 12), holidays)  #
         self.assertIn(date(2023, 11, 2), holidays)  #
@@ -1048,10 +1048,10 @@ class BrazilAnbimaTest(GenericCalendarTest):
     def test_year_2024(self):
         holidays = self.cal.holidays_set(2024)
         self.assertIn(date(2024, 1, 1), holidays)  # new year
-        self.assertIn(date(2024, 4, 15), holidays)  #
+        self.assertIn(date(2024, 3, 29), holidays)  #
         self.assertIn(date(2024, 4, 21), holidays)  #
         self.assertIn(date(2024, 5, 1), holidays)  #
-        self.assertIn(date(2024, 6, 16), holidays)  #
+        self.assertIn(date(2024, 5, 30), holidays)  #
         self.assertIn(date(2024, 9, 7), holidays)  #
         self.assertIn(date(2024, 10, 12), holidays)  #
         self.assertIn(date(2024, 11, 2), holidays)  #
@@ -1064,10 +1064,12 @@ class BrazilAnbimaTest(GenericCalendarTest):
     def test_year_2025(self):
         holidays = self.cal.holidays_set(2025)
         self.assertIn(date(2025, 1, 1), holidays)  # new year
-        self.assertIn(date(2025, 4, 15), holidays)  #
+        self.assertIn(date(2025, 4, 18), holidays)  #
+        self.assertIn(date(2025, 4, 21), holidays)  #
+        self.assertIn(date(2025, 4, 18), holidays)  #
         self.assertIn(date(2025, 4, 21), holidays)  #
         self.assertIn(date(2025, 5, 1), holidays)  #
-        self.assertIn(date(2025, 6, 16), holidays)  #
+        self.assertIn(date(2025, 6, 19), holidays)  #
         self.assertIn(date(2025, 9, 7), holidays)  #
         self.assertIn(date(2025, 10, 12), holidays)  #
         self.assertIn(date(2025, 11, 2), holidays)  #
