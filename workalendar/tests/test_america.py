@@ -688,4 +688,3 @@ class ElSalvadorTest(GenericCalendarTest):
         self.assertIn(date(2021, 9, 15), holidays)  # Independence Day
         self.assertIn(date(2021, 11, 2), holidays)  # All Saints Day
         self.assertIn(date(2021, 12, 25), holidays)  # XMas
-
