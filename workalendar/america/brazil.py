@@ -629,6 +629,34 @@ class BrazilBankCalendar(Brazil):
         return day
 
 
+@iso_register('BR-ANB')
+class AnbimaCalendar(Brazil):
+    """ Anbima is a association that decide some rules to the finance
+    market
+    """
+    include_easter_sunday = False
+    include_fat_tuesday = True
+    fat_tuesday_label = "Tuesday carnaval"
+    include_good_friday = True
+    include_corpus_christi = True
+    def get_variable_days(self, year):
+
+      days = super().get_variable_days(year)
+      tuesday_carnaval = self.get_fat_tuesday(year)
+      monday_carnaval = tuesday_carnaval - timedelta(days=1)
+      days.append((monday_carnaval, "Monday carnaval"))
+
+      return days
+    def find_following_working_day(self, day):
+        """
+        Find for the next working day by ignoring weekends,
+        fixed and non fixed holidays and the last working
+        day for only internal bank transactions in Brazil
+        """
+        while not self.is_working_day(day):
+            day = day + timedelta(days=1)
+        return day
+
 IBGE_TUPLE = (
     ('BR-IBGE-12', BrazilAcre),
     ('BR-IBGE-27', BrazilAlagoas),

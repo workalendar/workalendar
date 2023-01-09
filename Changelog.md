@@ -4,6 +4,10 @@
 
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
 
+## v17.0.0 (2023-01-08)
+
+- New calendar: Added AnbimaCalendar (finance calendar) by @davi_milhome. 
+
 ## v17.0.0 (2023-01-01)
 
 ### New calendars
