@@ -27,6 +27,7 @@ from ..europe import (
     Ireland,
     Italy,
     Latvia,
+    Liechtenstein,
     Lithuania,
     Luxembourg,
     Malta,
@@ -1028,6 +1029,28 @@ class LatviaTest(GenericCalendarTest):
     def test_year_2013(self):
         holidays = self.cal.holidays_set(2013)
         self.assertIn(date(2013, 5, 6), holidays)  # Restoration Day Observed
+
+
+class LiechtensteinTest(GenericCalendarTest):
+    cal_class = Liechtenstein
+
+    def test_year_2016(self):
+        holidays = self.cal.holidays_set(2016)
+        self.assertIn(date(2016, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2016, 1, 6), holidays)  # Epiphany
+        self.assertIn(date(2016, 2, 2), holidays)  # Candelmass
+        self.assertIn(date(2016, 3, 19), holidays)  # Saint Joseph's Day
+        self.assertIn(date(2016, 3, 28), holidays)  # easter monday
+        self.assertIn(date(2016, 5, 1), holidays)  # Labour day
+        self.assertIn(date(2016, 5, 5), holidays)  # Ascension Day
+        self.assertIn(date(2016, 5, 16), holidays)  # Whit monday
+        self.assertIn(date(2016, 5, 26), holidays)  # Corpus Christi
+        self.assertIn(date(2016, 8, 15), holidays)  # Assumption & National Day
+        self.assertIn(date(2016, 9, 8), holidays)  # Nativity of Mary
+        self.assertIn(date(2016, 11, 1), holidays)  # all saints
+        self.assertIn(date(2016, 12, 8), holidays)  # Immaculate conception
+        self.assertIn(date(2016, 12, 25), holidays)  # Xmas
+        self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
 
 
 class LuxembourgTest(GenericCalendarTest):
