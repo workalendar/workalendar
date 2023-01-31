@@ -28,6 +28,8 @@ class Liechtenstein(WesternCalendar):
     fat_tuesday_label = "Shrove Tuesday"
 
     def __init__(self, include_rest_days=True, include_bankholyday=False):
+
+        self.assumption_label = "State holiday and " + super().assumption_label
         # legally public rest days
         self.include_candlemas = include_rest_days
         self.include_st_josephs_day = include_rest_days
