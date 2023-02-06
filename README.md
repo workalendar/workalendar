@@ -127,6 +127,7 @@ from the command line.
 - Ireland
 - Italy
 - Latvia
+- Liechtenstein
 - Lithuania
 - Luxembourg
 - Malta

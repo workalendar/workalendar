@@ -93,6 +93,7 @@ class ChristianMixin:
     include_christmas_eve = False
     include_ascension = False
     include_assumption = False
+    assumption_label = "Assumption of Mary to Heaven"
     include_whit_sunday = False
     whit_sunday_label = 'Whit Sunday'
     include_whit_monday = False
@@ -213,7 +214,7 @@ class ChristianMixin:
         if self.include_easter_monday:
             days.append((self.get_easter_monday(year), "Easter Monday"))
         if self.include_assumption:
-            days.append((date(year, 8, 15), "Assumption of Mary to Heaven"))
+            days.append((date(year, 8, 15), self.assumption_label))
         if self.include_all_saints:
             days.append((date(year, 11, 1), "All Saints Day"))
         if self.include_all_souls:

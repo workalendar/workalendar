@@ -19,6 +19,7 @@ from .iceland import Iceland
 from .ireland import Ireland
 from .italy import Italy
 from .latvia import Latvia
+from .liechtenstein import Liechtenstein
 from .lithuania import Lithuania
 from .luxembourg import Luxembourg
 from .malta import Malta
@@ -91,6 +92,7 @@ __all__ = (
     'Ireland',
     'Italy',
     'Latvia',
+    'Liechtenstein',
     'Lithuania',
     'Luxembourg',
     'Malta',
