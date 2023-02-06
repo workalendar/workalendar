@@ -1033,13 +1033,17 @@ class LatviaTest(GenericCalendarTest):
 
 class LiechtensteinTest(GenericCalendarTest):
     cal_class = Liechtenstein
+    kwargs = dict(include_rest_days=True, include_bankholyday=True)
 
     def test_year_2016(self):
         holidays = self.cal.holidays_set(2016)
         self.assertIn(date(2016, 1, 1), holidays)  # New Years day
+        self.assertIn(date(2016, 1, 2), holidays)  # Berchtold's Day
         self.assertIn(date(2016, 1, 6), holidays)  # Epiphany
         self.assertIn(date(2016, 2, 2), holidays)  # Candelmass
+        self.assertIn(date(2016, 2, 9), holidays)  # Shrove Tuesday
         self.assertIn(date(2016, 3, 19), holidays)  # Saint Joseph's Day
+        self.assertIn(date(2016, 3, 25), holidays)  # Good Friday
         self.assertIn(date(2016, 3, 28), holidays)  # easter monday
         self.assertIn(date(2016, 5, 1), holidays)  # Labour day
         self.assertIn(date(2016, 5, 5), holidays)  # Ascension Day
@@ -1049,8 +1053,10 @@ class LiechtensteinTest(GenericCalendarTest):
         self.assertIn(date(2016, 9, 8), holidays)  # Nativity of Mary
         self.assertIn(date(2016, 11, 1), holidays)  # all saints
         self.assertIn(date(2016, 12, 8), holidays)  # Immaculate conception
+        self.assertIn(date(2016, 12, 24), holidays)  # Xmas Eve
         self.assertIn(date(2016, 12, 25), holidays)  # Xmas
         self.assertIn(date(2016, 12, 26), holidays)  # St Stephens
+        self.assertIn(date(2016, 12, 31), holidays)  # New Year's Eve
 
 
 class LuxembourgTest(GenericCalendarTest):
