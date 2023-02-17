@@ -830,6 +830,11 @@ class PandasTimestampTest(CoreCalendarTest):
         )
         # No weekend days, the next day is "today"
         self.assertEqual(following_day, date(2018, 1, 1))
+        previouws_day = self.cal.find_previous_working_day(
+            pandas.to_datetime("2018-1-1")
+        )
+        # No weekend days, the previous day is "today"
+        self.assertEqual(previouws_day, date(2018, 1, 1))
 
     def test_unsupported_type_get_nth_weekday_in_month(self):
         start = pandas.to_datetime("2018-1-4")

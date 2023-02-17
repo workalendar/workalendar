@@ -697,17 +697,29 @@ class CoreCalendar:
             day, -delta,
             extra_working_days, extra_holidays, keep_datetime=keep_datetime)
 
+    def _find_workday(self, day, delta):
+        # base to get next and previous working day
+        day = cleaned_date(day)
+
+        while day.weekday() in self.get_weekend_days():
+            day = day + delta
+        return day
+
     def find_following_working_day(self, day):
         """Looks for the following working day, if not already a working day.
 
         **WARNING**: this function doesn't take into account the calendar
         holidays, only the days of the week and the weekend days parameters.
         """
-        day = cleaned_date(day)
+        return self._find_workday(day, timedelta(days=1))
 
-        while day.weekday() in self.get_weekend_days():
-            day = day + timedelta(days=1)
-        return day
+    def find_previous_working_day(self, day):
+        """Looks for the previous working day, if not already a working day.
+
+        **WARNING**: this function doesn't take into account the calendar
+        holidays, only the days of the week and the weekend days parameters.
+        """
+        return self._find_workday(day, timedelta(days=-1))
 
     @staticmethod
     def get_nth_weekday_in_month(year, month, weekday, n=1, start=None):
