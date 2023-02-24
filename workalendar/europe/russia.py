@@ -18,6 +18,7 @@ class Russia(OrthodoxCalendar):
         (6, 12, "National Day"),
         (11, 4, "Day of Unity"),
     )
+    
 
     # Christian holidays
     include_christmas = False
@@ -73,6 +74,17 @@ class Russia(OrthodoxCalendar):
                 (date(year, 11, 5), 'Day After Day of Unity'),
                 (date(year, 12, 31), "New Year's Eve"),
             ])
+        elif year == 2022:
+            days.extend([
+                (date(year, 3, 7), "Day Before International Women's Day"),
+                (date(year, 5, 3), "May 3th, 2022 holiday"),
+                (date(year, 5, 10), 'Day After Victory Day'),
+            ])
+        elif year == 2023:
+            days.extend([
+                (date(year, 2, 24), "Day After Defendence of the Fatherland"),
+                (date(year, 5, 8), 'Day Before Victory Day'),
+            ])
         return days
 
     def get_calendar_holidays(self, year):
@@ -95,7 +107,11 @@ class Russia(OrthodoxCalendar):
     def is_working_day(self, day,
                        extra_working_days=None, extra_holidays=None):
         day = cleaned_date(day)
-        if day == date(2021, 2, 20):
+        working_weekends = [
+            date(2021, 2, 20),
+            date(2022, 3, 5),
+            ]
+        if day in working_weekends:
             return True
         return super().is_working_day(
             day,
