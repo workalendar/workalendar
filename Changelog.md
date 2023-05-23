@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
+- Added Holy Monday holiday to Chile (#725).
 
 ## v17.0.0 (2023-01-01)
 
@@ -18,7 +19,7 @@
 - Upgraded `tox` usage, now compatble with tox 4+ (added `allowlist_externals`).
 - Added support for Python 3.10 (#706).
 - Added support for Python 3.11 (#732).
-- Refactor ``NetherlandsWithSchoolHolidays.get_christmas_holidays`` for simplicity and readability.
+- Refactor `NetherlandsWithSchoolHolidays.get_christmas_holidays` for simplicity and readability.
 
 ## v16.4.0 (2022-09-16)
 
@@ -35,7 +36,7 @@
 ### Bugfixes and other changes
 
 - Removed duplicate Proclamation Day for Latvia, by @Daglina (#686).
-- Documentation: Fix the ``keep_datetime`` usage example in the "basic" doc (#690).
+- Documentation: Fix the `keep_datetime` usage example in the "basic" doc (#690).
 - Added conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 - Added Federal Thanksgiving Monday and two conditional holidays on 26th December and 2nd January in Neuchatel (Switzerland) (#697).
 
@@ -127,7 +128,7 @@
 - Improve Russia coverage (#546).
 - Improve USA calendar coverage by removing a method that wasn't used anyways (`get_washington_birthday_december()`). The method is implemented in both Indiana and Georgia State calendars, and is specific for each state, even if they look very similar (#546).
 - Improve the `astronomy.py` module coverage (#546).
-- Improve coverage for the `tests/__init__.py` module (#546). *Note:* system-dependant test branch (if Windows) won't be counted for coverage.
+- Improve coverage for the `tests/__init__.py` module (#546). _Note:_ system-dependant test branch (if Windows) won't be counted for coverage.
 
 ## v14.3.0 (2021-01-15)
 
@@ -201,12 +202,12 @@
 ### Other changes
 
 - Refactored Spain test modules (#531).
-- Fix Catalonia calendar by removing *Sant Juan* day, which does not appear to be an official holiday (#531).
+- Fix Catalonia calendar by removing _Sant Juan_ day, which does not appear to be an official holiday (#531).
 - Improve coverage of `workalendar/core.py` module (#546).
 - Improve coverage for the Netherlands calendar - Queen's Day (#546).
 - Improve coverage for the Romania calendar - Liberation day (#546).
 - Improve coverage for the New Zealand calendar (#546).
-- Added a tox entrypoint to ensure code is Python 3.6+, using ``pyupgrade`` (#566).
+- Added a tox entrypoint to ensure code is Python 3.6+, using `pyupgrade` (#566).
 - Added the pyupgrade tox job to the test suite, amended contributing documentation (#566).
 
 ## v12.0.0 (2020-10-02)
@@ -259,13 +260,13 @@
 
 ### Other changes
 
-- Refactoring the core ``Calendar`` classes / mixins for better understanding. Only one ``Calendar`` subclass should be imported / used in calendar classes, the rest (when possible) should be ``Mixins`` (related to #511).
+- Refactoring the core `Calendar` classes / mixins for better understanding. Only one `Calendar` subclass should be imported / used in calendar classes, the rest (when possible) should be `Mixins` (related to #511).
 - Declaring the New year's Day as a worldwide holiday, with only two exceptions (to date): Israel & Qatar (#511).
 - Fixed `contributing.md` documentation with the new class/mixin organization (#511).
 
 ## v10.2.0 (2020-06-26)
 
-- Bugfix: setting *Consciência Negra day* as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
+- Bugfix: setting _Consciência Negra day_ as a non-holiday by default for Brazilian calendars, thx to @edniemeyer (#516).
 - Bugfix: Introducing the changes in Croatia holidays as of 2020 - Remembrance Day, Independence Day, Statehood Day... thx to @davidpodrebarac for the bug report (#515).
 
 ## v10.1.0 (2020-06-18)
@@ -281,7 +282,7 @@
 
 ## v10.0.0 (2020-06-05)
 
-- **BREAKING CHANGE**: the ``IsoRegistry.get_calendar_class()`` method has been removed from the code and should no longer be used (#375, #495).
+- **BREAKING CHANGE**: the `IsoRegistry.get_calendar_class()` method has been removed from the code and should no longer be used (#375, #495).
 
 ## v9.2.0 (2020-06-02)
 
@@ -297,8 +298,8 @@
 
 ## v9.0.0 (2020-04-24)
 
-- **BREAKING CHANGE**: the ``IsoRegistry.items()`` method has been removed from the API. You must use the ``get_calendars()`` to perform the same registry queries (#375, #491).
-- *Deprecation notice*: The usage of ``IsoRegistry.get_calendar_class()`` is strongly discouraged, in favor of ``get()``. The ``get_calendar_class`` method will be dropped in a further release. In the meantime, they'll be both equivalent (#375, #418).
+- **BREAKING CHANGE**: the `IsoRegistry.items()` method has been removed from the API. You must use the `get_calendars()` to perform the same registry queries (#375, #491).
+- _Deprecation notice_: The usage of `IsoRegistry.get_calendar_class()` is strongly discouraged, in favor of `get()`. The `get_calendar_class` method will be dropped in a further release. In the meantime, they'll be both equivalent (#375, #418).
 
 ## v8.4.0 (2020-04-17)
 
@@ -309,7 +310,7 @@
 ### Minor fixes
 
 - Fixed Lithuania calendar to use the core flags for Assumption and All Saints (#468).
-- Fixed Malta calendar ; January 1st was already included, no need to add it to the ``FIXED_HOLIDAYS`` property (#469).
+- Fixed Malta calendar ; January 1st was already included, no need to add it to the `FIXED_HOLIDAYS` property (#469).
 - Small refactor in Netherlands calendar to use core constants (#470).
 
 ## v8.3.0 (2020-04-14)
@@ -347,13 +348,13 @@
 
 - **BREAKING CHANGE** Drop Support for Python 2 - EOL January 1st 2020 (#442).
 - Added Ukraine calendar, by @apelloni.
-- Small cleanup in the ``.travis.yml`` file, thx to @Natim.
+- Small cleanup in the `.travis.yml` file, thx to @Natim.
 
 ### ISO Registry API Change
 
-- Changes in the ``registry.items()`` method API.
-  - This method is aliased to ``get_calendars()``. In a near release, the ``items()`` method will change its purpose.
-  - The ``get_calendars()`` method accepts an empty/missing ``region_codes`` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://workalendar.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
+- Changes in the `registry.items()` method API.
+  - This method is aliased to `get_calendars()`. In a near release, the `items()` method will change its purpose.
+  - The `get_calendars()` method accepts an empty/missing `region_codes` argument to retrieve the full registry. Please see the [ISO Registry documentation](https://workalendar.github.io/workalendar/iso-registry.html) for extensive usage docs (#403, #375).
 
 ## v7.2.0 (2019-12-06)
 
@@ -393,7 +394,6 @@
 - Increase Malaysia coverage by adding tests for missing Deepavali & Thaipusam.
 - Increase China coverage by adding tests for special extra-holidays & extra-working days cases.
 
-
 ## v7.0.0 (2019-09-20)
 
 - Drop `ephem` astronomical calculation library, in favor of `skyfield` and `skyfield-data` for providing minimal data files to enable computation (#302, #348). Many thanks to @GammaSagittarii for the tremendous help on finding the right way to compute Chinese Solar Terms. Also thanks to @antvig and @DainDwarf for testing the beta version (#398).
@@ -404,7 +404,7 @@
 
 ## v6.0.0 (2019-08-02)
 
-**Deprecation Notice:** *The global ISO registry now returns plain `dict` objects from its various methods.*
+**Deprecation Notice:** _The global ISO registry now returns plain `dict` objects from its various methods._
 
 - Global registry now returns plain built-in dicts (#375).
 - Removed `EphemMixin` in favor of astronomical functions (#302).
@@ -412,7 +412,7 @@
 
 ## v5.2.3 (2019-07-11)
 
-**Deprecation Warning:** *Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself.*
+**Deprecation Warning:** _Currently the registry returns `OrderedDict` objects when you're querying for regions or subregions. Expect that the next major release will preferrably return plain'ol' `dict` objects. If your scripts rely on the order of the objects returned, you'll have to sort them yourself._
 
 - Fix Romania, make sure Easter and related holidays are calculated using the Orthodox calendar, thx to @KidkArolis (#389).
 
@@ -434,7 +434,7 @@
 ### Other changes
 
 - Added adjustments to 2019-2020 Japan calendar due to the coronation of a new emperor (#379).
-- Add a note about the fact that contributors should not change the version number in the changelog and/or the ``setup.py`` file (#380).
+- Add a note about the fact that contributors should not change the version number in the changelog and/or the `setup.py` file (#380).
 
 ## v5.1.1 (2019-06-27)
 
@@ -453,7 +453,7 @@
 - Internal: Added a "Release" section to the Pull Request template.
 - Internal: Added advices on the Changelog entry in the Contributing document.
 - Bugfix: Fixing North Carolina shift rules when Christmas Day happens on Saturday (#232).
-- Documentation: rearrange country list in ``README.rst`` (sorting and fixing nested lists).
+- Documentation: rearrange country list in `README.rst` (sorting and fixing nested lists).
 - Documentation: Renamed and changed format of the "Contributing guidelines" document, now in Markdown (GFM variant), with a few fixes (#368).
 - Internal: remove coverage targets ; now coverage reports are displayed for each tox job, but they won't output classes with 100% coverage.
 
@@ -482,7 +482,6 @@
 ### Added calendars
 
 - Added Florida specific calendars: Florida Legal, Florida Circuit Courts, Miami-Dade (#216).
-
 
 ## v4.4.0 (2019-05-17)
 
@@ -620,8 +619,8 @@ Large work on global registry: refs #13, #96, #257 & #284.
 
 - Added All Souls Day to common (#274)
 - Allow the `add_working_days()` function to be provided a datetime, and returning a `date` (#270).
-- Added a `keep_datetime` option to keep the original type of the input argument for both ``add_working_days()`` and ``sub_working_days()`` functions (#270).
-- Fixed usage examples of ``get_first_weekday_after()`` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
+- Added a `keep_datetime` option to keep the original type of the input argument for both `add_working_days()` and `sub_working_days()` functions (#270).
+- Fixed usage examples of `get_first_weekday_after()` docstring + in code (calendars and tests) ; do not use magic values, use MON, TUE, etc (#271).
 - Turned Changelog into a Markdown file (#272).
 - Added basic usage documentation, hosted by Github pages.
 - Added advanced usage documentation.
@@ -650,7 +649,7 @@ Large work on global registry: refs #13, #96, #257 & #284.
 - **Deprecation:** Dropped support for Python 3.3 (#245).
 - Fixed Travis-ci configuration for Python 3.5 and al (#252).
 - Moved from `novafloss` to the `peopledoc` organization, the core People Doc Inc. organization (#255).
-- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the ``workalendar.registry`` module. Please use with care at the moment (#248).
+- First step iteration on the "global registry" feature. European countries are now part of a registry loaded in the `workalendar.registry` module. Please use with care at the moment (#248).
 - Refactored Australia family and community day calculation (#244).
 
 ## v2.3.1 (2017-07-27)
@@ -678,7 +677,7 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Added Singapore calendar, initiated by @nedlowe (#194 + #195).
 - Added Malaysia, by @gregyhj (#201).
 - Added Good Friday in the list of Hungarian holidays, as of the year 2017 (#203), thx to @mariusz-korzekwa for the bug report.
-- Assigned a minimal setuptools version, to avoid naughty ``DistributionNotFound`` exceptions with obsolete versions (#74).
+- Assigned a minimal setuptools version, to avoid naughty `DistributionNotFound` exceptions with obsolete versions (#74).
 - Fixed a bug in Slovakia calendar, de-duplicated Christmas Day, that appeared twice (#205).
 - Fixed important bugs in the calendars of the following Brazilian cities: Vitória, Vila Velha, Cariacica, Guarapari and Serra - thx to Fernanda Gonçalves Rodrigues, who confirmed this issue raised by @Skippern (#199).
 
@@ -687,8 +686,8 @@ I have done a terrible mistake with the 1.3.0 release, and uploaded a defunct 2.
 - Moved all the calendar of countries on the american continent in their own modules (#188).
 - Refactor base Calendar class get_weekend_days to use WEEKEND_DAYS more intelligently (#191 + #192).
 - Many additions to the Brazil and various states / cities. Were added: Acre, Alagoas, Amapá, Amazonas, Bahia, Ceará, Distrito Federal, Espírito Santo State, Goiás, Maranhão, Mato Grosso, Mato Grosso do Sul, Pará, Paraíba, Pernambuco, Piauí, Rio de Janeiro, Rio Grande do Norte, Rio Grande do Sul, Rondônia, Roraima, Santa Catarina, São Paulo, Sergipe, Tocantins, City of Vitória, City of Vila Velha, City of Cariacica, City of Guarapari and City of Serra (#187).
-- Added a ``good_friday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
-- Added a ``ash_wednesday_label`` class variable to ``ChristianMixin`` ; one can assign the right label to this holiday (#187).
+- Added a `good_friday_label` class variable to `ChristianMixin` ; one can assign the right label to this holiday (#187).
+- Added a `ash_wednesday_label` class variable to `ChristianMixin` ; one can assign the right label to this holiday (#187).
 
 ## v1.1.0 (2017-02-28)
 
@@ -708,7 +707,7 @@ After several years of development, we can now say that this library is producti
 
 - Add Ireland. thx @gregn610 (#152).
 - Bugfix: New Year's Eve is not a holiday in Netherlands (#154).
-- Add Austria.  thx @gregn610 (#153)
+- Add Austria. thx @gregn610 (#153)
 - Add Bulgaria. thx @gregn610 (#156)
 - Add Croatia. thx @gregn610 (#157)
 
@@ -726,7 +725,7 @@ After several years of development, we can now say that this library is producti
 - Added Catalonia (#145), thx @ferranp.
 - Use `find_packages()` to fetch package directories in `setup.py` (#141, #144).
 - use py.test instead of nosetests for tests (#146).
-- cleanup: remove unused ``swiss.py`` file (#147).
+- cleanup: remove unused `swiss.py` file (#147).
 
 ## v0.6.1 (2016-06-29)
 
@@ -736,7 +735,7 @@ After several years of development, we can now say that this library is producti
 - Added a pull-request template (#125),
 - Added a Makefile for various dev-related tasks -- installs, running tests, uploading to PyPI... (#133).
 
-*Note:* the 0.6.0 was erroneously uploaded ; this v0.6.1 cancels and replaces the v0.6.0.
+_Note:_ the 0.6.0 was erroneously uploaded ; this v0.6.1 cancels and replaces the v0.6.0.
 
 ## v0.5.0 (2016-06-14)
 
@@ -753,7 +752,7 @@ After several years of development, we can now say that this library is producti
 **Sorry, I think I completely broke the 0.4.3 release by trying to delete a naughty file...**
 
 - Added Denmark (#117).
-- Tiny fixes in the ``usa.py`` module (flake8 + typo) (#122)
+- Tiny fixes in the `usa.py` module (flake8 + typo) (#122)
 - Added datetime to date conversion in is_holiday() (#118)
 - Added function to get the holiday label by date (#120)
 - Moved from `novapost` to the `novafloss` organization, handling FLOSS projects in People Doc Inc. (#116)
@@ -781,8 +780,8 @@ After several years of development, we can now say that this library is producti
 - Germany calendar added, thx to @rndusr
 - Support building on systems where LANG=C (Ubuntu) #92
 - little improvement to directly return a tested value.
-- ``delta`` argument for ``add_working_days()`` can be negative. added a
-  ``sub_working_days()`` method that computes working days backwards.
+- `delta` argument for `add_working_days()` can be negative. added a
+  `sub_working_days()` method that computes working days backwards.
 - BUGFIX: shifting UK boxing day if Christmas day falls on a Friday (shit to
   next Monday) #95
 - BUGFIX: Renaming the Finnish "Independance Day" #101 (thx to

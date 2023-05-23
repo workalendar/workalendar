@@ -325,6 +325,17 @@ class ChileTest(GenericCalendarTest):
         self.assertNotIn(date(2018, 6, 29), holidays)
         self.assertIn(date(2018, 7, 2), holidays)
 
+    def test_holy_monday(self):
+        # new_years not SUN
+        holidays = self.cal.holidays_set(2022)
+        self.assertIn(date(2022, 1, 1), holidays)
+        self.assertNotIn(date(2022, 1, 2), holidays)
+
+        # new_years on SUN
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 1, 1), holidays)
+        self.assertIn(date(2023, 1, 2), holidays)
+
 
 class ColombiaTest(GenericCalendarTest):
     cal_class = Colombia
