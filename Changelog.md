@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## v17.1.0 (2023-06-02)
+
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
 
 ## v17.0.0 (2023-01-01)
