@@ -6,6 +6,7 @@ import warnings
 from calendar import monthrange
 from datetime import date, timedelta, datetime
 from pathlib import Path
+import pandas as pd
 import sys
 
 import convertdate
@@ -709,6 +710,20 @@ class CoreCalendar:
             day = day + timedelta(days=1)
         return day
 
+    def get_work_days_range(self, start_date, end_date) -> pd.DatetimeIndex:
+        
+        start_date = cleaned_date(start_date)
+        end_date = cleaned_date(end_date)
+
+        years = list(range(start_date.year, end_date.year + 1))
+        holidays = []
+        for year in years:
+            holidays_by_year = self.holidays(year)
+            holidays.extend([h[0] for h in holidays_by_year])
+
+        work_days_range = pd.bdate_range(start=start_date, end=end_date, freq='C', holidays=holidays)
+        return work_days_range
+    
     @staticmethod
     def get_nth_weekday_in_month(year, month, weekday, n=1, start=None):
         """Get the nth weekday in a given month. e.g:
