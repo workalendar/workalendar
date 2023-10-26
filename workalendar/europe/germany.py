@@ -125,6 +125,16 @@ class MecklenburgVorpommern(Germany):
 
     all_time_include_reformation_day = True
 
+    def get_international_womens_day(self, year):
+        day = date(year, 3, 8)
+        return day, "International Women's Day"
+
+    def get_variable_days(self, year):
+        days = super().get_variable_days(year)
+        if year >= 2023:
+            days.append(self.get_international_womens_day(year))
+        return days
+
 
 @iso_register('DE-NI')
 class LowerSaxony(Germany):

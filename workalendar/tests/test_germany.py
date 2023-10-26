@@ -214,6 +214,18 @@ class MecklenburgVorpommernTest(GermanyTest):
         holidays = self.cal.holidays_set(2015)
         self.assertIn(date(2015, 10, 31), holidays)
 
+    def test_extra_2022(self):
+        holidays = self.cal.holidays_set(2022)
+        self.assertNotIn(date(2022, 3, 8), holidays)
+
+    def test_extra_2023(self):
+        holidays = self.cal.holidays_set(2023)
+        self.assertIn(date(2023, 3, 8), holidays)
+
+    def test_extra_2024(self):
+        holidays = self.cal.holidays_set(2024)
+        self.assertIn(date(2024, 3, 8), holidays)
+
 
 class LowerSaxonyTest(GermanyTest):
     cal_class = LowerSaxony
