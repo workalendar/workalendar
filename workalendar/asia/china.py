@@ -125,7 +125,7 @@ class China(ChineseNewYearCalendar):
         super().__init__(*args, **kwargs)
         self.extra_working_days = []
         for year, data in workdays.items():
-            for workday_name, day_list in data.items():
+            for working_day_name, day_list in data.items():
                 for v in day_list:
                     self.extra_working_days.append(date(year, v[0], v[1]))
 
@@ -155,7 +155,7 @@ class China(ChineseNewYearCalendar):
         for i in range(1, 8):
             day = date(year, 10, i)
             if day not in self.extra_working_days:
-                days.append((date(year, 10, i), "National Day"))
+                days.append((day, "National Day"))
 
         # other holidays
         for holiday_name, day_list in holidays[year].items():
