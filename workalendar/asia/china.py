@@ -50,6 +50,14 @@ holidays = {
             'Mid-Autumn Festival': [(9, 29)],
             'National Day': [(9, 30)]
         },
+    2024:
+        {
+            'Spring Festival': [(2, 16), (2, 17)],
+            'Ching Ming Festival': [(4, 4), (4, 5), (4, 6)],
+            'Labour Day Holiday': [(5, 1), (5, 2), (5, 3), (5, 4), (5, 5)],
+            'Dragon Boat Festival': [(6, 8), (6, 9), (6, 10)],
+            'Mid-Autumn Festival': [(9, 15), (9, 16), (9, 17)],
+        },
 }
 
 workdays = {
@@ -95,13 +103,21 @@ workdays = {
             'Dragon Boat Festival Shift': [(6, 25)],
             'National Day Shift': [(10, 7), (10, 8)]
         },
+    2024:
+        {
+            'Spring Festival Shift': [(2, 4), (2, 9), (2, 18)],
+            'Ching Ming Festival Shift': [(4, 7)],
+            'Labour Day Holiday Shift': [(4, 28), (5, 11)],
+            'Mid-Autumn Festival Shift': [(9, 14)],
+            'National Day Shift': [(9, 29), (10, 12)]
+        },
 }
 
 
 @iso_register('CN')
 class China(ChineseNewYearCalendar):
     "China"
-    # WARNING: Support 2018-2023 currently, need update every year.
+    # WARNING: Support 2018-2024 currently, need update every year.
     shift_new_years_day = True
     include_chinese_new_year_eve = True
 
@@ -109,7 +125,7 @@ class China(ChineseNewYearCalendar):
         super().__init__(*args, **kwargs)
         self.extra_working_days = []
         for year, data in workdays.items():
-            for holiday_name, day_list in data.items():
+            for working_day_name, day_list in data.items():
                 for v in day_list:
                     self.extra_working_days.append(date(year, v[0], v[1]))
 
@@ -125,20 +141,27 @@ class China(ChineseNewYearCalendar):
         return super().get_calendar_holidays(year)
 
     def get_variable_days(self, year):
-        days = super().get_variable_days(year)
+        days = [(day, holiday_name) for (day, holiday_name)
+                in super().get_variable_days(year)
+                if day not in self.extra_working_days]
+
         # Spring Festival, eve, 1.1, and 1.2 - 1.6 in lunar day
         for i in range(2, 7):
-            days.append((ChineseNewYearCalendar.lunar(year, 1, i),
-                         "Spring Festival"))
+            day = ChineseNewYearCalendar.lunar(year, 1, i)
+            if day not in self.extra_working_days:
+                days.append((day, "Spring Festival"))
+
         # National Days, 10.1 - 10.7 in general
         for i in range(1, 8):
-            if date(year, 10, i) not in self.extra_working_days:
-                days.append((date(year, 10, i), "National Day"))
+            day = date(year, 10, i)
+            if day not in self.extra_working_days:
+                days.append((day, "National Day"))
 
         # other holidays
         for holiday_name, day_list in holidays[year].items():
             for v in day_list:
                 days.append((date(year, v[0], v[1]), holiday_name))
+
         return days
 
     def is_working_day(self, day,

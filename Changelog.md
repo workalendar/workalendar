@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Coronation of His Majesty King Charles III Bank holiday in 2023 to the UK calendar.
+- Update China's public holidays for 2024.
 
 ## v17.0.0 (2023-01-01)
 
